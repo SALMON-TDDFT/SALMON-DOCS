@@ -1,0 +1,4 @@
+.. _exercises-calc:
+
+Exercises
+====================
