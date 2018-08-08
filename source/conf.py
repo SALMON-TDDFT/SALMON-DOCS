@@ -46,7 +46,6 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.imgmath',
     'sphinx.ext.ifconfig',
-    'sphinx.ext.githubpages',
     'sphinxcontrib.bibtex',
 ]
 
