@@ -1,6 +1,8 @@
 Manual for SALMON-v.1.1.0
 =========================
 
+  |today|
+
 SALMON is an open-source software based on first-principles time-dependent density functional theory to describe optical responses and electron dynamics in matters induced by light electromagnetic fields :cite:`SALMON-unit-cell,SALMON-large-system`.
 
 .. toctree::
