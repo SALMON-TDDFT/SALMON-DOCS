@@ -26,9 +26,9 @@ copyright = u'2018, SALMON developers'
 author = u'SALMON developers'
 
 # The short X.Y version
-version = u'0.0'
+version = u''
 # The full version, including alpha/beta/rc tags
-release = u'alpha'
+release = u'v.1.1.0'
 
 
 # -- General configuration ---------------------------------------------------
