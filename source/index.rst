@@ -6,6 +6,7 @@ SALMON is an open-source software based on first-principles time-dependent densi
 .. toctree::
    :maxdepth: 2
 
+   introduction
    install_and_run
    input_variables
    exercises
