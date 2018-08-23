@@ -327,3 +327,126 @@ Choose ``Makefile`` appropriate for your environment, and execute the make comma
 
 If the make proceeds successful, a binary file is created in the directory ``SALMON/bin/``.
 
+
+.. _troubleshooting-install:
+
+Troubleshooting of the Installation Process
+-------------------------------------------
+
+Installation of CMake
+~~~~~~~~~~~~~~~~~~~~~
+
+The `CMake <https://cmake.org/>`_ is a cross-platform build tool. In order to build the
+SALMON from the source code, the CMake of version 3.0.2 or later is
+required. You may install it following one of the three instructions
+below.
+
+Installation of pre-compiled binary
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can get the binary distribution from the `download page <https://cmake.org/download/>`_. First,
+move to the directory that you installed SALMON,
+
+::
+
+   cd <SALMON_INSTALLATION_DIRECTORY>
+
+and download the binary distribution (``cmake-<VERSION>-<PLATFORM>.tar.gz``) appropriate for your platform. You
+can do it by copy the URL of download link from the browser, and use
+``wget`` command:
+
+::
+
+   wget https://cmake.org/files/v3.8/cmake-3.8.2-Linux-x86_64.tar.gz
+
+In this document, we will use version 3.8.2 as an example. You can
+unpack the downloaded archive
+
+::
+
+   tar -zxvf cmake-3.8.2-Linux-x86_64.tar.gz
+
+and you will have the binary ``make-3.8.2-Linux-x86_64/bin/cmake``.
+
+Next, to utilize the ``cmake`` command, it is required that the
+executable are settled inside the directory specified in your ``$PATH``.
+If you use the bash shell, edit ``~/.bashrc`` and append the line:
+
+::
+
+   export PATH=<SALMON_INSTALLATION_DIRECTORY>/cmake-3.8.2-Linux-x86_64/bin:$PATH
+
+and reload the configuration:
+
+::
+
+   source ~/.bashrc
+
+Installation by package manager
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If your system has a built-in package manager, you may conveniently
+install the CMake tools as below:
+
+**Debian/Ubuntu Linux**
+
+::
+
+   sudo apt-get install cmake
+
+**Fedora Linux/CentOS**
+
+::
+
+   sudo yum install cmake
+
+**openSUSE Linux**
+
+::
+
+   sudo zypper install cmake
+
+
+Installation from source code
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can get the source code distribution from the `download page <https://cmake.org/download/>`_. In
+this time, we will use the cmake version 3.8.2 as an example. Download
+the archive by ``wget`` comamnd and unpack it as below:
+
+::
+
+   wget https://cmake.org/files/v3.8/cmake-3.8.2.tar.gz
+   tar -zxvf cmake-3.8.2.tar.gz
+
+And, move to the unpacked directory and build.
+
+::
+
+    
+   cd cmake-3.8.2
+   ./configure --prefix=INSTALLATION_DIRECTORY
+   make
+   make install
+
+(replace ``INSTALLATION_DIRECTORY`` to your installation directory.)
+
+Next, to utilize the ``cmake`` command, it is required that the
+executable are settled inside the directory specified in your ``$PATH``.
+If you use the bash shell, edit ``~/.bashrc`` and append the line:
+
+::
+
+   export PATH=INSTALLATION_DIRECTORY/bin:$PATH
+
+and reload the configuration:
+
+::
+
+   source ~/.bashrc
+
+Installation of BLAS/LAPACK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. _CMake: https://cmake.org/%7CCMake
+.. _download page: https://cmake.org/download/

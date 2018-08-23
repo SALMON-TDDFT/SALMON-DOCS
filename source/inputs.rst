@@ -46,13 +46,11 @@ Mandatory: calc_mode
 
 The value of the ``calc_mode`` should be one of ``'GS'``, ``'RT'``, and
 ``'GS-RT'``. For isolated systems (specified by ``iperiodic = 3`` in
-:literal:`&system`), the ground state (`'GS'`) and the real time (`'RT'`) calculations should be done separately and sequentially. For periodic systems (specified by `iperiodic = 3` in`
-&system\ ``), both ground state and real time calculations should be carried out as a single task (``\ calc_mode
-= 'GS_RT'`).
+``&system``), the ground state (``'GS'``) and the real time (``'RT'``) calculations should be done separately and sequentially.
+For periodic systems (specified by ``iperiodic = 3`` in ``&system``), both ground state and real time calculations should be carried out
+as a single task (``calc_mode = 'GS_RT'``).
 
-For Maxwell + TDDFT multi-scale calculation, add the following namelist.
-
-``use_ms_maxwell = 'y'``
+For Maxwell + TDDFT multi-scale calculation, add the following namelist, ``use_ms_maxwell = 'y'``.
 
 &control
 --------
@@ -86,15 +84,14 @@ For isolated systems (specified by ``iperiodic = 0`` in ``&system``),
 only the default choice of 'PZ' is available at present.
 
 For periodic systems (specified by ``iperiodic = 3`` in ``&system``),
-the following functionals may be available in addition to 'PZ':
-
+the following functionals may be available in addition to 'PZ', 
 ``xc = 'PZM'``
 
 Perdew-Zunger LDA with modification to improve sooth connection between
-high density form and low density one. :J. P. Perdew and Alex Zunger,
-Phys. Rev. B 23, 5048 (1981).
+high density form and low density one, ``xc = 'TBmBJ' cval = 1.0``
+:J. P. Perdew and Alex Zunger, Phys. Rev. B 23, 5048 (1981).
 
-``xc = 'TBmBJ' cval = 1.0``
+
 
 Tran-Blaha meta-GGA exchange with Perdew-Wang correlation. :Fabien Tran
 and Peter Blaha, Phys. Rev. Lett. 102, 226401 (2009). John P. Perdew and
@@ -430,9 +427,10 @@ The default is *middlepoint*.
 
 This namelist specifies the pulse shape of an electric filed applied to
 the system in time evolution calculations. We explain below separating
-two cases, `#Linear response
-calculations <#Linear_response_calculations>`__ and `#Pulsed electric
-field calculations <#Pulsed_electric_field_calculations>`__.
+two cases, :any:`linear-response-calculations`
+and :any:`pulsed-electric-field-calculations`.
+
+.. _linear-response-calculations:
 
 Linear response calculations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -468,6 +466,8 @@ polarization in the time evolution calculation. The default is ``'tr'``.
 The magnitude of the impulse of the pulse may be explicitly specified
 by, for example, ``e_impulse = 1d-2``. The default is '1d-2' in atomic
 unit.
+
+.. _pulsed-electric-field-calculations:
 
 Pulsed electric field calculations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
