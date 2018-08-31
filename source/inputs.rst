@@ -1,3 +1,4 @@
+.. _Inputs:
 
 Inputs
 ====================
@@ -5,6 +6,8 @@ Inputs
 We here summarize namelists that appear in this Tutorial. A thorough
 list of the namelist variables may be found in the downloaded file in
 'SALMON/manual/input_variables.md'.
+
+.. _&units:
 
 &units
 ------
@@ -33,6 +36,8 @@ unit system specified by this namelist variable is used for most output
 files. See the first few lines of output files to confirm the unit
 system adopted in the file.
 
+.. _&calculation:
+
 &calculation
 ------------
 
@@ -52,6 +57,8 @@ as a single task (``calc_mode = 'GS_RT'``).
 
 For Maxwell + TDDFT multi-scale calculation, add the following namelist, ``use_ms_maxwell = 'y'``.
 
+.. _&control:
+
 &control
 --------
 
@@ -66,6 +73,8 @@ Mandatory: none
 'C2H2' defined by ``sysname = 'C2H2'`` will be used in the filenames of
 output files. If you do not specify it, the file name will start with
 'default'.
+
+.. _&functional:
 
 &functional
 -----------
@@ -124,6 +133,8 @@ http://www.tddft.org/programs/libxc/functionals/ .
 
 Note that, the hybrid functionals (hybrid gga/mgga) are not supported in
 the current (version 1.1.0) of SALMON.
+
+.. _&system:
 
 &system
 -------
@@ -196,6 +207,8 @@ of the symmetry substantially reduces the computational cost, it should
 be used very carefully. At present, the spatial symmetry has been
 implemented only for the case of the diamond structure.
 
+.. _&pseudo:
+
 &pseudo
 -------
 
@@ -239,6 +252,8 @@ local, respectively.
 of element #1. ``lloc_ps(1) = 2`` indicate the angular momentum of the
 pseudopotential that will be treated as local.
 
+.. _&atomic_coor:
+
 &atomic_coor
 ------------
 
@@ -259,6 +274,8 @@ separate file)
 Cartesian coordinates of atoms. The first column indicates the element.
 Next three columns specify Cartesian coordinates of the atoms. The
 number in the last column labels the element.
+
+.. _&atomic_red_coor:
 
 &atomic_red_coor
 ----------------
@@ -286,6 +303,8 @@ system. First column indicates the element, next three columns specify
 reduced Cartesian coordinates of the atoms, and the last column labels
 the element.
 
+.. _&rgrid:
+
 &rgrid
 ------
 
@@ -311,6 +330,8 @@ direction. This is adopted for crystalline Is calculation (Tutorial-4,
      num_rgrid = 12,12,12
    /
 
+.. _&kgrid:
+   
 &kgrid
 ------
 
@@ -324,6 +345,8 @@ This namelist provides grid spacing of k-space for periodic systems.
    num_kgrid = 4,4,4
    /
 
+.. _&scf:
+   
 &scf
 ----
 
@@ -350,6 +373,8 @@ calculation ends before the number of the scf iterations reaches
 options to examine the convergence. If the value of ``norm_rho_dng`` is
 specified, the convergence is examined by the squared difference of the
 electron density,
+
+.. _&hartree:
 
 &hartree
 --------
@@ -378,6 +403,8 @@ A default for ``meo`` is ``3``, and defaults for ``num_pole_xyz`` are
 ``(0,0,0)``. When default is set for ``num_pole_xyz``, the division of
 space is carried out using a prescribed method.
 
+.. _&tgrid:
+
 &tgrid
 ------
 
@@ -393,6 +420,8 @@ Mandatory: dt, Nt
 ``dt=1.25d-3`` specifies the time step of the time evolution
 calculation. ``nt=5000`` specifies the number of time steps in the
 calculation.
+
+.. _&propagation:
 
 &propagation
 ------------
@@ -421,6 +450,8 @@ Rubio, Comput. Phys. Commun., 151 60
 two-times is used.
 
 The default is *middlepoint*.
+
+.. _&emfield:
 
 &emfield
 --------
@@ -533,6 +564,8 @@ polarization in the time evolution calculation. The default is ``'tr'``.
 For a periodic system, it is also specify 'Acos3', 'Acos4', 'Acos6',
 'Acos8' for ``ae_shape1``.
 
+.. _&analysis:
+
 &analysis
 ---------
 
@@ -576,6 +609,8 @@ analysis are specified.
 specifies the energy spacing in the time-frequency Fourier
 transformation.
 
+.. _&multiscale:
+
 &multiscale
 -----------
 
@@ -607,6 +642,8 @@ x-direction.
 ``nxvacl_m = -2000`` and ``nxvacr_m = 256`` indicate the number of grid
 points in the vacuum region, ``nxvacl_m`` for the left and ``nxvacr_m``
 for the right from the surface of the material.
+
+.. _&parallel:
 
 &parallel
 ---------
