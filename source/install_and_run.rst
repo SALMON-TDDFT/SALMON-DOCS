@@ -36,7 +36,7 @@ See :any:`troubleshooting-install`.
 Download
 -----------------
 
-The newest version of SALMON can be downloaded from `download page <http://salmon-tddft.jp/download.html>`_.
+The newest version of SALMON can be downloaded from `download page <http://salmon-tddft.jp/download.html>`__.
 To extract files from the downloaded file ``salmon-<VERSION>.tar.gz``, type the following command in the command-line::
 
   $ tar -zxvf ./salmon-<VERSION>.tar.gz
@@ -344,7 +344,7 @@ below.
 Installation of pre-compiled binary
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can get the binary distribution from the `download page <https://cmake.org/download/>`_. First,
+You can get the binary distribution from the `download page <https://cmake.org/download/>`__. First,
 move to the directory that you installed SALMON,
 
 ::
@@ -410,7 +410,7 @@ install the CMake tools as below:
 Installation from source code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can get the source code distribution from the `download page <https://cmake.org/download/>`_. In
+You can get the source code distribution from the `download page <https://cmake.org/download/>`__. In
 this time, we will use the cmake version 3.8.2 as an example. Download
 the archive by ``wget`` comamnd and unpack it as below:
 
@@ -448,5 +448,3 @@ and reload the configuration:
 Installation of BLAS/LAPACK
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. _CMake: https://cmake.org/%7CCMake
-.. _download page: https://cmake.org/download/
