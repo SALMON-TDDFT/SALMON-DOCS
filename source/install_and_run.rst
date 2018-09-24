@@ -78,7 +78,7 @@ Installation of CMake
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `CMake <https://cmake.org/>`_ is a cross-platform build tool.
-The simplest way to make CMake usable in your environment is to get `the binary distribution of CMake from the download page <https://cmake.org/download/>`_. The file name of the binary distribution will be ``cmake-<VERSION>-<PLATFORM>.tar.gz``). In standard Unix environment, a file for the platform of Linux x86_64 will be appropriate.
+The simplest way to make CMake usable in your environment is to get `the binary distribution of CMake from the download page <https://cmake.org/download/>`_. (The file name of the binary distribution will be ``cmake-<VERSION>-<PLATFORM>.tar.gz``). In standard Unix environment, a file for the platform of Linux x86_64 will be appropriate.
 
 To download the file, proceed as follows: We assume that you are in the directory that you extracted files from the downloaded file of SALMON,
 and that you will use the version 3.8.2. First get the URL of the download link from your browser, and use ``wget`` command in your Unix command-line::
@@ -209,7 +209,7 @@ Namelist variables that are used in our exercises are explained at :any:`input-v
 Run SALMON
 -----------------------------------
 
-Before running SALMON, the following preparations are required as described above: The executable file of ``salmon.cpu`` and ``salmon.mic`` if your system is the many-core machine) should be built from the source file of SALMON. An input file ``inputfile.inp`` and pseudopotential files should also be prepared.
+Before running SALMON, the following preparations are required as described above: The executable file of ``salmon.cpu`` and ``salmon.mic`` (if your system is the many-core machine) should be built from the source file of SALMON. An input file ``inputfile.inp`` and pseudopotential files should also be prepared.
 
 The execution of the calculation can be done as follows: In single process environment, type the following command::
 
