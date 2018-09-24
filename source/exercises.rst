@@ -424,7 +424,7 @@ the index of the orbital..
 **dos.data**
 
 A file for density of states. The units used in this file are affected
-by the input parameter, ``unit_energy`` in ``&unit``).
+by the input parameter, ``unit_energy`` in ``&unit``.
 
 ::
 
@@ -456,7 +456,7 @@ by the input parameter, ``unit_energy`` in ``&unit``).
 **pdos1.data, pdos2.data, ...**
 
 Files for projected density of states. The units used in this file are
-affected by the input parameter, ``unit_energy`` in ``&unit``). The
+affected by the input parameter, ``unit_energy`` in ``&unit``. The
 number in the filename indicates the order of atoms specified in
 ``&atomic_coor``.
 
