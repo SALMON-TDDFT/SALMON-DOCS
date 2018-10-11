@@ -1,5 +1,5 @@
-Input variables of SALMON
-=========================
+List of all input keywords
+==========================
 
 -  `&calculation`_
 -  `&control`_
