@@ -31,27 +31,29 @@ Input variables of SALMON
    Choice of Calculation modes. ``'GS'``, ``'RTLR'``, ``'RTPulse'``, ``'GS_RTLR'``,
    and ``'GS_RTPulse'`` can be chosen.
 
-
 - **use_ms_maxwell** (character, 3d)
    Enable(``'y'``)/disable(``'n'``) 
    Multi-scale Maxwell-Kohn-Sham coupling. 
    Default is ``'n'`` 
-
 
 - **use_force** (character, 0d)
    Enable(``'y'``)/disable(``'n'``) 
    force calculation.
    Default is ``'n'``.
 
+- (Trial) **use_adiabatic_md** (character, 3d)
+   Enable(``'y'``)/disable(``'n'``). 
+   Adiabatic ground-state molecular dynamics option.
+   Default is ``'n'``.
 
 - (Trial) **use_ehrenfest_md** (character, 0d/3d)
-   Enable(``'y'``)/disable(``'n'``) 
-   Ehrenfest molecular dynamics.
+   Enable(``'y'``)/disable(``'n'``). 
+   Ehrenfest molecular dynamics option.
    Default is ``'n'``.
 
 - (Trial) **use_geometry_opt** (character, 0d/3d)
-   Enable(``'y'``)/disable(``'n'``) 
-   geometry optimization.
+   Enable(``'y'``)/disable(``'n'``). 
+   Geometry optimization option.
    Default is ``'n'``.
 
 - (Trial) **theory** (character, 0d/3d)
@@ -74,8 +76,7 @@ Input variables of SALMON
    Default is the current directoy, ``./``.
 
 - (Trial) **restart_option** (character, 3d)
-   Flag for restart. ``'new'`` or 
-   ``'restart'`` can be chosen.
+   Flag for restart, ``'new'`` or ``'restart'``.
    ``'new'`` is default.
 
 - (Trial) **backup_frequency** (integer, 3d)
@@ -92,36 +93,47 @@ Input variables of SALMON
    Name of a filename for the restart calculation.
 
 - (Trial) **read_gs_wfn_k** (character, 3d)
-   Read ground state wave function as initial guess (pre-calculated "gs_wfn_k" directory printed by ``calc_mode=GS``) if this is ``y``.
-   Default is ``n``. (The option is available for restart of ground state SCF calculation, geometrical optimization, etc. But the data is automatically read when "calc_mode=RT")
+   Read ground state wave function as initial guess (from pre-calculated "gs_wfn_k" directory printed by ``calc_mode=GS``) if this option is ``y``.
+   The option is available for restart of ground state SCF calculation, geometrical optimization, etc.
+   But the data is automatically read when "calc_mode=RT".
+   Default is ``n``.
 
 - (Trial) **write_gs_wfn_k** (character, 3d)
-   Write ground state wave function into "gs_wfn_k" directory if this is ``y``. (Useful for ``calc_mode=GS_RT``. But the data is always written in the case of ``calc_mode=GS`` calculation.) 
+   Write ground state wave function into "gs_wfn_k" directory if this option is ``y``, which is usually used for ``calc_mode=GS_RT`` calculation.
+   (But the data is always printed in the case of ``calc_mode=GS`` calculation.)
    Default is ``n``.
 
 - (Trial) **modify_gs_wfn_k** (character, 3d)
-   Option to modify initial guess wave function (pre-calculated "gs_wfn_k" directory) in combination with ``read_gs_wfn_k = y``.
+   Option to modify initial guess wave function (in the pre-calculated "gs_wfn_k" directory) used in combination with ``read_gs_wfn_k = y``.
    If ``copy_1stk_to_all`` is set, the first k-point data file, wfn_gs_k0000001.wfn (supposed to be obtained by gamma-point calculation), is copied to all other points.
    Default is ``n``.
 
-- (Trial) **write_rt_wfn_k** (character, 3d)
-   Write RT wave function into "rt_wfn_k" directory if this is ``y``.
+- (Trial) **read_rt_wfn_k** (character, 3d)
+   Read RT wave function (from pre-calculated "rt_wfn_k" directory printed by ``calc_mode=RT`` or ``calc_mode=GS_RT`` with option of ``write_rt_wfn_k=y``) if this is ``y``.
+   This is used for restart in combination with ``calc_mode=RT`` (if ``use_ehrenfest_md=y``, coordinates and velocities of atoms for restart must be included, too),
+   then, "gs_wfn_k" directory is also necessary (even though this is actually not used if any analysis options are specified (but used for some analysis options)).
+   Note that, currently, field is taken over after restarting only if ``ae_shape1=AcosX`` type is used.
    Default is ``n``.
 
-- (Trial) **read_rt_wfn_k** (character, 3d)
-   Read RT wave function (pre-calculated "rt_wfn_k" directory printed by ``calc_mode=RT`` with ``write_rt_wfn_k=y``) if this is ``y``. This is used for restarting ``calc_mode=RT`` (supporting ``use_ehrenfest_md=y``, too: Coordinates and velocities of atoms for restarting are also included), then, "gs_wfn_k" directory is also necessary (actually used only for some analysis options). Note that, currently, field is taken over after restarting only if ``ae_shape1=AcosX`` type is used.
+- (Trial) **write_rt_wfn_k** (character, 3d)
+   Write RT wave function at the last time step into "rt_wfn_k" directory if this is ``y``.
+   (if ``use_ehrenfest_md=y``, coordinates and velocities of atoms are also printed.)
    Default is ``n``.
 
 - (Trial) **read_gs_wfn_k_ms** (character, 3d)
-   Read ground state wave function as initial state for multiscale calculation. This should be used together with ``use_ms_maxwell='y'``, ``calc_mode='RT'`` and ``set_ini_coor_vel='y'``. The ground state wave function data must be pre-calculated for each configuration(or atomic coordinate) and be put the obtained directories 'gs_wfn_k' into specific directories: ``directory``/multiscale/MXXXXXX/ where is the index number of the macro-grid point of the material region usually starting from '000001' up to the number of macro-grid point (the same place of 'ini_coor_vel.dat' used by the option ``set_ini_coor_vel``).
+   Read ground state wave function at each macro-grid point as initial state for multiscale calculation.
+   This should be used together with ``use_ms_maxwell='y'``, ``calc_mode='RT'`` and ``set_ini_coor_vel='y'``.
+   The ground state wave function data ('gs_wfn_k') must be pre-calculated for each macro-grid point (configuration or atomic coordinate can be different from macro-grid point to macro-grid point) and be put into the specific directories: ``directory``/multiscale/MXXXXXX/ where XXXXXX is the index number of the macro-grid point of the material region usually starting from '000001' up to the number of macro-grid point ('ini_coor_vel.dat' used by the option ``set_ini_coor_vel`` must be put in the same place).
    Default is ``n``.
 
 - (Trial) **read_rt_wfn_k_ms** (character, 3d)
-   Read wave function and field information as initial state in multiscale calculation. These are generated in pre-calculation by using ``write_rt_wfn_k_ms='y'``. If you give incident pulse from input file option, the field is added to the read initial data.
+   Read RT wave function and field information as initial state in multiscale calculation.
+   These are the printed data at the last time step in the previous calculation generated by using ``write_rt_wfn_k_ms='y'``.
+   If you give incident pulse from input file option, the field is added.
    Default is ``n``.
 
 - (Trial) **write_rt_wfn_k_ms** (character, 3d)
-   Write wave function and field information at the last step in multiscale calculation. It is used for restarting by using ``read_rt_wfn_k_ms='y'``. 
+   Write RT wave function and field information at the last step in multiscale calculation. It is used for restarting by using ``read_rt_wfn_k_ms='y'``. 
    Default is ``n``.
 
 
@@ -323,7 +335,7 @@ This option is incompatible with
    Default is ``'1.0'``.
 
 - (Trial) **no_update_func** ``character(1)``; 3d)
-   Option not to update functional (or Hamiltonian) in RT time step, i.e., keep ground state Hamiltonian during time-evolution.
+   Option not to update functional (or Hamiltonian) in RT calculation, i.e., keep ground state Hamiltonian during time-evolution.
    Default is ``'n'``.
 
 
@@ -451,18 +463,18 @@ This option is incompatible with
 
 - **threshold_norm_rho** (real(8), 0d)
    Threshold for convergence check that is used when either ``'norm_rho'`` or ``'norm_rho_dng'`` is specified. ``threshold_norm_rho`` must be set when either ``'norm_rho'`` or ``'norm_rho_dng'`` is specified.
-   Default is ``-1d0`` a.u. (1 a.u.= 45.54è™©\ :sup:`-6`\)
+   Default is ``-1d0`` a.u. (1 a.u.= 45.54 A\ :sup:`-6`\)
 
 
 - **threshold_norm_pot** (real(8), 0d)
    Threshold for convergence check that is used when either ``'norm_pot'`` or ``'norm_pot_dng'`` is specified. ``threshold_norm_pot`` must be set when either ``'norm_pot'`` or ``'norm_pot_dng'`` is specified.
-   Default is ``-1d0`` a.u. (1 a.u.= 33.72x10\ :sup:`4`\ è™©\ :sup:`-6`\eV\ :sup:`2`\)
+   Default is ``-1d0`` a.u. (1 a.u.= 33.72x10\ :sup:`4`\ A\ :sup:`-6`\eV\ :sup:`2`\)
 
 - **omp_loop** (character, 3d)
-   Loop for OpenMP parallelization if periodic boundary system is used. 
+   Loop for OpenMP parallelization in the ground state SCF if periodic boundary system is used. 
 
-  - ``k``: parallelization by k-point loop (Default).
-  - ``b``: parallelization mainly by band orbital loop (sometimzes space grid loop too). This works efficiently if the number of k-point to be calculated in a node is small (e.x. the case of single k-point for each node)
+  - ``k``: parallelization for k-point loop (Default).
+  - ``b``: parallelization mainly for band orbital loop (sometimes space grid loop too). This works efficiently if the number of k-point treated in each node is small (e.x. the case of single k-point for each node)
 
 
 - (Trial) **skip_gsortho** (character, 3d)
@@ -526,9 +538,10 @@ This option is incompatible with
    Default is ``0d0/0d0``.
 
 - **t1_delay** (real(8), 3d)
-   Time-delay of the first pulses.
+   Time-delay of the first pulse.
    Unit of time can be chosen by ``&units/unit_time``.
-   Default is ``0d0``.
+   (this is not available for multiscale option).
+  Default is ``0d0``.
 
 - **t1_t2** (real(8), 0d/3d)
    Time-delay between the first and the second pulses.
@@ -601,14 +614,14 @@ This option is incompatible with
 - (Trial) **set_ini_coor_vel** (character, 3d)
    Set initial atomic coordinates and velocities for each macro-grid point. This must be given with specific directories and files: 
    Prepare ``directory``/multiscale/MXXXXXX/ini_coor_vel.dat, where 'XXXXXX' is the index number of the macro-grid point of the material region usually starting from '000001' up to the number of macro-grid point. The format of the file 'ini_coor_vel.dat' is just Rx, Ry, Rz, Vx, Vy, Vz (with space separation) for each atom (i.e. for each line), where the unit of the coordinates, Rx, Ry, Rz, is angstrom or a.u. speficied by ``unit_system`` but that of velocities is always a.u.. This option should be used together with ``read_gs_wfn_k_ms`` which is the option to read the ground state wave function for each macro-grid point. 
-   Default value is ``'y'``.
+   Default value is ``'n'``.
 
 - (Trial) **nmacro_write_group** (integer, 3d)
    If the number of macroscopic grids are very large, computers can be unstable by writing all information of all macroscopic grid points at the same time. To avoid that, the writings are divided by specifying this option. Writings will be done by each ``nmacro_write_group`` macroscopic grid points. (this number must be aliquot part of the total number of macroscopic grid points)
    Default value is ``'-1'``.
 
 - (Trial) **file_macropoint** (character, 3d)
-   If this variable is specified, the coordinates of the macropoints are set from the file.
+   If file name is specified in the option, the coordinates of the macropoints are set from the file.
    Default value is ``''``.
 
 
@@ -617,16 +630,16 @@ This option is incompatible with
 
 - **projection_option** (character, 3d)
    Methods of projection.
-
+   
   - ``'no'``: no projection.
   - ``'gs'``: projection to eigenstates of ground-state Hamiltonian.
   - ``'rt'``: projection to eigenstates of instantaneous Hamiltonian.
-
+  
 
 - (Trial) **projection_decomp** (character, 3d)
    If ``'atom'`` combined with ``projection_option='gs'``, 
    the number of excited electron is decomposed into each atom 
-   (this is printed in ``SYSname``\_nex_atom.data)
+   (this is printed in ``SYSname``\_nex_atom.data).
    Default is ``'n'``.
 
 - **out_projection_step** (integer, 3d)
@@ -723,8 +736,8 @@ This option is incompatible with
    Defaults are ``'n'/10``.
 
 - (Trial) **out_tm** (character, 3d)
-   If ``'y'``, trandition moments between occupied and virtual orbitals are printed into ``SYSname``\_tm.data after the ground state calculation.
-   Defaults are ``'n'/10``.
+   If ``'y'``, transition moments between occupied and virtual orbitals are printed into ``SYSname``\_tm.data after the ground state calculation.
+   Defaults are ``'n'``.
 
 - **format3d** (character, 0d/3d)
    Format for three dimensional data.
@@ -790,12 +803,12 @@ This option is incompatible with
    Default is ``0.8``.
 
 - (Trial) **convrg_scf_ene** (real(8), 3d)
-   Convergence threshold of SCF calculation in energy difference. If negative number no threshold (SCF loop is up to ``Nscf``). The other SCF thresholds such as ``threshold`` in ``&scf`` are also applied (if you do not want to use it, set very small number). 
+   Convergence threshold of ground state SCF calculation in energy difference at each optimization step. If negative number no threshold (SCF loop is up to ``Nscf``). The other SCF thresholds such as ``threshold`` in ``&scf`` are also applied (if you do not want to use it, set very small number). 
    Default is ``-1.0``.
 
 
 - (Trial) **convrg_scf_force** (real(8), 3d)
-   Convergence threshold of SCF calculation in force (average over atoms) difference. If negative number no threshold (SCF loop is up to ``Nscf``). The other SCF thresholds such as ``threshold`` in ``&scf`` are also applied (if you do not want to use it, set very small number). 
+   Convergence threshold of ground state SCF calculation in force (average over atoms) difference. If negative number no threshold (SCF loop is up to ``Nscf``). The other SCF thresholds such as ``threshold`` in ``&scf`` are also applied (if you do not want to use it, set very small number). 
    Default is ``-1.0``.
 
 - (Trial) **convrg_opt_fmax** (real(8), 3d)
@@ -810,11 +823,11 @@ This option is incompatible with
 &md (Trial)
 -----------
 - (Trial) **ensemble** (character, 3d)
-   Ensemble in MD option: "NVE" or "NVT"
+   Ensemble in MD option: "NVE" or "NVT".
    Default is ``"NVE"``.
 
 - (Trial) **thermostat** (character, 3d)
-   Thermostat in "NVT" option: (currently only ``nose-hoover``)
+   Thermostat in "NVT" option: (currently only ``nose-hoover``).
    Default is ``"nose-hoover"``.
 
 - (Trial) **step_velocity_scaling** (integer, 3d)
@@ -826,7 +839,7 @@ This option is incompatible with
    Default is ``10/1``.
 
 - (Trial) **temperature0_ion** (real(8), 3d)
-   Setting temperature in NVT ensemble and velocity scaling and for generating initial velocities.
+   Setting temperature [K] for NVT ensemble, velocity scaling and generating initial velocities.
    Default is ``298.15``.
 
 - (Trial) **set_ini_velocity** (character, 3d)
@@ -834,7 +847,7 @@ This option is incompatible with
    Default is ``n``.
 
   - ``y``: Generate initial velocity with Maxwell-Bortzman distribution.
-  - ``r``: Read initial velocity from file specified by keyword of ``file_ini_velocity``. This is, for example, used for restarting MD from the previous run. The last atomic coordinates and velocities are printed in ``SYSname``\_trj.xyz in that run. (atomic coordinate also should be copied from that and put in the next input file for restart)
+  - ``r``: Read initial velocity from file specified by keyword of ``file_ini_velocity``. This is, for example, used for restarting MD from the previous run. The last atomic coordinates and velocities are printed in ``SYSname``\_trj.xyz. (atomic coordinate also should be copied from the previous output and put in the next input file for restart)
 
     
 - (Trial) **file_ini_velocity** (character, 3d)
@@ -842,7 +855,7 @@ This option is incompatible with
    Default is ``none``.
 
 - (Trial) **file_set_shake** (character, 3d)
-   Setting file for SHAKE method in ground-state MD is read. (now not supported yet)
+   Setting file for SHAKE method in ground-state MD is read. (now not supported yet).
    Default is ``none``.
 
 - (Trial) **thermostat_tau** (real(8), 3d)
@@ -925,7 +938,7 @@ This option is incompatible with
 - (Trial) **hconv** (real(8), 0d)
    A convergence value for the Hartree-cg calculation. 
    The convergence is checked by ||tVh(i)-tVh(i-1)||\ :sup:`2`\/(number of grids).
-   Default is ``1d-15`` a.u. (= 1.10d-13 è™©\ :sup:`3`\eV\ :sup:`2`\)
+   Default is ``1d-15`` a.u. (= 1.10d-13 A\ :sup:`3`\eV\ :sup:`2`\)
 
 - (Trial) **lmax_meo** (integer, 0d)
    A maximum angular momentum for multipole expansion in the Hartree-cg calculation. 
