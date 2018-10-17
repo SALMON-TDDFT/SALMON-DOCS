@@ -29,8 +29,8 @@ List of all input keywords
 
 
 - **calc_mode** (character, 0d/3d)
-   Choice of Calculation modes. ``'GS'``, ``'RTLR'``, ``'RTPulse'``, ``'GS_RTLR'``,
-   and ``'GS_RTPulse'`` can be chosen.
+   Choice of Calculation modes. ``'GS'`` and ``'RT'`` can be chosen.
+   If ``&system/iperiodic=3``, ``'GS_RT'`` can be chosen.
 
 - **use_ms_maxwell** (character, 3d)
    Enable(``'y'``)/disable(``'n'``) 
@@ -41,6 +41,11 @@ List of all input keywords
    Enable(``'y'``)/disable(``'n'``) 
    force calculation.
    Default is ``'n'``.
+
+- **theory** (character, 0d/3d)
+   Choice of Calculation theories.
+   ``'TDDFT'`` and ``'Maxwell'`` can be chosen.
+   Default is ``'TDDFT'``.
 
 - (Trial) **use_adiabatic_md** (character, 3d)
    Enable(``'y'``)/disable(``'n'``). 
@@ -56,12 +61,6 @@ List of all input keywords
    Enable(``'y'``)/disable(``'n'``). 
    Geometry optimization option.
    Default is ``'n'``.
-
-- (Trial) **theory** (character, 0d/3d)
-   Choice of Calculation theories.
-   ``'TDDFT'``, ``'Maxwell+TDDFT'``,
-   and ``'Maxwell'``, can be chosen.
-   Default is ``'TDDFT'``.
 
 
 &control
@@ -190,14 +189,14 @@ List of all input keywords
    Default is ``0``
 
 - **al(3)** (real(8), 0d/3d)
-   Lattice constants. Unit of the length can be chosen by ``&units/unit_length``.
+   Lattice constants. Unit of the length can be chosen by ``&units/unit_system``.
 
 - **isym** (integer, 3d)
    Number of symmetries that can be used for reduction of k-points.
    Default is ``0``.
 
 - **crystal_structure** (character, 3d)
-   Name of symmetry that can be used for the resuction of # of k-points.
+   Name of symmetry that can be used for the reduction of # of k-points.
    Default is ``'none'``.
 
 - **nstate** (integer, 0d/3d)
@@ -214,9 +213,9 @@ List of all input keywords
    Number of up/down-spin electrons can be specified independently by ``nelec_spin(1)/nelec_spin(2)``.
    This option is incompatible with ``nelec``
 
-- (Trial) **temperature** (real(8), 3d)
+- **temperature** (real(8), 3d)
    Temperature of electrons.
-   Unit of the energy can be chosen ``&units/unit_energy``.
+   Unit of the energy can be chosen ``&units/unit_system``.
 
 - **nelem** (integer, 0d/3d)
    Number of elements that will be used in calculations.
@@ -225,7 +224,7 @@ List of all input keywords
    Number of atoms in a calculation cell.
 
 
-- (Trial) **file_atom_red_coor** ``Character``)
+- (Trial) **file_atom_red_coor** (character, 3d)
    File name of atomic positions. In this file, 
    the atomic coordinates can be written in reduced coordinates.
    This option is incompatible with 
@@ -237,7 +236,7 @@ List of all input keywords
    File name of atomic positions. In this file, 
    the atomic coordinates can be written in Cartesian cooridnates.
    The unit of the length can be chosen by 
-   ``&units/unit_length``.
+   ``&units/unit_system``.
    This option is incompatible with 
    ``&system/file_atom_red_coor``,
    ``&atomic_coor``, and 
@@ -345,7 +344,7 @@ This option is incompatible with
 
 - **dl(3)** (real(8), 0d/3d)
    Spacing of real-space grids. Unit of length can be chosen by
-   ``&units/unit_length``.
+   ``&units/unit_system``.
    This valiable cannot be set with 
    ``&rgrid/num_rgrid``.
    If ``&system/iperiodic`` is set to ``3``,
@@ -378,7 +377,7 @@ This option is incompatible with
    Number of total time steps for real-time propagation.
 
 - **dt** (real(8), 0d/3d)
-   Time step. Unit of time can be chosen by ``&units/unit_time``.
+   Time step. Unit of time can be chosen by ``&units/unit_system``.
 
 
 &propagation
@@ -430,15 +429,15 @@ This option is incompatible with
 
 - (Trial) **fsset_option** (character, 3d)
    Probably, we should remove this function
-   since we can replace it with occupaion smoothing with temepratre.
+   since we can replace it with occupaion smoothing with temperature.
 
 - (Trial) **nfsset_start** (integer, 3d)
    Probably, we should remove this function
-   since we can replace it with occupaion smoothing with temepratre.
+   since we can replace it with occupaion smoothing with temperature.
 
 - (Trial) **nfsset_every** (integer, 3d)
    Probably, we should remove this function
-   since we can replace it with occupaion smoothing with temepratre.
+   since we can replace it with occupaion smoothing with temperature.
 
 - **subspace_diagonalization** (character, 0d)
    Enable(``'y'``)/disable(``'n'``) 
@@ -833,7 +832,7 @@ This option is incompatible with
 
 - **newald** (integer, 3d)
    Parameter for Ewald method. 
-   Short-range part of Ewald sum is calculated within ``newald``th
+   Short-range part of Ewald sum is calculated within ``newald`` th
    nearlist neighbor cells.
    Default is ``4``.
 
