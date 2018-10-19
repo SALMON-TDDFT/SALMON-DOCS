@@ -566,7 +566,7 @@ This option is incompatible with
    Default is ``-1d7/1d7`` in atomic unit.
    Unit of length can be chosen by ``&units/unit_length``.
 
-- **nump** ``integer``; 0d)
+- **nump** (integer, 0d)
    Number of radiation sources for optical near fields.
    Maximum number is ``2``.
 
