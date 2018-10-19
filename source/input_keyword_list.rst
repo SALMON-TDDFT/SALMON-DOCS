@@ -152,16 +152,17 @@ List of all input keywords
 - (Trial) **domain_parallel** (character, 3d)
    If specified ``domain_parallel='y'`` and ``&system/iperiodic=3``, program codes for domain parallel version run in periodic system calculations.
 
-- **nproc_ob/nproc_domain(3)/nproc_domain_s(3)** (integer, 0d)
+- **nproc_k/nproc_ob/nproc_domain(3)/nproc_domain_s(3)** (integer, 0d)
    Followings are explanation of each variable.
 
+  - ``nproc_k``: Number of MPI parallelization for orbitals that related to the wavefunction calculation.
   - ``nproc_ob``: Number of MPI parallelization for orbitals that related to the wavefunction calculation.
   - ``nproc_domain(3)'``: Number of MPI parallelization for each direction in real-space that related to the wavefunction calculation. 
   - ``nproc_domain_s(3)'``: Number of MPI parallelization for each direction in real-space that related to the electron density calculation. 
 
-    Defaults are ``0`` for ``nproc_ob``, ``(0/0/0)`` for ``nproc_domain``, and ``(0/0/0)`` for ``nproc_domain_s``. If users use the defauls, automatic proccess assignment is done. Users can also specify ``nproc_ob``, ``nproc_domain``, and ``nproc_domain_s`` manually. In that case, followings must be satisfied.
+    Defaults are ``0`` for ``nproc_k``/``nproc_ob`` and ``(0/0/0)`` for ``nproc_domain``/``nproc_domain_s``. If users use the defauls, automatic proccess assignment is done. Users can also specify ``nproc_k``,``nproc_ob``, ``nproc_domain``, and ``nproc_domain_s`` manually. In that case, ``nproc_k`` must be set to ``1`` for isolated system calculations. In addition, followings must be satisfied.
 
-  - ``nproc_ob`` \* ``nproc_domain(1)`` \* ``nproc_domain(2)`` \* ``nproc_domain(3)`` \= total number of processors
+  - ``nproc_k`` \* ``nproc_ob`` \* ``nproc_domain(1)`` \* ``nproc_domain(2)`` \* ``nproc_domain(3)`` \= total number of processors
   - ``nproc_domain_s(1)`` \* ``nproc_domain_s(2)`` \* ``nproc_domain_s(3)`` \= total number of processors
   - ``nproc_domain_s(1)`` is a multiple of ``nproc_domain(1)``
   - ``nproc_domain_s(2)`` is a multiple of ``nproc_domain(2)``
