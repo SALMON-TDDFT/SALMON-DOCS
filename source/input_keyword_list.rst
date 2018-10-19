@@ -926,8 +926,9 @@ This option is incompatible with
 &misc
 -----
 
-- **fourier** ``Character``
-   Method of Fourier transformation.  ``'FT'`` or ``'FFTE'`` can be chosen.
+- **fourier** (character)
+   Method of Fourier transformation.  ``'ft'``,  ``'FT'``, ``'ffte'`` or ``'FFTE'`` can be chosen.
+   Default is ``'ft'``.
    This variable is effective only when ``domain_parallel='y'`` and ``&system/iperiodic=3``.
 
 
