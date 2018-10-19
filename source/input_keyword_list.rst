@@ -1008,7 +1008,7 @@ This option is incompatible with
 
 - (Trial) **ic** (integer, 0d)
    A variable to check whether reentrance is done or not in the ground state calculation. 
-   Default is ``0`` 
+   Default is ``0``.
 
 - (Trial) **oc** (integer, 0d)
    A variable to check whether intermediate files are generated in the ground state calculation. 
@@ -1016,7 +1016,7 @@ This option is incompatible with
 
 - (Trial) **ic_rt** (integer, 0d)
    A variable to check whether reentrance is done or not in the time propagation calculation. 
-   Default is ``0`` 
+   Default is ``0``.
 
 - (Trial) **oc_rt** (integer, 0d)
    A variable to check whether intermediate files are generated in the time propagation calculation. 
@@ -1029,7 +1029,7 @@ This option is incompatible with
 - (Trial) **iparaway_ob** (integer, 0d)
    A variable to determine the way of division for orbitals. 
    ``1`` is block division, and ``2`` is cyclic division.
-   Default is ``2`` 
+   Default is ``2``.
 
 - (Trial) **iscf_order** (integer, 0d)
    A variable to determine the order of the calculation for the ground state one. 
@@ -1037,7 +1037,7 @@ This option is incompatible with
 
 - (Trial) **iswitch_orbital_mesh** (integer, 0d)
    A variable to apply descending order for orbitals in the ground state calculation.
-   Default is ``0`` 
+   Default is ``0``.
 
 - (Trial) **iflag_psicube** (integer, 0d)
    A variable to generate cube files for wave functions. This variable will be removed.
