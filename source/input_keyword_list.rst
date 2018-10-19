@@ -1051,7 +1051,7 @@ This option is incompatible with
    Default is ``'file_ini'``.
 
 - (Trial) **num_projection** ``Interger``; 0d)
-   Number of orbitals to write projections.
+   Number of orbitals for projections.
    Default is ``1``.
 
 - (Trial) **iwrite_projection_ob(200)** ``Interger``; 0d)
