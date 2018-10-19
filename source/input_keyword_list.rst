@@ -160,7 +160,7 @@ List of all input keywords
   - ``nproc_domain(3)'``: Number of MPI parallelization for each direction in real-space that related to the wavefunction calculation. 
   - ``nproc_domain_s(3)'``: Number of MPI parallelization for each direction in real-space that related to the electron density calculation. 
 
-    Defaults are ``0`` for ``nproc_k``/``nproc_ob`` and ``(0/0/0)`` for ``nproc_domain``/``nproc_domain_s``. If users use the defauls, automatic proccess assignment is done. Users can also specify ``nproc_k``, ``nproc_ob``, ``nproc_domain``, and ``nproc_domain_s`` manually. In that case, ``nproc_k`` must be set to ``1`` for isolated system calculations. In addition, followings must be satisfied.
+    Defaults are ``0`` for ``nproc_k``/``nproc_ob`` and ``(0/0/0)`` for ``nproc_domain``/``nproc_domain_s``. If users use the defaults, automatic proccess assignment is done. Users can also specify ``nproc_k``, ``nproc_ob``, ``nproc_domain``, and ``nproc_domain_s`` manually. In that case, ``nproc_k`` must be set to ``1`` for isolated system calculations. In addition, followings must be satisfied.
 
   - ``nproc_k`` \* ``nproc_ob`` \* ``nproc_domain(1)`` \* ``nproc_domain(2)`` \* ``nproc_domain(3)`` \= total number of processors
   - ``nproc_domain_s(1)`` \* ``nproc_domain_s(2)`` \* ``nproc_domain_s(3)`` \= total number of processors
