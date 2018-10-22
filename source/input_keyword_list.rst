@@ -365,12 +365,13 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ------
 
 - **num_kgrid(3)** (integer, 3d)
-   Number of grids discretizing
+   Number of k-points (grid points of k-vector) discretizing
    the Brillouin zone.
+   Each component must be even.
 
 - **file_kw** (character, 3d)
    Name of a file for flexible k-point sampling.
-   This file will be read if ``num_kgrid`` are smaller than 1.
+   This file will be read if ``num_kgrid`` is smaller than 1.
 
 
 &tgrid
