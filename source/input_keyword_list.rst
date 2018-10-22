@@ -518,11 +518,11 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - **amplitude1/amplitude2** (real(8), 0d/3d)
    Maximum amplitude of electric fields for the first/second pulse.
    This valiable has the dimension of electric field, energy/(length*charge).
-   This valiable cannot be set with ``&emfield/rlaser_int_wcm2_1``(``rlaser_int_wcm2_2``) simultaneously.
+   This valiable cannot be set with ``&emfield/rlaser_int_wcm2_1`` (``rlaser_int_wcm2_2``) simultaneously.
 
 - **rlaser_int_wcm2_1/rlaser_int_wcm2_2** (real(8), 0d/3d)
    Peak laser intensity (W/cm\ :sup:`2`\) of the first/second pulse.
-   This valiable cannot be set with ``&emfield/amplitude1``(``amplitude2``) simultaneously.
+   This valiable cannot be set with ``&emfield/amplitude1`` (``amplitude2``) simultaneously.
 
 - **pulse_tw1/pulse_tw2** (real(8), 0d/3d)
    Duration of the first/second pulse. Unit of time can be chosend 
