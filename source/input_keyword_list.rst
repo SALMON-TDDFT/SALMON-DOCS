@@ -260,7 +260,7 @@ the information of the first atom. The number of rows must be equal to
 The first coloum can be any caracters and does not affect calculations.
 The second, third and fourth columns are reduced coordinates for
 the first, second and third directions, respectively. 
-The fifth column is a serial number of the spieces, which is used in 
+The fifth column is a serial number of the atom spieces, which is used in 
 ``&pseudo``.
 This option is incompatible with 
 ``&system/file_atom_red_coor``,
@@ -284,6 +284,8 @@ This option is incompatible with
 &pseudo
 -------
 
+Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
+
 - **pseudo_file(:)** (character, 0d/3d)
    Name of pseudopotential files.
 
@@ -291,7 +293,7 @@ This option is incompatible with
    Maximum angular momentum of pseudopotential projectors.
 
 - **lloc_ps(:)** (integer, 0d/3d)
-   Angular momentum of pseudopotential thant will be treated as local.
+   Angular momentum of pseudopotential that will be treated as local.
 
 - **izatom(:)** (integer, 0d/3d)
    Atomic number.
