@@ -507,7 +507,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
     If ``&system/iperiodic`` is ``3``, following can be also chosen,
 
   - ``'Acos3'``, ``'Acos4'``, ``'Acos6'``, and ``'Acos8'``: Envelopes of cos\ :sup:`3`\,cos\ :sup:`4`\, cos\ :sup:`6`\, and cos\ :sup:`8`\ for vector potentials.
-  - ``'Esin2sin'``, ``'Asin2cos'``, ``'Asin2cw'``, ``'input'``, and ``'none'`` can be also chosen but explanation is skipped.
+  - (Trial) ``'Esin2sin'``, ``'Asin2cos'``, ``'Asin2cw'``, ``'input'``, and ``'none'`` can be also chosen.
 
 
 - **e_impulse** (real(8), 0d/3d)
@@ -516,7 +516,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default value is ``1d-2`` a.u.
 
 - **amplitude1/amplitude2** (real(8), 0d/3d)
-   Amplitude of electric fields for the first/second pulse.
+   Maximum amplitude of electric fields for the first/second pulse.
    This valiable has the dimension of electric field, energy/(length*charge).
 
 - **rlaser_int_wcm2_1/rlaser_int_wcm2_2** (real(8), 0d/3d)
@@ -528,14 +528,14 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    by ``&units/unit_time``.
 
 - **omega1/omega2** (real(8), 0d/3d)
-   Mean photon energy of the first/second pulse. Unit of energy can be chosend 
+   Mean photon energy (average frequency multiplied by the Planck constant) of the first/second pulse. Unit of energy can be chosend 
    by ``&units/unit_energy``.
 
 - **epdir_re1(3)/epdir_re2(3)** (real(8), 0d/3d)
-   Real part of polarization vector the first/second pulse.
+   Real part of polarization vector for the first/second pulse.
 
 - **epdir_im1(3)/epdir_im2(3)** (real(8), 0d/3d)
-   Imaginary part of polarization vector the first/second pulse.
+   Imaginary part of polarization vector for the first/second pulse.
 
 - **phi_cep1/phi_cep2** (real(8), 0d/3d)
    Carrier emvelope phase of the first/second pulse.
