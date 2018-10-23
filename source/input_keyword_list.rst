@@ -321,7 +321,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **xc** (character, 0d/3d)
    Exchange-correlation functionals.
-   At present version, the functional 'PZ,' 'PZM' and 'TBmBJ' is available for both 0d/3d calculations, and the functionals 'TPSS' and 'VS98' are available for 3d calculations.
+   At present version, the functional 'PZ', 'PZM' and 'TBmBJ' is available for both 0d/3d calculations, and the functionals 'TPSS' and 'VS98' are available for 3d calculations.
 
   - ``'PZ'``: Perdew-Zunger LDA :Phys. Rev. B 23, 5048 (1981).
   - ``'PZM'``: Perdew-Zunger LDA with modification to improve sooth connection between high density form and low density one. :J. P. Perdew and Alex Zunger, Phys. Rev. B 23, 5048 (1981).
