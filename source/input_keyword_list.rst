@@ -218,8 +218,8 @@ List of all input keywords
    Temperature of electrons.
    Unit of the energy can be chosen ``&units/unit_system``.
 
-- (Trial) **temperature_k** (real(8), 03d)
-   Temperature of electrons [K].
+- (Trial) **temperature_k** (real(8), 0d)
+   Temperature of electrons [K]. Default is ``-1.d0``.
 
 - **nelem** (integer, 0d/3d)
    Number of elements that will be used in calculations.
