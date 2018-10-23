@@ -321,18 +321,22 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **xc** (character, 0d/3d)
    Exchange-correlation functionals.
-   At the moment, the functional 'PZ' is available for 0d calculations, and the functionals 'PZ', 'PZM', and TBmBJ' are available for 3d calculations.
+   At present version, the functional 'PZ', 'PZM' and 'TBmBJ' is available for both 0d/3d calculations, and the functionals 'TPSS' and 'VS98' are available for 3d calculations.
 
   - ``'PZ'``: Perdew-Zunger LDA :Phys. Rev. B 23, 5048 (1981).
   - ``'PZM'``: Perdew-Zunger LDA with modification to improve sooth connection between high density form and low density one. :J. P. Perdew and Alex Zunger, Phys. Rev. B 23, 5048 (1981).
   - ``'TBmBJ'``: Tran-Blaha meta-GGA exchange with Perdew-Wang correlation. :Fabien Tran and Peter Blaha, Phys. Rev. Lett. 102, 226401 (2008). John P. Perdew and Yue Wang, Phys. Rev. B 45, 13244 (1992).
+  - ``'TPSS'``: Tao, Perdew, Staroverov and Scuseria meta-GGA exchange correlation. :J. Tao, J. P. Perdew, V. N. Staroverov, and G. E. Scuseria, Phys. Rev. Lett. 91, 146401 (2003).
+  - ``'VS98'``:  van Voorhis and Scuseria exchange with Perdew-Wang correlation: T. Van Voorhis and G. E. Scuseria, J. Chem. Phys. 109, 400 (1998).
 
 - **alibxc, alibx, alibc** (character, 0d/3d)
    By specifying ``alibxc``, the functionals prepared in libxc package are available. 
    They can be set indivisually by specifying ``alibx`` and ``alibc``.
    To use libxc libraries, ``--with-libxc`` option must be added in excecuting configure. 
-
-- **cval(:)** (real(8), 3d)
+   The available option of the exchange-correlation functionals are listed in the LibXC website. 
+   [See http://www.tddft.org/programs/libxc/functionals/]
+   
+- **cval** (real(8), 3d)
    Mixing parameter in Tran-Blaha meta-GGA exchange potential. If ``cval`` is set to a minus value, the mixing-parameter computed
    by the formula in the original paper [Phys. Rev. Lett. 102, 226401 (2008)].
    Default is ``'1.0'``.
@@ -590,21 +594,27 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &multiscale
 -----------
 
-- **fdtddim** (character, 3d)
+- (Trial) **fdtddim** (character, 3d)
    Dimension of FDTD calculation for multi-scale Maxwell-Kohn-Sham method.
-   ``1d,2d,3d`` is available in the present version.
    Default value is ``'1D'``. 
 
-- **twod_shape** (character, 3d)
+- (Trial) **twod_shape** (character, 3d)
    Boundary condision of the second dimension for FDTD calculation with 
    multi-scale Maxwell-Kohn-Sham method.
    Default value is ``'periodic'``.
 
-- **nx_m/ny_m/nz_m** (integer, 3d)
-   Number of macroscopic grid points inside materials for (x/y/z)-direction.
+- **nx_m** (integer, 3d)
+   Number of macroscopic grid points inside materials for x-direction.
 
-- **hx_m/hy_m/hz_m** (real(8), 3d)
-   Spacing of macroscopic grid points inside materials for (x/y/z)-direction.
+- (Trial) **ny_m/nz_m** (integer, 3d)
+   Number of macroscopic grid points inside materials for (y/z)-direction.
+
+- **hx_m** (real(8), 3d)
+   Spacing of macroscopic grid points inside materials for (x)-direction.
+   Unit of length can be chosen by ``&units/unit_length``.
+
+- (Trial) **hy_m/hz_m** (real(8), 3d)
+   Spacing of macroscopic grid points inside materials for (y/z)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
 
 - **nxvacl_m/nxvacr_m** (integer, 3d)
@@ -612,7 +622,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    ``nxvacl_m`` gives the number for negative x-direction in front of material,
    while ``nxvacr_m`` gives the number for positive x-direction behind the material.
 
-- **nx_origin_m/ny_origin_m/nz_origin_m** (integer, 3d)
+- (Trial) **nx_origin_m/ny_origin_m/nz_origin_m** (integer, 3d)
    Origin coordinat of the grid points.
    Default value is ``'1'``.
 
@@ -708,11 +718,13 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``100``.
 
 - **nenergy** (integer, 0d/3d)
-   Number of energy grids for analysis.
+   Number of energy grids for frequency-domain analysis.
+   This parameter is required when `'impulse'` is choosen in `&emfield/ae_shape1|2`.
 
 - **de** (real(8), 0d/3d)
    Energy spacing for analysis.
    Unit of energy can be chosen by ``&units/unit_energy``
+   This parameter is required when `'impulse'` is choosen in `&emfield/ae_shape1|2`.
 
 - **out_psi** (character, 0d/3d)
    If ``'y'``, wavefunctions are output.
@@ -724,27 +736,27 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``'n'``.
 
 - **out_dos_start** (real(8), 0d/3d)
-   Start point (energy) of the density of state spectra.
+   Lower bound (energy) of the density of state spectra.
    If this value is lower than a specific value near the lowest energy level, 
-   this value is overwrited by that value. 
+   this value is overwritten by that value. 
    Default value is ``-1.d10`` eV.
 
 - **out_dos_end** (real(8), 0d/3d)
-   End point (energy) of the density of state spectra.
+   Upper bound (energy) of the density of state spectra.
    If this value is higher than a specific value near the highest energy level, 
-   this value is overwrited by that value. 
+   this value is overwritten by that value. 
    Default value is ``1.d10`` eV.
 
 - **iout_dos_nenergy** (integer, 0d/3d)
-   Number of energies which are calculated in DOS part. 
+   Number of  energy points sampled in the density of state spectra.
    Default is ``601``.
 
 - **out_dos_smearing** (real(8), 0d/3d)
-   Smearing width of the density of state spectra.
+   Smearing width used in the density of state spectra..
    Default is ``0.1`` eV.
 
 - **out_dos_method** (character, 0d/3d)
-   Choise of smearing method for the density of state spectra.
+   Choise of smearing method for the density of state spectra..
    ``gaussian`` and ``lorentzian`` function are available.
    Default is ``gaussian``.
 
@@ -759,11 +771,11 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``'n'``.
 
 - **out_dns** (character, 0d/3d)
-   If ``'y'``, density is output.
+   If ``'y'``, the spatial electron density distribution at the ground state is output.
    Default is ``'n'``.
 
 - **out_dns_rt/out_dns_rt_step** ``Character/Integer``; 0d/3d)
-   If ``'y'``, density during real-time time-propagation is output
+   If ``'y'``,  the spatiotemporal electron density distribution during real-time time-propagation is output
    every ``outdns_rt_step`` time steps.
    Default is ``'n'``.
 
@@ -800,7 +812,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Defaults are ``'n'``.
 
 - **format3d** (character, 0d/3d)
-   Format for three dimensional data.
+   File format for three-dimensional volumetric data.
    ``'avs'``, ``'cube'``, and ``'vtk'`` can be chosen.
    Default is ``'cube'``.
 
