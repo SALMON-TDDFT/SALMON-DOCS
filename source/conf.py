@@ -77,6 +77,10 @@ exclude_patterns = []
 pygments_style = 'sphinx'
 
 
+# will be used to convert quotes and dashes to typographically correct entities
+smartquotes = False
+
+
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
