@@ -155,7 +155,7 @@ Pseudopotentials
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 SALMON utilizes norm-conserving pseudpotentials.
-You may find pseudopotentials of some elements in the samples prepared in :any:`exercises-calc`.
+You may find pseudopotentials of some elements in the samples prepared in :any:`Exercises`.
 In SALMON, several formats of pseudopotentials may be usable.
 Pseudopotentials with an extension ``.fhi`` can be obtained from the website listed below.
 (This is a part of previous atomic data files for the ABINIT code.)
@@ -199,11 +199,11 @@ First the ground state calculation is carried out specifying ``calc_mode = 'GS'`
 Then the real-time electron dynamics calculation is carried out specifying ``calc_mode = 'RT'``.
 For periodic systems, two calculations should be carried out as a single execution specifying ``calc_mode = 'GS_RT'``.
 
-In :any:`exercises-calc`, we prepare six exercises that cover typical calculations feasible by SALMON.
+In :any:`Exercises`, we prepare six exercises that cover typical calculations feasible by SALMON.
 We prepare explanations of the input files of the exercises that will help to prepare input files of your own interests.
 
 There are more than 20 groups of namelists. A complete list of namelist variables is given in the file ``SALMON/manual/input_variables.md``.
-Namelist variables that are used in our exercises are explained at :any:`input-variables`.
+Namelist variables that are used in our exercises are explained at :any:`Inputs`.
 
 
 Run SALMON
