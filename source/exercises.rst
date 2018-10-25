@@ -101,7 +101,7 @@ To run the code, following files are used:
 +-----------------------------------+-----------------------------------+
 
 | You may download the above 3 files (zipped file) from: 
-| https://salmon-tddft.jp/webmanual/v_1_1_0/exercise_zip_files/C2H2_gs_input.zip
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_input.zip
 | (zipped input and pseudopotential files)
 
 
@@ -376,7 +376,7 @@ directory that you run the code,
 +-----------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file, except for the binary file *C2H2_gs.bin*) from:
-| https://salmon-tddft.jp/webmanual/v_1_1_0/exercise_zip_files/C2H2_gs_output.zip
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_output.zip
 | (zipped output files)
 
 Main results of the calculation such as orbital energies are included in
@@ -564,7 +564,7 @@ state calculation.
 +-----------------------------------+-----------------------------------+
 
 | You may download the *C2H2_rt_response.inp* file (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_1_0/exercise_zip_files/C2H2_rt_response_input.zip
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_rt_response_input.zip
 | (zipped input file)
 
 In the input file *C2H2_rt_response.inp*, namelists variables are specified.
@@ -780,7 +780,7 @@ directory that you run the code,
 +-----------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_1_0/exercise_zip_files/C2H2_rt_response_output.zip
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_rt_response_output.zip
 | (zipped output files)
 
 Explanations of the output files are below:
@@ -886,7 +886,7 @@ users need to prepare.
 +-----------------------------------+-----------------------------------+
 
 | You may download the *C2H2_rt_pulse.inp* file (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_1_0/exercise_zip_files/C2H2_rt_pulse_input.zip
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_rt_pulse_input.zip
 
 In the input file *C2H2_rt_pulse.inp*, namelists variables are specified.
 Most of them are mandatory to execute the calculation of
@@ -1133,7 +1133,7 @@ directory that you run the code,
 +-----------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_1_0/exercise_zip_files/C2H2_rt_pulse_output.zip
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_rt_pulse_output.zip
 
 Explanations of the files are described below:
 
@@ -1233,7 +1233,7 @@ To run the code, following files are used:
 +-----------------------------------+-----------------------------------+
 
 | You may download the above 2 files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_1_0/exercise_zip_files/Si_gs_rt_response_input.zip
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_response_input.zip
 
 In the input file *Si_gs_rt_response.inp*, namelists variables are specified.
 Most of them are mandatory to execute the calculation.
@@ -1560,7 +1560,7 @@ directory that you run the code,
 +-----------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_1_0/exercise_zip_files/Si_gs_rt_response_output.zip
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_response_output.zip
 
 Explanations of the output files are described below:
 
@@ -1845,7 +1845,7 @@ To run the code, following files are used:
 +-----------------------------------+-----------------------------------+
 
 | You may download the above 2 files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_1_0/exercise_zip_files/Si_gs_rt_pulse_input.zip
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_pulse_input.zip
 
 In the input file *Si_gs_rt_pulse.inp*, namelists variables are specified.
 Most of them are mandatory to execute the calculation.
@@ -2173,7 +2173,7 @@ directory that you run the code,
 +-----------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_1_0/exercise_zip_files/Si_gs_rt_pulse_output.zip
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_pulse_output.zip
 	    
 Explanations of the output files are described below:
 
@@ -2454,7 +2454,7 @@ To run the code, following files are used:
 +-----------------------------------+-----------------------------------+
 
 | You may download the above two files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_1_0/exercise_zip_files/Si_gs_rt_multiscale_input.zip
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_multiscale_input.zip
 
 In the input file *Si_gs_rt_multiscale.inp*, namelists variables are specified.
 Most of them are mandatory to execute the calculation.
@@ -2825,7 +2825,7 @@ following output files are created in the directory,
 +-----------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_1_0/exercise_zip_files/Si_gs_rt_multiscale_output.zip
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_multiscale_output.zip
 
 Explanations of the output files are described below:
 
