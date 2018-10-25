@@ -132,7 +132,7 @@ Available sets of the functionals are listed at the website
 http://www.tddft.org/programs/libxc/functionals/ .
 
 Note that, the hybrid functionals (hybrid gga/mgga) are not supported in
-the current (version 1.1.0) of SALMON.
+the current (version 1.2.0) of SALMON.
 
 .. _&system:
 
