@@ -1,4 +1,4 @@
-Manual for SALMON-v.1.1.0
+Manual for SALMON-v.1.2.0
 =========================
 
   |today|
@@ -23,4 +23,3 @@ Appendix:
    :maxdepth: 1
 
    input_keyword_list
-

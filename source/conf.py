@@ -28,7 +28,7 @@ author = u'SALMON developers'
 # The short X.Y version
 version = u''
 # The full version, including alpha/beta/rc tags
-release = u'v.1.1.0'
+release = u'v.1.2.0'
 
 
 # -- General configuration ---------------------------------------------------
