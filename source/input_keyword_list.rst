@@ -553,7 +553,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Time-delay of the first pulse.
    Unit of time can be chosen by ``&units/unit_time``.
    (this is not available for multiscale option).
-  Default is ``0d0``.
+   Default is ``0d0``.
 
 - **t1_t2** (real(8), 0d/3d)
    Time-delay between the first and the second pulses.
