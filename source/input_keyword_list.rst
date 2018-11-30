@@ -702,7 +702,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Location of the observation point in electromagnetic analysis. Note that the coordinate system ranges from ``-al_em/2`` to ``al_em/2`` for ``&system/iperiodic=0`` while ranges from ``0`` to ``al_em`` for ``&system/iperiodic=3``.
 
 - (Trial) **wf_em** (character, 0d/3d)
-   Enable(``'y'``)/disable(``'n'``). Applying a window function for linear response calculation when ``&calculation/theory=Maxwell``.
+   Enable(``'y'``)/disable(``'n'``). Applying a window function for linear response calculation when ``&calculation/theory=Maxwell``. Default is ``y``.
 
 &analysis
 ---------
@@ -1160,6 +1160,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 .. _&propagation: #propagation
 .. _&scf: #scf
 .. _&emfield: #emfield
+.. _&maxwell: #maxwell
 .. _&analysis: #analysis
 .. _&hartree: #hartree
 .. _&ewald: #ewald
