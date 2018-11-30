@@ -666,7 +666,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Number of media in electromagnetic analysis. Default is ``0``.
 
 - **type_media(:)** (character, 0d/3d)
-   Type of media in electromagnetic analysis. ``'vacuum'``, ``'constant media'``, ``'pec'``, and ``'drude'`` can be chosen. Default is ``'vacuum'``.
+   Type of media in electromagnetic analysis. ``'vacuum'``, ``'constant media'``, ``'pec'``, and ``'drude'`` can be chosen. Default is ``'vacuum'``. If ``'drude'`` is chosen, linear response calculation can be done by ``ae_shape1/ae_shape2='impulse'``.
 
 - **epsilon(:)** (real(8), 0d/3d)
    Relative permittivity of the media in electromagnetic analysis. Default is ``1d0``.
@@ -700,6 +700,9 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **obs_loc_em(:,3)** (integer, 0d/3d)
    Location of the observation point in electromagnetic analysis. Note that the coordinate system ranges from ``-al_em/2`` to ``al_em/2`` for ``&system/iperiodic=0`` while ranges from ``0`` to ``al_em`` for ``&system/iperiodic=3``.
+
+- (Trial) **wf_em** (character, 0d/3d)
+   Enable(``'y'``)/disable(``'n'``). Applying a window function for linear response calculation when ``&calculation/theory=Maxwell``.
 
 &analysis
 ---------
