@@ -342,7 +342,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - **cval** (real(8), 3d)
    Mixing parameter in Tran-Blaha meta-GGA exchange potential. If ``cval`` is set to a minus value, the mixing-parameter computed
    by the formula in the original paper [Phys. Rev. Lett. 102, 226401 (2008)].
-   Default is ``'1.0'``.
+   Default is estimated from :math:`\left\langle |\nabla \rho(\mathbf{r};t)| / \rho(\mathbf{r};t) \right\rangle`.
 
 - (Trial) **no_update_func** ``character(1)``; 3d)
    Option not to update functional (or Hamiltonian) in RT calculation, i.e., keep ground state Hamiltonian during time-evolution.
@@ -1173,4 +1173,3 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 .. _&opt: #opt
 .. _&md: #md
 .. _&misc: #misc
-
