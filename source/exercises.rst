@@ -3070,5 +3070,14 @@ of time.
 
 Standard output file.
 
+FDTD simulation
+-------------------------------------
 
+.. _exercise-7:
+
+Exercise-7: Pulsed-light propagation through a dielectric shpere
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In this exercise, we learn the calculation of the propagation of a
+pulsed light through a dielectric shpere.
    
