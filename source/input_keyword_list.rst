@@ -24,6 +24,11 @@ List of all input keywords
 -  `&opt`_ (Trial)
 -  `&md`_  (Trial)
 -  `&misc`_
+-  `&group_fundamental`_ (Trial)
+-  `&group_parallel`_ (Trial)
+-  `&group_hartree`_ (Trial)
+-  `&group_file`_ (Trial)
+-  `&group_others`_ (Trial)
 
 &calculation
 ------------
