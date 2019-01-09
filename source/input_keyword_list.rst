@@ -16,6 +16,7 @@ List of all input keywords
 -  `&propagation`_
 -  `&scf`_
 -  `&emfield`_
+-  `&multiscale`_
 -  `&maxwell`_
 -  `&analysis`_
 -  `&hartree`_
