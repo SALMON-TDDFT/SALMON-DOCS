@@ -24,11 +24,12 @@ List of all input keywords
 -  `&opt`_ (Trial)
 -  `&md`_  (Trial)
 -  `&misc`_
--  `&group_fundamental`_ (Trial)
--  `&group_parallel`_ (Trial)
--  `&group_hartree`_ (Trial)
--  `&group_file`_ (Trial)
--  `&group_others`_ (Trial)
+-  `&group_fundamental`_  (Trial)
+-  `&group_parallel`_  (Trial)
+-  `&group_hartree`_  (Trial)
+-  `&group_file`_  (Trial)
+-  `&group_others`_  (Trial)
+
 
 &calculation
 ------------
@@ -974,8 +975,8 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 **Following variables are moved from the isolated part. Some of them may be added to common input, be combined to it, and be removed.**
 
 
-&group_fundamental
-------------------
+&group_fundamental  (Trial)
+---------------------------
 
 - (Trial) **iditerybcg** (integer, 0d)
    Iterations for which ybcg is calculated if ``&scf/amin_routine`` is ``'cg-diis'``.
