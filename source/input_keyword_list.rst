@@ -876,7 +876,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``4``.
 
 - **aewald** (real(8), 3d)
-   Range separation parameter for Ewald method. 
+   Square of range separation parameter for Ewald method in atomic unit. 
    Default is ``0.5``.
 
 
