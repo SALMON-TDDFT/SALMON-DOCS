@@ -948,9 +948,9 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    File name for initial velocities. This is read when ``set_ini_velocity`` is ``'r'``. The format is simply vx(iatom) vy(iatom) vz(iatom) in each line. The order of atoms must be the same as the given coordinates in the main input file. In case of using nose-hoover thermostat, a thermostat variable should be put at the last line (all atomic unit). 
    Default is ``none``.
 
-- (Trial) **file_set_shake** (character, 3d)
-   Setting file for SHAKE method in ground-state MD is read. (now not supported yet).
-   Default is ``none``.
+- (Trial) **seed_ini_velocity** (integer, 3d)
+   Random seed (integer number) to generate initial velocity if ``set_ini_velocity`` is set to y.
+   Default is ``123``.
 
 - (Trial) **thermostat_tau** (real(8), 3d)
    Parameter in Nose-Hoover method: controlling time constant for temperature.
