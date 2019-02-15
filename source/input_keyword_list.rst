@@ -34,6 +34,10 @@ List of all input keywords
 &calculation
 ------------
 
+- **theory** (character, 0d/3d)
+   Choice of Calculation theories.
+   ``'TDDFT'`` and ``'Maxwell'`` can be chosen.
+   Default is ``'TDDFT'``.
 
 - **calc_mode** (character, 0d/3d)
    Choice of Calculation modes. ``'GS'`` and ``'RT'`` can be chosen.
@@ -48,11 +52,6 @@ List of all input keywords
    Enable(``'y'``)/disable(``'n'``) 
    force calculation.
    Default is ``'n'``.
-
-- **theory** (character, 0d/3d)
-   Choice of Calculation theories.
-   ``'TDDFT'`` and ``'Maxwell'`` can be chosen.
-   Default is ``'TDDFT'``.
 
 - (Trial) **use_adiabatic_md** (character, 3d)
    Enable(``'y'``)/disable(``'n'``). 
