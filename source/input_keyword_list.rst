@@ -221,8 +221,9 @@ List of all input keywords
    This option is incompatible with ``nelec``
 
 - **temperature** (real(8), 3d)
-   Temperature of electrons.
-   Unit of the energy can be chosen ``&units/unit_system``.
+   Temperature of electrons. When you calculate a system of zero band-gap energy like metals, zero or positive number of the temperature should be given.
+   Unit of the energy can be chosen ``&units/unit_system``. 
+   Default is ``-1.0`` (this is for system which has a band gap energy).
 
 - (Trial) **temperature_k** (real(8), 0d)
    Temperature of electrons [K]. Default is ``-1.d0``.
