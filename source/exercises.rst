@@ -3075,9 +3075,15 @@ FDTD simulation
 
 .. _exercise-7:
 
-Exercise-7: Pulsed-light propagation through a dielectric shpere
+Exercise-7: Polarizability and photoabsorption of a metallic nanosphere in classical electromagnetism
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this exercise, we learn the calculation of the propagation of a
-pulsed light through a dielectric shpere.
-   
+In this exercise, we learn the linear response calculation in the metallic nanosphere, solving the time-dependent Maxwell equations.
+The linear response calculation provides the polarizability and the oscillator strength distribution of the metallic nanosphere.
+In the calculation, an impulsive perturbation is applied to all electrons in the metallic nanosphere along the z axis, where the electrons are described by the Newtonian equation in the Drude model.
+Then a time evolution calculation is carried out without any external fields.
+During the calculation, the electric dipole moment is monitored.
+After the time evolution calculation, a time-frequency Fourier transformation is carried out for the electric dipole moment to obtain the frequency-dependent polarizability.
+The imaginary part of the frequency-dependent polarizability is proportional to the oscillator strength distribution and the photoabsorption cross section.   
+
+
