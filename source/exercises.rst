@@ -3141,8 +3141,24 @@ can be found in :any:`List of all input keywords <List of all input keywords>`.
      gamma_d(1)    = 0.53d0-1
    /
 
-
 We present their explanations below:
+
+**Required and recommened variables**
+
+**&calculation**
+
+Mandatory: Theory
+
+::
+
+   &calculation
+     Theory = 'Maxwell'
+   /
+
+This indicates that the real time classical electromagnetism calculation is carried out in the present job.
+
+
+
 
 
  
