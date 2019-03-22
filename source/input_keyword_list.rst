@@ -651,8 +651,10 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    If file name is specified in the option, the coordinates of the macropoints are set from the file.
    Default value is ``''``.
 
+
 &maxwell
 --------
+
 - **al_em(3)** (real(8), 0d/3d)
    Size of simulation box in electromagnetic analysis. Unit of the length can be chosen by ``&units/unit_system``.
 
