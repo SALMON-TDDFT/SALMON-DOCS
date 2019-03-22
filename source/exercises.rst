@@ -3252,5 +3252,26 @@ If you do not input, this is automatically specified by the Courant-Friedrichs-L
 `` omega_p_d(1) = 9.03d0`` and ``gamma_d(1) = 0.53d0-1`` specify the plasma- and collision-frequencies, respectively.
 See &maxwell in :any:`List of all input keywords <List of all input keywords>` for more information.
 
+Output files
+^^^^^^^^^^^^
+
+After the calculation, following output files are created in the directory that you run the code.
+
+**classicEM_p.data**
+
+For time steps from 1 to nt_em,
+
+-  1 column: time
+-  2-4 columns: x,y,z components of the dipole moment
+
+**classicEM_lr.data**
+
+For energy steps from 0 to nenergy,
+
+-  1 column: energy
+-  2-4 columns: x,y,z components of real part of the polarizability (time-frequency Fourier transformation of the dipole moment)
+-  5-7 columns: x,y,z components of imaginary part of the polarizability (time-frequency Fourier transformation of the dipole moment)
+-  8-10 columns: x,y,z components of power spectrum of the dipole moment
+
 
  
