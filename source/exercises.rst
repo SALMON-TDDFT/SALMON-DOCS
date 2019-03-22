@@ -3157,6 +3157,17 @@ Mandatory: Theory
 
 This indicates that the real time classical electromagnetism calculation is carried out in the present job.
 
+**&control**
+
+Mandatory: none
+
+::
+
+   &control
+     sysname = 'classicEM'
+   /
+
+``classicEM`` defined by ``sysname = 'classicEM'`` will be used in the filenames of output files.
 
 
 
