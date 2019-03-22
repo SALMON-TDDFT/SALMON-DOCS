@@ -3250,8 +3250,7 @@ If you do not input, this is automatically specified by the Courant-Friedrichs-L
 ``imedia_num = 1`` specifies the number of the types of media described by the shape file('shape.cube').
 ``type_media(1) = 'drude'`` specifies the type of media as the Drude model.
 `` omega_p_d(1) = 9.03d0`` and ``gamma_d(1) = 0.53d0-1`` specify the plasma- and collision-frequencies, respectively.
-See :List of all input keywords:`&maxwell in List of all input keywords <&maxwell>` for more information.
-
+See :any:`&maxwell in List of all input keywords <&calculation>` for more information.
 
 
  
