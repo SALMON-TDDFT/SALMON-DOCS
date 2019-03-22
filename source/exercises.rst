@@ -3169,6 +3169,88 @@ Mandatory: none
 
 ``classicEM`` defined by ``sysname = 'classicEM'`` will be used in the filenames of output files.
 
+**&units**
+
+Mandatory: none
+
+::
+
+   &units
+     unit_system = 'A_eV_fs'
+   /
+
+This namelist specifies the unit system to be used in the input file. If you do not specify it, atomic unit will be used.
+
+**&system**
+
+Mandatory: iperiodic
+
+::
+
+   &system
+     iperiodic = 0
+   /
+
+``iperiodic = 0`` indicates that the isolated boundary condition will be used in the calculation.
+
+**&emfield**
+
+Mandatory: ae_shape1, epdir_re1
+
+::
+
+   &emfield
+     ae_shape1 = 'impulse'
+     epdir_re1 = 1.0d0, 0.0d0, 0.0d0
+   /
+
+``ae_shape1 = 'impulse'`` indicates that a weak impulse is applied to all electrons at *t=0*.
+``epdir_re1(3)`` specifies a unit vector that indicates the direction of the impulse.
+
+**&analysis**
+
+Mandatory: none
+
+::
+
+   &analysis
+     nenergy = 1000
+     de      = 0.01d0
+   /
+
+``nenergy = 1000`` specifies the number of energy steps, and ``de = 0.01d0`` specifies the energy spacing in the time-frequency Fourier transformation.
+
+**&maxwell**
+
+Mandatory: al_em, dl_em, nt_em
+
+::
+
+   &maxwell
+     !grid and time-step information
+     al_em = 1000.0d0, 1000.0d0, 1000.0d0
+     dl_em = 10.0d0, 10.0d0, 10.0d0
+     nt_em = 5000
+     dt_em = 1.90d-3
+     
+     !media information
+     imedia_num    = 1
+     shape_file    = 'shape.cube'
+     type_media(1) = 'drude'
+     omega_p_d(1)  = 9.03d0
+     gamma_d(1)    = 0.53d0-1
+   /
+
+``al_em = 1000.0d0, 1000.0d0, 1000.0d0`` specifies the lengths of three sides of the rectangular parallelepiped where the grid points are prepared.
+``dl_em = 10.0d0, 10.0d0, 10.0d0`` specifies the grid spacings in three Cartesian directions.
+``nt_em = 5000`` specifies the number of time steps in the calculation.
+``dt_em = 1.90d-3`` specifies the time step of the time evolution calculation.
+If you do not input, this is automatically specified by the Courant-Friedrichs-Lewy Condition.
+``shape_file = 'shape.cube'`` indicates the filename of the shape file.
+``imedia_num = 1`` specifies the number of the types of media described by the shape file('shape.cube').
+``type_media(1) = 'drude'`` specifies the type of media as the Drude model.
+`` omega_p_d(1) = 9.03d0`` and ``gamma_d(1) = 0.53d0-1`` specify the plasma- and collision-frequencies, respectively.
+See &maxwell in List of all input keywords for more information.
 
 
 
