@@ -3205,6 +3205,7 @@ Mandatory: ae_shape1, epdir_re1
    /
 
 ``ae_shape1 = 'impulse'`` indicates that a weak impulse is applied to all electrons at *t=0*.
+
 ``epdir_re1(3)`` specifies a unit vector that indicates the direction of the impulse.
 
 **&analysis**
@@ -3242,13 +3243,20 @@ Mandatory: al_em, dl_em, nt_em
    /
 
 ``al_em = 1000.0d0, 1000.0d0, 1000.0d0`` specifies the lengths of three sides of the rectangular parallelepiped where the grid points are prepared.
+
 ``dl_em = 10.0d0, 10.0d0, 10.0d0`` specifies the grid spacings in three Cartesian directions.
+
 ``nt_em = 5000`` specifies the number of time steps in the calculation.
+
 ``dt_em = 1.90d-3`` specifies the time step of the time evolution calculation.
 If you do not input, this is automatically specified by the Courant-Friedrichs-Lewy Condition.
+
 ``shape_file = 'shape.cube'`` indicates the filename of the shape file.
+
 ``imedia_num = 1`` specifies the number of the types of media described by the shape file('shape.cube').
+
 ``type_media(1) = 'drude'`` specifies the type of media as the Drude model.
+
 `` omega_p_d(1) = 9.03d0`` and ``gamma_d(1) = 0.53d0-1`` specify the plasma- and collision-frequencies, respectively.
 See &maxwell in :any:`List of all input keywords <List of all input keywords>` for more information.
 
@@ -3405,6 +3413,34 @@ Mandatory: iperiodic
 
 ``iperiodic = 0`` indicates that the isolated boundary condition will be used in the calculation. 
 
+**&emfield**
+
+Mandatory: ae_shape1, { rlaser_int_wcm2_1 or amplitude1}, pulse_tw1, omega1, epdir_re1, phi_cep1
+
+::
+
+   &emfield
+     ae_shape1         = 'Ecos2'
+     rlaser_int_wcm2_1 = 1.0d8
+     pulse_tw1         = 4.75d0
+     omega1            = 5.0d0
+     epdir_re1         = 1.0d0, 0.0d0, 0.0d0
+     phi_cep1          = 0.75d0
+   /
+
+``ae_shape1 = 'Ecos2'`` indicates that the envelope of the pulsed electric field has a cos^2 shape.
+
+``rlaser_int_wcm2_1 = 1.0d8`` specifies the maximum intensity of the applied electric field in unit of W/cm^2.
+
+``pulse_tw1 = 4.75d0`` specifies the pulse duration. Note that it is not the FWHM but a full duration of the cos^2 envelope.
+
+``omega1 = 5.0d0`` specifies the average photon energy (frequency multiplied with hbar).
+
+``epdir_re1 = 1.0d0, 0.0d0, 0.0d0`` specifies the real part of the unit polarization vector of the pulsed electric field.
+Using the real polarization vector, it describes a linearly polarized pulse.
+
+``phi_cep1 = 0.75d0`` specifies the carrier envelope phase of the pulse.
+As noted above, 'phi_cep1' must be 0.75 (or 0.25) if one employs 'Ecos2' pulse shape, since otherwise the time integral of the electric field does not vanish.
 
 
 
