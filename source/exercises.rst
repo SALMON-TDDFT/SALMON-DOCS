@@ -3356,4 +3356,56 @@ We present their explanations below:
 
 **Required and recommened variables**
 
- 
+**&calculation**
+
+Mandatory: Theory
+
+::
+
+   &calculation
+     Theory = 'Maxwell'
+   /
+
+This indicates that the real time classical electromagnetism calculation is carried out in the present job.
+
+**&control**
+
+Mandatory: none
+
+::
+
+   &control
+     directory = 'result'
+   /
+
+``result`` defined by ``directory = 'result'`` will be used in the directory name that contains output files.
+
+**&units**
+
+Mandatory: none
+
+::
+
+   &units
+     unit_system = 'A_eV_fs'
+   /
+
+This namelist specifies the unit system to be used in the input file.
+If you do not specify it, atomic unit will be used.
+
+**&system**
+
+Mandatory: iperiodic
+
+::
+
+   &system
+     iperiodic = 0
+   /
+
+``iperiodic = 0`` indicates that the isolated boundary condition will be used in the calculation. 
+
+
+
+
+
