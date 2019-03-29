@@ -3257,7 +3257,7 @@ If you do not input, this is automatically specified by the Courant-Friedrichs-L
 
 ``type_media(1) = 'drude'`` specifies the type of media as the Drude model.
 
-`` omega_p_d(1) = 9.03d0`` and ``gamma_d(1) = 0.53d0-1`` specify the plasma- and collision-frequencies, respectively.
+``omega_p_d(1) = 9.03d0`` and ``gamma_d(1) = 0.53d0-1`` specify the plasma- and collision-frequencies, respectively.
 See &maxwell in :any:`List of all input keywords <List of all input keywords>` for more information.
 
 Output files
@@ -3442,6 +3442,70 @@ Using the real polarization vector, it describes a linearly polarized pulse.
 ``phi_cep1 = 0.75d0`` specifies the carrier envelope phase of the pulse.
 As noted above, 'phi_cep1' must be 0.75 (or 0.25) if one employs 'Ecos2' pulse shape, since otherwise the time integral of the electric field does not vanish.
 
+**&maxwell**
+
+Mandatory: al_em, dl_em, nt_em
+
+::
+
+   &maxwell
+     !grid and time-step information
+     al_em = 1000.0d0, 1000.0d0, 1000.0d0
+     dl_em = 10.0d0, 10.0d0, 10.0d0
+     nt_em = 5000
+     dt_em = 1.90d-3
+     
+     !media information
+     imedia_num    = 1
+     shape_file    = 'shape.cube'
+     type_media(1) = 'drude'
+     omega_p_d(1)  = 9.03d0
+     gamma_d(1)    = 0.53d0-1
+     
+     !source information
+     wave_input      = 'source'
+     source_loc1(:)  = -3.15d2, 0.0d0, 0.0d0
+     ek_dir1(:)      =  0.0d0, 1.0d0, 0.0d0
+     
+     !observation information
+     iobs_num_em     = 1
+     iobs_samp_em    = 100
+     obs_loc_em(1,:) = 0.0d0, 0.0d0, 0.0d0
+   /
+
+``al_em = 1000.0d0, 1000.0d0, 1000.0d0`` specifies the lengths of three sides of the rectangular parallelepiped where the grid points are prepared.
+
+``dl_em = 10.0d0, 10.0d0, 10.0d0`` specifies the grid spacings in three Cartesian directions.
+
+``nt_em = 5000`` specifies the number of time steps in the calculation.
+
+``dt_em = 1.90d-3`` specifies the time step of the time evolution calculation.
+If you do not input, this is automatically specified by the Courant-Friedrichs-Lewy Condition.
+
+``shape_file = 'shape.cube'`` indicates the filename of the shape file.
+
+``imedia_num = 1`` specifies the number of the types of media described by the shape file('shape.cube').
+
+``type_media(1) = 'drude'`` specifies the type of media as the Drude model.
+
+``omega_p_d(1) = 9.03d0`` and ``gamma_d(1) = 0.53d0-1`` specify the plasma- and collision-frequencies, respectively.
+
+``wave_input = 'source'`` specifies a current source that is used for generating the pulse.
+
+``source_loc1(:) = -3.15d2, 0.0d0, 0.0d0`` specifies the coordinate of the current source.
+
+``ek_dir1(:) = 0.0d0, 1.0d0, 0.0d0`` specifies the propagation direction of the pulse (x,y,z).
+
+``iobs_num_em = 1`` specifies the number of the observation point.
+
+``iobs_samp_em = 100`` specifies the sampling number for time steps. In this case, output files are generated every 100 steps.
+
+``obs_loc_em(1,:) = 0.0d0, 0.0d0, 0.0d0`` specifies the coordinate of the current source.
+
+See &maxwell in :any:`List of all input keywords <List of all input keywords>` for more information.
+
+Output files
+^^^^^^^^^^^^
 
 
 
