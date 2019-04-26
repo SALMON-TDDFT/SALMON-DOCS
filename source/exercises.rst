@@ -25,7 +25,7 @@ execute for your own calculations. Pseudopotential files of elements
 that appear in the samples are also attached. We also present
 explanations of main output files.
 
-We present 6 exercises.
+We present 10 exercises.
 
 First 3 exercises (Exercise-1 ~ 3) are for an isolated molecule,
 acetylene C2H2. If you are interested in learning electron dynamics
@@ -56,7 +56,7 @@ silicon to obtain the dielectric function.
 illustrates the calculation of electron dynamics in the crystalline
 silicon induced by a pulsed electric field.
 
-The final exercise (Exercise-6) is for an irradiation and a propagation
+Exercise-6 is for an irradiation and a propagation
 of a pulsed light in a bulk silicon, coupling Maxwell equations for the
 electromagnetic fields of the pulsed light and the electron dynamics in
 the unit cells. This calculation is quite time-consuming and is
@@ -64,6 +64,19 @@ recommended to execute using massively parallel supercomputers.
 :any:`Exercise-6 <exercise-6>`
 illustrates the calculation of a pulsed, linearly polarized light
 irradiating normally on a surface of a bulk silicon.
+
+Exercise-7 ~ 8 are for the linear response and the pulsed electromagnetic field calculation
+over the metallic nanosphere solving the time-dependent Maxwell equations,
+where the materials are expressed by dielectric function.
+The calculation method is the Finite-Difference Time-Domain (FDTD).
+
+Final exercises (Exercise-9 ~ 10) are for geometry optimization and
+Ehrenfest molecular dynamics based on the TDDFT method
+for a single water molecule under periodic boundary condition. 
+Currently, these are trial functions.
+We omit the explanations,but the input keywords are explained
+in :any:`List of all input keywords <List of all input keywords>`.
+
 
 C2H2 (isolated molecules)
 -------------------------
@@ -109,8 +122,8 @@ In the input file *C2H2_gs.inp*, namelists variables are specified.
 Most of them are mandatory to execute the ground state calculation.
 This will help you to prepare an input file for other systems that you
 want to calculate. A complete list of the namelist variables that can be
-used in the input file can be found in the downloaded file
-*SALMON/manual/input_variables.md*.
+used in the input file can be found in
+:any:`List of all input keywords <List of all input keywords>`.
 
 ::
 
@@ -3071,12 +3084,12 @@ of time.
 Standard output file.
 
 FDTD simulation
--------------------------------------
+---------------
 
 .. _exercise-7:
 
 Exercise-7: Polarizability and photoabsorption of a metallic nanosphere in classical electromagnetism
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this exercise, we learn the linear response calculation in the metallic nanosphere, solving the time-dependent Maxwell equations.
 The linear response calculation provides the polarizability and the oscillator strength distribution of the metallic nanosphere.
@@ -3284,7 +3297,7 @@ For energy steps from 0 to nenergy,
 .. _exercise-8:
 
 Exercise-8: Pulsed electric field response of a metallic nanosphere in classical electromagnetism
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this exercise, we learn the pulsed electric field response in the metallic nanosphere, solving the time-dependent Maxwell equations.
 As outputs of the calculation, the time response of the electromagnetic field is calculated.
