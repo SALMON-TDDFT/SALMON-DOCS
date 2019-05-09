@@ -3530,9 +3530,9 @@ For time steps from 1 to nt_em,
 -  2-4 columns: x,y,z components of the electric field in the observation point
 -  5-7 columns: x,y,z components of the magnetic field in the observation point
 
-**obs1_@@_++_**.data and obs0_info.data**
+**obs1_@@_++_--.data and obs0_info.data**
 
-``obs1_@@_++_**.data`` is the spatial distribution of ``@@`` component(ex, ey, ez, hx, hy, or hz) on ``++`` plane(xy, yz, or xz) in ``**`` time step.
+``obs1_@@_++_--.data`` is the spatial distribution of ``@@`` component(ex, ey, ez, hx, hy, or hz) on ``++`` plane(xy, yz, or xz) in ``--`` time step.
 
 ``obs0_info.data`` is the basic information of the calculation. 
 
