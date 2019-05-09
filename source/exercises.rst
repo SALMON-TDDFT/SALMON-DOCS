@@ -3139,6 +3139,11 @@ can be found in :any:`List of all input keywords <List of all input keywords>`.
      epdir_re1 = 0.0d0, 0.0d0, 1.0d0
    /
    
+   &analysis
+     nenergy = 1000
+     de      = 0.01d0
+   /
+   
    &maxwell
      !grid and time-step information
      al_em = 1000.0d0, 1000.0d0, 1000.0d0
@@ -3147,8 +3152,8 @@ can be found in :any:`List of all input keywords <List of all input keywords>`.
      dt_em = 1.90d-3
      
      !media information
-     imedia_num    = 1
      shape_file    = 'shape.cube'
+     imedia_num    = 1
      type_media(1) = 'drude'
      omega_p_d(1)  = 9.03d0
      gamma_d(1)    = 0.53d0-1
@@ -3214,7 +3219,7 @@ Mandatory: ae_shape1, epdir_re1
 
    &emfield
      ae_shape1 = 'impulse'
-     epdir_re1 = 1.0d0, 0.0d0, 0.0d0
+     epdir_re1 = 0.0d0, 0.0d0, 1.0d0
    /
 
 ``ae_shape1 = 'impulse'`` indicates that a weak impulse is applied to all electrons at *t=0*.
@@ -3248,8 +3253,8 @@ Mandatory: al_em, dl_em, nt_em
      dt_em = 1.90d-3
      
      !media information
-     imedia_num    = 1
      shape_file    = 'shape.cube'
+     imedia_num    = 1
      type_media(1) = 'drude'
      omega_p_d(1)  = 9.03d0
      gamma_d(1)    = 0.53d0-1
@@ -3344,7 +3349,7 @@ A complete list of the namelist variables that can be used in the input file can
      rlaser_int_wcm2_1 = 1.0d8
      pulse_tw1         = 4.75d0
      omega1            = 5.0d0
-     epdir_re1         = 1.0d0, 0.0d0, 0.0d0
+     epdir_re1         = 0.0d0, 0.0d0, 1.0d0
      phi_cep1          = 0.75d0
    /
    
@@ -3356,16 +3361,16 @@ A complete list of the namelist variables that can be used in the input file can
      dt_em = 1.90d-3
      
      !media information
-     imedia_num    = 1
      shape_file    = 'shape.cube'
+     imedia_num    = 1
      type_media(1) = 'drude'
      omega_p_d(1)  = 9.03d0
      gamma_d(1)    = 0.53d0-1
      
      !source information
      wave_input      = 'source'
-     source_loc1(:)  = -3.15d2, 0.0d0, 0.0d0
-     ek_dir1(:)      =  0.0d0, 1.0d0, 0.0d0
+     source_loc1(:)  =-3.15d2, 0.0d0, 0.0d0
+     ek_dir1(:)      =  1.0d0, 0.0d0, 0.0d0
      
      !observation information
      iobs_num_em     = 1
@@ -3437,7 +3442,7 @@ Mandatory: ae_shape1, { rlaser_int_wcm2_1 or amplitude1}, pulse_tw1, omega1, epd
      rlaser_int_wcm2_1 = 1.0d8
      pulse_tw1         = 4.75d0
      omega1            = 5.0d0
-     epdir_re1         = 1.0d0, 0.0d0, 0.0d0
+     epdir_re1         = 0.0d0, 0.0d0, 1.0d0
      phi_cep1          = 0.75d0
    /
 
@@ -3449,7 +3454,7 @@ Mandatory: ae_shape1, { rlaser_int_wcm2_1 or amplitude1}, pulse_tw1, omega1, epd
 
 ``omega1 = 5.0d0`` specifies the average photon energy (frequency multiplied with hbar).
 
-``epdir_re1 = 1.0d0, 0.0d0, 0.0d0`` specifies the real part of the unit polarization vector of the pulsed electric field.
+``epdir_re1 = 0.0d0, 0.0d0, 1.0d0`` specifies the real part of the unit polarization vector of the pulsed electric field.
 Using the real polarization vector, it describes a linearly polarized pulse.
 
 ``phi_cep1 = 0.75d0`` specifies the carrier envelope phase of the pulse.
@@ -3469,8 +3474,8 @@ Mandatory: al_em, dl_em, nt_em
      dt_em = 1.90d-3
      
      !media information
-     imedia_num    = 1
      shape_file    = 'shape.cube'
+     imedia_num    = 1
      type_media(1) = 'drude'
      omega_p_d(1)  = 9.03d0
      gamma_d(1)    = 0.53d0-1
