@@ -3154,7 +3154,7 @@ can be found in :any:`List of all input keywords <List of all input keywords>`.
      imedia_num    = 1
      type_media(1) = 'drude'
      omega_p_d(1)  = 9.03d0
-     gamma_d(1)    = 0.53d0-1
+     gamma_d(1)    = 0.53d-1
    /
 
 We present their explanations below:
@@ -3255,7 +3255,7 @@ Mandatory: al_em, dl_em, nt_em
      imedia_num    = 1
      type_media(1) = 'drude'
      omega_p_d(1)  = 9.03d0
-     gamma_d(1)    = 0.53d0-1
+     gamma_d(1)    = 0.53d-1
    /
 
 ``al_em = 1000.0d0, 1000.0d0, 1000.0d0`` specifies the lengths of three sides of the rectangular parallelepiped where the grid points are prepared.
@@ -3273,7 +3273,7 @@ If you do not input, this is automatically specified by the Courant-Friedrichs-L
 
 ``type_media(1) = 'drude'`` specifies the type of media as the Drude model.
 
-``omega_p_d(1) = 9.03d0`` and ``gamma_d(1) = 0.53d0-1`` specify the plasma- and collision-frequencies, respectively.
+``omega_p_d(1) = 9.03d0`` and ``gamma_d(1) = 0.53d-1`` specify the plasma- and collision-frequencies, respectively.
 See &maxwell in :any:`List of all input keywords <List of all input keywords>` for more information.
 
 Output files
@@ -3363,7 +3363,7 @@ A complete list of the input keywords that can be used in the input file can be 
      imedia_num    = 1
      type_media(1) = 'drude'
      omega_p_d(1)  = 9.03d0
-     gamma_d(1)    = 0.53d0-1
+     gamma_d(1)    = 0.53d-1
      
      !source information
      wave_input      = 'source'
@@ -3374,6 +3374,7 @@ A complete list of the input keywords that can be used in the input file can be 
      iobs_num_em     = 1
      iobs_samp_em    = 100
      obs_loc_em(1,:) = 0.0d0, 0.0d0, 0.0d0
+     obs_plane_em(1) = 'y'
    /
 
 We present their explanations below:
@@ -3476,7 +3477,7 @@ Mandatory: al_em, dl_em, nt_em
      imedia_num    = 1
      type_media(1) = 'drude'
      omega_p_d(1)  = 9.03d0
-     gamma_d(1)    = 0.53d0-1
+     gamma_d(1)    = 0.53d-1
      
      !source information
      wave_input      = 'source'
@@ -3487,6 +3488,7 @@ Mandatory: al_em, dl_em, nt_em
      iobs_num_em     = 1
      iobs_samp_em    = 100
      obs_loc_em(1,:) = 0.0d0, 0.0d0, 0.0d0
+     obs_plane_em(1) = 'y'
    /
 
 ``al_em = 1000.0d0, 1000.0d0, 1000.0d0`` specifies the lengths of three sides of the rectangular parallelepiped where the grid points are prepared.
@@ -3504,7 +3506,7 @@ If you do not input, this is automatically specified by the Courant-Friedrichs-L
 
 ``type_media(1) = 'drude'`` specifies the type of media as the Drude model.
 
-``omega_p_d(1) = 9.03d0`` and ``gamma_d(1) = 0.53d0-1`` specify the plasma- and collision-frequencies, respectively.
+``omega_p_d(1) = 9.03d0`` and ``gamma_d(1) = 0.53d-1`` specify the plasma- and collision-frequencies, respectively.
 
 ``wave_input = 'source'`` specifies a current source that is used for generating the pulse.
 
@@ -3517,6 +3519,8 @@ If you do not input, this is automatically specified by the Courant-Friedrichs-L
 ``iobs_samp_em = 100`` specifies the sampling number for time steps. In this case, output files are generated every 100 steps.
 
 ``obs_loc_em(1,:) = 0.0d0, 0.0d0, 0.0d0`` specifies the coordinate of the current source.
+
+``obs_plane_em(1) = 'y'`` determines to output the electrmagnetic fields on the planes (xy, yz, and xz-planes) for the observation point. This option must be ``'y'`` for generating animation files by using SALMON utilities: https://salmon-tddft.jp/utilities.html.
 
 See &maxwell in :any:`List of all input keywords <List of all input keywords>` for more information.
 
