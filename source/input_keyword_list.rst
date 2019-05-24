@@ -719,7 +719,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Location of the observation point in electromagnetic analysis. Note that the coordinate system ranges from ``-al_em/2`` to ``al_em/2`` for ``&system/iperiodic=0`` while ranges from ``0`` to ``al_em`` for ``&system/iperiodic=3``.
 
 - **obs_plane_em(:)** (character, 0d/3d)
-   Enable(``'y'``)/disable(``'n'``). Output of the electrmagnetic fields on the planes (xy, yz, and xz-planes) for each observation point. This option must be ``'y'`` for generating animation files by using SALMON utilities (https://salmon-tddft.jp/utilities.html). Default is ``'n'``.
+   Enable(``'y'``)/disable(``'n'``). Output of the electrmagnetic fields on the planes (xy, yz, and xz planes) for each observation point. This option must be ``'y'`` for generating animation files by using SALMON utilities (https://salmon-tddft.jp/utilities.html). Default is ``'n'``.
 
 - (Trial) **wf_em** (character, 0d/3d)
    Enable(``'y'``)/disable(``'n'``). Applying a window function for linear response calculation when ``&calculation/theory=Maxwell``. Default is ``'y'``.
