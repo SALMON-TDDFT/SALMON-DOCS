@@ -1178,8 +1178,8 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 .. _&units: #units
 .. _&parallel: #parallel
 .. _&system: #system
-.. _&atomic_red_coor: #atomic_red_coor
-.. _&atomic_coor: #atomic_coor
+.. _&atomic-red-coor: #atomic_red_coor
+.. _&atomic-coor: #atomic_coor
 .. _&pseudo: #pseudo
 .. _&functional: #functional
 .. _&rgrid: #rgrid
