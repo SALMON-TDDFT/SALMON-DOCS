@@ -37,13 +37,21 @@ List of all input keywords
 ------------
 
 - **theory** (character, 0d/3d)
-   Choice of Calculation theories.
-   ``'TDDFT'`` and ``'Maxwell'`` can be chosen.
-   Default is ``'TDDFT'``.
+   | Choice of Calculation theories.
+   |  Options
+   |    ``TDDFT``  / simulations based on TDDFT  
+   |    ``Maxwell``  / simulations coupled with the Maxwell equations
+   |  Default 
+   |    ``TDDFT``.
 
 - **calc_mode** (character, 0d/3d)
-   Choice of Calculation modes. ``'GS'`` and ``'RT'`` can be chosen.
-   If ``&system/iperiodic=3``, ``'GS_RT'`` can be chosen.
+   | Choice of Calculation modes of TDDFT.
+   |  Options
+   |   ``GS'`` / ground state calculation
+   |   ``RT`` / real time (time evolution) calculation
+   |   ``GS_RT`` / GS + RT calculation (for only ``&system/iperiodic=3``)
+   |  Defalut
+   |    none
 
 - **use_ms_maxwell** (character, 3d)
    Enable(``'y'``)/disable(``'n'``) 
