@@ -23,14 +23,14 @@ List of all input keywords
 -  `&analysis`_
 -  `&hartree`_
 -  `&ewald`_
--  `&opt`_ (Trial)
--  `&md`_  (Trial)
+-  `&opt(Trial)`_
+-  `&md(Trial)`_
 -  `&misc`_
--  `&group_fundamental`_  (Trial)
--  `&group_parallel`_  (Trial)
--  `&group_hartree`_  (Trial)
--  `&group_file`_  (Trial)
--  `&group_others`_  (Trial)
+-  `&group_fundamental(Trial)`_
+-  `&group_parallel(Trial)`_  
+-  `&group_hartree(Trial)`_ 
+-  `&group_file(Trial)`_
+-  `&group_others(Trial)`_
 
 
 &calculation
@@ -47,11 +47,11 @@ List of all input keywords
 - **calc_mode** (character, 0d/3d)
    | Choice of Calculation modes of TDDFT.
    |  Options
-   |   ``GS'`` / ground state calculation
+   |   ``GS`` / ground state calculation
    |   ``RT`` / real time (time evolution) calculation
    |   ``GS_RT`` / GS + RT calculation (for only ``&system/iperiodic=3``)
    |  Defalut
-   |    none
+   |   ``'none'``
 
 - **use_ms_maxwell** (character, 3d)
    Enable(``'y'``)/disable(``'n'``) 
@@ -896,7 +896,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 
 
-&opt  (Trial)
+&opt(Trial)
 -------------
 
 - (Trial) **cg_alpha_up** (real(8), 3d)
@@ -929,7 +929,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``1d-6``.
 
 
-&md (Trial)
+&md(Trial)
 -----------
 - (Trial) **ensemble** (character, 3d)
    Ensemble in MD option: "NVE" or "NVT".
@@ -990,7 +990,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 **Following variables are moved from the isolated part. Some of them may be added to common input, be combined to it, and be removed.**
 
 
-&group_fundamental  (Trial)
+&group_fundamental(Trial)
 ---------------------------
 
 - (Trial) **iditerybcg** (integer, 0d)
@@ -1025,7 +1025,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``1``.
 
 
-&group_parallel (Trial)
+&group_parallel(Trial)
 -----------------------
 
 - (Trial) **isequential** (integer, 0d)
@@ -1042,7 +1042,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    This variable may be removed. 
 
 
-&group_hartree (Trial)
+&group_hartree(Trial)
 ----------------------
 
 - (Trial) **hconv** (real(8), 0d)
@@ -1056,7 +1056,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 
 
-&group_file (Trial)
+&group_file(Trial)
 -------------------
 
 - (Trial) **ic** (integer, 0d)
@@ -1076,7 +1076,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``0``.
 
 
-&group_others (Trial)
+&group_others(Trial)
 ---------------------
 
 - (Trial) **iparaway_ob** (integer, 0d)
@@ -1188,10 +1188,19 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 .. _&propagation: #propagation
 .. _&scf: #scf
 .. _&emfield: #emfield
+.. _&multiscale: #multiscale
 .. _&maxwell: #maxwell
 .. _&analysis: #analysis
 .. _&hartree: #hartree
 .. _&ewald: #ewald
-.. _&opt: #opt
-.. _&md: #md
+.. _&opt(Trial): #opt(Trial)
+.. _&md(Trial): #md(Trial)
 .. _&misc: #misc
+.. _&group_fundamental(Trial): #group_fundamental(Trial)
+.. _&group_parallel(Trial): #group_parallel(Trial)
+.. _&group_hartree(Trial): #group_hartree(Trial)
+.. _&group_file(Trial): #group_file(Trial)
+.. _&group_others(Trial): #group_others(Trial)
+
+
+
