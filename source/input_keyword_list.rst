@@ -1193,14 +1193,14 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 .. _&analysis: #analysis
 .. _&hartree: #hartree
 .. _&ewald: #ewald
-.. _&opt(Trial): #opt(Trial)
-.. _&md(Trial): #md(Trial)
+.. _&opt: #opt
+.. _&md: #md
 .. _&misc: #misc
-.. _&group_fundamental(Trial): #group_fundamental(Trial)
-.. _&group_parallel(Trial): #group_parallel(Trial)
-.. _&group_hartree(Trial): #group_hartree(Trial)
-.. _&group_file(Trial): #group_file(Trial)
-.. _&group_others(Trial): #group_others(Trial)
+.. _&group_fundamental: #group_fundamental
+.. _&group_parallel: #group_parallel
+.. _&group_hartree: #group_hartree
+.. _&group_file: #group_file
+.. _&group_others: #group_others
 
 
 
