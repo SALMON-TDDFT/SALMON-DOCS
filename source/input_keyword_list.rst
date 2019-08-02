@@ -702,7 +702,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - **omega_p_ld(:)** (real(8), 0d/3d)
    Plasma frequency of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. Default is ``0d0``.
 
-- **f_ld(:)** (real(8), 0d/3d)
+- **f_ld(:,:)** (real(8), 0d/3d)
    Oscillator strength of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. The first index is media id whose maximum value is determined by ``imedia_num``. The second index is pole id whose maximum value is determined by ``pole_num_ld``. Default is ``0d0``.
 
 - **gamma_ld(:,:)** (real(8), 0d/3d)
