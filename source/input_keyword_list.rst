@@ -43,36 +43,12 @@ List of all input keywords
    |  Default 
    |    ``TDDFT``.
 
-- **calc_mode** (character, 0d/3d)
-   | Choice of Calculation modes of TDDFT.
-   |  Options
-   |   ``GS`` / ground state calculation
-   |   ``RT`` / real time (time evolution) calculation
-   |   ``GS_RT`` / GS + RT calculation (for only ``&system/iperiodic=3``)
-   |  Defalut
-   |   ``'none'``
-
-- **use_ms_maxwell** (character, 3d)
-   Enable(``'y'``)/disable(``'n'``) 
-   Multi-scale Maxwell-Kohn-Sham coupling. 
-   Default is ``'n'`` 
-
-- **use_force** (character, 0d)
-   Enable(``'y'``)/disable(``'n'``) 
-   force calculation.
-   Default is ``'n'``.
-
-- (Trial) **use_adiabatic_md** (character, 3d)
+- (Trial) **yn_md** (character, 0d/3d)
    Enable(``'y'``)/disable(``'n'``). 
-   Adiabatic ground-state molecular dynamics option.
+   Ehrenfest molecular dynamics or Adiabatic ground-state molecular dynamics option.
    Default is ``'n'``.
 
-- (Trial) **use_ehrenfest_md** (character, 0d/3d)
-   Enable(``'y'``)/disable(``'n'``). 
-   Ehrenfest molecular dynamics option.
-   Default is ``'n'``.
-
-- (Trial) **use_geometry_opt** (character, 0d/3d)
+- (Trial) **yn_opt** (character, 0d/3d)
    Enable(``'y'``)/disable(``'n'``). 
    Geometry optimization option.
    Default is ``'n'``.
@@ -81,20 +57,28 @@ List of all input keywords
 &control
 --------
 
-
 - **sysname** (character, 0d/3d)
    Name of calculation. This is used for a prefix of output files.
    Default is ``default``.
 
-- **directory** (character, 0d/3d)
+- **base_directory** (character, 0d/3d)
    Name of a default directory, where the basic results will be written down.
    Default is the current directoy, ``./``.
 
-- (Trial) **restart_option** (character, 3d)
+- **output_buffer_interval** (integer, 0d/3d)
+   xxx.
+
+- (Trial) **yn_restart** (character, 3d)
    Flag for restart, ``'new'`` or ``'restart'``.
    ``'new'`` is default.
 
-- (Trial) **backup_frequency** (integer, 3d)
+- (Trial) **directory_read_data** (character, 3d)
+   xxx.
+
+- (Trial) **yn_self_checkpoint** (character, 3d)
+   xxx.
+
+- (Trial) **checkpoint_interval** (integer, 3d)
    Frequency of backup during the time-propagation. 
    If ``0`` is set, the backup is not performed.
    Default is ``0``.
@@ -103,53 +87,6 @@ List of all input keywords
    Timer for automatic shutdown. The unit is always second.
    If negative time is chosen, the automatic shutdown is not performed.
    Default is ``-1`` sec.
-
-- (Trial) **dump_filename** (character, 3d)
-   Name of a filename for the restart calculation.
-
-- (Trial) **read_gs_wfn_k** (character, 3d)
-   Read ground state wave function as initial guess (from pre-calculated "gs_wfn_k" directory printed by ``calc_mode=GS``) if this option is ``y``.
-   The option is available for restart of ground state SCF calculation, geometrical optimization, etc.
-   But the data is automatically read when "calc_mode=RT".
-   Default is ``n``.
-
-- (Trial) **write_gs_wfn_k** (character, 3d)
-   Write ground state wave function into "gs_wfn_k" directory if this option is ``y``, which is usually used for ``calc_mode=GS_RT`` calculation.
-   (But the data is always printed in the case of ``calc_mode=GS`` calculation.)
-   Default is ``n``.
-
-- (Trial) **modify_gs_wfn_k** (character, 3d)
-   Option to modify initial guess wave function (in the pre-calculated "gs_wfn_k" directory) used in combination with ``read_gs_wfn_k = y``.
-   If ``copy_1stk_to_all`` is set, the first k-point data file, wfn_gs_k0000001.wfn (supposed to be obtained by gamma-point calculation), is copied to all other points.
-   Default is ``n``.
-
-- (Trial) **read_rt_wfn_k** (character, 3d)
-   Read RT wave function (from pre-calculated "rt_wfn_k" directory printed by ``calc_mode=RT`` or ``calc_mode=GS_RT`` with option of ``write_rt_wfn_k=y``) if this is ``y``.
-   This is used for restart in combination with ``calc_mode=RT`` (if ``use_ehrenfest_md=y``, coordinates and velocities of atoms for restart must be included, too),
-   then, "gs_wfn_k" directory is also necessary (even though this is actually not used if any analysis options are specified (but used for some analysis options)).
-   Note that, currently, field is taken over after restarting only if ``ae_shape1=AcosX`` type is used.
-   Default is ``n``.
-
-- (Trial) **write_rt_wfn_k** (character, 3d)
-   Write RT wave function at the last time step into "rt_wfn_k" directory if this is ``y``.
-   (if ``use_ehrenfest_md=y``, coordinates and velocities of atoms are also printed.)
-   Default is ``n``.
-
-- (Trial) **read_gs_wfn_k_ms** (character, 3d)
-   Read ground state wave function at each macro-grid point as initial state for multiscale calculation.
-   This should be used together with ``use_ms_maxwell='y'``, ``calc_mode='RT'`` and ``set_ini_coor_vel='y'``.
-   The ground state wave function data ('gs_wfn_k') must be pre-calculated for each macro-grid point (configuration or atomic coordinate can be different from macro-grid point to macro-grid point) and be put into the specific directories: ``directory``/multiscale/MXXXXXX/ where XXXXXX is the index number of the macro-grid point of the material region usually starting from '000001' up to the number of macro-grid point ('ini_coor_vel.dat' used by the option ``set_ini_coor_vel`` must be put in the same place).
-   Default is ``n``.
-
-- (Trial) **read_rt_wfn_k_ms** (character, 3d)
-   Read RT wave function and field information as initial state in multiscale calculation.
-   These are the printed data at the last time step in the previous calculation generated by using ``write_rt_wfn_k_ms='y'``.
-   If you give incident pulse from input file option, the field is added.
-   Default is ``n``.
-
-- (Trial) **write_rt_wfn_k_ms** (character, 3d)
-   Write RT wave function and field information at the last step in multiscale calculation. It is used for restarting by using ``read_rt_wfn_k_ms='y'``. 
-   Default is ``n``.
 
 
 &units
@@ -164,33 +101,37 @@ List of all input keywords
 &parallel
 ---------
 
-- (Trial) **domain_parallel** (character, 3d)
-   If specified ``domain_parallel='y'`` and ``&system/iperiodic=3``, program codes for domain parallel version run in periodic system calculations.
+- (Trial) **yn_domain_parallel** (character, 3d)
+   If specified ``yn_domain_parallel='y'`` and ``&system/iperiodic=3``, program codes for domain parallel version run in periodic system calculations.
 
-- **nproc_k/nproc_ob/nproc_domain(3)/nproc_domain_s(3)** (integer, 0d)
+- **nproc_k/nproc_ob/nproc_domain_orbital(3)/nproc_domain_general(3)** (integer, 0d)
    Followings are explanation of each variable.
 
   - ``nproc_k``: Number of MPI parallelization for orbitals that related to the wavefunction calculation.
   - ``nproc_ob``: Number of MPI parallelization for orbitals that related to the wavefunction calculation.
-  - ``nproc_domain(3)'``: Number of MPI parallelization for each direction in real-space that related to the wavefunction calculation. 
-  - ``nproc_domain_s(3)'``: Number of MPI parallelization for each direction in real-space that related to the electron density calculation. 
+  - ``nproc_domain_orbital(3)'``: Number of MPI parallelization for each direction in real-space that related to the wavefunction calculation. 
+  - ``nproc_domain_general(3)'``: Number of MPI parallelization for each direction in real-space that related to the electron density calculation. 
 
-    Defaults are ``0`` for ``nproc_k``/``nproc_ob`` and ``(0/0/0)`` for ``nproc_domain``/``nproc_domain_s``. If users use the defaults, automatic proccess assignment is done. Users can also specify ``nproc_k``, ``nproc_ob``, ``nproc_domain``, and ``nproc_domain_s`` manually. In that case, ``nproc_k`` must be set to ``1`` for isolated system calculations. In addition, followings must be satisfied.
+    Defaults are ``0`` for ``nproc_k``/``nproc_ob`` and ``(0/0/0)`` for ``nproc_domain_orbital``/``nproc_domain_s``. If users use the defaults, automatic proccess assignment is done. Users can also specify ``nproc_k``, ``nproc_ob``, ``nproc_domain``, and ``nproc_domain_general`` manually. In that case, ``nproc_k`` must be set to ``1`` for isolated system calculations. In addition, followings must be satisfied.
 
-  - ``nproc_k`` \* ``nproc_ob`` \* ``nproc_domain(1)`` \* ``nproc_domain(2)`` \* ``nproc_domain(3)`` \= total number of processors
-  - ``nproc_domain_s(1)`` \* ``nproc_domain_s(2)`` \* ``nproc_domain_s(3)`` \= total number of processors
-  - ``nproc_domain_s(1)`` is a multiple of ``nproc_domain(1)``
-  - ``nproc_domain_s(2)`` is a multiple of ``nproc_domain(2)``
-  - ``nproc_domain_s(3)`` is a multiple of ``nproc_domain(3)``
+  - ``nproc_k`` \* ``nproc_ob`` \* ``nproc_domain_orbital(1)`` \* ``nproc_domain_orbital(2)`` \* ``nproc_domain_orbital(3)`` \= total number of processors
+  - ``nproc_domain_general(1)`` \* ``nproc_domain_general(2)`` \* ``nproc_domain_general(3)`` \= total number of processors
+  - ``nproc_domain_general(1)`` is a multiple of ``nproc_domain_orbital(1)``
+  - ``nproc_domain_general(2)`` is a multiple of ``nproc_domain_orbital(2)``
+  - ``nproc_domain_general(3)`` is a multiple of ``nproc_domain_orbital(3)``
 
 - **num_datafiles_in/num_datafiles_out** (integer, 0d)
    Number of input/output files for wavefunction.
    Defaults are ``1``. If ``num_datafiles_in``/``num_datafiles_out`` are 1, wave functions are read from/ written in a regular intermediate file. If ``num_datafiles_in``/``num_datafiles_out`` are larger than or equal to 2, the wave functions are read from/ written in separated intermediate data files, and number of files are equal to ``num_datafiles_in``/``num_datafiles_out``. These variables must be equal to nth power of 2. (n: 0 or positive integer)
 
-- **fourier** (character)
+- **yn_ffte** (character, 0d)
    Method of Fourier transformation.  ``'ft'``,  ``'FT'``, ``'ffte'`` or ``'FFTE'`` can be chosen.
    Default is ``'ft'``.
-   This variable is effective only when ``domain_parallel='y'`` and ``&system/iperiodic=3``.
+   This variable is effective only when ``yn_domain_parallel='y'`` and ``&system/iperiodic=3``.
+
+- **process_allocation** (character, 0d)
+   xxx.
+
 
 &system 
 -------
