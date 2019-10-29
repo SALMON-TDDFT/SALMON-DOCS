@@ -21,11 +21,10 @@ List of all input keywords
 -  `&multiscale`_
 -  `&maxwell`_
 -  `&analysis`_
--  `&hartree`_
+-  `&poisson`_ poissonに
 -  `&ewald`_
 -  `&opt(Trial)`_
 -  `&md(Trial)`_
--  `&misc`_
 -  `&group_fundamental(Trial)`_
 -  `&group_parallel(Trial)`_  
 -  `&group_hartree(Trial)`_ 
@@ -188,7 +187,10 @@ List of all input keywords
    Number of input/output files for wavefunction.
    Defaults are ``1``. If ``num_datafiles_in``/``num_datafiles_out`` are 1, wave functions are read from/ written in a regular intermediate file. If ``num_datafiles_in``/``num_datafiles_out`` are larger than or equal to 2, the wave functions are read from/ written in separated intermediate data files, and number of files are equal to ``num_datafiles_in``/``num_datafiles_out``. These variables must be equal to nth power of 2. (n: 0 or positive integer)
 
-
+- **fourier** (character)
+   Method of Fourier transformation.  ``'ft'``,  ``'FT'``, ``'ffte'`` or ``'FFTE'`` can be chosen.
+   Default is ``'ft'``.
+   This variable is effective only when ``domain_parallel='y'`` and ``&system/iperiodic=3``.
 
 &system 
 -------
@@ -870,7 +872,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``'n'``.
 
 
-&hartree
+&poisson
 --------
 
 - **meo** (integer, 0d)
@@ -977,17 +979,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - (Trial) **stop_system_momt** (character, 3d)
    Center of mass is stopped every time step.
    Default is ``n``.
-
-
-&misc
------
-
-- **fourier** (character)
-   Method of Fourier transformation.  ``'ft'``,  ``'FT'``, ``'ffte'`` or ``'FFTE'`` can be chosen.
-   Default is ``'ft'``.
-   This variable is effective only when ``domain_parallel='y'`` and ``&system/iperiodic=3``.
-
-
 
 
 **Following variables are moved from the isolated part. Some of them may be added to common input, be combined to it, and be removed.**
@@ -1194,11 +1185,10 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 .. _&multiscale: #multiscale
 .. _&maxwell: #maxwell
 .. _&analysis: #analysis
-.. _&hartree: #hartree
+.. _&poisson: #poisson
 .. _&ewald: #ewald
 .. _&opt: #opt
 .. _&md: #md
-.. _&misc: #misc
 .. _&group_fundamental: #group_fundamental
 .. _&group_parallel: #group_parallel
 .. _&group_hartree: #group_hartree
