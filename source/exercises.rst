@@ -19,7 +19,7 @@ and :any:`install-and-run`.
 As described in :any:`install-and-run`, you are required
 to prepare at least an input file and pseudopotential files to run
 SALMON. In the following, we present input files for several sample
-calculations and provide a brief explanation of the namelist variables
+calculations and provide a brief explanation of the input keywords
 that appear in the input files. You may modify the input files to
 execute for your own calculations. Pseudopotential files of elements
 that appear in the samples are also attached. We also present
@@ -103,8 +103,8 @@ To run the code, following files are used:
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
 +-----------------------------------+-----------------------------------+
-| *C2H2_gs.inp*                     | input file that contains namelist |
-|                                   | variables and their values        |
+| *C2H2_gs.inp*                     | input file that contains input    |
+|                                   | keywords and their values         |
 +-----------------------------------+-----------------------------------+
 | *C_rps.dat*                       | pseodupotential file for carbon   |
 |                                   | atom                              |
@@ -118,10 +118,10 @@ To run the code, following files are used:
 | (zipped input and pseudopotential files)
 
 
-In the input file *C2H2_gs.inp*, namelists variables are specified.
+In the input file *C2H2_gs.inp*, input keywords are specified.
 Most of them are mandatory to execute the ground state calculation.
 This will help you to prepare an input file for other systems that you
-want to calculate. A complete list of the namelist variables that can be
+want to calculate. A complete list of the input keywords that can be
 used in the input file can be found in
 :any:`List of all input keywords <List of all input keywords>`.
 
@@ -193,7 +193,7 @@ Mandatory: none
      unit_system='A_eV_fs'
    /
 
-This namelist specifies the unit system to be used in the input file. If
+This input keyword specifies the unit system to be used in the input file. If
 you do not specify it, atomic unit will be used.
 See :any:`&units in Inputs <&units>` for detail.
 
@@ -202,7 +202,7 @@ For isolated systems (specified by ``iperiodic = 0`` in ``&system``),
 the unit of 1/eV is used for the output files of DOS and PDOS if
 ``unit_system = 'A_eV_fs'`` is specified, while atomic unit is used if
 not. For other output files, the Angstrom/eV/fs units are used
-irrespective of the namelist value.
+irrespective of the input keyword.
 
 **&calculation**
 
@@ -329,7 +329,7 @@ electron density,
 
 **&analysis**
 
-The following namelists specify whether the output files are created or
+The following input keywords specify whether the output files are created or
 not after the calculation.
 
 ::
@@ -556,7 +556,7 @@ Input files
 ^^^^^^^^^^^
 
 To run the code, the input file *C2H2_rt_response.inp* that contains
-namelist variables and their values for the linear response calculation
+input keywords and their values for the linear response calculation
 is required. The binary file *C2H2_gs.bin* that is created in the ground
 state calculation and pseudopotential files are also required. The
 pseudopotential files should be the same as those used in the ground
@@ -565,8 +565,8 @@ state calculation.
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
 +-----------------------------------+-----------------------------------+
-| *C2H2_rt_response.inp*            | input file that contains namelist |
-|                                   | variables and their values        |
+| *C2H2_rt_response.inp*            | input file that contains input    |
+|                                   | keywords and their values         |
 +-----------------------------------+-----------------------------------+
 | *C_rps.dat*                       | pseodupotential file for carbon   |
 +-----------------------------------+-----------------------------------+
@@ -580,10 +580,10 @@ state calculation.
 | https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_rt_response_input.zip
 | (zipped input file)
 
-In the input file *C2H2_rt_response.inp*, namelists variables are specified.
+In the input file *C2H2_rt_response.inp*, input keywords are specified.
 Most of them are mandatory to execute the linear response calculation. 
 This will help you to prepare the input file for other systems that you
-want to calculate. A complete list of the namelist variables that can be
+want to calculate. A complete list of the input keywords that can be
 used in the input file can be found in the downloaded file
 *SALMON/manual/input_variables.md*.
 
@@ -649,7 +649,7 @@ Mandatory: none
      unit_system='A_eV_fs'
    /
 
-This namelist specifies the unit system to be used in the input file. If
+This input keyword specifies the unit system to be used in the input file. If
 you do not specify it, atomic unit will be used.
 See :any:`&units in Inputs <&units>` for detail.
 
@@ -698,7 +698,7 @@ Mandatory: iperiodic, al, nstate, nelem, natom
      nelec = 10
    /
 
-These namelists and their values should be the same as those used in the
+These input keywords and their values should be the same as those used in the
 ground state calculation. See :any:`&system in Exercise-1 <exercise-1-&system>`.
 
 **&pseudo**
@@ -718,7 +718,7 @@ Mandatory: pseudo_file, izatom
      lloc_ps(2)=0
    /
 
-These namelists and their values should be the same as those used in the
+These input keywords and their values should be the same as those used in the
 ground state calculation. See :any:`&pseudo in Exercise-1 <exercise-1-&pseudo>`.
 
 
@@ -880,15 +880,15 @@ Input files
 To run the code, following files are used. The *C2H2_gs.bin* file is
 created in the ground state calculation. Pseudopotential files are
 already used in the ground state calculation. Therefore,
-*C2H2_rt_pulse.inp* that specifies namelist variables and their values
+*C2H2_rt_pulse.inp* that specifies input keywords and their values
 for the pulsed electric field calculation is the only file that the
 users need to prepare.
 
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
 +-----------------------------------+-----------------------------------+
-| *C2H2_rt_pulse.inp*               | input file that contain namelist  |
-|                                   | variables and their values.       |
+| *C2H2_rt_pulse.inp*               | input file that contain input     |
+|                                   | keywords and their values.        |
 +-----------------------------------+-----------------------------------+
 | *C_rps.dat*                       | pseodupotential file for Carbon   |
 +-----------------------------------+-----------------------------------+
@@ -901,12 +901,12 @@ users need to prepare.
 | You may download the *C2H2_rt_pulse.inp* file (zipped file) from:
 | https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_rt_pulse_input.zip
 
-In the input file *C2H2_rt_pulse.inp*, namelists variables are specified.
+In the input file *C2H2_rt_pulse.inp*, input keywords are specified.
 Most of them are mandatory to execute the calculation of
 electron dynamics induced by a pulsed electric field.
 This will help you to prepare the input file for other systems and other
 pulsed electric fields that you want to calculate. A complete list of
-the namelist variables that can be used in the input file can be found
+the input keywords that can be used in the input file can be found
 in the downloaded file *SALMON/manual/input_variables.md*.
 
 
@@ -960,7 +960,7 @@ in the downloaded file *SALMON/manual/input_variables.md*.
    
 
 
-We present explanations of the namelist variables that appear in the input file below:
+We present explanations of the input keywords that appear in the input file below:
 
 
 **required and recommended variables**
@@ -975,7 +975,7 @@ Mandatory: none
      unit_system='A_eV_fs'
    /
 
-This namelist specifies the unit system to be used in the input file. If
+This input keyword specifies the unit system to be used in the input file. If
 you do not specify it, atomic unit will be used.
 See :any:`&units in Inputs <&units>` for detail.
 
@@ -1022,7 +1022,7 @@ Mandatory: iperiodic, al, nstate, nelem, natom
      nelec = 10
    /
 
-These namelists and their values should be the same as those used in the
+These input keywords and their values should be the same as those used in the
 ground state calculation.
 See :any:`&system in Exercise-1 <exercise-1-&system>`.
 
@@ -1044,7 +1044,7 @@ Mandatory: pseudo_file, izatom
      lloc_ps(2)=0
    /
 
-These namelists and their values should be the same as those used in the
+These input keywords and their values should be the same as those used in the
 ground state calculation.
 See :any:`&pseudo in Exercise-1 <exercise-1-&pseudo>`.
 
@@ -1239,8 +1239,8 @@ To run the code, following files are used:
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
 +-----------------------------------+-----------------------------------+
-| *Si_gs_rt_response.inp*           | input file that contain namelist  |
-|                                   | variables and their values.       |
+| *Si_gs_rt_response.inp*           | input file that contain input     |
+|                                   | keywords and their values.        |
 +-----------------------------------+-----------------------------------+
 | *Si_rps.dat*                      | pseodupotential file of silicon   |
 +-----------------------------------+-----------------------------------+
@@ -1248,10 +1248,10 @@ To run the code, following files are used:
 | You may download the above 2 files (zipped file) from:
 | https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_response_input.zip
 
-In the input file *Si_gs_rt_response.inp*, namelists variables are specified.
+In the input file *Si_gs_rt_response.inp*, input keywords are specified.
 Most of them are mandatory to execute the calculation.
 This will help you to prepare the input file for other systems that you
-want to calculate. A complete list of the namelist variables that can be
+want to calculate. A complete list of the input keywords that can be
 used in the input file can be found in the downloaded file
 *SALMON/manual/input_variables.md*.
 
@@ -1320,7 +1320,7 @@ used in the input file can be found in the downloaded file
    /
 
 
-We present explanations of the namelist variables that appear in the input file below:
+We present explanations of the input keywords that appear in the input file below:
 
 
 **&calculation**
@@ -1427,7 +1427,7 @@ Cartesian direction. See :any:`&rgrid in Inputs <&rgrid>` for more information.
 Mandatory: none
 
   
-This namelist provides grid spacing of k-space for periodic systems.
+This input keyword provides grid spacing of k-space for periodic systems.
 
 ::
    
@@ -1465,7 +1465,7 @@ See :any:`&propagation in Inputs <&propagation>` for more information.
 
 Mandatory: nscf
 
-This namelists specify parameters related to the self-consistent field
+This input keywords specify parameters related to the self-consistent field
 calculation.
 
 ::
@@ -1851,8 +1851,8 @@ To run the code, following files are used:
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
 +-----------------------------------+-----------------------------------+
-| *Si_gs_rt_pulse.inp*              | input file that contain namelist  |
-|                                   | variables and their values.       |
+| *Si_gs_rt_pulse.inp*              | input file that contain input     |
+|                                   | keywords and their values.        |
 +-----------------------------------+-----------------------------------+
 | *Si_rps.dat*                      | pseodupotential file for Carbon   |
 +-----------------------------------+-----------------------------------+
@@ -1860,10 +1860,10 @@ To run the code, following files are used:
 | You may download the above 2 files (zipped file) from:
 | https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_pulse_input.zip
 
-In the input file *Si_gs_rt_pulse.inp*, namelists variables are specified.
+In the input file *Si_gs_rt_pulse.inp*, input keywords are specified.
 Most of them are mandatory to execute the calculation.
 This will help you to prepare the input file for other systems that you
-want to calculate. A complete list of the namelist variables that can be
+want to calculate. A complete list of the input keywords that can be
 used in the input file can be found in the downloaded file
 *SALMON/manual/input_variables.md*.
 
@@ -1931,9 +1931,7 @@ used in the input file can be found in the downloaded file
    /
 
 
-We present explanations of the namelist variables that appear in the input file below:
-
-XXXX hoge input exe5 XXXXX
+We present explanations of the input keywords that appear in the input file below:
 
 **&calculation**
 
@@ -2041,7 +2039,7 @@ See :any:`&rgrid in Inputs <&rgrid>` for more information.
 
 Mandatory: none
 
-This namelist provides grid spacing of k-space for periodic systems.
+This input keyword provides grid spacing of k-space for periodic systems.
 
 ::
    
@@ -2079,7 +2077,7 @@ See :any:`&propagation in Inputs <&propagation>` for more information.
 
 Mandatory: nscf
 
-This namelists specify parameters related to the self-consistent field
+This input keywords specify parameters related to the self-consistent field
 calculation.
 
 ::
@@ -2106,7 +2104,7 @@ the Kohn-Sham equation. Usually this value should be 4 or 5.
      epdir_re1 = 0.,0.,1.
    /
 
-This namelist specifies the pulsed electric field applied to the system
+This input keyword specifies the pulsed electric field applied to the system
 
 ``ae_shape1 = 'Acos2'`` specifies the envelope of the pulsed electric
 field, cos^2 envelope for the vector potential.
@@ -2460,8 +2458,8 @@ To run the code, following files are used:
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
 +-----------------------------------+-----------------------------------+
-| *Si_gs_rt_multiscale.inp*         | input file that contain namelist  |
-|                                   | variables and their values.       |
+| *Si_gs_rt_multiscale.inp*         | input file that contain input     |
+|                                   | keywords and their values.        |
 +-----------------------------------+-----------------------------------+
 | *Si_rps.dat*                      | pseodupotential file for silicon  |
 +-----------------------------------+-----------------------------------+
@@ -2469,10 +2467,10 @@ To run the code, following files are used:
 | You may download the above two files (zipped file) from:
 | https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_multiscale_input.zip
 
-In the input file *Si_gs_rt_multiscale.inp*, namelists variables are specified.
+In the input file *Si_gs_rt_multiscale.inp*, input keywords are specified.
 Most of them are mandatory to execute the calculation.
 This will help you to prepare the input file for other systems that you
-want to calculate. A complete list of the namelist variables that can be
+want to calculate. A complete list of the input keywords that can be
 used in the input file can be found in the downloaded file
 *SALMON/manual/input_variables.md*.
 
@@ -2546,7 +2544,7 @@ used in the input file can be found in the downloaded file
    /
 
 
-We present explanations of the namelist variables that appear in the input file below:
+We present explanations of the input keywords that appear in the input file below:
 
 
 **&calculation**
@@ -2662,7 +2660,7 @@ See :any:`&rgrid in Inputs <&rgrid>` for more information.
 
 Mandatory: none
 
-This namelist provides grid spacing of k-space for periodic systems.
+This input keyword provides grid spacing of k-space for periodic systems.
 
 ::
    
@@ -2700,7 +2698,7 @@ See :any:`&propagation in Inputs <&propagation>` for more information.
 
 Mandatory: nscf
 
-This namelists specify parameters related to the self-consistent field
+This input keywords specify parameters related to the self-consistent field
 calculation.
 
 ::
@@ -2726,7 +2724,7 @@ the Kohn-Sham equation. Usually this value should be 4 or 5.
       epdir_re1 = 0.,0.,1.
     /
 
-This namelist specifies the pulsed electric field applied to the system
+This input keyword specifies the pulsed electric field applied to the system
 
 ``ae_shape1 = 'Acos2'`` specifies the envelope of the pulsed electric
 field, cos^2 envelope for the vector potential.
@@ -2750,7 +2748,7 @@ See :any:`&emfield in Inputs <&emfield>` for detail.
 
 **&multiscale**
 
-This namelist specifies information necessary for Maxwell - TDDFT
+This input keyword specifies information necessary for Maxwell - TDDFT
 multiscale calculations.
 
 ::
@@ -3139,6 +3137,11 @@ can be found in :any:`List of all input keywords <List of all input keywords>`.
      epdir_re1 = 0.0d0, 0.0d0, 1.0d0
    /
    
+   &analysis
+     nenergy = 1000
+     de      = 0.01d0
+   /
+   
    &maxwell
      !grid and time-step information
      al_em = 1000.0d0, 1000.0d0, 1000.0d0
@@ -3147,11 +3150,11 @@ can be found in :any:`List of all input keywords <List of all input keywords>`.
      dt_em = 1.90d-3
      
      !media information
-     imedia_num    = 1
      shape_file    = 'shape.cube'
+     imedia_num    = 1
      type_media(1) = 'drude'
      omega_p_d(1)  = 9.03d0
-     gamma_d(1)    = 0.53d0-1
+     gamma_d(1)    = 0.53d-1
    /
 
 We present their explanations below:
@@ -3192,7 +3195,7 @@ Mandatory: none
      unit_system = 'A_eV_fs'
    /
 
-This namelist specifies the unit system to be used in the input file. If you do not specify it, atomic unit will be used.
+This input keyword specifies the unit system to be used in the input file. If you do not specify it, atomic unit will be used.
 
 **&system**
 
@@ -3214,7 +3217,7 @@ Mandatory: ae_shape1, epdir_re1
 
    &emfield
      ae_shape1 = 'impulse'
-     epdir_re1 = 1.0d0, 0.0d0, 0.0d0
+     epdir_re1 = 0.0d0, 0.0d0, 1.0d0
    /
 
 ``ae_shape1 = 'impulse'`` indicates that a weak impulse is applied to all electrons at *t=0*.
@@ -3248,11 +3251,11 @@ Mandatory: al_em, dl_em, nt_em
      dt_em = 1.90d-3
      
      !media information
-     imedia_num    = 1
      shape_file    = 'shape.cube'
+     imedia_num    = 1
      type_media(1) = 'drude'
      omega_p_d(1)  = 9.03d0
-     gamma_d(1)    = 0.53d0-1
+     gamma_d(1)    = 0.53d-1
    /
 
 ``al_em = 1000.0d0, 1000.0d0, 1000.0d0`` specifies the lengths of three sides of the rectangular parallelepiped where the grid points are prepared.
@@ -3270,7 +3273,7 @@ If you do not input, this is automatically specified by the Courant-Friedrichs-L
 
 ``type_media(1) = 'drude'`` specifies the type of media as the Drude model.
 
-``omega_p_d(1) = 9.03d0`` and ``gamma_d(1) = 0.53d0-1`` specify the plasma- and collision-frequencies, respectively.
+``omega_p_d(1) = 9.03d0`` and ``gamma_d(1) = 0.53d-1`` specify the plasma- and collision-frequencies, respectively.
 See &maxwell in :any:`List of all input keywords <List of all input keywords>` for more information.
 
 Output files
@@ -3314,10 +3317,10 @@ Those are included in SALMON(SALMON/examples/exercise_08_classicEM_rt/).
 | The shape file can be generated by program ``FDTD_make_shape`` in SALMON utilities:
 | https://salmon-tddft.jp/utilities.html
 
-In the input file *classicEM_rt_pulse.inp*, namelists variables are specified.
+In the input file *classicEM_rt_pulse.inp*, input keywords are specified.
 Most of them are mandatory to execute the calculation of the pulsed electric field response in the metallic nanosphere.
 This will help you to prepare the input file for other systems and other pulsed electric fields that you want to calculate.
-A complete list of the namelist variables that can be used in the input file can be found in :any:`List of all input keywords <List of all input keywords>`.
+A complete list of the input keywords that can be used in the input file can be found in :any:`List of all input keywords <List of all input keywords>`.
 
 ::
 
@@ -3344,7 +3347,7 @@ A complete list of the namelist variables that can be used in the input file can
      rlaser_int_wcm2_1 = 1.0d8
      pulse_tw1         = 4.75d0
      omega1            = 5.0d0
-     epdir_re1         = 1.0d0, 0.0d0, 0.0d0
+     epdir_re1         = 0.0d0, 0.0d0, 1.0d0
      phi_cep1          = 0.75d0
    /
    
@@ -3356,21 +3359,22 @@ A complete list of the namelist variables that can be used in the input file can
      dt_em = 1.90d-3
      
      !media information
-     imedia_num    = 1
      shape_file    = 'shape.cube'
+     imedia_num    = 1
      type_media(1) = 'drude'
      omega_p_d(1)  = 9.03d0
-     gamma_d(1)    = 0.53d0-1
+     gamma_d(1)    = 0.53d-1
      
      !source information
      wave_input      = 'source'
-     source_loc1(:)  = -3.15d2, 0.0d0, 0.0d0
-     ek_dir1(:)      =  0.0d0, 1.0d0, 0.0d0
+     source_loc1(:)  =-3.15d2, 0.0d0, 0.0d0
+     ek_dir1(:)      =  1.0d0, 0.0d0, 0.0d0
      
      !observation information
      iobs_num_em     = 1
      iobs_samp_em    = 100
      obs_loc_em(1,:) = 0.0d0, 0.0d0, 0.0d0
+     obs_plane_em(1) = 'y'
    /
 
 We present their explanations below:
@@ -3411,7 +3415,7 @@ Mandatory: none
      unit_system = 'A_eV_fs'
    /
 
-This namelist specifies the unit system to be used in the input file.
+This input keyword specifies the unit system to be used in the input file.
 If you do not specify it, atomic unit will be used.
 
 **&system**
@@ -3437,7 +3441,7 @@ Mandatory: ae_shape1, { rlaser_int_wcm2_1 or amplitude1}, pulse_tw1, omega1, epd
      rlaser_int_wcm2_1 = 1.0d8
      pulse_tw1         = 4.75d0
      omega1            = 5.0d0
-     epdir_re1         = 1.0d0, 0.0d0, 0.0d0
+     epdir_re1         = 0.0d0, 0.0d0, 1.0d0
      phi_cep1          = 0.75d0
    /
 
@@ -3449,7 +3453,7 @@ Mandatory: ae_shape1, { rlaser_int_wcm2_1 or amplitude1}, pulse_tw1, omega1, epd
 
 ``omega1 = 5.0d0`` specifies the average photon energy (frequency multiplied with hbar).
 
-``epdir_re1 = 1.0d0, 0.0d0, 0.0d0`` specifies the real part of the unit polarization vector of the pulsed electric field.
+``epdir_re1 = 0.0d0, 0.0d0, 1.0d0`` specifies the real part of the unit polarization vector of the pulsed electric field.
 Using the real polarization vector, it describes a linearly polarized pulse.
 
 ``phi_cep1 = 0.75d0`` specifies the carrier envelope phase of the pulse.
@@ -3469,11 +3473,11 @@ Mandatory: al_em, dl_em, nt_em
      dt_em = 1.90d-3
      
      !media information
-     imedia_num    = 1
      shape_file    = 'shape.cube'
+     imedia_num    = 1
      type_media(1) = 'drude'
      omega_p_d(1)  = 9.03d0
-     gamma_d(1)    = 0.53d0-1
+     gamma_d(1)    = 0.53d-1
      
      !source information
      wave_input      = 'source'
@@ -3484,6 +3488,7 @@ Mandatory: al_em, dl_em, nt_em
      iobs_num_em     = 1
      iobs_samp_em    = 100
      obs_loc_em(1,:) = 0.0d0, 0.0d0, 0.0d0
+     obs_plane_em(1) = 'y'
    /
 
 ``al_em = 1000.0d0, 1000.0d0, 1000.0d0`` specifies the lengths of three sides of the rectangular parallelepiped where the grid points are prepared.
@@ -3501,7 +3506,7 @@ If you do not input, this is automatically specified by the Courant-Friedrichs-L
 
 ``type_media(1) = 'drude'`` specifies the type of media as the Drude model.
 
-``omega_p_d(1) = 9.03d0`` and ``gamma_d(1) = 0.53d0-1`` specify the plasma- and collision-frequencies, respectively.
+``omega_p_d(1) = 9.03d0`` and ``gamma_d(1) = 0.53d-1`` specify the plasma- and collision-frequencies, respectively.
 
 ``wave_input = 'source'`` specifies a current source that is used for generating the pulse.
 
@@ -3514,6 +3519,8 @@ If you do not input, this is automatically specified by the Courant-Friedrichs-L
 ``iobs_samp_em = 100`` specifies the sampling number for time steps. In this case, output files are generated every 100 steps.
 
 ``obs_loc_em(1,:) = 0.0d0, 0.0d0, 0.0d0`` specifies the coordinate of the current source.
+
+``obs_plane_em(1) = 'y'`` determines to output the electrmagnetic fields on the planes (xy, yz, and xz planes) for the observation point. This option must be ``'y'`` for generating animation files by using SALMON utilities: https://salmon-tddft.jp/utilities.html.
 
 See &maxwell in :any:`List of all input keywords <List of all input keywords>` for more information.
 
@@ -3530,9 +3537,9 @@ For time steps from 1 to nt_em,
 -  2-4 columns: x,y,z components of the electric field in the observation point
 -  5-7 columns: x,y,z components of the magnetic field in the observation point
 
-**obs1_@@_++_**.data and obs0_info.data**
+**obs1_@@_++_--.data and obs0_info.data**
 
-``obs1_@@_++_**.data`` is the spatial distribution of ``@@`` component(ex, ey, ez, hx, hy, or hz) on ``++`` plane(xy, yz, or xz) in ``**`` time step.
+``obs1_@@_++_--.data`` is the spatial distribution of ``@@`` component(ex, ey, ez, hx, hy, or hz) on ``++`` plane(xy, yz, or xz) in ``--`` time step.
 
 ``obs0_info.data`` is the basic information of the calculation. 
 
