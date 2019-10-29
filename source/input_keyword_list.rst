@@ -373,7 +373,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - **nscf** (integer, 0d/3d)
    Number of maximum scf cycle.
 
-- **amin_routine** (character, 0d)
+- **method_min** (character, 0d)
    Minimization routine for the ground state calculation. 
    ``'cg'``, ``'diis'``, and ``'cg-diis'`` can be chosen.
    Default is ``'cg'``.
@@ -382,11 +382,11 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Number of interation of Conjugate-Gradient method for each scf-cycle.
    Default is ``5``.
 
-- **amixing** (character, 0d) 
+- **method_mixing** (character, 0d) 
    Methods for density/potential mixing for scf cycle. ``simple`` and ``broyden`` can be chosen.
    Default is ``broyden``.
 
-- **rmixrate** (real(8), 0d)
+- **mixrate** (real(8), 0d)
    Mixing ratio for simple mixing. Default is ``0.5``.
 
 - **nmemory_mb** (integer, 0d/3d)
@@ -398,19 +398,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Parameter of the modified-Broyden method.
    Default is ``0.75``.
 
-- (Trial) **fsset_option** (character, 3d)
-   Probably, we should remove this function
-   since we can replace it with occupaion smoothing with temperature.
-
-- (Trial) **nfsset_start** (integer, 3d)
-   Probably, we should remove this function
-   since we can replace it with occupaion smoothing with temperature.
-
-- (Trial) **nfsset_every** (integer, 3d)
-   Probably, we should remove this function
-   since we can replace it with occupaion smoothing with temperature.
-
-- **subspace_diagonalization** (character, 0d)
+- **yn_subspace_diagonalization** (character, 0d)
    Enable(``'y'``)/disable(``'n'``) 
    subspace diagonalization during scf cycle.
 
@@ -427,21 +415,18 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
   - ``'norm_pot'``: Convergence is checked by ||Vlocal_iter(ix)-Vlocal_iter-1(ix)||\ :sup:`2`\, where Vlocal is Vh + Vxc + Vps_local.
   - ``'pot_dng'``: Convergence is checked by ||Vlocal_iter(ix)-Vlocal_iter-1(ix)||\ :sup:`2`\/(number of grids).
 
-
 - **threshold** (real(8), 0d/3d)
    Threshold for convergence check that is used when ``'rho_dne'`` is specified.
    Default is ``1d-17``. 
-
-- **threshold_norm_rho** (real(8), 0d)
+   XXX(threshold_norm_rho (real(8), 0d))XXX
    Threshold for convergence check that is used when either ``'norm_rho'`` or ``'norm_rho_dng'`` is specified. ``threshold_norm_rho`` must be set when either ``'norm_rho'`` or ``'norm_rho_dng'`` is specified.
    Default is ``-1d0`` a.u. (1 a.u.= 45.54 A\ :sup:`-6`\)
-
-
-- **threshold_norm_pot** (real(8), 0d)
+   XXX(threshold_norm_pot (real(8), 0d))XXX
    Threshold for convergence check that is used when either ``'norm_pot'`` or ``'norm_pot_dng'`` is specified. ``threshold_norm_pot`` must be set when either ``'norm_pot'`` or ``'norm_pot_dng'`` is specified.
    Default is ``-1d0`` a.u. (1 a.u.= 33.72x10\ :sup:`4`\ A\ :sup:`-6`\eV\ :sup:`2`\)
 
 - **omp_loop** (character, 3d)
+   XXX only ARTED XXX
    Loop for OpenMP parallelization in the ground state SCF if periodic boundary system is used. 
 
   - ``k``: parallelization for k-point loop (Default).
@@ -449,11 +434,9 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 
 - (Trial) **skip_gsortho** (character, 3d)
+   XXX only ARTED XXX
    Flag to skip Gram-Schmidt orthogonalization in CG loop if periodic boundary system is used. If this is skipped the more iteration number is necessary to get convergence but each iteration step gets faster. If ``omp_loop=b``, this flag is always applied.
    Default is ``n``
-
-- (Trial) **ngeometry_opt** (integer, 0d)
-   Number of iteration of geometry optimization.
 
 
 &emfield
