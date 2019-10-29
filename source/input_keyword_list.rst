@@ -21,7 +21,7 @@ List of all input keywords
 -  `&multiscale`_
 -  `&maxwell`_
 -  `&analysis`_
--  `&poisson`_ poissonに
+-  `&poisson`_
 -  `&ewald`_
 -  `&opt(Trial)`_
 -  `&md(Trial)`_
