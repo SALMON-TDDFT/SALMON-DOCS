@@ -1023,10 +1023,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    ``1`` is block division, and ``2`` is cyclic division.
    Default is ``2``.
 
-- (Trial) **iscf_order** (integer, 0d)
-   A variable to determine the order of the calculation for the ground state one. 
-   Default is ``1``.
-
 - (Trial) **iswitch_orbital_mesh** (integer, 0d)
    A variable to apply descending order for orbitals in the ground state calculation.
    Default is ``0``.
