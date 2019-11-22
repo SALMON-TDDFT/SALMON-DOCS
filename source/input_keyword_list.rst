@@ -381,11 +381,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - **nscf** (integer, 0d/3d)
    Number of maximum scf cycle.
 
-- **method_min** (character, 0d)
-   Minimization routine for the ground state calculation. 
-   ``'cg'``, ``'diis'``, and ``'cg-diis'`` can be chosen.
-   Default is ``'cg'``.
-
 - **ncg** (integer, 0d/3d)
    Number of interation of Conjugate-Gradient method for each scf-cycle.
    Default is ``5``.
@@ -931,10 +926,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 &group_fundamental(Trial)
 -------------------------
-
-- (Trial) **iditerybcg** (integer, 0d)
-   Iterations for which ybcg is calculated if ``&scf/amin_routine`` is ``'cg-diis'``.
-   Default is ``20``.
 
 - (Trial) **iditer_nosubspace_diag** (integer, 0d)
    Iterations for which subspace diagonalization is not done if ``&scf/subspace_diagonalization`` is ``'y'``.
