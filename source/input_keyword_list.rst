@@ -1021,10 +1021,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - (Trial) **iflag_psicube** (integer, 0d)
    A variable to generate cube files for wave functions. This variable will be removed.
 
-- (Trial) **lambda1_diis/lambda2_diis** (real(8), 0d)
-   Parameters for the diis calculation.
-   Default is ``0.5/0.3``.
-
 - (Trial) **file_ini** (character, 0d)
    A input file to align wavefunctions. 
    Default is ``'file_ini'``.
