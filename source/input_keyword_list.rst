@@ -123,10 +123,6 @@ List of all input keywords
   - ``nproc_domain_general(2)`` is a multiple of ``nproc_domain_orbital(2)``
   - ``nproc_domain_general(3)`` is a multiple of ``nproc_domain_orbital(3)``
 
-- **num_datafiles_in/num_datafiles_out** (integer, 0d)
-   Number of input/output files for wavefunction.
-   Defaults are ``1``. If ``num_datafiles_in``/``num_datafiles_out`` are 1, wave functions are read from/ written in a regular intermediate file. If ``num_datafiles_in``/``num_datafiles_out`` are larger than or equal to 2, the wave functions are read from/ written in separated intermediate data files, and number of files are equal to ``num_datafiles_in``/``num_datafiles_out``. These variables must be equal to nth power of 2. (n: 0 or positive integer)
-
 - **yn_ffte** (character, 0d)
    Method of Fourier transformation.  ``'ft'``,  ``'FT'``, ``'ffte'`` or ``'FFTE'`` can be chosen.
    Default is ``'ft'``.
