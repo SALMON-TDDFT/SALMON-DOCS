@@ -67,26 +67,22 @@ List of all input keywords
 - **output_buffer_interval** (integer, Default=-1)
    xxx.
 
-- **yn_restart** (character, Default=)[Trial]
+- **yn_restart** (character, Default='new')[Trial]
    Flag for restart, ``'new'`` or ``'restart'``.
-   ``'new'`` is default.
 
-- [Trial] **directory_read_data** (character, Default=)
+- **directory_read_data** (character, Default=)[Trial]
    xxx.
 
-- [Trial] **yn_self_checkpoint** (character, Default=)
+- **yn_self_checkpoint** (character, Default=)[Trial]
    xxx.
 
-- [Trial] **checkpoint_interval** (integer, Default=)
+- **checkpoint_interval** (integer, Default=0)[Trial]
    Frequency of backup during the time-propagation. 
    If ``0`` is set, the backup is not performed.
-   Default is ``0``.
 
-- [Trial] **time_shutdown** (real(8), Default=)
+- **time_shutdown** (real(8), Default=-1)[Trial]
    Timer for automatic shutdown. The unit is always second.
    If negative time is chosen, the automatic shutdown is not performed.
-   Default is ``-1`` sec.
-
 
 &units
 ------
