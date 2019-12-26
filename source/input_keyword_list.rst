@@ -97,6 +97,7 @@ List of all input keywords
 ---------
 
 - **yn_domain_parallel** (character, 3d)[Trial]
+   Old infomation: 3d
    If specified ``yn_domain_parallel='y'`` and ``&system/yn_periodic='y'``, program codes for domain parallel version run in periodic system calculations.
 
 - **nproc_k/nproc_ob/nproc_domain_orbital(3)/nproc_domain_general(3)** (integer, 0d)
