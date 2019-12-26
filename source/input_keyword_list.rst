@@ -101,6 +101,7 @@ List of all input keywords
    If specified ``yn_domain_parallel='y'`` and ``&system/yn_periodic='y'``, program codes for domain parallel version run in periodic system calculations.
 
 - **nproc_k/nproc_ob/nproc_domain_orbital(3)/nproc_domain_general(3)** (integer, 0d)
+   | Old infomation: 0d
    Followings are explanation of each variable.
 
   - ``nproc_k``: Number of MPI parallelization for orbitals that related to the wavefunction calculation.
@@ -117,11 +118,13 @@ List of all input keywords
   - ``nproc_domain_general(3)`` is a multiple of ``nproc_domain_orbital(3)``
 
 - **yn_ffte** (character, 0d)
+   | Old infomation: 0d
    Method of Fourier transformation.  ``'ft'``,  ``'FT'``, ``'ffte'`` or ``'FFTE'`` can be chosen.
    Default is ``'ft'``.
    This variable is effective only when ``yn_domain_parallel='y'`` and ``&system/yn_periodic='y'``.
 
 - **process_allocation** (character, 0d)
+   | Old infomation: 0d
    xxx.
 
 
@@ -135,6 +138,7 @@ List of all input keywords
    Default is ``'n'``.
 
 - **ispin** (integer, 0d)
+   | Old infomation: 0d
    Variable for classification of closed shell systems and open shell systems.
    ``0`` is for closed shell systems, and
    ``1`` is for open shell systems.
@@ -144,13 +148,16 @@ List of all input keywords
    Lattice constants. Unit of the length can be chosen by ``&units/unit_system``.
 
 - **al_vec1(3)/al_vec2(3)/al_vec3(3)** (real(8), 3d)
+   | Old infomation: 3d
    xxx.
 
 - **isym** (integer, 3d)
+   | Old infomation: 3d
    Number of symmetries that can be used for reduction of k-points.
    Default is ``0``.
 
 - **crystal_structure** (character, 3d)
+   | Old infomation: 3d
    Name of symmetry that can be used for the reduction of # of k-points.
    Default is ``'none'``.
 
@@ -158,6 +165,7 @@ List of all input keywords
    Number of states/bands.
 
 - **nstate_spin(2)** (integer, 0d)
+   | Old infomation: 0d
    Number of states/bands can be specified independently by ``nstate_spin(1)/nstate_spin(2)``.
    This option is incompatible with ``nstate``
 
@@ -165,15 +173,18 @@ List of all input keywords
    Number of valence electrons.
 
 - **nelec_spin(2)** (integer, 0d)
+   | Old infomation: 0d
    Number of up/down-spin electrons can be specified independently by ``nelec_spin(1)/nelec_spin(2)``.
    This option is incompatible with ``nelec``
 
 - **temperature** (real(8), 3d)
+   | Old infomation: 3d
    Temperature of electrons. When you calculate a system of zero band-gap energy like metals, zero or positive number of the temperature should be given.
    Unit of the energy can be chosen ``&units/unit_system``. 
    Default is ``-1.0`` (this is for system which has a band gap energy).
 
 - **temperature_k** (real(8), 0d)[Trial]
+   | Old infomation: 0d
    Temperature of electrons [K]. Default is ``-1.d0``.
 
 - **nelem** (integer, 0d/3d)
@@ -184,6 +195,7 @@ List of all input keywords
 
 
 - **file_atom_red_coor** (character, 3d)[Trial]
+   | Old infomation: 3d
    File name of atomic positions. In this file, 
    the atomic coordinates can be written in reduced coordinates.
    This option is incompatible with 
@@ -192,6 +204,7 @@ List of all input keywords
    ``&atomic_red_coor``.
 
 - **file_atom_coor** (character, 0d)[Trial]
+   | Old infomation: 0d
    File name of atomic positions. In this file, 
    the atomic coordinates can be written in Cartesian cooridnates.
    The unit of the length can be chosen by 
@@ -298,6 +311,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    [See http://www.tddft.org/programs/libxc/functionals/]
    
 - **cval** (real(8), 3d)
+   | Old infomation: 3d
    Mixing parameter in Tran-Blaha meta-GGA exchange potential. If ``cval`` is set to a minus value, the mixing-parameter computed
    by the formula in the original paper [Phys. Rev. Lett. 102, 226401 (2008)].
    Default is estimated from :math:`\left\langle |\nabla \rho(\mathbf{r};t)| / \rho(\mathbf{r};t) \right\rangle`.
@@ -317,6 +331,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    ``&system/al(3)`` becomes divisible by the spacing.
 
 - **num_rgrid(3)** (integer, 3d)
+   | Old infomation: 3d
    Number of real-space grids.
    This valiable cannot be set with 
    ``&rgrid/dl`` simultaneously.
@@ -326,11 +341,13 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ------
 
 - **num_kgrid(3)** (integer, 3d)
+   | Old infomation: 3d
    Number of k-points (grid points of k-vector) discretizing
    the Brillouin zone.
    Each component must be even.
 
 - **file_kw** (character, 3d)
+   | Old infomation: 3d
    Name of a file for flexible k-point sampling.
    This file will be read if ``num_kgrid`` is smaller than 1.
 
@@ -349,6 +366,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ------------
 
 - **propagator** (character, 3d)
+   | Old infomation: 3d
    Choice of Propagator.
    ``middlepoint`` is an propagator
    with the Hamiltoinan at midpoint of two-times.
@@ -357,10 +375,12 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``middlepoint``.
 
 - **n_hamil** (integer, 0d)[Trial]
+   | Old infomation: 0d
    Order of Taylor expansion of a propagation operator.
    Default is ``4``.
 
 - **yn_fix_func** ``character(1)``; 3d)[Trial]
+   | Old infomation: 3d
    Option not to update functional (or Hamiltonian) in RT calculation, i.e., keep ground state Hamiltonian during time-evolution.
    Default is ``'n'``.
 
@@ -375,11 +395,13 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``5``.
 
 - **method_mixing** (character, 0d) 
+   | Old infomation: 0d
    Methods for density/potential mixing for scf cycle. ``simple`` and ``broyden`` can be chosen.
    Default is ``broyden``.
 
 - **mixrate** (real(8), 0d)
-   Mixing ratio for simple mixing. Default is ``0.5``.
+   | Old infomation: 0d
+  Mixing ratio for simple mixing. Default is ``0.5``.
 
 - **nmemory_mb** (integer, 0d/3d)
    Number of stored densities at previous scf-cycles for 
@@ -391,6 +413,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``0.75``.
 
 - **yn_subspace_diagonalization** (character, 0d)
+   | Old infomation: 0d
    Enable(``'y'``)/disable(``'n'``) 
    subspace diagonalization during scf cycle.
 
@@ -418,6 +441,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``-1d0`` a.u. (1 a.u.= 33.72x10\ :sup:`4`\ A\ :sup:`-6`\eV\ :sup:`2`\)
 
 - **omp_loop** (character, 3d)
+   | Old infomation: 3d
    XXX only ARTED XXX
    Loop for OpenMP parallelization in the ground state SCF if periodic boundary system is used. 
 
@@ -426,6 +450,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 
 - **skip_gsortho** (character, 3d)[Trial]
+   | Old infomation: 3d
    XXX only ARTED XXX
    Flag to skip Gram-Schmidt orthogonalization in CG loop if periodic boundary system is used. If this is skipped the more iteration number is necessary to get convergence but each iteration step gets faster. If ``omp_loop=b``, this flag is always applied.
    Default is ``n``
@@ -436,6 +461,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 --------
 
 - **trans_longi** (character, 3d)
+   | Old infomation: 3d
    Geometry of solid-state calculations.
    Transverse ``'tr'`` and longitudinal ``'lo'`` can be chosen.
    Default is ``'tr'``.
@@ -492,6 +518,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``0d0/0d0``.
 
 - **t1_start** (real(8), 3d)
+   | Old infomation: 3d
    Time-delay of the first pulse.
    Unit of time can be chosen by ``&units/unit_time``.
    (this is not available for multiscale option).
@@ -502,22 +529,27 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Unit of time can be chosen by ``&units/unit_time``.
 
 - **yn_local_field** (character, 0d)[Trial]
+   | Old infomation: 0d
    The pulse is applied to a specific domain.
    Default is ``'n'``.
 
 - **num_dipole_source** (integer, 0d)
+   | Old infomation: 0d
    Number of radiation sources for optical near fields.
    Maximum number is ``2``.
 
 - **vec_dipole_source(3,num_dipole_source)** (real(8), 0d)
+   | Old infomation: 0d
    Dipole vectors of the radiation sources for the optical near fields.
    Unit of length can be chosen by ``&units/unit_length``.
 
 - **cood_dipole_source(3,num_dipole_source)** (real(8), 0d)
+   | Old infomation: 0d
    Central coordinates of the dipole vectors of the radiation sources.
    Unit of length can be chosen by ``&units/unit_length``.
 
 - **rad_dipole_diele** (real(8), 0d)
+   | Old infomation: 0d
    Radii of dielectric spheres for the radiation sources.
    Unit of length can be chosen by ``&units/unit_length``.
 
@@ -527,47 +559,58 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 -----------
 
 - **fdtddim** (character, 3d)[Trial]
+   | Old infomation: 3d
    Dimension of FDTD calculation for multi-scale Maxwell-Kohn-Sham method.
    Default value is ``'1D'``. 
 
 - **twod_shape** (character, 3d)[Trial]
+   | Old infomation: 3d
    Boundary condision of the second dimension for FDTD calculation with 
    multi-scale Maxwell-Kohn-Sham method.
    Default value is ``'periodic'``.
 
 - **nx_m** (integer, 3d)
+   | Old infomation: 3d
    Number of macroscopic grid points inside materials for x-direction.
 
 - **ny_m/nz_m** (integer, 3d)[Trial]
+   | Old infomation: 3d
    Number of macroscopic grid points inside materials for (y/z)-direction.
 
 - **hx_m** (real(8), 3d)
+   | Old infomation: 3d
    Spacing of macroscopic grid points inside materials for (x)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
 
 - **hy_m/hz_m** (real(8), 3d)[Trial]
+  | Old infomation: 3d
    Spacing of macroscopic grid points inside materials for (y/z)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
 
 - **nxvacl_m/nxvacr_m** (integer, 3d)
+  | Old infomation: 3d
    Number of macroscopic grid points for vacumm region.
    ``nxvacl_m`` gives the number for negative x-direction in front of material,
    while ``nxvacr_m`` gives the number for positive x-direction behind the material.
 
 - **nx_origin_m/ny_origin_m/nz_origin_m** (integer, 3d)[Trial]
+  | Old infomation: 3d
    Origin coordinat of the grid points.
    Default value is ``'1'``.
 
 - **set_ini_coor_vel** (character, 3d)[Trial]
+  | Old infomation: 3d
    Set initial atomic coordinates and velocities for each macro-grid point. This must be given with specific directories and files: 
    Prepare ``directory``/multiscale/MXXXXXX/ini_coor_vel.dat, where 'XXXXXX' is the index number of the macro-grid point of the material region usually starting from '000001' up to the number of macro-grid point. The format of the file 'ini_coor_vel.dat' is just Rx, Ry, Rz, Vx, Vy, Vz (with space separation) for each atom (i.e. for each line), where the unit of the coordinates, Rx, Ry, Rz, is angstrom or a.u. speficied by ``unit_system`` but that of velocities is always a.u.. This option should be used together with ``read_gs_wfn_k_ms`` which is the option to read the ground state wave function for each macro-grid point. 
    Default value is ``'n'``.
 
 - **nmacro_write_group** (integer, 3d)[Trial]
+  | Old infomation: 3d
    If the number of macroscopic grids are very large, computers can be unstable by writing all information of all macroscopic grid points at the same time. To avoid that, the writings are divided by specifying this option. Writings will be done by each ``nmacro_write_group`` macroscopic grid points. (this number must be aliquot part of the total number of macroscopic grid points)
    Default value is ``'-1'``.
 
 - **file_macropoint** (character, 3d)[Trial]
+  | Old infomation: 3d
    If file name is specified in the option, the coordinates of the macropoints are set from the file.
    Default value is ``''``.
 
@@ -651,6 +694,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ---------
 
 - **projection_option** (character, 3d)
+  | Old infomation: 3d
    Methods of projection.
    
   - ``'no'``: no projection.
@@ -659,12 +703,14 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
   
 
 - **projection_decomp** (character, 3d)[Trial]
+  | Old infomation: 3d
    If ``'atom'`` combined with ``projection_option='gs'``, 
    the number of excited electron is decomposed into each atom 
    (this is printed in ``SYSname``\_nex_atom.data).
    Default is ``'n'``.
 
 - **out_projection_step** (integer, 3d)
+  | Old infomation: 3d
    Interval time step of projection analysis 
    if ``projection_option`` is not ``'no'``.
    Default is ``100``.
@@ -719,6 +765,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``'n'``.
 
 - **yn_out_pdos** (character, 0d)
+  | Old infomation: 0d
    If ``'y'``, projected density of state is output.
    Default is ``'n'``.
 
@@ -732,26 +779,31 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``'n'``.
 
 - **yn_out_dns_trans/out_dns_trans_energy** ``Character/Real(8)``; 3d)[Trial]
+  | Old infomation: 3d
    If ``'y'``, transition in different density from the ground state at specified field frequency omega(given by ``out_dns_trans_energy``) is calculated by drho(r,omega)=FT(rho(r,t)-rho_gs(r))/T.
    Default is ``'n'/1.55eV``.
 
 - **yn_out_elf** (character, 0d)
+  | Old infomation: 0d
    If ``'y'``, electron localization function is output.
    Default is ``'n'``.
 
 - **yn_out_elf_rt/out_elf_rt_step** ``Character/Integer``; 0d)
+  | Old infomation: 0d
    If ``'y'``, electron localization function 
    during real-time time-propagation is output
    every ``out_elf_rt_step`` time steps.
    Default is ``'n'``.
 
 - **yn_out_estatic_rt/out_estatic_rt_step** ``Character/Integer``; 0d)
+  | Old infomation: 0d
    If ``'y'``, static electric field
    during real-time time-propagation is output
    every ``out_estatic_rt_step`` time steps.
    Default is ``'n'``.
 
 - **yn_out_rvf_rt/out_rvf_rt_step** ``Character/Integer``; 3d)[Trial]
+  | Old infomation: 3d
    If ``'y'``, coordinates[A], velocities[au], forces[au] on atoms
    during real-time time-propagation are printed in ``SYSname``\_trj.xyz
    every ``out_rvf_rt_step`` time steps.
@@ -760,6 +812,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Defaults are ``'n'/10``.
 
 - **yn_out_tm** (character, 3d)[Trial]
+  | Old infomation: 3d
    If ``'y'``, transition moments between occupied and virtual orbitals are printed into ``SYSname``\_tm.data after the ground state calculation.
    Defaults are ``'n'``.
 
@@ -769,12 +822,14 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``'cube'``.
 
 - **nsplit_voxel_data** (integer, 0d)
+  | Old infomation: 0d
    Number of separated files for three dimensional data.
    Effective only when ``format3d`` is ``'avs'``.
    ``numfiles_out_3d`` must be less than or equal to number of processes.
    Default is ``1``.
 
 - **timer_process** (character, 0d)[Trial]
+  | Old infomation: 0d
    Basically, elapsed times are written in the output file. 
    But if ``timer_process`` is ``'y'``, 
    files of elapsed times for every process are also generated. 
@@ -786,6 +841,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 --------
 
 - **layout_multipole** (character, 0d)
+  | Old infomation: 0d
    A variable to determine how to put multipoles in the Hartree potential calculation. Default is ``3``.
 
   - ``1``: A single pole is put at the center.
@@ -793,6 +849,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
   - ``3``: Multipoles are put at the center of mass of electrons in prepared cuboids.
 
 - **num_multipole_xyz(3)** (integer, 0d)
+  | Old infomation: 0d
    Number of multipoles when ``meo`` is ``3``. Default is ``0,0,0``. When default is set, number of multipoles is calculated automatically.
 
 
@@ -800,12 +857,14 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ------
 
 - **newald** (integer, 3d)
+  | Old infomation: 3d
    Parameter for Ewald method. 
    Short-range part of Ewald sum is calculated within ``newald`` th
    nearlist neighbor cells.
    Default is ``4``.
 
 - **aewald** (real(8), 3d)
+  | Old infomation: 3d
    Square of range separation parameter for Ewald method in atomic unit. 
    Default is ``0.5``.
 
@@ -818,31 +877,38 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    xxx
 
 - **convrg_opt_fmax** (real(8), 3d)[Trial]
+  | Old infomation: 3d
    Convergence threshold of optimization in maximum force.
    Default is ``1d-3``.
 
 ..  
   - **cg_alpha_up** (real(8), 3d)[Trial]
+  | Old infomation: 3d
     Parameter for up-rate of step length in line search in conjugated gradient method.
     Default is ``1.3``.
 
   - **cg_alpha_down** (real(8), 3d)[Trial]
+  | Old infomation: 3d
     Parameter for down-rate of step length in line search in conjugated gradient method.
     Default is ``0.5``.
 
   - **cg_alpha_ini** (real(8), 3d)[Trial]
+  | Old infomation: 3d
     Parameter for initial step length in line search in conjugated gradient method. (currently not available)
     Default is ``0.8``.
 
   - **convrg_scf_ene** (real(8), 3d)[Trial]
+  | Old infomation: 3d
     Convergence threshold of ground state SCF calculation in energy difference at each optimization step. If negative number no threshold (SCF loop is up to ``Nscf``). The other SCF thresholds such as ``threshold`` in ``&scf`` are also applied (if you do not want to use it, set very small number). 
     Default is ``-1.0``.
 
   - **convrg_scf_force** (real(8), 3d)[Trial]
+  | Old infomation: 3d
     Convergence threshold of ground state SCF calculation in force (average over atoms) difference. If negative number no threshold (SCF loop is up to ``Nscf``). The other SCF thresholds such as ``threshold`` in ``&scf`` are also applied (if you do not want to use it, set very small number). 
     Default is ``-1.0``.
 
   - **convrg_opt_ene** (real(8), 3d)[Trial]
+  | Old infomation: 3d
     Convergence threshold of optimization in energy difference. (currently not available)
     Default is ``1d-6``.
 ..
@@ -851,26 +917,32 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &md[Trial]
 -----------
 - **ensemble** (character, 3d)[Trial]
+  | Old infomation: 3d
    Ensemble in MD option: "NVE" or "NVT".
    Default is ``"NVE"``.
 
 - **thermostat** (character, 3d)[Trial]
+  | Old infomation: 3d
    Thermostat in "NVT" option: (currently only ``nose-hoover``).
    Default is ``"nose-hoover"``.
 
 - **step_velocity_scaling** (integer, 3d)[Trial]
+  | Old infomation: 3d
    Time step interval for velocity-scaling. Velocity-scaling is applied if this is set to positive.
    Default is ``-1``.
 
 - **step_update_ps/step_update_ps2** ``Integer/Integer``; 3d)[Trial]
+  | Old infomation: 3d
    Time step interval for updating pseudopotential (Larger number makes calculation time reduce greatly, but gets inaccurate) in case of ``use_ehrenfest_md=y``. ``step_update_ps`` is for full update and ``step_update_ps2`` is for update without changing grid points array.
    Default is ``10/1``.
 
 - **temperature0_ion_k** (real(8), 3d)[Trial]
+  | Old infomation: 3d
    Setting temperature [K] for NVT ensemble, velocity scaling and generating initial velocities.
    Default is ``298.15``.
 
 - **yn_set_ini_velocity** (character, 3d)[Trial]
+  | Old infomation: 3d
    Initial velocities are set.
    Default is ``n``.
 
@@ -879,18 +951,22 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
     
 - **file_ini_velocity** (character, 3d)[Trial]
+  | Old infomation: 3d
    File name for initial velocities. This is read when ``set_ini_velocity`` is ``'r'``. The format is simply vx(iatom) vy(iatom) vz(iatom) in each line. The order of atoms must be the same as the given coordinates in the main input file. In case of using nose-hoover thermostat, a thermostat variable should be put at the last line (all atomic unit). 
    Default is ``none``.
 
 - **seed_ini_velocity** (integer, 3d)[Trial]
+  | Old infomation: 3d
    Random seed (integer number) to generate initial velocity if ``set_ini_velocity`` is set to y.
    Default is ``123``.
 
 - **thermostat_tau** (real(8), 3d)[Trial]
+  | Old infomation: 3d
    Parameter in Nose-Hoover method: controlling time constant for temperature.
    Default is ``41.34[au] or 1.0[fs]``.
 
 - **yn_stop_system_momt** (character, 3d)[Trial]
+  | Old infomation: 3d
    Center of mass is stopped every time step.
    Default is ``n``.
 
@@ -917,29 +993,36 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 -------------------------
 
 - **iditer_nosubspace_diag** (integer, 0d)[Trial]
+  | Old infomation: 0d
    Iterations for which subspace diagonalization is not done if ``&scf/subspace_diagonalization`` is ``'y'``.
    Default is ``10``.
 
 - **ntmg** (integer, 0d)[Trial]
+  | Old infomation: 0d
    Number of multigrid calculation for gs. At the moment, there is a malfunction in this variable, and recovery is needed.
    Default is ``1``.
 
 - **idisnum(2)** (integer, 0d)[Trial]
+  | Old infomation: 0d
    Label numbers for two atoms which are measured the distance. 
    Default is ``(/1,2/)``.
 
 - **iwrite_projection** (integer, 0d)[Trial]
+  | Old infomation: 0d
    A variable for projection. 
    Default is ``0``.
 
 - **itwproj** (integer, 0d)[Trial]
+  | Old infomation: 0d
    The projection is calculated every ``itwproj`` time steps. 
    Default is ``-1``.
 
 - **iwrite_projnum** (integer, 0d)[Trial]
+  | Old infomation: 0d
    There is a malfunction in this variable.
 
 - **itcalc_ene** (integer, 0d)[Trial]
+  | Old infomation: 0d
    Total energy is calculated every ``itcalc_ene`` time steps. There may be a malfunction in this variable.
    Default is ``1``.
 
@@ -948,16 +1031,19 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 -----------------------
 
 - **isequential** (integer, 0d)[Trial]
+  | Old infomation: 0d
    A variable to determine the way of assignment of processes.
    Default is ``2``.
 
 - **imesh_s_all** (integer, 0d)[Trial]
+  | Old infomation: 0d
    A variable to determine how to use processes if total number of processes 
    and number of processes for Hartree/Exc calculation differ. 
    There may be a malfunction in this variable.
    Default is ``1``.
 
 - **iflag_comm_rho** (integer, 0d)[Trial]
+  | Old infomation: 0d
    This variable may be removed. 
 
 
@@ -965,11 +1051,13 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ----------------------
 
 - **hconv** (real(8), 0d)[Trial]
+  | Old infomation: 0d
    A convergence value for the Hartree-cg calculation. 
    The convergence is checked by ||tVh(i)-tVh(i-1)||\ :sup:`2`\/(number of grids).
    Default is ``1d-15`` a.u. (= 1.10d-13 A\ :sup:`3`\eV\ :sup:`2`\)
 
 - **lmax_meo** (integer, 0d)[Trial]
+  | Old infomation: 0d
    A maximum angular momentum for multipole expansion in the Hartree-cg calculation. 
    Default is ``4``.
 
@@ -979,18 +1067,22 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 -------------------
 
 - **ic** (integer, 0d)[Trial]
+  | Old infomation: 0d
    A variable to check whether reentrance is done or not in the ground state calculation. 
    Default is ``0``.
 
 - **oc** (integer, 0d)[Trial]
+  | Old infomation: 0d
    A variable to check whether intermediate files are generated in the ground state calculation. 
    Default is ``1``.
 
 - **ic_rt** (integer, 0d)[Trial]
+  | Old infomation: 0d
    A variable to check whether reentrance is done or not in the time propagation calculation. 
    Default is ``0``.
 
 - **oc_rt** (integer, 0d)[Trial]
+  | Old infomation: 0d
    A variable to check whether intermediate files are generated in the time propagation calculation. 
    Default is ``0``.
 
@@ -999,86 +1091,107 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ---------------------
 
 - **iparaway_ob** (integer, 0d)[Trial]
+  | Old infomation: 0d
    A variable to determine the way of division for orbitals. 
    ``1`` is block division, and ``2`` is cyclic division.
    Default is ``2``.
 
 - **iswitch_orbital_mesh** (integer, 0d)[Trial]
+  | Old infomation: 0d
    A variable to apply descending order for orbitals in the ground state calculation.
    Default is ``0``.
 
 - **iflag_psicube** (integer, 0d)[Trial]
+  | Old infomation: 0d
    A variable to generate cube files for wave functions. This variable will be removed.
 
 - **file_ini** (character, 0d)[Trial]
+  | Old infomation: 0d
    A input file to align wavefunctions. 
    Default is ``'file_ini'``.
 
 - **num_projection** ``Interger``; 0d)[Trial]
+  | Old infomation: 0d
    Number of orbitals for projections.
    Default is ``1``.
 
 - **iwrite_projection_ob(200)** ``Interger``; 0d)[Trial]
+  | Old infomation: 0d
    Orbital number to be written as projections.
    Default is ``(1/2/3/.../200)``.
 
 - **iwrite_projection_k(200)** ``Interger``; 0d)[Trial]
+  | Old infomation: 0d
    This variable will be removed.
 
 - **filename_pot** (character, 0d)[Trial]
+  | Old infomation: 0d
    Name of file to be written local potentials. 
    Default is ``'pot'``.
 
 - **iwrite_external** (integer, 0d)[Trial]
+  | Old infomation: 0d
    A variable to generate file to be written local potentials. 
    Default is ``0``.
 
 - **iflag_dip2** (integer, 0d)[Trial]
+  | Old infomation: 0d
    A variable to determine whether dipole moments are calculated in divided area. 
    Default is ``0``.
 
 - **iflag_intelectron** (integer, 0d)[Trial]
+  | Old infomation: 0d
    A variable related to the quadrupole caluclation.
    Default is ``0``.
 
 - **num_dip2** (integer, 0d)[Trial]
+  | Old infomation: 0d
    Number of area where dipole moments are calculated.
    Default is ``1``.
 
 - **dip2boundary(100)** (real(8), 0d)[Trial]
+  | Old infomation: 0d
    Boundary position of area where dipole moments are calculated.
    Default is ``0`` a.u.
 
 - **dip2center(100)** (real(8), 0d)[Trial]
+  | Old infomation: 0d
    Origin in the dipole moment calculation. 
    Default is ``0`` a.u.
 
 - **iflag_fourier_omega** ``integer``; 0d)[Trial]
+  | Old infomation: 0d
    A variable to determine whether Fourier transformation of 3d data for difference of density is calclated. 
    Default is ``0``.
 
 - **num_fourier_omega** (integer, 0d)[Trial]
+  | Old infomation: 0d
    Number of energies for which the Fourier transformation is calclated. 
    Default is ``1``.
 
 - **fourier_omega(200)** (real(8), 0d)[Trial]
+  | Old infomation: 0d
    Energies for which the Fourier transformation is calclated. 
    Default is ``0`` a.u.
 
 - **itotntime2** (integer, 0d)[Trial]
+  | Old infomation: 0d
    Number of time steps in the reentrance for real-time calculation.
    There may be a malfunction in this variable.
    Default is ``0``.
 
 - **iwdenoption** (integer, 0d)[Trial]
+  | Old infomation: 0d
    A variable to determine whether 3d output is generated in real-time calculation. 
    This variable will be removed.
 
 - **iwdenstep** (integer, 0d)[Trial]
+  | Old infomation: 0d
    3d output is generated every ``iwdenstep`` time steps.
    This variable will be removed.
 
 - **iflag_estatic** (integer, 0d)[Trial]
+  | Old infomation: 0d
    A variable to determine whether 3d output for the static electric field is generated in real-time calculation. 
    This variable will be removed.
 
