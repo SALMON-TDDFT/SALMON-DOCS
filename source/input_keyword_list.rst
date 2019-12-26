@@ -35,7 +35,7 @@ List of all input keywords
 &calculation
 ------------
 
-- **theory** (character, default='TDDFT')
+- **theory** (character, default='nothing')
    | Choice of Calculation theories.
    |  Options
    |    ``DFT``  / ground state calculation based on DFT
@@ -46,15 +46,13 @@ List of all input keywords
    |    ``Multi_scale_Maxwell_TDDFT``  / coupled Maxwell and TDDFT multi-scale simulation
    |    ``Maxwell``  / electromagnetic simulations based on the Maxwell's equations (o
 
-- (Trial) **yn_md** (character, 0d/3d)
+- **yn_md** (character, Default='n')[Trial]
    Enable(``'y'``)/disable(``'n'``). 
-   Molecular dynamics option. This is available for ``theory='DFT'`` (Adiabatic ground-state MD) and ``theory='TDDFT_pulse'`` (Ehrenfest MD)
-   Default is ``'n'``.
+   Molecular dynamics option. This is available for ``theory='DFT'`` (Adiabatic ground-state MD) and ``theory='TDDFT_pulse'`` (Ehrenfest MD).
 
-- (Trial) **yn_opt** (character, 0d/3d)
+- **yn_opt** (character, Default='n')[Trial]
    Enable(``'y'``)/disable(``'n'``). 
-   Geometry optimization option. Available for ``theory='DFT'``
-   Default is ``'n'``.
+   Geometry optimization option. Available for ``theory='DFT'``.
 
 
 &control
