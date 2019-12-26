@@ -87,7 +87,7 @@ List of all input keywords
 &units
 ------
 
-- **unit_system** (character, 0d/3d)
+- **unit_system** (character, Default=)
    Unit for input variables. 
    If ``'au'`` or ``'a.u.'``, atomic unit system is used. 
    If ``'A_eV_fs'``, Angstrom-eV-fs unit system is used. 
@@ -96,11 +96,11 @@ List of all input keywords
 &parallel
 ---------
 
-- **yn_domain_parallel** (character, 3d)[Trial]
+- **yn_domain_parallel** (character, Default=)[Trial]
    | Old infomation: 3d
    If specified ``yn_domain_parallel='y'`` and ``&system/yn_periodic='y'``, program codes for domain parallel version run in periodic system calculations.
 
-- **nproc_k/nproc_ob/nproc_domain_orbital(3)/nproc_domain_general(3)** (integer, 0d)
+- **nproc_k/nproc_ob/nproc_domain_orbital(3)/nproc_domain_general(3)** (integer, Default=)
    | Old infomation: 0d
    Followings are explanation of each variable.
 
@@ -117,13 +117,13 @@ List of all input keywords
   - ``nproc_domain_general(2)`` is a multiple of ``nproc_domain_orbital(2)``
   - ``nproc_domain_general(3)`` is a multiple of ``nproc_domain_orbital(3)``
 
-- **yn_ffte** (character, 0d)
+- **yn_ffte** (character, Default=)
    | Old infomation: 0d
    Method of Fourier transformation.  ``'ft'``,  ``'FT'``, ``'ffte'`` or ``'FFTE'`` can be chosen.
    Default is ``'ft'``.
    This variable is effective only when ``yn_domain_parallel='y'`` and ``&system/yn_periodic='y'``.
 
-- **process_allocation** (character, 0d)
+- **process_allocation** (character, Default=)
    | Old infomation: 0d
    xxx.
 
@@ -131,70 +131,70 @@ List of all input keywords
 &system 
 -------
 
-- **yn_periodic** (character, 0d/3d)
+- **yn_periodic** (character, Default=)
    Dimension for periodic boundary condition.
    ``'n'`` is for isolated systems, and 
    ``'y'`` is for solids.
    Default is ``'n'``.
 
-- **ispin** (integer, 0d)
+- **ispin** (integer, Default=)
    | Old infomation: 0d
    Variable for classification of closed shell systems and open shell systems.
    ``0`` is for closed shell systems, and
    ``1`` is for open shell systems.
    Default is ``0``
 
-- **al(3)** (real(8), 0d/3d)
+- **al(3)** (real(8), Default=)
    Lattice constants. Unit of the length can be chosen by ``&units/unit_system``.
 
-- **al_vec1(3)/al_vec2(3)/al_vec3(3)** (real(8), 3d)
+- **al_vec1(3)/al_vec2(3)/al_vec3(3)** (real(8), Default=)
    | Old infomation: 3d
    xxx.
 
-- **isym** (integer, 3d)
+- **isym** (integer, Default=)
    | Old infomation: 3d
    Number of symmetries that can be used for reduction of k-points.
    Default is ``0``.
 
-- **crystal_structure** (character, 3d)
+- **crystal_structure** (character, Default=)
    | Old infomation: 3d
    Name of symmetry that can be used for the reduction of # of k-points.
    Default is ``'none'``.
 
-- **nstate** (integer, 0d/3d)
+- **nstate** (integer, Default=)
    Number of states/bands.
 
-- **nstate_spin(2)** (integer, 0d)
+- **nstate_spin(2)** (integer, Default=)
    | Old infomation: 0d
    Number of states/bands can be specified independently by ``nstate_spin(1)/nstate_spin(2)``.
    This option is incompatible with ``nstate``
 
-- **nelec** (integer, 0d/3d)
+- **nelec** (integer, Default=)
    Number of valence electrons.
 
-- **nelec_spin(2)** (integer, 0d)
+- **nelec_spin(2)** (integer, Default=)
    | Old infomation: 0d
    Number of up/down-spin electrons can be specified independently by ``nelec_spin(1)/nelec_spin(2)``.
    This option is incompatible with ``nelec``
 
-- **temperature** (real(8), 3d)
+- **temperature** (real(8), Default=)
    | Old infomation: 3d
    Temperature of electrons. When you calculate a system of zero band-gap energy like metals, zero or positive number of the temperature should be given.
    Unit of the energy can be chosen ``&units/unit_system``. 
    Default is ``-1.0`` (this is for system which has a band gap energy).
 
-- **temperature_k** (real(8), 0d)[Trial]
+- **temperature_k** (real(8), Default=)[Trial]
    | Old infomation: 0d
    Temperature of electrons [K]. Default is ``-1.d0``.
 
-- **nelem** (integer, 0d/3d)
+- **nelem** (integer, Default=)
    Number of elements that will be used in calculations.
 
-- **natom** (integer, 0d/3d)
+- **natom** (integer, Default=)
    Number of atoms in a calculation cell.
 
 
-- **file_atom_red_coor** (character, 3d)[Trial]
+- **file_atom_red_coor** (character, Default=)[Trial]
    | Old infomation: 3d
    File name of atomic positions. In this file, 
    the atomic coordinates can be written in reduced coordinates.
@@ -203,7 +203,7 @@ List of all input keywords
    ``&atomic_coor``, and 
    ``&atomic_red_coor``.
 
-- **file_atom_coor** (character, 0d)[Trial]
+- **file_atom_coor** (character, Default=)[Trial]
    | Old infomation: 0d
    File name of atomic positions. In this file, 
    the atomic coordinates can be written in Cartesian cooridnates.
@@ -257,32 +257,32 @@ This option is incompatible with
 
 Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
-- **file_pseudo(:)** (character, 0d/3d)
+- **file_pseudo(:)** (character, Default=)
    Name of pseudopotential files.
 
-- **lmax_ps(:)** (integer, 0d/3d)
+- **lmax_ps(:)** (integer, Default=)
    Maximum angular momentum of pseudopotential projectors.
 
-- **lloc_ps(:)** (integer, 0d/3d)
+- **lloc_ps(:)** (integer, Default=)
    Angular momentum of pseudopotential that will be treated as local.
 
-- **izatom(:)** (integer, 0d/3d)
+- **izatom(:)** (integer, Default=)
    Atomic number.
 
-- **yn_psmask(:)** (character, 0d/3d)[Trial]
+- **yn_psmask(:)** (character, Default=)[Trial]
    Enable(``'y'``)/disable(``'n'``) 
    Fourier filtering for pseudopotentials. 
    Default is ``'n'``.
 
-- **alpha_mask(:)** (real(8), 0d/3d)[Trial]
+- **alpha_mask(:)** (real(8), Default=)[Trial]
    Parameter for the Fourier filtering for pseudopotential.
    Default is ``'0.8'``.
 
-- **gamma_mask(:)** (real(8), 0d/3d)[Trial]
+- **gamma_mask(:)** (real(8), Default=)[Trial]
    Parameter for the Fourier filtering for pseudopotential.
    Default is ``'1.8'``.
 
-- **eta_mask(:)** ``Real(8)``); 0d/3d)[Trial]
+- **eta_mask(:)** (real(8), Default=)[Trial]
    Parameter for the Fourier filtering for pseudopotential.
    Default is ``'15.0'``.
 
@@ -290,7 +290,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &functional
 -----------
 
-- **xc** (character, 0d/3d)
+- **xc** (character, Default=)
    Exchange-correlation functionals.
    At present version, the functional 'PZ', 'PZM' and 'TBmBJ' is available for both 0d/3d calculations, and the functionals 'TPSS' and 'VS98' are available for 3d calculations.
 
@@ -300,17 +300,17 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
   - ``'TPSS'``: Tao, Perdew, Staroverov and Scuseria meta-GGA exchange correlation. :J. Tao, J. P. Perdew, V. N. Staroverov, and G. E. Scuseria, Phys. Rev. Lett. 91, 146401 (2003).
   - ``'VS98'``:  van Voorhis and Scuseria exchange with Perdew-Wang correlation: T. Van Voorhis and G. E. Scuseria, J. Chem. Phys. 109, 400 (1998).
 
-- **cname, xname** (character, 0d/3d)
+- **cname, xname** (character, Default=)
    xxx.
 
-- **alibxc, alibx, alibc** (character, 0d/3d)
+- **alibxc, alibx, alibc** (character, Default=)
    By specifying ``alibxc``, the functionals prepared in libxc package are available. 
    They can be set indivisually by specifying ``alibx`` and ``alibc``.
    To use libxc libraries, ``--with-libxc`` option must be added in excecuting configure. 
    The available option of the exchange-correlation functionals are listed in the LibXC website. 
    [See http://www.tddft.org/programs/libxc/functionals/]
    
-- **cval** (real(8), 3d)
+- **cval** (real(8), Default=)
    | Old infomation: 3d
    Mixing parameter in Tran-Blaha meta-GGA exchange potential. If ``cval`` is set to a minus value, the mixing-parameter computed
    by the formula in the original paper [Phys. Rev. Lett. 102, 226401 (2008)].
@@ -320,7 +320,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &rgrid
 ------
 
-- **dl(3)** (real(8), 0d/3d)
+- **dl(3)** (real(8), Default=)
    Spacing of real-space grids. Unit of length can be chosen by
    ``&units/unit_system``.
    This valiable cannot be set with 
@@ -330,7 +330,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    so that the size of the simulation box
    ``&system/al(3)`` becomes divisible by the spacing.
 
-- **num_rgrid(3)** (integer, 3d)
+- **num_rgrid(3)** (integer, Default=)
    | Old infomation: 3d
    Number of real-space grids.
    This valiable cannot be set with 
@@ -340,13 +340,13 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &kgrid
 ------
 
-- **num_kgrid(3)** (integer, 3d)
+- **num_kgrid(3)** (integer, Default=)
    | Old infomation: 3d
    Number of k-points (grid points of k-vector) discretizing
    the Brillouin zone.
    Each component must be even.
 
-- **file_kw** (character, 3d)
+- **file_kw** (character, Default=)
    | Old infomation: 3d
    Name of a file for flexible k-point sampling.
    This file will be read if ``num_kgrid`` is smaller than 1.
@@ -355,17 +355,17 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &tgrid
 ------
 
-- **nt** (integer, 0d/3d)
+- **nt** (integer, Default=)
    Number of total time steps for real-time propagation.
 
-- **dt** (real(8), 0d/3d)
+- **dt** (real(8), Default=)
    Time step. Unit of time can be chosen by ``&units/unit_system``.
 
 
 &propagation
 ------------
 
-- **propagator** (character, 3d)
+- **propagator** (character, Default=)
    | Old infomation: 3d
    Choice of Propagator.
    ``middlepoint`` is an propagator
@@ -374,12 +374,12 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    [M.A.L. Marques, A. Castro, G.F. Bertsch, and A. Rubio, Comput. Phys. Commun., 151 60 (2003)].
    Default is ``middlepoint``.
 
-- **n_hamil** (integer, 0d)[Trial]
+- **n_hamil** (integer, Default=)[Trial]
    | Old infomation: 0d
    Order of Taylor expansion of a propagation operator.
    Default is ``4``.
 
-- **yn_fix_func** ``character(1)``; 3d)[Trial]
+- **yn_fix_func** (character(1), Default=)[Trial]
    | Old infomation: 3d
    Option not to update functional (or Hamiltonian) in RT calculation, i.e., keep ground state Hamiltonian during time-evolution.
    Default is ``'n'``.
@@ -387,37 +387,37 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &scf
 ----
 
-- **nscf** (integer, 0d/3d)
+- **nscf** (integer, Default=)
    Number of maximum scf cycle.
 
-- **ncg** (integer, 0d/3d)
+- **ncg** (integer, Default=)
    Number of interation of Conjugate-Gradient method for each scf-cycle.
    Default is ``5``.
 
-- **method_mixing** (character, 0d) 
+- **method_mixing** (character, Default=) 
    | Old infomation: 0d
    Methods for density/potential mixing for scf cycle. ``simple`` and ``broyden`` can be chosen.
    Default is ``broyden``.
 
-- **mixrate** (real(8), 0d)
+- **mixrate** (real(8), Default=)
    | Old infomation: 0d
   Mixing ratio for simple mixing. Default is ``0.5``.
 
-- **nmemory_mb** (integer, 0d/3d)
+- **nmemory_mb** (integer, Default=)
    Number of stored densities at previous scf-cycles for 
    the modified-Broyden method. Default is ``8``. 
    If ``&system/yn_periodic`` is ``'n'``, ``nmemory_mb`` must be less than 21.
 
-- **alpha_mb** (real(8), 0d/3d)
+- **alpha_mb** (real(8), Default=)
    Parameter of the modified-Broyden method.
    Default is ``0.75``.
 
-- **yn_subspace_diagonalization** (character, 0d)
+- **yn_subspace_diagonalization** (character, Default=)
    | Old infomation: 0d
    Enable(``'y'``)/disable(``'n'``) 
    subspace diagonalization during scf cycle.
 
-- **convergence** (character, 0d/3d)
+- **convergence** (character, Default=)
    Choice of quantity that is used for convergence check in a scf calculation. 
    Default is ``'rho_dne'``. 
 
@@ -430,17 +430,17 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
   - ``'norm_pot'``: Convergence is checked by ||Vlocal_iter(ix)-Vlocal_iter-1(ix)||\ :sup:`2`\, where Vlocal is Vh + Vxc + Vps_local.
   - ``'pot_dng'``: Convergence is checked by ||Vlocal_iter(ix)-Vlocal_iter-1(ix)||\ :sup:`2`\/(number of grids).
 
-- **threshold** (real(8), 0d/3d)
+- **threshold** (real(8), Default=)
    Threshold for convergence check that is used when ``'rho_dne'`` is specified.
    Default is ``1d-17``. 
-   XXX(threshold_norm_rho (real(8), 0d))XXX
+   XXX(threshold_norm_rho (real(8), Default=))XXX
    Threshold for convergence check that is used when either ``'norm_rho'`` or ``'norm_rho_dng'`` is specified. ``threshold_norm_rho`` must be set when either ``'norm_rho'`` or ``'norm_rho_dng'`` is specified.
    Default is ``-1d0`` a.u. (1 a.u.= 45.54 A\ :sup:`-6`\)
-   XXX(threshold_norm_pot (real(8), 0d))XXX
+   XXX(threshold_norm_pot (real(8), Default=))XXX
    Threshold for convergence check that is used when either ``'norm_pot'`` or ``'norm_pot_dng'`` is specified. ``threshold_norm_pot`` must be set when either ``'norm_pot'`` or ``'norm_pot_dng'`` is specified.
    Default is ``-1d0`` a.u. (1 a.u.= 33.72x10\ :sup:`4`\ A\ :sup:`-6`\eV\ :sup:`2`\)
 
-- **omp_loop** (character, 3d)
+- **omp_loop** (character, Default=)
    | Old infomation: 3d
    XXX only ARTED XXX
    Loop for OpenMP parallelization in the ground state SCF if periodic boundary system is used. 
@@ -449,7 +449,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
   - ``b``: parallelization mainly for band orbital loop (sometimes space grid loop too). This works efficiently if the number of k-point treated in each node is small (e.x. the case of single k-point for each node)
 
 
-- **skip_gsortho** (character, 3d)[Trial]
+- **skip_gsortho** (character, Default=)[Trial]
    | Old infomation: 3d
    XXX only ARTED XXX
    Flag to skip Gram-Schmidt orthogonalization in CG loop if periodic boundary system is used. If this is skipped the more iteration number is necessary to get convergence but each iteration step gets faster. If ``omp_loop=b``, this flag is always applied.
@@ -460,13 +460,13 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &emfield
 --------
 
-- **trans_longi** (character, 3d)
+- **trans_longi** (character, Default=)
    | Old infomation: 3d
    Geometry of solid-state calculations.
    Transverse ``'tr'`` and longitudinal ``'lo'`` can be chosen.
    Default is ``'tr'``.
 
-- **ae_shape1/ae_shape2** (character, 0d/3d)
+- **ae_shape1/ae_shape2** (character, Default=)
    Shape of the first/second pulse.
 
   - ``'impulse'``: Impulsive fields.
@@ -479,7 +479,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
   - [Trial] ``'Esin2sin'``, ``'Asin2cos'``, ``'Asin2cw'``, ``'input'``, and ``'none'`` can be also chosen.
 
 
-- **e_impulse** (real(8), 0d/3d)
+- **e_impulse** (real(8), Default=)
    Momentum of impulsive perturbation.
    This valiable has the dimention of momentum, energy*time/length.
    Default value is ``1d-2`` a.u.
@@ -490,65 +490,65 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ..
 
    
-- **E_amplitude1/E_amplitude2** (real(8), 0d/3d)
+- **E_amplitude1/E_amplitude2** (real(8), Default=)
    Maximum amplitude of electric fields for the first/second pulse.
    This valiable has the dimension of electric field, energy/(length*charge).
    This valiable cannot be set with ``&emfield/rlaser_int_wcm2_1`` (``rlaser_int_wcm2_2``) simultaneously.
 
-- **I_wcm2_1/I_wcm2_2** (real(8), 0d/3d)
+- **I_wcm2_1/I_wcm2_2** (real(8), Default=)
    Peak laser intensity (W/cm\ :sup:`2`\) of the first/second pulse.
    This valiable cannot be set with ``&emfield/amplitude1`` (``amplitude2``) simultaneously.
 
-- **tw1/tw2** (real(8), 0d/3d)
+- **tw1/tw2** (real(8), Default=)
    Duration of the first/second pulse. Unit of time can be chosend 
    by ``&units/unit_time``.
 
-- **omega1/omega2** (real(8), 0d/3d)
+- **omega1/omega2** (real(8), Default=)
    Mean photon energy (average frequency multiplied by the Planck constant) of the first/second pulse. Unit of energy can be chosend 
    by ``&units/unit_energy``.
 
-- **epdir_re1(3)/epdir_re2(3)** (real(8), 0d/3d)
+- **epdir_re1(3)/epdir_re2(3)** (real(8), Default=)
    Real part of polarization vector for the first/second pulse.
 
-- **epdir_im1(3)/epdir_im2(3)** (real(8), 0d/3d)
+- **epdir_im1(3)/epdir_im2(3)** (real(8), Default=)
    Imaginary part of polarization vector for the first/second pulse.
 
-- **phi_cep1/phi_cep2** (real(8), 0d/3d)
+- **phi_cep1/phi_cep2** (real(8), Default=)
    Carrier emvelope phase of the first/second pulse.
    Default is ``0d0/0d0``.
 
-- **t1_start** (real(8), 3d)
+- **t1_start** (real(8), Default=)
    | Old infomation: 3d
    Time-delay of the first pulse.
    Unit of time can be chosen by ``&units/unit_time``.
    (this is not available for multiscale option).
    Default is ``0d0``.
 
-- **t1_t2** (real(8), 0d/3d)
+- **t1_t2** (real(8), Default=)
    Time-delay between the first and the second pulses.
    Unit of time can be chosen by ``&units/unit_time``.
 
-- **yn_local_field** (character, 0d)[Trial]
+- **yn_local_field** (character, Default=)[Trial]
    | Old infomation: 0d
    The pulse is applied to a specific domain.
    Default is ``'n'``.
 
-- **num_dipole_source** (integer, 0d)
+- **num_dipole_source** (integer, Default=)
    | Old infomation: 0d
    Number of radiation sources for optical near fields.
    Maximum number is ``2``.
 
-- **vec_dipole_source(3,num_dipole_source)** (real(8), 0d)
+- **vec_dipole_source(3,num_dipole_source)** (real(8), Default=)
    | Old infomation: 0d
    Dipole vectors of the radiation sources for the optical near fields.
    Unit of length can be chosen by ``&units/unit_length``.
 
-- **cood_dipole_source(3,num_dipole_source)** (real(8), 0d)
+- **cood_dipole_source(3,num_dipole_source)** (real(8), Default=)
    | Old infomation: 0d
    Central coordinates of the dipole vectors of the radiation sources.
    Unit of length can be chosen by ``&units/unit_length``.
 
-- **rad_dipole_diele** (real(8), 0d)
+- **rad_dipole_diele** (real(8), Default=)
    | Old infomation: 0d
    Radii of dielectric spheres for the radiation sources.
    Unit of length can be chosen by ``&units/unit_length``.
@@ -558,58 +558,58 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &multiscale
 -----------
 
-- **fdtddim** (character, 3d)[Trial]
+- **fdtddim** (character, Default=)[Trial]
    | Old infomation: 3d
    Dimension of FDTD calculation for multi-scale Maxwell-Kohn-Sham method.
    Default value is ``'1D'``. 
 
-- **twod_shape** (character, 3d)[Trial]
+- **twod_shape** (character, Default=)[Trial]
    | Old infomation: 3d
    Boundary condision of the second dimension for FDTD calculation with 
    multi-scale Maxwell-Kohn-Sham method.
    Default value is ``'periodic'``.
 
-- **nx_m** (integer, 3d)
+- **nx_m** (integer, Default=)
    | Old infomation: 3d
    Number of macroscopic grid points inside materials for x-direction.
 
-- **ny_m/nz_m** (integer, 3d)[Trial]
+- **ny_m/nz_m** (integer, Default=)[Trial]
    | Old infomation: 3d
    Number of macroscopic grid points inside materials for (y/z)-direction.
 
-- **hx_m** (real(8), 3d)
+- **hx_m** (real(8), Default=)
    | Old infomation: 3d
    Spacing of macroscopic grid points inside materials for (x)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
 
-- **hy_m/hz_m** (real(8), 3d)[Trial]
+- **hy_m/hz_m** (real(8), Default=)[Trial]
    | Old infomation: 3d
    Spacing of macroscopic grid points inside materials for (y/z)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
 
-- **nxvacl_m/nxvacr_m** (integer, 3d)
+- **nxvacl_m/nxvacr_m** (integer, Default=)
    | Old infomation: 3d
    Number of macroscopic grid points for vacumm region.
    ``nxvacl_m`` gives the number for negative x-direction in front of material,
    while ``nxvacr_m`` gives the number for positive x-direction behind the material.
 
-- **nx_origin_m/ny_origin_m/nz_origin_m** (integer, 3d)[Trial]
+- **nx_origin_m/ny_origin_m/nz_origin_m** (integer, Default=)[Trial]
    | Old infomation: 3d
    Origin coordinat of the grid points.
    Default value is ``'1'``.
 
-- **set_ini_coor_vel** (character, 3d)[Trial]
+- **set_ini_coor_vel** (character, Default=)[Trial]
    | Old infomation: 3d
    Set initial atomic coordinates and velocities for each macro-grid point. This must be given with specific directories and files: 
    Prepare ``directory``/multiscale/MXXXXXX/ini_coor_vel.dat, where 'XXXXXX' is the index number of the macro-grid point of the material region usually starting from '000001' up to the number of macro-grid point. The format of the file 'ini_coor_vel.dat' is just Rx, Ry, Rz, Vx, Vy, Vz (with space separation) for each atom (i.e. for each line), where the unit of the coordinates, Rx, Ry, Rz, is angstrom or a.u. speficied by ``unit_system`` but that of velocities is always a.u.. This option should be used together with ``read_gs_wfn_k_ms`` which is the option to read the ground state wave function for each macro-grid point. 
    Default value is ``'n'``.
 
-- **nmacro_write_group** (integer, 3d)[Trial]
+- **nmacro_write_group** (integer, Default=)[Trial]
    | Old infomation: 3d
    If the number of macroscopic grids are very large, computers can be unstable by writing all information of all macroscopic grid points at the same time. To avoid that, the writings are divided by specifying this option. Writings will be done by each ``nmacro_write_group`` macroscopic grid points. (this number must be aliquot part of the total number of macroscopic grid points)
    Default value is ``'-1'``.
 
-- **file_macropoint** (character, 3d)[Trial]
+- **file_macropoint** (character, Default=)[Trial]
    | Old infomation: 3d
    If file name is specified in the option, the coordinates of the macropoints are set from the file.
    Default value is ``''``.
@@ -618,82 +618,82 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &maxwell
 --------
 
-- **al_em(3)** (real(8), 0d/3d)
+- **al_em(3)** (real(8), Default=)
    Size of simulation box in electromagnetic analysis. Unit of the length can be chosen by ``&units/unit_system``.
 
-- **dl_em(3)** (real(8), 0d/3d)
+- **dl_em(3)** (real(8), Default=)
    Spacing of real-space grids in electromagnetic analysis. Unit of length can be chosen by ``&units/unit_system``.
 
-- **dt_em** (real(8), 0d/3d)
+- **dt_em** (real(8), Default=)
    Time step in electromagnetic analysis. Unit of time can be chosen by ``&units/unit_system``.
 
-- **nt_em** (integer, 0d/3d)
+- **nt_em** (integer, Default=)
    Number of total time steps for real-time propagation in electromagnetic analysis.
 
-- **boundary_em(3,2)** (character, 0d/3d)
+- **boundary_em(3,2)** (character, Default=)
    Boundary condition in electromagnetic analysis. The first index(1-3 rows) corresponds to x, y, and z axes. The second index(1-2 columns) corresponds to bottom and top of the axes.  Default is ``'default'``. If ``&system/yn_periodic='n'``, ``'default'``, ``'pml'``, and ``'pec'`` can be chosen. ``'pml'`` is absorbing boundary and ``'pec'`` is perfect electric conductor. ``'default'`` is ``'pml'``. If ``&system/yn_periodic='y'``, ``'default'``, ``'pml'``, and ``'periodic'`` can be chosen. ``'periodic'`` is periodic boundary. ``'default'`` is ``'periodic'``.
 
-- **shape_file** (character, 0d/3d)
+- **shape_file** (character, Default=)
    Name of shape file in electromagnetic analysis. The shape files can be generated by using SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
-- **media_num** (integer, 0d/3d)
+- **media_num** (integer, Default=)
    Number of media in electromagnetic analysis. Default is ``0``.
 
-- **media_type(:)** (character, 0d/3d)
+- **media_type(:)** (character, Default=)
    Type of media in electromagnetic analysis. ``'vacuum'``, ``'constant media'``, ``'pec'``, and ``'lorentz-drude'`` can be chosen. Default is ``'vacuum'``. If ``'lorentz-drude'`` is chosen, linear response calculation can be done by ``&emfield/ae_shape1 or ae_shape2='impulse'``.
 
-- **epsilon_em(:)** (real(8), 0d/3d)
+- **epsilon_em(:)** (real(8), Default=)
    Relative permittivity of the media in electromagnetic analysis. Default is ``1d0``.
 
-- **mu_em(:)** (real(8), 0d/3d)
+- **mu_em(:)** (real(8), Default=)
    Relative permeability of the media in electromagnetic analysis. Default is ``1d0``.
 
-- **sigma_em(:)** (real(8), 0d/3d)
+- **sigma_em(:)** (real(8), Default=)
    Conductivity of the media in electromagnetic analysis. Default is ``0d0``.
 
-- **pole_num_ld(:)** (integer, 0d/3d)
+- **pole_num_ld(:)** (integer, Default=)
    Number of poles of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. Default is ``1``.
 
-- **omega_p_ld(:)** (real(8), 0d/3d)
+- **omega_p_ld(:)** (real(8), Default=)
    Plasma frequency of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. Default is ``0d0``.
 
-- **f_ld(:,:)** (real(8), 0d/3d)
+- **f_ld(:,:)** (real(8), Default=)
    Oscillator strength of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. The first index is media id whose maximum value is determined by ``media_num``. The second index is pole id whose maximum value is determined by ``pole_num_ld``. Default is ``0d0``.
 
-- **gamma_ld(:,:)** (real(8), 0d/3d)
+- **gamma_ld(:,:)** (real(8), Default=)
    Collision frequency of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. The first index is media id whose maximum value is determined by ``media_num``. The second index is pole id whose maximum value is determined by ``pole_num_ld``. Default is ``0d0``.
 
-- **omega_ld(:,:)** (real(8), 0d/3d)
+- **omega_ld(:,:)** (real(8), Default=)
    Oscillator frequency of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. The first index is media id whose maximum value is determined by ``media_num``. The second index is pole id whose maximum value is determined by ``pole_num_ld``. Default is ``0d0``.
 
-- **wave_input** (character, 0d/3d)
+- **wave_input** (character, Default=)
    If ``'source'``, the incident pulse in electromagnetic analysis is generated by the incident current source. Default is ``'none'``.
 
-- **ek_dir1(3)/ek_dir2(3)** (real(8), 0d/3d)
+- **ek_dir1(3)/ek_dir2(3)** (real(8), Default=)
    Propagation direction of the first/second pulse.
 
-- **source_loc1(3)/source_loc2(3)** (real(8), 0d/3d)
+- **source_loc1(3)/source_loc2(3)** (real(8), Default=)
    Location of the incident current source of the first/second pulse. Note that the coordinate system ranges from ``-al_em/2`` to ``al_em/2`` for ``&system/yn_periodic='n'`` while ranges from ``0`` to ``al_em`` for ``&system/yn_periodic='y'``.
 
-- **obs_num_em** (integer, 0d/3d)
+- **obs_num_em** (integer, Default=)
    Number of observation point in electromagnetic analysis. Default is ``0``. From the obtained results, figure and animation files can be generated by using SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
-- **obs_samp_em** (integer, 0d/3d)
+- **obs_samp_em** (integer, Default=)
    Sampling time-step of the observation in electromagnetic analysis. Default is ``1``.
 
-- **obs_loc_em(:,3)** (real(8), 0d/3d)
+- **obs_loc_em(:,3)** (real(8), Default=)
    Location of the observation point in electromagnetic analysis. Note that the coordinate system ranges from ``-al_em/2`` to ``al_em/2`` for ``&system/yn_periodic='n'`` while ranges from ``0`` to ``al_em`` for ``&system/yn_periodic='y'``.
 
-- **yn_obs_plane_em(:)** (character, 0d/3d)
+- **yn_obs_plane_em(:)** (character, Default=)
    Enable(``'y'``)/disable(``'n'``). Output of the electrmagnetic fields on the planes (xy, yz, and xz planes) for each observation point. This option must be ``'y'`` for generating animation files by using SALMON utilities (https://salmon-tddft.jp/utilities.html). Default is ``'n'``.
 
-- **yn_wf_em** (character, 0d/3d)
+- **yn_wf_em** (character, Default=)
    Enable(``'y'``)/disable(``'n'``). Applying a window function for linear response calculation when ``&calculation/theory=Maxwell``. Default is ``'y'``.
 
 &analysis
 ---------
 
-- **projection_option** (character, 3d)
+- **projection_option** (character, Default=)
    | Old infomation: 3d
    Methods of projection.
    
@@ -702,107 +702,107 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
   - ``'rt'``: projection to eigenstates of instantaneous Hamiltonian.
   
 
-- **projection_decomp** (character, 3d)[Trial]
+- **projection_decomp** (character, Default=)[Trial]
    | Old infomation: 3d
    If ``'atom'`` combined with ``projection_option='gs'``, 
    the number of excited electron is decomposed into each atom 
    (this is printed in ``SYSname``\_nex_atom.data).
    Default is ``'n'``.
 
-- **out_projection_step** (integer, 3d)
+- **out_projection_step** (integer, Default=)
    | Old infomation: 3d
    Interval time step of projection analysis 
    if ``projection_option`` is not ``'no'``.
    Default is ``100``.
 
-- **nenergy** (integer, 0d/3d)
+- **nenergy** (integer, Default=)
    Number of energy grids for frequency-domain analysis.
    This parameter is required when `'impulse'` is choosen in `&emfield/ae_shape1|2`.
 
-- **de** (real(8), 0d/3d)
+- **de** (real(8), Default=)
    Energy spacing for analysis.
    Unit of energy can be chosen by ``&units/unit_energy``
    This parameter is required when `'impulse'` is choosen in `&emfield/ae_shape1|2`.
 
-- **yn_out_psi** (character, 0d/3d)
+- **yn_out_psi** (character, Default=)
    If ``'y'``, wavefunctions are output.
    For periodic system (``yn_periodic='y'``), it works only for ground state calculation. The converged wave functions of all orbitals with all k-points are printed in gs_wfn_cube or gs_wfn_vtk directory. The format is speficied by ``format3d``. 
    Default is ``'n'``.
 
-- **yn_out_dos** (character, 0d/3d)
+- **yn_out_dos** (character, Default=)
    If ``'y'``, density of state is output.
    Default is ``'n'``.
 
-- **out_dos_start** (real(8), 0d/3d)
+- **out_dos_start** (real(8), Default=)
    Lower bound (energy) of the density of state spectra.
    If this value is lower than a specific value near the lowest energy level, 
    this value is overwritten by that value. 
    Default value is ``-1.d10`` eV.
 
-- **out_dos_end** (real(8), 0d/3d)
+- **out_dos_end** (real(8), Default=)
    Upper bound (energy) of the density of state spectra.
    If this value is higher than a specific value near the highest energy level, 
    this value is overwritten by that value. 
    Default value is ``1.d10`` eV.
 
-- **out_dos_nenergy** (integer, 0d/3d)
+- **out_dos_nenergy** (integer, Default=)
    Number of  energy points sampled in the density of state spectra.
    Default is ``601``.
 
-- **out_dos_width** (real(8), 0d/3d)
+- **out_dos_width** (real(8), Default=)
    Smearing width used in the density of state spectra..
    Default is ``0.1`` eV.
 
-- **out_dos_function** (character, 0d/3d)
+- **out_dos_function** (character, Default=)
    Choise of smearing method for the density of state spectra..
    ``gaussian`` and ``lorentzian`` function are available.
    Default is ``gaussian``.
 
-- **yn_out_dos_set_fe_origin** (character, 0d/3d)
+- **yn_out_dos_set_fe_origin** (character, Default=)
    If ``'y'``, the electron energy is shifted to fix the Fermi energy as zero point.
    For ``&system/yn_periodic`` is ``'n'``, `` out_dos_fshift`` is not used 
    if ``&system/nstate`` is equal to ``&system/nelec``/2.
    Default is ``'n'``.
 
-- **yn_out_pdos** (character, 0d)
+- **yn_out_pdos** (character, Default=)
    | Old infomation: 0d
    If ``'y'``, projected density of state is output.
    Default is ``'n'``.
 
-- **yn_out_dns** (character, 0d/3d)
+- **yn_out_dns** (character, Default=)
    If ``'y'``, the spatial electron density distribution at the ground state is output.
    Default is ``'n'``.
 
-- **yn_out_dns_rt/out_dns_rt_step** ``Character/Integer``; 0d/3d)
+- **yn_out_dns_rt/out_dns_rt_step** (Character/Integer, Default=)
    If ``'y'``,  the spatiotemporal electron density distribution during real-time time-propagation is output
    every ``outdns_rt_step`` time steps.
    Default is ``'n'``.
 
-- **yn_out_dns_trans/out_dns_trans_energy** ``Character/Real(8)``; 3d)[Trial]
+- **yn_out_dns_trans/out_dns_trans_energy** (Character/Real(8), Default=)[Trial]
    | Old infomation: 3d
    If ``'y'``, transition in different density from the ground state at specified field frequency omega(given by ``out_dns_trans_energy``) is calculated by drho(r,omega)=FT(rho(r,t)-rho_gs(r))/T.
    Default is ``'n'/1.55eV``.
 
-- **yn_out_elf** (character, 0d)
-   | Old infomation: 3d
+- **yn_out_elf** (character, Default=)
+   | Old infomation: 0d
    If ``'y'``, electron localization function is output.
    Default is ``'n'``.
 
-- **yn_out_elf_rt/out_elf_rt_step** ``Character/Integer``; 0d)
+- **yn_out_elf_rt/out_elf_rt_step** (Character/Integer,Default=)
    | Old infomation: 0d
    If ``'y'``, electron localization function 
    during real-time time-propagation is output
    every ``out_elf_rt_step`` time steps.
    Default is ``'n'``.
 
-- **yn_out_estatic_rt/out_estatic_rt_step** ``Character/Integer``; 0d)
+- **yn_out_estatic_rt/out_estatic_rt_step** (Character/Integer, Default=)
    | Old infomation: 0d
    If ``'y'``, static electric field
    during real-time time-propagation is output
    every ``out_estatic_rt_step`` time steps.
    Default is ``'n'``.
 
-- **yn_out_rvf_rt/out_rvf_rt_step** ``Character/Integer``; 3d)[Trial]
+- **yn_out_rvf_rt/out_rvf_rt_step** (Character/Integer, Default=)[Trial]
    | Old infomation: 3d
    If ``'y'``, coordinates[A], velocities[au], forces[au] on atoms
    during real-time time-propagation are printed in ``SYSname``\_trj.xyz
@@ -811,24 +811,24 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    the printing option is automatically turned on.
    Defaults are ``'n'/10``.
 
-- **yn_out_tm** (character, 3d)[Trial]
+- **yn_out_tm** (character, Default=)[Trial]
    | Old infomation: 3d
    If ``'y'``, transition moments between occupied and virtual orbitals are printed into ``SYSname``\_tm.data after the ground state calculation.
    Defaults are ``'n'``.
 
-- **format_voxel_data** (character, 0d/3d)
+- **format_voxel_data** (character, Default=)
    File format for three-dimensional volumetric data.
    ``'avs'``, ``'cube'``, and ``'vtk'`` can be chosen.
    Default is ``'cube'``.
 
-- **nsplit_voxel_data** (integer, 0d)
+- **nsplit_voxel_data** (integer, Default=)
    | Old infomation: 0d
    Number of separated files for three dimensional data.
    Effective only when ``format3d`` is ``'avs'``.
    ``numfiles_out_3d`` must be less than or equal to number of processes.
    Default is ``1``.
 
-- **timer_process** (character, 0d)[Trial]
+- **timer_process** (character, Default=)[Trial]
    | Old infomation: 0d
    Basically, elapsed times are written in the output file. 
    But if ``timer_process`` is ``'y'``, 
@@ -840,7 +840,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &poisson
 --------
 
-- **layout_multipole** (character, 0d)
+- **layout_multipole** (character, Default=)
    | Old infomation: 0d
    A variable to determine how to put multipoles in the Hartree potential calculation. Default is ``3``.
 
@@ -848,7 +848,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
   - ``2``: Multipoles are put at the center of atoms.
   - ``3``: Multipoles are put at the center of mass of electrons in prepared cuboids.
 
-- **num_multipole_xyz(3)** (integer, 0d)
+- **num_multipole_xyz(3)** (integer, Default=)
    | Old infomation: 0d
    Number of multipoles when ``meo`` is ``3``. Default is ``0,0,0``. When default is set, number of multipoles is calculated automatically.
 
@@ -856,14 +856,14 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &ewald
 ------
 
-- **newald** (integer, 3d)
+- **newald** (integer, Default=)
    | Old infomation: 3d
    Parameter for Ewald method. 
    Short-range part of Ewald sum is calculated within ``newald`` th
    nearlist neighbor cells.
    Default is ``4``.
 
-- **aewald** (real(8), 3d)
+- **aewald** (real(8), Default=)
    | Old infomation: 3d
    Square of range separation parameter for Ewald method in atomic unit. 
    Default is ``0.5``.
@@ -873,45 +873,13 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &opt[Trial]
 -------------
 
-- **nopt** (integer, 0d/3d)
+- **nopt** (integer, Default=)
    xxx
 
-- **convrg_opt_fmax** (real(8), 3d)[Trial]
+- **convrg_opt_fmax** (real(8), Default=)[Trial]
    | Old infomation: 3d
    Convergence threshold of optimization in maximum force.
    Default is ``1d-3``.
-
-..  
-  - **cg_alpha_up** (real(8), 3d)[Trial]
-   | Old infomation: 3d
-    Parameter for up-rate of step length in line search in conjugated gradient method.
-    Default is ``1.3``.
-
-  - **cg_alpha_down** (real(8), 3d)[Trial]
-   | Old infomation: 3d
-    Parameter for down-rate of step length in line search in conjugated gradient method.
-    Default is ``0.5``.
-
-  - **cg_alpha_ini** (real(8), 3d)[Trial]
-   | Old infomation: 3d
-    Parameter for initial step length in line search in conjugated gradient method. (currently not available)
-    Default is ``0.8``.
-
-  - **convrg_scf_ene** (real(8), 3d)[Trial]
-   | Old infomation: 3d
-    Convergence threshold of ground state SCF calculation in energy difference at each optimization step. If negative number no threshold (SCF loop is up to ``Nscf``). The other SCF thresholds such as ``threshold`` in ``&scf`` are also applied (if you do not want to use it, set very small number). 
-    Default is ``-1.0``.
-
-  - **convrg_scf_force** (real(8), 3d)[Trial]
-   | Old infomation: 3d
-    Convergence threshold of ground state SCF calculation in force (average over atoms) difference. If negative number no threshold (SCF loop is up to ``Nscf``). The other SCF thresholds such as ``threshold`` in ``&scf`` are also applied (if you do not want to use it, set very small number). 
-    Default is ``-1.0``.
-
-  - **convrg_opt_ene** (real(8), 3d)[Trial]
-   | Old infomation: 3d
-    Convergence threshold of optimization in energy difference. (currently not available)
-    Default is ``1d-6``.
-..
 
 
 &md[Trial]
