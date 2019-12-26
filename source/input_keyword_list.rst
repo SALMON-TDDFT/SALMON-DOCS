@@ -716,12 +716,12 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    For ``&system/yn_periodic`` is ``'n'``, `` out_dos_fshift`` is not used 
    if ``&system/nstate`` is equal to ``&system/nelec``/2.
 
-- **out_dos_start** (real(8), Default=-1.d10 eV)
+- **out_dos_start** (real(8), Default=-1d10 eV)
    Lower bound (energy) of the density of state spectra.
    If this value is lower than a specific value near the lowest energy level, 
    this value is overwritten by that value. 
 
-- **out_dos_end** (real(8), Default=1.d10 eV)
+- **out_dos_end** (real(8), Default=1d10 eV)
    Upper bound (energy) of the density of state spectra.
    If this value is higher than a specific value near the highest energy level, 
    this value is overwritten by that value. 
@@ -732,205 +732,188 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - **out_dos_width** (real(8), Default=0.1d0 eV)
    Smearing width used in the density of state spectra..
 
-- **out_dos_function** (character, Default=)
+- **out_dos_function** (character, Default='gaussian')
    Choise of smearing method for the density of state spectra..
    ``gaussian`` and ``lorentzian`` function are available.
-   Default is ``gaussian``.
 
-- **yn_out_pdos** (character, Default=)
+- **yn_out_pdos** (character, Default='n')
    | Old infomation: 0d
    If ``'y'``, projected density of state is output.
-   Default is ``'n'``.
 
-- **yn_out_dns** (character, Default=)
+- **yn_out_dns** (character, Default='n')
    If ``'y'``, the spatial electron density distribution at the ground state is output.
-   Default is ``'n'``.
 
-- **yn_out_dns_rt/out_dns_rt_step** (Character/Integer, Default=)
+- **yn_out_dns_rt/out_dns_rt_step** (Character/Integer, Default='n')
    If ``'y'``,  the spatiotemporal electron density distribution during real-time time-propagation is output
    every ``outdns_rt_step`` time steps.
-   Default is ``'n'``.
 
-- **yn_out_dns_trans/out_dns_trans_energy** (Character/Real(8), Default=)[Trial]
+- **yn_out_dns_trans/out_dns_trans_energy** (Character/Real(8), Default='n'/1.55d0eV)[Trial]
    | Old infomation: 3d
    If ``'y'``, transition in different density from the ground state at specified field frequency omega(given by ``out_dns_trans_energy``) is calculated by drho(r,omega)=FT(rho(r,t)-rho_gs(r))/T.
-   Default is ``'n'/1.55eV``.
 
-- **yn_out_elf** (character, Default=)
+- **yn_out_elf** (character, Default='n')
    | Old infomation: 0d
    If ``'y'``, electron localization function is output.
-   Default is ``'n'``.
 
-- **yn_out_elf_rt/out_elf_rt_step** (Character/Integer,Default=)
+- **yn_out_elf_rt/out_elf_rt_step** (Character/Integer,Default='n'/50)
    | Old infomation: 0d
    If ``'y'``, electron localization function 
    during real-time time-propagation is output
    every ``out_elf_rt_step`` time steps.
-   Default is ``'n'``.
 
-- **yn_out_estatic_rt/out_estatic_rt_step** (Character/Integer, Default=)
+- **yn_out_estatic_rt/out_estatic_rt_step** (Character/Integer, Default='n'/50)
    | Old infomation: 0d
    If ``'y'``, static electric field
    during real-time time-propagation is output
    every ``out_estatic_rt_step`` time steps.
-   Default is ``'n'``.
 
-- **yn_out_rvf_rt/out_rvf_rt_step** (Character/Integer, Default=)[Trial]
+- **yn_out_rvf_rt/out_rvf_rt_step** (Character/Integer, Default='n'/10)[Trial]
    | Old infomation: 3d
    If ``'y'``, coordinates[A], velocities[au], forces[au] on atoms
    during real-time time-propagation are printed in ``SYSname``\_trj.xyz
    every ``out_rvf_rt_step`` time steps.
    If ``use_ehrenfest_md='y'``, 
    the printing option is automatically turned on.
-   Defaults are ``'n'/10``.
-
-- **yn_out_tm** (character, Default=)[Trial]
+   
+- **yn_out_tm** (character, Default='n')[Trial]
    | Old infomation: 3d
    If ``'y'``, transition moments between occupied and virtual orbitals are printed into ``SYSname``\_tm.data after the ground state calculation.
-   Defaults are ``'n'``.
 
-- **out_projection_step** (integer, Default=)
+- **out_projection_step** (integer, Default=100)
    | Old infomation: 3d
    Interval time step of projection analysis 
    if ``projection_option`` is not ``'no'``.
-   Default is ``100``.
+   
+- **out_ms_step** (integer, Default=100)
+   xxx.
 
-- **format_voxel_data** (character, Default=)
+- **format_voxel_data** (character, Default='cube')
    File format for three-dimensional volumetric data.
    ``'avs'``, ``'cube'``, and ``'vtk'`` can be chosen.
-   Default is ``'cube'``.
 
-- **nsplit_voxel_data** (integer, Default=)
+- **nsplit_voxel_data** (integer, Default=1)
    | Old infomation: 0d
    Number of separated files for three dimensional data.
    Effective only when ``format3d`` is ``'avs'``.
    ``numfiles_out_3d`` must be less than or equal to number of processes.
-   Default is ``1``.
 
-- **timer_process** (character, Default=)[Trial]
+- **timer_process** (character, Default='n')[Trial]
    | Old infomation: 0d
    Basically, elapsed times are written in the output file. 
    But if ``timer_process`` is ``'y'``, 
    files of elapsed times for every process are also generated. 
    This variable is effective only for the real-time caululation.
-   Default is ``'n'``.
 
 
 &poisson
 --------
 
-- **layout_multipole** (character, Default=)
+- **layout_multipole** (character, Default=3)
    | Old infomation: 0d
-   A variable to determine how to put multipoles in the Hartree potential calculation. Default is ``3``.
+   A variable to determine how to put multipoles in the Hartree potential calculation.
 
   - ``1``: A single pole is put at the center.
   - ``2``: Multipoles are put at the center of atoms.
   - ``3``: Multipoles are put at the center of mass of electrons in prepared cuboids.
 
-- **num_multipole_xyz(3)** (integer, Default=)
+- **num_multipole_xyz(3)** (integer, Default=0)
    | Old infomation: 0d
-   Number of multipoles when ``meo`` is ``3``. Default is ``0,0,0``. When default is set, number of multipoles is calculated automatically.
+   Number of multipoles when ``meo`` is ``3``. When default is set, number of multipoles is calculated automatically.
+
+- **threshold_cg** (real(8), Default=1d-15 a.u.)
+   xxx.
 
 
 &ewald
 ------
 
-- **newald** (integer, Default=)
+- **newald** (integer, Default=4)
    | Old infomation: 3d
    Parameter for Ewald method. 
    Short-range part of Ewald sum is calculated within ``newald`` th
    nearlist neighbor cells.
-   Default is ``4``.
 
-- **aewald** (real(8), Default=)
+- **aewald** (real(8), Default=0.5d0)
    | Old infomation: 3d
    Square of range separation parameter for Ewald method in atomic unit. 
-   Default is ``0.5``.
-
 
 
 &opt[Trial]
 -------------
 
-- **nopt** (integer, Default=)
-   xxx
+- **nopt** (integer, Default=100)
+   xxx.
 
-- **convrg_opt_fmax** (real(8), Default=)[Trial]
+- **convrg_opt_fmax** (real(8), Default=1d-3)[Trial]
    | Old infomation: 3d
    Convergence threshold of optimization in maximum force.
-   Default is ``1d-3``.
 
 
 &md[Trial]
 -----------
-- **ensemble** (character, Default=)[Trial]
+- **ensemble** (character, Default='NVE')[Trial]
    | Old infomation: 3d
    Ensemble in MD option: "NVE" or "NVT".
-   Default is ``"NVE"``.
 
-- **thermostat** (character, Default=)[Trial]
+- **thermostat** (character, Default='nose-hoover')[Trial]
    | Old infomation: 3d
    Thermostat in "NVT" option: (currently only ``nose-hoover``).
-   Default is ``"nose-hoover"``.
 
-- **step_velocity_scaling** (integer, Default=)[Trial]
+- **step_velocity_scaling** (integer, Default=-1)[Trial]
    | Old infomation: 3d
    Time step interval for velocity-scaling. Velocity-scaling is applied if this is set to positive.
-   Default is ``-1``.
 
-- **step_update_ps/step_update_ps2** (Integer/Integer, Default=)[Trial]
+- **step_update_ps/step_update_ps2** (Integer/Integer, Default=10/1)[Trial]
    | Old infomation: 3d
    Time step interval for updating pseudopotential (Larger number makes calculation time reduce greatly, but gets inaccurate) in case of ``use_ehrenfest_md=y``. ``step_update_ps`` is for full update and ``step_update_ps2`` is for update without changing grid points array.
-   Default is ``10/1``.
 
-- **temperature0_ion_k** (real(8), Default=)[Trial]
+- **temperature0_ion_k** (real(8), Default=298.15d0)[Trial]
    | Old infomation: 3d
    Setting temperature [K] for NVT ensemble, velocity scaling and generating initial velocities.
-   Default is ``298.15``.
 
-- **yn_set_ini_velocity** (character, Default=)[Trial]
+- **yn_set_ini_velocity** (character, Default='n')[Trial]
    | Old infomation: 3d
    Initial velocities are set.
-   Default is ``n``.
 
   - ``y``: Generate initial velocity with Maxwell-Bortzman distribution.
   - ``r``: Read initial velocity from file specified by keyword of ``file_ini_velocity``. This is, for example, used for restarting MD from the previous run. The last atomic coordinates and velocities are printed in ``SYSname``\_trj.xyz. (atomic coordinate also should be copied from the previous output and put in the next input file for restart)
-
     
-- **file_ini_velocity** (character, Default=)[Trial]
+- **file_ini_velocity** (character, Default='none')[Trial]
    | Old infomation: 3d
    File name for initial velocities. This is read when ``set_ini_velocity`` is ``'r'``. The format is simply vx(iatom) vy(iatom) vz(iatom) in each line. The order of atoms must be the same as the given coordinates in the main input file. In case of using nose-hoover thermostat, a thermostat variable should be put at the last line (all atomic unit). 
-   Default is ``none``.
 
-- **seed_ini_velocity** (integer, Default=)[Trial]
-   | Old infomation: 3d
-   Random seed (integer number) to generate initial velocity if ``set_ini_velocity`` is set to y.
-   Default is ``123``.
-
-- **thermostat_tau** (real(8), Default=)[Trial]
+- **thermostat_tau** (real(8), Default=41.34d0 a.u. or 1d0 fs)[Trial]
    | Old infomation: 3d
    Parameter in Nose-Hoover method: controlling time constant for temperature.
    Default is ``41.34[au] or 1.0[fs]``.
 
-- **yn_stop_system_momt** (character, Default=)[Trial]
+- **seed_ini_velocity** (integer, Default=123)[Trial]
+   | Old infomation: 3d
+   Random seed (integer number) to generate initial velocity if ``set_ini_velocity`` is set to y.
+   Default is ``123``.
+
+- **yn_stop_system_momt** (character, Default=n)[Trial]
    | Old infomation: 3d
    Center of mass is stopped every time step.
-   Default is ``n``.
 
 
 &code
 -----
 
 - **yn_want_stencil_openmp_parallelization(yn)**
+   xxx.
 
 - **yn_want_stencil_hand_vectorization(yn)**
+   xxx.
 
 - **yn_force_stencil_openmp_parallelization(yn)**
+   xxx.
 
 - **yn_force_stencil_sequential_computation(yn)**
+   xxx.
 
 - **yn_want_communication_overlapping(yn)**
-
+   xxx.
    
 
 **Following variables are moved from the isolated part. Some of them may be added to common input, be combined to it, and be removed.**
