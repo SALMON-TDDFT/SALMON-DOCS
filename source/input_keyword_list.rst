@@ -892,7 +892,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Random seed (integer number) to generate initial velocity if ``set_ini_velocity`` is set to y.
    Default is ``123``.
 
-- **yn_stop_system_momt** (character, Default=n)[Trial]
+- **yn_stop_system_momt** (character, Default='n')[Trial]
    | Old infomation: 3d
    Center of mass is stopped every time step.
 
@@ -900,19 +900,19 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &code
 -----
 
-- **yn_want_stencil_openmp_parallelization(yn)**
+- **yn_want_stencil_openmp_parallelization** (character, Default='y')[Trial]
    xxx.
 
-- **yn_want_stencil_hand_vectorization(yn)**
+- **yn_want_stencil_hand_vectorization** (character, Default='y')[Trial]
    xxx.
 
-- **yn_force_stencil_openmp_parallelization(yn)**
+- **yn_force_stencil_openmp_parallelization** (character, Default='n')[Trial]
    xxx.
 
-- **yn_force_stencil_sequential_computation(yn)**
+- **yn_force_stencil_sequential_computation** (character, Default='n')[Trial]
    xxx.
 
-- **yn_want_communication_overlapping(yn)**
+- **yn_want_communication_overlapping** (character, Default='n')[Trial]
    xxx.
    
 
@@ -922,205 +922,106 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &group_fundamental[Trial]
 -------------------------
 
-- **iditer_nosubspace_diag** (integer, Default=)[Trial]
+- **iditer_nosubspace_diag** (integer, Default=10)[Trial]
    | Old infomation: 0d
    Iterations for which subspace diagonalization is not done if ``&scf/subspace_diagonalization`` is ``'y'``.
-   Default is ``10``.
-
-- **ntmg** (integer, Default=)[Trial]
+   
+- **ntmg** (integer, Default=1)[Trial]
    | Old infomation: 0d
    Number of multigrid calculation for gs. At the moment, there is a malfunction in this variable, and recovery is needed.
-   Default is ``1``.
 
-- **idisnum(2)** (integer, Default=)[Trial]
+- **idisnum(2)** (integer, Default=1,2)[Trial]
    | Old infomation: 0d
    Label numbers for two atoms which are measured the distance. 
-   Default is ``(/1,2/)``.
 
-- **iwrite_projection** (integer, Default=)[Trial]
+- **iwrite_projection** (integer, Default=0)[Trial]
    | Old infomation: 0d
    A variable for projection. 
-   Default is ``0``.
 
-- **itwproj** (integer, Default=)[Trial]
+- **itwproj** (integer, Default=-1)[Trial]
    | Old infomation: 0d
    The projection is calculated every ``itwproj`` time steps. 
-   Default is ``-1``.
 
-- **iwrite_projnum** (integer, Default=)[Trial]
+- **iwrite_projnum** (integer, Default=0)[Trial]
    | Old infomation: 0d
    There is a malfunction in this variable.
 
-- **itcalc_ene** (integer, Default=)[Trial]
+- **itcalc_ene** (integer, Default=10)[Trial]
    | Old infomation: 0d
    Total energy is calculated every ``itcalc_ene`` time steps. There may be a malfunction in this variable.
-   Default is ``1``.
-
-
-&group_parallel[Trial]
------------------------
-
-- **isequential** (integer, Default=)[Trial]
-   | Old infomation: 0d
-   A variable to determine the way of assignment of processes.
-   Default is ``2``.
-
-- **imesh_s_all** (integer, Default=)[Trial]
-   | Old infomation: 0d
-   A variable to determine how to use processes if total number of processes 
-   and number of processes for Hartree/Exc calculation differ. 
-   There may be a malfunction in this variable.
-   Default is ``1``.
-
-- **iflag_comm_rho** (integer, Default=)[Trial]
-   | Old infomation: 0d
-   This variable may be removed. 
 
 
 &group_hartree[Trial]
 ----------------------
 
-- **hconv** (real(8), Default=)[Trial]
-   | Old infomation: 0d
-   A convergence value for the Hartree-cg calculation. 
-   The convergence is checked by ||tVh(i)-tVh(i-1)||\ :sup:`2`\/(number of grids).
-   Default is ``1d-15`` a.u. (= 1.10d-13 A\ :sup:`3`\eV\ :sup:`2`\)
-
-- **lmax_meo** (integer, Default=)[Trial]
+- **lmax_lmp** (integer, Default=4)[Trial]
    | Old infomation: 0d
    A maximum angular momentum for multipole expansion in the Hartree-cg calculation. 
-   Default is ``4``.
-
-
-
-&group_file[Trial]
--------------------
-
-- **ic** (integer, Default=)[Trial]
-   | Old infomation: 0d
-   A variable to check whether reentrance is done or not in the ground state calculation. 
-   Default is ``0``.
-
-- **oc** (integer, Default=)[Trial]
-   | Old infomation: 0d
-   A variable to check whether intermediate files are generated in the ground state calculation. 
-   Default is ``1``.
-
-- **ic_rt** (integer, Default=)[Trial]
-   | Old infomation: 0d
-   A variable to check whether reentrance is done or not in the time propagation calculation. 
-   Default is ``0``.
-
-- **oc_rt** (integer, Default=)[Trial]
-   | Old infomation: 0d
-   A variable to check whether intermediate files are generated in the time propagation calculation. 
-   Default is ``0``.
 
 
 &group_others[Trial]
 ---------------------
 
-- **iparaway_ob** (integer, Default=)[Trial]
-   | Old infomation: 0d
-   A variable to determine the way of division for orbitals. 
-   ``1`` is block division, and ``2`` is cyclic division.
-   Default is ``2``.
-
-- **iswitch_orbital_mesh** (integer, Default=)[Trial]
+- **iswitch_orbital_mesh** (integer, Default=0)[Trial]
    | Old infomation: 0d
    A variable to apply descending order for orbitals in the ground state calculation.
-   Default is ``0``.
 
-- **iflag_psicube** (integer, Default=)[Trial]
+- **iflag_psicube** (integer, Default=0)[Trial]
    | Old infomation: 0d
    A variable to generate cube files for wave functions. This variable will be removed.
 
-- **file_ini** (character, Default=)[Trial]
-   | Old infomation: 0d
-   A input file to align wavefunctions. 
-   Default is ``'file_ini'``.
-
-- **num_projection** (Interger, Default=)[Trial]
+- **num_projection** (Interger, Default=1)[Trial]
    | Old infomation: 0d
    Number of orbitals for projections.
-   Default is ``1``.
 
-- **iwrite_projection_ob(200)** (Interger, Default=)[Trial]
+- **iwrite_projection_ob(200)** (Interger, Default=1, 2, 3, ..., 200)[Trial]
    | Old infomation: 0d
    Orbital number to be written as projections.
-   Default is ``(1/2/3/.../200)``.
 
-- **iwrite_projection_k(200)** (Interger, Default=)[Trial]
+- **iwrite_projection_k(200)** (Interger, Default=1)[Trial]
    | Old infomation: 0d
    This variable will be removed.
 
-- **filename_pot** (character, Default=)[Trial]
+- **filename_pot** (character, Default='pot')[Trial]
    | Old infomation: 0d
    Name of file to be written local potentials. 
-   Default is ``'pot'``.
 
-- **iwrite_external** (integer, Default=)[Trial]
+- **iwrite_external** (integer, Default=0)[Trial]
    | Old infomation: 0d
    A variable to generate file to be written local potentials. 
-   Default is ``0``.
 
-- **iflag_dip2** (integer, Default=)[Trial]
-   | Old infomation: 0d
-   A variable to determine whether dipole moments are calculated in divided area. 
-   Default is ``0``.
-
-- **iflag_intelectron** (integer, Default=)[Trial]
+- **iflag_intelectron** (integer, Default=0)[Trial]
    | Old infomation: 0d
    A variable related to the quadrupole caluclation.
-   Default is ``0``.
 
-- **num_dip2** (integer, Default=)[Trial]
+- **num_dip2** (integer, Default=1)[Trial]
    | Old infomation: 0d
    Number of area where dipole moments are calculated.
-   Default is ``1``.
 
-- **dip2boundary(100)** (real(8), Default=)[Trial]
+- **dip2boundary(100)** (real(8), Default=0d0 a.u.)[Trial]
    | Old infomation: 0d
    Boundary position of area where dipole moments are calculated.
-   Default is ``0`` a.u.
 
-- **dip2center(100)** (real(8), Default=)[Trial]
+- **dip2center(100)** (real(8), Default=0d0 a.u.)[Trial]
    | Old infomation: 0d
    Origin in the dipole moment calculation. 
-   Default is ``0`` a.u.
 
-- **iflag_fourier_omega** (integer, Default=)[Trial]
-   | Old infomation: 0d
-   A variable to determine whether Fourier transformation of 3d data for difference of density is calclated. 
-   Default is ``0``.
-
-- **num_fourier_omega** (integer, Default=)[Trial]
-   | Old infomation: 0d
-   Number of energies for which the Fourier transformation is calclated. 
-   Default is ``1``.
-
-- **fourier_omega(200)** (real(8), Default=)[Trial]
-   | Old infomation: 0d
-   Energies for which the Fourier transformation is calclated. 
-   Default is ``0`` a.u.
-
-- **itotntime2** (integer, Default=)[Trial]
+- **itotntime2** (integer, Default=0)[Trial]
    | Old infomation: 0d
    Number of time steps in the reentrance for real-time calculation.
    There may be a malfunction in this variable.
-   Default is ``0``.
 
-- **iwdenoption** (integer, Default=)[Trial]
+- **iwdenoption** (integer, Default=0)[Trial]
    | Old infomation: 0d
    A variable to determine whether 3d output is generated in real-time calculation. 
    This variable will be removed.
 
-- **iwdenstep** (integer, Default=)[Trial]
+- **iwdenstep** (integer, Default=0)[Trial]
    | Old infomation: 0d
    3d output is generated every ``iwdenstep`` time steps.
    This variable will be removed.
 
-- **iflag_estatic** (integer, Default=)[Trial]
+- **iflag_estatic** (integer, Default=0)[Trial]
    | Old infomation: 0d
    A variable to determine whether 3d output for the static electric field is generated in real-time calculation. 
    This variable will be removed.
