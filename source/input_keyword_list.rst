@@ -552,142 +552,135 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &multiscale
 -----------
 
-- **fdtddim** (character, Default=)[Trial]
+- **fdtddim** (character, Default='1d')[Trial]
    | Old infomation: 3d
    Dimension of FDTD calculation for multi-scale Maxwell-Kohn-Sham method.
-   Default value is ``'1D'``. 
 
-- **twod_shape** (character, Default=)[Trial]
+- **twod_shape** (character, Default='periodic')[Trial]
    | Old infomation: 3d
    Boundary condision of the second dimension for FDTD calculation with 
    multi-scale Maxwell-Kohn-Sham method.
-   Default value is ``'periodic'``.
 
-- **nx_m** (integer, Default=)
+- **nx_m** (integer, Default=1)
    | Old infomation: 3d
    Number of macroscopic grid points inside materials for x-direction.
 
-- **ny_m/nz_m** (integer, Default=)[Trial]
+- **ny_m/nz_m** (integer, Default=1)[Trial]
    | Old infomation: 3d
    Number of macroscopic grid points inside materials for (y/z)-direction.
 
-- **hx_m** (real(8), Default=)
+- **hx_m** (real(8), Default=0d0)
    | Old infomation: 3d
    Spacing of macroscopic grid points inside materials for (x)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
 
-- **hy_m/hz_m** (real(8), Default=)[Trial]
+- **hy_m/hz_m** (real(8), Default=0d0)[Trial]
    | Old infomation: 3d
    Spacing of macroscopic grid points inside materials for (y/z)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
 
-- **nxvacl_m/nxvacr_m** (integer, Default=)
+- **nxvacl_m/nxvacr_m** (integer, Default=1/0)
    | Old infomation: 3d
    Number of macroscopic grid points for vacumm region.
    ``nxvacl_m`` gives the number for negative x-direction in front of material,
    while ``nxvacr_m`` gives the number for positive x-direction behind the material.
 
-- **nx_origin_m/ny_origin_m/nz_origin_m** (integer, Default=)[Trial]
+- **nx_origin_m/ny_origin_m/nz_origin_m** (integer, Default=1)[Trial]
    | Old infomation: 3d
    Origin coordinat of the grid points.
-   Default value is ``'1'``.
 
-- **set_ini_coor_vel** (character, Default=)[Trial]
+- **file_macropoint** (character, Default='')[Trial]
+   | Old infomation: 3d
+   If file name is specified in the option, the coordinates of the macropoints are set from the file.
+
+- **set_ini_coor_vel** (character, Default='n')[Trial]
    | Old infomation: 3d
    Set initial atomic coordinates and velocities for each macro-grid point. This must be given with specific directories and files: 
    Prepare ``directory``/multiscale/MXXXXXX/ini_coor_vel.dat, where 'XXXXXX' is the index number of the macro-grid point of the material region usually starting from '000001' up to the number of macro-grid point. The format of the file 'ini_coor_vel.dat' is just Rx, Ry, Rz, Vx, Vy, Vz (with space separation) for each atom (i.e. for each line), where the unit of the coordinates, Rx, Ry, Rz, is angstrom or a.u. speficied by ``unit_system`` but that of velocities is always a.u.. This option should be used together with ``read_gs_wfn_k_ms`` which is the option to read the ground state wave function for each macro-grid point. 
-   Default value is ``'n'``.
 
-- **nmacro_write_group** (integer, Default=)[Trial]
+- **nmacro_write_group** (integer, Default=-1)[Trial]
    | Old infomation: 3d
    If the number of macroscopic grids are very large, computers can be unstable by writing all information of all macroscopic grid points at the same time. To avoid that, the writings are divided by specifying this option. Writings will be done by each ``nmacro_write_group`` macroscopic grid points. (this number must be aliquot part of the total number of macroscopic grid points)
-   Default value is ``'-1'``.
-
-- **file_macropoint** (character, Default=)[Trial]
-   | Old infomation: 3d
-   If file name is specified in the option, the coordinates of the macropoints are set from the file.
-   Default value is ``''``.
 
 
 &maxwell
 --------
 
-- **al_em(3)** (real(8), Default=)
+- **al_em(3)** (real(8), Default=0d0)
    Size of simulation box in electromagnetic analysis. Unit of the length can be chosen by ``&units/unit_system``.
 
-- **dl_em(3)** (real(8), Default=)
+- **dl_em(3)** (real(8), Default=0d0)
    Spacing of real-space grids in electromagnetic analysis. Unit of length can be chosen by ``&units/unit_system``.
 
-- **dt_em** (real(8), Default=)
+- **dt_em** (real(8), Default=0)
    Time step in electromagnetic analysis. Unit of time can be chosen by ``&units/unit_system``.
 
-- **nt_em** (integer, Default=)
+- **nt_em** (integer, Default=0)
    Number of total time steps for real-time propagation in electromagnetic analysis.
 
-- **boundary_em(3,2)** (character, Default=)
-   Boundary condition in electromagnetic analysis. The first index(1-3 rows) corresponds to x, y, and z axes. The second index(1-2 columns) corresponds to bottom and top of the axes.  Default is ``'default'``. If ``&system/yn_periodic='n'``, ``'default'``, ``'pml'``, and ``'pec'`` can be chosen. ``'pml'`` is absorbing boundary and ``'pec'`` is perfect electric conductor. ``'default'`` is ``'pml'``. If ``&system/yn_periodic='y'``, ``'default'``, ``'pml'``, and ``'periodic'`` can be chosen. ``'periodic'`` is periodic boundary. ``'default'`` is ``'periodic'``.
+- **boundary_em(3,2)** (character, Default='default')
+   Boundary condition in electromagnetic analysis. The first index(1-3 rows) corresponds to x, y, and z axes. The second index(1-2 columns) corresponds to bottom and top of the axes. If ``&system/yn_periodic='n'``, ``'default'``, ``'pml'``, and ``'pec'`` can be chosen. ``'pml'`` is absorbing boundary and ``'pec'`` is perfect electric conductor. ``'default'`` is ``'pml'``. If ``&system/yn_periodic='y'``, ``'default'``, ``'pml'``, and ``'periodic'`` can be chosen. ``'periodic'`` is periodic boundary. ``'default'`` is ``'periodic'``.
 
-- **shape_file** (character, Default=)
+- **shape_file** (character, Default='none')
    Name of shape file in electromagnetic analysis. The shape files can be generated by using SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
-- **media_num** (integer, Default=)
-   Number of media in electromagnetic analysis. Default is ``0``.
+- **media_num** (integer, Default=0)
+   Number of media in electromagnetic analysis.
 
-- **media_type(:)** (character, Default=)
-   Type of media in electromagnetic analysis. ``'vacuum'``, ``'constant media'``, ``'pec'``, and ``'lorentz-drude'`` can be chosen. Default is ``'vacuum'``. If ``'lorentz-drude'`` is chosen, linear response calculation can be done by ``&emfield/ae_shape1 or ae_shape2='impulse'``.
+- **media_type(:)** (character, Default='vacuum')
+   Type of media in electromagnetic analysis. ``'vacuum'``, ``'constant media'``, ``'pec'``, and ``'lorentz-drude'`` can be chosen. If ``'lorentz-drude'`` is chosen, linear response calculation can be done by ``&emfield/ae_shape1 or ae_shape2='impulse'``.
 
-- **epsilon_em(:)** (real(8), Default=)
-   Relative permittivity of the media in electromagnetic analysis. Default is ``1d0``.
+- **epsilon_em(:)** (real(8), Default=1d0)
+   Relative permittivity of the media in electromagnetic analysis.
 
-- **mu_em(:)** (real(8), Default=)
-   Relative permeability of the media in electromagnetic analysis. Default is ``1d0``.
+- **mu_em(:)** (real(8), Default=1d0)
+   Relative permeability of the media in electromagnetic analysis.
 
-- **sigma_em(:)** (real(8), Default=)
-   Conductivity of the media in electromagnetic analysis. Default is ``0d0``.
+- **sigma_em(:)** (real(8), Default=0d0)
+   Conductivity of the media in electromagnetic analysis.
 
-- **pole_num_ld(:)** (integer, Default=)
-   Number of poles of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. Default is ``1``.
+- **pole_num_ld(:)** (integer, Default=1)
+   Number of poles of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis.
 
-- **omega_p_ld(:)** (real(8), Default=)
-   Plasma frequency of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. Default is ``0d0``.
+- **omega_p_ld(:)** (real(8), Default=0d0)
+   Plasma frequency of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis.
+- **f_ld(:,:)** (real(8), Default=0d0)
+   Oscillator strength of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. The first index is media id whose maximum value is determined by ``media_num``. The second index is pole id whose maximum value is determined by ``pole_num_ld``.
 
-- **f_ld(:,:)** (real(8), Default=)
-   Oscillator strength of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. The first index is media id whose maximum value is determined by ``media_num``. The second index is pole id whose maximum value is determined by ``pole_num_ld``. Default is ``0d0``.
+- **gamma_ld(:,:)** (real(8), Default=0d0)
+   Collision frequency of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. The first index is media id whose maximum value is determined by ``media_num``. The second index is pole id whose maximum value is determined by ``pole_num_ld``.
 
-- **gamma_ld(:,:)** (real(8), Default=)
-   Collision frequency of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. The first index is media id whose maximum value is determined by ``media_num``. The second index is pole id whose maximum value is determined by ``pole_num_ld``. Default is ``0d0``.
+- **omega_ld(:,:)** (real(8), Default=0d0)
+   Oscillator frequency of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. The first index is media id whose maximum value is determined by ``media_num``. The second index is pole id whose maximum value is determined by ``pole_num_ld``.
 
-- **omega_ld(:,:)** (real(8), Default=)
-   Oscillator frequency of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. The first index is media id whose maximum value is determined by ``media_num``. The second index is pole id whose maximum value is determined by ``pole_num_ld``. Default is ``0d0``.
+- **wave_input** (character, Default='none')
+   If ``'source'``, the incident pulse in electromagnetic analysis is generated by the incident current source.
 
-- **wave_input** (character, Default=)
-   If ``'source'``, the incident pulse in electromagnetic analysis is generated by the incident current source. Default is ``'none'``.
-
-- **ek_dir1(3)/ek_dir2(3)** (real(8), Default=)
+- **ek_dir1(3)/ek_dir2(3)** (real(8), Default=0d0)
    Propagation direction of the first/second pulse.
 
-- **source_loc1(3)/source_loc2(3)** (real(8), Default=)
+- **source_loc1(3)/source_loc2(3)** (real(8), Default=0d0)
    Location of the incident current source of the first/second pulse. Note that the coordinate system ranges from ``-al_em/2`` to ``al_em/2`` for ``&system/yn_periodic='n'`` while ranges from ``0`` to ``al_em`` for ``&system/yn_periodic='y'``.
 
-- **obs_num_em** (integer, Default=)
-   Number of observation point in electromagnetic analysis. Default is ``0``. From the obtained results, figure and animation files can be generated by using SALMON utilities (https://salmon-tddft.jp/utilities.html).
+- **obs_num_em** (integer, Default=0)
+   Number of observation point in electromagnetic analysis. From the obtained results, figure and animation files can be generated by using SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
-- **obs_samp_em** (integer, Default=)
-   Sampling time-step of the observation in electromagnetic analysis. Default is ``1``.
+- **obs_samp_em** (integer, Default=1)
+   Sampling time-step of the observation in electromagnetic analysis.
 
-- **obs_loc_em(:,3)** (real(8), Default=)
+- **obs_loc_em(:,3)** (real(8), Default=0d0)
    Location of the observation point in electromagnetic analysis. Note that the coordinate system ranges from ``-al_em/2`` to ``al_em/2`` for ``&system/yn_periodic='n'`` while ranges from ``0`` to ``al_em`` for ``&system/yn_periodic='y'``.
 
-- **yn_obs_plane_em(:)** (character, Default=)
-   Enable(``'y'``)/disable(``'n'``). Output of the electrmagnetic fields on the planes (xy, yz, and xz planes) for each observation point. This option must be ``'y'`` for generating animation files by using SALMON utilities (https://salmon-tddft.jp/utilities.html). Default is ``'n'``.
+- **yn_obs_plane_em(:)** (character, Default='n')
+   Enable(``'y'``)/disable(``'n'``). Output of the electrmagnetic fields on the planes (xy, yz, and xz planes) for each observation point. This option must be ``'y'`` for generating animation files by using SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
-- **yn_wf_em** (character, Default=)
-   Enable(``'y'``)/disable(``'n'``). Applying a window function for linear response calculation when ``&calculation/theory=Maxwell``. Default is ``'y'``.
+- **yn_wf_em** (character, Default='y')
+   Enable(``'y'``)/disable(``'n'``). Applying a window function for linear response calculation when ``&calculation/theory=Maxwell``.
 
 &analysis
 ---------
 
-- **projection_option** (character, Default=)
+- **projection_option** (character, Default='no')
    | Old infomation: 3d
    Methods of projection.
    
@@ -696,67 +689,53 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
   - ``'rt'``: projection to eigenstates of instantaneous Hamiltonian.
   
 
-- **projection_decomp** (character, Default=)[Trial]
+- **projection_decomp** (character, Default='n')[Trial]
    | Old infomation: 3d
    If ``'atom'`` combined with ``projection_option='gs'``, 
    the number of excited electron is decomposed into each atom 
    (this is printed in ``SYSname``\_nex_atom.data).
-   Default is ``'n'``.
 
-- **out_projection_step** (integer, Default=)
-   | Old infomation: 3d
-   Interval time step of projection analysis 
-   if ``projection_option`` is not ``'no'``.
-   Default is ``100``.
-
-- **nenergy** (integer, Default=)
+- **nenergy** (integer, Default=1000)
    Number of energy grids for frequency-domain analysis.
    This parameter is required when `'impulse'` is choosen in `&emfield/ae_shape1|2`.
 
-- **de** (real(8), Default=)
+- **de** (real(8), Default=0.01d0 eV)
    Energy spacing for analysis.
    Unit of energy can be chosen by ``&units/unit_energy``
    This parameter is required when `'impulse'` is choosen in `&emfield/ae_shape1|2`.
 
-- **yn_out_psi** (character, Default=)
+- **yn_out_psi** (character, Default='n')
    If ``'y'``, wavefunctions are output.
    For periodic system (``yn_periodic='y'``), it works only for ground state calculation. The converged wave functions of all orbitals with all k-points are printed in gs_wfn_cube or gs_wfn_vtk directory. The format is speficied by ``format3d``. 
-   Default is ``'n'``.
 
-- **yn_out_dos** (character, Default=)
+- **yn_out_dos** (character, Default='n')
    If ``'y'``, density of state is output.
-   Default is ``'n'``.
 
-- **out_dos_start** (real(8), Default=)
+- **yn_out_dos_set_fe_origin** (character, Default='n')
+   If ``'y'``, the electron energy is shifted to fix the Fermi energy as zero point.
+   For ``&system/yn_periodic`` is ``'n'``, `` out_dos_fshift`` is not used 
+   if ``&system/nstate`` is equal to ``&system/nelec``/2.
+
+- **out_dos_start** (real(8), Default=-1.d10 eV)
    Lower bound (energy) of the density of state spectra.
    If this value is lower than a specific value near the lowest energy level, 
    this value is overwritten by that value. 
-   Default value is ``-1.d10`` eV.
 
-- **out_dos_end** (real(8), Default=)
+- **out_dos_end** (real(8), Default=1.d10 eV)
    Upper bound (energy) of the density of state spectra.
    If this value is higher than a specific value near the highest energy level, 
    this value is overwritten by that value. 
-   Default value is ``1.d10`` eV.
 
-- **out_dos_nenergy** (integer, Default=)
+- **out_dos_nenergy** (integer, Default=601)
    Number of  energy points sampled in the density of state spectra.
-   Default is ``601``.
-
-- **out_dos_width** (real(8), Default=)
+ 
+- **out_dos_width** (real(8), Default=0.1d0 eV)
    Smearing width used in the density of state spectra..
-   Default is ``0.1`` eV.
 
 - **out_dos_function** (character, Default=)
    Choise of smearing method for the density of state spectra..
    ``gaussian`` and ``lorentzian`` function are available.
    Default is ``gaussian``.
-
-- **yn_out_dos_set_fe_origin** (character, Default=)
-   If ``'y'``, the electron energy is shifted to fix the Fermi energy as zero point.
-   For ``&system/yn_periodic`` is ``'n'``, `` out_dos_fshift`` is not used 
-   if ``&system/nstate`` is equal to ``&system/nelec``/2.
-   Default is ``'n'``.
 
 - **yn_out_pdos** (character, Default=)
    | Old infomation: 0d
@@ -809,6 +788,12 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Old infomation: 3d
    If ``'y'``, transition moments between occupied and virtual orbitals are printed into ``SYSname``\_tm.data after the ground state calculation.
    Defaults are ``'n'``.
+
+- **out_projection_step** (integer, Default=)
+   | Old infomation: 3d
+   Interval time step of projection analysis 
+   if ``projection_option`` is not ``'no'``.
+   Default is ``100``.
 
 - **format_voxel_data** (character, Default=)
    File format for three-dimensional volumetric data.
