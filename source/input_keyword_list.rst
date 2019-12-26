@@ -35,7 +35,7 @@ List of all input keywords
 &calculation
 ------------
 
-- **theory** (character, 0d/3d)
+- **theory** (character, default='TDDFT')
    | Choice of Calculation theories.
    |  Options
    |    ``DFT``  / ground state calculation based on DFT
