@@ -87,7 +87,7 @@ List of all input keywords
 &units
 ------
 
-- **unit_system** (character, Default=)
+- **unit_system** (character, Default='au')
    Unit for input variables. 
    If ``'au'`` or ``'a.u.'``, atomic unit system is used. 
    If ``'A_eV_fs'``, Angstrom-eV-fs unit system is used. 
@@ -96,11 +96,11 @@ List of all input keywords
 &parallel
 ---------
 
-- **yn_domain_parallel** (character, Default=)[Trial]
+- **yn_domain_parallel** (character, Default='n')[Trial]
    | Old infomation: 3d
    If specified ``yn_domain_parallel='y'`` and ``&system/yn_periodic='y'``, program codes for domain parallel version run in periodic system calculations.
 
-- **nproc_k/nproc_ob/nproc_domain_orbital(3)/nproc_domain_general(3)** (integer, Default=)
+- **nproc_k/nproc_ob/nproc_domain_orbital(3)/nproc_domain_general(3)** (integer, Default=0)
    | Old infomation: 0d
    Followings are explanation of each variable.
 
@@ -117,13 +117,12 @@ List of all input keywords
   - ``nproc_domain_general(2)`` is a multiple of ``nproc_domain_orbital(2)``
   - ``nproc_domain_general(3)`` is a multiple of ``nproc_domain_orbital(3)``
 
-- **yn_ffte** (character, Default=)
+- **yn_ffte** (character, Default='ft')
    | Old infomation: 0d
    Method of Fourier transformation.  ``'ft'``,  ``'FT'``, ``'ffte'`` or ``'FFTE'`` can be chosen.
-   Default is ``'ft'``.
    This variable is effective only when ``yn_domain_parallel='y'`` and ``&system/yn_periodic='y'``.
 
-- **process_allocation** (character, Default=)
+- **process_allocation** (character, Default='grid_sequential')
    | Old infomation: 0d
    xxx.
 
@@ -131,20 +130,18 @@ List of all input keywords
 &system 
 -------
 
-- **yn_periodic** (character, Default=)
+- **yn_periodic** (character, Default='n')
    Dimension for periodic boundary condition.
    ``'n'`` is for isolated systems, and 
    ``'y'`` is for solids.
-   Default is ``'n'``.
 
-- **ispin** (integer, Default=)
+- **ispin** (integer, Default=0)
    | Old infomation: 0d
    Variable for classification of closed shell systems and open shell systems.
    ``0`` is for closed shell systems, and
    ``1`` is for open shell systems.
-   Default is ``0``
 
-- **al(3)** (real(8), Default=)
+- **al(3)** (real(8), Default=0d0)
    Lattice constants. Unit of the length can be chosen by ``&units/unit_system``.
 
 - **al_vec1(3)/al_vec2(3)/al_vec3(3)** (real(8), Default=)
