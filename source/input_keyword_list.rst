@@ -70,10 +70,10 @@ List of all input keywords
 - **yn_restart** (character, Default='new')[Trial]
    Flag for restart, ``'new'`` or ``'restart'``.
 
-- **directory_read_data** (character, Default=)[Trial]
+- **directory_read_data** (character, Default='restart/')[Trial]
    xxx.
 
-- **yn_self_checkpoint** (character, Default=)[Trial]
+- **yn_self_checkpoint** (character, Default='n')[Trial]
    xxx.
 
 - **checkpoint_interval** (integer, Default=0)[Trial]
