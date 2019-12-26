@@ -58,33 +58,31 @@ List of all input keywords
 &control
 --------
 
-- **sysname** (character, 0d/3d)
+- **sysname** (character, Default='default')
    Name of calculation. This is used for a prefix of output files.
-   Default is ``default``.
 
-- **base_directory** (character, 0d/3d)
+- **base_directory** (character, Default='./')
    Name of a default directory, where the basic results will be written down.
-   Default is the current directoy, ``./``.
 
-- **output_buffer_interval** (integer, 0d/3d)
+- **output_buffer_interval** (integer, Default=-1)
    xxx.
 
-- (Trial) **yn_restart** (character, 3d)
+- **yn_restart** (character, Default=)[Trial]
    Flag for restart, ``'new'`` or ``'restart'``.
    ``'new'`` is default.
 
-- (Trial) **directory_read_data** (character, 3d)
+- (Trial) **directory_read_data** (character, Default=)
    xxx.
 
-- (Trial) **yn_self_checkpoint** (character, 3d)
+- (Trial) **yn_self_checkpoint** (character, Default=)
    xxx.
 
-- (Trial) **checkpoint_interval** (integer, 3d)
+- (Trial) **checkpoint_interval** (integer, Default=)
    Frequency of backup during the time-propagation. 
    If ``0`` is set, the backup is not performed.
    Default is ``0``.
 
-- (Trial) **time_shutdown** (real(8), 3d)
+- (Trial) **time_shutdown** (real(8), Default=)
    Timer for automatic shutdown. The unit is always second.
    If negative time is chosen, the automatic shutdown is not performed.
    Default is ``-1`` sec.
