@@ -583,7 +583,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Unit of length can be chosen by ``&units/unit_length``.
 
 - **hy_m/hz_m** (real(8), 3d)[Trial]
-  | Old infomation: 3d
+   | Old infomation: 3d
    Spacing of macroscopic grid points inside materials for (y/z)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
 
