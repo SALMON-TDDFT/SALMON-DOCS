@@ -884,32 +884,32 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 &md[Trial]
 -----------
-- **ensemble** (character, 3d)[Trial]
+- **ensemble** (character, Default=)[Trial]
    | Old infomation: 3d
    Ensemble in MD option: "NVE" or "NVT".
    Default is ``"NVE"``.
 
-- **thermostat** (character, 3d)[Trial]
+- **thermostat** (character, Default=)[Trial]
    | Old infomation: 3d
    Thermostat in "NVT" option: (currently only ``nose-hoover``).
    Default is ``"nose-hoover"``.
 
-- **step_velocity_scaling** (integer, 3d)[Trial]
+- **step_velocity_scaling** (integer, Default=)[Trial]
    | Old infomation: 3d
    Time step interval for velocity-scaling. Velocity-scaling is applied if this is set to positive.
    Default is ``-1``.
 
-- **step_update_ps/step_update_ps2** ``Integer/Integer``; 3d)[Trial]
+- **step_update_ps/step_update_ps2** (Integer/Integer, Default=)[Trial]
    | Old infomation: 3d
    Time step interval for updating pseudopotential (Larger number makes calculation time reduce greatly, but gets inaccurate) in case of ``use_ehrenfest_md=y``. ``step_update_ps`` is for full update and ``step_update_ps2`` is for update without changing grid points array.
    Default is ``10/1``.
 
-- **temperature0_ion_k** (real(8), 3d)[Trial]
+- **temperature0_ion_k** (real(8), Default=)[Trial]
    | Old infomation: 3d
    Setting temperature [K] for NVT ensemble, velocity scaling and generating initial velocities.
    Default is ``298.15``.
 
-- **yn_set_ini_velocity** (character, 3d)[Trial]
+- **yn_set_ini_velocity** (character, Default=)[Trial]
    | Old infomation: 3d
    Initial velocities are set.
    Default is ``n``.
@@ -918,22 +918,22 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
   - ``r``: Read initial velocity from file specified by keyword of ``file_ini_velocity``. This is, for example, used for restarting MD from the previous run. The last atomic coordinates and velocities are printed in ``SYSname``\_trj.xyz. (atomic coordinate also should be copied from the previous output and put in the next input file for restart)
 
     
-- **file_ini_velocity** (character, 3d)[Trial]
+- **file_ini_velocity** (character, Default=)[Trial]
    | Old infomation: 3d
    File name for initial velocities. This is read when ``set_ini_velocity`` is ``'r'``. The format is simply vx(iatom) vy(iatom) vz(iatom) in each line. The order of atoms must be the same as the given coordinates in the main input file. In case of using nose-hoover thermostat, a thermostat variable should be put at the last line (all atomic unit). 
    Default is ``none``.
 
-- **seed_ini_velocity** (integer, 3d)[Trial]
+- **seed_ini_velocity** (integer, Default=)[Trial]
    | Old infomation: 3d
    Random seed (integer number) to generate initial velocity if ``set_ini_velocity`` is set to y.
    Default is ``123``.
 
-- **thermostat_tau** (real(8), 3d)[Trial]
+- **thermostat_tau** (real(8), Default=)[Trial]
    | Old infomation: 3d
    Parameter in Nose-Hoover method: controlling time constant for temperature.
    Default is ``41.34[au] or 1.0[fs]``.
 
-- **yn_stop_system_momt** (character, 3d)[Trial]
+- **yn_stop_system_momt** (character, Default=)[Trial]
    | Old infomation: 3d
    Center of mass is stopped every time step.
    Default is ``n``.
@@ -960,36 +960,36 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &group_fundamental[Trial]
 -------------------------
 
-- **iditer_nosubspace_diag** (integer, 0d)[Trial]
+- **iditer_nosubspace_diag** (integer, Default=)[Trial]
    | Old infomation: 0d
    Iterations for which subspace diagonalization is not done if ``&scf/subspace_diagonalization`` is ``'y'``.
    Default is ``10``.
 
-- **ntmg** (integer, 0d)[Trial]
+- **ntmg** (integer, Default=)[Trial]
    | Old infomation: 0d
    Number of multigrid calculation for gs. At the moment, there is a malfunction in this variable, and recovery is needed.
    Default is ``1``.
 
-- **idisnum(2)** (integer, 0d)[Trial]
+- **idisnum(2)** (integer, Default=)[Trial]
    | Old infomation: 0d
    Label numbers for two atoms which are measured the distance. 
    Default is ``(/1,2/)``.
 
-- **iwrite_projection** (integer, 0d)[Trial]
+- **iwrite_projection** (integer, Default=)[Trial]
    | Old infomation: 0d
    A variable for projection. 
    Default is ``0``.
 
-- **itwproj** (integer, 0d)[Trial]
+- **itwproj** (integer, Default=)[Trial]
    | Old infomation: 0d
    The projection is calculated every ``itwproj`` time steps. 
    Default is ``-1``.
 
-- **iwrite_projnum** (integer, 0d)[Trial]
+- **iwrite_projnum** (integer, Default=)[Trial]
    | Old infomation: 0d
    There is a malfunction in this variable.
 
-- **itcalc_ene** (integer, 0d)[Trial]
+- **itcalc_ene** (integer, Default=)[Trial]
    | Old infomation: 0d
    Total energy is calculated every ``itcalc_ene`` time steps. There may be a malfunction in this variable.
    Default is ``1``.
@@ -998,19 +998,19 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &group_parallel[Trial]
 -----------------------
 
-- **isequential** (integer, 0d)[Trial]
+- **isequential** (integer, Default=)[Trial]
    | Old infomation: 0d
    A variable to determine the way of assignment of processes.
    Default is ``2``.
 
-- **imesh_s_all** (integer, 0d)[Trial]
+- **imesh_s_all** (integer, Default=)[Trial]
    | Old infomation: 0d
    A variable to determine how to use processes if total number of processes 
    and number of processes for Hartree/Exc calculation differ. 
    There may be a malfunction in this variable.
    Default is ``1``.
 
-- **iflag_comm_rho** (integer, 0d)[Trial]
+- **iflag_comm_rho** (integer, Default=)[Trial]
    | Old infomation: 0d
    This variable may be removed. 
 
@@ -1018,13 +1018,13 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &group_hartree[Trial]
 ----------------------
 
-- **hconv** (real(8), 0d)[Trial]
+- **hconv** (real(8), Default=)[Trial]
    | Old infomation: 0d
    A convergence value for the Hartree-cg calculation. 
    The convergence is checked by ||tVh(i)-tVh(i-1)||\ :sup:`2`\/(number of grids).
    Default is ``1d-15`` a.u. (= 1.10d-13 A\ :sup:`3`\eV\ :sup:`2`\)
 
-- **lmax_meo** (integer, 0d)[Trial]
+- **lmax_meo** (integer, Default=)[Trial]
    | Old infomation: 0d
    A maximum angular momentum for multipole expansion in the Hartree-cg calculation. 
    Default is ``4``.
@@ -1034,22 +1034,22 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &group_file[Trial]
 -------------------
 
-- **ic** (integer, 0d)[Trial]
+- **ic** (integer, Default=)[Trial]
    | Old infomation: 0d
    A variable to check whether reentrance is done or not in the ground state calculation. 
    Default is ``0``.
 
-- **oc** (integer, 0d)[Trial]
+- **oc** (integer, Default=)[Trial]
    | Old infomation: 0d
    A variable to check whether intermediate files are generated in the ground state calculation. 
    Default is ``1``.
 
-- **ic_rt** (integer, 0d)[Trial]
+- **ic_rt** (integer, Default=)[Trial]
    | Old infomation: 0d
    A variable to check whether reentrance is done or not in the time propagation calculation. 
    Default is ``0``.
 
-- **oc_rt** (integer, 0d)[Trial]
+- **oc_rt** (integer, Default=)[Trial]
    | Old infomation: 0d
    A variable to check whether intermediate files are generated in the time propagation calculation. 
    Default is ``0``.
@@ -1058,107 +1058,107 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &group_others[Trial]
 ---------------------
 
-- **iparaway_ob** (integer, 0d)[Trial]
+- **iparaway_ob** (integer, Default=)[Trial]
    | Old infomation: 0d
    A variable to determine the way of division for orbitals. 
    ``1`` is block division, and ``2`` is cyclic division.
    Default is ``2``.
 
-- **iswitch_orbital_mesh** (integer, 0d)[Trial]
+- **iswitch_orbital_mesh** (integer, Default=)[Trial]
    | Old infomation: 0d
    A variable to apply descending order for orbitals in the ground state calculation.
    Default is ``0``.
 
-- **iflag_psicube** (integer, 0d)[Trial]
+- **iflag_psicube** (integer, Default=)[Trial]
    | Old infomation: 0d
    A variable to generate cube files for wave functions. This variable will be removed.
 
-- **file_ini** (character, 0d)[Trial]
+- **file_ini** (character, Default=)[Trial]
    | Old infomation: 0d
    A input file to align wavefunctions. 
    Default is ``'file_ini'``.
 
-- **num_projection** ``Interger``; 0d)[Trial]
+- **num_projection** (Interger, Default=)[Trial]
    | Old infomation: 0d
    Number of orbitals for projections.
    Default is ``1``.
 
-- **iwrite_projection_ob(200)** ``Interger``; 0d)[Trial]
+- **iwrite_projection_ob(200)** (Interger, Default=)[Trial]
    | Old infomation: 0d
    Orbital number to be written as projections.
    Default is ``(1/2/3/.../200)``.
 
-- **iwrite_projection_k(200)** ``Interger``; 0d)[Trial]
+- **iwrite_projection_k(200)** (Interger, Default=)[Trial]
    | Old infomation: 0d
    This variable will be removed.
 
-- **filename_pot** (character, 0d)[Trial]
+- **filename_pot** (character, Default=)[Trial]
    | Old infomation: 0d
    Name of file to be written local potentials. 
    Default is ``'pot'``.
 
-- **iwrite_external** (integer, 0d)[Trial]
+- **iwrite_external** (integer, Default=)[Trial]
    | Old infomation: 0d
    A variable to generate file to be written local potentials. 
    Default is ``0``.
 
-- **iflag_dip2** (integer, 0d)[Trial]
+- **iflag_dip2** (integer, Default=)[Trial]
    | Old infomation: 0d
    A variable to determine whether dipole moments are calculated in divided area. 
    Default is ``0``.
 
-- **iflag_intelectron** (integer, 0d)[Trial]
+- **iflag_intelectron** (integer, Default=)[Trial]
    | Old infomation: 0d
    A variable related to the quadrupole caluclation.
    Default is ``0``.
 
-- **num_dip2** (integer, 0d)[Trial]
+- **num_dip2** (integer, Default=)[Trial]
    | Old infomation: 0d
    Number of area where dipole moments are calculated.
    Default is ``1``.
 
-- **dip2boundary(100)** (real(8), 0d)[Trial]
+- **dip2boundary(100)** (real(8), Default=)[Trial]
    | Old infomation: 0d
    Boundary position of area where dipole moments are calculated.
    Default is ``0`` a.u.
 
-- **dip2center(100)** (real(8), 0d)[Trial]
+- **dip2center(100)** (real(8), Default=)[Trial]
    | Old infomation: 0d
    Origin in the dipole moment calculation. 
    Default is ``0`` a.u.
 
-- **iflag_fourier_omega** ``integer``; 0d)[Trial]
+- **iflag_fourier_omega** (integer, Default=)[Trial]
    | Old infomation: 0d
    A variable to determine whether Fourier transformation of 3d data for difference of density is calclated. 
    Default is ``0``.
 
-- **num_fourier_omega** (integer, 0d)[Trial]
+- **num_fourier_omega** (integer, Default=)[Trial]
    | Old infomation: 0d
    Number of energies for which the Fourier transformation is calclated. 
    Default is ``1``.
 
-- **fourier_omega(200)** (real(8), 0d)[Trial]
+- **fourier_omega(200)** (real(8), Default=)[Trial]
    | Old infomation: 0d
    Energies for which the Fourier transformation is calclated. 
    Default is ``0`` a.u.
 
-- **itotntime2** (integer, 0d)[Trial]
+- **itotntime2** (integer, Default=)[Trial]
    | Old infomation: 0d
    Number of time steps in the reentrance for real-time calculation.
    There may be a malfunction in this variable.
    Default is ``0``.
 
-- **iwdenoption** (integer, 0d)[Trial]
+- **iwdenoption** (integer, Default=)[Trial]
    | Old infomation: 0d
    A variable to determine whether 3d output is generated in real-time calculation. 
    This variable will be removed.
 
-- **iwdenstep** (integer, 0d)[Trial]
+- **iwdenstep** (integer, Default=)[Trial]
    | Old infomation: 0d
    3d output is generated every ``iwdenstep`` time steps.
    This variable will be removed.
 
-- **iflag_estatic** (integer, 0d)[Trial]
+- **iflag_estatic** (integer, Default=)[Trial]
    | Old infomation: 0d
    A variable to determine whether 3d output for the static electric field is generated in real-time calculation. 
    This variable will be removed.
