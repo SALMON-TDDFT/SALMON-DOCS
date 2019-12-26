@@ -35,7 +35,7 @@ List of all input keywords
 &calculation
 ------------
 
-- **theory** (character, default='nothing')
+- **theory** (character, default='none')
    | Choice of Calculation theories.
    |  Options
    |    ``DFT``  / ground state calculation based on DFT
@@ -80,7 +80,7 @@ List of all input keywords
    Frequency of backup during the time-propagation. 
    If ``0`` is set, the backup is not performed.
 
-- **time_shutdown** (real(8), Default=-1)[Trial]
+- **time_shutdown** (real(8), Default=-1d0)[Trial]
    Timer for automatic shutdown. The unit is always second.
    If negative time is chosen, the automatic shutdown is not performed.
 
@@ -144,54 +144,52 @@ List of all input keywords
 - **al(3)** (real(8), Default=0d0)
    Lattice constants. Unit of the length can be chosen by ``&units/unit_system``.
 
-- **al_vec1(3)/al_vec2(3)/al_vec3(3)** (real(8), Default=)
+- **al_vec1(3)/al_vec2(3)/al_vec3(3)** (real(8), Default=0d0)
    | Old infomation: 3d
    xxx.
 
-- **isym** (integer, Default=)
+- **isym** (integer, Default=0)
    | Old infomation: 3d
    Number of symmetries that can be used for reduction of k-points.
-   Default is ``0``.
 
-- **crystal_structure** (character, Default=)
+- **crystal_structure** (character, Default='none')
    | Old infomation: 3d
    Name of symmetry that can be used for the reduction of # of k-points.
-   Default is ``'none'``.
 
-- **nstate** (integer, Default=)
+- **nstate** (integer, Default=0)
    Number of states/bands.
 
-- **nstate_spin(2)** (integer, Default=)
+- **nstate_spin(2)** (integer, Default=0)
    | Old infomation: 0d
    Number of states/bands can be specified independently by ``nstate_spin(1)/nstate_spin(2)``.
    This option is incompatible with ``nstate``
 
-- **nelec** (integer, Default=)
+- **nelec** (integer, Default=0)
    Number of valence electrons.
 
-- **nelec_spin(2)** (integer, Default=)
+- **nelec_spin(2)** (integer, Default=0)
    | Old infomation: 0d
    Number of up/down-spin electrons can be specified independently by ``nelec_spin(1)/nelec_spin(2)``.
    This option is incompatible with ``nelec``
 
-- **temperature** (real(8), Default=)
+- **temperature** (real(8), Default=-1d0)
    | Old infomation: 3d
    Temperature of electrons. When you calculate a system of zero band-gap energy like metals, zero or positive number of the temperature should be given.
    Unit of the energy can be chosen ``&units/unit_system``. 
    Default is ``-1.0`` (this is for system which has a band gap energy).
 
-- **temperature_k** (real(8), Default=)[Trial]
+- **temperature_k** (real(8), Default=-1d0)[Trial]
    | Old infomation: 0d
    Temperature of electrons [K]. Default is ``-1.d0``.
 
-- **nelem** (integer, Default=)
+- **nelem** (integer, Default=0)
    Number of elements that will be used in calculations.
 
-- **natom** (integer, Default=)
+- **natom** (integer, Default=0)
    Number of atoms in a calculation cell.
 
 
-- **file_atom_red_coor** (character, Default=)[Trial]
+- **file_atom_red_coor** (character, Default='none')[Trial]
    | Old infomation: 3d
    File name of atomic positions. In this file, 
    the atomic coordinates can be written in reduced coordinates.
@@ -200,7 +198,7 @@ List of all input keywords
    ``&atomic_coor``, and 
    ``&atomic_red_coor``.
 
-- **file_atom_coor** (character, Default=)[Trial]
+- **file_atom_coor** (character, Default='none')[Trial]
    | Old infomation: 0d
    File name of atomic positions. In this file, 
    the atomic coordinates can be written in Cartesian cooridnates.
