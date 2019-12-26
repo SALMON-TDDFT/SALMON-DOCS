@@ -252,40 +252,36 @@ This option is incompatible with
 
 Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
-- **file_pseudo(:)** (character, Default=)
+- **file_pseudo(:)** (character, Default='none')
    Name of pseudopotential files.
 
-- **lmax_ps(:)** (integer, Default=)
+- **lmax_ps(:)** (integer, Default=-1)
    Maximum angular momentum of pseudopotential projectors.
 
-- **lloc_ps(:)** (integer, Default=)
+- **lloc_ps(:)** (integer, Default=-1)
    Angular momentum of pseudopotential that will be treated as local.
 
-- **izatom(:)** (integer, Default=)
+- **izatom(:)** (integer, Default=-1)
    Atomic number.
 
-- **yn_psmask(:)** (character, Default=)[Trial]
+- **yn_psmask(:)** (character, Default='n')[Trial]
    Enable(``'y'``)/disable(``'n'``) 
    Fourier filtering for pseudopotentials. 
-   Default is ``'n'``.
 
-- **alpha_mask(:)** (real(8), Default=)[Trial]
+- **alpha_mask(:)** (real(8), Default=0.8d0)[Trial]
    Parameter for the Fourier filtering for pseudopotential.
-   Default is ``'0.8'``.
 
-- **gamma_mask(:)** (real(8), Default=)[Trial]
+- **gamma_mask(:)** (real(8), Default=1.8d0)[Trial]
    Parameter for the Fourier filtering for pseudopotential.
-   Default is ``'1.8'``.
 
-- **eta_mask(:)** (real(8), Default=)[Trial]
+- **eta_mask(:)** (real(8), Default=15.0d0)[Trial]
    Parameter for the Fourier filtering for pseudopotential.
-   Default is ``'15.0'``.
 
 
 &functional
 -----------
 
-- **xc** (character, Default=)
+- **xc** (character, Default='none')
    Exchange-correlation functionals.
    At present version, the functional 'PZ', 'PZM' and 'TBmBJ' is available for both 0d/3d calculations, and the functionals 'TPSS' and 'VS98' are available for 3d calculations.
 
@@ -295,17 +291,17 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
   - ``'TPSS'``: Tao, Perdew, Staroverov and Scuseria meta-GGA exchange correlation. :J. Tao, J. P. Perdew, V. N. Staroverov, and G. E. Scuseria, Phys. Rev. Lett. 91, 146401 (2003).
   - ``'VS98'``:  van Voorhis and Scuseria exchange with Perdew-Wang correlation: T. Van Voorhis and G. E. Scuseria, J. Chem. Phys. 109, 400 (1998).
 
-- **cname, xname** (character, Default=)
+- **cname, xname** (character, Default='none')
    xxx.
 
-- **alibxc, alibx, alibc** (character, Default=)
+- **alibxc, alibx, alibc** (character, Default='none')
    By specifying ``alibxc``, the functionals prepared in libxc package are available. 
    They can be set indivisually by specifying ``alibx`` and ``alibc``.
    To use libxc libraries, ``--with-libxc`` option must be added in excecuting configure. 
    The available option of the exchange-correlation functionals are listed in the LibXC website. 
    [See http://www.tddft.org/programs/libxc/functionals/]
    
-- **cval** (real(8), Default=)
+- **cval** (real(8), Default=-1d0)
    | Old infomation: 3d
    Mixing parameter in Tran-Blaha meta-GGA exchange potential. If ``cval`` is set to a minus value, the mixing-parameter computed
    by the formula in the original paper [Phys. Rev. Lett. 102, 226401 (2008)].
@@ -315,7 +311,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &rgrid
 ------
 
-- **dl(3)** (real(8), Default=)
+- **dl(3)** (real(8), Default=0d0)
    Spacing of real-space grids. Unit of length can be chosen by
    ``&units/unit_system``.
    This valiable cannot be set with 
@@ -325,7 +321,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    so that the size of the simulation box
    ``&system/al(3)`` becomes divisible by the spacing.
 
-- **num_rgrid(3)** (integer, Default=)
+- **num_rgrid(3)** (integer, Default=0)
    | Old infomation: 3d
    Number of real-space grids.
    This valiable cannot be set with 
@@ -335,13 +331,13 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &kgrid
 ------
 
-- **num_kgrid(3)** (integer, Default=)
+- **num_kgrid(3)** (integer, Default=1)
    | Old infomation: 3d
    Number of k-points (grid points of k-vector) discretizing
    the Brillouin zone.
    Each component must be even.
 
-- **file_kw** (character, Default=)
+- **file_kw** (character, Default='none')
    | Old infomation: 3d
    Name of a file for flexible k-point sampling.
    This file will be read if ``num_kgrid`` is smaller than 1.
@@ -350,58 +346,56 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &tgrid
 ------
 
-- **nt** (integer, Default=)
+- **nt** (integer, Default=0)
    Number of total time steps for real-time propagation.
 
-- **dt** (real(8), Default=)
+- **dt** (real(8), Default=0d0)
    Time step. Unit of time can be chosen by ``&units/unit_system``.
 
 
 &propagation
 ------------
 
-- **propagator** (character, Default=)
+- **n_hamil** (integer, Default=4)[Trial]
+   | Old infomation: 0d
+   Order of Taylor expansion of a propagation operator.
+
+- **propagator** (character, Default=middlepoint')
    | Old infomation: 3d
    Choice of Propagator.
    ``middlepoint`` is an propagator
    with the Hamiltoinan at midpoint of two-times.
    ``etrs`` is enforced time-reversal symmetry propagator.
    [M.A.L. Marques, A. Castro, G.F. Bertsch, and A. Rubio, Comput. Phys. Commun., 151 60 (2003)].
-   Default is ``middlepoint``.
 
-- **n_hamil** (integer, Default=)[Trial]
-   | Old infomation: 0d
-   Order of Taylor expansion of a propagation operator.
-   Default is ``4``.
-
-- **yn_fix_func** (character(1), Default=)[Trial]
+- **yn_fix_func** (character(1), Default='n')[Trial]
    | Old infomation: 3d
    Option not to update functional (or Hamiltonian) in RT calculation, i.e., keep ground state Hamiltonian during time-evolution.
-   Default is ``'n'``.
 
 &scf
 ----
 
-- **nscf** (integer, Default=)
-   Number of maximum scf cycle.
+- **method_min** (character, Default='cg') 
+   xxx.
 
-- **ncg** (integer, Default=)
+- **ncg** (integer, Default=5)
    Number of interation of Conjugate-Gradient method for each scf-cycle.
-   Default is ``5``.
 
-- **method_mixing** (character, Default=) 
+- **method_mixing** (character, Default='broyden') 
    | Old infomation: 0d
    Methods for density/potential mixing for scf cycle. ``simple`` and ``broyden`` can be chosen.
-   Default is ``broyden``.
 
-- **mixrate** (real(8), Default=)
+- **mixrate** (real(8), Default=0.5d0)
    | Old infomation: 0d
-  Mixing ratio for simple mixing. Default is ``0.5``.
+  Mixing ratio for simple mixing.
 
-- **nmemory_mb** (integer, Default=)
+- **nmemory_mb** (integer, Default=8)
    Number of stored densities at previous scf-cycles for 
-   the modified-Broyden method. Default is ``8``. 
+   the modified-Broyden method. 
    If ``&system/yn_periodic`` is ``'n'``, ``nmemory_mb`` must be less than 21.
+
+- **nscf** (integer, Default=)
+   Number of maximum scf cycle.
 
 - **alpha_mb** (real(8), Default=)
    Parameter of the modified-Broyden method.
