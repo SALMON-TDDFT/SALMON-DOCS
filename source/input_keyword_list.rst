@@ -318,6 +318,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 -----------
 
 - **xc** (character, Default='none')
+   | Available for ``theory='xxx'``.
    Exchange-correlation functionals.
    At present version, the functional 'PZ', 'PZM' and 'TBmBJ' is available for both 0d/3d calculations, and the functionals 'TPSS' and 'VS98' are available for 3d calculations.
 
@@ -328,9 +329,11 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
   - ``'VS98'``:  van Voorhis and Scuseria exchange with Perdew-Wang correlation: T. Van Voorhis and G. E. Scuseria, J. Chem. Phys. 109, 400 (1998).
 
 - **cname, xname** (character, Default='none')
+   | Available for ``theory='xxx'``.
    xxx.
 
 - **alibxc, alibx, alibc** (character, Default='none')
+   | Available for ``theory='xxx'``.
    By specifying ``alibxc``, the functionals prepared in libxc package are available. 
    They can be set indivisually by specifying ``alibx`` and ``alibc``.
    To use libxc libraries, ``--with-libxc`` option must be added in excecuting configure. 
@@ -338,6 +341,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    [See http://www.tddft.org/programs/libxc/functionals/]
    
 - **cval** (real(8), Default=-1d0)
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Mixing parameter in Tran-Blaha meta-GGA exchange potential. If ``cval`` is set to a minus value, the mixing-parameter computed
    by the formula in the original paper [Phys. Rev. Lett. 102, 226401 (2008)].
@@ -348,6 +352,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ------
 
 - **dl(3)** (real(8), Default=0d0)
+   | Available for ``theory='xxx'``.
    Spacing of real-space grids. Unit of length can be chosen by
    ``&units/unit_system``.
    This valiable cannot be set with 
@@ -358,6 +363,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    ``&system/al(3)`` becomes divisible by the spacing.
 
 - **num_rgrid(3)** (integer, Default=0)
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Number of real-space grids.
    This valiable cannot be set with 
@@ -368,12 +374,14 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ------
 
 - **num_kgrid(3)** (integer, Default=1)
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Number of k-points (grid points of k-vector) discretizing
    the Brillouin zone.
    Each component must be even.
 
 - **file_kw** (character, Default='none')
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Name of a file for flexible k-point sampling.
    This file will be read if ``num_kgrid`` is smaller than 1.
@@ -383,9 +391,11 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ------
 
 - **nt** (integer, Default=0)
+   | Available for ``theory='xxx'``.
    Number of total time steps for real-time propagation.
 
 - **dt** (real(8), Default=0d0)
+   | Available for ``theory='xxx'``.
    Time step. Unit of time can be chosen by ``&units/unit_system``.
 
 
@@ -393,10 +403,12 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ------------
 
 - **n_hamil** (integer, Default=4)[Trial]
+   | Available for ``theory='xxx'``.
    | Old infomation: 0d
    Order of Taylor expansion of a propagation operator.
 
 - **propagator** (character, Default=middlepoint')
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Choice of Propagator.
    ``middlepoint`` is an propagator
@@ -405,6 +417,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    [M.A.L. Marques, A. Castro, G.F. Bertsch, and A. Rubio, Comput. Phys. Commun., 151 60 (2003)].
 
 - **yn_fix_func** (character(1), Default='n')[Trial]
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Option not to update functional (or Hamiltonian) in RT calculation, i.e., keep ground state Hamiltonian during time-evolution.
 
@@ -412,45 +425,57 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ----
 
 - **method_min** (character, Default='cg') 
+   | Available for ``theory='xxx'``.
    xxx.
 
 - **ncg** (integer, Default=5)
+   | Available for ``theory='xxx'``.
    Number of interation of Conjugate-Gradient method for each scf-cycle.
 
 - **method_mixing** (character, Default='broyden') 
+   | Available for ``theory='xxx'``.
    | Old infomation: 0d
    Methods for density/potential mixing for scf cycle. ``simple`` and ``broyden`` can be chosen.
 
 - **mixrate** (real(8), Default=0.5d0)
+   | Available for ``theory='xxx'``.
    | Old infomation: 0d
   Mixing ratio for simple mixing.
 
 - **nmemory_mb** (integer, Default=8)
+   | Available for ``theory='xxx'``.
    Number of stored densities at previous scf-cycles for 
    the modified-Broyden method. 
    If ``&system/yn_periodic`` is ``'n'``, ``nmemory_mb`` must be less than 21.
 
 - **alpha_mb** (real(8), Default=0.75d0)
+   | Available for ``theory='xxx'``.
    Parameter of the modified-Broyden method.
  
 - **fsset_option** (character, Default='n') 
+   | Available for ``theory='xxx'``.
    xxx.
 
 - **nfsset_start** (integer, Default=75) 
+   | Available for ``theory='xxx'``.
    xxx.
 
 - **nfsset_every** (integer, Default=25) 
+   | Available for ``theory='xxx'``.
    xxx.
 
 - **nscf** (integer, Default=0)
+   | Available for ``theory='xxx'``.
    Number of maximum scf cycle.
 
 - **yn_subspace_diagonalization** (character, Default='y')
+   | Available for ``theory='xxx'``.
    | Old infomation: 0d
    Enable(``'y'``)/disable(``'n'``) 
    subspace diagonalization during scf cycle.
 
 - **convergence** (character, Default='rho_dne')
+   | Available for ``theory='xxx'``.
    Choice of quantity that is used for convergence check in a scf calculation. 
 
   - ``'rho_dne'``: Convergence is checked by sum_ix|rho(ix,iter)-rho(ix,iter-1)|dx/N, where iter is an iteration number of the scf calculation and N is ``&system/nelec``, the number of the valence electrons.
@@ -463,6 +488,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
   - ``'pot_dng'``: Convergence is checked by ||Vlocal_iter(ix)-Vlocal_iter-1(ix)||\ :sup:`2`\/(number of grids).
 
 - **threshold** (real(8), Default=1d-17)
+   | Available for ``theory='xxx'``.
    Threshold for convergence check that is used when ``'rho_dne'`` is specified.
    Default is ``1d-17``. 
    XXX(threshold_norm_rho (real(8), Default=))XXX
@@ -473,6 +499,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``-1d0`` a.u. (1 a.u.= 33.72x10\ :sup:`4`\ A\ :sup:`-6`\eV\ :sup:`2`\)
 
 - **omp_loop** (character, Default='k')
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    XXX only ARTED XXX
    Loop for OpenMP parallelization in the ground state SCF if periodic boundary system is used. 
@@ -481,11 +508,13 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
   - ``b``: parallelization mainly for band orbital loop (sometimes space grid loop too). This works efficiently if the number of k-point treated in each node is small (e.x. the case of single k-point for each node)
 
 - **skip_gsortho** (character, Default='n')[Trial]
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    XXX only ARTED XXX
    Flag to skip Gram-Schmidt orthogonalization in CG loop if periodic boundary system is used. If this is skipped the more iteration number is necessary to get convergence but each iteration step gets faster. If ``omp_loop=b``, this flag is always applied.
 
 - **iditer_notemperature** (integer, Default=10) 
+   | Available for ``theory='xxx'``.
    xxx.
 
 
@@ -493,11 +522,13 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 --------
 
 - **trans_longi** (character, Default='tr')
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Geometry of solid-state calculations.
    Transverse ``'tr'`` and longitudinal ``'lo'`` can be chosen.
 
 - **ae_shape1/ae_shape2** (character, Default='none')
+   | Available for ``theory='xxx'``.
    Shape of the first/second pulse.
 
   - ``'impulse'``: Impulsive fields.
@@ -511,74 +542,91 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 
 - **e_impulse** (real(8), Default=1d-2 a.u.)
+   | Available for ``theory='xxx'``.
    Momentum of impulsive perturbation.
    This valiable has the dimention of momentum, energy*time/length.
 
 ..
  - **t_impulse**
+   | Available for ``theory='xxx'``.
    not yet implemented XXXX
 ..
    
 - **E_amplitude1/E_amplitude2** (real(8), Default=0d0)
+   | Available for ``theory='xxx'``.
    Maximum amplitude of electric fields for the first/second pulse.
    This valiable has the dimension of electric field, energy/(length*charge).
    This valiable cannot be set with ``&emfield/I_wcm2_1`` (``I_wcm2_2``) simultaneously.
 
 - **I_wcm2_1/I_wcm2_2** (real(8), Default=-1d0)
+   | Available for ``theory='xxx'``.
    Peak laser intensity (W/cm\ :sup:`2`\) of the first/second pulse.
    This valiable cannot be set with ``&emfield/E_amplitude1`` (``E_amplitude2``) simultaneously.
 
 - **tw1/tw2** (real(8), Default=0d0)
+   | Available for ``theory='xxx'``.
    Duration of the first/second pulse. Unit of time can be chosend 
    by ``&units/unit_time``.
 
 - **omega1/omega2** (real(8), Default=0d0)
+   | Available for ``theory='xxx'``.
    Mean photon energy (average frequency multiplied by the Planck constant) of the first/second pulse. Unit of energy can be chosend 
    by ``&units/unit_energy``.
 
 - **epdir_re1(3)/epdir_re2(3)** (real(8), Default=1d0, 0d0, 0d0)
+   | Available for ``theory='xxx'``.
    Real part of polarization vector for the first/second pulse.
 
 - **epdir_im1(3)/epdir_im2(3)** (real(8), Default=0d0)
+   | Available for ``theory='xxx'``.
    Imaginary part of polarization vector for the first/second pulse.
 
 - **phi_cep1/phi_cep2** (real(8), Default=0d0)
+   | Available for ``theory='xxx'``.
    Carrier emvelope phase of the first/second pulse.
    Default is ``0d0/0d0``.
 
 - **t1_t2** (real(8), Default=0d0)
+   | Available for ``theory='xxx'``.
    Time-delay between the first and the second pulses.
    Unit of time can be chosen by ``&units/unit_time``.
 
 - **t1_start** (real(8), Default=0d0)
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Time-delay of the first pulse.
    Unit of time can be chosen by ``&units/unit_time``.
    (this is not available for multiscale option).
 
 - **yn_local_field** (character, Default='n')[Trial]
+   | Available for ``theory='xxx'``.
    | Old infomation: 0d
    The pulse is applied to a specific domain.
 
 - **rlaserbound_sta/rlaserbound_end** (real(8), Default=-1.d7 a.u.)
+   | Available for ``theory='xxx'``.
    xxx.
 
 - **num_dipole_source** (integer, Default=0)
+   | Available for ``theory='xxx'``.
    | Old infomation: 0d
    Number of radiation sources for optical near fields.
    Maximum number is ``2``.
 
 - **vec_dipole_source(3,num_dipole_source)** (real(8), Default=0d0)
+   | Available for ``theory='xxx'``.
    | Old infomation: 0d
    Dipole vectors of the radiation sources for the optical near fields.
    Unit of length can be chosen by ``&units/unit_length``.
 
 - **cood_dipole_source(3,num_dipole_source)** (real(8), Default=0d0)
+   | Available for ``theory='xxx'``.
    | Old infomation: 0d
    Central coordinates of the dipole vectors of the radiation sources.
    Unit of length can be chosen by ``&units/unit_length``.
 
 - **rad_dipole_diele** (real(8), Default=2d0 a.u.)
+   | Available for ``theory='xxx'``.
    | Old infomation: 0d
    Radii of dielectric spheres for the radiation sources.
    Unit of length can be chosen by ``&units/unit_length``.
