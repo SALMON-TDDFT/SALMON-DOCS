@@ -96,6 +96,7 @@ List of all input keywords
 ------
 
 - **unit_system** (character, Default='au')
+   | Available for ``theory='xxx'``.
    Unit for input variables. 
    If ``'au'`` or ``'a.u.'``, atomic unit system is used. 
    If ``'A_eV_fs'``, Angstrom-eV-fs unit system is used. 
@@ -105,10 +106,12 @@ List of all input keywords
 ---------
 
 - **yn_domain_parallel** (character, Default='n')[Trial]
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    If specified ``yn_domain_parallel='y'`` and ``&system/yn_periodic='y'``, program codes for domain parallel version run in periodic system calculations.
 
 - **nproc_k/nproc_ob/nproc_domain_orbital(3)/nproc_domain_general(3)** (integer, Default=0)
+   | Available for ``theory='xxx'``.
    | Old infomation: 0d
    Followings are explanation of each variable.
 
@@ -126,11 +129,13 @@ List of all input keywords
   - ``nproc_domain_general(3)`` is a multiple of ``nproc_domain_orbital(3)``
 
 - **yn_ffte** (character, Default='ft')
+   | Available for ``theory='xxx'``.
    | Old infomation: 0d
    Method of Fourier transformation.  ``'ft'``,  ``'FT'``, ``'ffte'`` or ``'FFTE'`` can be chosen.
    This variable is effective only when ``yn_domain_parallel='y'`` and ``&system/yn_periodic='y'``.
 
 - **process_allocation** (character, Default='grid_sequential')
+   | Available for ``theory='xxx'``.
    | Old infomation: 0d
    xxx.
 
