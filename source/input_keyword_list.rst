@@ -47,6 +47,7 @@ List of all input keywords
    |    ``Maxwell``  / electromagnetic simulations based on the Maxwell's equations (o
 
 - **yn_md** (character, Default='n')[Trial]
+   | Available for ``theory='DFT'`` (Adiabatic ground-state MD) and ``theory='TDDFT_pulse'`` (Ehrenfest MD).
    Enable(``'y'``)/disable(``'n'``). 
    Molecular dynamics option. This is available for ``theory='DFT'`` (Adiabatic ground-state MD) and ``theory='TDDFT_pulse'`` (Ehrenfest MD).
 
