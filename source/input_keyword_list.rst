@@ -637,52 +637,63 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 -----------
 
 - **fdtddim** (character, Default='1d')[Trial]
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Dimension of FDTD calculation for multi-scale Maxwell-Kohn-Sham method.
 
 - **twod_shape** (character, Default='periodic')[Trial]
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Boundary condision of the second dimension for FDTD calculation with 
    multi-scale Maxwell-Kohn-Sham method.
 
 - **nx_m** (integer, Default=1)
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Number of macroscopic grid points inside materials for x-direction.
 
 - **ny_m/nz_m** (integer, Default=1)[Trial]
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Number of macroscopic grid points inside materials for (y/z)-direction.
 
 - **hx_m** (real(8), Default=0d0)
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Spacing of macroscopic grid points inside materials for (x)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
 
 - **hy_m/hz_m** (real(8), Default=0d0)[Trial]
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Spacing of macroscopic grid points inside materials for (y/z)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
 
 - **nxvacl_m/nxvacr_m** (integer, Default=1/0)
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Number of macroscopic grid points for vacumm region.
    ``nxvacl_m`` gives the number for negative x-direction in front of material,
    while ``nxvacr_m`` gives the number for positive x-direction behind the material.
 
 - **nx_origin_m/ny_origin_m/nz_origin_m** (integer, Default=1)[Trial]
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Origin coordinat of the grid points.
 
 - **file_macropoint** (character, Default='')[Trial]
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    If file name is specified in the option, the coordinates of the macropoints are set from the file.
 
 - **set_ini_coor_vel** (character, Default='n')[Trial]
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Set initial atomic coordinates and velocities for each macro-grid point. This must be given with specific directories and files: 
    Prepare ``directory``/multiscale/MXXXXXX/ini_coor_vel.dat, where 'XXXXXX' is the index number of the macro-grid point of the material region usually starting from '000001' up to the number of macro-grid point. The format of the file 'ini_coor_vel.dat' is just Rx, Ry, Rz, Vx, Vy, Vz (with space separation) for each atom (i.e. for each line), where the unit of the coordinates, Rx, Ry, Rz, is angstrom or a.u. speficied by ``unit_system`` but that of velocities is always a.u.. This option should be used together with ``read_gs_wfn_k_ms`` which is the option to read the ground state wave function for each macro-grid point. 
 
 - **nmacro_write_group** (integer, Default=-1)[Trial]
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    If the number of macroscopic grids are very large, computers can be unstable by writing all information of all macroscopic grid points at the same time. To avoid that, the writings are divided by specifying this option. Writings will be done by each ``nmacro_write_group`` macroscopic grid points. (this number must be aliquot part of the total number of macroscopic grid points)
 
@@ -691,74 +702,99 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 --------
 
 - **al_em(3)** (real(8), Default=0d0)
+   | Available for ``theory='Maxwell'``.
    Size of simulation box in electromagnetic analysis. Unit of the length can be chosen by ``&units/unit_system``.
 
 - **dl_em(3)** (real(8), Default=0d0)
+   | Available for ``theory='Maxwell'``.
    Spacing of real-space grids in electromagnetic analysis. Unit of length can be chosen by ``&units/unit_system``.
 
 - **dt_em** (real(8), Default=0)
+   | Available for ``theory='Maxwell'``.
    Time step in electromagnetic analysis. Unit of time can be chosen by ``&units/unit_system``.
 
 - **nt_em** (integer, Default=0)
+   | Available for ``theory='Maxwell'``.
    Number of total time steps for real-time propagation in electromagnetic analysis.
 
 - **boundary_em(3,2)** (character, Default='default')
+   | Available for ``theory='Maxwell'``.
    Boundary condition in electromagnetic analysis. The first index(1-3 rows) corresponds to x, y, and z axes. The second index(1-2 columns) corresponds to bottom and top of the axes. If ``&system/yn_periodic='n'``, ``'default'``, ``'pml'``, and ``'pec'`` can be chosen. ``'pml'`` is absorbing boundary and ``'pec'`` is perfect electric conductor. ``'default'`` is ``'pml'``. If ``&system/yn_periodic='y'``, ``'default'``, ``'pml'``, and ``'periodic'`` can be chosen. ``'periodic'`` is periodic boundary. ``'default'`` is ``'periodic'``.
 
 - **shape_file** (character, Default='none')
+   | Available for ``theory='Maxwell'``.
    Name of shape file in electromagnetic analysis. The shape files can be generated by using SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
 - **media_num** (integer, Default=0)
+   | Available for ``theory='Maxwell'``.
    Number of media in electromagnetic analysis.
 
 - **media_type(:)** (character, Default='vacuum')
+   | Available for ``theory='Maxwell'``.
    Type of media in electromagnetic analysis. ``'vacuum'``, ``'constant media'``, ``'pec'``, and ``'lorentz-drude'`` can be chosen. If ``'lorentz-drude'`` is chosen, linear response calculation can be done by ``&emfield/ae_shape1 or ae_shape2='impulse'``.
 
 - **epsilon_em(:)** (real(8), Default=1d0)
+   | Available for ``theory='Maxwell'``.
    Relative permittivity of the media in electromagnetic analysis.
 
 - **mu_em(:)** (real(8), Default=1d0)
+   | Available for ``theory='Maxwell'``.
    Relative permeability of the media in electromagnetic analysis.
 
 - **sigma_em(:)** (real(8), Default=0d0)
+   | Available for ``theory='Maxwell'``.
    Conductivity of the media in electromagnetic analysis.
 
 - **pole_num_ld(:)** (integer, Default=1)
+   | Available for ``theory='Maxwell'``.
    Number of poles of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis.
 
 - **omega_p_ld(:)** (real(8), Default=0d0)
+   | Available for ``theory='Maxwell'``.
    Plasma frequency of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis.
+   
 - **f_ld(:,:)** (real(8), Default=0d0)
+   | Available for ``theory='Maxwell'``.
    Oscillator strength of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. The first index is media id whose maximum value is determined by ``media_num``. The second index is pole id whose maximum value is determined by ``pole_num_ld``.
 
 - **gamma_ld(:,:)** (real(8), Default=0d0)
+   | Available for ``theory='Maxwell'``.
    Collision frequency of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. The first index is media id whose maximum value is determined by ``media_num``. The second index is pole id whose maximum value is determined by ``pole_num_ld``.
 
 - **omega_ld(:,:)** (real(8), Default=0d0)
+   | Available for ``theory='Maxwell'``.
    Oscillator frequency of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. The first index is media id whose maximum value is determined by ``media_num``. The second index is pole id whose maximum value is determined by ``pole_num_ld``.
 
 - **wave_input** (character, Default='none')
+   | Available for ``theory='Maxwell'``.
    If ``'source'``, the incident pulse in electromagnetic analysis is generated by the incident current source.
 
 - **ek_dir1(3)/ek_dir2(3)** (real(8), Default=0d0)
+   | Available for ``theory='Maxwell'``.
    Propagation direction of the first/second pulse.
 
 - **source_loc1(3)/source_loc2(3)** (real(8), Default=0d0)
+   | Available for ``theory='Maxwell'``.
    Location of the incident current source of the first/second pulse. Note that the coordinate system ranges from ``-al_em/2`` to ``al_em/2`` for ``&system/yn_periodic='n'`` while ranges from ``0`` to ``al_em`` for ``&system/yn_periodic='y'``.
 
 - **obs_num_em** (integer, Default=0)
+   | Available for ``theory='Maxwell'``.
    Number of observation point in electromagnetic analysis. From the obtained results, figure and animation files can be generated by using SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
 - **obs_samp_em** (integer, Default=1)
+   | Available for ``theory='Maxwell'``.
    Sampling time-step of the observation in electromagnetic analysis.
 
 - **obs_loc_em(:,3)** (real(8), Default=0d0)
+   | Available for ``theory='Maxwell'``.
    Location of the observation point in electromagnetic analysis. Note that the coordinate system ranges from ``-al_em/2`` to ``al_em/2`` for ``&system/yn_periodic='n'`` while ranges from ``0`` to ``al_em`` for ``&system/yn_periodic='y'``.
 
 - **yn_obs_plane_em(:)** (character, Default='n')
+   | Available for ``theory='Maxwell'``.
    Enable(``'y'``)/disable(``'n'``). Output of the electrmagnetic fields on the planes (xy, yz, and xz planes) for each observation point. This option must be ``'y'`` for generating animation files by using SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
 - **yn_wf_em** (character, Default='y')
+   | Available for ``theory='Maxwell'``.
    Enable(``'y'``)/disable(``'n'``). Applying a window function for linear response calculation when ``&calculation/theory=Maxwell``.
 
 &analysis
