@@ -48,12 +48,11 @@ List of all input keywords
 
 - **yn_md** (character, Default='n')[Trial]
    | Available for ``theory='DFT'`` (Adiabatic ground-state MD) and ``theory='TDDFT_pulse'`` (Ehrenfest MD).
-   Enable(``'y'``)/disable(``'n'``). 
-   Molecular dynamics option. This is available for ``theory='DFT'`` (Adiabatic ground-state MD) and ``theory='TDDFT_pulse'`` (Ehrenfest MD).
+   Enable(``'y'``)/disable(``'n'``). Molecular dynamics option.
 
 - **yn_opt** (character, Default='n')[Trial]
-   Enable(``'y'``)/disable(``'n'``). 
-   Geometry optimization option. Available for ``theory='DFT'``.
+   | Available for ``theory='DFT'``.
+   Enable(``'y'``)/disable(``'n'``). Geometry optimization option.
 
 
 &control
