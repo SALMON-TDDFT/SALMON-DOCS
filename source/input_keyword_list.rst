@@ -63,7 +63,7 @@ List of all input keywords
    Name of calculation. This is used for a prefix of output files.
 
 - **base_directory** (character, Default='./')
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    Name of a default directory, where the basic results will be written down.
 
 - **output_buffer_interval** (integer, Default=-1)
@@ -96,7 +96,7 @@ List of all input keywords
 ------
 
 - **unit_system** (character, Default='au')
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    Unit for input variables. 
    If ``'au'`` or ``'a.u.'``, atomic unit system is used. 
    If ``'A_eV_fs'``, Angstrom-eV-fs unit system is used. 
@@ -111,7 +111,7 @@ List of all input keywords
    If specified ``yn_domain_parallel='y'`` and ``&system/yn_periodic='y'``, program codes for domain parallel version run in periodic system calculations.
 
 - **nproc_k/nproc_ob/nproc_domain_orbital(3)/nproc_domain_general(3)** (integer, Default=0)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    | Old infomation: 0d
    Followings are explanation of each variable.
 
