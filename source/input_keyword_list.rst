@@ -144,65 +144,79 @@ List of all input keywords
 -------
 
 - **yn_periodic** (character, Default='n')
+   | Available for ``theory='xxx'``.
    Dimension for periodic boundary condition.
    ``'n'`` is for isolated systems, and 
    ``'y'`` is for solids.
 
 - **ispin** (integer, Default=0)
+   | Available for ``theory='xxx'``.
    | Old infomation: 0d
    Variable for classification of closed shell systems and open shell systems.
    ``0`` is for closed shell systems, and
    ``1`` is for open shell systems.
 
 - **al(3)** (real(8), Default=0d0)
+   | Available for ``theory='xxx'``.
    Lattice constants. Unit of the length can be chosen by ``&units/unit_system``.
 
 - **al_vec1(3)/al_vec2(3)/al_vec3(3)** (real(8), Default=0d0)
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    xxx.
 
 - **isym** (integer, Default=0)
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Number of symmetries that can be used for reduction of k-points.
 
 - **crystal_structure** (character, Default='none')
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Name of symmetry that can be used for the reduction of # of k-points.
 
 - **nstate** (integer, Default=0)
+   | Available for ``theory='xxx'``.
    Number of states/bands.
 
 - **nstate_spin(2)** (integer, Default=0)
+   | Available for ``theory='xxx'``.
    | Old infomation: 0d
    Number of states/bands can be specified independently by ``nstate_spin(1)/nstate_spin(2)``.
    This option is incompatible with ``nstate``
 
 - **nelec** (integer, Default=0)
+   | Available for ``theory='xxx'``.
    Number of valence electrons.
 
 - **nelec_spin(2)** (integer, Default=0)
+   | Available for ``theory='xxx'``.
    | Old infomation: 0d
    Number of up/down-spin electrons can be specified independently by ``nelec_spin(1)/nelec_spin(2)``.
    This option is incompatible with ``nelec``
 
 - **temperature** (real(8), Default=-1d0)
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Temperature of electrons. When you calculate a system of zero band-gap energy like metals, zero or positive number of the temperature should be given.
    Unit of the energy can be chosen ``&units/unit_system``. 
    Default is ``-1.0`` (this is for system which has a band gap energy).
 
 - **temperature_k** (real(8), Default=-1d0)[Trial]
+   | Available for ``theory='xxx'``.
    | Old infomation: 0d
    Temperature of electrons [K]. Default is ``-1.d0``.
 
 - **nelem** (integer, Default=0)
+   | Available for ``theory='xxx'``.
    Number of elements that will be used in calculations.
 
 - **natom** (integer, Default=0)
+   | Available for ``theory='xxx'``.
    Number of atoms in a calculation cell.
 
-
 - **file_atom_red_coor** (character, Default='none')[Trial]
+   | Available for ``theory='xxx'``.
    | Old infomation: 3d
    File name of atomic positions. In this file, 
    the atomic coordinates can be written in reduced coordinates.
@@ -212,6 +226,7 @@ List of all input keywords
    ``&atomic_red_coor``.
 
 - **file_atom_coor** (character, Default='none')[Trial]
+   | Available for ``theory='xxx'``.
    | Old infomation: 0d
    File name of atomic positions. In this file, 
    the atomic coordinates can be written in Cartesian cooridnates.
@@ -266,28 +281,36 @@ This option is incompatible with
 Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **file_pseudo(:)** (character, Default='none')
+   | Available for ``theory='xxx'``.
    Name of pseudopotential files.
 
 - **lmax_ps(:)** (integer, Default=-1)
+   | Available for ``theory='xxx'``.
    Maximum angular momentum of pseudopotential projectors.
 
 - **lloc_ps(:)** (integer, Default=-1)
+   | Available for ``theory='xxx'``.
    Angular momentum of pseudopotential that will be treated as local.
 
 - **izatom(:)** (integer, Default=-1)
+   | Available for ``theory='xxx'``.
    Atomic number.
 
 - **yn_psmask(:)** (character, Default='n')[Trial]
+   | Available for ``theory='xxx'``.
    Enable(``'y'``)/disable(``'n'``) 
    Fourier filtering for pseudopotentials. 
 
 - **alpha_mask(:)** (real(8), Default=0.8d0)[Trial]
+   | Available for ``theory='xxx'``.
    Parameter for the Fourier filtering for pseudopotential.
 
 - **gamma_mask(:)** (real(8), Default=1.8d0)[Trial]
+   | Available for ``theory='xxx'``.
    Parameter for the Fourier filtering for pseudopotential.
 
 - **eta_mask(:)** (real(8), Default=15.0d0)[Trial]
+   | Available for ``theory='xxx'``.
    Parameter for the Fourier filtering for pseudopotential.
 
 
