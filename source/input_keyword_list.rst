@@ -59,28 +59,36 @@ List of all input keywords
 --------
 
 - **sysname** (character, Default='default')
+   | Available for ``theory='xxx'``.
    Name of calculation. This is used for a prefix of output files.
 
 - **base_directory** (character, Default='./')
+   | Available for ``theory='xxx'``.
    Name of a default directory, where the basic results will be written down.
 
 - **output_buffer_interval** (integer, Default=-1)
+   | Available for ``theory='xxx'``.
    xxx.
 
 - **yn_restart** (character, Default='new')[Trial]
+   | Available for ``theory='xxx'``.
    Flag for restart, ``'new'`` or ``'restart'``.
 
 - **directory_read_data** (character, Default='restart/')[Trial]
+   | Available for ``theory='xxx'``.
    xxx.
 
 - **yn_self_checkpoint** (character, Default='n')[Trial]
+   | Available for ``theory='xxx'``.
    xxx.
 
 - **checkpoint_interval** (integer, Default=0)[Trial]
+   | Available for ``theory='xxx'``.
    Frequency of backup during the time-propagation. 
    If ``0`` is set, the backup is not performed.
 
 - **time_shutdown** (real(8), Default=-1d0)[Trial]
+   | Available for ``theory='xxx'``.
    Timer for automatic shutdown. The unit is always second.
    If negative time is chosen, the automatic shutdown is not performed.
 
