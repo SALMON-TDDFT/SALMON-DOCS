@@ -144,7 +144,7 @@ List of all input keywords
 -------
 
 - **yn_periodic** (character, Default='n')
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    Dimension for periodic boundary condition.
    ``'n'`` is for isolated systems, and 
    ``'y'`` is for solids.
@@ -522,13 +522,13 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 --------
 
 - **trans_longi** (character, Default='tr')
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    | Old infomation: 3d
    Geometry of solid-state calculations.
    Transverse ``'tr'`` and longitudinal ``'lo'`` can be chosen.
 
 - **ae_shape1/ae_shape2** (character, Default='none')
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    Shape of the first/second pulse.
 
   - ``'impulse'``: Impulsive fields.
@@ -542,7 +542,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 
 - **e_impulse** (real(8), Default=1d-2 a.u.)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    Momentum of impulsive perturbation.
    This valiable has the dimention of momentum, energy*time/length.
 
@@ -553,46 +553,46 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ..
    
 - **E_amplitude1/E_amplitude2** (real(8), Default=0d0)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    Maximum amplitude of electric fields for the first/second pulse.
    This valiable has the dimension of electric field, energy/(length*charge).
    This valiable cannot be set with ``&emfield/I_wcm2_1`` (``I_wcm2_2``) simultaneously.
 
 - **I_wcm2_1/I_wcm2_2** (real(8), Default=-1d0)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    Peak laser intensity (W/cm\ :sup:`2`\) of the first/second pulse.
    This valiable cannot be set with ``&emfield/E_amplitude1`` (``E_amplitude2``) simultaneously.
 
 - **tw1/tw2** (real(8), Default=0d0)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    Duration of the first/second pulse. Unit of time can be chosend 
    by ``&units/unit_time``.
 
 - **omega1/omega2** (real(8), Default=0d0)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    Mean photon energy (average frequency multiplied by the Planck constant) of the first/second pulse. Unit of energy can be chosend 
    by ``&units/unit_energy``.
 
 - **epdir_re1(3)/epdir_re2(3)** (real(8), Default=1d0, 0d0, 0d0)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    Real part of polarization vector for the first/second pulse.
 
 - **epdir_im1(3)/epdir_im2(3)** (real(8), Default=0d0)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    Imaginary part of polarization vector for the first/second pulse.
 
 - **phi_cep1/phi_cep2** (real(8), Default=0d0)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    Carrier emvelope phase of the first/second pulse.
    Default is ``0d0/0d0``.
 
 - **t1_t2** (real(8), Default=0d0)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    Time-delay between the first and the second pulses.
    Unit of time can be chosen by ``&units/unit_time``.
 
 - **t1_start** (real(8), Default=0d0)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    | Old infomation: 3d
    Time-delay of the first pulse.
    Unit of time can be chosen by ``&units/unit_time``.
@@ -818,12 +818,12 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    (this is printed in ``SYSname``\_nex_atom.data).
 
 - **nenergy** (integer, Default=1000)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    Number of energy grids for frequency-domain analysis.
    This parameter is required when `'impulse'` is choosen in `&emfield/ae_shape1|2`.
 
 - **de** (real(8), Default=0.01d0 eV)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    Energy spacing for analysis.
    Unit of energy can be chosen by ``&units/unit_energy``
    This parameter is required when `'impulse'` is choosen in `&emfield/ae_shape1|2`.
