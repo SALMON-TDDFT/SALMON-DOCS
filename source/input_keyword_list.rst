@@ -59,7 +59,7 @@ List of all input keywords
 --------
 
 - **sysname** (character, Default='default')
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='xxx', 'Maxwell'``.
    Name of calculation. This is used for a prefix of output files.
 
 - **base_directory** (character, Default='./')
