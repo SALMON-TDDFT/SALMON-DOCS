@@ -299,22 +299,22 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 -----------
 
 - **xc** (character, Default='none')
-   | Available for ``theory='xxx'``.
-   Exchange-correlation functionals.
-   At present version, the functional 'PZ', 'PZM' and 'TBmBJ' is available for both 0d/3d calculations, and the functionals 'TPSS' and 'VS98' are available for 3d calculations.
-
-  - ``'PZ'``: Perdew-Zunger LDA :Phys. Rev. B 23, 5048 (1981).
-  - ``'PZM'``: Perdew-Zunger LDA with modification to improve sooth connection between high density form and low density one. :J. P. Perdew and Alex Zunger, Phys. Rev. B 23, 5048 (1981).
-  - ``'TBmBJ'``: Tran-Blaha meta-GGA exchange with Perdew-Wang correlation. :Fabien Tran and Peter Blaha, Phys. Rev. Lett. 102, 226401 (2008). John P. Perdew and Yue Wang, Phys. Rev. B 45, 13244 (1992).
-  - ``'TPSS'``: Tao, Perdew, Staroverov and Scuseria meta-GGA exchange correlation. :J. Tao, J. P. Perdew, V. N. Staroverov, and G. E. Scuseria, Phys. Rev. Lett. 91, 146401 (2003).
-  - ``'VS98'``:  van Voorhis and Scuseria exchange with Perdew-Wang correlation: T. Van Voorhis and G. E. Scuseria, J. Chem. Phys. 109, 400 (1998).
+   | Available for the DFT/TDDFT based options of ``theory``.
+   | Exchange-correlation functionals.
+   | At present version, the functional 'PZ', 'PZM' and 'TBmBJ' is available for both 0d/3d calculations, and the functionals 'TPSS' and 'VS98' are available for 3d calculations. (xxxx need check xxxx)
+   | Options
+   |   ``'PZ'``: Perdew-Zunger LDA :Phys. Rev. B 23, 5048 (1981).
+   |   ``'PZM'``: Perdew-Zunger LDA with modification to improve sooth connection between high density form and low density one. :J. P. Perdew and Alex Zunger, Phys. Rev. B 23, 5048 (1981).
+   |   ``'TBmBJ'``: Tran-Blaha meta-GGA exchange with Perdew-Wang correlation. :Fabien Tran and Peter Blaha, Phys. Rev. Lett. 102, 226401 (2008). John P. Perdew and Yue Wang, Phys. Rev. B 45, 13244 (1992).
+   |   ``'TPSS'``: Tao, Perdew, Staroverov and Scuseria meta-GGA exchange correlation. :J. Tao, J. P. Perdew, V. N. Staroverov, and G. E. Scuseria, Phys. Rev. Lett. 91, 146401 (2003).
+   |   ``'VS98'``:  van Voorhis and Scuseria exchange with Perdew-Wang correlation: T. Van Voorhis and G. E. Scuseria, J. Chem. Phys. 109, 400 (1998).
 
 - **cname, xname** (character, Default='none')
    | Available for ``theory='xxx'``.
    xxx.
 
 - **alibxc, alibx, alibc** (character, Default='none')
-   | Available for ``theory='xxx'``.
+   | Available for the DFT/TDDFT based options of ``theory``.
    By specifying ``alibxc``, the functionals prepared in libxc package are available. 
    They can be set indivisually by specifying ``alibx`` and ``alibc``.
    To use libxc libraries, ``--with-libxc`` option must be added in excecuting configure. 
@@ -322,8 +322,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    [See http://www.tddft.org/programs/libxc/functionals/]
    
 - **cval** (real(8), Default=-1d0)
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
+   | Available for ``xc='TBmBJ'``.
    Mixing parameter in Tran-Blaha meta-GGA exchange potential. If ``cval`` is set to a minus value, the mixing-parameter computed
    by the formula in the original paper [Phys. Rev. Lett. 102, 226401 (2008)].
    Default is estimated from :math:`\left\langle |\nabla \rho(\mathbf{r};t)| / \rho(\mathbf{r};t) \right\rangle`.
