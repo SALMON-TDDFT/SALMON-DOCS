@@ -210,57 +210,50 @@ List of all input keywords
    Number of used atomic elements in the system.
 
 - **natom** (integer, Default=0)
-   | Available for the DFT/TDDFT based options of ``theory````.
+   | Available for the DFT/TDDFT based options of ``theory``.
    Number of atoms in the system.
 
 - **file_atom_red_coor** (character, Default='none')[Trial]
    | Available for ``theory='xxx'``.
    | Old infomation: 3d
    File name for atomic positions given in reduced coordinates. 
-   The atomic coordinates given by ``&system/file_atom_coor``, ``&atomic_coor``, and ``&atomic_red_coor`` are ignored if this option is used.
+   This option is incompatible with ``&system/file_atom_coor``, ``&atomic_coor``, and ``&atomic_red_coor``.
 
 - **file_atom_coor** (character, Default='none')[Trial]
    | Available for ``theory='xxx'``.
    | Old infomation: 0d
    File name for atomic Cartesian coordinates (The unit is specified by ``&units/unit_system``). 
-   The coordinates given by ``&system/file_atom_coor``, ``&atomic_coor``, and ``&atomic_red_coor`` are ignored if this option is used.
+   This option is incompatible with ``&system/file_atom_coor``, ``&atomic_coor``, and ``&atomic_red_coor``.
    (xxxx why this keyword is not in &atomic_coor ?? xxxx)
 
 &atomic_red_coor
 ----------------
 
-In ``&atomic_red_coor``, positions of atoms can be written in reduced coordinates
-as follows:
+Positions of atoms is given in reduced coordinates as follows:
 
 |  'Si'	 0.00  0.00  0.00  1
 |  'Si'	 0.25  0.25  0.25  1
 |  ...
 
-Here, the information of atoms is ordered in row. For example, the first row gives
-the information of the first atom. The number of rows must be equal to 
-``&system/natom``.
+Here, the information of atoms is ordered in row. 
+For example, the first row is for the first atom. 
+The number of rows must be equal to ``&system/natom``.
 The first coloum can be any caracters and does not affect calculations.
 The second, third and fourth columns are reduced coordinates for
 the first, second and third directions, respectively. 
-The fifth column is a serial number of the atom spieces, which is used in 
-``&pseudo``.
+The fifth column is a serial number of the atom spieces, which is defined in ``&pseudo``.
 This option is incompatible with 
-``&system/file_atom_red_coor``,
-``&system/file_atom_coor``, and
-``&atomic_coor``.
+``&system/file_atom_red_coor``, ``&system/file_atom_coor``, and ``&atomic_coor``.
 
 
 &atomic_coor
 ------------
 
-In &atomic_coor, positions of atoms can be written in Cartesian coordinates.
-The structure is same as &atomic_red_coor.
-The unit of the length can be chosen by 
-``&units/unit_length``.
+Cartesian atomic coordinates.
+The format is the same as &atomic_red_coor.
+The unit can be chosen by ``&units/unit_length``.
 This option is incompatible with 
-``&system/file_atom_red_coor``,
-``&system/file_atom_coor``, and
-``&atomic_red_coor``.
+``&system/file_atom_red_coor``, ``&system/file_atom_coor``, and ``&atomic_red_coor``.
 
 
 &pseudo
@@ -268,37 +261,37 @@ This option is incompatible with
 
 Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
-- **file_pseudo(:)** (character, Default='none')
-   | Available for ``theory='xxx'``.
-   Name of pseudopotential files.
-
-- **lmax_ps(:)** (integer, Default=-1)
-   | Available for ``theory='xxx'``.
-   Maximum angular momentum of pseudopotential projectors.
-
-- **lloc_ps(:)** (integer, Default=-1)
-   | Available for ``theory='xxx'``.
-   Angular momentum of pseudopotential that will be treated as local.
-
 - **izatom(:)** (integer, Default=-1)
-   | Available for ``theory='xxx'``.
+   | Available for the DFT/TDDFT based options of ``theory``.
    Atomic number.
 
+- **file_pseudo(:)** (character, Default='none')
+   | Available for the DFT/TDDFT based options of ``theory``.
+   File name for pseudopotential.
+
+- **lmax_ps(:)** (integer, Default=-1)
+   | Available for the DFT/TDDFT based options of ``theory``.
+   Maximum angular momentum of pseudopotential projectors. If not given, it is automatically read from the pseudopotential file.
+
+- **lloc_ps(:)** (integer, Default=-1)
+   | Available for the DFT/TDDFT based options of ``theory``.
+   Angular momentum of pseudopotential that will be treated as local.
+
 - **yn_psmask(:)** (character, Default='n')[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for the DFT/TDDFT based options of ``theory``.
+   | Fourier filtering for pseudopotentials. 
    Enable(``'y'``)/disable(``'n'``) 
-   Fourier filtering for pseudopotentials. 
 
 - **alpha_mask(:)** (real(8), Default=0.8d0)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for the DFT/TDDFT based options of ``theory``.
    Parameter for the Fourier filtering for pseudopotential.
 
 - **gamma_mask(:)** (real(8), Default=1.8d0)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for the DFT/TDDFT based options of ``theory``.
    Parameter for the Fourier filtering for pseudopotential.
 
 - **eta_mask(:)** (real(8), Default=15.0d0)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for the DFT/TDDFT based options of ``theory``.
    Parameter for the Fourier filtering for pseudopotential.
 
 
