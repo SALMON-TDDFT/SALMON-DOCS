@@ -48,12 +48,13 @@ List of all input keywords
 
 - **yn_md** (character, Default='n')[Trial]
    | Available for ``theory='DFT'`` (Adiabatic ground-state MD) and ``theory='TDDFT_pulse'`` (Ehrenfest MD).
-   Enable(``'y'``)/disable(``'n'``). Molecular dynamics option.
+   | Molecular dynamics option.
+   Enable(``'y'``)/disable(``'n'``). 
 
 - **yn_opt** (character, Default='n')[Trial]
    | Available for ``theory='DFT'``.
-   Enable(``'y'``)/disable(``'n'``). Geometry optimization option.
-
+   | Geometry optimization option.
+   Enable(``'y'``)/disable(``'n'``).
 
 &control
 --------
@@ -63,7 +64,7 @@ List of all input keywords
    Name of calculation. This is used for a prefix of output files.
 
 - **base_directory** (character, Default='./')
-   | Available for ``theory='xxx', 'Maxwell'``.
+   | Available for all options of ``theory``.
    Name of a default directory, where the basic results will be written down.
 
 - **output_buffer_interval** (integer, Default=-1)
@@ -72,11 +73,12 @@ List of all input keywords
 
 - **yn_restart** (character, Default='new')[Trial]
    | Available for ``theory='xxx'``.
-   Flag for restart, ``'new'`` or ``'restart'``.
+   | Restart option.
+   Enable(``'y'``)/disable(``'n'``).
 
 - **directory_read_data** (character, Default='restart/')[Trial]
    | Available for ``theory='xxx'``.
-   xxx.
+   | Directory name for the restart data that is written down in the previous run 
 
 - **yn_self_checkpoint** (character, Default='n')[Trial]
    | Available for ``theory='xxx'``.
@@ -84,12 +86,12 @@ List of all input keywords
 
 - **checkpoint_interval** (integer, Default=0)[Trial]
    | Available for ``theory='xxx'``.
-   Frequency of backup during the time-propagation. 
-   If ``0`` is set, the backup is not performed.
+   Interval of time step (or iteration step) of writing down check-point data during the time-propagation. 
+   These are not written down If ``0`` is set.
 
 - **time_shutdown** (real(8), Default=-1d0)[Trial]
    | Available for ``theory='xxx'``.
-   Timer for automatic shutdown. The unit is always second.
+   Timer for automatic shutdown. The unit is second.
    If negative time is chosen, the automatic shutdown is not performed.
 
 &units
