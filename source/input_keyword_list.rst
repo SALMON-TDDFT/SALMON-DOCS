@@ -178,67 +178,53 @@ List of all input keywords
    Name of symmetry that can be used for the reduction of # of k-points.
 
 - **nstate** (integer, Default=0)
-   | Available for ``theory='xxx'``.
-   Number of states/bands.
+   | Available for the DFT/TDDFT based options of ``theory``.
+   Number of orbitals/bands.
 
 - **nstate_spin(2)** (integer, Default=0)
-   | Available for ``theory='xxx'``.
-   | Old infomation: 0d
-   Number of states/bands can be specified independently by ``nstate_spin(1)/nstate_spin(2)``.
-   This option is incompatible with ``nstate``
+   | Available for the DFT/TDDFT based options of ``theory``.
+   Number of orbitals/bands for up/down-spin electrons can be specified for each by ``nstate_spin(1)/nstate_spin(2)``.
+   This option is incompatible with ``nstate``  (?? does it mean nstate specified is ignored if this option is specified ??)
 
 - **nelec** (integer, Default=0)
-   | Available for ``theory='xxx'``.
+   | Available for the DFT/TDDFT based options of ``theory``.
    Number of valence electrons.
 
 - **nelec_spin(2)** (integer, Default=0)
-   | Available for ``theory='xxx'``.
-   | Old infomation: 0d
-   Number of up/down-spin electrons can be specified independently by ``nelec_spin(1)/nelec_spin(2)``.
-   This option is incompatible with ``nelec``
+   | Available for the DFT/TDDFT based options of ``theory``.
+   Number of up/down-spin electrons can be specified for each by ``nelec_spin(1)/nelec_spin(2)``.
+   This option is incompatible with ``nelec`` (?? does it mean nelec specified is ignored if this option is specified ??)
 
 - **temperature** (real(8), Default=-1d0)
    | Available for ``theory='xxx'``.
-   | Old infomation: 3d
-   Temperature of electrons. When you calculate a system of zero band-gap energy like metals, zero or positive number of the temperature should be given.
-   Unit of the energy can be chosen ``&units/unit_system``. 
-   Default is ``-1.0`` (this is for system which has a band gap energy).
-
+   | Old infomation: 3d xxxx
+   Temperature of electrons. When you calculate a system of zero band-gap energy like metals, zero or positive number of the temperature should be given (Default is ``-1.0`` : this is for system which has a band gap energy). The value must be given by the unit of energy as specified in ``&units/unit_system``. The unit of [K] can be used by the keyword ``temperature_k`` (see next). 
+   
 - **temperature_k** (real(8), Default=-1d0)[Trial]
    | Available for ``theory='xxx'``.
-   | Old infomation: 0d
-   Temperature of electrons [K]. Default is ``-1.d0``.
+   | Old infomation: 0d  xxxx
+   Temperature of electrons in the unit of [K].
 
 - **nelem** (integer, Default=0)
-   | Available for ``theory='xxx'``.
-   Number of elements that will be used in calculations.
+   | Available for the DFT/TDDFT based options of ``theory``.
+   Number of used atomic elements in the system.
 
 - **natom** (integer, Default=0)
-   | Available for ``theory='xxx'``.
-   Number of atoms in a calculation cell.
+   | Available for the DFT/TDDFT based options of ``theory````.
+   Number of atoms in the system.
 
 - **file_atom_red_coor** (character, Default='none')[Trial]
    | Available for ``theory='xxx'``.
    | Old infomation: 3d
-   File name of atomic positions. In this file, 
-   the atomic coordinates can be written in reduced coordinates.
-   This option is incompatible with 
-   ``&system/file_atom_coor``,
-   ``&atomic_coor``, and 
-   ``&atomic_red_coor``.
+   File name for atomic positions given in reduced coordinates. 
+   The atomic coordinates given by ``&system/file_atom_coor``, ``&atomic_coor``, and ``&atomic_red_coor`` are ignored if this option is used.
 
 - **file_atom_coor** (character, Default='none')[Trial]
    | Available for ``theory='xxx'``.
    | Old infomation: 0d
-   File name of atomic positions. In this file, 
-   the atomic coordinates can be written in Cartesian cooridnates.
-   The unit of the length can be chosen by 
-   ``&units/unit_system``.
-   This option is incompatible with 
-   ``&system/file_atom_red_coor``,
-   ``&atomic_coor``, and 
-   ``&atomic_red_coor``.
-
+   File name for atomic Cartesian coordinates (The unit is specified by ``&units/unit_system``). 
+   The coordinates given by ``&system/file_atom_coor``, ``&atomic_coor``, and ``&atomic_red_coor`` are ignored if this option is used.
+   (xxxx why this keyword is not in &atomic_coor ?? xxxx)
 
 &atomic_red_coor
 ----------------
