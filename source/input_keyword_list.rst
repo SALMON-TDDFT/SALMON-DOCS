@@ -374,23 +374,21 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ------------
 
 - **n_hamil** (integer, Default=4)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``'DFT_MD'`` and TDDFT-based options of ``theory``.
    | Old infomation: 0d
    Order of Taylor expansion of a propagation operator.
 
 - **propagator** (character, Default=middlepoint')
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
-   Choice of Propagator.
-   ``middlepoint`` is an propagator
-   with the Hamiltoinan at midpoint of two-times.
-   ``etrs`` is enforced time-reversal symmetry propagator.
+   | Available for ``'DFT_MD'`` and TDDFT-based options of ``theory``.
+   | Propagator (time-integrator).
+   | Options
+   |   ``middlepoint`` / propagator with the Hamiltoinan at midpoint of two-times.
+   |   ``etrs`` / time-reversal symmetry propagator.
    [M.A.L. Marques, A. Castro, G.F. Bertsch, and A. Rubio, Comput. Phys. Commun., 151 60 (2003)].
 
 - **yn_fix_func** (character(1), Default='n')[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
-   Option not to update functional (or Hamiltonian) in RT calculation, i.e., keep ground state Hamiltonian during time-evolution.
+   | Available for ``'DFT_MD'`` and TDDFT-based options of ``theory``.
+   Option not to update functional (or Hamiltonian) in time-evolution, i.e., keep ground state Hamiltonian during time-evolution. (currently not available)
 
 &scf
 ----
