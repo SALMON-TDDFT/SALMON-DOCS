@@ -37,14 +37,14 @@ List of all input keywords
 
 - **theory** (character, default='none')
    | Choice of Calculation theories.
-   |  Options
-   |    ``DFT``  / ground state calculation based on DFT
-   |    ``DFT_MD``  / adiabatic ab initio MD simulations based on DFT
-   |    ``TDDFT_response``  / simulations based on TDDFT for response
-   |    ``TDDFT_pulse``  / simulations based on TDDFT using pulsed light
-   |    ``Single_scale_Maxwell_TDDFT``  / coupled Maxwell and TDDFT single-scale simulation
-   |    ``Multi_scale_Maxwell_TDDFT``  / coupled Maxwell and TDDFT multi-scale simulation
-   |    ``Maxwell``  / electromagnetic simulations based on the Maxwell's equations (o
+   | Options
+   |   ``DFT``  / ground state calculation based on DFT
+   |   ``DFT_MD``  / adiabatic ab initio MD simulations based on DFT
+   |   ``TDDFT_response``  / simulations based on TDDFT for response
+   |   ``TDDFT_pulse``  / simulations based on TDDFT using pulsed light
+   |   ``Single_scale_Maxwell_TDDFT``  / coupled Maxwell and TDDFT single-scale simulation
+   |   ``Multi_scale_Maxwell_TDDFT``  / coupled Maxwell and TDDFT multi-scale simulation
+   |   ``Maxwell``  / electromagnetic simulations based on the Maxwell's equations (o
 
 - **yn_md** (character, Default='n')[Trial]
    | Available for ``theory='DFT'`` (Adiabatic ground-state MD) and ``theory='TDDFT_pulse'`` (Ehrenfest MD).
@@ -99,9 +99,9 @@ List of all input keywords
 
 - **unit_system** (character, Default='au')
    | Units of input variables. 
-   |  Options
-   |    ``'au'`` or ``'a.u.'`` / atomic unit system.
-   |    ``'A_eV_fs'`` / Angstrom-eV-fs unit system
+   | Options
+   |   ``'au'`` or ``'a.u.'`` / atomic unit system.
+   |   ``'A_eV_fs'`` / Angstrom-eV-fs unit system
 
 &parallel
 ---------
@@ -115,25 +115,26 @@ List of all input keywords
 - **nproc_k/nproc_ob/nproc_domain_orbital(3)/nproc_domain_general(3)** (integer, Default=0)
    | Available for ``theory='xxx', 'Maxwell'``.
    | Old infomation: 0d  xxxxx
-   |  Options
-   |    ``nproc_k``/ Number of MPI parallelization for orbitals that related to the wavefunction calculation.
-   |    ``nproc_ob``/ Number of MPI parallelization for orbitals that related to the wavefunction calculation.
+   | Options
+   |   ``nproc_k``/ Number of MPI parallelization for orbitals that related to the wavefunction calculation.
+   |   ``nproc_ob``/ Number of MPI parallelization for orbitals that related to the wavefunction calculation.
    |    ``nproc_domain_orbital(3)'``/ Number of MPI parallelization for each direction in real-space that related to the wavefunction calculation. 
-   |    ``nproc_domain_general(3)'``/ Number of MPI parallelization for each direction in real-space that related to the electron density calculation. 
+   |   ``nproc_domain_general(3)'``/ Number of MPI parallelization for each direction in real-space that related to the electron density calculation. 
    |
    | Defaults are ``0`` for ``nproc_k``/``nproc_ob`` and ``(0/0/0)`` for ``nproc_domain_orbital``/``nproc_domain_s``. If users use the defaults, automatic proccess assignment is done. Users can also specify ``nproc_k``, ``nproc_ob``, ``nproc_domain``, and ``nproc_domain_general`` manually. In that case, ``nproc_k`` must be set to ``1`` for isolated system calculations. ``nproc_k`` and ``nproc_k`` must be set to ``1`` for ``theory='Maxwell'``. In addition, followings must be satisfied.
    |
-   |    ``nproc_k`` \* ``nproc_ob`` \* ``nproc_domain_orbital(1)`` \* ``nproc_domain_orbital(2)`` \* ``nproc_domain_orbital(3)`` \= total number of processors
-   |    ``nproc_domain_general(1)`` \* ``nproc_domain_general(2)`` \* ``nproc_domain_general(3)`` \= total number of processors
-   |    ``nproc_domain_general(1)`` is a multiple of ``nproc_domain_orbital(1)``
-   |    ``nproc_domain_general(2)`` is a multiple of ``nproc_domain_orbital(2)``
-   |    ``nproc_domain_general(3)`` is a multiple of ``nproc_domain_orbital(3)``
+   |   ``nproc_k`` \* ``nproc_ob`` \* ``nproc_domain_orbital(1)`` \* ``nproc_domain_orbital(2)`` \* ``nproc_domain_orbital(3)`` \= total number of processors
+   |   ``nproc_domain_general(1)`` \* ``nproc_domain_general(2)`` \* ``nproc_domain_general(3)`` \= total number of processors
+   |   ``nproc_domain_general(1)`` is a multiple of ``nproc_domain_orbital(1)``
+   |   ``nproc_domain_general(2)`` is a multiple of ``nproc_domain_orbital(2)``
+   |   ``nproc_domain_general(3)`` is a multiple of ``nproc_domain_orbital(3)``
 
 - **yn_ffte** (character, Default='ft')
    | Available for ``theory='xxx'``.
-   | Old infomation: 0d
-   Method of Fourier transformation.  ``'ft'``,  ``'FT'``, ``'ffte'`` or ``'FFTE'`` can be chosen.
-   This variable is effective only when ``yn_domain_parallel='y'`` and ``&system/yn_periodic='y'``.
+   | Old infomation: 0d  xxxx
+   | Method of Fourier transformation.  
+   | Enable(``'y'``)/disable(``'n'``).
+   This variable is effective only when ``yn_domain_parallel='y'`` and ``&system/yn_periodic='y'``. (xxxx?)
 
 - **process_allocation** (character, Default='grid_sequential')
    | Available for ``theory='xxx'``.
@@ -145,21 +146,21 @@ List of all input keywords
 -------
 
 - **yn_periodic** (character, Default='n')
-   | Available for ``theory='xxx', 'Maxwell'``.
-   Dimension for periodic boundary condition.
-   ``'n'`` is for isolated systems, and 
-   ``'y'`` is for solids.
+   | Available for all options of ``theory``.
+   | Option of periodic boundary condition.
+   |   ``'y'`` / periodic systems (solids)
+   |   ``'n'`` / isolated systems
 
 - **ispin** (integer, Default=0)
-   | Available for ``theory='xxx'``.
-   | Old infomation: 0d
-   Variable for classification of closed shell systems and open shell systems.
-   ``0`` is for closed shell systems, and
-   ``1`` is for open shell systems.
+   | Available for all options of ``theory`` except for ``theory='Maxwell'``.
+   | Variable for classification of closed shell systems and open shell systems. 
+   | Options  (xxxxx strange!!!)
+   |   ``0`` / closed shell systems
+   |   ``1`` / open shell systems
 
 - **al(3)** (real(8), Default=0d0)
-   | Available for ``theory='xxx'``.
-   Lattice constants. Unit of the length can be chosen by ``&units/unit_system``.
+   | Available for all options of ``theory`` except for ``theory='Maxwell'``.
+   Spatial grid box size or lattice constants for cuboid cell (x, y, z).
 
 - **al_vec1(3)/al_vec2(3)/al_vec3(3)** (real(8), Default=0d0)
    | Available for ``theory='xxx'``.
