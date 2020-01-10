@@ -362,11 +362,11 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ------
 
 - **nt** (integer, Default=0)
-   | Available for ``'DFT_MD'`` and TDDFT-based options of ``theory``
+   | Available for 'DFT_MD' and TDDFT-based options of ``theory``
    Number of total time steps for real-time propagation.
 
 - **dt** (real(8), Default=0d0)
-   | Available for ``'DFT_MD'`` and TDDFT-based options of ``theory``
+   | Available for 'DFT_MD' and TDDFT-based options of ``theory``
    Time step size.
 
 
@@ -374,12 +374,12 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ------------
 
 - **n_hamil** (integer, Default=4)[Trial]
-   | Available for ``'DFT_MD'`` and TDDFT-based options of ``theory``.
+   | Available for 'DFT_MD' and TDDFT-based options of ``theory``.
    | Old infomation: 0d
    Order of Taylor expansion of a propagation operator.
 
 - **propagator** (character, Default=middlepoint')
-   | Available for ``'DFT_MD'`` and TDDFT-based options of ``theory``.
+   | Available for 'DFT_MD' and TDDFT-based options of ``theory``.
    | Propagator (time-integrator).
    | Options
    |   ``middlepoint`` / propagator with the Hamiltoinan at midpoint of two-times.
@@ -387,8 +387,8 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    [M.A.L. Marques, A. Castro, G.F. Bertsch, and A. Rubio, Comput. Phys. Commun., 151 60 (2003)].
 
 - **yn_fix_func** (character(1), Default='n')[Trial]
-   | Available for ``'DFT_MD'`` and TDDFT-based options of ``theory``.
-   Option not to update functional (or Hamiltonian) in time-evolution, i.e., keep ground state Hamiltonian during time-evolution. (currently not available)
+   | Available for 'DFT_MD' and TDDFT-based options of ``theory``.
+   Option not to update functional (or Hamiltonian) in time-evolution, i.e., keep ground state Hamiltonian. (currently not available)
 
 &scf
 ----
