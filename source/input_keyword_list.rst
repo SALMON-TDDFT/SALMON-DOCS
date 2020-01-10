@@ -332,38 +332,29 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ------
 
 - **dl(3)** (real(8), Default=0d0)
-   | Available for ``theory='xxx'``.
-   Spacing of real-space grids. Unit of length can be chosen by
-   ``&units/unit_system``.
-   This valiable cannot be set with 
-   ``&rgrid/num_rgrid`` simultaneously.
-   If ``&system/yn_periodic`` is set to ``'y'``,
-   the actual grid spacing is automatically refined in calculations
-   so that the size of the simulation box
-   ``&system/al(3)`` becomes divisible by the spacing.
+   | Available for the DFT/TDDFT based options of ``theory``.
+   Spacing of real-space grids. 
+   (This cannot be used together with ``&rgrid/num_rgrid``.)
+   If ``&system/yn_periodic='y'``,
+   the grid spacing is automatically adjusted in calculations
+   so that the grid box size ``&system/al(3)`` becomes divisible by the spacing.  (xxxx really?? xxxx)
 
 - **num_rgrid(3)** (integer, Default=0)
-   | Available for ``theory='xxx'``.
+   | Available for the DFT/TDDFT based options of ``theory``.
    | Old infomation: 3d
-   Number of real-space grids.
-   This valiable cannot be set with 
-   ``&rgrid/dl`` simultaneously.
-
+   Dividing number of real-space grids for each direction.
+   (This cannot be used together with ``&rgrid/dl``.)
 
 &kgrid
 ------
 
 - **num_kgrid(3)** (integer, Default=1)
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
-   Number of k-points (grid points of k-vector) discretizing
-   the Brillouin zone.
-   Each component must be even.
+   | Available for ``yn_periodic='y'``.
+   Number of k-points (grid points of k-vector) for each direction discretizing the Brillouin zone.
 
 - **file_kw** (character, Default='none')
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
-   Name of a file for flexible k-point sampling.
+   | Available for ``yn_periodic='y'``.
+   File name for user specified k-points.
    This file will be read if ``num_kgrid`` is smaller than 1.
 
 
@@ -371,12 +362,12 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ------
 
 - **nt** (integer, Default=0)
-   | Available for ``theory='xxx'``.
+   | Available for ``'DFT_MD'`` and TDDFT-based options of ``theory``
    Number of total time steps for real-time propagation.
 
 - **dt** (real(8), Default=0d0)
-   | Available for ``theory='xxx'``.
-   Time step. Unit of time can be chosen by ``&units/unit_system``.
+   | Available for ``'DFT_MD'`` and TDDFT-based options of ``theory``
+   Time step size.
 
 
 &propagation
