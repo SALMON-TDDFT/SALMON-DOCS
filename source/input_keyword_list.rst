@@ -393,58 +393,51 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &scf
 ----
 
+- **nscf** (integer, Default=0)
+   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
+   Number of maximum SCF cycle in DFT calculation
+   xxxx default is 0?? should change?? xxxxx
+
 - **method_min** (character, Default='cg') 
-   | Available for ``theory='xxx'``.
-   xxx.
+   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
+   | Method for SCF iteration
+   | Options
+   |   ``cg`` / Conjugate-Gradient(CG) method
+   |  ``diis`` / DIIS method
+   |  ``cg-diis`` / CG-DIIS method 
 
 - **ncg** (integer, Default=5)
-   | Available for ``theory='xxx'``.
+   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
    Number of interation of Conjugate-Gradient method for each scf-cycle.
 
 - **method_mixing** (character, Default='broyden') 
-   | Available for ``theory='xxx'``.
-   | Old infomation: 0d
-   Methods for density/potential mixing for scf cycle. ``simple`` and ``broyden`` can be chosen.
+   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
+   | Methods for density/potential mixing for scf cycle. ``simple`` and ``broyden`` can be chosen.
+   | Options
+   |   ``simple`` / Simple mixing method
+   |  ``broyden`` / modified-Broyden method
 
 - **mixrate** (real(8), Default=0.5d0)
-   | Available for ``theory='xxx'``.
-   | Old infomation: 0d
-  Mixing ratio for simple mixing.
+   | Available for ``method_mixing='simple'`` in 'DFT' and 'DFT_MD' options of ``theory``.
+   | Mixing ratio for simple mixing.
 
 - **nmemory_mb** (integer, Default=8)
-   | Available for ``theory='xxx'``.
-   Number of stored densities at previous scf-cycles for 
-   the modified-Broyden method. 
+   | Available for ``method_mixing='broyden'`` in 'DFT' and 'DFT_MD' options of ``theory``.
+   Number of previous densities to be stored in SCF iteration cycle for the modified-Broyden method. 
    If ``&system/yn_periodic`` is ``'n'``, ``nmemory_mb`` must be less than 21.
 
 - **alpha_mb** (real(8), Default=0.75d0)
-   | Available for ``theory='xxx'``.
+   | Available for ``method_mixing='broyden'`` in 'DFT' and 'DFT_MD' options of ``theory``.
    Parameter of the modified-Broyden method.
- 
-- **fsset_option** (character, Default='n') 
-   | Available for ``theory='xxx'``.
-   xxx.
-
-- **nfsset_start** (integer, Default=75) 
-   | Available for ``theory='xxx'``.
-   xxx.
-
-- **nfsset_every** (integer, Default=25) 
-   | Available for ``theory='xxx'``.
-   xxx.
-
-- **nscf** (integer, Default=0)
-   | Available for ``theory='xxx'``.
-   Number of maximum scf cycle.
 
 - **yn_subspace_diagonalization** (character, Default='y')
-   | Available for ``theory='xxx'``.
+   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
    | Old infomation: 0d
    Enable(``'y'``)/disable(``'n'``) 
    subspace diagonalization during scf cycle.
 
 - **convergence** (character, Default='rho_dne')
-   | Available for ``theory='xxx'``.
+   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
    Choice of quantity that is used for convergence check in a scf calculation. 
 
   - ``'rho_dne'``: Convergence is checked by sum_ix|rho(ix,iter)-rho(ix,iter-1)|dx/N, where iter is an iteration number of the scf calculation and N is ``&system/nelec``, the number of the valence electrons.
@@ -457,7 +450,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
   - ``'pot_dng'``: Convergence is checked by ||Vlocal_iter(ix)-Vlocal_iter-1(ix)||\ :sup:`2`\/(number of grids).
 
 - **threshold** (real(8), Default=1d-17)
-   | Available for ``theory='xxx'``.
+   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
    Threshold for convergence check that is used when ``'rho_dne'`` is specified.
    Default is ``1d-17``. 
    XXX(threshold_norm_rho (real(8), Default=))XXX
@@ -466,6 +459,20 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    XXX(threshold_norm_pot (real(8), Default=))XXX
    Threshold for convergence check that is used when either ``'norm_pot'`` or ``'norm_pot_dng'`` is specified. ``threshold_norm_pot`` must be set when either ``'norm_pot'`` or ``'norm_pot_dng'`` is specified.
    Default is ``-1d0`` a.u. (1 a.u.= 33.72x10\ :sup:`4`\ A\ :sup:`-6`\eV\ :sup:`2`\)
+
+
+..
+- **fsset_option** (character, Default='n') 
+   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
+   xxx.
+
+- **nfsset_start** (integer, Default=75) 
+   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
+   xxx.
+
+- **nfsset_every** (integer, Default=25) 
+   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
+   xxx.
 
 - **omp_loop** (character, Default='k')
    | Available for ``theory='xxx'``.
@@ -481,9 +488,10 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Old infomation: 3d
    XXX only ARTED XXX
    Flag to skip Gram-Schmidt orthogonalization in CG loop if periodic boundary system is used. If this is skipped the more iteration number is necessary to get convergence but each iteration step gets faster. If ``omp_loop=b``, this flag is always applied.
+..
 
 - **iditer_notemperature** (integer, Default=10) 
-   | Available for ``theory='xxx'``.
+   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
    xxx.
 
 
