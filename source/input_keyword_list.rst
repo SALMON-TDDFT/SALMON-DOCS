@@ -720,41 +720,43 @@ xxxxx should be checked xxxxx
 ---------
 
 - **projection_option** (character, Default='no')
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
-   Methods of projection.
-   
-  - ``'no'``: no projection.
-  - ``'gs'``: projection to eigenstates of ground-state Hamiltonian.
-  - ``'rt'``: projection to eigenstates of instantaneous Hamiltonian.
-  
+   | Available for TDDFT based options of ``theory``.
+   | Methods of projection to analyze the excited states (e.g. the number of excited electrons.)
+   | Options
+   |   ``'no'`` / no projection.
+   |   ``'gs'`` / projection to eigenstates of ground-state Hamiltonian.
+   |   ``'rt'`` / projection to eigenstates of instantaneous Hamiltonian.
 
 - **projection_decomp** (character, Default='n')[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
-   If ``'atom'`` combined with ``projection_option='gs'``, 
-   the number of excited electron is decomposed into each atom 
-   (this is printed in ``SYSname``\_nex_atom.data).
+   | Available for ``projection_option='gs'`` in TDDFT based options of ``theory``.
+   | Atom decomposition option in the projection option (currently not available)
+   | Options
+   |   ``'atom'`` / the number of excited electron is decomposed into each atom  (printed in ``SYSname``\_nex_atom.data).
 
 - **nenergy** (integer, Default=1000)
    | Available for ``theory='xxx', 'Maxwell'``.
-   Number of energy grids for frequency-domain analysis.
+   Number of energy grid points for frequency-domain analysis.
    This parameter is required when `'impulse'` is choosen in `&emfield/ae_shape1|2`.
 
 - **de** (real(8), Default=0.01d0 eV)
    | Available for ``theory='xxx', 'Maxwell'``.
-   Energy spacing for analysis.
-   Unit of energy can be chosen by ``&units/unit_energy``
+   Energy grid size for analysis.
    This parameter is required when `'impulse'` is choosen in `&emfield/ae_shape1|2`.
 
 - **yn_out_psi** (character, Default='n')
    | Available for ``theory='xxx'``.
-   If ``'y'``, wavefunctions are output.
-   For periodic system (``yn_periodic='y'``), it works only for ground state calculation. The converged wave functions of all orbitals with all k-points are printed in gs_wfn_cube or gs_wfn_vtk directory. The format is speficied by ``format3d``. 
+   | Option for output of wavefunctions
+   | Options
+   |   ``'y'`` / enable.
+   |   ``'n'`` / disable.
+   For periodic system (``yn_periodic='y'``), it works only for ground state calculation. The converged wave functions of all orbitals with all k-points are printed in gs_wfn_cube or gs_wfn_vtk directory. The format is speficied by ``format3d``.  xxxx need check xxxx
 
 - **yn_out_dos** (character, Default='n')
-   | Available for ``theory='xxx'``.
-   If ``'y'``, density of state is output.
+   | Available for ``theory='DFT'``.
+   | Option for output of density of state
+   | Options
+   |   ``'y'`` / enable.
+   |   ``'n'`` / disable.
 
 - **yn_out_dos_set_fe_origin** (character, Default='n')
    | Available for ``theory='xxx'``.
