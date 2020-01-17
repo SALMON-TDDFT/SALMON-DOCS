@@ -461,29 +461,33 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 --------
 
 - **trans_longi** (character, Default='tr')
-   | Available for ``theory='xxx', 'Maxwell'``.
-   | Old infomation: 3d
-   Geometry of solid-state calculations.
-   Transverse ``'tr'`` and longitudinal ``'lo'`` can be chosen.
+   | Available for ``yn_periodic='y'.
+   | Boundary condition for fields on macro-scale in solid-state calculations.
+   | Options
+   |   ``'tr'`` / Transverse  
+   |   ``'lo'`` / longitudinal
 
 - **ae_shape1/ae_shape2** (character, Default='none')
-   | Available for ``theory='xxx', 'Maxwell'``.
-   Shape of the first/second pulse.
-
-  - ``'impulse'``: Impulsive fields.
-  - ``'Acos2'``: Envelope of cos\ :sup:`2`\ for a vector potential.
-  - ``'Ecos2'``: Envelope of cos\ :sup:`2`\ for a scalar potential.
-
-    If ``&system/yn_periodic`` is ``'y'``, following can be also chosen,
-
-  - ``'Acos3'``, ``'Acos4'``, ``'Acos6'``, and ``'Acos8'``: Envelopes of cos\ :sup:`3`\,cos\ :sup:`4`\, cos\ :sup:`6`\, and cos\ :sup:`8`\ for vector potentials.
-  - [Trial] ``'Esin2sin'``, ``'Asin2cos'``, ``'Asin2cw'``, ``'input'``, and ``'none'`` can be also chosen.
-
+   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   | Envelope shape of the first/second pulse.
+   | Options
+   |   ``'impulse'`` / Impulsive fields.
+   |   ``'Acos2'`` / Envelope of cos\ :sup:`2`\ for a vector potential.
+   |   ``'Acos3'`` / Envelope of cos\ :sup:`3`\ for a vector potential.
+   |   ``'Acos4'`` / Envelope of cos\ :sup:`4`\ for a vector potential.
+   |   ``'Acos6'`` / Envelope of cos\ :sup:`6`\ for a vector potential.
+   |   ``'Acos8'`` / Envelope of cos\ :sup:`8`\ for a vector potential.   
+   |   ``'Ecos2'`` / Envelope of cos\ :sup:`2`\ for a electric field.
+   |   ``'Asin2cos'`` [Trial] / Envelope of sin\ :sup:`2`\cos for a vector potential.
+   |   ``'Asin2cw'`` [Trial] /  xxxx
+   |   ``'Esin2sin'`` [Trial] / Envelope of sin\ :sup:`2`\sin for a electric field.
+   |   ``'input'`` [Trial] / read-in user-defined field is used given by file name of 'input_Ac.dat'
+   |   ``'none'`` can be also chosen.
+xxxxx should be checked xxxxx
 
 - **e_impulse** (real(8), Default=1d-2 a.u.)
-   | Available for ``theory='xxx', 'Maxwell'``.
-   Momentum of impulsive perturbation.
-   This valiable has the dimention of momentum, energy*time/length.
+   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   | Momentum of impulsive perturbation. This valiable has the dimention of momentum, energy*time/length.
 
 ..
  - **t_impulse**
@@ -492,84 +496,60 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ..
    
 - **E_amplitude1/E_amplitude2** (real(8), Default=0d0)
-   | Available for ``theory='xxx', 'Maxwell'``.
-   Maximum amplitude of electric fields for the first/second pulse.
+   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   | Maximum amplitude of electric fields for the first/second pulse.
    This valiable has the dimension of electric field, energy/(length*charge).
-   This valiable cannot be set with ``&emfield/I_wcm2_1`` (``I_wcm2_2``) simultaneously.
+   This cannot be set with ``&emfield/I_wcm2_1`` (``I_wcm2_2``) simultaneously.
 
 - **I_wcm2_1/I_wcm2_2** (real(8), Default=-1d0)
-   | Available for ``theory='xxx', 'Maxwell'``.
-   Peak laser intensity (W/cm\ :sup:`2`\) of the first/second pulse.
+   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   | Peak intensity (W/cm\ :sup:`2`\) of the first/second pulse.
    This valiable cannot be set with ``&emfield/E_amplitude1`` (``E_amplitude2``) simultaneously.
 
 - **tw1/tw2** (real(8), Default=0d0)
-   | Available for ``theory='xxx', 'Maxwell'``.
-   Duration of the first/second pulse. Unit of time can be chosend 
-   by ``&units/unit_time``.
+   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   | Duration of the first/second pulse (edge-to-edge time length). 
 
 - **omega1/omega2** (real(8), Default=0d0)
-   | Available for ``theory='xxx', 'Maxwell'``.
-   Mean photon energy (average frequency multiplied by the Planck constant) of the first/second pulse. Unit of energy can be chosend 
-   by ``&units/unit_energy``.
+   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   | Mean photon energy (average frequency multiplied by the Planck constant) of the first/second pulse. 
 
 - **epdir_re1(3)/epdir_re2(3)** (real(8), Default=1d0, 0d0, 0d0)
-   | Available for ``theory='xxx', 'Maxwell'``.
-   Real part of polarization vector for the first/second pulse.
+   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   Real part of polarization unit vector for the first/second pulse.
 
 - **epdir_im1(3)/epdir_im2(3)** (real(8), Default=0d0)
-   | Available for ``theory='xxx', 'Maxwell'``.
-   Imaginary part of polarization vector for the first/second pulse.
+   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   Imaginary part of polarization unit vector for the first/second pulse.
 
-- **phi_cep1/phi_cep2** (real(8), Default=0d0)
-   | Available for ``theory='xxx', 'Maxwell'``.
+- **phi_cep1/phi_cep2** (real(8), Default=0d0/0d0)
+   | Available for 'Maxwell' and TDDFT based options of ``theory``.
    Carrier emvelope phase of the first/second pulse.
-   Default is ``0d0/0d0``.
 
 - **t1_t2** (real(8), Default=0d0)
-   | Available for ``theory='xxx', 'Maxwell'``.
+   | Available for 'Maxwell' and TDDFT based options of ``theory``.
    Time-delay between the first and the second pulses.
-   Unit of time can be chosen by ``&units/unit_time``.
 
 - **t1_start** (real(8), Default=0d0)
-   | Available for ``theory='xxx', 'Maxwell'``.
-   | Old infomation: 3d
-   Time-delay of the first pulse.
-   Unit of time can be chosen by ``&units/unit_time``.
-   (this is not available for multiscale option).
-
-- **yn_local_field** (character, Default='n')[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 0d
-   The pulse is applied to a specific domain.
-
-- **rlaserbound_sta/rlaserbound_end** (real(8), Default=-1.d7 a.u.)
-   | Available for ``theory='xxx'``.
-   xxx.
+   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   Time-delay of the first pulse. (this is not available for multiscale option).
 
 - **num_dipole_source** (integer, Default=0)
-   | Available for ``theory='xxx'``.
-   | Old infomation: 0d
+   | Available for TDDFT based options of ``theory``.
    Number of radiation sources for optical near fields.
    Maximum number is ``2``.
 
 - **vec_dipole_source(3,num_dipole_source)** (real(8), Default=0d0)
-   | Available for ``theory='xxx'``.
-   | Old infomation: 0d
+   | Available for TDDFT based options of ``theory``.
    Dipole vectors of the radiation sources for the optical near fields.
-   Unit of length can be chosen by ``&units/unit_length``.
 
 - **cood_dipole_source(3,num_dipole_source)** (real(8), Default=0d0)
-   | Available for ``theory='xxx'``.
-   | Old infomation: 0d
+   | Available for TDDFT based options of ``theory``.
    Central coordinates of the dipole vectors of the radiation sources.
-   Unit of length can be chosen by ``&units/unit_length``.
 
 - **rad_dipole_diele** (real(8), Default=2d0 a.u.)
-   | Available for ``theory='xxx'``.
-   | Old infomation: 0d
+   | Available for TDDFT based options of ``theory``.
    Radii of dielectric spheres for the radiation sources.
-   Unit of length can be chosen by ``&units/unit_length``.
-
 
 
 &multiscale
