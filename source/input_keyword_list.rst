@@ -432,63 +432,25 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **yn_subspace_diagonalization** (character, Default='y')
    | Available for 'DFT' and 'DFT_MD' options of ``theory``.
-   | Old infomation: 0d
-   Enable(``'y'``)/disable(``'n'``) 
-   subspace diagonalization during scf cycle.
+   | Option of subspace diagonalization during SCF cycle.
+   | Options
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
 
 - **convergence** (character, Default='rho_dne')
    | Available for 'DFT' and 'DFT_MD' options of ``theory``.
-   Choice of quantity that is used for convergence check in a scf calculation. 
+   | Quantity that is used for convergence check in SCF calculation. 
+   | Options
+   |   ``'rho_dne'``/ Convergence is checked by sum_ix|rho(ix,iter)-rho(ix,iter-1)|dx/N, where iter is iteration number of SCF calculation and N is ``&system/nelec``, the number of the valence electrons.
+   |   ``'norm_rho'``/ Convergence is checked by the square of the norm of difference of density, ||rho_iter(ix)-rho_iter-1(ix)||\ :sup:`2`\=sum_ix|rho(ix,iter)-rho(ix,iter-1)|\ :sup:`2`\. 
+   |   ``'norm_rho_dng'``/ Convergence is checked by ||rho_iter(ix)-rho_iter-1(ix)||\ :sup:`2`\/(number of grids). "dng" means "devided by number of grids".
+   |   ``'norm_pot'``/ Convergence is checked by ||Vlocal_iter(ix)-Vlocal_iter-1(ix)||\ :sup:`2`\, where Vlocal is Vh + Vxc + Vps_local.
+   |   ``'pot_dng'``/ Convergence is checked by ||Vlocal_iter(ix)-Vlocal_iter-1(ix)||\ :sup:`2`\/(number of grids).
 
-  - ``'rho_dne'``: Convergence is checked by sum_ix|rho(ix,iter)-rho(ix,iter-1)|dx/N, where iter is an iteration number of the scf calculation and N is ``&system/nelec``, the number of the valence electrons.
-
-   For isolated systems, the followings can also be chosen.
-
-  - ``'norm_rho'``: Convergence is checked by the square of the norm of difference of density, ||rho_iter(ix)-rho_iter-1(ix)||\ :sup:`2`\=sum_ix|rho(ix,iter)-rho(ix,iter-1)|\ :sup:`2`\. 
-  - ``'norm_rho_dng'``: Convergence is checked by ||rho_iter(ix)-rho_iter-1(ix)||\ :sup:`2`\/(number of grids). "dng" means "devided by number of grids".
-  - ``'norm_pot'``: Convergence is checked by ||Vlocal_iter(ix)-Vlocal_iter-1(ix)||\ :sup:`2`\, where Vlocal is Vh + Vxc + Vps_local.
-  - ``'pot_dng'``: Convergence is checked by ||Vlocal_iter(ix)-Vlocal_iter-1(ix)||\ :sup:`2`\/(number of grids).
-
-- **threshold** (real(8), Default=1d-17)
+- **threshold** (real(8), Default=1d-17 [a.u.] (for ``convergence='rho_dne'``) and -1 (for other options of ``convergence``)
    | Available for 'DFT' and 'DFT_MD' options of ``theory``.
-   Threshold for convergence check that is used when ``'rho_dne'`` is specified.
-   Default is ``1d-17``. 
-   XXX(threshold_norm_rho (real(8), Default=))XXX
-   Threshold for convergence check that is used when either ``'norm_rho'`` or ``'norm_rho_dng'`` is specified. ``threshold_norm_rho`` must be set when either ``'norm_rho'`` or ``'norm_rho_dng'`` is specified.
-   Default is ``-1d0`` a.u. (1 a.u.= 45.54 A\ :sup:`-6`\)
-   XXX(threshold_norm_pot (real(8), Default=))XXX
-   Threshold for convergence check that is used when either ``'norm_pot'`` or ``'norm_pot_dng'`` is specified. ``threshold_norm_pot`` must be set when either ``'norm_pot'`` or ``'norm_pot_dng'`` is specified.
-   Default is ``-1d0`` a.u. (1 a.u.= 33.72x10\ :sup:`4`\ A\ :sup:`-6`\eV\ :sup:`2`\)
-
-
-..
-- **fsset_option** (character, Default='n') 
-   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
-   xxx.
-
-- **nfsset_start** (integer, Default=75) 
-   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
-   xxx.
-
-- **nfsset_every** (integer, Default=25) 
-   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
-   xxx.
-
-- **omp_loop** (character, Default='k')
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
-   XXX only ARTED XXX
-   Loop for OpenMP parallelization in the ground state SCF if periodic boundary system is used. 
-
-  - ``k``: parallelization for k-point loop (Default).
-  - ``b``: parallelization mainly for band orbital loop (sometimes space grid loop too). This works efficiently if the number of k-point treated in each node is small (e.x. the case of single k-point for each node)
-
-- **skip_gsortho** (character, Default='n')[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
-   XXX only ARTED XXX
-   Flag to skip Gram-Schmidt orthogonalization in CG loop if periodic boundary system is used. If this is skipped the more iteration number is necessary to get convergence but each iteration step gets faster. If ``omp_loop=b``, this flag is always applied.
-..
+   | Threshold for convergence that is specified by ``convergence`` keyword.
+   | Unit conversions are: 1 a.u.= 45.54 A\ :sup:`-6`\ for ``convergence='norm_rho'`` and ``'norm_rho_dng'``,  1 a.u.= 33.72x10\ :sup:`4`\ A\ :sup:`-6`\eV\ :sup:`2`\ for  ``convergence='norm_pot'`` and ``'norm_pot_dng'``
 
 - **iditer_notemperature** (integer, Default=10) 
    | Available for 'DFT' and 'DFT_MD' options of ``theory``.
