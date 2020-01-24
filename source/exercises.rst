@@ -351,7 +351,7 @@ See :any:`&rgrid in Inputs <&rgrid>` for more information.
 Mandatory: nscf, threshold
 
 ::
-   
+
    &scf
      !maximum number of scf iteration and threshold of convergence
      nscf      = 200
@@ -362,6 +362,20 @@ Mandatory: nscf, threshold
 The scf loop in the ground state calculation ends before the number of
 the scf iterations reaches ``nscf``, if a convergence criterion is satisfied.
 ``threshold = 1.0d-9`` indicates threshold of the convergence for scf iterations.
+
+**&analysis**
+
+If the following input keywords are added, the output files are created after the calculation.
+
+::
+
+   &analysis
+     yn_out_psi  = 'y'
+     yn_out_dos  = 'y'
+     yn_out_pdos = 'y'
+     yn_out_dns  = 'y'
+     yn_out_elf  = 'y'
+   /
 
 **&atomic_coor**
 
