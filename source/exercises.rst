@@ -41,18 +41,15 @@ obtaining polarizability and photoabsorption of the molecule.
 illustrates the calculation of electron dynamics in the molecule under a
 pulsed electric field.
 
-Next 2 exercises (Exercise-4 ~ 5) are for a crystalline solid, silicon.
+Next 3 exercises (Exercise-4 ~ 6) are for a crystalline solid, silicon.
 If you are interested in learning electron dynamics calculations in
-extended periodic systems, please look into these exercises. Since
-ground state calculations of small unit-cell systems are not
-computationally expensive and a time evolution calculation is usually
-much more time-consuming than the ground state calculation, we recommend
-to run the ground and the time evolution calculations as a single job.
-The following two exercises are organized in that way.
+extended periodic systems, please look into these exercises.
 :any:`Exercise-4 <exercise-4>`
+illustrates the ground state solution of crystalline.
+:any:`Exercise-5 <exercise-5>`
 illustrates the calculation of linear response properties of crystalline
 silicon to obtain the dielectric function.
-:any:`Exercise-5 <exercise-5>`
+:any:`Exercise-6 <exercise-6>`
 illustrates the calculation of electron dynamics in the crystalline
 silicon induced by a pulsed electric field.
 
