@@ -45,9 +45,9 @@ Next 3 exercises (Exercise-4 ~ 6) are for a crystalline solid, silicon.
 If you are interested in learning electron dynamics calculations in
 extended periodic systems, please look into these exercises.
 :any:`Exercise-4 <exercise-4>`
-illustrates the ground state solution of crystalline.
+illustrates the ground state solution of the crystalline silicon.
 :any:`Exercise-5 <exercise-5>`
-illustrates the calculation of linear response properties of crystalline
+illustrates the calculation of linear response properties of the crystalline
 silicon to obtain the dielectric function.
 :any:`Exercise-6 <exercise-6>`
 illustrates the calculation of electron dynamics in the crystalline
