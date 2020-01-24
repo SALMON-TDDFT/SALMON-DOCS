@@ -53,26 +53,27 @@ silicon to obtain the dielectric function.
 illustrates the calculation of electron dynamics in the crystalline
 silicon induced by a pulsed electric field.
 
-Exercise-6 is for an irradiation and a propagation
+Exercise-7 is for an irradiation and a propagation
 of a pulsed light in a bulk silicon, coupling Maxwell equations for the
 electromagnetic fields of the pulsed light and the electron dynamics in
 the unit cells. This calculation is quite time-consuming and is
 recommended to execute using massively parallel supercomputers.
-:any:`Exercise-6 <exercise-6>`
+:any:`Exercise-7 <exercise-7>`
 illustrates the calculation of a pulsed, linearly polarized light
 irradiating normally on a surface of a bulk silicon.
 
-Exercise-7 ~ 8 are for the linear response and the pulsed electromagnetic field calculation
-over the metallic nanosphere solving the time-dependent Maxwell equations,
-where the materials are expressed by dielectric function.
-The calculation method is the Finite-Difference Time-Domain (FDTD).
-
-Final exercises (Exercise-9 ~ 10) are for geometry optimization and
+Next 2 exercises (Exercise-8 ~ 9) are for geometry optimization and
 Ehrenfest molecular dynamics based on the TDDFT method
-for a single water molecule under periodic boundary condition. 
-Currently, these are trial functions.
-We omit the explanations,but the input keywords are explained
-in :any:`List of all input keywords <List of all input keywords>`.
+for an isolated molecule, acetylene C2H2. 
+:any:`Exercise-8 <exercise-8>`
+illustrates xxx.
+:any:`Exercise-9 <exercise-9>`
+illustrates xxx.
+
+Exercise-10 are for an metallic nanosphere described by dielectric function.
+The calculation method is the Finite-Difference Time-Domain (FDTD).
+:any:`Exercise-10 <exercise-10>`
+illustrates the electromagnetic analysis of the metallic nanosphere under a pulsed electric field.
 
 
 C2H2 (isolated molecules)
@@ -3107,7 +3108,7 @@ xxx.
 
 
 
-FDTD simulation
+FDTD simulation(electromagnetic analysis)
 ---------------
 
 .. _exercise-10:
