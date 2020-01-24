@@ -218,7 +218,8 @@ Mandatory: calc_mode
 ::
 
    &calculation
-     calc_mode = 'GS'
+     !type of theory
+     theory = 'dft'
    /
 
 This indicates that the ground state (GS) calculation is carried out in
