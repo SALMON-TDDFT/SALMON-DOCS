@@ -315,8 +315,21 @@ Parameters related to atomic species and pseudopotentials.
 ``pseudo_file(1) = 'C_rps.dat'`` indicates the filename of the
 pseudopotential of element #1.
 ``izatom(1) = 6`` specifies the atomic number of the element #1.
-``lloc_ps(1) = 1``specifies the angular momentum of the pseudopotential
+``lloc_ps(1) = 1`` specifies the angular momentum of the pseudopotential
 that will be treated as local.
+
+**&functional**
+
+Mandatory: xc
+
+::
+
+   &functional
+     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
+     xc = 'PZ'
+   /
+
+This indicates that the local density approximation with the Perdew-Zunger functional is used.
 
 **&rgrid**
 
@@ -325,51 +338,30 @@ Mandatory: dl or num_rgrid
 ::
 
    &rgrid
-     dl = 0.25d0, 0.25d0, 0.25d0
+     !spatial grid spacing(x,y,z)
+     dl(1:3) = 0.25d0, 0.25d0, 0.25d0
    /
 
-``dl = 0.25d0, 0.25d0, 0.25d0`` specifies the grid spacings in three
-Cartesian directions.
+``dl(1:3) = 0.25d0, 0.25d0, 0.25d0`` specifies the grid spacings
+in three Cartesian directions.
 See :any:`&rgrid in Inputs <&rgrid>` for more information.
-
-
 
 **&scf**
 
-Mandatory: nscf
+Mandatory: nscf, threshold
 
 ::
    
    &scf
-     ncg = 4
-     nscf = 1000
-     convergence = 'norm_rho_dng'
-     threshold_norm_rho = 1.d-15
+     !maximum number of scf iteration and threshold of convergence
+     nscf      = 200
+     threshold = 1.0d-9
    /
 
-``ncg`` is the number of CG iterations in solving the Khon-Sham
-equation. ``nscf`` is the number of scf iterations. For isolated systems
-specified by ``&system/iperiodic = 0``, the scf loop in the ground state
-calculation ends before the number of the scf iterations reaches
-``nscf``, if a convergence criterion is satisfied. There are several
-options for the convergence check. If the value of ``norm_rho_dng`` is
-specified, the convergence is examined by the squared difference of the
-electron density,
-
-**&analysis**
-
-The following input keywords specify whether the output files are created or
-not after the calculation.
-
-::
-
-   &analysis
-     out_psi = 'y'
-     out_dos = 'y'
-     out_pdos = 'y'
-     out_dns = 'y'
-     out_elf = 'y'
-   /
+``nscf`` is the number of scf iterations. 
+The scf loop in the ground state calculation ends before the number of
+the scf iterations reaches ``nscf``, if a convergence criterion is satisfied.
+``threshold = 1.0d-9`` indicates threshold of the convergence for scf iterations.
 
 **&atomic_coor**
 
@@ -379,16 +371,19 @@ separate file)
 ::
 
    &atomic_coor
-   'C'    0.000000    0.000000    0.599672  1
-   'H'    0.000000    0.000000    1.662257  2
-   'C'    0.000000    0.000000   -0.599672  1
-   'H'    0.000000    0.000000   -1.662257  2
+     !cartesian atomic coodinates
+     'C'    0.000000    0.000000    0.599672  1
+     'H'    0.000000    0.000000    1.662257  2
+     'C'    0.000000    0.000000   -0.599672  1
+     'H'    0.000000    0.000000   -1.662257  2
+     !--- Format ---------------------------------------------------!
+     ! 'symbol' x y z index(correspond to that of pseudo potential) !
+     !--------------------------------------------------------------!
    /
 
 Cartesian coordinates of atoms. The first column indicates the element.
 Next three columns specify Cartesian coordinates of the atoms. The
 number in the last column labels the element.
-
 
 Output files
 ^^^^^^^^^^^^
