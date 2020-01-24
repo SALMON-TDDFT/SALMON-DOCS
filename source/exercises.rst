@@ -211,6 +211,19 @@ We present their explanations below:
 
 **Required and recommened variables**
 
+**&calculation**
+
+Mandatory: calc_mode
+
+::
+
+   &calculation
+     calc_mode = 'GS'
+   /
+
+This indicates that the ground state (GS) calculation is carried out in
+the present job. See :any:`&calculation in Inputs <&calculation>` for detail.
+
 **&units**
 
 Mandatory: none
@@ -231,19 +244,6 @@ the unit of 1/eV is used for the output files of DOS and PDOS if
 ``unit_system = 'A_eV_fs'`` is specified, while atomic unit is used if
 not. For other output files, the Angstrom/eV/fs units are used
 irrespective of the input keyword.
-
-**&calculation**
-
-Mandatory: calc_mode
-
-::
-
-   &calculation
-     calc_mode = 'GS'
-   /
-
-This indicates that the ground state (GS) calculation is carried out in
-the present job. See :any:`&calculation in Inputs <&calculation>` for detail.
 
 
 
