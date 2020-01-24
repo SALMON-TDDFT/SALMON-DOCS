@@ -122,55 +122,17 @@ used in the input file can be found in
 
 ::
 
-   &units
-     unit_system='A_eV_fs'
-   /
-   &calculation
-     calc_mode = 'GS'
-   /
-   &control
-     sysname = 'C2H2'
-   /
-   &system
-     iperiodic = 0
-     al = 16d0, 16d0, 16d0
-     nstate = 5
-     nelem = 2
-     natom = 4
-     nelec = 10
-   /
-   &pseudo
-     izatom(1)=6
-     izatom(2)=1
-     pseudo_file(1)='C_rps.dat'
-     pseudo_file(2)='H_rps.dat'
-     lmax_ps(1)=1
-     lmax_ps(2)=0
-     lloc_ps(1)=1
-     lloc_ps(2)=0
-   /
-   &rgrid
-     dl = 0.25d0, 0.25d0, 0.25d0
-   /
-   &scf
-     ncg = 4
-     nscf = 1000
-     convergence = 'norm_rho_dng'
-     threshold_norm_rho = 1.d-15
-   /
-   &analysis
-     out_psi = 'y'
-     out_dos = 'y'
-     out_pdos = 'y'
-     out_dns = 'y'
-     out_elf = 'y'
-   /
-   &atomic_coor
-   'C'    0.000000    0.000000    0.599672  1
-   'H'    0.000000    0.000000    1.662257  2
-   'C'    0.000000    0.000000   -0.599672  1
-   'H'    0.000000    0.000000   -1.662257  2
-   /
+   !########################################################################################!
+   ! Excercise 01: Ground state of C2H2 molecule                                            !
+   !----------------------------------------------------------------------------------------!
+   ! * The detail of this excercise is expained in our manual(see chapter: 'Exercises').    !
+   !   The manual can be obtained from: https://salmon-tddft.jp/documents.html              !
+   ! * Input format consists of group of keywords like:                                     !
+   !     &group                                                                             !
+   !       input keyword = xxx                                                              !
+   !     /                                                                                  !
+   !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !########################################################################################!
    
    &calculation
      !type of theory
