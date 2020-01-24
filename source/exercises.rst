@@ -87,11 +87,9 @@ Exercise-1: Ground state of C2H2 molecule
 In this exercise, we learn the calculation of the ground state solution
 of acetylene (C2H2) molecule, solving the static Kohn-Sham equation.
 This exercise will be useful to learn how to set up calculations in
-SALMON for any isolated systems such as molecules and nanoparticles. It
-should be noted that at present it is not possible to carry out the
-geometry optimization in SALMON. Therefore, atomic positions of the
-molecule are specified in the input file and are fixed during the
-calculations.
+SALMON for any isolated systems such as molecules and nanoparticles.
+Atomic positions of the molecule are specified in the input file and
+are fixed during the calculations.
 
 Input files
 ^^^^^^^^^^^
@@ -114,7 +112,6 @@ To run the code, following files are used:
 | You may download the above 3 files (zipped file) from: 
 | https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_input.zip
 | (zipped input and pseudopotential files)
-
 
 In the input file *C2H2_gs.inp*, input keywords are specified.
 Most of them are mandatory to execute the ground state calculation.
