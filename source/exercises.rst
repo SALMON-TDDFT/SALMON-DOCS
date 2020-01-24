@@ -222,31 +222,8 @@ Mandatory: theory
      theory = 'dft'
    /
 
-This indicates that the ground state (GS) calculation is carried out in
+This indicates that the ground state calculation by DFT is carried out in
 the present job. See :any:`&calculation in Inputs <&calculation>` for detail.
-
-**&units**
-
-Mandatory: none
-
-::
-
-   &units
-     unit_system='A_eV_fs'
-   /
-
-This input keyword specifies the unit system to be used in the input file. If
-you do not specify it, atomic unit will be used.
-See :any:`&units in Inputs <&units>` for detail.
-
-
-For isolated systems (specified by ``iperiodic = 0`` in ``&system``),
-the unit of 1/eV is used for the output files of DOS and PDOS if
-``unit_system = 'A_eV_fs'`` is specified, while atomic unit is used if
-not. For other output files, the Angstrom/eV/fs units are used
-irrespective of the input keyword.
-
-
 
 **&control**
 
@@ -255,11 +232,33 @@ Mandatory: none
 ::
 
    &control
+     !common name of output files
      sysname = 'C2H2'
    /
 
 'C2H2' defined by ``sysname = 'C2H2'`` will be used in the filenames of
 output files.
+
+**&units**
+
+Mandatory: none
+
+::
+
+   &units
+     !units used in input and output files
+     unit_system = 'A_eV_fs'
+   /
+
+This input keyword specifies the unit system to be used in the input and output files.
+If you do not specify it, atomic unit will be used.
+See :any:`&units in Inputs <&units>` for detail.
+
+For isolated systems (specified by ``iperiodic = 0`` in ``&system``),
+the unit of 1/eV is used for the output files of DOS and PDOS if
+``unit_system = 'A_eV_fs'`` is specified, while atomic unit is used if
+not. For other output files, the Angstrom/eV/fs units are used
+irrespective of the input keyword.
 
 .. _exercise-1-&system:
 
