@@ -172,9 +172,7 @@ used in the input file can be found in
    'H'    0.000000    0.000000   -1.662257  2
    /
 
-
 We present their explanations below:
-
 
 **Required and recommened variables**
 
