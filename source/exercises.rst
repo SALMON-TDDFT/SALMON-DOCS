@@ -1208,7 +1208,14 @@ Crystalline silicon (periodic solids)
 
 .. _exercise-4:
 
-Exercise-4: Dielectric function of crystalline silicon
+Exercise-4: Ground state of crystalline silicon
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+xxx.
+
+.. _exercise-5:
+
+Exercise-5: Dielectric function of crystalline silicon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this exercise, we learn the linear response calculation of the
@@ -1822,9 +1829,9 @@ Standard output file.
 
 
       
-.. _exercise-5:
+.. _exercise-6:
 
-Exercise-5: Electron dynamics in crystalline silicon under a pulsed electric field
+Exercise-6: Electron dynamics in crystalline silicon under a pulsed electric field
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this exercise, we learn the calculation of electron dynamics in a
@@ -2430,9 +2437,9 @@ Standard output file.
 Maxwell + TDDFT multiscale simulation
 -------------------------------------
 
-.. _exercise-6:
+.. _exercise-7:
 
-Exercise-6: Pulsed-light propagation through a silicon thin film
+Exercise-7: Pulsed-light propagation through a silicon thin film
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this exercise, we learn the calculation of the propagation of a
@@ -3078,12 +3085,34 @@ of time.
 
 Standard output file.
 
+
+
+Geometry optimization and Ehrenfest molecular dynamics
+-------------------------------------
+
+.. _exercise-8:
+
+Exercise-8: Geometry optimization of C2H2 molecule
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+xxx.
+
+
+.. _exercise-9:
+
+Exercise-9: Ehrenfest molecular dynamics of C2H2 molecule
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+xxx.
+
+
+
 FDTD simulation
 ---------------
 
-.. _exercise-7:
+.. _exercise-10:
 
-Exercise-7: Polarizability and photoabsorption of a metallic nanosphere in classical electromagnetism
+Exercise-10: Polarizability and photoabsorption of a metallic nanosphere in classical electromagnetism
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this exercise, we learn the linear response calculation in the metallic nanosphere, solving the time-dependent Maxwell equations.
@@ -3294,9 +3323,9 @@ For energy steps from 0 to nenergy,
 -  5-7 columns: x,y,z components of imaginary part of the polarizability (time-frequency Fourier transformation of the dipole moment)
 -  8-10 columns: x,y,z components of power spectrum of the dipole moment
 
-.. _exercise-8:
+.. _exercise-11:
 
-Exercise-8: Pulsed electric field response of a metallic nanosphere in classical electromagnetism
+Exercise-11: Pulsed electric field response of a metallic nanosphere in classical electromagnetism
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this exercise, we learn the pulsed electric field response in the metallic nanosphere, solving the time-dependent Maxwell equations.
