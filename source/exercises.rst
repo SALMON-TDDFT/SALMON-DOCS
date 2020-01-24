@@ -213,7 +213,7 @@ We present their explanations below:
 
 **&calculation**
 
-Mandatory: calc_mode
+Mandatory: theory
 
 ::
 
