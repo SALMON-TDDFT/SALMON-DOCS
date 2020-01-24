@@ -258,7 +258,7 @@ See :any:`&units in Inputs <&units>` for detail.
 
 **&system**
 
-Mandatory: iperiodic, al, nstate, nelem, natom
+Mandatory: yn_periodic, al, nelem, natom, nelec, nstate
 
 ::
 
@@ -290,28 +290,33 @@ See :any:`&system in Inputs <&system>` for more information.
 
 **&pseudo**
 
-Mandatory: pseudo_file, izatom
+Mandatory: file_pseudo, izatom
 
 ::
 
    &pseudo
-     izatom(1)=6
-     izatom(2)=1
-     pseudo_file(1)='C_rps.dat'
-     pseudo_file(2)='H_rps.dat'
-     lmax_ps(1)=1
-     lmax_ps(2)=0
-     lloc_ps(1)=1
-     lloc_ps(2)=0
+     !name of input pseudo potential file
+     file_pseudo(1) = './C_rps.dat'
+     file_pseudo(2) = './H_rps.dat'
+     
+     !atomic number of element
+     izatom(1) = 6
+     izatom(2) = 1
+     
+     !angular momentum of pseudopotential that will be treated as local
+     lloc_ps(1) = 1
+     lloc_ps(2) = 0
+     !--- Caution ---------------------------------------!
+     ! Indices must correspond to those in &atomic_coor. !
+     !---------------------------------------------------!
    /
 
 Parameters related to atomic species and pseudopotentials.
-``izatom(1) = 6`` specifies the atomic number of the element #1.
 ``pseudo_file(1) = 'C_rps.dat'`` indicates the filename of the
-pseudopotential of element #1. ``lmax_ps(1) = 1`` and ``lloc_ps(1) = 1``
-specify the maximum angular momentum of the pseudopotential projector
-and the angular momentum of the pseudopotential that will be treated as
-local, respectively.
+pseudopotential of element #1.
+``izatom(1) = 6`` specifies the atomic number of the element #1.
+``lloc_ps(1) = 1``specifies the angular momentum of the pseudopotential
+that will be treated as local.
 
 **&rgrid**
 
