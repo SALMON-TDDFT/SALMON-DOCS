@@ -254,12 +254,6 @@ This input keyword specifies the unit system to be used in the input and output 
 If you do not specify it, atomic unit will be used.
 See :any:`&units in Inputs <&units>` for detail.
 
-For isolated systems (specified by ``iperiodic = 0`` in ``&system``),
-the unit of 1/eV is used for the output files of DOS and PDOS if
-``unit_system = 'A_eV_fs'`` is specified, while atomic unit is used if
-not. For other output files, the Angstrom/eV/fs units are used
-irrespective of the input keyword.
-
 .. _exercise-1-&system:
 
 **&system**
@@ -269,26 +263,28 @@ Mandatory: iperiodic, al, nstate, nelem, natom
 ::
 
    &system
-     iperiodic = 0
-     al = 16d0, 16d0, 16d0
+     !periodic boundary condition
+     yn_periodic = 'n'
+     
+     !grid box size(x,y,z)
+     al(1:3) = 16.0d0, 16.0d0, 16.0d0
+     
+     !number of elements, atoms, electrons and states(orbitals)
+     nelem  = 2
+     natom  = 4
+     nelec  = 10
      nstate = 5
-     nelem = 2
-     natom = 4
-     nelec = 10
    /
 
-``iperiodic = 0`` indicates that the isolated boundary condition will be
-used in the calculation. ``al = 16d0, 16d0, 16d0`` specifies the lengths
+``yn_periodic = 'n'`` indicates that the isolated boundary condition will be
+used in the calculation. ``al(1:3) = 16.0d0, 16.0d0, 16.0d0`` specifies the lengths
 of three sides of the rectangular parallelepiped where the grid points
-are prepared. ``nstate = 8`` indicates the number of Kohn-Sham orbitals
-to be solved. ``nelec = 10`` indicate the number of valence electrons in
-the system. Since the present code assumes that the system is spin
+are prepared. ``nelem = 2`` and ``natom = 4`` indicate the number of elements and the
+number of atoms in the system, respectively. ``nelec = 10`` indicate the number of valence electrons in
+the system. ``nstate = 5`` indicates the number of Kohn-Sham orbitals
+to be solved. Since the present code assumes that the system is spin
 saturated, ``nstate`` should be equal to or larger than ``nelec/2``.
-``nelem = 2`` and ``natom = 4`` indicate the number of elements and the
-number of atoms in the system, respectively.
 See :any:`&system in Inputs <&system>` for more information.
-
-
 
 .. _exercise-1-&pseudo:
 
