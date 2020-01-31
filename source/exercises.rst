@@ -192,7 +192,7 @@ used in the input file can be found in
    
    &scf
      !maximum number of scf iteration and threshold of convergence
-     nscf      = 400
+     nscf      = 200
      threshold = 1.0d-9
    /
    
