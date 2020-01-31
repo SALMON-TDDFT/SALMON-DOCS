@@ -192,8 +192,19 @@ used in the input file can be found in
    
    &scf
      !maximum number of scf iteration and threshold of convergence
-     nscf      = 200
+     nscf      = 400
      threshold = 1.0d-9
+   /
+   
+   &analysis
+     !output of all orbitals, density,
+     !density of states, projected density of states,
+     !and electron localization function
+     yn_out_psi  = 'y'
+     yn_out_dns  = 'y'
+     yn_out_dos  = 'y'
+     yn_out_pdos = 'y'
+     yn_out_elf  = 'y'
    /
    
    &atomic_coor
