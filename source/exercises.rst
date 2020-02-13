@@ -413,22 +413,16 @@ number in the last column labels the element.
 Output files
 ^^^^^^^^^^^^	
 
-After the calculation, following output files are created in the
+After the calculation, following output files and a directory are created in the
 directory that you run the code,
 
 +-----------------------------------+-----------------------------------+
-| file name                         | description                       |
+| name                              | description                       |
 +-----------------------------------+-----------------------------------+
 | *C2H2_info.data*                  | information on ground state       |
 |                                   | solution                          |
 +-----------------------------------+-----------------------------------+
 | *C2H2_eigen.data*                 | 1 particle energies               |
-+-----------------------------------+-----------------------------------+
-| *PS_C_KY_n.dat*                   | information on pseodupotential    |
-|                                   | file for carbon atom              |
-+-----------------------------------+-----------------------------------+
-| *PS_H_KY_n.dat*                   | information on pseodupotential    |
-|                                   | file for hydrogen atom            |
 +-----------------------------------+-----------------------------------+
 | *psi1.cube*, *psi2.cube*, ...     | electron orbitals                 |
 +-----------------------------------+-----------------------------------+
@@ -440,6 +434,16 @@ directory that you run the code,
 +-----------------------------------+-----------------------------------+
 | *elf.cube*                        | electron localization function    |
 |                                   | (ELF)                             |
++-----------------------------------+-----------------------------------+
+| *PS_C_KY_n.dat*                   | information on pseodupotential    |
+|                                   | file for carbon atom              |
++-----------------------------------+-----------------------------------+
+| *PS_H_KY_n.dat*                   | information on pseodupotential    |
+|                                   | file for hydrogen atom            |
++-----------------------------------+-----------------------------------+
+| *data_for_restart*                | directory where files used in     |
+|                                   | the real-time calculation are     |
+|                                   | contained                         |
 +-----------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file, except for the binary file *C2H2_gs.bin*) from:
