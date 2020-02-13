@@ -424,6 +424,12 @@ directory that you run the code,
 +-----------------------------------+-----------------------------------+
 | *C2H2_eigen.data*                 | 1 particle energies               |
 +-----------------------------------+-----------------------------------+
+| *PS_C_KY_n.dat*                   | information on pseodupotential    |
+|                                   | file for carbon atom              |
++-----------------------------------+-----------------------------------+
+| *PS_H_KY_n.dat*                   | information on pseodupotential    |
+|                                   | file for hydrogen atom            |
++-----------------------------------+-----------------------------------+
 | *psi1.cube*, *psi2.cube*, ...     | electron orbitals                 |
 +-----------------------------------+-----------------------------------+
 | *dns.cube*                        | a cube file for electron density  |
