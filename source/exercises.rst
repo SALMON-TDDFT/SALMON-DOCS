@@ -456,29 +456,15 @@ Main results of the calculation such as orbital energies are included in
 *C2H2_info.data*. Explanations of the *C2H2_info.data* and other output
 files are below:
 
-
 **C2H2_info.data**
 
 Calculated orbital and total energies as well as parameters specified in
 the input file are shown in this file.
 
-::
+**psi1.cube, psi2.cube, ...**
 
-    Total number of iteration =  49
-    Number of states =  5
-    Number of electrons =  5
-    Total energy (eV) =  -339.7041368688747
-    1-particle energies (eV)
-        1       -18.4492      2       -13.9884      3       -12.3935      4        -7.3310
-        5        -7.3310
-    Size of the box (A) =    15.99999363   15.99999363   15.99999363
-    Grid spacing (A)    =     0.24999990    0.24999990    0.24999990
-    Number of atoms =        4
-    iZatom(  1)     =        6
-    iZatom(  2)     =        1
-    Ref. and max angular momentum and pseudo-core radius of PP (A)
-    (  1)   Ref, Max, Rps =   1   1   0.800
-    (  2)   Ref, Max, Rps =   0   0   0.800
+Cube files for electron orbitals. The number in the filename indicates
+the index of the orbital.
 
 **dns.cube**
 
@@ -486,81 +472,14 @@ A cube file for electron density. For isolated systems (specified by
 ``iperiodic = 0`` in ``&system``), atomic unit is adopted in all cube
 files.
 
-**elf.cube**
-
-A cube file for electron localization function (ELF).
-
-**psi1.cube, psi2.cube, ...**
-
-Cube files for electron orbitals. The number in the filename indicates
-the index of the orbital..
-
 **dos.data**
 
 A file for density of states. The units used in this file are affected
 by the input parameter, ``unit_energy`` in ``&unit``.
 
-::
+**elf.cube**
 
-   # Density of States
-   # Energy[eV]  DOS[1/eV]
-   #-----------------------
-    -21.22853    0.00000000
-    -21.20073    0.00000000
-    -21.17294    0.00000000
-    -21.14514    0.00000000
-    -21.11735    0.00000000
-
-   ...
-
-     -7.38656   13.67306519
-     -7.35876   15.35302960
-     -7.33097   15.95769122
-     -7.30317   15.35301925
-     -7.27538   13.67304675
-
-   ...
-
-     -4.66264    0.00000000
-     -4.63484    0.00000000
-     -4.60705    0.00000000
-     -4.57925    0.00000000
-     -4.55146    0.00000000
-
-**pdos1.data, pdos2.data, ...**
-
-Files for projected density of states. The units used in this file are
-affected by the input parameter, ``unit_energy`` in ``&unit``. The
-number in the filename indicates the order of atoms specified in
-``&atomic_coor``.
-
-::
-
-   # Projected Density of States
-   # Energy[eV]  PDOS(l=0)[1/eV] PDOS(l=1)[1/eV]
-   #-----------------------
-    -21.22853    0.00000000    0.00000000
-    -21.20073    0.00000000    0.00000000
-    -21.17294    0.00000000    0.00000000
-    -21.14514    0.00000000    0.00000000
-    -21.11735    0.00000000    0.00000000
-
-   ...
-
-     -7.38656    0.00000000   18.33035096
-     -7.35876    0.00000000   20.58254071
-     -7.33097    0.00000000   21.39316068
-     -7.30317    0.00000000   20.58252684
-     -7.27538    0.00000000   18.33032625
-
-   ...
-
-     -4.66264    0.00000000    0.00000000
-     -4.63484    0.00000000    0.00000000
-     -4.60705    0.00000000    0.00000000
-     -4.57925    0.00000000    0.00000000
-     -4.55146    0.00000000    0.00000000
-
+A cube file for electron localization function (ELF).
 
 We show several image that are created from the output files.
 
