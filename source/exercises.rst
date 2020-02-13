@@ -382,9 +382,9 @@ If the following input keywords are added, the output files are created after th
 
    &analysis
      yn_out_psi  = 'y'
+     yn_out_dns  = 'y'
      yn_out_dos  = 'y'
      yn_out_pdos = 'y'
-     yn_out_dns  = 'y'
      yn_out_elf  = 'y'
    /
 
@@ -411,7 +411,7 @@ Next three columns specify Cartesian coordinates of the atoms. The
 number in the last column labels the element.
 
 Output files
-^^^^^^^^^^^^
+^^^^^^^^^^^^	
 
 After the calculation, following output files are created in the
 directory that you run the code,
@@ -422,19 +422,18 @@ directory that you run the code,
 | *C2H2_info.data*                  | information on ground state       |
 |                                   | solution                          |
 +-----------------------------------+-----------------------------------+
-| *dns.cube*                        | a cube file for electron density  |
-+-----------------------------------+-----------------------------------+
-| *elf.cube*                        | electron localization function    |
-|                                   | (ELF)                             |
+| *C2H2_eigen.data*                 | 1 particle energies               |
 +-----------------------------------+-----------------------------------+
 | *psi1.cube*, *psi2.cube*, ...     | electron orbitals                 |
++-----------------------------------+-----------------------------------+
+| *dns.cube*                        | a cube file for electron density  |
 +-----------------------------------+-----------------------------------+
 | *dos.data*                        | density of states                 |
 +-----------------------------------+-----------------------------------+
 | *pdos1.data*, *pdos2.data*, ...   | projected density of states       |
 +-----------------------------------+-----------------------------------+
-| *C2H2_gs.bin*                     | binary output file to be used in  |
-|                                   | the real-time calculation         |
+| *elf.cube*                        | electron localization function    |
+|                                   | (ELF)                             |
 +-----------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file, except for the binary file *C2H2_gs.bin*) from:
