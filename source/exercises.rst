@@ -446,7 +446,7 @@ directory that you run the code,
 |                                   | contained                         |
 +-----------------------------------+-----------------------------------+
 
-| You may download the above files (zipped file, except for the binary file *C2H2_gs.bin*) from:
+| You may download the above files (zipped file, except for the files *PS_C_KY_n.dat* and PS_H_KY_n.dat* and the directory *data_for_restart*) from:
 | https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_output.zip
 | (zipped output files)
 
