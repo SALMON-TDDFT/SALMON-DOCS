@@ -464,25 +464,22 @@ the input file are shown in this file.
 **psi1.cube, psi2.cube, ...**
 
 Cube files for electron orbitals. The number in the filename indicates
-the index of the orbital.
+the index of the orbital atomic unit is adopted in all cube files.
 
 **dns.cube**
 
-A cube file for electron density. For isolated systems (specified by
-``iperiodic = 0`` in ``&system``), atomic unit is adopted in all cube
-files.
+A cube file for electron density.
 
 **dos.data**
 
 A file for density of states. The units used in this file are affected
-by the input parameter, ``unit_energy`` in ``&unit``.
+by the input parameter, ``unit_system`` in ``&unit``.
 
 **elf.cube**
 
 A cube file for electron localization function (ELF).
 
 We show several image that are created from the output files.
-
 
 * **Highest occupied molecular orbital (HOMO)**
 
@@ -491,14 +488,12 @@ We show several image that are created from the output files.
   .. image:: images/exercise1/HOMO.png
      :scale: 20%
 
-
 * **Electron density**
 
   The output files *dns.cube*, ... are used to create the image.
 
   .. image:: images/exercise1/Dns.png
      :scale: 20%
-
 
 * **Electron localization function**
 
