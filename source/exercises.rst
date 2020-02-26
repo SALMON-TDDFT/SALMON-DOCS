@@ -548,7 +548,7 @@ those used in the ground state calculation.
 +-----------------------------------+-----------------------------------+
 | *restart*                         | directory created in the ground   |
 |                                   | state calculation (rename the     |
-|                                   | directory name from               |
+|                                   | directory from                    |
 |                                   | *data_for_restart* to *restart*)  |
 +-----------------------------------+-----------------------------------+
 
@@ -566,9 +566,6 @@ used in the input file can be found in
 
 ::
 
-   &units
-     unit_system='A_eV_fs'
-   /
    !########################################################################################!
    ! Excercise 02: Polarizability and photoabsorption of C2H2 molecule                      !
    !----------------------------------------------------------------------------------------!
@@ -680,6 +677,33 @@ We present their explanations below:
 
 **Required and recommended variables**
 
+**&calculation**
+
+Mandatory: calc_mode
+
+::
+   
+   &calculation
+     !type of theory
+     theory = 'tddft_response'
+   /
+
+This indicates that the real time (RT) calculation is carried out in the
+present job. See :any:`&calculation in Inputs <&calculation>` for detail.
+
+**&control**
+
+Mandatory: none
+
+::
+   
+   &control
+     !common name of output files
+     sysname = 'C2H2'
+   /
+
+'C2H2' defined by ``sysname = 'C2H2'`` will be used in the filenames of
+output files.
 
 **&units**
 
@@ -688,56 +712,32 @@ Mandatory: none
 ::
 
    &units
-     unit_system='A_eV_fs'
+     !units used in input and output files
+     unit_system = 'A_eV_fs'
    /
 
 This input keyword specifies the unit system to be used in the input file. If
 you do not specify it, atomic unit will be used.
 See :any:`&units in Inputs <&units>` for detail.
 
-
-
-**&calculation**
-
-Mandatory: calc_mode
-
-::
-   
-   &calculation
-     calc_mode = 'RT'
-   /
-
-This indicates that the real time (RT) calculation is carried out in the
-present job. See :any:`&calculation in Inputs <&calculation>` for detail.
-
-
-     
-**&control**
-
-Mandatory: none
-
-::
-   
-   &control
-     sysname = 'C2H2'
-   /
-
-'C2H2' defined by ``sysname = 'C2H2'`` will be used in the filenames of
-output files.
-
 **&system**
 
-Mandatory: iperiodic, al, nstate, nelem, natom
+Mandatory: iperiodic, al, nelem, natom, nelec, nstate
 
 ::
    
    &system
-     iperiodic = 0
-     al = 16d0, 16d0, 16d0
+     !periodic boundary condition
+     yn_periodic = 'n'
+     
+     !grid box size(x,y,z)
+     al(1:3) = 16.0d0, 16.0d0, 16.0d0
+     
+     !number of elements, atoms, electrons and states(orbitals)
+     nelem  = 2
+     natom  = 4
+     nelec  = 10
      nstate = 5
-     nelem = 2
-     natom = 4
-     nelec = 10
    /
 
 These input keywords and their values should be the same as those used in the
@@ -745,24 +745,29 @@ ground state calculation. See :any:`&system in Exercise-1 <exercise-1-&system>`.
 
 **&pseudo**
 
-Mandatory: pseudo_file, izatom
+Mandatory: file_pseudo, izatom
 
 ::
    
    &pseudo
-     izatom(1)=6
-     izatom(2)=1
-     pseudo_file(1)='C_rps.dat'
-     pseudo_file(2)='H_rps.dat'
-     lmax_ps(1)=1
-     lmax_ps(2)=0
-     lloc_ps(1)=1
-     lloc_ps(2)=0
+     !name of input pseudo potential file
+     file_pseudo(1) = './C_rps.dat'
+     file_pseudo(2) = './H_rps.dat'
+     
+     !atomic number of element
+     izatom(1) = 6
+     izatom(2) = 1
+     
+     !angular momentum of pseudopotential that will be treated as local
+     lloc_ps(1) = 1
+     lloc_ps(2) = 0
+     !--- Caution ---------------------------------------!
+     ! Indices must correspond to those in &atomic_coor. !
+     !---------------------------------------------------!
    /
 
 These input keywords and their values should be the same as those used in the
 ground state calculation. See :any:`&pseudo in Exercise-1 <exercise-1-&pseudo>`.
-
 
 **&tgrid**
 
