@@ -531,13 +531,13 @@ Input files
 
 To run the code, the input file *C2H2_rt_response.inp* that contains
 input keywords and their values for the linear response calculation
-is required. The binary file *C2H2_gs.bin* that is created in the ground
-state calculation and pseudopotential files are also required. The
-pseudopotential files should be the same as those used in the ground
-state calculation.
+is required. The directory *restart* that is created in the ground
+state calculation as *data_for_restart* and pseudopotential files 
+are also required. The pseudopotential files should be the same as
+those used in the ground state calculation.
 
 +-----------------------------------+-----------------------------------+
-| file name                         | description                       |
+| name                              | description                       |
 +-----------------------------------+-----------------------------------+
 | *C2H2_rt_response.inp*            | input file that contains input    |
 |                                   | keywords and their values         |
@@ -546,8 +546,10 @@ state calculation.
 +-----------------------------------+-----------------------------------+
 | *H_rps.dat*                       | pseudopotential file for hydrogen |
 +-----------------------------------+-----------------------------------+
-| *C2H2_gs.bin*                     | binary file created in the ground |
-|                                   | state calculation                 |
+| *restart*                         | directory created in the ground   |
+|                                   | state calculation (rename the     |
+|                                   | directory name from               |
+|                                   | *data_for_restart* to *restart*)  |
 +-----------------------------------+-----------------------------------+
 
 | You may download the *C2H2_rt_response.inp* file (zipped file) from:
