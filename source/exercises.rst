@@ -769,6 +769,35 @@ Mandatory: file_pseudo, izatom
 These input keywords and their values should be the same as those used in the
 ground state calculation. See :any:`&pseudo in Exercise-1 <exercise-1-&pseudo>`.
 
+**&functional**
+
+Mandatory: xc
+
+::
+
+   &functional
+     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
+     xc = 'PZ'
+   /
+
+This indicates that the local density approximation with the Perdew-Zunger functional is used.
+
+**&rgrid**
+
+Mandatory: dl or num_rgrid
+
+::
+
+   &rgrid
+     !spatial grid spacing(x,y,z)
+     dl(1:3) = 0.25d0, 0.25d0, 0.25d0
+   /
+
+``dl(1:3) = 0.25d0, 0.25d0, 0.25d0`` specifies the grid spacings
+in three Cartesian directions. This must be the same as
+that in the ground state calculation.
+See :any:`&rgrid in Inputs <&rgrid>` for more information.
+
 **&tgrid**
 
 Mandatory: dt, Nt
