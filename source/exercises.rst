@@ -800,13 +800,14 @@ See :any:`&rgrid in Inputs <&rgrid>` for more information.
 
 **&tgrid**
 
-Mandatory: dt, Nt
+Mandatory: dt, nt
 
 ::
    
    &tgrid
-     dt=1.25d-3
-     nt=5000
+     !time step size and number of time grids(steps)
+     dt = 1.25d-3
+     nt = 5000
    /
 
 ``dt=1.25d-3`` specifies the time step of the time evolution
@@ -820,12 +821,19 @@ Mandatory: ae_shape1
 ::
    
    &emfield
+     !envelope shape of the incident pulse('impulse': impulsive field)
      ae_shape1 = 'impulse'
-     epdir_re1 = 0.d0,0.d0,1.d0
+     
+     !polarization unit vector(real part) for the incident pulse(x,y,z)
+     epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0
+     !--- Caution ---------------------------------------------------------!
+     ! Defenition of the incident pulse is wrriten in:                     !
+     ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
+     !---------------------------------------------------------------------!
    /
 
 ``ae_shape1 = 'impulse'`` indicates that a weak impulse is applied to
-all electrons at *t=0* ``epdir_re1(3)`` specify a unit vector that
+all electrons at *t=0*. ``epdir_re1(3)`` specify a unit vector that
 indicates the direction of the impulse.
 See :any:`&emfield in Inputs <&emfield>` for details.
 
@@ -837,10 +845,14 @@ separate file)
 ::
    
    &atomic_coor
-   'C'    0.000000    0.000000    0.599672  1
-   'H'    0.000000    0.000000    1.662257  2
-   'C'    0.000000    0.000000   -0.599672  1
-   'H'    0.000000    0.000000   -1.662257  2
+     !cartesian atomic coodinates
+     'C'    0.000000    0.000000    0.599672  1
+     'H'    0.000000    0.000000    1.662257  2
+     'C'    0.000000    0.000000   -0.599672  1
+     'H'    0.000000    0.000000   -1.662257  2
+     !--- Format ---------------------------------------------------!
+     ! 'symbol' x y z index(correspond to that of pseudo potential) !
+     !--------------------------------------------------------------!
    /
 
 Cartesian coordinates of atoms. The first column indicates the element.
