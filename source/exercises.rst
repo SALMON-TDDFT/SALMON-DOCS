@@ -1334,66 +1334,60 @@ directory that you run the code,
 |                                   | dipole moment                     |
 +-----------------------------------+-----------------------------------+
 
++-----------------------------------+-----------------------------------+
+| file name                         | description                       |
++-----------------------------------+-----------------------------------+
+| *C2H2_pulse.data*                 | dipole momentpolarizability as    |
+|                                   | functions of energy               |
++-----------------------------------+-----------------------------------+
+| *C2H2_rt.data*                    | components of                     |
+|                                   | change of dipole moment           |
+|                                   | (electrons/plus definition)       |
+|                                   | and total dipole moment           |
+|                                   | (electrons/minus + ions/plus)     |
+|                                   | as functions of time              |
++-----------------------------------+-----------------------------------+
+| *C2H2_rt_energy.data*             | components of                     |
+|                                   | total energy                      |
+|                                   | and difference of total energy    |
+|                                   | as functions of time              |
++-----------------------------------+-----------------------------------+
+
 | You may download the above files (zipped file) from:
 | https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_rt_pulse_output.zip
 
 Explanations of the files are described below:
 
-**C2H2_p.data**
-
-For time steps from 1 to nt,
-
--  1 column: time
--  2-4 columns: x,y,z components of the dipole moment
--  5 column: total energy of the system
+**C2H2_pulse.data**
 
 ::
 
-     # time[fs],    dipoleMoment(x,y,z)[A],                        Energy[eV]
-     0.12500E-02  0.18257556E-09  0.11097584E-09  0.48217422E-09 -0.33970414E+03
-     0.25000E-02  0.91251666E-09  0.54016872E-09  0.19424475E-08 -0.33970414E+03
-     0.37500E-02  0.24945802E-08  0.14520397E-08  0.43921301E-08 -0.33970414E+03
-     0.50000E-02  0.50230110E-08  0.29055651E-08  0.78162260E-08 -0.33970414E+03
-     0.62500E-02  0.83018473E-08  0.48072377E-08  0.12178890E-07 -0.33970413E+03
+   # Fourier-transform spectra: 
+   # energy: Frequency
+   # dm: Dopile moment
+   # 1:energy[eV] 2:Re(dm_x)[fs*Angstrom] 3:Im(dm_x)[fs*Angstrom] 4:|dm_x|^2[fs*Angstrom] 5:Re(dm_y)[fs*Angstrom] 6:Im(dm_y)[fs*Angstrom] 7:|dm_y|^2[fs*Angstrom] 8:Re(dm_z)[fs^2*Angstrom^2] 9:Im(dm_z)[fs^2*Angstrom^2] 10:|dm_z|^2[fs^2*Angstrom^2]
 
-   ...
-
-     0.59950E+01  0.10101410E-04  0.55756362E-05  0.32250943E-03 -0.33970394E+03
-     0.59963E+01  0.10109316E-04  0.55775491E-05  0.38471398E-03 -0.33970394E+03
-     0.59975E+01  0.10115053E-04  0.55780512E-05  0.44680913E-03 -0.33970394E+03
-     0.59988E+01  0.10118632E-04  0.55771582E-05  0.50877609E-03 -0.33970394E+03
-     0.60000E+01  0.10120064E-04  0.55748807E-05  0.57059604E-03 -0.33970394E+03
-
-**C2H2_ps.data**
-
-For energy steps from 0 to nenergy,
-
--  1 column: energy
--  2-4 columns: x,y,z components of the real part of the time-frequency
-   Fourier transformation of the dipole moment
--  5-7 columns: x,y,z components of imaginary part of the time-frequency
-   Fourier transformation of the dipole moment
--  8-10 columns: x,y,z components of power spectrum of the dipole moment
+**C2H2_rt.data**
 
 ::
 
-    # energy[eV], Re[alpha](x,y,z)[A*fs], Im[alpha](x,y,z)[A*fs], I(x,y,z)[A**2*fs**2]
-     0.00000E+00  0.12836214E-01  0.60771681E-02 -0.28240863E-02  0.00000000E+00  0.00000000E+00  0.00000000E+00  0.16476838E-03  0.36931972E-04  0.79754632E-05
-     0.10000E-01  0.12829079E-01  0.60737829E-02 -0.28241953E-02  0.35253318E-03  0.16719128E-03 -0.41437502E-04  0.16470954E-03  0.36918792E-04  0.79777964E-05
-     0.20000E-01  0.12807693E-01  0.60636364E-02 -0.28245142E-02  0.70436985E-03  0.33405211E-03 -0.83009748E-04  0.16453313E-03  0.36879277E-04  0.79847710E-05
-     0.30000E-01  0.12772113E-01  0.60467557E-02 -0.28250177E-02  0.10548158E-02  0.50025311E-03 -0.12484976E-03  0.16423951E-03  0.36813507E-04  0.79963126E-05
-     0.40000E-01  0.12722434E-01  0.60231857E-02 -0.28256644E-02  0.14031812E-02  0.66546701E-03 -0.16708711E-03  0.16382925E-03  0.36721612E-04  0.80122973E-05
-     0.50000E-01  0.12658789E-01  0.59929893E-02 -0.28263966E-02  0.17487830E-02  0.82936975E-03 -0.20984627E-03  0.16330319E-03  0.36603775E-04  0.80325532E-05
+   # Real time calculation: 
+   # Ac_ext: External vector potential field
+   # E_ext: External electric field
+   # Ac_tot: Total vector potential field
+   # E_tot: Total electric field
+   # ddm_e: Change of dipole moment (electrons/plus definition)
+   # dm: Total dipole moment (electrons/minus + ions/plus)
+   # 1:Time[fs] 2:Ac_ext_x[fs*V/Angstrom] 3:Ac_ext_y[fs*V/Angstrom] 4:Ac_ext_z[fs*V/Angstrom] 5:E_ext_x[V/Angstrom] 6:E_ext_y[V/Angstrom] 7:E_ext_z[V/Angstrom] 8:Ac_tot_x[fs*V/Angstrom] 9:Ac_tot_y[fs*V/Angstrom] 10:Ac_tot_z[fs*V/Angstrom] 11:E_tot_x[V/Angstrom] 12:E_tot_y[V/Angstrom] 13:E_tot_z[V/Angstrom] 14:ddm_e_x[Angstrom] 15:ddm_e_y[Angstrom] 16:ddm_e_z[Angstrom] 17:dm_x[Angstrom] 18:dm_y[Angstrom] 19:dm_z[Angstrom] 
 
-   ...
+**C2H2_rt_energy.data**
 
-  0.99601E+01  0.38757368E-03  0.19783358E-03  0.11087376E+01 -0.27465428E-03 -0.29515838E-03  0.10183658E+01  0.22564833E-06  0.12625659E-06  0.22663679E+01
-  0.99701E+01  0.38446279E-03  0.19754997E-03  0.10416956E+01 -0.27241140E-03 -0.29512921E-03  0.10381647E+01  0.22201960E-06  0.12612724E-06  0.21629157E+01
-  0.99801E+01  0.38136406E-03  0.19733388E-03  0.97519659E+00 -0.27017795E-03 -0.29508231E-03  0.10542348E+01  0.21843467E-06  0.12601423E-06  0.20624194E+01
-  0.99901E+01  0.37827032E-03  0.19718146E-03  0.90943725E+00 -0.26795413E-03 -0.29501502E-03  0.10666811E+01  0.21488785E-06  0.12591439E-06  0.19648847E+01
-  0.10000E+02  0.37517469E-03  0.19708886E-03  0.84460457E+00 -0.26574105E-03 -0.29492512E-03  0.10756186E+01  0.21137435E-06  0.12582485E-06  0.18703122E+01
+::
 
-
+   # Real time calculation: 
+   # Eall: Total energy
+   # Eall0: Initial energy
+   # 1:Time[fs] 2:Eall[eV] 3:Eall-Eall0[eV] 
 
 Crystalline silicon (periodic solids)
 -------------------------------------
