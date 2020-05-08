@@ -1098,21 +1098,6 @@ We present explanations of the input keywords that appear in the input file belo
 
 **required and recommended variables**
 
-**&units**
-
-Mandatory: none
-
-::
-   
-   &units
-     unit_system='A_eV_fs'
-   /
-
-This input keyword specifies the unit system to be used in the input file. If
-you do not specify it, atomic unit will be used.
-See :any:`&units in Inputs <&units>` for detail.
-
-
 **&calculation**
 
 Mandatory: calc_mode
@@ -1126,7 +1111,6 @@ Mandatory: calc_mode
 This indicates that the real time (RT) calculation is carried out in the
 present job. See :any:`&calculation in Inputs <&calculation>` for detail.
 
-
 **&control**
 
 Mandatory: none
@@ -1139,6 +1123,20 @@ Mandatory: none
 
 'C2H2' defined by ``sysname = 'C2H2'`` will be used in the filenames of
 output files.
+
+**&units**
+
+Mandatory: none
+
+::
+   
+   &units
+     unit_system='A_eV_fs'
+   /
+
+This input keyword specifies the unit system to be used in the input file. If
+you do not specify it, atomic unit will be used.
+See :any:`&units in Inputs <&units>` for detail.
 
 **&system**
 
@@ -1158,7 +1156,6 @@ Mandatory: iperiodic, al, nstate, nelem, natom
 These input keywords and their values should be the same as those used in the
 ground state calculation.
 See :any:`&system in Exercise-1 <exercise-1-&system>`.
-
 
 **&pseudo**
 
@@ -1181,6 +1178,34 @@ These input keywords and their values should be the same as those used in the
 ground state calculation.
 See :any:`&pseudo in Exercise-1 <exercise-1-&pseudo>`.
 
+**&functional**
+
+Mandatory: xc
+
+::
+
+   &functional
+     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
+     xc = 'PZ'
+   /
+
+This indicates that the local density approximation with the Perdew-Zunger functional is used.
+
+**&rgrid**
+
+Mandatory: dl or num_rgrid
+
+::
+
+   &rgrid
+     !spatial grid spacing(x,y,z)
+     dl(1:3) = 0.25d0, 0.25d0, 0.25d0
+   /
+
+``dl(1:3) = 0.25d0, 0.25d0, 0.25d0`` specifies the grid spacings
+in three Cartesian directions. This must be the same as
+that in the ground state calculation.
+See :any:`&rgrid in Inputs <&rgrid>` for more information.
 
 **&tgrid**
 
@@ -1236,7 +1261,6 @@ does not vanish.
 
 See :any:`&emfield in Inputs <&emfield>` for details.
 
-
 **&atomic_coor**
 
 Mandatory: atomic_coor or atomic_red_coor (it may be provided as a
@@ -1255,8 +1279,6 @@ Cartesian coordinates of atoms. The first column indicates the element.
 Next three columns specify Cartesian coordinates of the atoms. The
 number in the last column labels the element. They must be the same as
 those in the ground state calculation.
-
-
 
 .. _output-files-2:
 
