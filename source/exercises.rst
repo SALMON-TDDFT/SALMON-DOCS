@@ -688,8 +688,8 @@ Mandatory: calc_mode
      theory = 'tddft_response'
    /
 
-This indicates that the real time (RT) calculation is carried out in the
-present job. See :any:`&calculation in Inputs <&calculation>` for detail.
+This indicates that the real time (RT) calculation to obtain response function
+is carried out in the present job. See :any:`&calculation in Inputs <&calculation>` for detail.
 
 **&control**
 
@@ -1100,15 +1100,16 @@ We present explanations of the input keywords that appear in the input file belo
 
 **&calculation**
 
-Mandatory: calc_mode
+Mandatory: theory
 
 ::
    
    &calculation
-     calc_mode = 'RT'
+     !type of theory
+     theory = 'tddft_pulse'
    /
 
-This indicates that the real time (RT) calculation is carried out in the
+This indicates that the real time (RT) calculation for a pulse response is carried out in the
 present job. See :any:`&calculation in Inputs <&calculation>` for detail.
 
 **&control**
@@ -1118,11 +1119,12 @@ Mandatory: none
 ::
    
    &control
+     !common name of output files
      sysname = 'C2H2'
    /
 
-'C2H2' defined by ``sysname = 'C2H2'`` will be used in the filenames of
-output files.
+'C2H2' defined by ``sysname = 'C2H2'`` will be used 
+in the filenames of output files.
 
 **&units**
 
@@ -1131,7 +1133,8 @@ Mandatory: none
 ::
    
    &units
-     unit_system='A_eV_fs'
+     !units used in input and output files
+     unit_system = 'A_eV_fs'
    /
 
 This input keyword specifies the unit system to be used in the input file. If
@@ -1140,17 +1143,22 @@ See :any:`&units in Inputs <&units>` for detail.
 
 **&system**
 
-Mandatory: iperiodic, al, nstate, nelem, natom
+Mandatory: yn_periodic, al, nelem, natom, nelectron, nstate
 
 ::
    
    &system
-     iperiodic = 0
-     al = 16d0, 16d0, 16d0
+     !periodic boundary condition
+     yn_periodic = 'n'
+     
+     !grid box size(x,y,z)
+     al(1:3) = 16.0d0, 16.0d0, 16.0d0
+     
+     !number of elements, atoms, electrons and states(orbitals)
+     nelem  = 2
+     natom  = 4
+     nelec  = 10
      nstate = 5
-     nelem = 2
-     natom = 4
-     nelec = 10
    /
 
 These input keywords and their values should be the same as those used in the
@@ -1164,14 +1172,20 @@ Mandatory: pseudo_file, izatom
 ::
    
    &pseudo
-     izatom(1)=6
-     izatom(2)=1
-     pseudo_file(1)='C_rps.dat'
-     pseudo_file(2)='H_rps.dat'
-     lmax_ps(1)=1
-     lmax_ps(2)=0
-     lloc_ps(1)=1
-     lloc_ps(2)=0
+     !name of input pseudo potential file
+     file_pseudo(1) = './C_rps.dat'
+     file_pseudo(2) = './H_rps.dat'
+     
+     !atomic number of element
+     izatom(1) = 6
+     izatom(2) = 1
+     
+     !angular momentum of pseudopotential that will be treated as local
+     lloc_ps(1) = 1
+     lloc_ps(2) = 0
+     !--- Caution ---------------------------------------!
+     ! Indices must correspond to those in &atomic_coor. !
+     !---------------------------------------------------!
    /
 
 These input keywords and their values should be the same as those used in the
@@ -1209,52 +1223,68 @@ See :any:`&rgrid in Inputs <&rgrid>` for more information.
 
 **&tgrid**
 
-Mandatory: dt, Nt
+Mandatory: dt, nt
 
 ::
    
    &tgrid
-     dt=1.25d-3
-     nt=4800
+     !time step size and number of time grids(steps)
+     dt = 1.25d-3
+     nt = 5000
    /
 
-``dt=1.25d-3`` specifies the time step of the time evolution
-calculation. ``Nt=4800`` specifies the number of time steps in the
+``dt = 1.25d-3`` specifies the time step of the time evolution
+calculation. ``nt = 5000`` specifies the number of time steps in the
 calculation.
 
 **&emfield**
 
-Mandatory: ae_shape1, epdir_re1, {rlaser_int1 or amplitude1}, omega1,
-pulse_tw1, phi_cep1
+Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_cep1
 
 ::
    
    &emfield
+     !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
      ae_shape1 = 'Ecos2'
-     epdir_re1 = 0.d0,0.d0,1.d0
-     rlaser_int_wcm2_1 = 1.d8
-     omega1=9.28d0
-     pulse_tw1=6.d0
-     phi_cep1=0.75d0
+     
+     !peak intensity(W/cm^2) of the incident pulse
+     I_wcm2_1 = 1.00d8
+     
+     !duration of the incident pulse
+     tw1 = 6.00d0
+     
+     !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
+     omega1 = 9.28d0
+     
+     !polarization unit vector(real part) for the incident pulse(x,y,z)
+     epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
+     
+     !carrier emvelope phase of the incident pulse
+     !(phi_cep1 must be 0.25 + 0.5 * n(integer) when ae_shape1 = 'Ecos2')
+     phi_cep1 = 0.75d0
+     !--- Caution ---------------------------------------------------------!
+     ! Defenition of the incident pulse is wrriten in:                     !
+     ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
+     !---------------------------------------------------------------------!
    /
 
 ``ae_shape1 = 'Ecos2'`` indicates that the envelope of the pulsed
 electric field has a *cos^2* shape.
 
-``epdir_re1 = 0.d0,0.d0,1.d0`` specifies the real part of the unit
+``I_wcm2_1 = 1.00d8`` specifies the maximum intensity of the
+applied electric field in unit of W/cm^2.
+
+``tw1 = 6.00d0`` specifies the pulse duration. Note that it is not the
+FWHM but a full duration of the cos^2 envelope.
+
+``omega1 = 9.28d0`` specifies the average photon energy (frequency
+multiplied with hbar).
+
+``epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0`` specifies the real part of the unit
 polarization vector of the pulsed electric field. Using the real
 polarization vector, it describes a linearly polarized pulse.
 
-``laser_int_wcm2_1 = 1.d8`` specifies the maximum intensity of the
-applied electric field in unit of W/cm^2.
-
-``omega1=9.26d0`` specifies the average photon energy (frequency
-multiplied with hbar).
-
-``pulse_tw1=6.d0`` specifies the pulse duration. Note that it is not the
-FWHM but a full duration of the cos^2 envelope.
-
-``phi_cep1=0.75d0`` specifies the carrier envelope phase of the pulse.
+``phi_cep1 = 0.75d0`` specifies the carrier envelope phase of the pulse.
 As noted above, 'phi_cep1' must be 0.75 (or 0.25) if one employs 'Ecos2'
 pulse shape, since otherwise the time integral of the electric field
 does not vanish.
@@ -1269,10 +1299,14 @@ separate file)
 ::
    
    &atomic_coor
-   'C'    0.000000    0.000000    0.599672  1
-   'H'    0.000000    0.000000    1.662257  2
-   'C'    0.000000    0.000000   -0.599672  1
-   'H'    0.000000    0.000000   -1.662257  2
+     !cartesian atomic coodinates
+     'C'    0.000000    0.000000    0.599672  1
+     'H'    0.000000    0.000000    1.662257  2
+     'C'    0.000000    0.000000   -0.599672  1
+     'H'    0.000000    0.000000   -1.662257  2
+     !--- Format ---------------------------------------------------!
+     ! 'symbol' x y z index(correspond to that of pseudo potential) !
+     !--------------------------------------------------------------!
    /
 
 Cartesian coordinates of atoms. The first column indicates the element.
