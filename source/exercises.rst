@@ -872,12 +872,21 @@ directory that you run the code,
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
 +-----------------------------------+-----------------------------------+
-| *C2H2_lr.data*                    | polarizability and oscillator     |
+| *C2H2_response.data*              | polarizability and oscillator     |
 |                                   | strength distribution as          |
 |                                   | functions of energy               |
 +-----------------------------------+-----------------------------------+
-| *C2H2_p.data*                     | components of dipole moment as    |
-|                                   | functions of time                 |
+| *C2H2_rt.data*                    | components of                     |
+|                                   | change of dipole moment           |
+|                                   | (electrons/plus definition)       |
+|                                   | and total dipole moment           |
+|                                   | (electrons/minus + ions/plus)     |
+|                                   | as functions of time              |
++-----------------------------------+-----------------------------------+
+| *C2H2_rt_energy.data*             | components of                     |
+|                                   | total energy                      |
+|                                   | and difference of total energy    |
+|                                   | as functions of time              |
 +-----------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file) from:
