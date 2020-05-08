@@ -895,6 +895,23 @@ directory that you run the code,
 
 Explanations of the output files are below:
 
+**C2H2_response.data**
+
+For energy steps from 0 to nenergy,
+
+-  1 column: energy
+-  2-4 columns: x,y,z components of real part of the polarizability
+   (time-frequency Fourier transformation of the dipole moment)
+-  5-7 columns: x,y,z components of imaginary part of the polarizability
+   (time-frequency Fourier transformation of the dipole moment)
+-  8-10 columns: x,y,z components of power spectrum of the dipole moment
+
+::
+
+   # Fourier-transform spectra: 
+   # alpha: Polarizability
+   # df/dE: Strength function
+   # 1:Energy[eV] 2:Re(alpha_x)[Augstrom^2/V] 3:Im(alpha_x)[Augstrom^2/V] 4:Re(alpha_y)[Augstrom^2/V] 5:Im(alpha_y)[Augstrom^2/V] 6:Re(alpha_z)[Augstrom^2/V] 7:Im(alpha_z)[Augstrom^2/V] 8:df_x/dE[none] 9:df_y/dE[none] 10:df_z/dE[none]
 
 **C2H2-p.data**
 
@@ -920,37 +937,6 @@ For time steps from 1 to nt,
      0.62475E+01 -0.22836011E-05 -0.13244333E-05 -0.12951690E-02 -0.33969011E+03
      0.62488E+01 -0.23416512E-05 -0.13565206E-05 -0.11738782E-02 -0.33969011E+03
      0.62500E+01 -0.23987916E-05 -0.13881638E-05 -0.10473800E-02 -0.33969011E+03
-
-**C2H2_lr.data**
-
-For energy steps from 0 to nenergy,
-
--  1 column: energy
--  2-4 columns: x,y,z components of real part of the polarizability
-   (time-frequency Fourier transformation of the dipole moment)
--  5-7 columns: x,y,z components of imaginary part of the polarizability
-   (time-frequency Fourier transformation of the dipole moment)
--  8-10 columns: x,y,z components of power spectrum of the dipole moment
-
-::
-
-     # energy[eV], Re[alpha](x,y,z)[A**3], Im[alpha](x,y,z)[A**3], S(x,y,z)[1/eV]
-     0.00000E+00  0.90041681E-02  0.42900323E-02  0.47230167E+01  0.00000000E+00  0.00000000E+00  0.00000000E+00  0.00000000E+00  0.00000000E+00  0.00000000E+00
-     0.10000E-01  0.89986618E-02  0.42874031E-02  0.47230192E+01  0.25932415E-03  0.12379226E-03  0.18663776E-03  0.15045807E-07  0.71823406E-08  0.10828593E-07
-     0.20000E-01  0.89821593E-02  0.42795232E-02  0.47230267E+01  0.51808569E-03  0.24731589E-03  0.37320742E-03  0.60117942E-07  0.28698192E-07  0.43306470E-07
-     0.30000E-01  0.89547084E-02  0.42664157E-02  0.47230393E+01  0.77572398E-03  0.37030322E-03  0.55964230E-03  0.13502090E-06  0.64454205E-07  0.97410171E-07
-     0.40000E-01  0.89163894E-02  0.42481186E-02  0.47230569E+01  0.10316824E-02  0.49248844E-03  0.74587862E-03  0.23942997E-06  0.11429535E-06  0.17310143E-06
-     0.50000E-01  0.88673137E-02  0.42246853E-02  0.47230796E+01  0.12854100E-02  0.61360857E-03  0.93185683E-03  0.37289297E-06  0.17800571E-06  0.27032843E-06
-
-   ...
-
-  0.99601E+01  0.15674984E-03  0.37403402E-04 -0.44437601E+00 -0.10631864E-03 -0.14544171E-03  0.27060202E+01 -0.61438595E-05 -0.84046729E-05  0.15637340E+00
-  0.99701E+01  0.15448331E-03  0.37400902E-04 -0.14920113E+00 -0.10649714E-03 -0.14698080E-03  0.25947889E+01 -0.61603535E-05 -0.85021406E-05  0.15009620E+00
-  0.99801E+01  0.15224601E-03  0.37478652E-04  0.14911900E+00 -0.10665066E-03 -0.14847068E-03  0.24965858E+01 -0.61754213E-05 -0.85969375E-05  0.14456047E+00
-  0.99901E+01  0.15003254E-03  0.37632621E-04  0.45012407E+00 -0.10678183E-03 -0.14990965E-03  0.24115316E+01 -0.61892122E-05 -0.86889561E-05  0.13977547E+00
-  0.10000E+02  0.14783807E-03  0.37858911E-04  0.75334591E+00 -0.10689373E-03 -0.15129625E-03  0.23397373E+01 -0.62019000E-05 -0.87781030E-05  0.13574993E+00
-
-
 
 .. _exercise-3:
 
