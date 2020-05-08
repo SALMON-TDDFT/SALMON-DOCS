@@ -899,13 +899,6 @@ Explanations of the output files are below:
 
 For energy steps from 0 to nenergy,
 
--  1 column: energy
--  2-4 columns: x,y,z components of real part of the polarizability
-   (time-frequency Fourier transformation of the dipole moment)
--  5-7 columns: x,y,z components of imaginary part of the polarizability
-   (time-frequency Fourier transformation of the dipole moment)
--  8-10 columns: x,y,z components of power spectrum of the dipole moment
-
 ::
 
    # Fourier-transform spectra: 
@@ -913,30 +906,27 @@ For energy steps from 0 to nenergy,
    # df/dE: Strength function
    # 1:Energy[eV] 2:Re(alpha_x)[Augstrom^2/V] 3:Im(alpha_x)[Augstrom^2/V] 4:Re(alpha_y)[Augstrom^2/V] 5:Im(alpha_y)[Augstrom^2/V] 6:Re(alpha_z)[Augstrom^2/V] 7:Im(alpha_z)[Augstrom^2/V] 8:df_x/dE[none] 9:df_y/dE[none] 10:df_z/dE[none]
 
-**C2H2-p.data**
-
-For time steps from 1 to nt,
-
--  1 column: time
--  2-4 columns: x,y,z components of the dipole moment
--  5 column: total energy of the system
+**C2H2_rt.data**
 
 ::
 
-     # time[fs],    dipoleMoment(x,y,z)[A],                        Energy[eV]
-     0.12500E-02  0.20197641E-09  0.12143673E-09  0.27407578E-02 -0.33969042E+03
-     0.25000E-02 -0.23127543E-09 -0.38283389E-09  0.54651286E-02 -0.33969040E+03
-     0.37500E-02 -0.24342401E-08 -0.25180060E-08  0.81587485E-02 -0.33969039E+03
-     0.50000E-02 -0.63429482E-08 -0.62611945E-08  0.10810857E-01 -0.33969038E+03
-     0.62500E-02 -0.11655064E-07 -0.11294666E-07  0.13413805E-01 -0.33969038E+03
+   # Real time calculation: 
+   # Ac_ext: External vector potential field
+   # E_ext: External electric field
+   # Ac_tot: Total vector potential field
+   # E_tot: Total electric field
+   # ddm_e: Change of dipole moment (electrons/plus definition)
+   # dm: Total dipole moment (electrons/minus + ions/plus)
+   # 1:Time[fs] 2:Ac_ext_x[fs*V/Angstrom] 3:Ac_ext_y[fs*V/Angstrom] 4:Ac_ext_z[fs*V/Angstrom] 5:E_ext_x[V/Angstrom] 6:E_ext_y[V/Angstrom] 7:E_ext_z[V/Angstrom] 8:Ac_tot_x[fs*V/Angstrom] 9:Ac_tot_y[fs*V/Angstrom] 10:Ac_tot_z[fs*V/Angstrom] 11:E_tot_x[V/Angstrom] 12:E_tot_y[V/Angstrom] 13:E_tot_z[V/Angstrom] 14:ddm_e_x[Angstrom] 15:ddm_e_y[Angstrom] 16:ddm_e_z[Angstrom] 17:dm_x[Angstrom] 18:dm_y[Angstrom] 19:dm_z[Angstrom] 
 
-   ...
+**C2H2_rt_energy.data**
 
-     0.62450E+01 -0.21648194E-05 -0.12589717E-05 -0.15217299E-02 -0.33969011E+03
-     0.62463E+01 -0.22246530E-05 -0.12919132E-05 -0.14111473E-02 -0.33969011E+03
-     0.62475E+01 -0.22836011E-05 -0.13244333E-05 -0.12951690E-02 -0.33969011E+03
-     0.62488E+01 -0.23416512E-05 -0.13565206E-05 -0.11738782E-02 -0.33969011E+03
-     0.62500E+01 -0.23987916E-05 -0.13881638E-05 -0.10473800E-02 -0.33969011E+03
+::
+
+   # Real time calculation: 
+   # Eall: Total energy
+   # Eall0: Initial energy
+   # 1:Time[fs] 2:Eall[eV] 3:Eall-Eall0[eV] 
 
 .. _exercise-3:
 
