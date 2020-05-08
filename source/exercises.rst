@@ -897,8 +897,6 @@ Explanations of the output files are below:
 
 **C2H2_response.data**
 
-For energy steps from 0 to nenergy,
-
 ::
 
    # Fourier-transform spectra: 
