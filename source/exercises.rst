@@ -1397,7 +1397,423 @@ Crystalline silicon (periodic solids)
 Exercise-4: Ground state of crystalline silicon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-xxx.
+In this exercise, we learn the calculation of the ground state solution
+of acetylene (C2H2) molecule, solving the static Kohn-Sham equation.
+This exercise will be useful to learn how to set up calculations in
+SALMON for any isolated systems such as molecules and nanoparticles.
+Atomic positions of the molecule are specified in the input file and
+are fixed during the calculations.
+
+Input files
+^^^^^^^^^^^
+
+To run the code, following files are used:
+
++-----------------------------------+-----------------------------------+
+| file name                         | description                       |
++-----------------------------------+-----------------------------------+
+| *C2H2_gs.inp*                     | input file that contains input    |
+|                                   | keywords and their values         |
++-----------------------------------+-----------------------------------+
+| *C_rps.dat*                       | pseodupotential file for carbon   |
+|                                   | atom                              |
++-----------------------------------+-----------------------------------+
+| *H_rps.dat*                       | pseudopotential file for hydrogen |
+|                                   | atom                              |
++-----------------------------------+-----------------------------------+
+
+| You may download the above 3 files (zipped file) from: 
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_input.zip
+| (zipped input and pseudopotential files)
+
+In the input file *C2H2_gs.inp*, input keywords are specified.
+Most of them are mandatory to execute the ground state calculation.
+This will help you to prepare an input file for other systems that you
+want to calculate. A complete list of the input keywords that can be
+used in the input file can be found in
+:any:`List of all input keywords <List of all input keywords>`.
+
+::
+
+   !########################################################################################!
+   ! Excercise 01: Ground state of C2H2 molecule                                            !
+   !----------------------------------------------------------------------------------------!
+   ! * The detail of this excercise is expained in our manual(see chapter: 'Exercises').    !
+   !   The manual can be obtained from: https://salmon-tddft.jp/documents.html              !
+   ! * Input format consists of group of keywords like:                                     !
+   !     &group                                                                             !
+   !       input keyword = xxx                                                              !
+   !     /                                                                                  !
+   !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !########################################################################################!
+   
+   &calculation
+     !type of theory
+     theory = 'dft'
+   /
+   
+   &control
+     !common name of output files
+     sysname = 'C2H2'
+   /
+   
+   &units
+     !units used in input and output files
+     unit_system = 'A_eV_fs'
+   /
+   
+   &system
+     !periodic boundary condition
+     yn_periodic = 'n'
+     
+     !grid box size(x,y,z)
+     al(1:3) = 16.0d0, 16.0d0, 16.0d0
+     
+     !number of elements, atoms, electrons and states(orbitals)
+     nelem  = 2
+     natom  = 4
+     nelec  = 10
+     nstate = 5
+   /
+   
+   &pseudo
+     !name of input pseudo potential file
+     file_pseudo(1) = './C_rps.dat'
+     file_pseudo(2) = './H_rps.dat'
+     
+     !atomic number of element
+     izatom(1) = 6
+     izatom(2) = 1
+     
+     !angular momentum of pseudopotential that will be treated as local
+     lloc_ps(1) = 1
+     lloc_ps(2) = 0
+     !--- Caution ---------------------------------------!
+     ! Indices must correspond to those in &atomic_coor. !
+     !---------------------------------------------------!
+   /
+   
+   &functional
+     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
+     xc = 'PZ'
+   /
+   
+   &rgrid
+     !spatial grid spacing(x,y,z)
+     dl(1:3) = 0.25d0, 0.25d0, 0.25d0
+   /
+   
+   &scf
+     !maximum number of scf iteration and threshold of convergence
+     nscf      = 200
+     threshold = 1.0d-9
+   /
+   
+   &analysis
+     !output of all orbitals, density,
+     !density of states, projected density of states,
+     !and electron localization function
+     yn_out_psi  = 'y'
+     yn_out_dns  = 'y'
+     yn_out_dos  = 'y'
+     yn_out_pdos = 'y'
+     yn_out_elf  = 'y'
+   /
+   
+   &atomic_coor
+     !cartesian atomic coodinates
+     'C'    0.000000    0.000000    0.599672  1
+     'H'    0.000000    0.000000    1.662257  2
+     'C'    0.000000    0.000000   -0.599672  1
+     'H'    0.000000    0.000000   -1.662257  2
+     !--- Format ---------------------------------------------------!
+     ! 'symbol' x y z index(correspond to that of pseudo potential) !
+     !--------------------------------------------------------------!
+   /
+
+We present their explanations below:
+
+**Required and recommened variables**
+
+**&calculation**
+
+Mandatory: theory
+
+::
+
+   &calculation
+     !type of theory
+     theory = 'dft'
+   /
+
+This indicates that the ground state calculation by DFT is carried out in
+the present job. See :any:`&calculation in Inputs <&calculation>` for detail.
+
+**&control**
+
+Mandatory: none
+
+::
+
+   &control
+     !common name of output files
+     sysname = 'C2H2'
+   /
+
+'C2H2' defined by ``sysname = 'C2H2'`` will be used in the filenames of
+output files.
+
+**&units**
+
+Mandatory: none
+
+::
+
+   &units
+     !units used in input and output files
+     unit_system = 'A_eV_fs'
+   /
+
+This input keyword specifies the unit system to be used in the input and output files.
+If you do not specify it, atomic unit will be used.
+See :any:`&units in Inputs <&units>` for detail.
+
+.. _exercise-1-&system:
+
+**&system**
+
+Mandatory: yn_periodic, al, nelem, natom, nelec, nstate
+
+::
+
+   &system
+     !periodic boundary condition
+     yn_periodic = 'n'
+     
+     !grid box size(x,y,z)
+     al(1:3) = 16.0d0, 16.0d0, 16.0d0
+     
+     !number of elements, atoms, electrons and states(orbitals)
+     nelem  = 2
+     natom  = 4
+     nelec  = 10
+     nstate = 5
+   /
+
+``yn_periodic = 'n'`` indicates that the isolated boundary condition will be
+used in the calculation. ``al(1:3) = 16.0d0, 16.0d0, 16.0d0`` specifies the lengths
+of three sides of the rectangular parallelepiped where the grid points
+are prepared. ``nelem = 2`` and ``natom = 4`` indicate the number of elements and the
+number of atoms in the system, respectively. ``nelec = 10`` indicate the number of valence electrons in
+the system. ``nstate = 5`` indicates the number of Kohn-Sham orbitals
+to be solved. Since the present code assumes that the system is spin
+saturated, ``nstate`` should be equal to or larger than ``nelec/2``.
+See :any:`&system in Inputs <&system>` for more information.
+
+.. _exercise-1-&pseudo:
+
+**&pseudo**
+
+Mandatory: file_pseudo, izatom
+
+::
+
+   &pseudo
+     !name of input pseudo potential file
+     file_pseudo(1) = './C_rps.dat'
+     file_pseudo(2) = './H_rps.dat'
+     
+     !atomic number of element
+     izatom(1) = 6
+     izatom(2) = 1
+     
+     !angular momentum of pseudopotential that will be treated as local
+     lloc_ps(1) = 1
+     lloc_ps(2) = 0
+     !--- Caution ---------------------------------------!
+     ! Indices must correspond to those in &atomic_coor. !
+     !---------------------------------------------------!
+   /
+
+Parameters related to atomic species and pseudopotentials.
+``pseudo_file(1) = 'C_rps.dat'`` indicates the filename of the
+pseudopotential of element #1.
+``izatom(1) = 6`` specifies the atomic number of the element #1.
+``lloc_ps(1) = 1`` specifies the angular momentum of the pseudopotential
+that will be treated as local.
+
+**&functional**
+
+Mandatory: xc
+
+::
+
+   &functional
+     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
+     xc = 'PZ'
+   /
+
+This indicates that the local density approximation with the Perdew-Zunger functional is used.
+
+**&rgrid**
+
+Mandatory: dl or num_rgrid
+
+::
+
+   &rgrid
+     !spatial grid spacing(x,y,z)
+     dl(1:3) = 0.25d0, 0.25d0, 0.25d0
+   /
+
+``dl(1:3) = 0.25d0, 0.25d0, 0.25d0`` specifies the grid spacings
+in three Cartesian directions.
+See :any:`&rgrid in Inputs <&rgrid>` for more information.
+
+**&scf**
+
+Mandatory: nscf, threshold
+
+::
+
+   &scf
+     !maximum number of scf iteration and threshold of convergence
+     nscf      = 200
+     threshold = 1.0d-9
+   /
+
+``nscf`` is the number of scf iterations. 
+The scf loop in the ground state calculation ends before the number of
+the scf iterations reaches ``nscf``, if a convergence criterion is satisfied.
+``threshold = 1.0d-9`` indicates threshold of the convergence for scf iterations.
+
+**&analysis**
+
+If the following input keywords are added, the output files are created after the calculation.
+
+::
+
+   &analysis
+     yn_out_psi  = 'y'
+     yn_out_dns  = 'y'
+     yn_out_dos  = 'y'
+     yn_out_pdos = 'y'
+     yn_out_elf  = 'y'
+   /
+
+**&atomic_coor**
+
+Mandatory: atomic_coor or atomic_red_coor (it may be provided as a
+separate file)
+
+::
+
+   &atomic_coor
+     !cartesian atomic coodinates
+     'C'    0.000000    0.000000    0.599672  1
+     'H'    0.000000    0.000000    1.662257  2
+     'C'    0.000000    0.000000   -0.599672  1
+     'H'    0.000000    0.000000   -1.662257  2
+     !--- Format ---------------------------------------------------!
+     ! 'symbol' x y z index(correspond to that of pseudo potential) !
+     !--------------------------------------------------------------!
+   /
+
+Cartesian coordinates of atoms. The first column indicates the element.
+Next three columns specify Cartesian coordinates of the atoms. The
+number in the last column labels the element.
+
+Output files
+^^^^^^^^^^^^	
+
+After the calculation, following output files and a directory are created in the
+directory that you run the code,
+
++-----------------------------------+-----------------------------------+
+| name                              | description                       |
++-----------------------------------+-----------------------------------+
+| *C2H2_info.data*                  | information on ground state       |
+|                                   | solution                          |
++-----------------------------------+-----------------------------------+
+| *psi1.cube*, *psi2.cube*, ...     | electron orbitals                 |
++-----------------------------------+-----------------------------------+
+| *dns.cube*                        | a cube file for electron density  |
++-----------------------------------+-----------------------------------+
+| *dos.data*                        | density of states                 |
++-----------------------------------+-----------------------------------+
+| *pdos1.data*, *pdos2.data*, ...   | projected density of states       |
++-----------------------------------+-----------------------------------+
+| *elf.cube*                        | electron localization function    |
+|                                   | (ELF)                             |
++-----------------------------------+-----------------------------------+
+| *C2H2_eigen.data*                 | 1 particle energies               |
++-----------------------------------+-----------------------------------+
+| *PS_C_KY_n.dat*                   | information on pseodupotential    |
+|                                   | file for carbon atom              |
++-----------------------------------+-----------------------------------+
+| *PS_H_KY_n.dat*                   | information on pseodupotential    |
+|                                   | file for hydrogen atom            |
++-----------------------------------+-----------------------------------+
+| *data_for_restart*                | directory where files used in     |
+|                                   | the real-time calculation are     |
+|                                   | contained                         |
++-----------------------------------+-----------------------------------+
+
+| You may download the above files (zipped file, except for the files 
+  *C2H2_eigen.data*, *PS_C_KY_n.dat*, and *PS_H_KY_n.dat* 
+  and the directory *data_for_restart*) from:
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_output.zip
+| (zipped output files)
+
+Main results of the calculation such as orbital energies are included in
+*C2H2_info.data*. Explanations of the *C2H2_info.data* and other output
+files are below:
+
+**C2H2_info.data**
+
+Calculated orbital and total energies as well as parameters specified in
+the input file are shown in this file.
+
+**psi1.cube, psi2.cube, ...**
+
+Cube files for electron orbitals. The number in the filename indicates
+the index of the orbital atomic unit is adopted in all cube files.
+
+**dns.cube**
+
+A cube file for electron density.
+
+**dos.data**
+
+A file for density of states. The units used in this file are affected
+by the input parameter, ``unit_system`` in ``&unit``.
+
+**elf.cube**
+
+A cube file for electron localization function (ELF).
+
+We show several image that are created from the output files.
+
+* **Highest occupied molecular orbital (HOMO)**
+
+  The output files *psi1.cube*, *psi2.cube*, ... are used to create the image.
+
+  .. image:: images/exercise1/HOMO.png
+     :scale: 20%
+
+* **Electron density**
+
+  The output files *dns.cube*, ... are used to create the image.
+
+  .. image:: images/exercise1/Dns.png
+     :scale: 20%
+
+* **Electron localization function**
+
+  The output files *elf.cube*, ... are used to create the image.
+
+  .. image:: images/exercise1/Elf.png
+     :scale: 20%
 
 .. _exercise-5:
 
