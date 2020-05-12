@@ -88,8 +88,6 @@ In this exercise, we learn the calculation of the ground state solution
 of acetylene (C2H2) molecule, solving the static Kohn-Sham equation.
 This exercise will be useful to learn how to set up calculations in
 SALMON for any isolated systems such as molecules and nanoparticles.
-Atomic positions of the molecule are specified in the input file and
-are fixed during the calculations.
 
 Input files
 ^^^^^^^^^^^
@@ -1325,18 +1323,6 @@ directory that you run the code,
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
 +-----------------------------------+-----------------------------------+
-| *C2H2_p.data*                     | components of the electric dipole |
-|                                   | moment as functions of time       |
-+-----------------------------------+-----------------------------------+
-| *C2H2_ps.data*                    | power spectrum that is obtained   |
-|                                   | by a time-frequency Fourier       |
-|                                   | transformation of the electric    |
-|                                   | dipole moment                     |
-+-----------------------------------+-----------------------------------+
-
-+-----------------------------------+-----------------------------------+
-| file name                         | description                       |
-+-----------------------------------+-----------------------------------+
 | *C2H2_pulse.data*                 | dipole momentpolarizability as    |
 |                                   | functions of energy               |
 +-----------------------------------+-----------------------------------+
@@ -1398,11 +1384,9 @@ Exercise-4: Ground state of crystalline silicon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this exercise, we learn the calculation of the ground state solution
-of acetylene (C2H2) molecule, solving the static Kohn-Sham equation.
+of crystalline solid, silicon, solving the static Kohn-Sham equation.
 This exercise will be useful to learn how to set up calculations in
-SALMON for any isolated systems such as molecules and nanoparticles.
-Atomic positions of the molecule are specified in the input file and
-are fixed during the calculations.
+SALMON for any periodic systems such as crystalline solid.
 
 Input files
 ^^^^^^^^^^^
@@ -1412,21 +1396,18 @@ To run the code, following files are used:
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
 +-----------------------------------+-----------------------------------+
-| *C2H2_gs.inp*                     | input file that contains input    |
+| *Si_gs.inp*                       | input file that contains input    |
 |                                   | keywords and their values         |
 +-----------------------------------+-----------------------------------+
-| *C_rps.dat*                       | pseodupotential file for carbon   |
-|                                   | atom                              |
-+-----------------------------------+-----------------------------------+
-| *H_rps.dat*                       | pseudopotential file for hydrogen |
+| *Si_rps.dat*                      | pseodupotential file for silicon  |
 |                                   | atom                              |
 +-----------------------------------+-----------------------------------+
 
-| You may download the above 3 files (zipped file) from: 
+| You may download the above 2 files (zipped file) from: 
 | https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_input.zip
 | (zipped input and pseudopotential files)
 
-In the input file *C2H2_gs.inp*, input keywords are specified.
+In the input file *Si_gs.inp*, input keywords are specified.
 Most of them are mandatory to execute the ground state calculation.
 This will help you to prepare an input file for other systems that you
 want to calculate. A complete list of the input keywords that can be
@@ -1436,7 +1417,7 @@ used in the input file can be found in
 ::
 
    !########################################################################################!
-   ! Excercise 01: Ground state of C2H2 molecule                                            !
+   ! Excercise 04: Ground state of crystalline silicon(periodic solids)                     !
    !----------------------------------------------------------------------------------------!
    ! * The detail of this excercise is expained in our manual(see chapter: 'Exercises').    !
    !   The manual can be obtained from: https://salmon-tddft.jp/documents.html              !
@@ -1454,42 +1435,39 @@ used in the input file can be found in
    
    &control
      !common name of output files
-     sysname = 'C2H2'
+     sysname = 'Si'
    /
    
    &units
      !units used in input and output files
-     unit_system = 'A_eV_fs'
+     unit_system = 'a.u.'
    /
    
    &system
      !periodic boundary condition
-     yn_periodic = 'n'
+     vyn_periodic = 'y'
      
      !grid box size(x,y,z)
-     al(1:3) = 16.0d0, 16.0d0, 16.0d0
+     al(1:3) = 10.26d0, 10.26d0, 10.26d0
      
-     !number of elements, atoms, electrons and states(orbitals)
-     nelem  = 2
-     natom  = 4
-     nelec  = 10
-     nstate = 5
+     !number of elements, atoms, electrons and states(bands)
+     nelem  = 1
+     natom  = 8
+     nelec  = 32
+     nstate = 32
    /
    
    &pseudo
      !name of input pseudo potential file
-     file_pseudo(1) = './C_rps.dat'
-     file_pseudo(2) = './H_rps.dat'
+     file_pseudo(1) = './Si_rps.dat'
      
      !atomic number of element
-     izatom(1) = 6
-     izatom(2) = 1
+     izatom(1) = 14
      
      !angular momentum of pseudopotential that will be treated as local
-     lloc_ps(1) = 1
-     lloc_ps(2) = 0
+     lloc_ps(1) = 2
      !--- Caution ---------------------------------------!
-     ! Indices must correspond to those in &atomic_coor. !
+     ! Index must correspond to those in &atomic_coor.   !
      !---------------------------------------------------!
    /
    
@@ -1499,8 +1477,13 @@ used in the input file can be found in
    /
    
    &rgrid
-     !spatial grid spacing(x,y,z)
-     dl(1:3) = 0.25d0, 0.25d0, 0.25d0
+     !number of spatial grids(x,y,z)
+     num_rgrid(1:3) = 12, 12, 12
+   /
+   
+   &kgrid
+     !number of k-points(x,y,z)
+     num_kgrid(1:3) = 4, 4, 4
    /
    
    &scf
@@ -1509,23 +1492,16 @@ used in the input file can be found in
      threshold = 1.0d-9
    /
    
-   &analysis
-     !output of all orbitals, density,
-     !density of states, projected density of states,
-     !and electron localization function
-     yn_out_psi  = 'y'
-     yn_out_dns  = 'y'
-     yn_out_dos  = 'y'
-     yn_out_pdos = 'y'
-     yn_out_elf  = 'y'
-   /
-   
-   &atomic_coor
-     !cartesian atomic coodinates
-     'C'    0.000000    0.000000    0.599672  1
-     'H'    0.000000    0.000000    1.662257  2
-     'C'    0.000000    0.000000   -0.599672  1
-     'H'    0.000000    0.000000   -1.662257  2
+   &atomic_red_coor
+     !cartesian atomic reduced coodinates
+     'Si'	.0	.0	.0	1
+     'Si'	.25	.25	.25	1
+     'Si'	.5	.0	.5	1
+     'Si'	.0	.5	.5	1
+     'Si'	.5	.5	.0	1
+     'Si'	.75	.25	.75	1
+     'Si'	.25	.75	.75	1
+     'Si'	.75	.75	.25	1
      !--- Format ---------------------------------------------------!
      ! 'symbol' x y z index(correspond to that of pseudo potential) !
      !--------------------------------------------------------------!
