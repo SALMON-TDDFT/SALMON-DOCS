@@ -374,6 +374,8 @@ the scf iterations reaches ``nscf``, if a convergence criterion is satisfied.
 
 **&analysis**
 
+Mandatory: none
+
 If the following input keywords are added, the output files are created after the calculation.
 
 ::
@@ -1627,13 +1629,25 @@ Mandatory: dl or num_rgrid
 ::
 
    &rgrid
-     !spatial grid spacing(x,y,z)
-     dl(1:3) = 0.25d0, 0.25d0, 0.25d0
+     !number of spatial grids(x,y,z)
+     num_rgrid(1:3) = 12, 12, 12
    /
 
-``dl(1:3) = 0.25d0, 0.25d0, 0.25d0`` specifies the grid spacings
-in three Cartesian directions.
+``num_rgrid(1:3) = 12, 12, 12`` specifies the number of the grids for each Cartesian direction.
 See :any:`&rgrid in Inputs <&rgrid>` for more information.
+
+**&rgrid**
+
+Mandatory: none
+
+::
+
+   &kgrid
+     !number of k-points(x,y,z)
+     num_kgrid(1:3) = 4, 4, 4
+   /
+
+This input keyword provides grid spacing of k-space for periodic systems.
 
 **&scf**
 
@@ -1652,20 +1666,6 @@ The scf loop in the ground state calculation ends before the number of
 the scf iterations reaches ``nscf``, if a convergence criterion is satisfied.
 ``threshold = 1.0d-9`` indicates threshold of the convergence for scf iterations.
 
-**&analysis**
-
-If the following input keywords are added, the output files are created after the calculation.
-
-::
-
-   &analysis
-     yn_out_psi  = 'y'
-     yn_out_dns  = 'y'
-     yn_out_dos  = 'y'
-     yn_out_pdos = 'y'
-     yn_out_elf  = 'y'
-   /
-
 **&atomic_coor**
 
 Mandatory: atomic_coor or atomic_red_coor (it may be provided as a
@@ -1673,12 +1673,16 @@ separate file)
 
 ::
 
-   &atomic_coor
-     !cartesian atomic coodinates
-     'C'    0.000000    0.000000    0.599672  1
-     'H'    0.000000    0.000000    1.662257  2
-     'C'    0.000000    0.000000   -0.599672  1
-     'H'    0.000000    0.000000   -1.662257  2
+   &atomic_red_coor
+     !cartesian atomic reduced coodinates
+     'Si'	.0	.0	.0	1
+     'Si'	.25	.25	.25	1
+     'Si'	.5	.0	.5	1
+     'Si'	.0	.5	.5	1
+     'Si'	.5	.5	.0	1
+     'Si'	.75	.25	.75	1
+     'Si'	.25	.75	.75	1
+     'Si'	.75	.75	.25	1
      !--- Format ---------------------------------------------------!
      ! 'symbol' x y z index(correspond to that of pseudo potential) !
      !--------------------------------------------------------------!
