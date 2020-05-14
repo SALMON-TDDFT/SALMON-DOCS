@@ -677,7 +677,7 @@ We present their explanations below:
 
 **&calculation**
 
-Mandatory: calc_mode
+Mandatory: theory
 
 ::
    
@@ -1169,7 +1169,7 @@ See :any:`&system in Exercise-1 <exercise-1-&system>`.
 
 **&pseudo**
 
-Mandatory: pseudo_file, izatom
+Mandatory: file_pseudo, izatom
 
 ::
    
@@ -1557,8 +1557,6 @@ This input keyword specifies the unit system to be used in the input and output 
 If you do not specify it, atomic unit will be used.
 See :any:`&units in Inputs <&units>` for detail.
 
-.. _exercise-1-&system:
-
 **&system**
 
 Mandatory: yn_periodic, al, nelem, natom, nelec, nstate
@@ -1689,9 +1687,10 @@ separate file)
      !--------------------------------------------------------------!
    /
 
-Cartesian coordinates of atoms. The first column indicates the element.
-Next three columns specify Cartesian coordinates of the atoms. The
-number in the last column labels the element.
+Cartesian coordinates of atoms are specified in a reduced coordinate system.
+First column indicates the element, 
+next three columns specify reduced Cartesian coordinates of the atoms,
+and the last column labels the element.
 
 Output files
 ^^^^^^^^^^^^	
@@ -1886,19 +1885,17 @@ We present explanations of the input keywords that appear in the input file belo
 
 **&calculation**
 
-Mandatory: calc_mode
+Mandatory: theory
 
 ::
    
    &calculation
-     calc_mode = 'GS_RT'
+     !type of theory
+     theory = 'tddft_response'
    /
 
-This indicates that the ground state (GS) and the real time (RT)
-calculations are carried out sequentially in the present job.
-See :any:`&calculation in Inputs <&calculation>` for detail.
-
-
+This indicates that the real time (RT) calculation to obtain response function
+is carried out in the present job. See :any:`&calculation in Inputs <&calculation>` for detail.
 
 **&control**
 
@@ -1907,11 +1904,26 @@ Mandatory: none
 ::
    
    &control
+     !common name of output files
      sysname = 'Si'
    /
 
-'Si' defined by ``sysname = 'C2H2'`` will be used in the filenames of
-output files.
+'Si' defined by ``sysname = 'Si'`` will be used in the filenames of output files.
+
+**&units**
+
+Mandatory: none
+
+::
+
+   &units
+     !units used in input and output files
+     unit_system = 'a.u.'
+   /
+
+This input keyword specifies the unit system to be used in the input and output files.
+If you do not specify it, atomic unit will be used.
+See :any:`&units in Inputs <&units>` for detail.
 
 **&system**
 
@@ -1920,12 +1932,17 @@ Mandatory: periodic, al, state, nelem, natom
 ::
    
    &system
-     iperiodic = 3
-     al = 10.26d0,10.26d0,10.26d0
+     !periodic boundary condition
+     yn_periodic = 'y'
+     
+     !grid box size(x,y,z)
+     al(1:3) = 10.26d0, 10.26d0, 10.26d0
+     
+     !number of elements, atoms, electrons and states(bands)
+     nelem  = 1
+     natom  = 8
+     nelec  = 32
      nstate = 32
-     nelec = 32
-     nelem = 1
-     natom = 8
    /
 
 ``iperiodic = 3`` indicates that three dimensional periodic boundary
@@ -1941,12 +1958,22 @@ See :any:`&system in Inputs <&system>` for more information.
 
 **&pseudo**
 
+Mandatory: file_pseudo, izatom
+
 ::
    
    &pseudo
-     izatom(1)=14
-     pseudo_file(1) = './Si_rps.dat'
-     lloc_ps(1)=2
+     !name of input pseudo potential file
+     file_pseudo(1) = './Si_rps.dat'
+     
+     !atomic number of element
+     izatom(1) = 14
+     
+     !angular momentum of pseudopotential that will be treated as local
+     lloc_ps(1) = 2
+     !--- Caution ---------------------------------------!
+     ! Index must correspond to those in &atomic_coor.   !
+     !---------------------------------------------------!
    /
 
 ``izatom(1) = 14`` indicates the atomic number of the element #1.
@@ -1956,9 +1983,12 @@ pseudopotential that will be treated as local.
 
 **&functional**
 
+Mandatory: xc
+
 ::
    
    &functional
+     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
      xc = 'PZ'
    /
 
@@ -1976,7 +2006,8 @@ Mandatory: dl or num_rgrid
 ::
    
    &rgrid
-     num_rgrid = 12,12,12
+     !number of spatial grids(x,y,z)
+     num_rgrid(1:3) = 12, 12, 12
    /
 
 ``num_rgrid=12,12,12`` specifies the number of the grids for each
@@ -1993,52 +2024,24 @@ This input keyword provides grid spacing of k-space for periodic systems.
 ::
    
    &kgrid
-     num_kgrid = 4,4,4
+     !number of k-points(x,y,z)
+     num_kgrid(1:3) = 4, 4, 4
    /
 
 **&tgrid**
 
+Mandatory: dt, nt
+
 ::
    
    &tgrid
-    nt=3000
-    dt=0.16  
+     !time step size and number of time grids(steps)
+     dt = 0.16d0
+     nt = 3000
    /
 
 ``dt=0.16`` specifies the time step of the time evolution calculation.
 ``nt=3000`` specifies the number of time steps in the calculation.
-
-**&propagation**
-
-::
-   
-   &propagation
-     propagator='etrs'
-   /
-
-``propagator = 'etrs'`` indicates the use of enforced time-reversal
-symmetry propagator.
-See :any:`&propagation in Inputs <&propagation>` for more information.
-
-
-
-**&scf**
-
-Mandatory: nscf
-
-This input keywords specify parameters related to the self-consistent field
-calculation.
-
-::
-   
-   &scf
-     ncg = 5
-     nscf = 120
-   /
-
-``ncg = 5`` is the number of conjugate-gradient iterations in solving
-the Kohn-Sham equation. Usually this value should be 4 or 5.
-``nscf = 120`` is the number of scf iterations.
 
 **&emfield**
 
@@ -2047,9 +2050,15 @@ Mandatory:ae_shape1
 ::
    
    &emfield
-     trans_longi = 'tr'
+     !envelope shape of the incident pulse('impulse': impulsive field)
      ae_shape1 = 'impulse'
-     epdir_re1 = 0.,0.,1.
+     
+     !polarization unit vector(real part) for the incident pulse(x,y,z)
+     epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
+     !--- Caution ---------------------------------------------------------!
+     ! Defenition of the incident pulse is wrriten in:                     !
+     ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
+     !---------------------------------------------------------------------!
    /
 
 ``as_shape1 = 'impulse'`` indicates that a weak impulsive field is
@@ -2064,15 +2073,32 @@ the time evolution calculation, transverse for 'tr' and longitudinal for
 
 See :any:`&emfield in Inputs <&emfield>` for detail.
 
+**&propagation**
+
+Mandatory: none
+
+::
+   
+   &propagation
+     !propagator('etrs': time-reversal symmetry propagator)
+     propagator = 'etrs'
+   /
+
+``propagator = 'etrs'`` indicates the use of enforced time-reversal
+symmetry propagator.
+See :any:`&propagation in Inputs <&propagation>` for more information.
 
 
 **&analysis**
 
+Mandatory: none
+
 ::
    
    &analysis
-    nenergy=1000
-    de=0.001
+     !energy grid size and number of energy grids for output files
+     de      = 1.0d-2
+     nenergy = 5000
    /
 
 ``nenergy=1000`` specifies the number of energy steps, and ``de=0.001``
@@ -2087,22 +2113,24 @@ separate file)
 ::
    
    &atomic_red_coor
-    'Si'    .0      .0      .0      1
-    'Si'    .25    .25    .25    1
-    'Si'    .5      .0      .5      1
-    'Si'    .0      .5      .5      1
-    'Si'    .5      .5      .0      1
-    'Si'    .75    .25   .75     1
-    'Si'    .25    .75   .75     1
-    'Si'    .75    .75   .25     1
+     !cartesian atomic reduced coodinates
+     'Si'	.0	.0	.0	1
+     'Si'	.25	.25	.25	1
+     'Si'	.5	.0	.5	1
+     'Si'	.0	.5	.5	1
+     'Si'	.5	.5	.0	1
+     'Si'	.75	.25	.75	1
+     'Si'	.25	.75	.75	1
+     'Si'	.75	.75	.25	1
+     !--- Format ---------------------------------------------------!
+     ! 'symbol' x y z index(correspond to that of pseudo potential) !
+     !--------------------------------------------------------------!
    /
 
 Cartesian coordinates of atoms are specified in a reduced coordinate
 system. First column indicates the element, next three columns specify
 reduced Cartesian coordinates of the atoms, and the last column labels
 the element.
-
-
 
 .. _output-files-3:
 
