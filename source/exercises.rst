@@ -2135,6 +2135,19 @@ After the calculation, following output files are created in the directory that 
 
 Explanations of the output files are described below:
 
+**Si_response.data**
+
+Time-frequency Fourier transformation of the macroscopic current gives
+the conductivity of the system. Then the dielectric function is calculated.
+
+::
+   
+   # Fourier-transform spectra: 
+   # sigma: Conductivity
+   # eps: Dielectric constant
+   # 1:Energy[a.u.] 2:Re(sigma_x)[a.u.] 3:Im(sigma_x)[a.u.] 4:Re(sigma_y)[a.u.] 5:Im(sigma_y)[a.u.] 6:Re(sigma_z)[a.u.] 7:Im(sigma_z)[a.u.] 8:Re(eps_x)[none] 9:Im(eps_x)[none] 10:Re(eps_y)[none] 11:Im(eps_y)[none] 12:Re(eps_z)[none] 13:Im(eps_z)[none]
+
+
 
 .. _exercise-6:
 
