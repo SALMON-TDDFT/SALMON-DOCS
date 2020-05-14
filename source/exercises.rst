@@ -2147,7 +2147,6 @@ the conductivity of the system. Then the dielectric function is calculated.
    # eps: Dielectric constant
    # 1:Energy[a.u.] 2:Re(sigma_x)[a.u.] 3:Im(sigma_x)[a.u.] 4:Re(sigma_y)[a.u.] 5:Im(sigma_y)[a.u.] 6:Re(sigma_z)[a.u.] 7:Im(sigma_z)[a.u.] 8:Re(eps_x)[none] 9:Im(eps_x)[none] 10:Re(eps_y)[none] 11:Im(eps_y)[none] 12:Re(eps_z)[none] 13:Im(eps_z)[none]
 
-
 **Si_rt.data**
 
 Results of time evolution calculation. *Ac_ext_x,y,z* are applied vector potential.
@@ -2166,17 +2165,6 @@ The same relation holds for electric fields of *E_ext_x,y,z* and *E_tot_x,y,z*.
    # E_tot: Total electric field
    # Jm: Matter current density (electrons)
    # 1:Time[a.u.] 2:Ac_ext_x[a.u.] 3:Ac_ext_y[a.u.] 4:Ac_ext_z[a.u.] 5:E_ext_x[a.u.] 6:E_ext_y[a.u.] 7:E_ext_z[a.u.] 8:Ac_tot_x[a.u.] 9:Ac_tot_y[a.u.] 10:Ac_tot_z[a.u.] 11:E_tot_x[a.u.] 12:E_tot_y[a.u.] 13:E_tot_z[a.u.]  14:Jm_x[a.u.] 15:Jm_y[a.u.] 16:Jm_z[a.u.] 
-
-**Si_rt_energy**
-
-*Eall* and *Eall-Eall0* are total energy and electronic excitation energy, respectively.
-
-::
-   
-   # Real time calculation: 
-   # Eall: Total energy
-   # Eall0: Initial energy
-   # 1:Time[a.u.] 2:Eall[a.u.] 3:Eall-Eall0[a.u.] 
 
 .. _exercise-6:
 
