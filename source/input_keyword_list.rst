@@ -539,6 +539,9 @@ xxxx.
    |   ``'none'`` can be also chosen.
 xxxxx should be checked xxxxx
 
+- **file_input1** (character, Default='')
+xxxx.
+
 - **e_impulse** (real(8), Default=1d-2 a.u.)
    | Available for 'Maxwell' and TDDFT based options of ``theory``.
    | Momentum of impulsive perturbation. This valiable has the dimention of momentum, energy*time/length.
@@ -604,6 +607,9 @@ xxxxx should be checked xxxxx
 - **rad_dipole_diele** (real(8), Default=2d0 a.u.)
    | Available for TDDFT based options of ``theory``.
    Radii of dielectric spheres for the radiation sources.
+
+- **cutoff_G2_emfield** (real(8), Default=-1d0)
+xxxx.
 
 
 &multiscale
@@ -781,11 +787,20 @@ xxxxx should be checked xxxxx
    |   ``'gs'`` / projection to eigenstates of ground-state Hamiltonian.
    |   ``'rt'`` / projection to eigenstates of instantaneous Hamiltonian.
 
+- **out_projection_step** (integer, Default=100)
+   | Available for ``theory='xxx'``.
+   | Old infomation: 3d
+   Interval time step of projection analysis 
+   if ``projection_option`` is not ``'no'``.
+
+..
+(here, commented out: not implemented in salmon2)
 - **projection_decomp** (character, Default='n')[Trial]
    | Available for ``projection_option='gs'`` in TDDFT based options of ``theory``.
    | Atom decomposition option in the projection option (currently not available)
    | Options
    |   ``'atom'`` / the number of excited electron is decomposed into each atom  (printed in ``SYSname``\_nex_atom.data).
+..
 
 - **nenergy** (integer, Default=1000)
    | Available for ``theory='xxx', 'Maxwell'``.
@@ -857,6 +872,9 @@ xxxxx should be checked xxxxx
    If ``'y'``,  the spatiotemporal electron density distribution during real-time time-propagation is output
    every ``outdns_rt_step`` time steps.
 
+- **yn_out_dns_ac_je/out_dns_ac_je_step** (Character/Integer, Default='n')
+xxxx.
+
 - **yn_out_dns_trans/out_dns_trans_energy** (Character/Real(8), Default='n'/1.55d0eV)[Trial]
    | Available for ``theory='xxx'``.
    | Old infomation: 3d
@@ -895,12 +913,6 @@ xxxxx should be checked xxxxx
    | Old infomation: 3d
    If ``'y'``, transition moments between occupied and virtual orbitals are printed into ``SYSname``\_tm.data after the ground state calculation.
 
-- **out_projection_step** (integer, Default=100)
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
-   Interval time step of projection analysis 
-   if ``projection_option`` is not ``'no'``.
-   
 - **out_ms_step** (integer, Default=100)
    | Available for ``theory='xxx'``.
    xxx.
@@ -963,6 +975,14 @@ xxxxx should be checked xxxxx
    | Old infomation: 3d
    Square of range separation parameter for Ewald method in atomic unit. 
 
+- **cutoff_r** (real(8), Default=-1d0)
+xxxx.
+
+- **cutoff_r_buff** (real(8), Default=2d0 a.u.)
+xxxx.
+
+- **cutoff_g** (real(8), Default=-1d0)
+xxxx.
 
 &opt[Trial]
 -------------
@@ -971,11 +991,13 @@ xxxxx should be checked xxxxx
    | Available for ``theory='xxx'``.
    xxx.
 
-- **convrg_opt_fmax** (real(8), Default=1d-3)[Trial]
+- **convrg_opt_fmax** (real(8), Default=1d-3)
    | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Convergence threshold of optimization in maximum force.
 
+- **max_step_len_adjust** (real(8), Default=-1d0)
+xxxxx.
 
 &md[Trial]
 -----------
@@ -994,10 +1016,10 @@ xxxxx should be checked xxxxx
    | Old infomation: 3d
    Time step interval for velocity-scaling. Velocity-scaling is applied if this is set to positive.
 
-- **step_update_ps/step_update_ps2** (Integer/Integer, Default=10/1)[Trial]
+- **step_update_ps** (Integer, Default=10)[Trial]
    | Available for ``theory='xxx'``.
    | Old infomation: 3d
-   Time step interval for updating pseudopotential (Larger number makes calculation time reduce greatly, but gets inaccurate) in case of ``use_ehrenfest_md=y``. ``step_update_ps`` is for full update and ``step_update_ps2`` is for update without changing grid points array.
+   Time step interval for updating pseudopotential (Larger number makes calculation time reduce greatly, but gets inaccurate) in case of ``yn_md=y``.
 
 - **temperature0_ion_k** (real(8), Default=298.15d0)[Trial]
    | Available for ``theory='xxx'``.
@@ -1023,11 +1045,14 @@ xxxxx should be checked xxxxx
    Parameter in Nose-Hoover method: controlling time constant for temperature.
    Default is ``41.34[au] or 1.0[fs]``.
 
+..
+#xxx removed?#
 - **seed_ini_velocity** (integer, Default=123)[Trial]
    | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Random seed (integer number) to generate initial velocity if ``set_ini_velocity`` is set to y.
    Default is ``123``.
+..
 
 - **yn_stop_system_momt** (character, Default='n')[Trial]
    | Available for ``theory='xxx'``.
@@ -1038,26 +1063,36 @@ xxxxx should be checked xxxxx
 &code
 -----
 
-- **yn_want_stencil_openmp_parallelization** (character, Default='y')[Trial]
-   | Available for ``theory='xxx'``.
-   xxx.
-
 - **yn_want_stencil_hand_vectorization** (character, Default='y')[Trial]
    | Available for ``theory='xxx'``.
    xxx.
 
+- **yn_want_stencil_openmp_parallelization** (character, Default='y')[Trial]
+   | Available for ``theory='xxx'``.
+xxx(removed?)
+
 - **yn_force_stencil_openmp_parallelization** (character, Default='n')[Trial]
    | Available for ``theory='xxx'``.
-   xxx.
+xxx(removed?)
 
 - **yn_force_stencil_sequential_computation** (character, Default='n')[Trial]
    | Available for ``theory='xxx'``.
-   xxx.
+xxx(removed?)
+
 
 - **yn_want_communication_overlapping** (character, Default='n')[Trial]
    | Available for ``theory='xxx'``.
    xxx.
-   
+
+- **stencil_openmp_mode** (character, Default='auto')
+xxxx.
+
+- **current_openmp_mode** (character, Default='auto')
+xxxx.
+
+- **force_openmp_mode** (character, Default='auto')
+xxxx.
+
 
 **Following variables are moved from the isolated part. Some of them may be added to common input, be combined to it, and be removed.**
 
