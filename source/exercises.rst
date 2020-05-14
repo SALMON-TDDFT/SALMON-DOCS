@@ -416,18 +416,18 @@ Output files
 After the calculation, following output files and a directory are created in the
 directory that you run the code,
 
-+-----------------------------------+-----------------------------------+
-| name                              | description                       |
-+-----------------------------------+-----------------------------------+
-| *C2H2_info.data*                  | information on ground state       |
-|                                   | solution                          |
-+-----------------------------------+-----------------------------------+
-| *psi1.cube*, *psi2.cube*, ...     | electron orbitals                 |
-+-----------------------------------+-----------------------------------+
-| *dns.cube*                        | a cube file for electron density  |
-+-----------------------------------+-----------------------------------+
-| *dos.data*                        | density of states                 |
-+-----------------------------------+-----------------------------------+
++-------------------------------------+-----------------------------------+
+| name                                | description                       |
++-------------------------------------+-----------------------------------+
+| *C2H2_info.data*                    | information on ground state       |
+|                                     | solution                          |
++-------------------------------------+-----------------------------------+
+| *psi_ob1.cube*, *psi_ob2.cube*, ... | electron orbitals                 |
++-------------------------------------+-----------------------------------+
+| *dns.cube*                          | a cube file for electron density  |
++-------------------------------------+-----------------------------------+
+| *dos.data*                          | density of states                 |
++-------------------------------------+-----------------------------------+
 | *pdos1.data*, *pdos2.data*, ...   | projected density of states       |
 +-----------------------------------+-----------------------------------+
 | *elf.cube*                        | electron localization function    |
@@ -459,7 +459,7 @@ files are below:
 Calculated orbital and total energies as well as parameters specified in
 the input file are shown in this file.
 
-**psi1.cube, psi2.cube, ...**
+**psi_ob1.cube, psi_ob2.cube, ...**
 
 Cube files for electron orbitals. The number in the filename indicates
 the index of the orbital atomic unit is adopted in all cube files.
@@ -481,7 +481,7 @@ We show several image that are created from the output files.
 
 * **Highest occupied molecular orbital (HOMO)**
 
-  The output files *psi1.cube*, *psi2.cube*, ... are used to create the image.
+  The output files *psi_ob1.cube*, *psi_ob2.cube*, ... are used to create the image.
 
   .. image:: images/exercise1/HOMO.png
      :scale: 20%
