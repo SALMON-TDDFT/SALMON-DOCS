@@ -895,6 +895,9 @@ Explanations of the output files are below:
 
 **C2H2_response.data**
 
+Time-frequency Fourier transformation of the dipole moment gives
+the polarizability of the system. Then the strength function is calculated.
+
 ::
 
    # Fourier-transform spectra: 
@@ -903,6 +906,8 @@ Explanations of the output files are below:
    # 1:Energy[eV] 2:Re(alpha_x)[Augstrom^2/V] 3:Im(alpha_x)[Augstrom^2/V] 4:Re(alpha_y)[Augstrom^2/V] 5:Im(alpha_y)[Augstrom^2/V] 6:Re(alpha_z)[Augstrom^2/V] 7:Im(alpha_z)[Augstrom^2/V] 8:df_x/dE[none] 9:df_y/dE[none] 10:df_z/dE[none]
 
 **C2H2_rt.data**
+
+Results of time evolution calculation for vector potential, electric field, and dipole moment.
 
 ::
 
@@ -916,6 +921,8 @@ Explanations of the output files are below:
    # 1:Time[fs] 2:Ac_ext_x[fs*V/Angstrom] 3:Ac_ext_y[fs*V/Angstrom] 4:Ac_ext_z[fs*V/Angstrom] 5:E_ext_x[V/Angstrom] 6:E_ext_y[V/Angstrom] 7:E_ext_z[V/Angstrom] 8:Ac_tot_x[fs*V/Angstrom] 9:Ac_tot_y[fs*V/Angstrom] 10:Ac_tot_z[fs*V/Angstrom] 11:E_tot_x[V/Angstrom] 12:E_tot_y[V/Angstrom] 13:E_tot_z[V/Angstrom] 14:ddm_e_x[Angstrom] 15:ddm_e_y[Angstrom] 16:ddm_e_z[Angstrom] 17:dm_x[Angstrom] 18:dm_y[Angstrom] 19:dm_z[Angstrom] 
 
 **C2H2_rt_energy.data**
+
+*Eall* and *Eall-Eall0* are total energy and electronic excitation energy, respectively.
 
 ::
 
@@ -1349,6 +1356,8 @@ Explanations of the files are described below:
 
 **C2H2_pulse.data**
 
+Time-frequency Fourier transformation of the dipole moment.
+
 ::
 
    # Fourier-transform spectra: 
@@ -1357,6 +1366,8 @@ Explanations of the files are described below:
    # 1:energy[eV] 2:Re(dm_x)[fs*Angstrom] 3:Im(dm_x)[fs*Angstrom] 4:|dm_x|^2[fs*Angstrom] 5:Re(dm_y)[fs*Angstrom] 6:Im(dm_y)[fs*Angstrom] 7:|dm_y|^2[fs*Angstrom] 8:Re(dm_z)[fs^2*Angstrom^2] 9:Im(dm_z)[fs^2*Angstrom^2] 10:|dm_z|^2[fs^2*Angstrom^2]
 
 **C2H2_rt.data**
+
+Results of time evolution calculation for vector potential, electric field, and dipole moment.
 
 ::
 
@@ -1370,6 +1381,8 @@ Explanations of the files are described below:
    # 1:Time[fs] 2:Ac_ext_x[fs*V/Angstrom] 3:Ac_ext_y[fs*V/Angstrom] 4:Ac_ext_z[fs*V/Angstrom] 5:E_ext_x[V/Angstrom] 6:E_ext_y[V/Angstrom] 7:E_ext_z[V/Angstrom] 8:Ac_tot_x[fs*V/Angstrom] 9:Ac_tot_y[fs*V/Angstrom] 10:Ac_tot_z[fs*V/Angstrom] 11:E_tot_x[V/Angstrom] 12:E_tot_y[V/Angstrom] 13:E_tot_z[V/Angstrom] 14:ddm_e_x[Angstrom] 15:ddm_e_y[Angstrom] 16:ddm_e_z[Angstrom] 17:dm_x[Angstrom] 18:dm_y[Angstrom] 19:dm_z[Angstrom] 
 
 **C2H2_rt_energy.data**
+
+*Eall* and *Eall-Eall0* are total energy and electronic excitation energy, respectively.
 
 ::
 
