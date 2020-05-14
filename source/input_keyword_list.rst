@@ -45,15 +45,15 @@ List of all input keywords
    |   ``single_scale_maxwell_tddft``  / coupled Maxwell and TDDFT single-scale simulation
    |   ``multi_scale_maxwell_tddft``  / coupled Maxwell and TDDFT multi-scale simulation
    |   ``maxwell``  / electromagnetic simulations based on the Maxwell's equations
-   |   ''dft_k_expand'' / convert checkpoint data of dft with k-points calculation to that of larger supercell system with gamma-point
+   |   ``dft_k_expand`` / convert checkpoint data of dft with k-points calculation to that of larger supercell system with gamma-point
 
 - **yn_md** (character, Default='n')[Trial]
-   | Available for ``theory='DFT'`` (Adiabatic ground-state MD) and ``theory='TDDFT_pulse'`` (Ehrenfest MD).
+   | Available for ``theory='dft'`` (Adiabatic ground-state MD) and ``theory='tddft_pulse'`` (Ehrenfest MD).
    | Molecular dynamics option.
    Enable(``'y'``)/disable(``'n'``). 
 
 - **yn_opt** (character, Default='n')[Trial]
-   | Available for ``theory='DFT'``.
+   | Available for ``theory='dft'``.
    | Geometry optimization option.
    Enable(``'y'``)/disable(``'n'``).
 
@@ -129,14 +129,14 @@ xxxx.
 ---------
 
 - **nproc_k/nproc_ob/nproc_rgrid(3)** (integer, Default=0)
-   | Available for ``theory='xxx', 'Maxwell'``.
+   | Available for ``theory='xxx', 'maxwell'``.
    | Old infomation: 0d  xxxxx
    | Options
    |   ``nproc_k``/ Number of MPI parallelization for orbitals that related to the wavefunction calculation.
    |   ``nproc_ob``/ Number of MPI parallelization for orbitals that related to the wavefunction calculation.
    |   ``nproc_rgrid(3)'``/ Number of MPI parallelization for each direction in real-space that related to the wavefunction and the electron density calculations. 
    |
-   | Defaults are ``0`` for ``nproc_k``/``nproc_ob`` and ``(0/0/0)`` for ``nproc_rgrid``. If users use the defaults, automatic proccess assignment is done. Users can also specify ``nproc_k``, ``nproc_ob``, and ``nproc_rgrid`` manually. In that case, ``nproc_k`` must be set to ``1`` for isolated system calculations. ``nproc_k`` and ``nproc_k`` must be set to ``1`` for ``theory='Maxwell'``. In addition, followings must be satisfied.
+   | Defaults are ``0`` for ``nproc_k``/``nproc_ob`` and ``(0/0/0)`` for ``nproc_rgrid``. If users use the defaults, automatic proccess assignment is done. Users can also specify ``nproc_k``, ``nproc_ob``, and ``nproc_rgrid`` manually. In that case, ``nproc_k`` must be set to ``1`` for isolated system calculations. ``nproc_k`` and ``nproc_k`` must be set to ``1`` for ``theory='maxwell'``. In addition, followings must be satisfied.
    |
    |   ``nproc_k`` \* ``nproc_ob`` \* ``nproc_rgrid(1)`` \* ``nproc_rgrid(2)`` \* ``nproc_rgrid(3)`` \= total number of processors
    xxxxx. 
@@ -175,14 +175,14 @@ xxxx.
    |   ``'n'`` / isolated systems
 
 - **ispin** (integer, Default=0)
-   | Available for all options of ``theory`` except for ``theory='Maxwell'``.
+   | Available for all options of ``theory`` except for ``theory='maxwell'``.
    | Variable for classification of closed shell systems and open shell systems. 
    | Options  (xxxxx strange!!!)
    |   ``0`` / closed shell systems
    |   ``1`` / open shell systems
 
 - **al(3)** (real(8), Default=0d0)
-   | Available for all options of ``theory`` except for ``theory='Maxwell'``.
+   | Available for all options of ``theory`` except for ``theory='maxwell'``.
    Spatial grid box size or lattice constants for cuboid cell (x, y, z).
 
 - **al_vec1(3)/al_vec2(3)/al_vec3(3)** (real(8), Default=0d0)
@@ -385,11 +385,11 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ------
 
 - **nt** (integer, Default=0)
-   | Available for 'DFT_MD' and TDDFT-based options of ``theory``
+   | Available for 'dft_md' and TDDFT-based options of ``theory``
    Number of total time steps for real-time propagation.
 
 - **dt** (real(8), Default=0d0)
-   | Available for 'DFT_MD' and TDDFT-based options of ``theory``
+   | Available for 'dft_md' and TDDFT-based options of ``theory``
    Time step size.
 
 - **gram_schmidt_interval** (integer, Default=0)
@@ -399,12 +399,12 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ------------
 
 - **n_hamil** (integer, Default=4)[Trial]
-   | Available for 'DFT_MD' and TDDFT-based options of ``theory``.
+   | Available for 'dft_md' and TDDFT-based options of ``theory``.
    | Old infomation: 0d
    Order of Taylor expansion of a propagation operator.
 
 - **propagator** (character, Default=middlepoint')
-   | Available for 'DFT_MD' and TDDFT-based options of ``theory``.
+   | Available for 'dft_md' and TDDFT-based options of ``theory``.
    | Propagator (time-integrator).
    | Options
    |   ``middlepoint`` / propagator with the Hamiltoinan at midpoint of two-times.
@@ -412,7 +412,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    [M.A.L. Marques, A. Castro, G.F. Bertsch, and A. Rubio, Comput. Phys. Commun., 151 60 (2003)].
 
 - **yn_fix_func** (character(1), Default='n')[Trial]
-   | Available for 'DFT_MD' and TDDFT-based options of ``theory``.
+   | Available for 'dft_md' and TDDFT-based options of ``theory``.
    Option not to update functional (or Hamiltonian) in time-evolution, i.e., keep ground state Hamiltonian. (currently not available)
 
 &scf
@@ -425,12 +425,12 @@ xxxx.
 xxxx.
 
 - **nscf** (integer, Default=0)
-   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
+   | Available for 'dft' and 'dft_md' options of ``theory``.
    Number of maximum SCF cycle in DFT calculation
    xxxx default is 0?? should change?? xxxxx
 
 - **method_min** (character, Default='cg') 
-   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
+   | Available for 'dft' and 'dft_md' options of ``theory``.
    | Method for SCF iteration
    | Options
    |   ``cg`` / Conjugate-Gradient(CG) method
@@ -438,30 +438,30 @@ xxxx.
    |  ``cg-diis`` / CG-DIIS method 
 
 - **ncg** (integer, Default=4)
-   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
+   | Available for 'dft' and 'dft_md' options of ``theory``.
    Number of interation of Conjugate-Gradient method for each scf-cycle.
 
 - **ncg_init** (integer, Default=4)
 xxxx.
 
 - **method_mixing** (character, Default='broyden') 
-   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
+   | Available for 'dft' and 'dft_md' options of ``theory``.
    | Methods for density/potential mixing for scf cycle. ``simple`` and ``broyden`` can be chosen.
    | Options
    |   ``simple`` / Simple mixing method
    |  ``broyden`` / modified-Broyden method
 
 - **mixrate** (real(8), Default=0.5d0)
-   | Available for ``method_mixing='simple'`` in 'DFT' and 'DFT_MD' options of ``theory``.
+   | Available for ``method_mixing='simple'`` in 'dft' and 'dft_md' options of ``theory``.
    | Mixing ratio for simple mixing.
 
 - **nmemory_mb** (integer, Default=8)
-   | Available for ``method_mixing='broyden'`` in 'DFT' and 'DFT_MD' options of ``theory``.
+   | Available for ``method_mixing='broyden'`` in 'dft' and 'dft_md' options of ``theory``.
    Number of previous densities to be stored in SCF iteration cycle for the modified-Broyden method. 
    If ``&system/yn_periodic`` is ``'n'``, ``nmemory_mb`` must be less than 21.
 
 - **alpha_mb** (real(8), Default=0.75d0)
-   | Available for ``method_mixing='broyden'`` in 'DFT' and 'DFT_MD' options of ``theory``.
+   | Available for ``method_mixing='broyden'`` in 'dft' and 'dft_md' options of ``theory``.
    Parameter of the modified-Broyden method.
 
 - **nmemory_p** (integer, Default=4)
@@ -477,14 +477,14 @@ xxxx.
 xxxx.
 
 - **yn_subspace_diagonalization** (character, Default='y')
-   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
+   | Available for 'dft' and 'dft_md' options of ``theory``.
    | Option of subspace diagonalization during SCF cycle.
    | Options
    |   ``'y'`` / enable
    |   ``'n'`` / disable
 
 - **convergence** (character, Default='rho_dne')
-   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
+   | Available for 'dft' and 'dft_md' options of ``theory``.
    | Quantity that is used for convergence check in SCF calculation. 
    | Options
    |   ``'rho_dne'``/ Convergence is checked by sum_ix|rho(ix,iter)-rho(ix,iter-1)|dx/N, where iter is iteration number of SCF calculation and N is ``&system/nelec``, the number of the valence electrons.
@@ -494,12 +494,12 @@ xxxx.
    |   ``'pot_dng'``/ Convergence is checked by ||Vlocal_iter(ix)-Vlocal_iter-1(ix)||\ :sup:`2`\/(number of grids).
 
 - **threshold** (real(8), Default=1d-17 [a.u.] (for ``convergence='rho_dne'``) and -1 (for other options of ``convergence``)
-   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
+   | Available for 'dft' and 'dft_md' options of ``theory``.
    | Threshold for convergence that is specified by ``convergence`` keyword.
    | Unit conversions are: 1 a.u.= 45.54 A\ :sup:`-6`\ for ``convergence='norm_rho'`` and ``'norm_rho_dng'``,  1 a.u.= 33.72x10\ :sup:`4`\ A\ :sup:`-6`\eV\ :sup:`2`\ for  ``convergence='norm_pot'`` and ``'norm_pot_dng'``
 
 - **iditer_notemperature** (integer, Default=10) 
-   | Available for 'DFT' and 'DFT_MD' options of ``theory``.
+   | Available for 'dft' and 'dft_md' options of ``theory``.
    xxx.
 
 - **step_initial_mix_zero** (Integer, Default=-1)
@@ -520,7 +520,7 @@ xxxx.
    |   ``'lo'`` / longitudinal
 
 - **ae_shape1/ae_shape2** (character, Default='none')
-   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   | Available for 'maxwell' and TDDFT based options of ``theory``.
    | Envelope shape of the first/second pulse.
    | Options
    |   ``'impulse'`` / Impulsive fields.
@@ -541,7 +541,7 @@ xxxxx should be checked xxxxx
 xxxx.
 
 - **e_impulse** (real(8), Default=1d-2 a.u.)
-   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   | Available for 'maxwell' and TDDFT based options of ``theory``.
    | Momentum of impulsive perturbation. This valiable has the dimention of momentum, energy*time/length.
 
 ..
@@ -551,42 +551,42 @@ xxxx.
 ..
    
 - **E_amplitude1/E_amplitude2** (real(8), Default=0d0)
-   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   | Available for 'maxwell' and TDDFT based options of ``theory``.
    | Maximum amplitude of electric fields for the first/second pulse.
    This valiable has the dimension of electric field, energy/(length*charge).
    This cannot be set with ``&emfield/I_wcm2_1`` (``I_wcm2_2``) simultaneously.
 
 - **I_wcm2_1/I_wcm2_2** (real(8), Default=-1d0)
-   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   | Available for 'maxwell' and TDDFT based options of ``theory``.
    | Peak intensity (W/cm\ :sup:`2`\) of the first/second pulse.
    This valiable cannot be set with ``&emfield/E_amplitude1`` (``E_amplitude2``) simultaneously.
 
 - **tw1/tw2** (real(8), Default=0d0)
-   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   | Available for 'maxwell' and TDDFT based options of ``theory``.
    | Duration of the first/second pulse (edge-to-edge time length). 
 
 - **omega1/omega2** (real(8), Default=0d0)
-   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   | Available for 'maxwell' and TDDFT based options of ``theory``.
    | Mean photon energy (average frequency multiplied by the Planck constant) of the first/second pulse. 
 
 - **epdir_re1(3)/epdir_re2(3)** (real(8), Default=1d0, 0d0, 0d0)
-   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   | Available for 'maxwell' and TDDFT based options of ``theory``.
    Real part of polarization unit vector for the first/second pulse.
 
 - **epdir_im1(3)/epdir_im2(3)** (real(8), Default=0d0)
-   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   | Available for 'maxwell' and TDDFT based options of ``theory``.
    Imaginary part of polarization unit vector for the first/second pulse.
 
 - **phi_cep1/phi_cep2** (real(8), Default=0d0/0d0)
-   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   | Available for 'maxwell' and TDDFT based options of ``theory``.
    Carrier emvelope phase of the first/second pulse.
 
 - **t1_t2** (real(8), Default=0d0)
-   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   | Available for 'maxwell' and TDDFT based options of ``theory``.
    Time-delay between the first and the second pulses.
 
 - **t1_start** (real(8), Default=0d0)
-   | Available for 'Maxwell' and TDDFT based options of ``theory``.
+   | Available for 'maxwell' and TDDFT based options of ``theory``.
    Time-delay of the first pulse. (this is not available for multiscale option).
 
 - **num_dipole_source** (integer, Default=0)
@@ -679,100 +679,100 @@ xxxx.
 --------
 
 - **al_em(3)** (real(8), Default=0d0)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Size of simulation box in electromagnetic analysis. Unit of the length can be chosen by ``&units/unit_system``.
 
 - **dl_em(3)** (real(8), Default=0d0)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Spacing of real-space grids in electromagnetic analysis. Unit of length can be chosen by ``&units/unit_system``.
 
 - **dt_em** (real(8), Default=0)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Time step in electromagnetic analysis. Unit of time can be chosen by ``&units/unit_system``.
 
 - **nt_em** (integer, Default=0)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Number of total time steps for real-time propagation in electromagnetic analysis.
 
 - **boundary_em(3,2)** (character, Default='default')
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Boundary condition in electromagnetic analysis. The first index(1-3 rows) corresponds to x, y, and z axes. The second index(1-2 columns) corresponds to bottom and top of the axes. If ``&system/yn_periodic='n'``, ``'default'``, ``'abc'``, and ``'pec'`` can be chosen, where ``'default'`` automatically chooses ``'abc'``. If ``&system/yn_periodic='y'``, ``'default'``, ``'pml'``, and ``'periodic'`` can be chosen, where ``'default'`` automatically chooses ``'periodic'``. ``'abc'`` is absorbing boundary, ``'pec'`` is perfect electric conductor, and ``'periodic'`` is periodic boundary.
 
 - **shape_file** (character, Default='none')
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Name of shape file in electromagnetic analysis. The shape files can be generated by using SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
 - **media_num** (integer, Default=0)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Number of media in electromagnetic analysis.
 
 - **media_type(:)** (character, Default='vacuum')
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Type of media in electromagnetic analysis. ``'vacuum'``, ``'constant media'``, ``'pec'``, and ``'lorentz-drude'`` can be chosen. If ``'lorentz-drude'`` is chosen, linear response calculation can be done by ``&emfield/ae_shape1 or ae_shape2='impulse'``.
 
 - **epsilon_em(:)** (real(8), Default=1d0)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Relative permittivity of the media in electromagnetic analysis.
 
 - **mu_em(:)** (real(8), Default=1d0)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Relative permeability of the media in electromagnetic analysis.
 
 - **sigma_em(:)** (real(8), Default=0d0)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Conductivity of the media in electromagnetic analysis.
 
 - **pole_num_ld(:)** (integer, Default=1)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Number of poles of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis.
 
 - **omega_p_ld(:)** (real(8), Default=0d0)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Plasma frequency of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis.
    
 - **f_ld(:,:)** (real(8), Default=0d0)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Oscillator strength of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. The first index is media id whose maximum value is determined by ``media_num``. The second index is pole id whose maximum value is determined by ``pole_num_ld``.
 
 - **gamma_ld(:,:)** (real(8), Default=0d0)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Collision frequency of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. The first index is media id whose maximum value is determined by ``media_num``. The second index is pole id whose maximum value is determined by ``pole_num_ld``.
 
 - **omega_ld(:,:)** (real(8), Default=0d0)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Oscillator frequency of the media for the case of ``type_media='lorentz-drude'`` in electromagnetic analysis. The first index is media id whose maximum value is determined by ``media_num``. The second index is pole id whose maximum value is determined by ``pole_num_ld``.
 
 - **wave_input** (character, Default='none')
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    If ``'source'``, the incident pulse in electromagnetic analysis is generated by the incident current source.
 
 - **ek_dir1(3)/ek_dir2(3)** (real(8), Default=0d0)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Propagation direction of the first/second pulse.
 
 - **source_loc1(3)/source_loc2(3)** (real(8), Default=0d0)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Location of the incident current source of the first/second pulse. Note that the coordinate system ranges from ``-al_em/2`` to ``al_em/2`` for ``&system/yn_periodic='n'`` while ranges from ``0`` to ``al_em`` for ``&system/yn_periodic='y'``.
 
 - **obs_num_em** (integer, Default=0)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Number of observation point in electromagnetic analysis. From the obtained results, figure and animation files can be generated by using SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
 - **obs_samp_em** (integer, Default=1)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Sampling time-step of the observation in electromagnetic analysis.
 
 - **obs_loc_em(:,3)** (real(8), Default=0d0)
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Location of the observation point in electromagnetic analysis. Note that the coordinate system ranges from ``-al_em/2`` to ``al_em/2`` for ``&system/yn_periodic='n'`` while ranges from ``0`` to ``al_em`` for ``&system/yn_periodic='y'``.
 
 - **yn_obs_plane_em(:)** (character, Default='n')
-   | Available for ``theory='Maxwell'``.
+   | Available for ``theory='maxwell'``.
    Enable(``'y'``)/disable(``'n'``). Output of the electrmagnetic fields on the planes (xy, yz, and xz planes) for each observation point. This option must be ``'y'`` for generating animation files by using SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
 - **yn_wf_em** (character, Default='y')
-   | Available for ``theory='Maxwell'``.
-   Enable(``'y'``)/disable(``'n'``). Applying a window function for linear response calculation when ``&calculation/theory=Maxwell``.
+   | Available for ``theory='maxwell'``.
+   Enable(``'y'``)/disable(``'n'``). Applying a window function for linear response calculation when ``&calculation/theory=maxwell``.
 
 &analysis
 ---------
@@ -801,12 +801,12 @@ xxxx.
 ..
 
 - **nenergy** (integer, Default=1000)
-   | Available for ``theory='xxx', 'Maxwell'``.
+   | Available for ``theory='xxx', 'maxwell'``.
    Number of energy grid points for frequency-domain analysis.
    This parameter is required when `'impulse'` is choosen in `&emfield/ae_shape1|2`.
 
 - **de** (real(8), Default=0.01d0 eV)
-   | Available for ``theory='xxx', 'Maxwell'``.
+   | Available for ``theory='xxx', 'maxwell'``.
    Energy grid size for analysis.
    This parameter is required when `'impulse'` is choosen in `&emfield/ae_shape1|2`.
 
@@ -819,7 +819,7 @@ xxxx.
    For periodic system (``yn_periodic='y'``), it works only for ground state calculation. The converged wave functions of all orbitals with all k-points are printed in gs_wfn_cube or gs_wfn_vtk directory. The format is speficied by ``format3d``.  xxxx need check xxxx
 
 - **yn_out_dos** (character, Default='n')
-   | Available for ``theory='DFT'``.
+   | Available for ``theory='dft'``.
    | Option for output of density of state
    | Options
    |   ``'y'`` / enable.
