@@ -1164,8 +1164,7 @@ Mandatory: yn_periodic, al, nelem, natom, nelectron, nstate
    /
 
 These input keywords and their values should be the same as those used in the
-ground state calculation.
-See :any:`&system in Exercise-1 <exercise-1-&system>`.
+ground state calculation. See :any:`&system in Exercise-1 <exercise-1-&system>`.
 
 **&pseudo**
 
@@ -1557,6 +1556,8 @@ This input keyword specifies the unit system to be used in the input and output 
 If you do not specify it, atomic unit will be used.
 See :any:`&units in Inputs <&units>` for detail.
 
+.. _exercise-4-&system:
+
 **&system**
 
 Mandatory: yn_periodic, al, nelem, natom, nelec, nstate
@@ -1927,7 +1928,7 @@ See :any:`&units in Inputs <&units>` for detail.
 
 **&system**
 
-Mandatory: periodic, al, state, nelem, natom
+Mandatory: yn_periodic, al, state, nelem, nelem, natom, nelec, nstate
 
 ::
    
@@ -1945,9 +1946,12 @@ Mandatory: periodic, al, state, nelem, natom
      nstate = 32
    /
 
-``iperiodic = 3`` indicates that three dimensional periodic boundary
-condition (bulk crystal) is assumed. ``al = 10.26d0, 10.26d0, 10.26d0``
-specifies the lattice constans of the unit cell. ``nstate = 32``
+These input keywords and their values should be the same as those used in the
+ground state calculation. See :any:`&system in Exercise-4 <exercise-4-&system>`.
+
+``yn_periodic = y`` indicates that three dimensional periodic boundary condition (bulk crystal) is assumed.
+``al(1:3) = 10.26d0, 10.26d0, 10.26d0`` specifies the lattice constans of the unit cell.
+``nstate = 32``
 indicates the number of Kohn-Sham orbitals to be solved. ``nelec = 32``
 indicate the number of valence electrons in the system. ``nelem = 1``
 and ``natom = 8`` indicate the number of elements and the number of
