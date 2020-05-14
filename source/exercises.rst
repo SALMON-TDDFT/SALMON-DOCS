@@ -959,6 +959,10 @@ users need to prepare.
 | *C2H2_rt_pulse.inp*               | input file that contain input     |
 |                                   | keywords and their values.        |
 +-----------------------------------+-----------------------------------+
+| *C_rps.dat*                       | pseodupotential file for carbon   |
++-----------------------------------+-----------------------------------+
+| *H_rps.dat*                       | pseudopotential file for hydrogen |
++-----------------------------------+-----------------------------------+
 | *restart*                         | directory created in the ground   |
 |                                   | state calculation (rename the     |
 |                                   | directory from                    |
@@ -1739,76 +1743,135 @@ To run the code, following files are used:
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
 +-----------------------------------+-----------------------------------+
-| *Si_gs_rt_response.inp*           | input file that contain input     |
+| *Si_rt_response.inp*                  | input file that contain input     |
 |                                   | keywords and their values.        |
 +-----------------------------------+-----------------------------------+
 | *Si_rps.dat*                      | pseodupotential file of silicon   |
 +-----------------------------------+-----------------------------------+
+| *restart*                         | directory created in the ground   |
+|                                   | state calculation (rename the     |
+|                                   | directory from                    |
+|                                   | *data_for_restart* to *restart*)  |
++-----------------------------------+-----------------------------------+
 
-| You may download the above 2 files (zipped file) from:
+| You may download the above files (zipped file, except for *restart*) from:
 | https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_response_input.zip
 
-In the input file *Si_gs_rt_response.inp*, input keywords are specified.
+In the input file *Si_rt_response.inp*, input keywords are specified.
 Most of them are mandatory to execute the calculation.
-This will help you to prepare the input file for other systems that you
-want to calculate. A complete list of the input keywords that can be
-used in the input file can be found in the downloaded file
-*SALMON/manual/input_variables.md*.
+This will help you to prepare the input file for other systems that you want to calculate.
+A complete list of the input keywords can be found in :any:`List of all input keywords <List of all input keywords>`.
 
 ::
 
    &calculation
      calc_mode = 'GS_RT'
    /
+   !########################################################################################!
+   ! Excercise 05: Dielectric function of crystalline silicon                               !
+   !----------------------------------------------------------------------------------------!
+   ! * The detail of this excercise is expained in our manual(see chapter: 'Exercises').    !
+   !   The manual can be obtained from: https://salmon-tddft.jp/documents.html              !
+   ! * Input format consists of group of keywords like:                                     !
+   !     &group                                                                             !
+   !       input keyword = xxx                                                              !
+   !     /                                                                                  !
+   !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !----------------------------------------------------------------------------------------!
+   ! * Copy the ground state data directory('data_for_restart') (or make symbolic link)     !
+   !   calculated in 'samples/exercise_04_bulkSi_gs/' and rename the directory to 'restart/'!
+   !   in the current directory.                                                            !
+   !########################################################################################!
+   
+   &calculation
+     !type of theory
+     theory = 'tddft_response'
+   /
+   
    &control
+     !common name of output files
      sysname = 'Si'
    /
+   
    &units
+     !units used in input and output files
      unit_system = 'a.u.'
    /
+   
    &system
-     iperiodic = 3
-     al = 10.26d0, 10.26d0, 10.26d0
+     !periodic boundary condition
+     yn_periodic = 'y'
+     
+     !grid box size(x,y,z)
+     al(1:3) = 10.26d0, 10.26d0, 10.26d0
+     
+     !number of elements, atoms, electrons and states(bands)
+     nelem  = 1
+     natom  = 8
+     nelec  = 32
      nstate = 32
-     nelec = 32
-     nelem = 1
-     natom = 8
    /
+   
    &pseudo
+     !name of input pseudo potential file
+     file_pseudo(1) = './Si_rps.dat'
+     
+     !atomic number of element
      izatom(1) = 14
-     pseudo_file(1) = './Si_rps.dat'
+     
+     !angular momentum of pseudopotential that will be treated as local
      lloc_ps(1) = 2
+     !--- Caution ---------------------------------------!
+     ! Index must correspond to those in &atomic_coor.   !
+     !---------------------------------------------------!
    /
+   
    &functional
+     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
      xc = 'PZ'
    /
+   
    &rgrid
-     num_rgrid = 12, 12, 12
+     !number of spatial grids(x,y,z)
+     num_rgrid(1:3) = 12, 12, 12
    /
+   
    &kgrid
-     num_kgrid = 4, 4, 4
+     !number of k-points(x,y,z)
+     num_kgrid(1:3) = 4, 4, 4
    /
+   
    &tgrid
+     !time step size and number of time grids(steps)
+     dt = 0.16d0
      nt = 3000
-     dt = 0.16
    /
+   
+   &emfield
+     !envelope shape of the incident pulse('impulse': impulsive field)
+     ae_shape1 = 'impulse'
+     
+     !polarization unit vector(real part) for the incident pulse(x,y,z)
+     epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
+     !--- Caution ---------------------------------------------------------!
+     ! Defenition of the incident pulse is wrriten in:                     !
+     ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
+     !---------------------------------------------------------------------!
+   /
+   
    &propagation
+     !propagator('etrs': time-reversal symmetry propagator)
      propagator = 'etrs'
    /
-   &scf
-     ncg = 5
-     nscf = 120
-   /
-   &emfield
-     trans_longi = 'tr'
-     ae_shape1 = 'impulse'
-     epdir_re1 = 0., 0., 1.
-   /
+   
    &analysis
-     nenergy = 1000
-     de = 0.001
+     !energy grid size and number of energy grids for output files
+     de      = 1.0d-2
+     nenergy = 5000
    /
+   
    &atomic_red_coor
+     !cartesian atomic reduced coodinates
      'Si'	.0	.0	.0	1
      'Si'	.25	.25	.25	1
      'Si'	.5	.0	.5	1
@@ -1817,11 +1880,12 @@ used in the input file can be found in the downloaded file
      'Si'	.75	.25	.75	1
      'Si'	.25	.75	.75	1
      'Si'	.75	.75	.25	1
+     !--- Format ---------------------------------------------------!
+     ! 'symbol' x y z index(correspond to that of pseudo potential) !
+     !--------------------------------------------------------------!
    /
 
-
 We present explanations of the input keywords that appear in the input file below:
-
 
 **&calculation**
 
