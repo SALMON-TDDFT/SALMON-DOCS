@@ -2576,21 +2576,6 @@ Mandatory: none
 ``propagator = 'etrs'`` indicates the use of enforced time-reversal symmetry propagator.
 See :any:`&propagation in Inputs <&propagation>` for more information.
 
-**&analysis**
-
-Mandatory: none
-
-::
-   
-   &analysis
-     !energy grid size and number of energy grids for output files
-     de      = 1.0d-2
-     nenergy = 5000
-   /
-
-``de = 1.0d-2`` specifies the energy spacing in the time-frequency Fourier transformation.
-``nenergy = 5000`` specifies the number of energy steps, and 
-
 **&atomic_red_coor**
 
 Mandatory: atomic_coor or atomic_red_coor (they may be provided as a
@@ -3089,51 +3074,55 @@ Mandatory: none
 ``propagator = 'etrs'`` indicates the use of enforced time-reversal symmetry propagator.
 See :any:`&propagation in Inputs <&propagation>` for more information.
 
-**&analysis**
-
-Mandatory: none
-
-::
-   
-   &analysis
-     !energy grid size and number of energy grids for output files
-     de      = 1.0d-2
-     nenergy = 5000
-   /
-
-``de = 1.0d-2`` specifies the energy spacing in the time-frequency Fourier transformation.
-``nenergy = 5000`` specifies the number of energy steps, and 
-
 **&multiscale**
 
 ::
    
    &multiscale
-     fdtddim = '1D'
-     twod_shape = 'periodic'
-     nx_m  = 4
-     ny_m  = 1
-     hX_m = 250d0
-     nxvacl_m = -2000
-     nxvacr_m = 256
+     !number of macro grids in electromagnetic analysis for x-z directions
+     nx_m = 8
+     ny_m = 1
+     nz_m = 1
+     
+     !macro grid spacing for x-z directions
+     hx_m = 100 
+     hy_m = 100
+     hz_m = 100
+     
+     !number of macroscopic grids for vacumm region
+     !(nxvacl_m is for negative x-direction in front of material)
+     !(nxvacr_m is for positive x-direction behind material)
+     nxvacl_m = 1000
+     nxvacr_m = 1000
    /
 
-This input keyword specifies information necessary for Maxwell - TDDFT
-multiscale calculations.
+This input keyword specifies information necessary for Maxwell-TDDFT multiscale calculations.
 
-``fdtddim`` specifies the spatial dimension of the macro system.
-``fdtddim='1D'`` indicates that one-dimensional equation is solved for
-the macroscopic vector potential.
+``nx_m = 8`` specifies the number of the macroscopic grid points
+in for x-direction in the spatial region where the material exists.
+``ny_m = 1`` and ``nz_m = 1`` are those for y- and z-directions.
 
-``nx_m = 4`` specifies the number of the macroscopic grid points in for
-x-direction in the spatial region where the material exists.
+``hx_m = 250d0`` specifies the grid spacing of the macroscopic grid in x-direction.
+``hy_m = 100`` and ``hz_m = 100`` are those for y- and z-directions.
 
-``hx_m = 250d0`` specifies the grid spacing of the macroscopic grid in
-x-direction.
+``nxvacl_m = 1000`` and ``nxvacr_m = 1000`` indicate the number of grid points in the vacuum region,
+``nxvacl_m`` for the left and ``nxvacr_m`` for the right from the surface of the material.
 
-``nxvacl_m = -2000`` and ``nxvacr_m = 256`` indicate the number of grid
-points in the vacuum region, ``nxvacl_m`` for the left and ``nxvacr_m``
-for the right from the surface of the material.
+**&multiscale**
+
+::
+   
+   &maxwell
+     !boundary condition of electromagnetic analysis(x-z,start or end)
+     !('abc' is absorbing boundary condition)
+     boundary_em(1,1) = 'abc'
+     boundary_em(1,2) = 'abc'
+   /
+
+``boundary_em(1,1) = 'abc'`` and boundary_em(1,2) = 'abc' set the abosorbing bondary conditions
+in electromagnetic analysis.
+The first index(1-3 rows) corresponds to x, y, and z axes.
+The second index(1-2 columns) corresponds to bottom and top of the axes.
 
 **&atomic_red_coor**
 
