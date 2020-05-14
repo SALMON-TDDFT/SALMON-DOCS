@@ -91,13 +91,29 @@ List of all input keywords
    These are not written down If ``0`` is set.
 
 - **yn_reset_step_restart** (character, Default='n')
-   xxx.
+   | Available for ``yn_restart='y'`` with the DFT/TDDFT based options of ``theory``.
+   In the case of restarting, the initial step of SCF iteration (for DFT) or time step (for TDDFT) are reset to 0 at begining.
+   Then, the memory of the density in the previous SCF iteration steps (in GS) is abondoned.
 
 - **read_gs_restart_data** (character, Default='all')
-   xxx.
+   | Available for ``yn_restart='y'`` with ``theory='dft'``.
+   | Options
+   |   ``all``  / all of restart data are read
+   |   ``rho_inout``  / only electron densities including memories at previous iteration steps are read
+   |   ``rho``  / only the latest electron density is read (user-made data)
+   |   ``wfn``  / only wavefunctions is read
+   Specified data which is included in the restart (or checkpoint) directory generated in the previous calculation is used for restarting SCF iteration in DFT.
+   The default option ``'all'`` gives the complete restart. The other options use a part of restart data (other necessary data is generated as done in the initial SCF step)
 
 - **write_gs_restart_data** (character, Default='all')
-   xxx.
+   | Available for ``theory='dft'``.
+   | Options
+   |   ``all``  / all of restart data are written out
+   |   ``rho_inout``  / only electron densities including memories at previous iteration steps are written out
+   |   ``wfn``  / only wavefunctions is written out
+   Specified data is written out in the restart (or checkpoint) directory. 
+   The default option ``'all'`` gives the complete set of restart data. 
+
 
 - **time_shutdown** (real(8), Default=-1d0)[Trial]
    | Available for ``theory='xxx'``.
@@ -163,7 +179,7 @@ xxxx.
    xxx.
 
 - **yn_collective_opt** (character, Default='n')
-   xxxxx. 
+  xxxxx. 
 
 &system 
 -------
@@ -419,10 +435,21 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ----
 
 - **method_init_wf** (character, Default='gauss')
-xxxx.
+   | Available for 'dft' and 'dft_md' options of ``theory``.
+   | Options
+   |   ``gauss`` / put single gauss function using a random number on each initial orbital
+   |   ``gauss2`` / put two gauss functions using a random number on each initial orbital
+   |   ``gauss3`` / put three gauss functions using a random number on each initial orbital
+   |   ``gauss4`` / put four gauss functions using a random number on each initial orbital
+   |   ``gauss5`` / put five gauss functions using a random number on each initial orbital
+   |   ``gauss10`` / put ten gauss functions using a random number on each initial orbital
+   |   ``random`` / give a random number at each real-space grid point on each initial orbital
+   The generation method of the initial wavefunction (orbital) at the begening of the SCF iteration in DFT calculation.
+
 
 - **iseed_number_change** (integer, Default=0)
-xxxx.
+   | Available for 'dft' and 'dft_md' options of ``theory``.
+   The seed of the random numbers are changed by adding the given number for generating the initial wavefunctions.
 
 - **nscf** (integer, Default=0)
    | Available for 'dft' and 'dft_md' options of ``theory``.
@@ -442,7 +469,8 @@ xxxx.
    Number of interation of Conjugate-Gradient method for each scf-cycle.
 
 - **ncg_init** (integer, Default=4)
-xxxx.
+   | Available for 'dft' and 'dft_md' options of ``theory``.
+   Number of interation of Conjugate-Gradient method for the first SCF step.
 
 - **method_mixing** (character, Default='broyden') 
    | Available for 'dft' and 'dft_md' options of ``theory``.
@@ -503,10 +531,13 @@ xxxx.
    xxx.
 
 - **step_initial_mix_zero** (Integer, Default=-1)
-xxxx.
+   | Available for 'dft' option of ``theory``.
+   The densities is not mixed (i.e. fixed) during the given number of the SCF iteration cycle, that is, wavefunctions are optimized without updating the density. 
 
 - **conv_gap_mix_zero** (real(8), Default=99999d0)
-xxxx.
+   | Available for positive number of ``step_initial_mix_zero`` with 'dft' option of ``theory``.
+   The condition to quite the fixed density forced by ``step_initial_mix_zero`` option.
+   The density is allowed to start mixing after the band-gap energy exceeds the given number for consecutive five SCF iteration steps, 
 
 
 &emfield
@@ -545,7 +576,8 @@ xxxx.
    | Momentum of impulsive perturbation. This valiable has the dimention of momentum, energy*time/length.
 
 ..
- - **t_impulse**
+(commented out: not implemented yet)
+- **t_impulse**
    | Available for ``theory='xxx'``.
    not yet implemented XXXX
 ..
@@ -786,10 +818,9 @@ xxxx.
    |   ``'rt'`` / projection to eigenstates of instantaneous Hamiltonian.
 
 - **out_projection_step** (integer, Default=100)
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
+   | Available for ``projection_option`` with TDDFT based options of ``theory``.
+   | Old infomation: 3d xxxx
    Interval time step of projection analysis 
-   if ``projection_option`` is not ``'no'``.
 
 ..
 (here, commented out: not implemented in salmon2)
@@ -867,12 +898,13 @@ xxxx.
 
 - **yn_out_dns_rt/out_dns_rt_step** (Character/Integer, Default='n')
    | Available for ``theory='xxx'``.
-   If ``'y'``,  the spatiotemporal electron density distribution during real-time time-propagation is output
-   every ``outdns_rt_step`` time steps.
+   If ``'y'``,  the spatiotemporal electron density distribution during real-time time-propagation is output every ``outdns_rt_step`` time steps.
 
-- **yn_out_dns_ac_je/out_dns_ac_je_step** (Character/Integer, Default='n')
-xxxx.
-
+- **yn_out_dns_ac_je/out_dns_ac_je_step** (Character/Integer, Default='n'/50)
+   | Available for ``theory='single_scale_maxwell_tddft'``.
+   If ``'y'``,  the electron density, vector potential, electronic current, and ionic coordinates are printed out every ``outdns_dns_ac_je_step`` time steps.
+   The data written in binary format are divided to files corresponding to the space-grid parallelization number. 
+  
 - **yn_out_dns_trans/out_dns_trans_energy** (Character/Real(8), Default='n'/1.55d0eV)[Trial]
    | Available for ``theory='xxx'``.
    | Old infomation: 3d
@@ -962,100 +994,92 @@ xxxx.
 ------
 
 - **newald** (integer, Default=4)
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
+   | Available for ``yn_periodic='y'`` with DFT/TDDFT based options of ``theory``.
    Parameter for Ewald method. 
    Short-range part of Ewald sum is calculated within ``newald`` th
    nearlist neighbor cells.
 
 - **aewald** (real(8), Default=0.5d0)
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
+   | Available for ``yn_periodic='y'`` with DFT/TDDFT based options of ``theory``.
    Square of range separation parameter for Ewald method in atomic unit. 
 
 - **cutoff_r** (real(8), Default=-1d0)
-xxxx.
+   | Available for ``yn_periodic='y'`` with DFT/TDDFT based options of ``theory``.
+  xxxx.
 
 - **cutoff_r_buff** (real(8), Default=2d0 a.u.)
-xxxx.
+   | Available for ``yn_periodic='y'`` with DFT/TDDFT based options of ``theory``.
+  xxxx.
 
 - **cutoff_g** (real(8), Default=-1d0)
-xxxx.
+   | Available for ``yn_periodic='y'`` with DFT/TDDFT based options of ``theory``.
+  xxxx.
 
 &opt[Trial]
 -------------
 
 - **nopt** (integer, Default=100)
-   | Available for ``theory='xxx'``.
-   xxx.
+   | Available for ``yn_opt='y'`` with ``theory='dft'``.
+   The maximum step number of geometry optimization.
 
 - **convrg_opt_fmax** (real(8), Default=1d-3)
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
-   Convergence threshold of optimization in maximum force.
+   | Available for ``yn_opt='y'`` with ``theory='dft'``.
+   Convergence threshold of geometry optimization in maximum force.
 
 - **max_step_len_adjust** (real(8), Default=-1d0)
-xxxxx.
+  | Available for ``yn_opt='y'`` with ``theory='dft'``.
+  xxxxx.
 
+  
 &md[Trial]
 -----------
 - **ensemble** (character, Default='NVE')[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
+   | Available for ``yn_md='y'`` or ``theory='dft_md'``.
    Ensemble in MD option: "NVE" or "NVT".
 
 - **thermostat** (character, Default='nose-hoover')[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
+   | Available for ``yn_md='y'`` or ``theory='dft_md'``.
    Thermostat in "NVT" option: (currently only ``nose-hoover``).
 
 - **step_velocity_scaling** (integer, Default=-1)[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
+   | Available for ``yn_md='y'`` or ``theory='dft_md'``.
    Time step interval for velocity-scaling. Velocity-scaling is applied if this is set to positive.
 
 - **step_update_ps** (Integer, Default=10)[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
+   | Available for ``yn_md='y'`` or ``theory='dft_md'``.
    Time step interval for updating pseudopotential (Larger number makes calculation time reduce greatly, but gets inaccurate) in case of ``yn_md=y``.
 
 - **temperature0_ion_k** (real(8), Default=298.15d0)[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
+   | Available for ``yn_md='y'`` or ``theory='dft_md'``.
    Setting temperature [K] for NVT ensemble, velocity scaling and generating initial velocities.
 
 - **yn_set_ini_velocity** (character, Default='n')[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
+   | Available for ``yn_md='y'`` or ``theory='dft_md'``.
    Initial velocities are set.
 
   - ``y``: Generate initial velocity with Maxwell-Bortzman distribution.
   - ``r``: Read initial velocity from file specified by keyword of ``file_ini_velocity``. This is, for example, used for restarting MD from the previous run. The last atomic coordinates and velocities are printed in ``SYSname``\_trj.xyz. (atomic coordinate also should be copied from the previous output and put in the next input file for restart)
     
 - **file_ini_velocity** (character, Default='none')[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
+   | Available for ``yn_md='y'`` or ``theory='dft_md'``.
    File name for initial velocities. This is read when ``set_ini_velocity`` is ``'r'``. The format is simply vx(iatom) vy(iatom) vz(iatom) in each line. The order of atoms must be the same as the given coordinates in the main input file. In case of using nose-hoover thermostat, a thermostat variable should be put at the last line (all atomic unit). 
 
 - **thermostat_tau** (real(8), Default=41.34d0 a.u. or 1d0 fs)[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
+   | Available for ``yn_md='y'`` or ``theory='dft_md'``.
    Parameter in Nose-Hoover method: controlling time constant for temperature.
    Default is ``41.34[au] or 1.0[fs]``.
 
 ..
 #xxx removed?#
 - **seed_ini_velocity** (integer, Default=123)[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
+   | Available for ``yn_md='y'`` or ``theory='dft_md'``.
    Random seed (integer number) to generate initial velocity if ``set_ini_velocity`` is set to y.
    Default is ``123``.
 ..
 
 - **yn_stop_system_momt** (character, Default='n')[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
-   Center of mass is stopped every time step.
+   | Available for ``yn_md='y'`` or ``theory='dft_md'``.
+   Center of mass is fixed every time step.
 
 
 &code
