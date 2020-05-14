@@ -84,7 +84,7 @@ C2H2 (isolated molecules)
 Exercise-1: Ground state of C2H2 molecule
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this exercise, we learn the calculation of the ground state solution
+In this exercise, we learn the calculation of the ground state 
 of acetylene (C2H2) molecule, solving the static Kohn-Sham equation.
 This exercise will be useful to learn how to set up calculations in
 SALMON for any isolated systems such as molecules and nanoparticles.
@@ -1383,10 +1383,9 @@ Crystalline silicon (periodic solids)
 Exercise-4: Ground state of crystalline silicon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this exercise, we learn the calculation of the ground state solution
-of crystalline solid, silicon, solving the static Kohn-Sham equation.
-This exercise will be useful to learn how to set up calculations in
-SALMON for any periodic systems such as crystalline solid.
+In this exercise, we learn the the ground state calculation of the crystalline silicon of a diamond structure. 
+Calculation is done in a cubic unit cell that contains eight silicon atoms. 
+This exercise will be useful to learn how to set up calculations in SALMON for any periodic systems such as crystalline solid.
 
 Input files
 ^^^^^^^^^^^
@@ -1721,20 +1720,14 @@ directory that you run the code,
 Exercise-5: Dielectric function of crystalline silicon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this exercise, we learn the linear response calculation of the
-crystalline silicon of a diamond structure. Calculation is done in a
-cubic unit cell that contains eight silicon atoms. Since the ground
-state calculation costs much less computational time than the time
-evolution calculation, both calculations are successively executed.
-After finishing the ground state calculation, an impulsive perturbation
-is applied to all electrons in the unit cell along *z* direction. Since
-the dielectric function is isotropic in the diamond structure,
-calculated dielectric function should not depend on the direction of the
-perturbation. During the time evolution, electric current averaged over
-the unit cell volume is calculated. A time-frequency Fourier
-transformation of the electric current gives us a frequency-dependent
-conductivity. The dielectric function may be obtained from the
-conductivity using a standard relation.
+In this exercise, we learn the linear response calculation of the crystalline silicon of a diamond structure. 
+This exercise should be carried out after finishing the ground state calculation that was explained in :any:`Exercise-4 <exercise-4>`.
+An impulsive perturbation is applied to all electrons in the unit cell along *z* direction.
+Since the dielectric function is isotropic in the diamond structure,
+calculated dielectric function should not depend on the direction of the perturbation. 
+During the time evolution, electric current averaged over the unit cell volume is calculated. 
+A time-frequency Fourier transformation of the electric current gives us a frequency-dependent conductivity.
+The dielectric function may be obtained from the conductivity using a standard relation.
 
 .. _input-files-3:
 
