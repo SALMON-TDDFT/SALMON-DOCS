@@ -1533,10 +1533,10 @@ Mandatory: none
 
    &control
      !common name of output files
-     sysname = 'C2H2'
+     sysname = 'Si'
    /
 
-'C2H2' defined by ``sysname = 'C2H2'`` will be used in the filenames of
+'Si' defined by ``sysname = 'Si'`` will be used in the filenames of
 output files.
 
 **&units**
@@ -1547,7 +1547,7 @@ Mandatory: none
 
    &units
      !units used in input and output files
-     unit_system = 'A_eV_fs'
+     unit_system = 'a.u.'
    /
 
 This input keyword specifies the unit system to be used in the input and output files.
@@ -1564,29 +1564,24 @@ Mandatory: yn_periodic, al, nelem, natom, nelec, nstate
 
    &system
      !periodic boundary condition
-     yn_periodic = 'n'
+     vyn_periodic = 'y'
      
      !grid box size(x,y,z)
-     al(1:3) = 16.0d0, 16.0d0, 16.0d0
+     al(1:3) = 10.26d0, 10.26d0, 10.26d0
      
-     !number of elements, atoms, electrons and states(orbitals)
-     nelem  = 2
-     natom  = 4
-     nelec  = 10
-     nstate = 5
+     !number of elements, atoms, electrons and states(bands)
+     nelem  = 1
+     natom  = 8
+     nelec  = 32
+     nstate = 32
    /
 
-``yn_periodic = 'n'`` indicates that the isolated boundary condition will be
-used in the calculation. ``al(1:3) = 16.0d0, 16.0d0, 16.0d0`` specifies the lengths
-of three sides of the rectangular parallelepiped where the grid points
-are prepared. ``nelem = 2`` and ``natom = 4`` indicate the number of elements and the
-number of atoms in the system, respectively. ``nelec = 10`` indicate the number of valence electrons in
-the system. ``nstate = 5`` indicates the number of Kohn-Sham orbitals
-to be solved. Since the present code assumes that the system is spin
-saturated, ``nstate`` should be equal to or larger than ``nelec/2``.
+``yn_periodic = 'y'`` indicates that three dimensional periodic boundary condition (bulk crystal) is assumed.
+``al(1:3) = 10.26d0, 10.26d0, 10.26d0`` specifies the lattice constans of the unit cell.
+``nelem = 1`` and ``natom = 8`` indicate the number of elements and the number of atoms in the system, respectively.
+``nelec = 32`` indicate the number of valence electrons in the system.
+``nstate = 32`` indicates the number of Kohn-Sham orbitals to be solved.
 See :any:`&system in Inputs <&system>` for more information.
-
-.. _exercise-1-&pseudo:
 
 **&pseudo**
 
