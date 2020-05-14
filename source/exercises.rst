@@ -3108,7 +3108,7 @@ in for x-direction in the spatial region where the material exists.
 ``nxvacl_m = 1000`` and ``nxvacr_m = 1000`` indicate the number of grid points in the vacuum region,
 ``nxvacl_m`` for the left and ``nxvacr_m`` for the right from the surface of the material.
 
-**&multiscale**
+**&maxwell**
 
 ::
    
@@ -3162,25 +3162,25 @@ following output files are created in the directory,
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
 +-----------------------------------+-----------------------------------+
-| *Si_gs_info.data*                 | results of the ground state as    |
-|                                   | well as input parameters          |
+| *Si_m/mxxxxxx/Si_rt.data*         | vector potential, electric field, |
+|                                   | and matter current                |
+|                                   | at macroscopic position *xxxxxx*  |
+|                                   | as functions of time              |
 +-----------------------------------+-----------------------------------+
-| *Si_eigen.data*                   | orbital energies in the ground    |
-|                                   | state calculation                 |
+| Si_m/mxxxxxx/Si_rt_energy.data    | components of total energy and    |
+|                                   | difference of total energy        |
+|                                   | at macroscopic position *xxxxxx*  |
+|                                   | as functions of time              |
 +-----------------------------------+-----------------------------------+
-| *Si_k.data*                       | information on k-points           |
+| *Si_m/mxxxxxx/PS_Si_KY_n.dat*     | information on pseodupotential    |
+|                                   | file for silicon atom             |
+|                                   | at macroscopic position *xxxxxx*  |
 +-----------------------------------+-----------------------------------+
-| *RT_Ac/Si_Ac_xxxxxx.data*         | various quantities at a time as   |
-|                                   | functions of macroscopic position |
-+-----------------------------------+-----------------------------------+
-| *RT_Ac/Si_Ac_vac.data*            | vector potential at vacuum        |
-|                                   | position adjacent to the medium   |
-+-----------------------------------+-----------------------------------+
-| *Mxxxxxx/Si_Ac_M.data*            | various quantities at a           |
-|                                   | macroscopic point as functions of |
-|                                   | time                              |
-+-----------------------------------+-----------------------------------+
-| *Si_gs_rt_multiscale.out*         | standard output file              |
+| *Si_RT_Ac/Si_Ac_yyyyyy.data*      | vector potential,                 |
+|                                   | electric field,                   |
+|                                   | electromagnetic current density   |
+|                                   | at time step *yyyyyy*             |
+|                                   | as function of space              |
 +-----------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file) from:
