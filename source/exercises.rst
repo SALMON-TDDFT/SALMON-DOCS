@@ -1764,9 +1764,6 @@ A complete list of the input keywords can be found in :any:`List of all input ke
 
 ::
 
-   &calculation
-     calc_mode = 'GS_RT'
-   /
    !########################################################################################!
    ! Excercise 05: Dielectric function of crystalline silicon                               !
    !----------------------------------------------------------------------------------------!
