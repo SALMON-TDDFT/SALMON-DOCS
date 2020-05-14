@@ -2149,12 +2149,7 @@ the conductivity of the system. Then the dielectric function is calculated.
 
 **Si_rt.data**
 
-Results of time evolution calculation. *Ac_ext_x,y,z* are applied vector potential. 
-For transverse calculation specified by ``trans_longi = 'tr'``,　*Ac_tot_x,y,z* are equal to *Ac_ext_x,y,z*. 
-For longitudinal calculation specified by ``trans_longi = 'lo'``, 
-*Ac_tot_x,y,z* are the sum of *Ac_ext_x,y,z* and the induced polarization. 
-The same relation holds for electric fields of *E_ext_x,y,z* and *E_tot_x,y,z*. 
-*Jm_x,y,z* are macroscopic current. 
+Results of time evolution calculation for vector potential, electric field, and matter current density.
 
 ::
    
