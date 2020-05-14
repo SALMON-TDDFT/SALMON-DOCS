@@ -2193,14 +2193,11 @@ Exercise-6: Electron dynamics in crystalline silicon under a pulsed electric fie
 
 In this exercise, we learn the calculation of electron dynamics in a
 unit cell of crystalline silicon of a diamond structure. Calculation is
-done in a cubic unit cell that contains eight silicon atoms. Since the
-ground state calculation costs much less computational time than the
-time evolution calculation, both calculations are successively executed.
-After finishing the ground state calculation, a pulsed electric field
-that has cos^2 envelope shape is applied. The parameters that
-characterize the pulsed field such as magnitude, frequency,
-polarization, and carrier envelope phase are specified in the input
-file.
+done in a cubic unit cell that contains eight silicon atoms. 
+This exercise should be carried out after finishing the ground state calculation that was explained in :any:`Exercise-4 <exercise-4>`.
+A pulsed electric field that has cos^2 envelope shape is applied. 
+The parameters that characterize the pulsed field such as magnitude, frequency,
+polarization, and carrier envelope phase are specified in the input file.
 
 .. _input-files-4:
 
@@ -2212,21 +2209,24 @@ To run the code, following files are used:
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
 +-----------------------------------+-----------------------------------+
-| *Si_gs_rt_pulse.inp*              | input file that contain input     |
+| *Si_rt_pulse.inp*                 | input file that contain input     |
 |                                   | keywords and their values.        |
 +-----------------------------------+-----------------------------------+
 | *Si_rps.dat*                      | pseodupotential file for Carbon   |
 +-----------------------------------+-----------------------------------+
+| *restart*                         | directory created in the ground   |
+|                                   | state calculation (rename the     |
+|                                   | directory from                    |
+|                                   | *data_for_restart* to *restart*)  |
++-----------------------------------+-----------------------------------+
 
-| You may download the above 2 files (zipped file) from:
+| You may download the above 2 files (zipped file, except for *restart*) from:
 | https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_pulse_input.zip
 
-In the input file *Si_gs_rt_pulse.inp*, input keywords are specified.
+In the input file *Si_rt_pulse.inp*, input keywords are specified.
 Most of them are mandatory to execute the calculation.
-This will help you to prepare the input file for other systems that you
-want to calculate. A complete list of the input keywords that can be
-used in the input file can be found in the downloaded file
-*SALMON/manual/input_variables.md*.
+This will help you to prepare the input file for other systems that you want to calculate. 
+A complete list of the input keywords can be found in :any:`List of all input keywords <List of all input keywords>`.
 
 ::
 
