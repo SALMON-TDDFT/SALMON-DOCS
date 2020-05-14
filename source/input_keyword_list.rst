@@ -71,28 +71,46 @@ List of all input keywords
    | Available for ``theory='xxx'``.
    xxx.
 
-- **yn_restart** (character, Default='new')[Trial]
+- **yn_restart** (character, Default='n')
    | Available for ``theory='xxx'``.
    | Restart option.
    Enable(``'y'``)/disable(``'n'``).
 
-- **directory_read_data** (character, Default='restart/')[Trial]
+- **directory_read_data** (character, Default='restart/')
    | Available for ``theory='xxx'``.
    | Directory name for the restart data that is written down in the previous run 
 
-- **yn_self_checkpoint** (character, Default='n')[Trial]
+- **yn_self_checkpoint** (character, Default='n')
    | Available for ``theory='xxx'``.
    xxx.
 
-- **checkpoint_interval** (integer, Default=0)[Trial]
+- **checkpoint_interval** (integer, Default=0)
    | Available for ``theory='xxx'``.
    Interval of time step (or iteration step) of writing down check-point data during the time-propagation or iteration. 
    These are not written down If ``0`` is set.
+
+- **yn_reset_step_restart** (character, Default='n')
+   xxx.
+
+- **read_gs_restart_data** (character, Default='all')
+   xxx.
+
+- **write_gs_restart_data** (character, Default='all')
+   xxx.
 
 - **time_shutdown** (real(8), Default=-1d0)[Trial]
    | Available for ``theory='xxx'``.
    Timer for automatic shutdown. The unit is second.
    If negative time is chosen, the automatic shutdown is not performed.
+
+method_wf_distributor
+nblock_wf_distribute
+
+- **yn_gbp** (character, Default='n')
+   xxx.
+
+- **yn_gbp_fourier0** (character, Default='n')
+   xxx.
 
 &units
 ------
@@ -112,35 +130,42 @@ List of all input keywords
    Domain parallelization option. 
    If ``yn_domain_parallel='y'`` and ``&system/yn_periodic='y'``, program code for domain parallel version runs in periodic system. (xxxx should be removed after the code was completed)
 
-- **nproc_k/nproc_ob/nproc_domain_orbital(3)/nproc_domain_general(3)** (integer, Default=0)
+- **nproc_k/nproc_ob/nproc_rgrid(3)** (integer, Default=0)
    | Available for ``theory='xxx', 'Maxwell'``.
    | Old infomation: 0d  xxxxx
    | Options
    |   ``nproc_k``/ Number of MPI parallelization for orbitals that related to the wavefunction calculation.
    |   ``nproc_ob``/ Number of MPI parallelization for orbitals that related to the wavefunction calculation.
-   |    ``nproc_domain_orbital(3)'``/ Number of MPI parallelization for each direction in real-space that related to the wavefunction calculation. 
-   |   ``nproc_domain_general(3)'``/ Number of MPI parallelization for each direction in real-space that related to the electron density calculation. 
+   |    ``nproc_rgrid(3)'``/ Number of MPI parallelization for each direction in real-space that related to the wavefunction and the electron density calculations. 
    |
-   | Defaults are ``0`` for ``nproc_k``/``nproc_ob`` and ``(0/0/0)`` for ``nproc_domain_orbital``/``nproc_domain_s``. If users use the defaults, automatic proccess assignment is done. Users can also specify ``nproc_k``, ``nproc_ob``, ``nproc_domain``, and ``nproc_domain_general`` manually. In that case, ``nproc_k`` must be set to ``1`` for isolated system calculations. ``nproc_k`` and ``nproc_k`` must be set to ``1`` for ``theory='Maxwell'``. In addition, followings must be satisfied.
+   | Defaults are ``0`` for ``nproc_k``/``nproc_ob`` and ``(0/0/0)`` for ``nproc_rgrid``. If users use the defaults, automatic proccess assignment is done. Users can also specify ``nproc_k``, ``nproc_ob``, and ``nproc_rgrid`` manually. In that case, ``nproc_k`` must be set to ``1`` for isolated system calculations. ``nproc_k`` and ``nproc_k`` must be set to ``1`` for ``theory='Maxwell'``. In addition, followings must be satisfied.
    |
-   |   ``nproc_k`` \* ``nproc_ob`` \* ``nproc_domain_orbital(1)`` \* ``nproc_domain_orbital(2)`` \* ``nproc_domain_orbital(3)`` \= total number of processors
-   |   ``nproc_domain_general(1)`` \* ``nproc_domain_general(2)`` \* ``nproc_domain_general(3)`` \= total number of processors
-   |   ``nproc_domain_general(1)`` is a multiple of ``nproc_domain_orbital(1)``
-   |   ``nproc_domain_general(2)`` is a multiple of ``nproc_domain_orbital(2)``
-   |   ``nproc_domain_general(3)`` is a multiple of ``nproc_domain_orbital(3)``
+   |   ``nproc_k`` \* ``nproc_ob`` \* ``nproc_rgrid(1)`` \* ``nproc_rgrid(2)`` \* ``nproc_rgrid(3)`` \= total number of processors
+   xxxxx. 
 
-- **yn_ffte** (character, Default='ft')
+- **yn_ffte** (character, Default='n')
    | Available for ``theory='xxx'``.
    | Old infomation: 0d  xxxx
    | Method of Fourier transformation.  
    | Enable(``'y'``)/disable(``'n'``).
-   This variable is effective only when ``yn_domain_parallel='y'`` and ``&system/yn_periodic='y'``. (xxxx?)
+   This variable is effective only when ``&system/yn_periodic='y'``. (xxxx?)
+
+- **yn_scalapack** (character, Default='n')
+   xxxxx. 
+
+- **yn_scalapack_red_mem** (character, Default='n')
+   xxxxx. 
+
+- **yn_eigenexa** (character, Default='n')
+   xxxxx. 
 
 - **process_allocation** (character, Default='grid_sequential')
    | Available for ``theory='xxx'``.
    | Old infomation: 0d
    xxx.
 
+- **yn_collective_opt** (character, Default='n')
+   xxxxx. 
 
 &system 
 -------
@@ -369,6 +394,8 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for 'DFT_MD' and TDDFT-based options of ``theory``
    Time step size.
 
+- **gram_schmidt_interval** (integer, Default=0)
+  xxxx.
 
 &propagation
 ------------
@@ -393,6 +420,12 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &scf
 ----
 
+- **method_init_wf** (character, Default='gauss')
+xxxx.
+
+- **iseed_number_change** (integer, Default=0)
+xxxx.
+
 - **nscf** (integer, Default=0)
    | Available for 'DFT' and 'DFT_MD' options of ``theory``.
    Number of maximum SCF cycle in DFT calculation
@@ -406,9 +439,12 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    |  ``diis`` / DIIS method
    |  ``cg-diis`` / CG-DIIS method 
 
-- **ncg** (integer, Default=5)
+- **ncg** (integer, Default=4)
    | Available for 'DFT' and 'DFT_MD' options of ``theory``.
    Number of interation of Conjugate-Gradient method for each scf-cycle.
+
+- **ncg_init** (integer, Default=4)
+xxxx.
 
 - **method_mixing** (character, Default='broyden') 
    | Available for 'DFT' and 'DFT_MD' options of ``theory``.
@@ -429,6 +465,18 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - **alpha_mb** (real(8), Default=0.75d0)
    | Available for ``method_mixing='broyden'`` in 'DFT' and 'DFT_MD' options of ``theory``.
    Parameter of the modified-Broyden method.
+
+- **nmemory_p** (integer, Default=4)
+xxxx.
+
+- **beta_p** (real(8), Default=0.75d0)
+xxxx.
+
+- **yn_auto_mixing** (character, Default='n')
+xxxx.
+
+- **update_mixing_ratio** (real(8), Default=3.0d0)
+xxxx.
 
 - **yn_subspace_diagonalization** (character, Default='y')
    | Available for 'DFT' and 'DFT_MD' options of ``theory``.
@@ -455,6 +503,12 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - **iditer_notemperature** (integer, Default=10) 
    | Available for 'DFT' and 'DFT_MD' options of ``theory``.
    xxx.
+
+- **step_initial_mix_zero** (Integer, Default=-1)
+xxxx.
+
+- **conv_gap_mix_zero** (real(8), Default=99999d0)
+xxxx.
 
 
 &emfield
