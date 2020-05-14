@@ -158,7 +158,7 @@ used in the input file can be found in
      nelem  = 2
      natom  = 4
      nelec  = 10
-     nstate = 5
+     nstate = 6
    /
    
    &pseudo
@@ -282,7 +282,7 @@ Mandatory: yn_periodic, al, nelem, natom, nelec, nstate
      nelem  = 2
      natom  = 4
      nelec  = 10
-     nstate = 5
+     nstate = 6
    /
 
 ``yn_periodic = 'n'`` indicates that the isolated boundary condition will be
@@ -606,7 +606,7 @@ used in the input file can be found in
      nelem  = 2
      natom  = 4
      nelec  = 10
-     nstate = 5
+     nstate = 6
    /
    
    &pseudo
@@ -735,7 +735,7 @@ Mandatory: iperiodic, al, nelem, natom, nelec, nstate
      nelem  = 2
      natom  = 4
      nelec  = 10
-     nstate = 5
+     nstate = 6
    /
 
 These input keywords and their values should be the same as those used in the
@@ -1020,7 +1020,7 @@ the input keywords that can be used in the input file can be found in
      nelem  = 2
      natom  = 4
      nelec  = 10
-     nstate = 5
+     nstate = 6
    /
    
    &pseudo
@@ -1156,7 +1156,7 @@ Mandatory: yn_periodic, al, nelem, natom, nelectron, nstate
      nelem  = 2
      natom  = 4
      nelec  = 10
-     nstate = 5
+     nstate = 6
    /
 
 These input keywords and their values should be the same as those used in the
