@@ -446,9 +446,7 @@ directory that you run the code,
 |                                   | contained                         |
 +-----------------------------------+-----------------------------------+
 
-| You may download the above files (zipped file, except for the files 
-  *C2H2_eigen.data*, *PS_C_KY_n.dat*, and *PS_H_KY_n.dat* 
-  and the directory *data_for_restart*) from:
+| You may download the above files (zipped file, except for the directory *data_for_restart*) from:
 | https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_output.zip
 | (zipped output files)
 
@@ -1701,88 +1699,22 @@ directory that you run the code,
 +-----------------------------------+-----------------------------------+
 | name                              | description                       |
 +-----------------------------------+-----------------------------------+
-| *C2H2_info.data*                  | information on ground state       |
+| *Si_info.data*      　            | information on ground state       |
 |                                   | solution                          |
 +-----------------------------------+-----------------------------------+
-| *psi1.cube*, *psi2.cube*, ...     | electron orbitals                 |
+| *Si_eigen.data*   　              | energy eigenvalues of orbitals    |
 +-----------------------------------+-----------------------------------+
-| *dns.cube*                        | a cube file for electron density  |
-+-----------------------------------+-----------------------------------+
-| *dos.data*                        | density of states                 |
-+-----------------------------------+-----------------------------------+
-| *pdos1.data*, *pdos2.data*, ...   | projected density of states       |
-+-----------------------------------+-----------------------------------+
-| *elf.cube*                        | electron localization function    |
-|                                   | (ELF)                             |
-+-----------------------------------+-----------------------------------+
-| *C2H2_eigen.data*                 | 1 particle energies               |
-+-----------------------------------+-----------------------------------+
-| *PS_C_KY_n.dat*                   | information on pseodupotential    |
+| *PS_Si_KY_n.dat*                  | information on pseodupotential    |
 |                                   | file for carbon atom              |
-+-----------------------------------+-----------------------------------+
-| *PS_H_KY_n.dat*                   | information on pseodupotential    |
-|                                   | file for hydrogen atom            |
 +-----------------------------------+-----------------------------------+
 | *data_for_restart*                | directory where files used in     |
 |                                   | the real-time calculation are     |
 |                                   | contained                         |
 +-----------------------------------+-----------------------------------+
 
-| You may download the above files (zipped file, except for the files 
-  *C2H2_eigen.data*, *PS_C_KY_n.dat*, and *PS_H_KY_n.dat* 
-  and the directory *data_for_restart*) from:
+| You may download the above files (zipped file, except for the directory *data_for_restart*) from:
 | https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_output.zip
 | (zipped output files)
-
-Main results of the calculation such as orbital energies are included in
-*C2H2_info.data*. Explanations of the *C2H2_info.data* and other output
-files are below:
-
-**C2H2_info.data**
-
-Calculated orbital and total energies as well as parameters specified in
-the input file are shown in this file.
-
-**psi1.cube, psi2.cube, ...**
-
-Cube files for electron orbitals. The number in the filename indicates
-the index of the orbital atomic unit is adopted in all cube files.
-
-**dns.cube**
-
-A cube file for electron density.
-
-**dos.data**
-
-A file for density of states. The units used in this file are affected
-by the input parameter, ``unit_system`` in ``&unit``.
-
-**elf.cube**
-
-A cube file for electron localization function (ELF).
-
-We show several image that are created from the output files.
-
-* **Highest occupied molecular orbital (HOMO)**
-
-  The output files *psi1.cube*, *psi2.cube*, ... are used to create the image.
-
-  .. image:: images/exercise1/HOMO.png
-     :scale: 20%
-
-* **Electron density**
-
-  The output files *dns.cube*, ... are used to create the image.
-
-  .. image:: images/exercise1/Dns.png
-     :scale: 20%
-
-* **Electron localization function**
-
-  The output files *elf.cube*, ... are used to create the image.
-
-  .. image:: images/exercise1/Elf.png
-     :scale: 20%
 
 .. _exercise-5:
 
