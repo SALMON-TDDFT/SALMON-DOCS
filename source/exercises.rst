@@ -2733,21 +2733,6 @@ This will help you to prepare the input file for other systems that you want to 
 A complete list of the input keywords can be found in :any:`List of all input keywords <List of all input keywords>`.
 
 ::
-
-   &calculation
-     calc_mode = 'GS_RT'
-     use_ms_maxwell = 'y'
-   /
-
-
-We present explanations of the input keywords that appear in the input file below:
-
-
-**&calculation**
-
-Mandatory: calc_mode
-
-::
     
     !########################################################################################!
     ! Excercise 07: Maxwell+TDDFT multiscale simulation                                      !
@@ -2896,26 +2881,21 @@ Mandatory: calc_mode
       !--------------------------------------------------------------!
     /
 
-``calc_mode = 'GS_RT'`` indicates that the ground state (GS) and the
-real time (RT) calculations are carried out sequentially in the present
-job. ``use_ms_maxwell = 'y'`` indicates the multi-scale Maxwell - TDDFT
-calculation.
-See :any:`&calculation in Inputs <&calculation>` for detail.
+We present explanations of the input keywords that appear in the input file below:
 
+**&calculation**
 
-
-**&control**
-
-Mandatory: none
+Mandatory: theory
 
 ::
    
-   &control
-     sysname = 'Si'
+   &calculation
+     !type of theory
+     theory = 'multi_scale_maxwell_tddft'
    /
 
-'Si' defined by ``sysname = 'C2H2'`` will be used in the filenames of
-output files.
+This indicates that the multi-scale Maxwell-TDDFT calculation
+is carried out in the present job. See :any:`&calculation in Inputs <&calculation>` for detail.
 
 **&system**
 
