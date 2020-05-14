@@ -38,13 +38,14 @@ List of all input keywords
 - **theory** (character, default='none')
    | Choice of Calculation theories.
    | Options
-   |   ``DFT``  / ground state calculation based on DFT
-   |   ``DFT_MD``  / adiabatic ab initio MD simulations based on DFT
-   |   ``TDDFT_response``  / simulations based on TDDFT for response
-   |   ``TDDFT_pulse``  / simulations based on TDDFT using pulsed light
-   |   ``Single_scale_Maxwell_TDDFT``  / coupled Maxwell and TDDFT single-scale simulation
-   |   ``Multi_scale_Maxwell_TDDFT``  / coupled Maxwell and TDDFT multi-scale simulation
-   |   ``Maxwell``  / electromagnetic simulations based on the Maxwell's equations (o
+   |   ``dft``  / ground state calculation based on DFT
+   |   ``dft_md``  / adiabatic ab initio MD simulations based on DFT
+   |   ``tddft_response``  / simulations based on TDDFT for response
+   |   ``tddft_pulse``  / simulations based on TDDFT using pulsed light
+   |   ``single_scale_maxwell_tddft``  / coupled Maxwell and TDDFT single-scale simulation
+   |   ``multi_scale_maxwell_tddft``  / coupled Maxwell and TDDFT multi-scale simulation
+   |   ``maxwell``  / electromagnetic simulations based on the Maxwell's equations
+   |   ''dft_k_expand'' / convert checkpoint data of dft with k-points calculation to that of larger supercell system with gamma-point
 
 - **yn_md** (character, Default='n')[Trial]
    | Available for ``theory='DFT'`` (Adiabatic ground-state MD) and ``theory='TDDFT_pulse'`` (Ehrenfest MD).
@@ -133,7 +134,7 @@ xxxx.
    | Options
    |   ``nproc_k``/ Number of MPI parallelization for orbitals that related to the wavefunction calculation.
    |   ``nproc_ob``/ Number of MPI parallelization for orbitals that related to the wavefunction calculation.
-   |    ``nproc_rgrid(3)'``/ Number of MPI parallelization for each direction in real-space that related to the wavefunction and the electron density calculations. 
+   |   ``nproc_rgrid(3)'``/ Number of MPI parallelization for each direction in real-space that related to the wavefunction and the electron density calculations. 
    |
    | Defaults are ``0`` for ``nproc_k``/``nproc_ob`` and ``(0/0/0)`` for ``nproc_rgrid``. If users use the defaults, automatic proccess assignment is done. Users can also specify ``nproc_k``, ``nproc_ob``, and ``nproc_rgrid`` manually. In that case, ``nproc_k`` must be set to ``1`` for isolated system calculations. ``nproc_k`` and ``nproc_k`` must be set to ``1`` for ``theory='Maxwell'``. In addition, followings must be satisfied.
    |
