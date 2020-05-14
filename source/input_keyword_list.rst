@@ -60,7 +60,7 @@ List of all input keywords
 --------
 
 - **sysname** (character, Default='default')
-   | Available for ``theory='xxx', 'Maxwell'``.
+   | Available for all options of ``theory``.
    Name of calculation. This is used for a prefix of output files.
 
 - **base_directory** (character, Default='./')
@@ -103,8 +103,11 @@ List of all input keywords
    Timer for automatic shutdown. The unit is second.
    If negative time is chosen, the automatic shutdown is not performed.
 
-method_wf_distributor
-nblock_wf_distribute
+- **method_wf_distributor** (character, Default='single')
+xxxx.
+
+- **nblock_wf_distribute** (integer, Default='16')
+xxxx.
 
 - **yn_gbp** (character, Default='n')
    xxx.
@@ -123,12 +126,6 @@ nblock_wf_distribute
 
 &parallel
 ---------
-
-- **yn_domain_parallel** (character, Default='n')[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d  xxxxx
-   Domain parallelization option. 
-   If ``yn_domain_parallel='y'`` and ``&system/yn_periodic='y'``, program code for domain parallel version runs in periodic system. (xxxx should be removed after the code was completed)
 
 - **nproc_k/nproc_ob/nproc_rgrid(3)** (integer, Default=0)
    | Available for ``theory='xxx', 'Maxwell'``.
