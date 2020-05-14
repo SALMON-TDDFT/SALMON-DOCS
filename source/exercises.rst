@@ -3167,7 +3167,7 @@ following output files are created in the directory,
 |                                   | at macroscopic position *xxxxxx*  |
 |                                   | as functions of time              |
 +-----------------------------------+-----------------------------------+
-| Si_m/mxxxxxx/Si_rt_energy.data    | components of total energy and    |
+| *Si_m/mxxxxxx/Si_rt_energy.data*  | components of total energy and    |
 |                                   | difference of total energy        |
 |                                   | at macroscopic position *xxxxxx*  |
 |                                   | as functions of time              |
@@ -3178,6 +3178,7 @@ following output files are created in the directory,
 +-----------------------------------+-----------------------------------+
 | *Si_RT_Ac/Si_Ac_yyyyyy.data*      | vector potential,                 |
 |                                   | electric field,                   |
+|                                   | magnetic field,                   |
 |                                   | electromagnetic current density   |
 |                                   | at time step *yyyyyy*             |
 |                                   | as function of space              |
@@ -3188,8 +3189,9 @@ following output files are created in the directory,
 
 Explanations of the output files are described below:
 
-**Si_m/mxxxxxx/Si_rt_energy.data**
+**Si_m/mxxxxxx/Si_rt.data**
 
+The number in the file name specifies the macroscopic position.
 Results of time evolution calculation for vector potential, electric field, and matter current density.
 
 ::
@@ -3200,108 +3202,34 @@ Results of time evolution calculation for vector potential, electric field, and 
    # Ac_tot: Total vector potential field
    # E_tot: Total electric field
    # Jm: Matter current density (electrons)
+   # 1:Time[a.u.] 2:Ac_ext_x[a.u.] 3:Ac_ext_y[a.u.] 4:Ac_ext_z[a.u.] 5:E_ext_x[a.u.] 6:E_ext_y[a.u.] 7:E_ext_z[a.u.] 8:Ac_tot_x[a.u.] 9:Ac_tot_y[a.u.] 10:Ac_tot_z[a.u.] 11:E_tot_x[a.u.] 12:E_tot_y[a.u.] 13:E_tot_z[a.u.]  14:Jm_x[a.u.] 15:Jm_y[a.u.] 16:Jm_z[a.u.] 
 
-**RT_Ac/Si_Ac_000000.data**
+**Si_m/mxxxxxx/Si_rt_energy.data**
 
-The number in the file name specifies the iteration number. Various
-quantities at a time are shown as function of macroscopic position.
-
--  column 1-3: grid number of macroscopic coordinate in 3D format.
--  column 4-6: macroscopic vector potential
--  column 7-9: macroscopic electric field
--  column 10-12: macroscopic magnetic field
--  column 13-15: macroscopic current
--  column 16: electronic excitation energy per unit cell
--  column 17: energy absorbed by electrons per unit cell
--  column 18: energy of macroscopic electromagnetic fields per unit cell
+The number in the file name specifies the macroscopic position.
+*Eall* and *Eall-Eall0* are total energy and electronic excitation energy, respectively.
 
 ::
+   
+   # Real time calculation: 
+   # Eall: Total energy
+   # Eall0: Initial energy
+   # 1:Time[a.u.] 2:Eall[a.u.] 3:Eall-Eall0[a.u.] 
 
-   # Macroscopic field distribution
-   # IX,IY,IZ: Coordinate
+**Si_RT_Ac/Si_Ac_yyyyyy.data**
+
+The number in the file name specifies the iteration number.
+Various quantities at a time are shown as function of macroscopic position.
+
+::
+   
+   # Multiscale TDDFT calculation
+   # IX, IY, IZ: FDTD Grid index
+   # x, y, z: Coordinates
    # Ac: Vector potential field
    # E: Electric field
-   # B: Magnetic field
-   # Jm: Matter current density
-   # Eex: Electron excitation energy
-   # Eabs: Absorbed energy
-   # Eemf: Total EM field energy
-   # 1:Ix[none] 2:Iy[none] 3:Iz[none] 4:Ac_x[a.u.] 5:Ac_y[a.u.] 6:Ac_z[a.u.] 7:E_x[a.u.] 8:E_y[a.u.] 9:E_z[a.u.] 10:B_x[a.u.] 11:B_y[a.u.] 12:B_z[a.u.] 13:Jm_x[a.u.] 14:Jm_y[a.u.] 15:Jm_z[a.u.] 16:Eex[a.u./unitcell] 17:Eabs[a.u./unitcell] 18:Eemf[a.u./unitcell]
-    -2000      1      1  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000
-    -1999      1      1  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000
-    -1998      1      1  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000
-    -1997      1      1  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000
-    -1996      1      1  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000
-   
-   ...
-   
-      252      1      1  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000
-      253      1      1  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000
-      254      1      1  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000
-      255      1      1  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000
-      256      1      1  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000  0.00000000000000E+000
-
-
-**RT_Ac/Si_Ac_vac.data**
-
-Vector potentials at vacuum points adjacent to the medium are shown, L
-for left and R for right adjacent point.
-
-::
-
-   # Ac vacuum region
-   # Data of Ac field at the end of media
-   # L:      0      1      1
-   # R:      5      1      1
-   # 1:Time[a.u.] 2:Ac_x(L)[a.u.] 3:Ac_y(L)[a.u.] 4:Ac_z(L)[a.u.] 5:Ac_x(R)[a.u.] 6:Ac_y(R)[a.u.] 7:Ac_z(R)[a.u.]
-         0.00000000  0.00000000000000E+000   0.00000000000000E+000   0.00000000000000E+000   0.00000000000000E+000   0.00000000000000E+000   0.00000000000000E+000
-         0.08000000  0.00000000000000E+000   0.00000000000000E+000   0.00000000000000E+000   0.00000000000000E+000   0.00000000000000E+000   0.00000000000000E+000
-         0.16000000  0.00000000000000E+000   0.00000000000000E+000   0.00000000000000E+000   0.00000000000000E+000   0.00000000000000E+000   0.00000000000000E+000
-         0.24000000  0.00000000000000E+000   1.02802304891111E-015   3.34045640443765E-016   0.00000000000000E+000   1.02802304891111E-015   3.34045640443765E-016
-         0.32000000  0.00000000000000E+000   5.19696825069140E-015   1.73169501167652E-015   0.00000000000000E+000   5.19696825069140E-015   1.73169724492077E-015
-   
-   ...
-   
-       319.68000000  0.00000000000000E+000  -8.56815797183038E-007  -1.74158413235687E-001   0.00000000000000E+000  -8.00468477308030E-007  -1.58038091464266E-001
-       319.76000000  0.00000000000000E+000  -8.57513903130219E-007  -1.74393964495627E-001   0.00000000000000E+000  -8.01174071107012E-007  -1.58187516982663E-001
-       319.84000000  0.00000000000000E+000  -8.58202516138042E-007  -1.74627725814573E-001   0.00000000000000E+000  -8.01876269144167E-007  -1.58336335855095E-001
-       319.92000000  0.00000000000000E+000  -8.58881726038604E-007  -1.74859695029779E-001   0.00000000000000E+000  -8.02575101929425E-007  -1.58484539522173E-001
-       320.00000000  0.00000000000000E+000  -8.59551627002296E-007  -1.75089870177989E-001   0.00000000000000E+000  -8.03270602482416E-007  -1.58632119495344E-001
-
-
-**M000001/Si_Ac_M.data**
-
-The number in the file name specifies the macroscopic grid point in a
-medium. Various quantities at a macroscopic point are shown as functions
-of time.
-
-::
-
-   # Local variable at macro point
-   # Macropoint:      1      1      1
-   # Jm: Matter current density
-   # Ac: External vector potential field
-   # 1:Time[a.u.] 2:Ac_x[a.u.] 3:Ac_y[a.u.] 4:Ac_z[a.u.] 5:Jm_x[a.u.] 6:Jm_y[a.u.] 7:Jm_z[a.u.]
-         0.00000000  0.00000000000000E+000   0.00000000000000E+000   0.00000000000000E+000   0.00000000000000E+000   0.00000000000000E+000   0.00000000000000E+000
-         0.08000000  0.00000000000000E+000   0.00000000000000E+000   0.00000000000000E+000  -2.75496322261169E-012  -6.64693329538576E-012  -2.15985341184321E-012
-         0.16000000  2.21567288859314E-013   5.34578094327944E-013   1.73705718053823E-013  -2.44154670033013E-012  -7.05287750131598E-012  -2.56975702246339E-012
-         0.24000000  6.39495414253759E-013   1.63535423011393E-012   5.53749512919215E-013  -2.13170597168112E-012  -7.46016650418711E-012  -2.97426987823802E-012
-         0.32000000  1.22886550624652E-012   3.33297163342029E-012   1.17193467844178E-012  -1.81810297340216E-012  -7.87600103950396E-012  -3.35839167619253E-012
-   
-   ...
-   
-        319.68000000  1.23027707032365E-003  -8.70482807641121E-007  -1.71017066989709E-001   1.02881666841023E-007   4.92374979404618E-010  -3.32578810347408E-005
-       319.76000000  1.23227860920852E-003  -8.70992162244069E-007  -1.71172549338950E-001   9.87865048046008E-008   4.85608114795546E-010  -3.45948031169888E-005
-       319.84000000  1.23427220321126E-003  -8.71495026996183E-007  -1.71326503499639E-001   9.45989194632210E-008   4.78870087348624E-010  -3.59262231464884E-005
-       319.92000000  1.23625818911749E-003  -8.71991570086865E-007  -1.71478932689850E-001   9.03230551511057E-008   4.72163059159496E-010  -3.72519512786483E-005
-       320.00000000  1.23823691081260E-003  -8.72481961985393E-007  -1.71629840326064E-001   8.59631416251532E-008   4.65489301170927E-010  -3.85718005737764E-005
-
-
-**Si_gs_rt_multiscale.out**
-
-Standard output file.
-
-
+   # J_em: Electromagnetic current density
+   # 1:IX[none] 2:IY[none] 3:IZ[none] 4:Ac_x[a.u.] 5:Ac_y[a.u.] 6:Ac_z[a.u.] 7:E_x[a.u.] 8:E_y[a.u.] 9:E_z[a.u.] 10:B_x[a.u.] 11:B_y[a.u.] 12:B_z[a.u.] 13:Jm_x[a.u.] 14:Jm_y[a.u.] 15:Jm_z[a.u.]
 
 Geometry optimization and Ehrenfest molecular dynamics
 -------------------------------------
