@@ -2897,67 +2897,92 @@ Mandatory: theory
 This indicates that the multi-scale Maxwell-TDDFT calculation
 is carried out in the present job. See :any:`&calculation in Inputs <&calculation>` for detail.
 
-**&system**
+**&control**
+
+Mandatory: none
 
 ::
    
-    &system
-      iperiodic = 3
-      al = 10.26d0,10.26d0,10.26d0
-      isym = 8 
-      crystal_structure = 'diamond'
-      nstate = 32
-      nelec = 32
-      nelem = 1
-      natom = 8
-    /
+   &control
+     !common name of output files
+     sysname = 'Si'
+   /
 
-``iperiodic = 3`` indicates that three dimensional periodic boundary
-condition (bulk crystal) is assumed. ``al = 10.26d0, 10.26d0, 10.26d0``
-specifies the lattice constans of the unit cell. ``nstate = 32``
-indicates the number of Kohn-Sham orbitals to be solved. ``nelec = 32``
-indicate the number of valence electrons in the system. ``nelem = 1``
-and ``natom = 8`` indicate the number of elements and the number of
-atoms in the system, respectively. ``isym = 8`` and
-``crystal_structure = 'diamond'``, which indicates that the spatial
-symmetry of the unit cell is used in the calculation. Although the use
-of the symmetry substantially reduces the computational cost, it should
-be used very carefully. At present, the spatial symmetry has been
-implemented only for the case of the diamond structure.
-See :any:`&system in Inputs <&system>` for more information.
+'Si' defined by ``sysname = 'Si'`` will be used in the filenames of output files.
 
+**&units**
 
+Mandatory: none
+
+::
+
+   &units
+     !units used in input and output files
+     unit_system = 'a.u.'
+   /
+
+This input keyword specifies the unit system to be used in the input and output files.
+If you do not specify it, atomic unit will be used.
+See :any:`&units in Inputs <&units>` for detail.
+
+**&system**
+
+Mandatory: yn_periodic, al, state, nelem, nelem, natom, nelec, nstate
+
+::
+   
+   &system
+     !periodic boundary condition
+     yn_periodic = 'y'
+     
+     !grid box size(x,y,z)
+     al(1:3) = 10.26d0, 10.26d0, 10.26d0
+     
+     !number of elements, atoms, electrons and states(bands)
+     nelem  = 1
+     natom  = 8
+     nelec  = 32
+     nstate = 32
+   /
+
+These input keywords and their values should be the same as those used in the
+ground state calculation. See :any:`&system in Exercise-4 <exercise-4-&system>`.
 
 **&pseudo**
+
+Mandatory: file_pseudo, izatom
 
 ::
    
    &pseudo
-     izatom(1)=14
-     pseudo_file(1) = './Si_rps.dat'
-     lloc_ps(1)=2
+     !name of input pseudo potential file
+     file_pseudo(1) = './Si_rps.dat'
+     
+     !atomic number of element
+     izatom(1) = 14
+     
+     !angular momentum of pseudopotential that will be treated as local
+     lloc_ps(1) = 2
+     !--- Caution ---------------------------------------!
+     ! Index must correspond to those in &atomic_coor.   !
+     !---------------------------------------------------!
    /
 
-``izatom(1) = 14`` indicates the atomic number of the element #1.
-``pseudo_file(1) = 'Si_rps.dat'`` indicates the pseudopotential filename
-of element #1. ``lloc_ps(1) = 2`` indicate the angular momentum of the
-pseudopotential that will be treated as local.l
+These input keywords and their values should be the same as those used in the
+ground state calculation. See :any:`&pseudo in Exercise-4 <exercise-4-&pseudo>`.
 
 **&functional**
+
+Mandatory: xc
 
 ::
    
    &functional
-     xc='PZ'
+     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
+     xc = 'PZ'
    /
 
-This indicates that the adiabatic local density approximation with the
-Perdew-Zunger functional is used. We note that meta-GGA functionals that
-reasonably reproduce the band gap of various insulators may also be used
-in the calculation of periodic systems.
-See :any:`&functional in Inputs <&functional>` for detail.
-
-
+This indicates that the local density approximation with the Perdew-Zunger functional is used.
 
 **&rgrid**
 
@@ -2966,108 +2991,120 @@ Mandatory: dl or num_rgrid
 ::
    
    &rgrid
-     num_rgrid = 12,12,12
+     !number of spatial grids(x,y,z)
+     num_rgrid(1:3) = 12, 12, 12
    /
 
-``num_rgrid=12,12,12`` specifies the number of the grids for each
-Cartesian direction.
+``num_rgrid(1:3) = 12, 12, 12`` specifies the number of the grids for each Cartesian direction.
+This must be the same as that in the ground state calculation.
 See :any:`&rgrid in Inputs <&rgrid>` for more information.
-
 
 **&kgrid**
 
 Mandatory: none
 
-This input keyword provides grid spacing of k-space for periodic systems.
-
 ::
    
    &kgrid
-     num_kgrid = 2,2,2
+     !number of k-points(x,y,z)
+     num_kgrid(1:3) = 4, 4, 4
    /
 
+This input keyword provides grid spacing of k-space for periodic systems.
+This must be the same as that in the ground state calculation.
+
 **&tgrid**
+
+Mandatory: dt, nt
 
 ::
    
    &tgrid
-     nt=4000
-     dt=0.08  
+     !time step size and number of time grids(steps)
+     dt = 0.16d0
+     nt = 3000
    /
 
-``dt=0.08`` specifies the time step of the time evolution calculation.
-``nt=4000`` specifies the number of time steps in the calculation.
-
-**&propagation**
-
-::
-   
-   &propagation
-     propagator='middlepoint'
-   /
-
-``propagator = 'middlepoint'`` indicates that Hamiltonian at midpoint of
-two-times is used.
-See :any:`&propagation in Inputs <&propagation>` for more information.
-
-
-
-**&scf**
-
-Mandatory: nscf
-
-This input keywords specify parameters related to the self-consistent field
-calculation.
-
-::
-   
-   &scf
-     ncg = 5
-     nscf = 120
-   /
-
-``ncg = 5`` is the number of conjugate-gradient iterations in solving
-the Kohn-Sham equation. Usually this value should be 4 or 5.
-``nscf = 120`` is the number of scf iterations.
+``dt = 0.16d0`` specifies the time step of the time evolution calculation.
+``nt = 3000`` specifies the number of time steps in the calculation.
 
 **&emfield**
 
+Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_cep1
+
 ::
    
-    &emfield
-      ae_shape1 = 'Acos2'
-      rlaser_int_wcm2_1 = 1d12
-      pulse_tw1 = 441.195136248d0
-      omega1 = 0.05696145187d0
-      epdir_re1 = 0.,0.,1.
-    /
+   &emfield
+     !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
+     ae_shape1 = 'Acos2'
+     
+     !peak intensity(W/cm^2) of the incident pulse
+     I_wcm2_1 = 1.0d12
+     
+     !duration of the incident pulse
+     tw1 = 441.195136248d0
+     
+     !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
+     omega1 = 0.05696145187d0
+     
+     !polarization unit vector(real part) for the incident pulse(x,y,z)
+     epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0
+     !--- Caution ---------------------------------------------------------!
+     ! Defenition of the incident pulse is wrriten in:                     !
+     ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
+     !---------------------------------------------------------------------!
+   /
 
-This input keyword specifies the pulsed electric field applied to the system
+These input keywords specify the pulsed electric field applied to the system.
 
 ``ae_shape1 = 'Acos2'`` specifies the envelope of the pulsed electric
 field, cos^2 envelope for the vector potential.
 
-``epdir_re1 = 0.,0.,1.`` specify the real part of the unit polarization
+``I_wcm2_1 = 1.0d12`` specifies the maximum intensity of the
+applied electric field in unit of W/cm^2.
+
+``tw1 = 441.195136248d0`` specifies the pulse duration. Note that it
+is not the FWHM but a full duration of the cos^2 envelope.
+
+``omega1 = 0.05696145187d0`` specifies the average photon energy
+(frequency multiplied with hbar).
+
+``epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0`` specify the real part of the unit polarization
 vector of the pulsed electric field. Specifying only the real part, it
 describes a linearly polarized pulse.
 
-``laser_int_wcm2_1 = 1d12`` specifies the maximum intensity of the
-applied electric field in unit of W/cm^2.
-
-``omega1=0.05696145187d0`` specifies the average photon energy
-(frequency multiplied with hbar).
-
-``pulse_tw1=441.195136248d0`` specifies the pulse duration. Note that it
-is not the FWHM but a full duration of the cos^2 envelope.
-
 See :any:`&emfield in Inputs <&emfield>` for detail.
 
+**&propagation**
 
+Mandatory: none
+
+::
+   
+   &propagation
+     !propagator('etrs': time-reversal symmetry propagator)
+     propagator = 'etrs'
+   /
+
+``propagator = 'etrs'`` indicates the use of enforced time-reversal symmetry propagator.
+See :any:`&propagation in Inputs <&propagation>` for more information.
+
+**&analysis**
+
+Mandatory: none
+
+::
+   
+   &analysis
+     !energy grid size and number of energy grids for output files
+     de      = 1.0d-2
+     nenergy = 5000
+   /
+
+``de = 1.0d-2`` specifies the energy spacing in the time-frequency Fourier transformation.
+``nenergy = 5000`` specifies the number of energy steps, and 
 
 **&multiscale**
-
-This input keyword specifies information necessary for Maxwell - TDDFT
-multiscale calculations.
 
 ::
    
@@ -3080,6 +3117,9 @@ multiscale calculations.
      nxvacl_m = -2000
      nxvacr_m = 256
    /
+
+This input keyword specifies information necessary for Maxwell - TDDFT
+multiscale calculations.
 
 ``fdtddim`` specifies the spatial dimension of the macro system.
 ``fdtddim='1D'`` indicates that one-dimensional equation is solved for
@@ -3095,7 +3135,6 @@ x-direction.
 points in the vacuum region, ``nxvacl_m`` for the left and ``nxvacr_m``
 for the right from the surface of the material.
 
-
 **&atomic_red_coor**
 
 Mandatory: atomic_coor or atomic_red_coor (they may be provided as a
@@ -3104,22 +3143,24 @@ separate file)
 ::
    
    &atomic_red_coor
-    'Si'    .0     .0    .0      1
-    'Si'    .25    .25   .25     1
-    'Si'    .5     .0    .5      1
-    'Si'    .0     .5    .5      1
-    'Si'    .5     .5    .0      1
-    'Si'    .75    .25   .75     1
-    'Si'    .25    .75   .75     1
-    'Si'    .75    .75   .25     1
+     !cartesian atomic reduced coodinates
+     'Si'	.0	.0	.0	1
+     'Si'	.25	.25	.25	1
+     'Si'	.5	.0	.5	1
+     'Si'	.0	.5	.5	1
+     'Si'	.5	.5	.0	1
+     'Si'	.75	.25	.75	1
+     'Si'	.25	.75	.75	1
+     'Si'	.75	.75	.25	1
+     !--- Format ---------------------------------------------------!
+     ! 'symbol' x y z index(correspond to that of pseudo potential) !
+     !--------------------------------------------------------------!
    /
 
-Cartesian coordinates of atoms are specified in a reduced coordinate
-system. First column indicates the element, next three columns specify
-reduced Cartesian coordinates of the atoms, and the last column labels
-the element.
-
-
+Cartesian coordinates of atoms are specified in a reduced coordinate system.
+First column indicates the element, 
+next three columns specify reduced Cartesian coordinates of the atoms,
+and the last column labels the element.
 
 .. _output-files-5:
 
