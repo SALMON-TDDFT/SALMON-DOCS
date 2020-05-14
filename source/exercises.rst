@@ -66,9 +66,9 @@ Next 2 exercises (Exercise-8 ~ 9) are for geometry optimization and
 Ehrenfest molecular dynamics based on the TDDFT method
 for an isolated molecule, acetylene C2H2. 
 :any:`Exercise-8 <exercise-8>`
-illustrates xxx.
+illustrates xxxAYxxx.
 :any:`Exercise-9 <exercise-9>`
-illustrates xxx.
+illustrates xxxAYxxx.
 
 Exercise-10 are for an metallic nanosphere described by dielectric function.
 The calculation method is the Finite-Difference Time-Domain (FDTD).
@@ -290,7 +290,7 @@ used in the calculation. ``al(1:3) = 16.0d0, 16.0d0, 16.0d0`` specifies the leng
 of three sides of the rectangular parallelepiped where the grid points
 are prepared. ``nelem = 2`` and ``natom = 4`` indicate the number of elements and the
 number of atoms in the system, respectively. ``nelec = 10`` indicate the number of valence electrons in
-the system. ``nstate = 5`` indicates the number of Kohn-Sham orbitals
+the system. ``nstate = 6`` indicates the number of Kohn-Sham orbitals
 to be solved. Since the present code assumes that the system is spin
 saturated, ``nstate`` should be equal to or larger than ``nelec/2``.
 See :any:`&system in Inputs <&system>` for more information.
@@ -3673,7 +3673,7 @@ Geometry optimization and Ehrenfest molecular dynamics
 Exercise-8: Geometry optimization of C2H2 molecule
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-xxx.
+xxxAYxxx.
 
 
 .. _exercise-9:
@@ -3681,7 +3681,7 @@ xxx.
 Exercise-9: Ehrenfest molecular dynamics of C2H2 molecule
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-xxx.
+xxxAYxxx.
 
 
 
