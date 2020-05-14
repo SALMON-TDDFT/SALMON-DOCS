@@ -1585,6 +1585,8 @@ Mandatory: yn_periodic, al, nelem, natom, nelec, nstate
 ``nstate = 32`` indicates the number of Kohn-Sham orbitals to be solved.
 See :any:`&system in Inputs <&system>` for more information.
 
+.. _exercise-4-&pseudo:
+
 **&pseudo**
 
 Mandatory: file_pseudo, izatom
@@ -1949,17 +1951,6 @@ Mandatory: yn_periodic, al, state, nelem, nelem, natom, nelec, nstate
 These input keywords and their values should be the same as those used in the
 ground state calculation. See :any:`&system in Exercise-4 <exercise-4-&system>`.
 
-``yn_periodic = y`` indicates that three dimensional periodic boundary condition (bulk crystal) is assumed.
-``al(1:3) = 10.26d0, 10.26d0, 10.26d0`` specifies the lattice constans of the unit cell.
-``nstate = 32``
-indicates the number of Kohn-Sham orbitals to be solved. ``nelec = 32``
-indicate the number of valence electrons in the system. ``nelem = 1``
-and ``natom = 8`` indicate the number of elements and the number of
-atoms in the system, respectively.
-See :any:`&system in Inputs <&system>` for more information.
-
-
-
 **&pseudo**
 
 Mandatory: file_pseudo, izatom
@@ -1980,10 +1971,8 @@ Mandatory: file_pseudo, izatom
      !---------------------------------------------------!
    /
 
-``izatom(1) = 14`` indicates the atomic number of the element #1.
-``pseudo_file(1) = 'Si_rps.dat'`` indicates the pseudopotential filename
-of element #1. ``lloc_ps(1) = 2`` indicate the angular momentum of the
-pseudopotential that will be treated as local.
+These input keywords and their values should be the same as those used in the
+ground state calculation. See :any:`&pseudo in Exercise-4 <exercise-4-&pseudo>`.
 
 **&functional**
 
@@ -1996,12 +1985,7 @@ Mandatory: xc
      xc = 'PZ'
    /
 
-This indicates that the adiabatic local density approximation with the
-Perdew-Zunger functional is used. We note that meta-GGA functionals that
-reasonably reproduce the band gap of various insulators may also be used
-in the calculation of periodic systems.
-See :any:`&functional in Inputs <&functional>` for detail.
-
+This indicates that the local density approximation with the Perdew-Zunger functional is used.
 
 **&rgrid**
 
@@ -2014,16 +1998,13 @@ Mandatory: dl or num_rgrid
      num_rgrid(1:3) = 12, 12, 12
    /
 
-``num_rgrid=12,12,12`` specifies the number of the grids for each
-Cartesian direction. See :any:`&rgrid in Inputs <&rgrid>` for more information.
-
+``num_rgrid(1:3) = 12, 12, 12`` specifies the number of the grids for each Cartesian direction.
+This must be the same as that in the ground state calculation.
+See :any:`&rgrid in Inputs <&rgrid>` for more information.
 
 **&kgrid**
 
 Mandatory: none
-
-  
-This input keyword provides grid spacing of k-space for periodic systems.
 
 ::
    
@@ -2031,6 +2012,9 @@ This input keyword provides grid spacing of k-space for periodic systems.
      !number of k-points(x,y,z)
      num_kgrid(1:3) = 4, 4, 4
    /
+
+This input keyword provides grid spacing of k-space for periodic systems.
+This must be the same as that in the ground state calculation.
 
 **&tgrid**
 
@@ -2044,8 +2028,8 @@ Mandatory: dt, nt
      nt = 3000
    /
 
-``dt=0.16`` specifies the time step of the time evolution calculation.
-``nt=3000`` specifies the number of time steps in the calculation.
+``dt = 0.16d0`` specifies the time step of the time evolution calculation.
+``nt = 3000`` specifies the number of time steps in the calculation.
 
 **&emfield**
 
@@ -2065,16 +2049,8 @@ Mandatory:ae_shape1
      !---------------------------------------------------------------------!
    /
 
-``as_shape1 = 'impulse'`` indicates that a weak impulsive field is
-applied to all electrons at *t=0*
-
-``epdir_re1(3)`` specify a unit vector that indicates the direction of
-the impulse.
-
-``trans_longi = 'tr'`` specifies the treatment of the polarization in
-the time evolution calculation, transverse for 'tr' and longitudinal for
-'lo'.
-
+``as_shape1 = 'impulse'`` indicates that a weak impulsive field is applied to all electrons at *t=0*
+``epdir_re1(3)`` specify a unit vector that indicates the direction of the impulse.
 See :any:`&emfield in Inputs <&emfield>` for detail.
 
 **&propagation**
@@ -2088,10 +2064,8 @@ Mandatory: none
      propagator = 'etrs'
    /
 
-``propagator = 'etrs'`` indicates the use of enforced time-reversal
-symmetry propagator.
+``propagator = 'etrs'`` indicates the use of enforced time-reversal symmetry propagator.
 See :any:`&propagation in Inputs <&propagation>` for more information.
-
 
 **&analysis**
 
@@ -2105,9 +2079,8 @@ Mandatory: none
      nenergy = 5000
    /
 
-``nenergy=1000`` specifies the number of energy steps, and ``de=0.001``
-specifies the energy spacing in the time-frequency Fourier
-transformation.
+``de = 1.0d-2`` specifies the energy spacing in the time-frequency Fourier transformation.
+``nenergy = 5000`` specifies the number of energy steps, and 
 
 **&atomic_red_coor**
 
@@ -2131,10 +2104,10 @@ separate file)
      !--------------------------------------------------------------!
    /
 
-Cartesian coordinates of atoms are specified in a reduced coordinate
-system. First column indicates the element, next three columns specify
-reduced Cartesian coordinates of the atoms, and the last column labels
-the element.
+Cartesian coordinates of atoms are specified in a reduced coordinate system.
+First column indicates the element, 
+next three columns specify reduced Cartesian coordinates of the atoms,
+and the last column labels the element.
 
 .. _output-files-3:
 
