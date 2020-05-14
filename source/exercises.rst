@@ -2695,14 +2695,13 @@ Exercise-7: Pulsed-light propagation through a silicon thin film
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this exercise, we learn the calculation of the propagation of a
-pulsed light through a thin film of crystalline silicon. We consider a
-silicon thin film of 53 nm thickness, and an irradiation of a few-cycle,
-linearly polarized pulsed light normally on the thin film. First, to set
-up initial orbitals, the ground state calculation is carried out. The
-pulsed light locates in the vacuum region in front of the thin film. The
-parameters that characterize the pulsed light such as magnitude and
-frequency are specified in the input file. The calculation ends when the
-reflected and transmitted pulses reach the vacuum region.
+pulsed light through a thin film of crystalline silicon. 
+We consider a silicon thin film of 42 nm thickness, and an irradiation of a few-cycle,
+linearly polarized pulsed light normally on the thin film. 
+This exercise should be carried out after finishing the ground state calculation that was explained in :any:`Exercise-4 <exercise-4>`.
+The pulsed light locates in the vacuum region in front of the thin film.
+The parameters that characterize the pulsed light such as magnitude and
+frequency are specified in the input file. 
 
 .. _input-files-5:
 
@@ -2714,89 +2713,30 @@ To run the code, following files are used:
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
 +-----------------------------------+-----------------------------------+
-| *Si_gs_rt_multiscale.inp*         | input file that contain input     |
+| *Si_rt_multiscale.inp*            | input file that contain input     |
 |                                   | keywords and their values.        |
 +-----------------------------------+-----------------------------------+
 | *Si_rps.dat*                      | pseodupotential file for silicon  |
 +-----------------------------------+-----------------------------------+
+| *restart*                         | directory created in the ground   |
+|                                   | state calculation (rename the     |
+|                                   | directory from                    |
+|                                   | *data_for_restart* to *restart*)  |
++-----------------------------------+-----------------------------------+
 
-| You may download the above two files (zipped file) from:
+| You may download the above two files (zipped file, except for *restart*) from:
 | https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_multiscale_input.zip
 
-In the input file *Si_gs_rt_multiscale.inp*, input keywords are specified.
+In the input file *Si_rt_multiscale.inp*, input keywords are specified.
 Most of them are mandatory to execute the calculation.
-This will help you to prepare the input file for other systems that you
-want to calculate. A complete list of the input keywords that can be
-used in the input file can be found in the downloaded file
-*SALMON/manual/input_variables.md*.
+This will help you to prepare the input file for other systems that you want to calculate.
+A complete list of the input keywords can be found in :any:`List of all input keywords <List of all input keywords>`.
 
 ::
 
    &calculation
      calc_mode = 'GS_RT'
      use_ms_maxwell = 'y'
-   /
-   &control
-     sysname = 'Si'
-   /
-   &system
-     iperiodic = 3
-     al = 10.26d0, 10.26d0, 10.26d0
-     nstate = 32
-     nelec = 32
-     nelem = 1
-     natom = 8
-   /
-   &pseudo
-     izatom(1) = 14
-     pseudo_file(1) = './Si_rps.dat'
-     lloc_ps(1) = 2
-   /
-   &functional
-     xc = 'PZ'
-   /
-   &rgrid
-     num_rgrid = 12, 12, 12
-   /
-   &kgrid
-     num_kgrid = 2, 2, 2
-   /
-   &tgrid
-     nt = 4000
-     dt = 0.08
-   /
-   &propagation
-     propagator = 'middlepoint'
-   /
-   &scf
-     ncg = 5
-     nscf = 100
-   /
-   &emfield
-     ae_shape1 = 'Acos2'
-     rlaser_int_wcm2_1 = 1d12
-     pulse_tw1 = 441.195136248d0
-     omega1 = 0.05696145187d0
-     epdir_re1 = 0., 0., 1.
-   /
-   &multiscale
-     fdtddim = '1d'
-     twod_shape = 'periodic'
-     nx_m = 4
-     ny_m = 1
-     hx_m = 250d0
-     nxvacl_m = -2000
-     nxvacr_m = 256
-   /
-   &atomic_red_coor
-     'Si'	.0	.0	.0	1
-     'Si'	.25	.25	.25	1
-     'Si'	.5	.0	.5	1
-     'Si'	.0	.5	.5	1
-     'Si'	.5	.5	.0	1
-     'Si'	.75	.25	.75	1
-     'Si'	.25	.75	.75	1
-     'Si'	.75	.75	.25	1
    /
 
 
@@ -2808,10 +2748,152 @@ We present explanations of the input keywords that appear in the input file belo
 Mandatory: calc_mode
 
 ::
-
+    
+    !########################################################################################!
+    ! Excercise 07: Maxwell+TDDFT multiscale simulation                                      !
+    !               (Pulsed-light propagation through a silicon thin film)                   !
+    !----------------------------------------------------------------------------------------!
+    ! * The detail of this excercise is expained in our manual(see chapter: 'Exercises').    !
+    !   The manual can be obtained from: https://salmon-tddft.jp/documents.html              !
+    ! * Input format consists of group of keywords like:                                     !
+    !     &group                                                                             !
+    !       input keyword = xxx                                                              !
+    !     /                                                                                  !
+    !   (see chapter: 'List of all input keywords' in the manual)                            !
+    !----------------------------------------------------------------------------------------!
+    ! * Copy the ground state data directory('data_for_restart') (or make symbolic link)     !
+    !   calculated in 'samples/exercise_04_bulkSi_gs/' and rename the directory to 'restart/'!
+    !   in the current directory.                                                            !
+    !########################################################################################!
+    
     &calculation
-      calc_mode = 'GS_RT'
-      use_ms_maxwell = 'y'
+      !type of theory
+      theory = 'multi_scale_maxwell_tddft'
+    /
+    
+    &control
+      !common name of output files
+      sysname = 'Si'
+    /
+    
+    &units
+      !units used in input and output files
+      unit_system = 'a.u.'
+    /
+    
+    &system
+      !periodic boundary condition
+      yn_periodic = 'y'
+      
+      !grid box size(x,y,z)
+      al(1:3) = 10.26d0, 10.26d0, 10.26d0
+      
+      !number of elements, atoms, electrons and states(bands)
+      nelem  = 1
+      natom  = 8
+      nelec  = 32
+      nstate = 32
+    /
+    
+    &pseudo
+      !name of input pseudo potential file
+      file_pseudo(1) = './Si_rps.dat'
+      
+      !atomic number of element
+      izatom(1) = 14
+      
+      !angular momentum of pseudopotential that will be treated as local
+      lloc_ps(1) = 2
+      !--- Caution ---------------------------------------!
+      ! Index must correspond to those in &atomic_coor.   !
+      !---------------------------------------------------!
+    /
+    
+    &functional
+      !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
+      xc = 'PZ'
+    /
+    
+    &rgrid
+      !number of spatial grids(x,y,z)
+      num_rgrid(1:3) = 12, 12, 12
+    /
+    
+    &kgrid
+      !number of k-points(x,y,z)
+      num_kgrid(1:3) = 4, 4, 4
+    /
+    
+    &tgrid
+      !time step size and number of time grids(steps)
+      dt = 0.16d0
+      nt = 3000
+    /
+    
+    &emfield
+      !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
+      ae_shape1 = 'Acos2'
+      
+      !peak intensity(W/cm^2) of the incident pulse
+      I_wcm2_1 = 1.0d12
+      
+      !duration of the incident pulse
+      tw1 = 441.195136248d0
+      
+      !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
+      omega1 = 0.05696145187d0
+      
+      !polarization unit vector(real part) for the incident pulse(x,y,z)
+      epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0
+      !--- Caution ---------------------------------------------------------!
+      ! Defenition of the incident pulse is wrriten in:                     !
+      ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
+      !---------------------------------------------------------------------!
+    /
+    
+    &propagation
+      !propagator('etrs': time-reversal symmetry propagator)
+      propagator = 'etrs'
+    /
+    
+    &multiscale
+      !number of macro grids in electromagnetic analysis for x-z directions
+      nx_m = 8
+      ny_m = 1
+      nz_m = 1
+      
+      !macro grid spacing for x-z directions
+      hx_m = 100 
+      hy_m = 100
+      hz_m = 100
+      
+      !number of macroscopic grids for vacumm region
+      !(nxvacl_m is for negative x-direction in front of material)
+      !(nxvacr_m is for positive x-direction behind material)
+      nxvacl_m = 1000
+      nxvacr_m = 1000
+    /
+    
+    &maxwell
+      !boundary condition of electromagnetic analysis(x-z,start or end)
+      !('abc' is absorbing boundary condition)
+      boundary_em(1,1) = 'abc'
+      boundary_em(1,2) = 'abc'
+    /
+    
+    &atomic_red_coor
+      !cartesian atomic reduced coodinates
+      'Si'	.0	.0	.0	1
+      'Si'	.25	.25	.25	1
+      'Si'	.5	.0	.5	1
+      'Si'	.0	.5	.5	1
+      'Si'	.5	.5	.0	1
+      'Si'	.75	.25	.75	1
+      'Si'	.25	.75	.75	1
+      'Si'	.75	.75	.25	1
+      !--- Format ---------------------------------------------------!
+      ! 'symbol' x y z index(correspond to that of pseudo potential) !
+      !--------------------------------------------------------------!
     /
 
 ``calc_mode = 'GS_RT'`` indicates that the ground state (GS) and the
