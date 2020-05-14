@@ -831,7 +831,7 @@ Mandatory: ae_shape1
    /
 
 ``ae_shape1 = 'impulse'`` indicates that a weak impulse is applied to
-all electrons at *t=0*. ``epdir_re1(3)`` specify a unit vector that
+all electrons at *t=0*. ``epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0`` specify a unit vector that
 indicates the direction of the impulse.
 See :any:`&emfield in Inputs <&emfield>` for details.
 
@@ -1275,6 +1275,8 @@ Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_ce
      ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
      !---------------------------------------------------------------------!
    /
+
+These input keywords specify the pulsed electric field applied to the system.
 
 ``ae_shape1 = 'Ecos2'`` indicates that the envelope of the pulsed
 electric field has a *cos^2* shape.
@@ -2064,7 +2066,7 @@ Mandatory:ae_shape1
    /
 
 ``as_shape1 = 'impulse'`` indicates that a weak impulsive field is applied to all electrons at *t=0*
-``epdir_re1(3)`` specify a unit vector that indicates the direction of the impulse.
+``epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0`` specify a unit vector that indicates the direction of the impulse.
 See :any:`&emfield in Inputs <&emfield>` for detail.
 
 **&propagation**
@@ -2233,7 +2235,6 @@ A complete list of the input keywords can be found in :any:`List of all input ke
    &calculation
      calc_mode = 'GS_RT'
    /
-
 
 We present explanations of the input keywords that appear in the input file below:
 
@@ -2513,24 +2514,49 @@ Mandatory: dt, nt
 
 **&emfield**
 
-Mandatory:ae_shape1
+Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_cep1
 
 ::
    
    &emfield
-     !envelope shape of the incident pulse('impulse': impulsive field)
-     ae_shape1 = 'impulse'
+     !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
+     ae_shape1 = 'Acos2'
+     
+     !peak intensity(W/cm^2) of the incident pulse
+     I_wcm2_1 = 5.0d11
+     
+     !duration of the incident pulse
+     tw1 = 441.195136248d0
+     
+     !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
+     omega1 = 0.05696145187d0
      
      !polarization unit vector(real part) for the incident pulse(x,y,z)
-     epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
+     epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0
      !--- Caution ---------------------------------------------------------!
      ! Defenition of the incident pulse is wrriten in:                     !
      ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
      !---------------------------------------------------------------------!
    /
 
-``as_shape1 = 'impulse'`` indicates that a weak impulsive field is applied to all electrons at *t=0*
-``epdir_re1(3)`` specify a unit vector that indicates the direction of the impulse.
+These input keywords specify the pulsed electric field applied to the system.
+
+``ae_shape1 = 'Acos2'`` specifies the envelope of the pulsed electric
+field, cos^2 envelope for the vector potential.
+
+``I_wcm2_1 = 5.0d11`` specifies the maximum intensity of the
+applied electric field in unit of W/cm^2.
+
+``tw1 = 441.195136248d0`` specifies the pulse duration. Note that it
+is not the FWHM but a full duration of the cos^2 envelope.
+
+``omega1 = 0.05696145187d0`` specifies the average photon energy
+(frequency multiplied with hbar).
+
+``epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0`` specify the real part of the unit polarization
+vector of the pulsed electric field. Specifying only the real part, it
+describes a linearly polarized pulse.
+
 See :any:`&emfield in Inputs <&emfield>` for detail.
 
 **&propagation**
@@ -2588,42 +2614,6 @@ Cartesian coordinates of atoms are specified in a reduced coordinate system.
 First column indicates the element, 
 next three columns specify reduced Cartesian coordinates of the atoms,
 and the last column labels the element.
-
-**&emfield**
-
-::
-
-   &emfield
-     trans_longi = 'tr'
-     ae_shape1 = 'Acos2'
-     rlaser_int_wcm2_1 = 1d14
-     pulse_tw1 = 441.195136248d0
-     omega1 = 0.05696145187d0
-     epdir_re1 = 0.,0.,1.
-   /
-
-This input keyword specifies the pulsed electric field applied to the system
-
-``ae_shape1 = 'Acos2'`` specifies the envelope of the pulsed electric
-field, cos^2 envelope for the vector potential.
-
-``epdir_re1 = 0.,0.,1.`` specify the real part of the unit polarization
-vector of the pulsed electric field. Specifying only the real part, it
-describes a linearly polarized pulse.
-
-``laser_int_wcm2_1 = 1d14`` specifies the maximum intensity of the
-applied electric field in unit of W/cm^2.
-
-``omega1=0.05696145187d0`` specifies the average photon energy
-(frequency multiplied with hbar).
-
-``pulse_tw1=441.195136248d0`` specifies the pulse duration. Note that it
-is not the FWHM but a full duration of the cos^2 envelope.
-
-``trans_longi = 'tr'`` specifies the treatment of the polarization in
-the time evolution calculation, 'tr' indicating transverse.
-
-See :any:`&emfield in Inputs <&emfield>` for detail.
 
 .. _output-files-4:
 
