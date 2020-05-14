@@ -2147,6 +2147,15 @@ the conductivity of the system. Then the dielectric function is calculated.
    # eps: Dielectric constant
    # 1:Energy[a.u.] 2:Re(sigma_x)[a.u.] 3:Im(sigma_x)[a.u.] 4:Re(sigma_y)[a.u.] 5:Im(sigma_y)[a.u.] 6:Re(sigma_z)[a.u.] 7:Im(sigma_z)[a.u.] 8:Re(eps_x)[none] 9:Im(eps_x)[none] 10:Re(eps_y)[none] 11:Im(eps_y)[none] 12:Re(eps_z)[none] 13:Im(eps_z)[none]
 
+**Si_rt.data**
+
+Results of time evolution calculation. *Ac_ext_x,y,z* are applied vector potential.
+For transverse calculation specified by ``trans_longi = 'tr'``,　*Ac_tot_x,y,z* are equal to *Ac_ext_x,y,z*.
+For longitudinal calculation specified by ``trans_longi = 'lo'``, 
+*Ac_tot_x,y,z* are the sum of *Ac_ext_x,y,z* and the induced polarization. 
+The same relation holds for electric fields of *E_ext_x,y,z* and *E_tot_x,y,z*.
+*Jm_x,y,z* are macroscopic current. 
+
 **Si_rt_energy**
 
 *Eall* and *Eall-Eall0* are total energy and electronic excitation energy, respectively.
