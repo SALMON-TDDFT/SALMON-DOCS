@@ -321,9 +321,9 @@ Mandatory: file_pseudo, izatom
    /
 
 Parameters related to atomic species and pseudopotentials.
-``pseudo_file(1) = 'C_rps.dat'`` indicates the filename of the
-pseudopotential of element #1.
-``izatom(1) = 6`` specifies the atomic number of the element #1.
+``file_pseudo(1) = './C_rps.dat'`` indicates the filename of the
+pseudopotential of element.
+``izatom(1) = 6`` specifies the atomic number of the element.
 ``lloc_ps(1) = 1`` specifies the angular momentum of the pseudopotential
 that will be treated as local.
 
@@ -1591,27 +1591,21 @@ Mandatory: file_pseudo, izatom
 
    &pseudo
      !name of input pseudo potential file
-     file_pseudo(1) = './C_rps.dat'
-     file_pseudo(2) = './H_rps.dat'
+     file_pseudo(1) = './Si_rps.dat'
      
      !atomic number of element
-     izatom(1) = 6
-     izatom(2) = 1
+     izatom(1) = 14
      
      !angular momentum of pseudopotential that will be treated as local
-     lloc_ps(1) = 1
-     lloc_ps(2) = 0
+     lloc_ps(1) = 2
      !--- Caution ---------------------------------------!
-     ! Indices must correspond to those in &atomic_coor. !
+     ! Index must correspond to those in &atomic_coor.   !
      !---------------------------------------------------!
    /
 
-Parameters related to atomic species and pseudopotentials.
-``pseudo_file(1) = 'C_rps.dat'`` indicates the filename of the
-pseudopotential of element #1.
-``izatom(1) = 6`` specifies the atomic number of the element #1.
-``lloc_ps(1) = 1`` specifies the angular momentum of the pseudopotential
-that will be treated as local.
+``file_pseudo(1) = './Si_rps.dat'`` indicates the pseudopotential filename of element. 
+``izatom(1) = 14`` indicates the atomic number of the element.
+``lloc_ps(1) = 2`` indicate the angular momentum of the pseudopotential that will be treated as local.
 
 **&functional**
 
