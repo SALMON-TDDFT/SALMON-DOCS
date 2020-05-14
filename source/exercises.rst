@@ -1739,7 +1739,8 @@ directory that you run the code,
 Exercise-5: Dielectric function of crystalline silicon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this exercise, we learn the linear response calculation of the crystalline silicon of a diamond structure. 
+In this exercise, we learn the linear response calculation of the crystalline silicon of a diamond structure.
+Calculation is done in a cubic unit cell that contains eight silicon atoms. 
 This exercise should be carried out after finishing the ground state calculation that was explained in :any:`Exercise-4 <exercise-4>`.
 An impulsive perturbation is applied to all electrons in the unit cell along *z* direction.
 Since the dielectric function is isotropic in the diamond structure,
