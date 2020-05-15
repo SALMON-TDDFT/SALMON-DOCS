@@ -459,6 +459,16 @@ files are below:
 Calculated orbital and total energies as well as parameters specified in
 the input file are shown in this file.
 
+**C2H2_eigen.data**
+
+1 particle energies.
+
+::
+   
+   # 1 particle energies
+   # Orbital   Energy[eV]
+   #-----------------------
+
 **psi_ob1.cube, psi_ob2.cube, ...**
 
 Cube files for electron orbitals. The number in the filename indicates
@@ -1747,6 +1757,24 @@ directory that you run the code,
 | You may download the above files (zipped file, except for the directory *data_for_restart*) from:
 | https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_output.zip
 | (zipped output files)
+
+Main results of the calculation such as orbital energies are included in *Si_info.data*. 
+Explanations of the *Si_info.data* and other output files are below:
+
+**Si_info.data**
+
+Calculated orbital and total energies as well as parameters specified in
+the input file are shown in this file.
+
+**Si_eigen.data**
+
+1 particle energies.
+
+::
+   
+   # 1 particle energies
+   # Orbital   Energy[a.u.]
+   #-----------------------
 
 .. _exercise-5:
 
@@ -3578,16 +3606,33 @@ directory that you run the code,
 |                                     | the real-time calculation are      |
 |                                     | contained                          |
 +-------------------------------------+------------------------------------+
-| xxxAYxxx(if other new fieles exist) | xxxAYxxx(if other new fieles exist)|
+| *xxxAYxxx(if other fieles exist)*   | xxxAYxxx(if other new fieles exist)|
 +-------------------------------------+------------------------------------+
 
 | You may download the above files (zipped file, except for the directory *data_for_restart*) from:
 | https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_output.zip
 | (zipped output files)
 
+Main results of the calculation such as orbital energies are included in *C2H2_info.data*. 
+Explanations of the *C2H2_info.data* and other output files are below:
 
+**C2H2_info.data**
+
+Calculated orbital and total energies as well as parameters specified in
+the input file are shown in this file.
+
+**C2H2_eigen.data**
+
+1 particle energies.
+
+::
+   
+   # 1 particle energies
+   # Orbital   Energy[eV]
+   #-----------------------
+
+**xxxAYxxx(if other fieles exist)**
 xxxAYxxx.
-
 
 .. _exercise-9:
 
