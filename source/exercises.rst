@@ -3632,12 +3632,24 @@ the input file are shown in this file.
    #-----------------------
 
 **xxxAYxxx(if other fieles exist)**
+
 xxxAYxxx.
 
 .. _exercise-9:
 
 Exercise-9: Ehrenfest molecular dynamics of C2H2 molecule
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In this exercise, we learn the calculation of the molecular dynamics in
+the acetylene (C2H2) molecule under a pulsed electric field, solving the
+time-dependent Kohn-Sham equation. 
+As outputs of the calculation, such quantities as the total energy and the electric dipole moment of the
+system as functions of time are calculated. xxxAYxxx(if other results exist).
+This tutorial should be carried out after finishing the geometry optimization that was
+explained in :any:`Exercise-8 <exercise-8>`.
+In the calculation, a pulsed electric field that has cos^2 envelope shape is applied.
+The parameters that characterize the pulsed field such as magnitude, frequency, polarization direction,
+and carrier envelope phase are specified in the input file.
 
 xxxAYxxx.
 
