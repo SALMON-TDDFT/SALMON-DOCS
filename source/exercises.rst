@@ -1111,7 +1111,7 @@ the input keywords that can be used in the input file can be found in
    
 We present explanations of the input keywords that appear in the input file below:
 
-**required and recommended variables**
+**Required and recommened variables**
 
 **&calculation**
 
@@ -1914,6 +1914,8 @@ A complete list of the input keywords can be found in :any:`List of all input ke
 
 We present explanations of the input keywords that appear in the input file below:
 
+**Required and recommened variables**
+
 **&calculation**
 
 Mandatory: theory
@@ -2369,6 +2371,8 @@ A complete list of the input keywords can be found in :any:`List of all input ke
    /
 
 We present explanations of the input keywords that appear in the input file below:
+
+**Required and recommened variables**
 
 **&calculation**
 
@@ -2868,6 +2872,8 @@ A complete list of the input keywords can be found in :any:`List of all input ke
 
 We present explanations of the input keywords that appear in the input file below:
 
+**Required and recommened variables**
+
 **&calculation**
 
 Mandatory: theory
@@ -3238,6 +3244,212 @@ Geometry optimization and Ehrenfest molecular dynamics
 
 Exercise-8: Geometry optimization of C2H2 molecule
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In this exercise, we learn the calculation of geometry optimization of acetylene (C2H2) molecule,
+solving the static Kohn-Sham equation.
+This exercise will be useful to learn how to set up calculations in
+SALMON for any isolated systems such as molecules and nanoparticles.
+
+Input files
+^^^^^^^^^^^
+
+To run the code, following files are used:
+
++-----------------------------------+-----------------------------------+
+| file name                         | description                       |
++-----------------------------------+-----------------------------------+
+| *C2H2_opt.inp*                    | input file that contains input    |
+|                                   | keywords and their values         |
++-----------------------------------+-----------------------------------+
+| *C_rps.dat*                       | pseodupotential file for carbon   |
+|                                   | atom                              |
++-----------------------------------+-----------------------------------+
+| *H_rps.dat*                       | pseudopotential file for hydrogen |
+|                                   | atom                              |
++-----------------------------------+-----------------------------------+
+
+| You may download the above 3 files (zipped file) from: 
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_input.zip
+| (zipped input and pseudopotential files)
+
+In the input file *C2H2_opt.inp*, input keywords are specified.
+Most of them are mandatory to execute the geometry optimization.
+This will help you to prepare an input file for other systems that you
+want to calculate. A complete list of the input keywords that can be
+used in the input file can be found in
+:any:`List of all input keywords <List of all input keywords>`.
+
+::
+   
+   !########################################################################################!
+   ! Excercise 08: Geometry optimization of C2H2 molecule                                   !
+   !----------------------------------------------------------------------------------------!
+   ! * The detail of this excercise is expained in our manual(see chapter: 'Exercises').    !
+   !   The manual can be obtained from: https://salmon-tddft.jp/documents.html              !
+   ! * Input format consists of group of keywords like:                                     !
+   !     &group                                                                             !
+   !       input keyword = xxx                                                              !
+   !     /                                                                                  !
+   !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !########################################################################################!
+   
+   &calculation
+     !type of theory
+     theory = 'dft'
+     
+     !geometry optimization option
+     yn_opt = 'y'
+   /
+   
+   &control
+     !common name of output files
+     sysname = 'C2H2'
+   /
+   
+   &units
+     !units used in input and output files
+     unit_system = 'A_eV_fs'
+   /
+   
+   &system
+     !periodic boundary condition
+     yn_periodic = 'n'
+     
+     !grid box size(x,y,z)
+     al(1:3) = 12.0d0, 12.0d0, 16.0d0
+     
+     !number of elements, atoms, electrons and states(orbitals)
+     nelem  = 2
+     natom  = 4
+     nelec  = 10
+     nstate = 6
+   /
+   
+   &pseudo
+     !name of input pseudo potential file
+     file_pseudo(1) = './C_rps.dat'
+     file_pseudo(2) = './H_rps.dat'
+     
+     !atomic number of element
+     izatom(1) = 6
+     izatom(2) = 1
+     
+     !angular momentum of pseudopotential that will be treated as local
+     lloc_ps(1) = 1
+     lloc_ps(2) = 1
+     !--- Caution ---------------------------------------!
+     ! Indices must correspond to those in &atomic_coor. !
+     !---------------------------------------------------!
+   /
+   
+   &functional
+     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
+     xc = 'PZ'
+   /
+   
+   &rgrid
+     !spatial grid spacing(x,y,z)
+     dl(1:3) = 0.2d0, 0.2d, 0.2d0
+   /
+   
+   &scf
+     !maximum number of scf iteration and threshold of convergence for ground state calculation
+     nscf      = 200
+     threshold = 1.0d-8
+   /
+   
+   &opt
+     !threshold(maximum force on atom) of convergence for geometry optimization
+     convrg_opt_fmax = 1.0d-3
+   /
+   
+   &atomic_coor
+     !cartesian atomic coodinates
+     'C'    0.0    0.0    0.6  1  y
+     'H'    0.0    0.0    1.7  2  y
+     'C'    0.0    0.0   -0.6  1  y
+     'H'    0.0    0.0   -1.7  2  y
+     !--- Format -------------------------------------------------------!
+     ! 'symbol' x y z index(correspond to that of pseudo potential) y/n !
+     !--- Caution ------------------------------------------------------!
+     ! final index(y/n) determines free/fix for the atom coordinate.    !
+     !------------------------------------------------------------------!
+   /
+
+**&calculation**
+
+Mandatory: theory
+
+::
+
+   &calculation
+     !type of theory
+     theory = 'dft'
+     
+     !geometry optimization option
+     yn_opt = 'y'
+   /
+
+``theory = 'dft'`` indicates that the ground state calculation by DFT is carried out in
+the present job. See :any:`&calculation in Inputs <&calculation>` for detail.
+``yn_opt = 'y'`` indicates xxxAYxxx.
+
+**&control**
+
+Mandatory: none
+
+::
+
+   &control
+     !common name of output files
+     sysname = 'C2H2'
+   /
+
+'C2H2' defined by ``sysname = 'C2H2'`` will be used in the filenames of
+output files.
+
+**&units**
+
+Mandatory: none
+
+::
+
+   &units
+     !units used in input and output files
+     unit_system = 'A_eV_fs'
+   /
+
+This input keyword specifies the unit system to be used in the input and output files.
+If you do not specify it, atomic unit will be used.
+See :any:`&units in Inputs <&units>` for detail.
+
+Mandatory: yn_periodic, al, nelem, natom, nelec, nstate
+
+::
+
+   &system
+     !periodic boundary condition
+     yn_periodic = 'n'
+     
+     !grid box size(x,y,z)
+     al(1:3) = 12.0d0, 12.0d0, 16.0d0
+     
+     !number of elements, atoms, electrons and states(orbitals)
+     nelem  = 2
+     natom  = 4
+     nelec  = 10
+     nstate = 6
+   /
+
+``yn_periodic = 'n'`` indicates that the isolated boundary condition will be
+used in the calculation. ``al(1:3) = 12.0d0, 12.0d0, 16.0d0`` specifies the lengths
+of three sides of the rectangular parallelepiped where the grid points
+are prepared. ``nelem = 2`` and ``natom = 4`` indicate the number of elements and the
+number of atoms in the system, respectively. ``nelec = 10`` indicate the number of valence electrons in
+the system. ``nstate = 6`` indicates the number of Kohn-Sham orbitals
+to be solved. Since the present code assumes that the system is spin
+saturated, ``nstate`` should be equal to or larger than ``nelec/2``.
+See :any:`&system in Inputs <&system>` for more information.
 
 xxxAYxxx.
 
