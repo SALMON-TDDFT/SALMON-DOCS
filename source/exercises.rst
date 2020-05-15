@@ -3651,6 +3651,171 @@ In the calculation, a pulsed electric field that has cos^2 envelope shape is app
 The parameters that characterize the pulsed field such as magnitude, frequency, polarization direction,
 and carrier envelope phase are specified in the input file.
 
+Input files
+^^^^^^^^^^^
+
+To run the code, following files are used.
+The directory *restart* is created in the ground state calculation as *data_for_restart*. 
+Pseudopotential files are already used in the geometry optimization.
+Therefore, *C2H2_md.inp* that specifies input keywords and their values
+for the pulsed electric field and molecular dynamics calculations
+is the only file that the users need to prepare.
+
++-----------------------------------+-----------------------------------+
+| file name                         | description                       |
++-----------------------------------+-----------------------------------+
+| *C2H2_md.inp*                     | input file that contain input     |
+|                                   | keywords and their values.        |
++-----------------------------------+-----------------------------------+
+| *C_rps.dat*                       | pseodupotential file for carbon   |
++-----------------------------------+-----------------------------------+
+| *H_rps.dat*                       | pseudopotential file for hydrogen |
++-----------------------------------+-----------------------------------+
+| *restart*                         | directory created in the geometry |
+|                                   | optimization                      |
+|                                   | (rename the directory from        |
+|                                   | *data_for_restart* to *restart*)  |
++-----------------------------------+-----------------------------------+
+
+| You may download the *C2H2_rt_pulse.inp* file (zipped file) from:
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_rt_pulse_input.zip
+
+In the input file *C2H2_md.inp*, input keywords are specified.
+Most of them are mandatory to execute the calculation of
+electron dynamics induced by a pulsed electric field.
+This will help you to prepare the input file for other systems and other
+pulsed electric fields with molecular dynamics calculation that you want to calculate. 
+A complete list of the input keywords that can be used in the input file can be found in
+:any:`List of all input keywords <List of all input keywords>`.
+
+::
+   
+   !########################################################################################!
+   ! Excercise 09: Ehrenfest molecular dynamics of C2H2 molecule                            !
+   !----------------------------------------------------------------------------------------!
+   ! * The detail of this excercise is expained in our manual(see chapter: 'Exercises').    !
+   !   The manual can be obtained from: https://salmon-tddft.jp/documents.html              !
+   ! * Input format consists of group of keywords like:                                     !
+   !     &group                                                                             !
+   !       input keyword = xxx                                                              !
+   !     /                                                                                  !
+   !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !----------------------------------------------------------------------------------------!
+   ! * Ehrenfest-MD option is still trial.                                                  !
+   ! * Copy the ground state data directory ('data_for_restart') (or make symbolic link)    !
+   !   calculated in 'samples/exercise_08_C2H2_opt/' and rename the directory to 'restart/' !
+   !   in the current directory.                                                            !
+   !########################################################################################!
+   
+   &calculation
+     !type of theory
+     theory = 'tddft_pulse'
+     
+     !molecular dynamics option
+     yn_md  = 'y'
+   /
+   
+   &control
+     !common name of output files
+     sysname = 'C2H2'
+   /
+   
+   &units
+     !units used in input and output files
+     unit_system = 'A_eV_fs'
+   /
+   
+   &system
+     !periodic boundary condition
+     yn_periodic = 'n'
+     
+     !grid box size(x,y,z)
+     al(1:3) = 12.0d0, 12.0d0, 16.0d0
+     
+     !number of elements, atoms, electrons and states(orbitals)
+     nelem  = 2
+     natom  = 4
+     nelec  = 10
+     nstate = 6
+   /
+   
+   &pseudo
+     !name of input pseudo potential file
+     file_pseudo(1) = './C_rps.dat'
+     file_pseudo(2) = './H_rps.dat'
+     
+     !atomic number of element
+     izatom(1) = 6
+     izatom(2) = 1
+     
+     !angular momentum of pseudopotential that will be treated as local
+     lloc_ps(1) = 1
+     lloc_ps(2) = 1
+     !--- Caution ---------------------------------------!
+     ! Indices must correspond to those in &atomic_coor. !
+     !---------------------------------------------------!
+   /
+   
+   &functional
+     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
+     xc = 'PZ'
+   /
+   
+   &rgrid
+     !spatial grid spacing(x,y,z)
+     dl(1:3) = 0.20d0, 0.20d0, 0.20d0
+   /
+   
+   &tgrid
+     !time step size and number of time grids(steps)
+     dt = 1.25d-3
+     nt = 5000
+   /
+   
+   &emfield
+     !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
+     ae_shape1 = 'Ecos2'
+     
+     !peak intensity(W/cm^2) of the incident pulse
+     I_wcm2_1 = 1.0d9
+     
+     !duration of the incident pulse
+     tw1 = 6.0d0
+     
+     !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
+     omega1 = 1.55d0
+     
+     !polarization unit vector(real part) for the incident pulse(x,y,z)
+     epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0
+     
+     !carrier emvelope phase of the incident pulse
+     !(phi_cep1 must be 0.25 + 0.5 * n(integer) when ae_shape1 = 'Ecos2')
+     phi_cep1 = 0.75d0
+     !--- Caution ---------------------------------------------------------!
+     ! Defenition of the incident pulse is wrriten in:                     !
+     ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
+     !---------------------------------------------------------------------!
+   /
+   
+   &md
+     !ensemble
+     ensemble = 'NVE'
+     
+     !set of initial velocities
+     yn_set_ini_velocity = 'y'
+     
+     !setting temperature [K] for NVT ensemble, velocity scaling,
+     !and generating initial velocities
+     temperature0_ion_k  = 300.0d0
+     
+     !time step interval for updating pseudopotential
+     step_update_ps  = 20
+   /
+
+We present explanations of the input keywords that appear in the input file below:
+
+**required and recommended variables**
+
 xxxAYxxx.
 
 
