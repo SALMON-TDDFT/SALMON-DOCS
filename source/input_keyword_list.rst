@@ -178,8 +178,6 @@ xxxx.
    | Old infomation: 0d
    xxx.
 
-- **yn_collective_opt** (character, Default='n')
-  xxxxx. 
 
 &system 
 -------
@@ -1084,23 +1082,6 @@ xxxx.
 
 &code
 -----
-
-- **yn_want_stencil_hand_vectorization** (character, Default='y')[Trial]
-   | Available for ``theory='xxx'``.
-   xxx.
-
-- **yn_want_stencil_openmp_parallelization** (character, Default='y')[Trial]
-   | Available for ``theory='xxx'``.
-xxx(removed?)
-
-- **yn_force_stencil_openmp_parallelization** (character, Default='n')[Trial]
-   | Available for ``theory='xxx'``.
-xxx(removed?)
-
-- **yn_force_stencil_sequential_computation** (character, Default='n')[Trial]
-   | Available for ``theory='xxx'``.
-xxx(removed?)
-
 
 - **yn_want_communication_overlapping** (character, Default='n')[Trial]
    | Available for ``theory='xxx'``.
