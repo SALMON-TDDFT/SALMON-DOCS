@@ -428,23 +428,23 @@ directory that you run the code,
 +-------------------------------------+-----------------------------------+
 | *dos.data*                          | density of states                 |
 +-------------------------------------+-----------------------------------+
-| *pdos1.data*, *pdos2.data*, ...   | projected density of states       |
-+-----------------------------------+-----------------------------------+
-| *elf.cube*                        | electron localization function    |
-|                                   | (ELF)                             |
-+-----------------------------------+-----------------------------------+
-| *C2H2_eigen.data*                 | 1 particle energies               |
-+-----------------------------------+-----------------------------------+
-| *PS_C_KY_n.dat*                   | information on pseodupotential    |
-|                                   | file for carbon atom              |
-+-----------------------------------+-----------------------------------+
-| *PS_H_KY_n.dat*                   | information on pseodupotential    |
-|                                   | file for hydrogen atom            |
-+-----------------------------------+-----------------------------------+
-| *data_for_restart*                | directory where files used in     |
-|                                   | the real-time calculation are     |
-|                                   | contained                         |
-+-----------------------------------+-----------------------------------+
+| *pdos1.data*, *pdos2.data*, ...     | projected density of states       |
++-------------------------------------+-----------------------------------+
+| *elf.cube*                          | electron localization function    |
+|                                     | (ELF)                             |
++-------------------------------------+-----------------------------------+
+| *C2H2_eigen.data*                   | 1 particle energies               |
++-------------------------------------+-----------------------------------+
+| *PS_C_KY_n.dat*                     | information on pseodupotential    |
+|                                     | file for carbon atom              |
++-------------------------------------+-----------------------------------+
+| *PS_H_KY_n.dat*                     | information on pseodupotential    |
+|                                     | file for hydrogen atom            |
++-------------------------------------+-----------------------------------+
+| *data_for_restart*                  | directory where files used in     |
+|                                     | the real-time calculation are     |
+|                                     | contained                         |
++-------------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file, except for the directory *data_for_restart*) from:
 | https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_output.zip
@@ -3450,6 +3450,141 @@ the system. ``nstate = 6`` indicates the number of Kohn-Sham orbitals
 to be solved. Since the present code assumes that the system is spin
 saturated, ``nstate`` should be equal to or larger than ``nelec/2``.
 See :any:`&system in Inputs <&system>` for more information.
+
+::
+   
+   &pseudo
+     !name of input pseudo potential file
+     file_pseudo(1) = './C_rps.dat'
+     file_pseudo(2) = './H_rps.dat'
+     
+     !atomic number of element
+     izatom(1) = 6
+     izatom(2) = 1
+     
+     !angular momentum of pseudopotential that will be treated as local
+     lloc_ps(1) = 1
+     lloc_ps(2) = 0
+     !--- Caution ---------------------------------------!
+     ! Indices must correspond to those in &atomic_coor. !
+     !---------------------------------------------------!
+   /
+
+Parameters related to atomic species and pseudopotentials.
+``file_pseudo(1) = './C_rps.dat'`` indicates the filename of the
+pseudopotential of element.
+``izatom(1) = 6`` specifies the atomic number of the element.
+``lloc_ps(1) = 1`` specifies the angular momentum of the pseudopotential
+that will be treated as local.
+
+Mandatory: xc
+
+::
+   
+   &functional
+     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
+     xc = 'PZ'
+   /
+
+This indicates that the local density approximation with the Perdew-Zunger functional is used.
+
+**&rgrid**
+
+Mandatory: dl or num_rgrid
+
+::
+   
+   &rgrid
+     !spatial grid spacing(x,y,z)
+     dl(1:3) = 0.2d0, 0.2d0, 0.2d0
+   /
+
+``dl(1:3) = 0.2d0, 0.2d0, 0.2d0`` specifies the grid spacings
+in three Cartesian directions.
+See :any:`&rgrid in Inputs <&rgrid>` for more information.
+
+**&scf**
+
+Mandatory: nscf, threshold
+
+::
+   
+   &scf
+     !maximum number of scf iteration and threshold of convergence
+     nscf      = 200
+     threshold = 1.0d-8
+   /
+
+``nscf`` is the number of scf iterations. 
+The scf loop in the ground state calculation ends before the number of
+the scf iterations reaches ``nscf``, if a convergence criterion is satisfied.
+``threshold = 1.0d-8`` indicates threshold of the convergence for scf iterations.
+
+**&scf**
+
+Mandatory: 
+
+::
+   
+   &opt
+     !threshold(maximum force on atom) of convergence for geometry optimization
+     convrg_opt_fmax = 1.0d-3
+   /
+
+Mandatory: atomic_coor or atomic_red_coor (it may be provided as a
+separate file)
+
+::
+   
+   &atomic_coor
+     !cartesian atomic coodinates
+     'C'    0.0    0.0    0.6  1  y
+     'H'    0.0    0.0    1.7  2  y
+     'C'    0.0    0.0   -0.6  1  y
+     'H'    0.0    0.0   -1.7  2  y
+     !--- Format -------------------------------------------------------!
+     ! 'symbol' x y z index(correspond to that of pseudo potential) y/n !
+     !--- Caution ------------------------------------------------------!
+     ! final index(y/n) determines free/fix for the atom coordinate.    !
+     !------------------------------------------------------------------!
+   /
+
+Cartesian coordinates of atoms. The first column indicates the element.
+Next three columns specify Cartesian coordinates of the atoms. The
+number in the next column labels the element.
+The last column xxxAYxxx.
+
+Output files
+^^^^^^^^^^^^	
+
+After the calculation, following output files and a directory are created in the
+directory that you run the code,
+
++-------------------------------------+------------------------------------+
+| name                                | description                        |
++-------------------------------------+------------------------------------+
+| *C2H2_info.data*                    | information on ground state        |
+|                                     | solution                           |
++-------------------------------------+------------------------------------+
+| *C2H2_eigen.data*                   | 1 particle energies                |
++-------------------------------------+------------------------------------+
+| *PS_C_KY_n.dat*                     | information on pseodupotential     |
+|                                     | file for carbon atom               |
++-------------------------------------+------------------------------------+
+| *PS_H_KY_n.dat*                     | information on pseodupotential     |
+|                                     | file for hydrogen atom             |
++-------------------------------------+------------------------------------+
+| *data_for_restart*                  | directory where files used in      |
+|                                     | the real-time calculation are      |
+|                                     | contained                          |
++-------------------------------------+------------------------------------+
+| xxxAYxxx(if other new fieles exist) | xxxAYxxx(if other new fieles exist)|
++-------------------------------------+------------------------------------+
+
+| You may download the above files (zipped file, except for the directory *data_for_restart*) from:
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_output.zip
+| (zipped output files)
+
 
 xxxAYxxx.
 
