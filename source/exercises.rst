@@ -3451,6 +3451,8 @@ This input keyword specifies the unit system to be used in the input and output 
 If you do not specify it, atomic unit will be used.
 See :any:`&units in Inputs <&units>` for detail.
 
+**&system**
+
 Mandatory: yn_periodic, al, nelem, natom, nelec, nstate
 
 ::
@@ -3479,6 +3481,10 @@ to be solved. Since the present code assumes that the system is spin
 saturated, ``nstate`` should be equal to or larger than ``nelec/2``.
 See :any:`&system in Inputs <&system>` for more information.
 
+**&pseudo**
+
+Mandatory: file_pseudo, izatom
+
 ::
    
    &pseudo
@@ -3504,6 +3510,8 @@ pseudopotential of element.
 ``izatom(1) = 6`` specifies the atomic number of the element.
 ``lloc_ps(1) = 1`` specifies the angular momentum of the pseudopotential
 that will be treated as local.
+
+**&functional**
 
 Mandatory: xc
 
@@ -3548,7 +3556,7 @@ The scf loop in the ground state calculation ends before the number of
 the scf iterations reaches ``nscf``, if a convergence criterion is satisfied.
 ``threshold = 1.0d-8`` indicates threshold of the convergence for scf iterations.
 
-**&scf**
+**&opt**
 
 Mandatory: 
 
@@ -3558,6 +3566,8 @@ Mandatory:
      !threshold(maximum force on atom) of convergence for geometry optimization
      convrg_opt_fmax = 1.0d-3
    /
+
+**&atomic_coor**
 
 Mandatory: atomic_coor or atomic_red_coor (it may be provided as a
 separate file)
