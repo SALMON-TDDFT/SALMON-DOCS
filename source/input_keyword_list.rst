@@ -204,7 +204,7 @@ xxxx.
    | Old infomation: 3d
    xxx.
 
-- **isym** (integer, Default=0)
+- **isym** (integer, Default=1)
    | Available for ``theory='xxx'``.
    | Old infomation: 3d
    Number of symmetries that can be used for reduction of k-points.
@@ -820,15 +820,6 @@ xxxx.
    | Old infomation: 3d xxxx
    Interval time step of projection analysis 
 
-..
-(here, commented out: not implemented in salmon2)
-- **projection_decomp** (character, Default='n')[Trial]
-   | Available for ``projection_option='gs'`` in TDDFT based options of ``theory``.
-   | Atom decomposition option in the projection option (currently not available)
-   | Options
-   |   ``'atom'`` / the number of excited electron is decomposed into each atom  (printed in ``SYSname``\_nex_atom.data).
-..
-
 - **nenergy** (integer, Default=1000)
    | Available for ``theory='xxx', 'maxwell'``.
    Number of energy grid points for frequency-domain analysis.
@@ -927,23 +918,19 @@ xxxx.
    during real-time time-propagation is output
    every ``out_estatic_rt_step`` time steps.
 
-- **yn_out_rvf_rt/out_rvf_rt_step** (Character/Integer, Default='n'/10)[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
+- **yn_out_rvf_rt/out_rvf_rt_step** (Character/Integer, Default='n'/10)
+   | Available for TDDFT based options and 'dft_md' option of ``theory``.
    If ``'y'``, coordinates[A], velocities[au], forces[au] on atoms
-   during real-time time-propagation are printed in ``SYSname``\_trj.xyz
-   every ``out_rvf_rt_step`` time steps.
-   If ``use_ehrenfest_md='y'``, 
-   the printing option is automatically turned on.
+   during time-propagation are printed in ``SYSname``\_trj.xyz every ``out_rvf_rt_step`` time steps.
+   If ``yn_md='y'``, the printing option is automatically turned on.
    
 - **yn_out_tm** (character, Default='n')[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d
+   | Available for ``yn_periodic='y'`` with ``theory='dft'``.
    If ``'y'``, transition moments between occupied and virtual orbitals are printed into ``SYSname``\_tm.data after the ground state calculation.
 
 - **out_ms_step** (integer, Default=100)
-   | Available for ``theory='xxx'``.
-   xxx.
+   | Available for ``theory='multi_scale_maxwell_tddft'``.
+   Some information is printed every ``out_ms_step`` time step in the Maxwell + TDDFT multi-scale calculation.
 
 - **format_voxel_data** (character, Default='cube')
    | Available for ``theory='xxx'``.
