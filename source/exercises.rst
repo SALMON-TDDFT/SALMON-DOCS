@@ -3364,7 +3364,7 @@ used in the input file can be found in
      
      !angular momentum of pseudopotential that will be treated as local
      lloc_ps(1) = 1
-     lloc_ps(2) = 1
+     lloc_ps(2) = 0
      !--- Caution ---------------------------------------!
      ! Indices must correspond to those in &atomic_coor. !
      !---------------------------------------------------!
@@ -3377,13 +3377,13 @@ used in the input file can be found in
    
    &rgrid
      !spatial grid spacing(x,y,z)
-     dl(1:3) = 0.2d0, 0.2d, 0.2d0
+     dl(1:3) = 0.20d0, 0.20d, 0.20d0
    /
    
    &scf
      !maximum number of scf iteration and threshold of convergence for ground state calculation
      nscf      = 200
-     threshold = 1.0d-8
+     threshold = 1.0d-9
    /
    
    &opt
@@ -3498,7 +3498,7 @@ Mandatory: file_pseudo, izatom
      
      !angular momentum of pseudopotential that will be treated as local
      lloc_ps(1) = 1
-     lloc_ps(2) = 1
+     lloc_ps(2) = 0
      !--- Caution ---------------------------------------!
      ! Indices must correspond to those in &atomic_coor. !
      !---------------------------------------------------!
@@ -3532,10 +3532,10 @@ Mandatory: dl or num_rgrid
    
    &rgrid
      !spatial grid spacing(x,y,z)
-     dl(1:3) = 0.2d0, 0.2d0, 0.2d0
+     dl(1:3) = 0.20d0, 0.20d0, 0.20d0
    /
 
-``dl(1:3) = 0.2d0, 0.2d0, 0.2d0`` specifies the grid spacings
+``dl(1:3) = 0.20d0, 0.20d0, 0.20d0`` specifies the grid spacings
 in three Cartesian directions.
 See :any:`&rgrid in Inputs <&rgrid>` for more information.
 
@@ -3548,13 +3548,13 @@ Mandatory: nscf, threshold
    &scf
      !maximum number of scf iteration and threshold of convergence
      nscf      = 200
-     threshold = 1.0d-8
+     threshold = 1.0d-9
    /
 
 ``nscf`` is the number of scf iterations. 
 The scf loop in the ground state calculation ends before the number of
 the scf iterations reaches ``nscf``, if a convergence criterion is satisfied.
-``threshold = 1.0d-8`` indicates threshold of the convergence for scf iterations.
+``threshold = 1.0d-9`` indicates threshold of the convergence for scf iterations.
 
 **&opt**
 
@@ -3760,7 +3760,7 @@ A complete list of the input keywords that can be used in the input file can be 
      
      !angular momentum of pseudopotential that will be treated as local
      lloc_ps(1) = 1
-     lloc_ps(2) = 1
+     lloc_ps(2) = 0
      !--- Caution ---------------------------------------!
      ! Indices must correspond to those in &atomic_coor. !
      !---------------------------------------------------!
@@ -3787,16 +3787,16 @@ A complete list of the input keywords that can be used in the input file can be 
      ae_shape1 = 'Ecos2'
      
      !peak intensity(W/cm^2) of the incident pulse
-     I_wcm2_1 = 1.0d9
+     I_wcm2_1 = 1.00d8
      
      !duration of the incident pulse
-     tw1 = 6.0d0
+     tw1 = 6.00d0
      
      !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
-     omega1 = 1.55d0
+     omega1 = 9.28d0
      
      !polarization unit vector(real part) for the incident pulse(x,y,z)
-     epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0
+     epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
      
      !carrier emvelope phase of the incident pulse
      !(phi_cep1 must be 0.25 + 0.5 * n(integer) when ae_shape1 = 'Ecos2')
@@ -3816,10 +3816,10 @@ A complete list of the input keywords that can be used in the input file can be 
      
      !setting temperature [K] for NVT ensemble, velocity scaling,
      !and generating initial velocities
-     temperature0_ion_k  = 300.0d0
+     temperature0_ion_k = 300.0d0
      
      !time step interval for updating pseudopotential
-     step_update_ps  = 20
+     step_update_ps = 20
    /
 
 We present explanations of the input keywords that appear in the input file below:
@@ -3914,7 +3914,7 @@ Mandatory: file_pseudo, izatom
      
      !angular momentum of pseudopotential that will be treated as local
      lloc_ps(1) = 1
-     lloc_ps(2) = 1
+     lloc_ps(2) = 0
      !--- Caution ---------------------------------------!
      ! Indices must correspond to those in &atomic_coor. !
      !---------------------------------------------------!
@@ -3945,10 +3945,10 @@ Mandatory: dl or num_rgrid
 
    &rgrid
      !spatial grid spacing(x,y,z)
-     dl(1:3) = 0.2d0, 0.2d0, 0.2d0
+     dl(1:3) = 0.20d0, 0.20d0, 0.20d0
    /
 
-``dl(1:3) = 0.2d0, 0.2d0, 0.2d0`` specifies the grid spacings
+``dl(1:3) = 0.20d0, 0.20d0, 0.20d0`` specifies the grid spacings
 in three Cartesian directions. This must be the same as
 that in the ground state calculation.
 See :any:`&rgrid in Inputs <&rgrid>` for more information.
@@ -3980,16 +3980,16 @@ Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_ce
      ae_shape1 = 'Ecos2'
      
      !peak intensity(W/cm^2) of the incident pulse
-     I_wcm2_1 = 1.0d9
+     I_wcm2_1 = 1.00d8
      
      !duration of the incident pulse
-     tw1 = 6.0d0
+     tw1 = 6.00d0
      
      !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
-     omega1 = 1.55d0
+     omega1 = 9.28d0
      
      !polarization unit vector(real part) for the incident pulse(x,y,z)
-     epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0
+     epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
      
      !carrier emvelope phase of the incident pulse
      !(phi_cep1 must be 0.25 + 0.5 * n(integer) when ae_shape1 = 'Ecos2')
@@ -4005,16 +4005,16 @@ These input keywords specify the pulsed electric field applied to the system.
 ``ae_shape1 = 'Ecos2'`` indicates that the envelope of the pulsed
 electric field has a *cos^2* shape.
 
-``I_wcm2_1 = 1.0d9`` specifies the maximum intensity of the
+``I_wcm2_1 = 1.00d8`` specifies the maximum intensity of the
 applied electric field in unit of W/cm^2.
 
 ``tw1 = 6.00d0`` specifies the pulse duration. Note that it is not the
 FWHM but a full duration of the cos^2 envelope.
 
-``omega1 = 1.55d0`` specifies the average photon energy (frequency
+``omega1 = 9.28d0`` specifies the average photon energy (frequency
 multiplied with hbar).
 
-``epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0`` specifies the real part of the unit
+``epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0`` specifies the real part of the unit
 polarization vector of the pulsed electric field. Using the real
 polarization vector, it describes a linearly polarized pulse.
 
@@ -4040,10 +4040,10 @@ Mandatory: xxxAYxxx
      
      !setting temperature [K] for NVT ensemble, velocity scaling,
      !and generating initial velocities
-     temperature0_ion_k  = 300.0d0
+     temperature0_ion_k = 300.0d0
      
      !time step interval for updating pseudopotential
-     step_update_ps  = 20
+     step_update_ps = 20
    /
 
 These input keywords specify xxxAYxxx.
