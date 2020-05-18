@@ -2859,15 +2859,15 @@ A complete list of the input keywords can be found in :any:`List of all input ke
     /
     
     &multiscale
-      !number of macro grids in electromagnetic analysis for x-z directions
+      !number of macro grids in electromagnetic analysis for x, y, and z directions
       nx_m = 8
       ny_m = 1
       nz_m = 1
       
-      !macro grid spacing for x-z directions
-      hx_m = 100 
-      hy_m = 100
-      hz_m = 100
+      !macro grid spacing for x, y, and z directions
+      hx_m = 100.0d0
+      hy_m = 100.0d0
+      hz_m = 100.0d0
       
       !number of macroscopic grids for vacumm region
       !(nxvacl_m is for negative x-direction in front of material)
@@ -3113,15 +3113,15 @@ See :any:`&propagation in Inputs <&propagation>` for more information.
 ::
    
    &multiscale
-     !number of macro grids in electromagnetic analysis for x-z directions
+     !number of macro grids in electromagnetic analysis for x, y, and z directions
      nx_m = 8
      ny_m = 1
      nz_m = 1
      
-     !macro grid spacing for x-z directions
-     hx_m = 100 
-     hy_m = 100
-     hz_m = 100
+     !macro grid spacing for x, y, and z directions
+     hx_m = 100.0d0
+     hy_m = 100.0d0
+     hz_m = 100.0d0
      
      !number of macroscopic grids for vacumm region
      !(nxvacl_m is for negative x-direction in front of material)
@@ -3136,8 +3136,8 @@ This input keyword specifies information necessary for Maxwell-TDDFT multiscale 
 in for x-direction in the spatial region where the material exists.
 ``ny_m = 1`` and ``nz_m = 1`` are those for y- and z-directions.
 
-``hx_m = 250d0`` specifies the grid spacing of the macroscopic grid in x-direction.
-``hy_m = 100`` and ``hz_m = 100`` are those for y- and z-directions.
+``hx_m = 100.0d0`` specifies the grid spacing of the macroscopic grid in x-direction.
+``hy_m = 100.0d0`` and ``hz_m = 100.0d0`` are those for y- and z-directions.
 
 ``nxvacl_m = 1000`` and ``nxvacr_m = 1000`` indicate the number of grid points in the vacuum region,
 ``nxvacl_m`` for the left and ``nxvacr_m`` for the right from the surface of the material.
