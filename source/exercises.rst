@@ -4056,9 +4056,84 @@ These input keywords specify xxxAYxxx.
 
 ``step_update_ps = 20`` specifies xxxAYxxx.
 
+Output files
+^^^^^^^^^^^^
+
+After the calculation, following output files are created in the
+directory that you run the code,
+
++-------------------------------------+-----------------------------------+
+| file name                           | description                       |
++-------------------------------------+-----------------------------------+
+| *C2H2_pulse.data*                   | dipole moment as                  |
+|                                     | functions of energy               |
++-------------------------------------+-----------------------------------+
+| *C2H2_rt.data*                      | components of                     |
+|                                     | change of dipole moment           |
+|                                     | (electrons/plus definition)       |
+|                                     | and total dipole moment           |
+|                                     | (electrons/minus + ions/plus)     |
+|                                     | as functions of time              |
++-------------------------------------+-----------------------------------+
+| *C2H2_rt_energy.data*               | components of                     |
+|                                     | total energy                      |
+|                                     | and difference of total energy    |
+|                                     | as functions of time              |
++-------------------------------------+-----------------------------------+
+| *PS_C_KY_n.dat*                     | information on pseodupotential    |
+|                                     | file for carbon atom              |
++-------------------------------------+-----------------------------------+
+| *PS_H_KY_n.dat*                     | information on pseodupotential    |
+|                                     | file for hydrogen atom            |
++-------------------------------------+-----------------------------------+
+| *xxxAYxxx(if other fieles exist)*   | xxxAYxxx(if other new fieles exist)|
++-------------------------------------+------------------------------------+
+
+| You may download the above files (zipped file) from:
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_rt_pulse_output.zip
+
+Explanations of the files are described below:
+
+**C2H2_pulse.data**
+
+Time-frequency Fourier transformation of the dipole moment.
+
+::
+
+   # Fourier-transform spectra: 
+   # energy: Frequency
+   # dm: Dopile moment
+   # 1:energy[eV] 2:Re(dm_x)[fs*Angstrom] 3:Im(dm_x)[fs*Angstrom] 4:|dm_x|^2[fs*Angstrom] 5:Re(dm_y)[fs*Angstrom] 6:Im(dm_y)[fs*Angstrom] 7:|dm_y|^2[fs*Angstrom] 8:Re(dm_z)[fs^2*Angstrom^2] 9:Im(dm_z)[fs^2*Angstrom^2] 10:|dm_z|^2[fs^2*Angstrom^2]
+
+**C2H2_rt.data**
+
+Results of time evolution calculation for vector potential, electric field, and dipole moment.
+
+::
+
+   # Real time calculation: 
+   # Ac_ext: External vector potential field
+   # E_ext: External electric field
+   # Ac_tot: Total vector potential field
+   # E_tot: Total electric field
+   # ddm_e: Change of dipole moment (electrons/plus definition)
+   # dm: Total dipole moment (electrons/minus + ions/plus)
+   # 1:Time[fs] 2:Ac_ext_x[fs*V/Angstrom] 3:Ac_ext_y[fs*V/Angstrom] 4:Ac_ext_z[fs*V/Angstrom] 5:E_ext_x[V/Angstrom] 6:E_ext_y[V/Angstrom] 7:E_ext_z[V/Angstrom] 8:Ac_tot_x[fs*V/Angstrom] 9:Ac_tot_y[fs*V/Angstrom] 10:Ac_tot_z[fs*V/Angstrom] 11:E_tot_x[V/Angstrom] 12:E_tot_y[V/Angstrom] 13:E_tot_z[V/Angstrom] 14:ddm_e_x[Angstrom] 15:ddm_e_y[Angstrom] 16:ddm_e_z[Angstrom] 17:dm_x[Angstrom] 18:dm_y[Angstrom] 19:dm_z[Angstrom] 
+
+**C2H2_rt_energy.data**
+
+*Eall* and *Eall-Eall0* are total energy and electronic excitation energy, respectively.
+
+::
+
+   # Real time calculation: 
+   # Eall: Total energy
+   # Eall0: Initial energy
+   # 1:Time[fs] 2:Eall[eV] 3:Eall-Eall0[eV] 
+
+**xxxAYxxx(if other fieles exist)**
 
 xxxAYxxx.
-
 
 FDTD simulation(electromagnetic analysis)
 ---------------
