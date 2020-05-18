@@ -4062,30 +4062,30 @@ Output files
 After the calculation, following output files are created in the
 directory that you run the code,
 
-+-------------------------------------+-----------------------------------+
-| file name                           | description                       |
-+-------------------------------------+-----------------------------------+
-| *C2H2_pulse.data*                   | dipole moment as                  |
-|                                     | functions of energy               |
-+-------------------------------------+-----------------------------------+
-| *C2H2_rt.data*                      | components of                     |
-|                                     | change of dipole moment           |
-|                                     | (electrons/plus definition)       |
-|                                     | and total dipole moment           |
-|                                     | (electrons/minus + ions/plus)     |
-|                                     | as functions of time              |
-+-------------------------------------+-----------------------------------+
-| *C2H2_rt_energy.data*               | components of                     |
-|                                     | total energy                      |
-|                                     | and difference of total energy    |
-|                                     | as functions of time              |
-+-------------------------------------+-----------------------------------+
-| *PS_C_KY_n.dat*                     | information on pseodupotential    |
-|                                     | file for carbon atom              |
-+-------------------------------------+-----------------------------------+
-| *PS_H_KY_n.dat*                     | information on pseodupotential    |
-|                                     | file for hydrogen atom            |
-+-------------------------------------+-----------------------------------+
++-------------------------------------+------------------------------------+
+| file name                           | description                        |
++-------------------------------------+------------------------------------+
+| *C2H2_pulse.data*                   | dipole moment as                   |
+|                                     | functions of energy                |
++-------------------------------------+------------------------------------+
+| *C2H2_rt.data*                      | components of                      |
+|                                     | change of dipole moment            |
+|                                     | (electrons/plus definition)        |
+|                                     | and total dipole moment            |
+|                                     | (electrons/minus + ions/plus)      |
+|                                     | as functions of time               |
++-------------------------------------+------------------------------------+
+| *C2H2_rt_energy.data*               | components of                      |
+|                                     | total energy                       |
+|                                     | and difference of total energy     |
+|                                     | as functions of time               |
++-------------------------------------+------------------------------------+
+| *PS_C_KY_n.dat*                     | information on pseodupotential     |
+|                                     | file for carbon atom               |
++-------------------------------------+------------------------------------+
+| *PS_H_KY_n.dat*                     | information on pseodupotential     |
+|                                     | file for hydrogen atom             |
++-------------------------------------+------------------------------------+
 | *xxxAYxxx(if other fieles exist)*   | xxxAYxxx(if other new fieles exist)|
 +-------------------------------------+------------------------------------+
 
@@ -4333,7 +4333,7 @@ Mandatory: none
      base_directory = 'result'
    /
 
-``result`` defined by ``directory = 'result'`` will be used in the directory name that contains output files.
+``result`` defined by ``base_directory = 'result'`` will be used in the directory name that contains output files.
 Default is ``directory = './'``
 
 **&units**
@@ -4528,7 +4528,37 @@ See &maxwell in :any:`List of all input keywords <List of all input keywords>` f
 Output files
 ^^^^^^^^^^^^
 
-After the calculation, following output files are created in the directory that you run the code.
+After the calculation, following output files are created in the directory ``'result'``,
+
++-------------------------------------+-----------------------------------+
+| file name                           | description                       |
++-------------------------------------+-----------------------------------+
+| *C2H2_pulse.data*                   | dipole moment as                  |
+|                                     | functions of energy               |
++-------------------------------------+-----------------------------------+
+| *C2H2_rt.data*                      | components of                     |
+|                                     | change of dipole moment           |
+|                                     | (electrons/plus definition)       |
+|                                     | and total dipole moment           |
+|                                     | (electrons/minus + ions/plus)     |
+|                                     | as functions of time              |
++-------------------------------------+-----------------------------------+
+| *C2H2_rt_energy.data*               | components of                     |
+|                                     | total energy                      |
+|                                     | and difference of total energy    |
+|                                     | as functions of time              |
++-------------------------------------+-----------------------------------+
+| *PS_C_KY_n.dat*                     | information on pseodupotential    |
+|                                     | file for carbon atom              |
++-------------------------------------+-----------------------------------+
+| *PS_H_KY_n.dat*                     | information on pseodupotential    |
+|                                     | file for hydrogen atom            |
++-------------------------------------+-----------------------------------+
+
+| You may download the above files (zipped file) from:
+| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_rt_pulse_output.zip
+
+Explanations of the files are described below:
 
 **classicEM_p.data**
 
