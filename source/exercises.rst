@@ -4315,10 +4315,12 @@ Mandatory: Theory
 ::
 
    &calculation
-     Theory = 'Maxwell'
+     !type of theory
+     theory = 'maxwell'
    /
 
 This indicates that the real time classical electromagnetism calculation is carried out in the present job.
+See :any:`&calculation in Inputs <&calculation>` for detail.
 
 **&control**
 
@@ -4327,10 +4329,11 @@ Mandatory: none
 ::
 
    &control
-     sysname = 'classicEM'
+     !name of directory where output files are contained
+     base_directory = 'result'
    /
 
-``classicEM`` defined by ``sysname = 'classicEM'`` will be used in the filenames of output files.
+``result`` defined by ``directory = 'result'`` will be used in the directory name that contains output files.
 
 **&units**
 
@@ -4339,10 +4342,13 @@ Mandatory: none
 ::
 
    &units
+     !units used in input and output files
      unit_system = 'A_eV_fs'
    /
 
-This input keyword specifies the unit system to be used in the input file. If you do not specify it, atomic unit will be used.
+This input keyword specifies the unit system to be used in the input and output files.
+If you do not specify it, atomic unit will be used.
+See :any:`&units in Inputs <&units>` for detail.
 
 **&system**
 
