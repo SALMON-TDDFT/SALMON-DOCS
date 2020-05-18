@@ -2877,7 +2877,9 @@ A complete list of the input keywords can be found in :any:`List of all input ke
     /
     
     &maxwell
-      !boundary condition of electromagnetic analysis(x-z,start or end)
+      !boundary condition of electromagnetic analysis
+      !first index(1-3 rows) corresponds to x, y, and z directions
+      !second index(1-2 columns) corresponds to bottom and top of the directions
       !('abc' is absorbing boundary condition)
       boundary_em(1,1) = 'abc'
       boundary_em(1,2) = 'abc'
@@ -3147,7 +3149,9 @@ in for x-direction in the spatial region where the material exists.
 ::
    
    &maxwell
-     !boundary condition of electromagnetic analysis(x-z,start or end)
+     !boundary condition of electromagnetic analysis
+     !first index(1-3 rows) corresponds to x, y, and z directions
+     !second index(1-2 columns) corresponds to bottom and top of the directions
      !('abc' is absorbing boundary condition)
      boundary_em(1,1) = 'abc'
      boundary_em(1,2) = 'abc'
