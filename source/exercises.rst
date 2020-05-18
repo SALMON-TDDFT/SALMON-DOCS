@@ -4521,7 +4521,7 @@ If you do not specifies ``dt_em``, this input keyword is automatically specified
 
 ``obs_loc_em(1,1:3) = 0.0d0, 0.0d0, 0.0d0`` specifies the coordinate of the current source.
 
-``yn_obs_plane_em(1) = 'n'`` determines to output the electrmagnetic fields on the planes (xy, yz, and xz planes) for the observation point. This option must be ``'y'`` for generating animation files by using SALMON utilities: https://salmon-tddft.jp/utilities.html.
+``yn_obs_plane_em(1) = 'n'`` determines to output the electrmagnetic fields on the planes (xy, yz, and xz planes) for the observation point. This option must be ``'y'`` for generating animation files by using SALMON utilities: https://salmon-tddft.jp/utilities.html
 
 See &maxwell in :any:`List of all input keywords <List of all input keywords>` for more information.
 
@@ -4533,26 +4533,11 @@ After the calculation, following output files are created in the directory ``'re
 +-------------------------------------+-----------------------------------+
 | file name                           | description                       |
 +-------------------------------------+-----------------------------------+
-| *C2H2_pulse.data*                   | dipole moment as                  |
-|                                     | functions of energy               |
+| *obs0_info.data*                    | information to generate animation |
 +-------------------------------------+-----------------------------------+
-| *C2H2_rt.data*                      | components of                     |
-|                                     | change of dipole moment           |
-|                                     | (electrons/plus definition)       |
-|                                     | and total dipole moment           |
-|                                     | (electrons/minus + ions/plus)     |
+| *obs1_at_point_rt.data*             | components of                     |
+|                                     | electric and magnetic fields      |
 |                                     | as functions of time              |
-+-------------------------------------+-----------------------------------+
-| *C2H2_rt_energy.data*               | components of                     |
-|                                     | total energy                      |
-|                                     | and difference of total energy    |
-|                                     | as functions of time              |
-+-------------------------------------+-----------------------------------+
-| *PS_C_KY_n.dat*                     | information on pseodupotential    |
-|                                     | file for carbon atom              |
-+-------------------------------------+-----------------------------------+
-| *PS_H_KY_n.dat*                     | information on pseodupotential    |
-|                                     | file for hydrogen atom            |
 +-------------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file) from:
@@ -4560,24 +4545,18 @@ After the calculation, following output files are created in the directory ``'re
 
 Explanations of the files are described below:
 
-**classicEM_p.data**
+**obs0_info.data**
 
-For time steps from 1 to nt_em,
+This file is used to generate animation files by using SALMON utilities: https://salmon-tddft.jp/utilities.html
 
--  1 column: time
--  2-4 columns: x,y,z components of the dipole moment
+**obs1_at_point_rt.data**
+Results of time evolution calculation for electric and magnetic fields at observation point 1.
 
-**classicEM_lr.data**
-
-For energy steps from 0 to nenergy,
-
--  1 column: energy
--  2-4 columns: x,y,z components of real part of the polarizability (time-frequency Fourier transformation of the dipole moment)
--  5-7 columns: x,y,z components of imaginary part of the polarizability (time-frequency Fourier transformation of the dipole moment)
--  8-10 columns: x,y,z components of power spectrum of the dipole moment
-
-
-
-
+::
+   
+   # Real time calculation:
+   # E: Electric field
+   # H: Magnetic field
+   # 1:Time[fs] 2:E_x[V/Angstrom] 3:E_y[V/Angstrom] 4:E_z[V/Angstrom] 5:H_x[A/Angstrom] 6:H_y[A/Angstrom] 7:H_z[A/Angstrom]
 
 
