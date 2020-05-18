@@ -4508,8 +4508,22 @@ If you do not specifies ``dt_em``, this input keyword is automatically specified
 ``media_type(1) = 'lorentz-drude'`` specifies the type of media as the Lorentz-Drude model.
 
 ``omega_p_ld(1)  = 9.030d0``, ``f_ld(1,1:6)     = 0.760d0, 0.024d0, 0.010d0, 0.071d0, 0.601d0, 4.384d0``, ``gamma_ld(1,1:6) = 0.053d0, 0.241d0, 0.345d0, 0.870d0, 2.494d0, 2.214d0``, and ``omega_ld(1,1:6) = 0.000d0, 0.415d0, 0.830d0, 2.969d0, 4.304d0, 13.32d0`` specify the plasma frequency, oscillator strength, collision frequency, and oscillator frequency of media, respectively.
-See &maxwell in :any:`List of all input keywords <List of all input keywords>` for more information.
 
+``wave_input = 'source'`` specifies an electric current source that is used for generating the pulse.
+
+``source_loc1(1:3) = -37.8d0, 0.0d0, 0.0d0`` specifies the coordinate of the current source.
+
+``ek_dir1(1:3) = 1.0d0, 0.0d0, 0.0d0`` specifies the propagation direction of the pulse (x,y,z).
+
+``obs_num_em = 1`` specifies the number of the observation point.
+
+``obs_samp_em = 20`` specifies the sampling number for time steps. In this case, output files are generated every 20 steps.
+
+``obs_loc_em(1,1:3) = 0.0d0, 0.0d0, 0.0d0`` specifies the coordinate of the current source.
+
+``yn_obs_plane_em(1) = 'n'`` determines to output the electrmagnetic fields on the planes (xy, yz, and xz planes) for the observation point. This option must be ``'y'`` for generating animation files by using SALMON utilities: https://salmon-tddft.jp/utilities.html.
+
+See &maxwell in :any:`List of all input keywords <List of all input keywords>` for more information.
 
 Output files
 ^^^^^^^^^^^^
