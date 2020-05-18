@@ -3835,10 +3835,14 @@ Mandatory: theory
    &calculation
      !type of theory
      theory = 'tddft_pulse'
+     
+     !molecular dynamics option
+     yn_md  = 'y'
    /
 
 This indicates that the real time (RT) calculation for a pulse response is carried out in the
 present job. See :any:`&calculation in Inputs <&calculation>` for detail.
+``yn_md = 'y'`` indicates xxxAYxxx.
 
 **&control**
 
@@ -3880,7 +3884,7 @@ Mandatory: yn_periodic, al, nelem, natom, nelectron, nstate
      yn_periodic = 'n'
      
      !grid box size(x,y,z)
-     al(1:3) = 16.0d0, 16.0d0, 16.0d0
+     al(1:3) = 12.0d0, 12.0d0, 16.0d0
      
      !number of elements, atoms, electrons and states(orbitals)
      nelem  = 2
@@ -3890,7 +3894,8 @@ Mandatory: yn_periodic, al, nelem, natom, nelectron, nstate
    /
 
 These input keywords and their values should be the same as those used in the
-ground state calculation. See :any:`&system in Exercise-1 <exercise-1-&system>`.
+geometry optimization.
+See :any:`Exercise-8 <exercise-8>`.
 
 **&pseudo**
 
@@ -3909,15 +3914,15 @@ Mandatory: file_pseudo, izatom
      
      !angular momentum of pseudopotential that will be treated as local
      lloc_ps(1) = 1
-     lloc_ps(2) = 0
+     lloc_ps(2) = 1
      !--- Caution ---------------------------------------!
      ! Indices must correspond to those in &atomic_coor. !
      !---------------------------------------------------!
    /
 
 These input keywords and their values should be the same as those used in the
-ground state calculation.
-See :any:`&pseudo in Exercise-1 <exercise-1-&pseudo>`.
+geometry optimization.
+See :any:`Exercise-8 <exercise-8>`.
 
 **&functional**
 
@@ -3940,10 +3945,10 @@ Mandatory: dl or num_rgrid
 
    &rgrid
      !spatial grid spacing(x,y,z)
-     dl(1:3) = 0.25d0, 0.25d0, 0.25d0
+     dl(1:3) = 0.2d0, 0.2d0, 0.2d0
    /
 
-``dl(1:3) = 0.25d0, 0.25d0, 0.25d0`` specifies the grid spacings
+``dl(1:3) = 0.2d0, 0.2d0, 0.2d0`` specifies the grid spacings
 in three Cartesian directions. This must be the same as
 that in the ground state calculation.
 See :any:`&rgrid in Inputs <&rgrid>` for more information.
@@ -3975,16 +3980,16 @@ Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_ce
      ae_shape1 = 'Ecos2'
      
      !peak intensity(W/cm^2) of the incident pulse
-     I_wcm2_1 = 1.00d8
+     I_wcm2_1 = 1.0d9
      
      !duration of the incident pulse
-     tw1 = 6.00d0
+     tw1 = 6.0d0
      
      !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
-     omega1 = 9.28d0
+     omega1 = 1.55d0
      
      !polarization unit vector(real part) for the incident pulse(x,y,z)
-     epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
+     epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0
      
      !carrier emvelope phase of the incident pulse
      !(phi_cep1 must be 0.25 + 0.5 * n(integer) when ae_shape1 = 'Ecos2')
@@ -4000,16 +4005,16 @@ These input keywords specify the pulsed electric field applied to the system.
 ``ae_shape1 = 'Ecos2'`` indicates that the envelope of the pulsed
 electric field has a *cos^2* shape.
 
-``I_wcm2_1 = 1.00d8`` specifies the maximum intensity of the
+``I_wcm2_1 = 1.0d9`` specifies the maximum intensity of the
 applied electric field in unit of W/cm^2.
 
 ``tw1 = 6.00d0`` specifies the pulse duration. Note that it is not the
 FWHM but a full duration of the cos^2 envelope.
 
-``omega1 = 9.28d0`` specifies the average photon energy (frequency
+``omega1 = 1.55d0`` specifies the average photon energy (frequency
 multiplied with hbar).
 
-``epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0`` specifies the real part of the unit
+``epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0`` specifies the real part of the unit
 polarization vector of the pulsed electric field. Using the real
 polarization vector, it describes a linearly polarized pulse.
 
@@ -4020,10 +4025,39 @@ does not vanish.
 
 See :any:`&emfield in Inputs <&emfield>` for details.
 
+**&md**
+
+Mandatory: xxxAYxxx
+
+::
+   
+   &md
+     !ensemble
+     ensemble = 'NVE'
+     
+     !set of initial velocities
+     yn_set_ini_velocity = 'y'
+     
+     !setting temperature [K] for NVT ensemble, velocity scaling,
+     !and generating initial velocities
+     temperature0_ion_k  = 300.0d0
+     
+     !time step interval for updating pseudopotential
+     step_update_ps  = 20
+   /
+
+These input keywords specify xxxAYxxx.
+
+``ensemble = 'NVE'`` specifies xxxAYxxx.
+
+``yn_set_ini_velocity = 'y'`` specifies xxxAYxxx.
+
+``temperature0_ion_k = 300.0d0`` specifies xxxAYxxx.
+
+``step_update_ps = 20`` specifies xxxAYxxx.
 
 
 xxxAYxxx.
-
 
 
 FDTD simulation(electromagnetic analysis)
