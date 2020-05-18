@@ -3498,7 +3498,7 @@ Mandatory: file_pseudo, izatom
      
      !angular momentum of pseudopotential that will be treated as local
      lloc_ps(1) = 1
-     lloc_ps(2) = 0
+     lloc_ps(2) = 1
      !--- Caution ---------------------------------------!
      ! Indices must correspond to those in &atomic_coor. !
      !---------------------------------------------------!
@@ -3825,6 +3825,202 @@ A complete list of the input keywords that can be used in the input file can be 
 We present explanations of the input keywords that appear in the input file below:
 
 **required and recommended variables**
+
+**&calculation**
+
+Mandatory: theory
+
+::
+   
+   &calculation
+     !type of theory
+     theory = 'tddft_pulse'
+   /
+
+This indicates that the real time (RT) calculation for a pulse response is carried out in the
+present job. See :any:`&calculation in Inputs <&calculation>` for detail.
+
+**&control**
+
+Mandatory: none
+
+::
+   
+   &control
+     !common name of output files
+     sysname = 'C2H2'
+   /
+
+'C2H2' defined by ``sysname = 'C2H2'`` will be used 
+in the filenames of output files.
+
+**&units**
+
+Mandatory: none
+
+::
+   
+   &units
+     !units used in input and output files
+     unit_system = 'A_eV_fs'
+   /
+
+This input keyword specifies the unit system to be used in the input file. If
+you do not specify it, atomic unit will be used.
+See :any:`&units in Inputs <&units>` for detail.
+
+**&system**
+
+Mandatory: yn_periodic, al, nelem, natom, nelectron, nstate
+
+::
+   
+   &system
+     !periodic boundary condition
+     yn_periodic = 'n'
+     
+     !grid box size(x,y,z)
+     al(1:3) = 16.0d0, 16.0d0, 16.0d0
+     
+     !number of elements, atoms, electrons and states(orbitals)
+     nelem  = 2
+     natom  = 4
+     nelec  = 10
+     nstate = 6
+   /
+
+These input keywords and their values should be the same as those used in the
+ground state calculation. See :any:`&system in Exercise-1 <exercise-1-&system>`.
+
+**&pseudo**
+
+Mandatory: file_pseudo, izatom
+
+::
+   
+   &pseudo
+     !name of input pseudo potential file
+     file_pseudo(1) = './C_rps.dat'
+     file_pseudo(2) = './H_rps.dat'
+     
+     !atomic number of element
+     izatom(1) = 6
+     izatom(2) = 1
+     
+     !angular momentum of pseudopotential that will be treated as local
+     lloc_ps(1) = 1
+     lloc_ps(2) = 0
+     !--- Caution ---------------------------------------!
+     ! Indices must correspond to those in &atomic_coor. !
+     !---------------------------------------------------!
+   /
+
+These input keywords and their values should be the same as those used in the
+ground state calculation.
+See :any:`&pseudo in Exercise-1 <exercise-1-&pseudo>`.
+
+**&functional**
+
+Mandatory: xc
+
+::
+
+   &functional
+     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
+     xc = 'PZ'
+   /
+
+This indicates that the local density approximation with the Perdew-Zunger functional is used.
+
+**&rgrid**
+
+Mandatory: dl or num_rgrid
+
+::
+
+   &rgrid
+     !spatial grid spacing(x,y,z)
+     dl(1:3) = 0.25d0, 0.25d0, 0.25d0
+   /
+
+``dl(1:3) = 0.25d0, 0.25d0, 0.25d0`` specifies the grid spacings
+in three Cartesian directions. This must be the same as
+that in the ground state calculation.
+See :any:`&rgrid in Inputs <&rgrid>` for more information.
+
+**&tgrid**
+
+Mandatory: dt, nt
+
+::
+   
+   &tgrid
+     !time step size and number of time grids(steps)
+     dt = 1.25d-3
+     nt = 5000
+   /
+
+``dt = 1.25d-3`` specifies the time step of the time evolution
+calculation. ``nt = 5000`` specifies the number of time steps in the
+calculation.
+
+**&emfield**
+
+Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_cep1
+
+::
+   
+   &emfield
+     !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
+     ae_shape1 = 'Ecos2'
+     
+     !peak intensity(W/cm^2) of the incident pulse
+     I_wcm2_1 = 1.00d8
+     
+     !duration of the incident pulse
+     tw1 = 6.00d0
+     
+     !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
+     omega1 = 9.28d0
+     
+     !polarization unit vector(real part) for the incident pulse(x,y,z)
+     epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
+     
+     !carrier emvelope phase of the incident pulse
+     !(phi_cep1 must be 0.25 + 0.5 * n(integer) when ae_shape1 = 'Ecos2')
+     phi_cep1 = 0.75d0
+     !--- Caution ---------------------------------------------------------!
+     ! Defenition of the incident pulse is wrriten in:                     !
+     ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
+     !---------------------------------------------------------------------!
+   /
+
+These input keywords specify the pulsed electric field applied to the system.
+
+``ae_shape1 = 'Ecos2'`` indicates that the envelope of the pulsed
+electric field has a *cos^2* shape.
+
+``I_wcm2_1 = 1.00d8`` specifies the maximum intensity of the
+applied electric field in unit of W/cm^2.
+
+``tw1 = 6.00d0`` specifies the pulse duration. Note that it is not the
+FWHM but a full duration of the cos^2 envelope.
+
+``omega1 = 9.28d0`` specifies the average photon energy (frequency
+multiplied with hbar).
+
+``epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0`` specifies the real part of the unit
+polarization vector of the pulsed electric field. Using the real
+polarization vector, it describes a linearly polarized pulse.
+
+``phi_cep1 = 0.75d0`` specifies the carrier envelope phase of the pulse.
+As noted above, 'phi_cep1' must be 0.75 (or 0.25) if one employs 'Ecos2'
+pulse shape, since otherwise the time integral of the electric field
+does not vanish.
+
+See :any:`&emfield in Inputs <&emfield>` for details.
+
+
 
 xxxAYxxx.
 
