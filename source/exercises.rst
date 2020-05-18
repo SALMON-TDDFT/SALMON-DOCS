@@ -4550,6 +4550,7 @@ Explanations of the files are described below:
 This file is used to generate animation files by using SALMON utilities: https://salmon-tddft.jp/utilities.html
 
 **obs1_at_point_rt.data**
+
 Results of time evolution calculation for electric and magnetic fields at observation point 1.
 
 ::
