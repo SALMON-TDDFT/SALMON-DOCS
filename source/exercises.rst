@@ -4334,6 +4334,7 @@ Mandatory: none
    /
 
 ``result`` defined by ``directory = 'result'`` will be used in the directory name that contains output files.
+Default is ``directory = './'``
 
 **&units**
 
@@ -4352,43 +4353,72 @@ See :any:`&units in Inputs <&units>` for detail.
 
 **&system**
 
-Mandatory: iperiodic
+Mandatory: yn_periodic
 
 ::
 
    &system
-     iperiodic = 0
+     !periodic boundary condition
+     yn_periodic = 'n'
    /
 
-``iperiodic = 0`` indicates that the isolated boundary condition will be used in the calculation.
+``yn_periodic = 'n'`` indicates that the isolated boundary condition will be used in the calculation.
 
 **&emfield**
 
-Mandatory: ae_shape1, epdir_re1
+Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_cep1
 
 ::
 
    &emfield
-     ae_shape1 = 'impulse'
-     epdir_re1 = 0.0d0, 0.0d0, 1.0d0
+     !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
+     ae_shape1 = 'Ecos2'
+     
+     !peak intensity(W/cm^2) of the incident pulse
+     I_wcm2_1 = 1.00d8
+     
+     !duration of the incident pulse
+     tw1 = 4.60d0
+     
+     !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
+     omega1 = 5.49d0
+     
+     !polarization unit vector(real part) for the incident pulse(x,y,z)
+     epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
+     
+     !carrier emvelope phase of the incident pulse
+     !(phi_cep1 must be 0.25 + 0.5 * n(integer) when ae_shape1 = 'Ecos2')
+     phi_cep1 = 0.75d0
+     !--- Caution ---------------------------------------------------------!
+     ! Defenition of the incident pulse is wrriten in:                     !
+     ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
+     !---------------------------------------------------------------------!
    /
 
-``ae_shape1 = 'impulse'`` indicates that a weak impulse is applied to all electrons at *t=0*.
+These input keywords specify the pulsed electric field applied to the system.
 
-``epdir_re1(3)`` specifies a unit vector that indicates the direction of the impulse.
+``ae_shape1 = 'Ecos2'`` indicates that the envelope of the pulsed
+electric field has a *cos^2* shape.
 
-**&analysis**
+``I_wcm2_1 = 1.00d8`` specifies the maximum intensity of the
+applied electric field in unit of W/cm^2.
 
-Mandatory: none
+``tw1 = 4.60d0`` specifies the pulse duration. Note that it is not the
+FWHM but a full duration of the cos^2 envelope.
 
-::
+``omega1 = 5.49d0`` specifies the average photon energy (frequency
+multiplied with hbar).
 
-   &analysis
-     nenergy = 1000
-     de      = 0.01d0
-   /
+``epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0`` specifies the real part of the unit
+polarization vector of the pulsed electric field. Using the real
+polarization vector, it describes a linearly polarized pulse.
 
-``nenergy = 1000`` specifies the number of energy steps, and ``de = 0.01d0`` specifies the energy spacing in the time-frequency Fourier transformation.
+``phi_cep1 = 0.75d0`` specifies the carrier envelope phase of the pulse.
+As noted above, 'phi_cep1' must be 0.75 (or 0.25) if one employs 'Ecos2'
+pulse shape, since otherwise the time integral of the electric field
+does not vanish.
+
+See :any:`&emfield in Inputs <&emfield>` for details.
 
 **&maxwell**
 
@@ -4397,37 +4427,89 @@ Mandatory: al_em, dl_em, nt_em
 ::
 
    &maxwell
-     !grid and time-step information
-     al_em = 1000.0d0, 1000.0d0, 1000.0d0
-     dl_em = 10.0d0, 10.0d0, 10.0d0
-     nt_em = 5000
-     dt_em = 1.90d-3
+     !box size and spacing of spatial grid(x,y,z)
+     al_em(1:3) = 120d0, 120d0, 120d0
+     dl_em(1:3) = 1.2d0, 1.2d0, 1.2d0
      
-     !media information
-     shape_file    = 'shape.cube'
-     imedia_num    = 1
-     type_media(1) = 'drude'
-     omega_p_d(1)  = 9.03d0
-     gamma_d(1)    = 0.53d-1
+     !time step size and number of time grids(steps)
+     dt_em = 2.30d-4
+     nt_em = 20000
+     
+     !name of input shape file and number of media in the file
+     shape_file = './shape.cube'
+     media_num  = 1
+     
+     !*** MEDIA INFORMATION(START) **************************************!
+     !type of media(media ID)
+     media_type(1) = 'lorentz-drude'
+     !--- Au described by Lorentz-Drude model ---------------------------!
+     ! The parameters are determined from:                               !
+     ! (https://www.osapublishing.org/ao/abstract.cfm?uri=ao-37-22-5271) !
+     !-------------------------------------------------------------------!
+     
+     !number of poles and plasma frequency of media(media ID)
+     pole_num_ld(1) = 6
+     omega_p_ld(1)  = 9.030d0
+     
+     !oscillator strength, collision frequency,
+     !and oscillator frequency of media(media ID,pole ID)
+     f_ld(1,1:6)     = 0.760d0, 0.024d0, 0.010d0, 0.071d0, 0.601d0, 4.384d0
+     gamma_ld(1,1:6) = 0.053d0, 0.241d0, 0.345d0, 0.870d0, 2.494d0, 2.214d0
+     omega_ld(1,1:6) = 0.000d0, 0.415d0, 0.830d0, 2.969d0, 4.304d0, 13.32d0
+     !*** MEDIA INFORMATION(END) ****************************************!
+     
+     !*** SOURCE INFORMATION(START) *************************************!
+     !type of method to generate the incident pulse
+     !('source': incident current source)
+     wave_input = 'source'
+     
+     !location of source(x,y,z)
+     source_loc1(1:3) = -37.8d0, 0.0d0, 0.0d0
+     
+     !propagation direction of the incidenty pulse(x,y,z)
+     ek_dir1(1:3) = 1.0d0, 0.0d0, 0.0d0
+     !*** SOURCE INFORMATION(END) ***************************************!
+     
+     !*** OBSERVATION INFORMATION(START) ********************************!
+     !number of observation points
+     obs_num_em = 1
+     
+     !time step interval for sampling
+     obs_samp_em = 20
+     
+     !location of observation point(observation ID,x,y,z)
+     obs_loc_em(1,1:3) = 0.0d0, 0.0d0, 0.0d0
+     
+     !output flag for electrmagnetic field distribution(observation ID)
+     yn_obs_plane_em(1) = 'n'
+     !--- Make of animation file ----------------------------------------!
+     ! When yn_obs_plane_em(1) = 'y', animation file can be made         !
+     ! by program 'FDTD_make_figani' in SALMON utilities.                !
+     ! The animation file visualizes electromagnetic field distributions !
+     ! on the cross-section including the observation point              !
+     ! whose location is determined by obs_loc_em.                       !
+     !-------------------------------------------------------------------!
+     !*** OBSERVATION END(START) ****************************************!
    /
 
-``al_em = 1000.0d0, 1000.0d0, 1000.0d0`` specifies the lengths of three sides of the rectangular parallelepiped where the grid points are prepared.
+``al_em(1:3) = 120d0, 120d0, 120d0`` specifies the lengths of three sides of the rectangular parallelepiped where the grid points are prepared.
 
-``dl_em = 10.0d0, 10.0d0, 10.0d0`` specifies the grid spacings in three Cartesian directions.
+``dl_em(1:3) = 1.2d0, 1.2d0, 1.2d0`` specifies the grid spacings in three Cartesian directions.
 
-``nt_em = 5000`` specifies the number of time steps in the calculation.
+``dt_em = 2.30d-4`` specifies the time step of the time evolution calculation.
+If you do not specifies ``dt_em``, this input keyword is automatically specified by the Courant-Friedrichs-Lewy Condition.
 
-``dt_em = 1.90d-3`` specifies the time step of the time evolution calculation.
-If you do not input, this is automatically specified by the Courant-Friedrichs-Lewy Condition.
+``nt_em = 20000`` specifies the number of time steps in the calculation.
 
 ``shape_file = 'shape.cube'`` indicates the filename of the shape file.
 
-``imedia_num = 1`` specifies the number of the types of media described by the shape file('shape.cube').
+``media_num = 1`` specifies the number of the types of media described by the shape file('shape.cube').
 
-``type_media(1) = 'drude'`` specifies the type of media as the Drude model.
+``media_type(1) = 'lorentz-drude'`` specifies the type of media as the Lorentz-Drude model.
 
-``omega_p_d(1) = 9.03d0`` and ``gamma_d(1) = 0.53d-1`` specify the plasma- and collision-frequencies, respectively.
+``omega_p_ld(1)  = 9.030d0``, ``f_ld(1,1:6)     = 0.760d0, 0.024d0, 0.010d0, 0.071d0, 0.601d0, 4.384d0``, ``gamma_ld(1,1:6) = 0.053d0, 0.241d0, 0.345d0, 0.870d0, 2.494d0, 2.214d0``, and ``omega_ld(1,1:6) = 0.000d0, 0.415d0, 0.830d0, 2.969d0, 4.304d0, 13.32d0`` specify the plasma frequency, oscillator strength, collision frequency, and oscillator frequency of media, respectively.
 See &maxwell in :any:`List of all input keywords <List of all input keywords>` for more information.
+
 
 Output files
 ^^^^^^^^^^^^
