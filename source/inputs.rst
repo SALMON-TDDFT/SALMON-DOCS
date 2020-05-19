@@ -88,7 +88,7 @@ If you do not specify it, the file name will start with 'default'.
 
 Mandatory: yn_periodic, al, nelem, natom, nelec, nstate 
 
-**For an isolated molecule (Exercises-1, 2, 3)**:
+**For an isolated molecule (Exercises-1, 2, 3, 8, 9)**:
 
 ::
 
@@ -109,48 +109,24 @@ where the grid points are prepared.
  ``nstate = 6`` indicates the number of Kohn-Sham orbitals to be solved.
 ``nstate`` should be equal to or larger than ``nelec/2``.
 
-**For a periodic system (Tutorial-4, 5, 6)**:
+**For a periodic system (Tutorial-4, 5, 6, 7)**:
 
 ::
 
    &system
-     iperiodic = 3
-     al = 10.26d0,10.26d0,10.26d0
-     nstate = 32
-     nelec = 32
+     yn_periodic = 'y'
+     al(1:3) = 10.26d0, 10.26d0, 10.26d0
      nelem = 1
      natom = 8
-   /
-
-``iperiodic = 3`` indicates that three dimensional periodic boundary
-condition (bulk crystal) is assumed. ``al = 10.26d0, 10.26d0, 10.26d0``
-specifies the lattice constans of the unit cell. ``nstate = 32``
-indicates the number of Kohn-Sham orbitals to be solved. ``nelec = 32``
-indicate the number of valence electrons in the system. ``nelem = 1``
-and ``natom = 8`` indicate the number of elements and the number of
-atoms in the system, respectively.
-
-**For Maxwell - TDDFT multi scale calculation (Tutorial-6)**:
-
-::
-
-   &system
-     iperiodic = 3
-     al = 10.26d0,10.26d0,10.26d0
-     isym = 8
-     crystal_structure = 'diamond'
-     nstate = 32
      nelec = 32
-     nelem = 1
-     natom = 8
+     nstate = 32
    /
 
-The difference from the above case is the variables, ``isym = 8`` and
-``crystal_structure = 'diamond'``, which indicates that the spatial
-symmetry of the unit cell is used in the calculation. Although the use
-of the symmetry substantially reduces the computational cost, it should
-be used very carefully. At present, the spatial symmetry has been
-implemented only for the case of the diamond structure.
+``yn_periodic = 'y'`` indicates that three dimensional periodic boundary condition (bulk crystal) is assumed.
+``al(1:3) = 10.26d0, 10.26d0, 10.26d0`` specifies the lattice constans of the unit cell.
+``nelem = 1`` and ``natom = 8`` indicate the number of elements and the number of atoms in the system, respectively.
+``nelec = 32`` indicate the number of valence electrons in the system. 
+``nstate = 32`` indicates the number of Kohn-Sham orbitals to be solved.
 
 .. _&pseudo:
 
