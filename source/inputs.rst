@@ -3,9 +3,9 @@
 Inputs
 ====================
 
-We here summarize namelists that appear in this Tutorial. A thorough
-list of the namelist variables may be found in the downloaded file in
-'SALMON/manual/input_variables.md'.
+We here summarize input keywords that appear in :any:`Exercise <Exercises>`. 
+A thorough list of the input keywords can be found in the downloaded file in
+:any:`List of all input keywords <List of all input keywords>`.
 
 .. _&units:
 
