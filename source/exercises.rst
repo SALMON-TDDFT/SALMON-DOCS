@@ -3611,17 +3611,18 @@ directory that you run the code,
 +-------------------------------------+------------------------------------+
 | *C2H2_eigen.data*                   | 1 particle energies                |
 +-------------------------------------+------------------------------------+
-| *PS_C_KY_n.dat*                     | information on pseodupotential     |
-|                                     | file for carbon atom               |
-+-------------------------------------+------------------------------------+
-| *PS_H_KY_n.dat*                     | information on pseodupotential     |
-|                                     | file for hydrogen atom             |
+| *C2H2_trj.xyz*                      | atomic coordinates during the      |
+|                                     | geometry optimization              |
 +-------------------------------------+------------------------------------+
 | *data_for_restart*                  | directory where files used in      |
 |                                     | the real-time calculation are      |
 |                                     | contained                          |
 +-------------------------------------+------------------------------------+
-| *xxxAYxxx(if other fieles exist)*   | xxxAYxxx(if other new fieles exist)|
+| *PS_C_KY_n.dat*                     | information on pseodupotential     |
+|                                     | file for carbon atom               |
++-------------------------------------+------------------------------------+
+| *PS_H_KY_n.dat*                     | information on pseodupotential     |
+|                                     | file for hydrogen atom             |
 +-------------------------------------+------------------------------------+
 
 | You may download the above files (zipped file, except for the directory *data_for_restart*) from:
@@ -3646,9 +3647,9 @@ the input file are shown in this file.
    # Orbital   Energy[eV]
    #-----------------------
 
-**xxxAYxxx(if other fieles exist)**
+**C2H2_trj.xyz**
 
-xxxAYxxx.
+The atomic coordinates during the geometry optimization in xyz format.
 
 .. _exercise-9:
 
@@ -3657,9 +3658,10 @@ Exercise-9: Ehrenfest molecular dynamics of C2H2 molecule
 
 In this exercise, we learn the calculation of the molecular dynamics in
 the acetylene (C2H2) molecule under a pulsed electric field, solving the
-time-dependent Kohn-Sham equation. 
-As outputs of the calculation, such quantities as the total energy and the electric dipole moment of the
-system as functions of time are calculated. xxxAYxxx(if other results exist).
+time-dependent Kohn-Sham equation and the Newtonian equation. 
+As outputs of the calculation, time-evolution of the electron density as well as molecular structures 
+and associated quantities such as the electron and ion kinetic energies, the electric dipole moment of the
+system and temperature as functions of time are calculated..
 This tutorial should be carried out after finishing the geometry optimization that was
 explained in :any:`Exercise-8 <exercise-8>`.
 In the calculation, a pulsed electric field that has cos^2 envelope shape is applied.
@@ -3847,7 +3849,8 @@ Mandatory: theory
 
 This indicates that the real time (RT) calculation for a pulse response is carried out in the
 present job. See :any:`&calculation in Inputs <&calculation>` for detail.
-``yn_md = 'y'`` indicates xxxAYxxx.
+``yn_md = 'y'`` indicates that molecular dynamics calculation is coupled with the ``theory``, 
+where the Ehrenfest dynamics coupled with the TDDFT is performed in this case.
 
 **&control**
 
