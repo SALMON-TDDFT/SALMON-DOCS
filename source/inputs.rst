@@ -335,18 +335,16 @@ Mandatory: dt, nt
 &emfield
 --------
 
-This group specifies the pulse shape of an electric filed applied to
-the system in time evolution calculations. We explain below separating
-two cases, :any:`linear-response-calculations`
-and :any:`pulsed-electric-field-calculations`.
+This group specifies the pulse shape of an electric filed applied to the system in time evolution calculations.
+We explain below separating two cases, :any:`linear-response-calculations` and :any:`pulsed-electric-field-calculations`.
 
 .. _linear-response-calculations:
 
 Linear response calculations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A weak impulsive field is applied at *t=0*. For this case,
-``ae_shape1 = 'impulse'`` should be described.
+A weak impulsive field is applied at *t = 0*.
+For this case, ``ae_shape1 = 'impulse'`` should be described.
 
 Mandatory: ae_shape1
 
@@ -354,94 +352,80 @@ Mandatory: ae_shape1
 
    &emfield
      ae_shape1 = 'impulse'
-     epdir_re1 = 0.d0,0.d0,1.d0
+     epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0
    /
 
-``epdir_rel(3)`` specify a unit vector that indicates the direction of
-the impulse.
+``epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0`` specifies a unit vector that indicates the direction of the impulse.
 
-For a periodic system specified by ``iperiodic = 3``, one may add
-``trans_longi``. It has the value, ``'tr'``\ (transverse) or
-``'lo'``\ (longitudinal), that specifies the treatment of the
-polarization in the time evolution calculation. The default is ``'tr'``.
+For a periodic system specified by ``yn_periodic = 'y'``,
+one may add ``trans_longi``. 
+It has the value, ``'tr'``\ (transverse) or ``'lo'``\ (longitudinal), 
+that specifies the treatment of the polarization in the time evolution calculation.
+The default is ``'tr'``.
 
-::
-
-   &emfield
-     trans_longi = 'tr'
-     ae_shape1 = 'impulse'
-     epdir_re1 = 0.,0.,1.
-   /
-
-The magnitude of the impulse of the pulse may be explicitly specified
-by, for example, ``e_impulse = 1d-2``. The default is '1d-2' in atomic
-unit.
+The magnitude of the impulse of the pulse may be explicitly specified by,
+for example, ``e_impulse = 1.00d-2``.
+The default is '1.00d-2' in atomic unit.
 
 .. _pulsed-electric-field-calculations:
 
 Pulsed electric field calculations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A Pulsed electric field of finite time duration is applied. For this
-case, ``as_shape1`` should be specified. It indicates the shape of the
-envelope of the pulse. The options include 'Acos2' and 'Ecos2' (See
-below for other options).
+A Pulsed electric field of finite time duration is applied.
+For this case, ``as_shape1`` should be specified.
+It indicates the shape of the envelope of the pulse.
+The options include 'Acos2' and 'Ecos2' (See below for other options).
 
-Mandatory: ae_shape1, epdir_re1, {rlaser_int1 or amplitude1}, omega1,
-pulse_tw1, phi_cep1
+Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_cep1
 
 ::
 
    &emfield
      ae_shape1 = 'Ecos2'
-     epdir_re1 = 0.d0,0.d0,1.d0
-     rlaser_int_wcm2_1 = 1.d8
-     omega1=9.28d0
-     pulse_tw1=6.d0
-     phi_cep1=0.75d0
+     I_wcm2_1 = 1.00d8
+     tw1 = 6.00d0
+     omega1 = 9.28d0
+     epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
+     phi_cep1 = 0.75d0
    /
 
-``ae_shape1 = 'Ecos2'`` specifies the envelope of the pulsed electric
-field, 'Ecos2' for the cos^2 envelope for the electric field. If 'Acos2'
-is specified, this gives cos^2 envelope for the vector potential. Note
-that 'phi_cep1' must be 0.75 (or 0.25) if one employs 'Ecos2' pulse
-shape, since otherwise the time integral of the electric field does not
-vanish. There is no such restriction for the 'Acos2' pulse shape.
+``ae_shape1 = 'Ecos2'`` specifies the envelope of the pulsed electric field,
+'Ecos2' for the cos^2 envelope for the electric field.
+If 'Acos2' is specified, this gives cos^2 envelope for the vector potential.
+Note that 'phi_cep1' must be 0.75 (or 0.25) if one employs 'Ecos2' pulse shape,
+since otherwise the time integral of the electric field does not vanish.
+There is no such restriction for the 'Acos2' pulse shape.
 
-``epdir_re1 = 0.d0,0.d0,1.d0`` specifies the real part of the unit
-polarization vector of the pulsed electric field. If only the real part
-is specified, it describes a linearly polarized pulse. Using both real
-('epdir_re1') and imaginary ('epdir_im1') parts of the polarization
-vector, circularly (and general ellipsoidary) polarized pulses may be
-described.
+``I_wcm2_1 = 1.00d8`` specifies the maximum intensity of the applied electric field in unit of W/cm^2.
+It is also possible to specify the maximum intensity of the pulse by ``E_amplitude1``.
 
-``laser_int_wcm2_1 = 1.d8`` specifies the maximum intensity of the
-applied electric field in unit of W/cm^2. It is also possible to specify
-the maximum intensity of the pulse by ``amplitude1``.
+``tw1 = 6.00d0`` specifies the pulse duration.
+Note that it is not the FWHM but a full duration of the cos^2 envelope.
 
-``omega1=9.26d0`` specifies the average photon energy (frequency
-multiplied with hbar).
+``omega1 = 9.28d0`` specifies the average photon energy (frequency multiplied with hbar).
 
-``pulse_tw1=6.d0`` specifies the pulse duration. Note that it is not the
-FWHM but a full duration of the cos^2 envelope.
+``epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0`` specifies
+the real part of the unit polarization vector of the pulsed electric field.
+If only the real part is specified, it describes a linearly polarized pulse.
+Using both real ('epdir_re1') and imaginary ('epdir_im1') parts of the polarization vector,
+circularly (and general ellipsoidary) polarized pulses may be described.
 
-``phi_cep1=0.75d0`` specifies the carrier envelope phase of the pulse.
-As noted above, 'phi_cep1' must be 0.75 (or 0.25) if one employs 'Ecos2'
-pulse shape, since otherwise the time integral of the electric field
-does not vanish. There is no such restriction for the 'Acos2' pulse
-shape.
+``phi_cep1 = 0.75d0`` specifies the carrier envelope phase of the pulse.
+As noted above, 'phi_cep1' must be 0.75 (or 0.25) if one employs 'Ecos2' pulse shape,
+since otherwise the time integral of the electric field does not vanish.
+There is no such restriction for the 'Acos2' pulse shape.
 
-It is possible to use two pulses simultaneously to simulate pump-probe
-experiments, adding information for two pulses. To specify the second
-pulse, change from 1 to 2 in the namelist variables, like ``ae_shape2``.
-The time delay between two pulses is specified by the variable 't1_t2'.
+It is possible to use two pulses simultaneously to simulate pump-probe experiments,
+adding information for two pulses.
+To specify the second pulse, change from 1 to 2 in the input keywords, like ``ae_shape2``.
+The time delay between two pulses is specified by the input keyword 't1_t2'.
 
-For a periodic system specified by ``iperiodic = 3``, one may add
-``trans_longi``. It has the value, ``'tr'``\ (transverse) or
-``'lo'``\ (longitudinal), that specifies the treatment of the
-polarization in the time evolution calculation. The default is ``'tr'``.
-For a periodic system, it is also specify 'Acos3', 'Acos4', 'Acos6',
-'Acos8' for ``ae_shape1``.
+For a periodic system specified by ``yn_periodic = 'y'``, one may add ``trans_longi``.
+It has the value, ``'tr'``\ (transverse) or ``'lo'``\ (longitudinal),
+that specifies the treatment of the polarization in the time evolution calculation.
+The default is ``'tr'``. 
+For a periodic system, it is also specify 'Acos3', 'Acos4', 'Acos6', 'Acos8' for ``ae_shape1``.
 
 .. _&propagation:
 
