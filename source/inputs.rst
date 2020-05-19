@@ -109,7 +109,7 @@ where the grid points are prepared.
  ``nstate = 6`` indicates the number of Kohn-Sham orbitals to be solved.
 ``nstate`` should be equal to or larger than ``nelec/2``.
 
-**For a periodic system (Tutorial-4, 5, 6, 7)**:
+**For a periodic system (Exercises-4, 5, 6, 7)**:
 
 ::
 
@@ -140,38 +140,30 @@ Mandatory: pseudo_file, izatom
 ::
 
    &pseudo
-     izatom(1)=6
-     izatom(2)=1
-     pseudo_file(1)='C_rps.dat'
-     pseudo_file(2)='H_rps.dat'
-     lmax_ps(1)=1
-     lmax_ps(2)=0
-     lloc_ps(1)=1
-     lloc_ps(2)=0
+     file_pseudo(1) = './C_rps.dat'
+     file_pseudo(2) = './H_rps.dat'
+     izatom(1) = 6
+     izatom(2) = 1
+     lloc_ps(1) = 1
+     lloc_ps(2) = 0
    /
 
 Parameters related to atomic species and pseudopotentials.
-``izatom(1) = 6`` specifies the atomic number of the element #1.
-``pseudo_file(1) = 'C_rps.dat'`` indicates the filename of the
-pseudopotential of element #1. ``lmax_ps(1) = 1`` and ``lloc_ps(1) = 1``
-specify the maximum angular momentum of the pseudopotential projector
-and the angular momentum of the pseudopotential that will be treated as
-local, respectively.
+``pseudo_file(1) = './C_rps.dat'`` indicates the filename of the pseudopotential of element.
+``izatom(1) = 6`` specifies the atomic number of the element.
 
 **For crystalline Si**:
 
 ::
 
    &pseudo
-     izatom(1)=14
-     pseudo_file(1) = './Si_rps.dat'
-     lloc_ps(1)=2
+     file_pseudo(1) = './Si_rps.dat'
+     izatom(1) = 14
+     lloc_ps(1) = 2
    /
 
-``izatom(1) = 14`` indicates the atomic number of the element #1.
-``pseudo_file(1) = 'Si_rps.dat'`` indicates the pseudopotential filename
-of element #1. ``lloc_ps(1) = 2`` indicate the angular momentum of the
-pseudopotential that will be treated as local.
+``file_pseudo(1) = './Si_rps.dat'`` indicates the pseudopotential filename of element.
+``izatom(1) = 14`` indicates the atomic number of the element.
 
 .. _&functional:
 
@@ -227,29 +219,6 @@ Available sets of the functionals are listed at the website
 http://www.tddft.org/programs/libxc/functionals/ .
 
 Note that, the hybrid functionals (hybrid gga/mgga) are not supported in the current (version 2.0.0) of SALMON.
-
-.. _&atomic_coor:
-
-&atomic_coor
-------------
-
-Mandatory: atomic_coor or atomic_red_coor (they may be provided as a
-separate file)
-
-**For C2H2 molecule**:
-
-::
-
-   &atomic_coor
-     'C' 0.000000 0.000000 0.599672 1
-     'H' 0.000000 0.000000 1.662257 2
-     'C' 0.000000 0.000000 -0.599672 1
-     'H' 0.000000 0.000000 -1.662257 2
-   /
-
-Cartesian coordinates of atoms. The first column indicates the element.
-Next three columns specify Cartesian coordinates of the atoms. The
-number in the last column labels the element.
 
 .. _&rgrid:
 
@@ -561,6 +530,30 @@ x-direction.
 ``nxvacl_m = -2000`` and ``nxvacr_m = 256`` indicate the number of grid
 points in the vacuum region, ``nxvacl_m`` for the left and ``nxvacr_m``
 for the right from the surface of the material.
+
+.. _&atomic_coor:
+
+&atomic_coor
+------------
+
+Mandatory: atomic_coor or atomic_red_coor (they may be provided as a
+separate file)
+
+**For C2H2 molecule**:
+
+::
+
+   &atomic_coor
+     'C' 0.000000 0.000000 0.599672 1
+     'H' 0.000000 0.000000 1.662257 2
+     'C' 0.000000 0.000000 -0.599672 1
+     'H' 0.000000 0.000000 -1.662257 2
+   /
+
+Cartesian coordinates of atoms. The first column indicates the element.
+Next three columns specify Cartesian coordinates of the atoms. The
+number in the last column labels the element.
+
 
 .. _&atomic_red_coor:
 
