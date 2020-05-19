@@ -7,35 +7,6 @@ We here summarize input keywords that appear in :any:`Exercise <Exercises>`.
 A thorough list of the input keywords can be found in the downloaded file in
 :any:`List of all input keywords <List of all input keywords>`.
 
-.. _&units:
-
-&units
-------
-
-Mandatory: none
-
-::
-
-   &units
-     unit_system='A_eV_fs'
-   /
-
-This namelist specifies the unit system to be used in the input file.
-Options are 'A_eV_fs' for Angstrom, eV, and fs, and 'a.u.' or 'au' for
-atomic units. If you do not specify it, atomic unit will be used as
-default.
-
-For isolated systems (specified by ``iperiodic = 0`` in ``&system``),
-the unit of 1/eV is used for the output files of DOS and PDOS if
-``unit_system = 'A_eV_fs'`` is specified, while atomic unit is used if
-not. For other output files, the Angstrom/eV/fs units are used
-irrespective of the namelist value.
-
-For periodic systems (specified by ``iperiodic =3`` in ``&system``), the
-unit system specified by this namelist variable is used for most output
-files. See the first few lines of output files to confirm the unit
-system adopted in the file.
-
 .. _&calculation:
 
 &calculation
@@ -56,6 +27,32 @@ For periodic systems (specified by ``iperiodic = 3`` in ``&system``), both groun
 as a single task (``calc_mode = 'GS_RT'``).
 
 For Maxwell + TDDFT multi-scale calculation, add the following namelist, ``use_ms_maxwell = 'y'``.
+
+.. _&units:
+
+&units
+------
+
+Mandatory: none
+
+::
+
+   &units
+     unit_system = 'A_eV_fs'
+   /
+
+This namelist specifies the unit system to be used in the input file.
+Options are 'A_eV_fs' for Angstrom, eV, and fs, and 'a.u.' or 'au' for atomic units.
+If you do not specify it, atomic unit will be used as default.
+
+For isolated systems (specified by ``yn_periodic = 'n'`` in ``&system``),
+the unit of 1/eV is used for the output files of DOS and PDOS
+if ``unit_system = 'A_eV_fs'`` is specified, while atomic unit is used if not. 
+For other output files, the Angstrom/eV/fs units are used irrespective of the input keyword.
+
+For periodic systems (specified by ``yn_periodic = 'y'`` in ``&system``),
+the unit system specified by this input keyword is used for most output files.
+See the first few lines of output files to confirm the unit system adopted in the file.
 
 .. _&control:
 
