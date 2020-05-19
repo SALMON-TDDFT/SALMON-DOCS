@@ -432,28 +432,25 @@ For a periodic system, it is also specify 'Acos3', 'Acos4', 'Acos6', 'Acos8' for
 &propagation
 ------------
 
-This namelist specifies the numerical method for time evolution
-calculations of electron orbitals.
+This group specifies the numerical method for time evolution calculations of electron orbitals.
 
 ::
 
    &propagation
-     propagator='etrs'
+     propagator = 'etrs'
    /
 
-``propagator = 'etrs'`` indicates the use of enforced time-reversal
-symmetry propagator. `M.A.L. Marques, A. Castro, G.F. Bertsch, and A.
-Rubio, Comput. Phys. Commun., 151 60
-(2003) <https://doi.org/10.1016/S0010-4655(02)00686-0>`__.
+``propagator = 'etrs'`` indicates the use of enforced time-reversal symmetry propagator.
+`M.A.L. Marques, A. Castro, G.F. Bertsch, and A. Rubio,
+Comput. Phys. Commun., 151 60 (2003) <https://doi.org/10.1016/S0010-4655(02)00686-0>`__.
 
 ::
 
    &propagation
-     propagator='middlepoint'
+     propagator = 'middlepoint'
    /
 
-``propagation='middlepoint'`` indicates that Hamiltonian at midpoint of
-two-times is used.
+``propagator = 'middlepoint'`` indicates that Hamiltonian at midpoint of two-times is used.
 
 The default is *middlepoint*.
 
@@ -462,34 +459,30 @@ The default is *middlepoint*.
 &multiscale
 -----------
 
-This namelist specifies information necessary for Maxwell - TDDFT
-multiscale calculations.
+This group specifies information necessary for Maxwell-TDDFT multiscale calculations.
 
 ::
 
    &multiscale
-     fdtddim = '1D'
-     twod_shape = 'periodic'
-     nx_m = 4
+     nx_m = 8
      ny_m = 1
-     hX_m = 250d0
-     nxvacl_m = -2000
-     nxvacr_m = 256
+     nz_m = 1
+     hx_m = 100.0d0
+     hy_m = 100.0d0
+     hz_m = 100.0d0
+     nxvacl_m = 1000
+     nxvacr_m = 1000
    /
 
-``fdtddim`` specifies the spatial dimension of the macro system.
-``fdtddim='1D'`` indicates that one-dimensional equation is solved for
-the macroscopic vector potential.
+``nx_m = 8`` specifies the number of the macroscopic grid points for x-direction
+in the spatial region where the material exists.
+``ny_m = 1`` and ``nz_m = 1`` are those for y- and z-directions.
 
-``nx_m = 4`` specifies the number of the macroscopic grid points in for
-x-direction in the spatial region where the material exists.
+``hx_m = 100.0d0`` specifies the grid spacing of the macroscopic grid for x-direction.
+``hy_m = 100.0d0`` and ``hz_m = 100.0d0`` are those for y- and z-directions.
 
-``hx_m = 250d0`` specifies the grid spacing of the macroscopic grid in
-x-direction.
-
-``nxvacl_m = -2000`` and ``nxvacr_m = 256`` indicate the number of grid
-points in the vacuum region, ``nxvacl_m`` for the left and ``nxvacr_m``
-for the right from the surface of the material.
+``nxvacl_m = 1000`` and ``nxvacr_m = 1000`` indicate the number of grid points in the vacuum region,
+``nxvacl_m`` for the left and ``nxvacr_m`` for the right from the surface of the material.
 
 .. _&atomic_coor:
 
