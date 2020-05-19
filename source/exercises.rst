@@ -4035,7 +4035,7 @@ See :any:`&emfield in Inputs <&emfield>` for details.
 
 **&md**
 
-Mandatory: xxxAYxxx
+Mandatory: none
 
 ::
    
@@ -4054,15 +4054,15 @@ Mandatory: xxxAYxxx
      step_update_ps = 20
    /
 
-These input keywords specify xxxAYxxx.
+These input keywords specify conditions of the molecular dynamics.
 
-``ensemble = 'NVE'`` specifies xxxAYxxx.
+``ensemble = 'NVE'`` specifies that the microcanonical ensemble is used (thermostat is not used).
 
-``yn_set_ini_velocity = 'y'`` specifies xxxAYxxx.
+``yn_set_ini_velocity = 'y'`` indicates that initial velocity is given using random number with the specified temperature by 'temperature0_ion_k'.
 
-``temperature0_ion_k = 300.0d0`` specifies xxxAYxxx.
+``temperature0_ion_k = 300.0d0`` specifies the setting temperature for generating the initial velicity (and also for thermostat in NVT ensemble).
 
-``step_update_ps = 20`` specifies xxxAYxxx.
+``step_update_ps = 20`` specifies the time step interval to update pseudopotential.
 
 Output files
 ^^^^^^^^^^^^
@@ -4088,13 +4088,15 @@ directory that you run the code,
 |                                     | and difference of total energy     |
 |                                     | as functions of time               |
 +-------------------------------------+------------------------------------+
+| *C2H2_trj.xyz*                      | Trajectory of atoms(ions):         |
+|                                     | Atomic coordinates, velocities,    |
+|                                     | and forces are printed             | 
++-------------------------------------+------------------------------------+
 | *PS_C_KY_n.dat*                     | information on pseodupotential     |
 |                                     | file for carbon atom               |
 +-------------------------------------+------------------------------------+
 | *PS_H_KY_n.dat*                     | information on pseodupotential     |
 |                                     | file for hydrogen atom             |
-+-------------------------------------+------------------------------------+
-| *xxxAYxxx(if other fieles exist)*   | xxxAYxxx(if other new fieles exist)|
 +-------------------------------------+------------------------------------+
 
 | You may download the above files (zipped file) from:
@@ -4139,9 +4141,9 @@ Results of time evolution calculation for vector potential, electric field, and 
    # Eall0: Initial energy
    # 1:Time[fs] 2:Eall[eV] 3:Eall-Eall0[eV] 
 
-**xxxAYxxx(if other fieles exist)**
+**C2H2_trj.xyz**
 
-xxxAYxxx.
+Atomic coordinates [Angstrom], velocities [a.u.] and forces [a.u.] are printed along the time evolution in xyz format. 
 
 FDTD simulation(electromagnetic analysis)
 ---------------
