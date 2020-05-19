@@ -1484,7 +1484,7 @@ used in the input file can be found in
    
    &system
      !periodic boundary condition
-     vyn_periodic = 'y'
+     yn_periodic = 'y'
      
      !grid box size(x,y,z)
      al(1:3) = 10.26d0, 10.26d0, 10.26d0
@@ -1603,7 +1603,7 @@ Mandatory: yn_periodic, al, nelem, natom, nelec, nstate
 
    &system
      !periodic boundary condition
-     vyn_periodic = 'y'
+     yn_periodic = 'y'
      
      !grid box size(x,y,z)
      al(1:3) = 10.26d0, 10.26d0, 10.26d0
