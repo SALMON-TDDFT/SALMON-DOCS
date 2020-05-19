@@ -86,32 +86,30 @@ If you do not specify it, the file name will start with 'default'.
 &system
 -------
 
-Mandatory: iperiodic, al, nstate, nelem, natom
+Mandatory: yn_periodic, al, nelem, natom, nelec, nstate 
 
-**For an isolated molecule (Tutorial-1, 2, 3)**:
+**For an isolated molecule (Exercises-1, 2, 3)**:
 
 ::
 
    &system
-     iperiodic = 0
-     al = 16d0, 16d0, 16d0
-     nstate = 5
+     yn_periodic = 'n'
+     al(1:3) = 16.0d0, 16.0d0, 16.0d0
      nelem = 2
      natom = 4
      nelec = 10
+     nstate = 6
    /
 
-``iperiodic = 0`` indicates that the isolated boundary condition will be
-used in the calculation. ``al = 16d0, 16d0, 16d0`` specifies the lengths
-of three sides of the rectangular parallelepiped where the grid points
-are prepared. ``nstate = 8`` indicates the number of Kohn-Sham orbitals
-to be solved. ``nelec = 10`` indicate the number of valence electrons in
-the system. Since the present code assumes that the system is spin
-saturated, ``nstate`` should be equal to or larger than ``nelec/2``.
-``nelem = 2`` and ``natom = 4`` indicate the number of elements and the
-number of atoms in the system, respectively.
+``yn_periodic = 'n'`` indicates that the isolated boundary condition will be used in the calculation.
+``al(1:3) = 16.0d0, 16.0d0, 16.0d0`` specifies the lengths of three sides of the rectangular parallelepiped
+where the grid points are prepared.
+``nelem = 2`` and ``natom = 4`` indicate the number of elements and the number of atoms in the system, respectively.
+``nelec = 10`` indicate the number of valence electrons in the system.
+ ``nstate = 6`` indicates the number of Kohn-Sham orbitals to be solved.
+``nstate`` should be equal to or larger than ``nelec/2``.
 
-**For a periodic system (Tutorial-4, 5)**:
+**For a periodic system (Tutorial-4, 5, 6)**:
 
 ::
 
