@@ -78,69 +78,8 @@ Mandatory: none
      sysname = 'C2H2'
    /
 
-'C2H2' defined by ``sysname = 'C2H2'`` will be used in the filenames of
-output files. If you do not specify it, the file name will start with
-'default'.
-
-.. _&functional:
-
-&functional
------------
-
-::
-
-   &functional
-     xc ='PZ'
-   /
-
-``xc ='PZ'`` indicates that (adiabatic) local density approximation is
-adopted (Perdew-Zunger: Phys. Rev. B23, 5048 (1981)). This is the
-default choice.
-
-For isolated systems (specified by ``iperiodic = 0`` in ``&system``),
-only the default choice of 'PZ' is available at present.
-
-For periodic systems (specified by ``iperiodic = 3`` in ``&system``),
-the following functionals may be available in addition to 'PZ', 
-``xc = 'PZM'``
-
-Perdew-Zunger LDA with modification to improve sooth connection between
-high density form and low density one, ``xc = 'TBmBJ' cval = 1.0``
-:J. P. Perdew and Alex Zunger, Phys. Rev. B 23, 5048 (1981).
-
-
-
-Tran-Blaha meta-GGA exchange with Perdew-Wang correlation. :Fabien Tran
-and Peter Blaha, Phys. Rev. Lett. 102, 226401 (2009). John P. Perdew and
-Yue Wang, Phys. Rev. B 45, 13244 (1992). This potential is known to
-provide a reasonable description for the bandage of various insulators.
-For this choice, the additional mixing parameter 'cval' may be
-specified. If cval is set to a minus value, the mixing-parameter will be
-computed following the formula in the original paper [Phys. Rev. Lett.
-102, 226401 (2009)]. The default value for this parameter is 1.0.
-
-Since version 1.1.0, exchange-correlation functionals in Libxc library
-(http://www.tddft.org/programs/libxc/) have been usable in SALMON. At
-present, usable functionals are limited to LDA and GGA. For periodic
-systems, meta-GGA functionals are usable as well. To specify the
-exchange-correlation potentials of Libxc library, there are two ways. If
-the exchange and correlation potentials are given separately, you need
-to specify both ``alibx`` and ``alibc`` separately. If the exchange and
-correlation potentials are given as a combined set, you need to specify
-``alibxc``. We show below an example:
-
-::
-
-   &functional
-   alibx = 'LDA_X'
-   alibc = 'LDA_C_PZ'
-   /
-
-Available sets of the functionals are listed at the website
-http://www.tddft.org/programs/libxc/functionals/ .
-
-Note that, the hybrid functionals (hybrid gga/mgga) are not supported in
-the current (version 1.2.0) of SALMON.
+'C2H2' defined by ``sysname = 'C2H2'`` will be used in the filenames of output files.
+If you do not specify it, the file name will start with 'default'.
 
 .. _&system:
 
@@ -260,6 +199,61 @@ local, respectively.
 of element #1. ``lloc_ps(1) = 2`` indicate the angular momentum of the
 pseudopotential that will be treated as local.
 
+.. _&functional:
+
+&functional
+-----------
+
+::
+
+   &functional
+     xc ='PZ'
+   /
+
+``xc ='PZ'`` indicates that (adiabatic) local density approximation is adopted (Perdew-Zunger: Phys. Rev. B23, 5048 (1981)).
+This is the default choice.
+
+For isolated systems (specified by ``yn_periodic = 'n'`` in ``&system``),
+only the default choice of 'PZ' is available at present.
+
+For periodic systems (specified by ````yn_periodic = 'y'`` in ``&system``),
+the following functionals may be available in addition to 'PZ', ``xc = 'PZM'``
+
+Perdew-Zunger LDA with modification to improve sooth connection between
+high density form and low density one, ``xc = 'TBmBJ' cval = 1.0``
+:J. P. Perdew and Alex Zunger, Phys. Rev. B 23, 5048 (1981).
+
+Tran-Blaha meta-GGA exchange with Perdew-Wang correlation. :Fabien Tran
+and Peter Blaha, Phys. Rev. Lett. 102, 226401 (2009). John P. Perdew and
+Yue Wang, Phys. Rev. B 45, 13244 (1992). This potential is known to
+provide a reasonable description for the bandage of various insulators.
+For this choice, the additional mixing parameter 'cval' may be
+specified. If cval is set to a minus value, the mixing-parameter will be
+computed following the formula in the original paper [Phys. Rev. Lett.
+102, 226401 (2009)]. The default value for this parameter is 1.0.
+
+Since version 1.1.0, exchange-correlation functionals in Libxc library
+(http://www.tddft.org/programs/libxc/) have been usable in SALMON. At
+present, usable functionals are limited to LDA and GGA. For periodic
+systems, meta-GGA functionals are usable as well. To specify the
+exchange-correlation potentials of Libxc library, there are two ways. If
+the exchange and correlation potentials are given separately, you need
+to specify both ``alibx`` and ``alibc`` separately. If the exchange and
+correlation potentials are given as a combined set, you need to specify
+``alibxc``. We show below an example:
+
+::
+
+   &functional
+     alibx = 'LDA_X'
+     alibc = 'LDA_C_PZ'
+   /
+
+Available sets of the functionals are listed at the website
+http://www.tddft.org/programs/libxc/functionals/ .
+
+Note that, the hybrid functionals (hybrid gga/mgga) are not supported in the current (version 2.0.0) of SALMON.
+
 .. _&atomic_coor:
 
 &atomic_coor
@@ -282,34 +276,6 @@ separate file)
 Cartesian coordinates of atoms. The first column indicates the element.
 Next three columns specify Cartesian coordinates of the atoms. The
 number in the last column labels the element.
-
-.. _&atomic_red_coor:
-
-&atomic_red_coor
-----------------
-
-Mandatory: atomic_coor or atomic_red_coor (they may be provided as a
-separate file)
-
-**For a crystalline silicon**:
-
-::
-
-   &atomic_red_coor
-     'Si' .0 .0 .0 1
-     'Si' .25 .25 .25 1
-     'Si' .5 .0 .5 1
-     'Si' .0 .5 .5 1
-     'Si' .5 .5 .0 1
-     'Si' .75 .25 .75 1
-     'Si' .25 .75 .75 1
-     'Si' .75 .75 .25 1
-   /
-
-Cartesian coordinates of atoms are specified in a reduced coordinate
-system. First column indicates the element, next three columns specify
-reduced Cartesian coordinates of the atoms, and the last column labels
-the element.
 
 .. _&rgrid:
 
@@ -382,34 +348,50 @@ options to examine the convergence. If the value of ``norm_rho_dng`` is
 specified, the convergence is examined by the squared difference of the
 electron density,
 
-.. _&hartree:
+.. _&analysis:
 
-&hartree
---------
+&analysis
+---------
 
 Mandatory: none
 
+The following namelists specify whether the output files are created or
+not after the calculation. In the ground state calculation of isolated
+systems (Tutorial-1):
+
 ::
 
-   &hartree
-     meo = 3
-     num_pole_xyz = 2,2,2
+   &analysis
+     out_psi = 'y'
+     out_dns = 'y'
+     out_dos = 'y'
+     out_pdos = 'y'
+     out_elf = 'y'
    /
 
-``meo`` specifies the order of multipole expansion of electron density
-that is used to prepare boundary condition for the Hartree potential.
+In the time evolution calculation of isolated systems (Tutorial-3):
 
--  ``meo=1``: Monopole expansion (spherical boundary condition).
--  ``meo=2``: Multipole expansions around each atom.
--  ``meo=3``: Multipole expansion around the center of mass of electrons
-   in cubits that are defined by ``num_pole_xyz``.
+::
 
-``num_pole_xyz(3)`` defines the division of space when ``meo = 3`` is
-specified.
+   &analysis
+     out_dns_rt = 'y'
+     out_elf_rt = 'y'
+     out_estatic_rt = 'y'
+   /
 
-A default for ``meo`` is ``3``, and defaults for ``num_pole_xyz`` are
-``(0,0,0)``. When default is set for ``num_pole_xyz``, the division of
-space is carried out using a prescribed method.
+In the following namelists, variables related to time-frequency Fourier
+analysis are specified.
+
+::
+
+   &analysis
+     nenergy=1000
+     de=0.001
+   /
+
+``nenergy=1000`` specifies the number of energy steps, and ``de=0.001``
+specifies the energy spacing in the time-frequency Fourier
+transformation.
 
 .. _&tgrid:
 
@@ -428,36 +410,6 @@ Mandatory: dt, Nt
 ``dt=1.25d-3`` specifies the time step of the time evolution
 calculation. ``nt=5000`` specifies the number of time steps in the
 calculation.
-
-.. _&propagation:
-
-&propagation
-------------
-
-This namelist specifies the numerical method for time evolution
-calculations of electron orbitals.
-
-::
-
-   &propagation
-     propagator='etrs'
-   /
-
-``propagator = 'etrs'`` indicates the use of enforced time-reversal
-symmetry propagator. `M.A.L. Marques, A. Castro, G.F. Bertsch, and A.
-Rubio, Comput. Phys. Commun., 151 60
-(2003) <https://doi.org/10.1016/S0010-4655(02)00686-0>`__.
-
-::
-
-   &propagation
-     propagator='middlepoint'
-   /
-
-``propagation='middlepoint'`` indicates that Hamiltonian at midpoint of
-two-times is used.
-
-The default is *middlepoint*.
 
 .. _&emfield:
 
@@ -572,50 +524,35 @@ polarization in the time evolution calculation. The default is ``'tr'``.
 For a periodic system, it is also specify 'Acos3', 'Acos4', 'Acos6',
 'Acos8' for ``ae_shape1``.
 
-.. _&analysis:
+.. _&propagation:
 
-&analysis
----------
+&propagation
+------------
 
-Mandatory: none
-
-The following namelists specify whether the output files are created or
-not after the calculation. In the ground state calculation of isolated
-systems (Tutorial-1):
+This namelist specifies the numerical method for time evolution
+calculations of electron orbitals.
 
 ::
 
-   &analysis
-     out_psi = 'y'
-     out_dns = 'y'
-     out_dos = 'y'
-     out_pdos = 'y'
-     out_elf = 'y'
+   &propagation
+     propagator='etrs'
    /
 
-In the time evolution calculation of isolated systems (Tutorial-3):
+``propagator = 'etrs'`` indicates the use of enforced time-reversal
+symmetry propagator. `M.A.L. Marques, A. Castro, G.F. Bertsch, and A.
+Rubio, Comput. Phys. Commun., 151 60
+(2003) <https://doi.org/10.1016/S0010-4655(02)00686-0>`__.
 
 ::
 
-   &analysis
-     out_dns_rt = 'y'
-     out_elf_rt = 'y'
-     out_estatic_rt = 'y'
+   &propagation
+     propagator='middlepoint'
    /
 
-In the following namelists, variables related to time-frequency Fourier
-analysis are specified.
+``propagation='middlepoint'`` indicates that Hamiltonian at midpoint of
+two-times is used.
 
-::
-
-   &analysis
-     nenergy=1000
-     de=0.001
-   /
-
-``nenergy=1000`` specifies the number of energy steps, and ``de=0.001``
-specifies the energy spacing in the time-frequency Fourier
-transformation.
+The default is *middlepoint*.
 
 .. _&multiscale:
 
@@ -651,43 +588,33 @@ x-direction.
 points in the vacuum region, ``nxvacl_m`` for the left and ``nxvacr_m``
 for the right from the surface of the material.
 
-.. _&parallel:
+.. _&atomic_red_coor:
 
-&parallel
----------
+&atomic_red_coor
+----------------
 
-When you execute a job with MPI parallelization, you are not required to
-specify any parameters that describe the assignment of the
-parallelization; the assignment is carried out automatically. You may
-also specify the parameters explicitly as below.
+Mandatory: atomic_coor or atomic_red_coor (they may be provided as a
+separate file)
 
-Mandatory: none
+**For a crystalline silicon**:
 
 ::
 
-   &parallel
-     nproc_ob = 1
-     nproc_domain = 1,1,1
-     nproc_domain_s = 1,1,1
-   / 
+   &atomic_red_coor
+     'Si' .0 .0 .0 1
+     'Si' .25 .25 .25 1
+     'Si' .5 .0 .5 1
+     'Si' .0 .5 .5 1
+     'Si' .5 .5 .0 1
+     'Si' .75 .25 .75 1
+     'Si' .25 .75 .75 1
+     'Si' .75 .75 .25 1
+   /
 
--  ``nproc_ob`` specifies the number of MPI parallelization to divide
-   the electron orbitals. The default value is 0 (automatic
-   parallelization).
--  ``nproc_domain(3)``\ specifies the number of MPI parallelization to
-   divide the spatial grids of the electron orbitals in three Cartesian
-   directions. The default values are (0/0/0) (automatic
-   parallelization).
--  ``nproc_domain_s(3)'`` specifies the number of MPI parallelization to
-   divide the spatial grids related to the electron density in three
-   Cartesian directions. The default values are (0/0/0) (automatic
-   parallelization).
+Cartesian coordinates of atoms are specified in a reduced coordinate
+system. First column indicates the element, next three columns specify
+reduced Cartesian coordinates of the atoms, and the last column labels
+the element.
 
-The following conditions must be satisfied.
 
--  The total number of processors must be equal to both
-   ``nproc_ob * nproc_domain(1) * nproc_domain(2) * nproc_domain(3)``
-   and also
-   ``nproc_domain_s(1) * nproc_domain_s(2) * nproc_domain_s(3)``.
--  ``nproc_domain_s(1)`` is a multiple of ``nproc_domain(1)``, and the
-   same relations to the second and third components.
+
