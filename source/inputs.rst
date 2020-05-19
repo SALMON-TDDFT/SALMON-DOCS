@@ -489,23 +489,22 @@ in the spatial region where the material exists.
 &atomic_coor
 ------------
 
-Mandatory: atomic_coor or atomic_red_coor (they may be provided as a
-separate file)
+Mandatory: atomic_coor or atomic_red_coor
 
 **For C2H2 molecule**:
 
 ::
 
    &atomic_coor
-     'C' 0.000000 0.000000 0.599672 1
-     'H' 0.000000 0.000000 1.662257 2
-     'C' 0.000000 0.000000 -0.599672 1
-     'H' 0.000000 0.000000 -1.662257 2
+     'C'    0.000000    0.000000    0.599672  1
+     'H'    0.000000    0.000000    1.662257  2
+     'C'    0.000000    0.000000   -0.599672  1
+     'H'    0.000000    0.000000   -1.662257  2
    /
 
 Cartesian coordinates of atoms. The first column indicates the element.
-Next three columns specify Cartesian coordinates of the atoms. The
-number in the last column labels the element.
+Next three columns specify Cartesian coordinates of the atoms.
+The number in the last column labels the element.
 
 
 .. _&atomic_red_coor:
@@ -513,28 +512,26 @@ number in the last column labels the element.
 &atomic_red_coor
 ----------------
 
-Mandatory: atomic_coor or atomic_red_coor (they may be provided as a
-separate file)
+Mandatory: atomic_coor or atomic_red_coor
 
 **For a crystalline silicon**:
 
 ::
 
    &atomic_red_coor
-     'Si' .0 .0 .0 1
-     'Si' .25 .25 .25 1
-     'Si' .5 .0 .5 1
-     'Si' .0 .5 .5 1
-     'Si' .5 .5 .0 1
-     'Si' .75 .25 .75 1
-     'Si' .25 .75 .75 1
-     'Si' .75 .75 .25 1
+     'Si'       .0      .0      .0      1
+     'Si'       .25     .25     .25     1
+     'Si'       .5      .0      .5      1
+     'Si'       .0      .5      .5      1
+     'Si'       .5      .5      .0      1
+     'Si'       .75     .25     .75     1
+     'Si'       .25     .75     .75     1
+     'Si'       .75     .75     .25     1
    /
 
-Cartesian coordinates of atoms are specified in a reduced coordinate
-system. First column indicates the element, next three columns specify
-reduced Cartesian coordinates of the atoms, and the last column labels
-the element.
+Cartesian coordinates of atoms are specified in a reduced coordinate system.
+First column indicates the element, next three columns specify reduced Cartesian coordinates of the atoms,
+and the last column labels the element.
 
 
 
