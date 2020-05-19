@@ -66,9 +66,9 @@ Next 2 exercises (Exercise-8 ~ 9) are for geometry optimization and
 Ehrenfest molecular dynamics based on the TDDFT method
 for an isolated molecule, acetylene C2H2. 
 :any:`Exercise-8 <exercise-8>`
-illustrates xxxAYxxx.
+illustrates the geometry optimization in the ground state.
 :any:`Exercise-9 <exercise-9>`
-illustrates xxxAYxxx.
+illustrates the Ehrenfest molecular dynamics under the pulsed electric field.
 
 Exercise-10 are for an metallic nanosphere described by dielectric function.
 The calculation method is the Finite-Difference Time-Domain (FDTD).
@@ -3424,7 +3424,7 @@ Mandatory: theory
 
 ``theory = 'dft'`` indicates that the ground state calculation by DFT is carried out in
 the present job. See :any:`&calculation in Inputs <&calculation>` for detail.
-``yn_opt = 'y'`` indicates xxxAYxxx.
+``yn_opt = 'y'`` indicates that the geometry optimization calculation is performed.
 
 **&control**
 
@@ -3594,7 +3594,8 @@ separate file)
 Cartesian coordinates of atoms. The first column indicates the element.
 Next three columns specify Cartesian coordinates of the atoms. The
 number in the next column labels the element.
-The last column xxxAYxxx.
+The 'y' at the last column indicates to allow to change atomic coordinate during the optimization.
+('n' can be used to fix the atomic cooordinate.)
 
 Output files
 ^^^^^^^^^^^^	
