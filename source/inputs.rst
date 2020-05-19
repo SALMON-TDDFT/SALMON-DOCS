@@ -12,21 +12,32 @@ A thorough list of the input keywords can be found in the downloaded file in
 &calculation
 ------------
 
-Mandatory: calc_mode
+Mandatory: theory
 
 ::
 
    &calculation
-     calc_mode = 'GS'
+     theory = 'dft'
    /
 
-The value of the ``calc_mode`` should be one of ``'GS'``, ``'RT'``, and
-``'GS-RT'``. For isolated systems (specified by ``iperiodic = 3`` in
-``&system``), the ground state (``'GS'``) and the real time (``'RT'``) calculations should be done separately and sequentially.
-For periodic systems (specified by ``iperiodic = 3`` in ``&system``), both ground state and real time calculations should be carried out
-as a single task (``calc_mode = 'GS_RT'``).
+The value of the ``theory`` should be one of ``'dft'``, ``'dft_md'``, ``'tddft_response'``, ``'tddft_pulse'``,
+``'single_scale_maxwell_tddft'``, ``'multi_scale_maxwell_tddft'``, ``'maxwell'``, and ``'dft_k_expand'``.
 
-For Maxwell + TDDFT multi-scale calculation, add the following namelist, ``use_ms_maxwell = 'y'``.
+``dft`` : ground state calculation based on DFT
+
+``dft_md`` : adiabatic ab initio MD simulations based on DFT
+
+``tddft_response`` : simulations based on TDDFT to obtain linear-response
+
+``tddft_pulse`` : simulations based on TDDFT using pulsed light
+
+``single_scale_maxwell_tddft`` : coupled Maxwell and TDDFT single-scale simulation
+
+``multi_scale_maxwell_tddft`` : coupled Maxwell and TDDFT multi-scale simulation
+
+``maxwell`` : electromagnetic simulations based on the Maxwell's equations
+
+``dft_k_expand`` : convert checkpoint data of dft with k-points calculation to that of larger supercell system with gamma-point
 
 .. _&units:
 
