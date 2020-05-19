@@ -3135,10 +3135,10 @@ See :any:`&propagation in Inputs <&propagation>` for more information.
 This input keyword specifies information necessary for Maxwell-TDDFT multiscale calculations.
 
 ``nx_m = 8`` specifies the number of the macroscopic grid points
-in for x-direction in the spatial region where the material exists.
+for x-direction in the spatial region where the material exists.
 ``ny_m = 1`` and ``nz_m = 1`` are those for y- and z-directions.
 
-``hx_m = 100.0d0`` specifies the grid spacing of the macroscopic grid in x-direction.
+``hx_m = 100.0d0`` specifies the grid spacing of the macroscopic grid for x-direction.
 ``hy_m = 100.0d0`` and ``hz_m = 100.0d0`` are those for y- and z-directions.
 
 ``nxvacl_m = 1000`` and ``nxvacr_m = 1000`` indicate the number of grid points in the vacuum region,
