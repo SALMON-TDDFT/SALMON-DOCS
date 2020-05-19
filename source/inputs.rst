@@ -227,24 +227,22 @@ Note that, the hybrid functionals (hybrid gga/mgga) are not supported in the cur
 
 Mandatory: dl or num_rgrid
 
-This namelist provides grid spacing of Cartesian coordinate system.
-``dl(3)`` specify the grid spacing in three Cartesian coordinates. This
-is adopted for C2H2 calculation (Tutorial-1).
+``dl(1:3) = 0.25d0, 0.25d0, 0.25d0`` specify the grid spacing in three Cartesian coordinates.
+This is adopted for C2H2 calculation (Excercises-1, 2, 3, 8, 9).
 
 ::
 
    &rgrid
-   dl = 0.25d0, 0.25d0, 0.25d0
+     dl(1:3) = 0.25d0, 0.25d0, 0.25d0
    /
 
-``num_rgrid(3)`` specify the number of grid points in each Cartesian
-direction. This is adopted for crystalline Is calculation (Tutorial-4,
-5, 6).
+``num_rgrid(1:3) = 12, 12, 12`` specify the number of grid points in each Cartesian direction.
+This is adopted for crystalline Is calculation (Excercises-4, 5, 6, 7).
 
 ::
 
    &rgrid
-     num_rgrid = 12,12,12
+     num_rgrid(1:3) = 12, 12, 12
    /
 
 .. _&kgrid:
@@ -254,12 +252,12 @@ direction. This is adopted for crystalline Is calculation (Tutorial-4,
 
 Mandatory: none
 
-This namelist provides grid spacing of k-space for periodic systems.
+This group provides grid spacing of k-space for periodic systems.
 
 ::
 
    &kgrid
-   num_kgrid = 4,4,4
+     num_kgrid(1:3) = 4, 4, 4
    /
 
 .. _&scf:
@@ -269,27 +267,18 @@ This namelist provides grid spacing of k-space for periodic systems.
 
 Mandatory: nscf
 
-This namelists specify parameters related to the self-consistent field
-calculation.
+This group specifies parameters related to the self-consistent field calculation.
 
 ::
 
    &scf
-     ncg = 4
-     nscf = 1000
-     convergence = 'norm_rho_dng'
-     threshold_norm_rho = 1.d-15
+     nscf = 200
+     threshold = 1.0d-9
    /
 
-``ncg = 4`` is the number of conjugate-gradient iterations in solving
-the Kohn-Sham equation. Usually this value should be 4 or 5.
-``nscf = 1000`` is the number of scf iterations. For isolated systems
-specified by ``&system/iperiodic = 0``, the scf loop in the ground state
-calculation ends before the number of the scf iterations reaches
-``nscf``, if a convergence criterion is satisfied. There are several
-options to examine the convergence. If the value of ``norm_rho_dng`` is
-specified, the convergence is examined by the squared difference of the
-electron density,
+``nscf = 200`` is the number of scf iterations in the ground state calculation.
+the scf loop in the ground state calculation ends before the number of the scf iterations reaches ``nscf``,
+if a convergence criterion is satisfied. 
 
 .. _&analysis:
 
@@ -298,68 +287,55 @@ electron density,
 
 Mandatory: none
 
-The following namelists specify whether the output files are created or
-not after the calculation. In the ground state calculation of isolated
-systems (Tutorial-1):
+The following input keywords specify whether the output files are created or not after the calculation.
+In the ground state calculation of isolated systems (Excercise-1):
 
 ::
 
    &analysis
-     out_psi = 'y'
-     out_dns = 'y'
-     out_dos = 'y'
-     out_pdos = 'y'
-     out_elf = 'y'
+     yn_out_psi  = 'y'
+     yn_out_dns  = 'y'
+     yn_out_dos  = 'y'
+     yn_out_pdos = 'y'
+     yn_out_elf  = 'y'
    /
 
-In the time evolution calculation of isolated systems (Tutorial-3):
+In the following input keywords, variables related to time-frequency Fourier analysis are specified.
 
 ::
 
    &analysis
-     out_dns_rt = 'y'
-     out_elf_rt = 'y'
-     out_estatic_rt = 'y'
+     de = 1.0d-2
+     nenergy = 3000
    /
 
-In the following namelists, variables related to time-frequency Fourier
-analysis are specified.
-
-::
-
-   &analysis
-     nenergy=1000
-     de=0.001
-   /
-
-``nenergy=1000`` specifies the number of energy steps, and ``de=0.001``
-specifies the energy spacing in the time-frequency Fourier
-transformation.
+``de = 1.0d-2`` specifies the energy spacing, 
+and ``nenergy = 3000`` specifies the number of energy steps
+in the time-frequency Fourier transformation.
 
 .. _&tgrid:
 
 &tgrid
 ------
 
-Mandatory: dt, Nt
+Mandatory: dt, nt
 
 ::
 
    &tgrid
-     dt=1.25d-3
-     nt=5000
+     dt = 1.25d-3
+     nt = 5000
    /
 
-``dt=1.25d-3`` specifies the time step of the time evolution
-calculation. ``nt=5000`` specifies the number of time steps in the
-calculation.
+``dt = 1.25d-3`` specifies the time step of the time evolution calculation. 
+``nt = 5000`` specifies the number of time steps in the calculation.
 
 .. _&emfield:
 
 &emfield
 --------
 
-This namelist specifies the pulse shape of an electric filed applied to
+This group specifies the pulse shape of an electric filed applied to
 the system in time evolution calculations. We explain below separating
 two cases, :any:`linear-response-calculations`
 and :any:`pulsed-electric-field-calculations`.
