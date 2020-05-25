@@ -1898,8 +1898,8 @@ A complete list of the input keywords can be found in :any:`List of all input ke
    
    &tgrid
      !time step size and number of time grids(steps)
-     dt = 0.16d0
-     nt = 3000
+     dt = 0.08d0
+     nt = 6000
    /
    
    &emfield
@@ -1912,11 +1912,6 @@ A complete list of the input keywords can be found in :any:`List of all input ke
      ! Defenition of the incident pulse is wrriten in:                     !
      ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
      !---------------------------------------------------------------------!
-   /
-   
-   &propagation
-     !propagator('etrs': time-reversal symmetry propagator)
-     propagator = 'etrs'
    /
    
    &analysis
@@ -2082,12 +2077,12 @@ Mandatory: dt, nt
    
    &tgrid
      !time step size and number of time grids(steps)
-     dt = 0.16d0
-     nt = 3000
+     dt = 0.08d0
+     nt = 6000
    /
 
-``dt = 0.16d0`` specifies the time step of the time evolution calculation.
-``nt = 3000`` specifies the number of time steps in the calculation.
+``dt = 0.08d0`` specifies the time step of the time evolution calculation.
+``nt = 6000`` specifies the number of time steps in the calculation.
 
 **&emfield**
 
@@ -2110,20 +2105,6 @@ Mandatory:ae_shape1
 ``as_shape1 = 'impulse'`` indicates that a weak impulsive field is applied to all electrons at *t=0*
 ``epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0`` specify a unit vector that indicates the direction of the impulse.
 See :any:`&emfield in Inputs <&emfield>` for detail.
-
-**&propagation**
-
-Mandatory: none
-
-::
-   
-   &propagation
-     !propagator('etrs': time-reversal symmetry propagator)
-     propagator = 'etrs'
-   /
-
-``propagator = 'etrs'`` indicates the use of enforced time-reversal symmetry propagator.
-See :any:`&propagation in Inputs <&propagation>` for more information.
 
 **&analysis**
 
@@ -2353,8 +2334,8 @@ A complete list of the input keywords can be found in :any:`List of all input ke
    
    &tgrid
      !time step size and number of time grids(steps)
-     dt = 0.16d0
-     nt = 3000
+     dt = 0.08d0
+     nt = 6000
    /
    
    &emfield
@@ -2376,11 +2357,6 @@ A complete list of the input keywords can be found in :any:`List of all input ke
      ! Defenition of the incident pulse is wrriten in:                     !
      ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
      !---------------------------------------------------------------------!
-   /
-   
-   &propagation
-     !propagator('etrs': time-reversal symmetry propagator)
-     propagator = 'etrs'
    /
    
    &atomic_red_coor
@@ -2540,12 +2516,12 @@ Mandatory: dt, nt
    
    &tgrid
      !time step size and number of time grids(steps)
-     dt = 0.16d0
-     nt = 3000
+     dt = 0.08d0
+     nt = 6000
    /
 
-``dt = 0.16d0`` specifies the time step of the time evolution calculation.
-``nt = 3000`` specifies the number of time steps in the calculation.
+``dt = 0.08d0`` specifies the time step of the time evolution calculation.
+``nt = 6000`` specifies the number of time steps in the calculation.
 
 **&emfield**
 
@@ -2593,20 +2569,6 @@ vector of the pulsed electric field. Specifying only the real part, it
 describes a linearly polarized pulse.
 
 See :any:`&emfield in Inputs <&emfield>` for detail.
-
-**&propagation**
-
-Mandatory: none
-
-::
-   
-   &propagation
-     !propagator('etrs': time-reversal symmetry propagator)
-     propagator = 'etrs'
-   /
-
-``propagator = 'etrs'`` indicates the use of enforced time-reversal symmetry propagator.
-See :any:`&propagation in Inputs <&propagation>` for more information.
 
 **&atomic_red_coor**
 
@@ -2828,8 +2790,8 @@ A complete list of the input keywords can be found in :any:`List of all input ke
     
     &tgrid
       !time step size and number of time grids(steps)
-      dt = 0.16d0
-      nt = 3000
+      dt = 0.08d0
+      nt = 6000
     /
     
     &emfield
@@ -2851,11 +2813,6 @@ A complete list of the input keywords can be found in :any:`List of all input ke
       ! Defenition of the incident pulse is wrriten in:                     !
       ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
       !---------------------------------------------------------------------!
-    /
-    
-    &propagation
-      !propagator('etrs': time-reversal symmetry propagator)
-      propagator = 'etrs'
     /
     
     &multiscale
@@ -3042,12 +2999,12 @@ Mandatory: dt, nt
    
    &tgrid
      !time step size and number of time grids(steps)
-     dt = 0.16d0
-     nt = 3000
+     dt = 0.08d0
+     nt = 6000
    /
 
-``dt = 0.16d0`` specifies the time step of the time evolution calculation.
-``nt = 3000`` specifies the number of time steps in the calculation.
+``dt = 0.08d0`` specifies the time step of the time evolution calculation.
+``nt = 6000`` specifies the number of time steps in the calculation.
 
 **&emfield**
 
@@ -3095,20 +3052,6 @@ vector of the pulsed electric field. Specifying only the real part, it
 describes a linearly polarized pulse.
 
 See :any:`&emfield in Inputs <&emfield>` for detail.
-
-**&propagation**
-
-Mandatory: none
-
-::
-   
-   &propagation
-     !propagator('etrs': time-reversal symmetry propagator)
-     propagator = 'etrs'
-   /
-
-``propagator = 'etrs'`` indicates the use of enforced time-reversal symmetry propagator.
-See :any:`&propagation in Inputs <&propagation>` for more information.
 
 **&multiscale**
 
