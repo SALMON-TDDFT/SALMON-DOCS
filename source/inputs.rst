@@ -427,33 +427,6 @@ that specifies the treatment of the polarization in the time evolution calculati
 The default is ``'tr'``. 
 For a periodic system, it is also specify 'Acos3', 'Acos4', 'Acos6', 'Acos8' for ``ae_shape1``.
 
-.. _&propagation:
-
-&propagation
-------------
-
-This group specifies the numerical method for time evolution calculations of electron orbitals.
-
-::
-
-   &propagation
-     propagator = 'etrs'
-   /
-
-``propagator = 'etrs'`` indicates the use of enforced time-reversal symmetry propagator.
-`M.A.L. Marques, A. Castro, G.F. Bertsch, and A. Rubio,
-Comput. Phys. Commun., 151 60 (2003) <https://doi.org/10.1016/S0010-4655(02)00686-0>`__.
-
-::
-
-   &propagation
-     propagator = 'middlepoint'
-   /
-
-``propagator = 'middlepoint'`` indicates that Hamiltonian at midpoint of two-times is used.
-
-The default is *middlepoint*.
-
 .. _&multiscale:
 
 &multiscale
