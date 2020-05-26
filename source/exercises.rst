@@ -3728,7 +3728,7 @@ A complete list of the input keywords that can be used in the input file can be 
    
    &tgrid
      !time step size and number of time grids(steps)
-     dt = 1.25d-3
+     dt = 1.00d-3
      nt = 5000
    /
    
@@ -3912,11 +3912,11 @@ Mandatory: dt, nt
    
    &tgrid
      !time step size and number of time grids(steps)
-     dt = 1.25d-3
+     dt = 1.00d-3
      nt = 5000
    /
 
-``dt = 1.25d-3`` specifies the time step of the time evolution
+``dt = 1.00d-3`` specifies the time step of the time evolution
 calculation. ``nt = 5000`` specifies the number of time steps in the
 calculation.
 
