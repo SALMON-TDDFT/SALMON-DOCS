@@ -189,8 +189,8 @@ xxxx.
    | ``'orbital_sequential'`` / orbital-space major ordering.
    |
    | Suggestion:
-   |   `&calculation/theory='dft' or 'dft_md'`          / `orbital_sequential`
-   |   `&calculation/theory='tddft*' or '*maxwell_tddft'/ `grid_sequential`
+   |   ``&calculation/theory='dft' or 'dft_md'``            / `orbital_sequential`
+   |   ``&calculation/theory='tddft*' or '*maxwell_tddft'`` / `grid_sequential`
 
 
 &system 
@@ -1084,18 +1084,34 @@ xxxx.
 &code
 -----
 
-- **yn_want_communication_overlapping** (character, Default='n')[Trial]
-   | Available for ``theory='xxx'``.
-   xxx.
+- **yn_want_stencil_hand_vectorization** (character, Default='y')
+   | This option requests hand-vectorized optimization code of stencil in the hamiltonian calculation.
+   | SALMON checks the calculation can be used the hand-vectorized code.
+   | If failing it, SALMON will uses the typical implementation.
+
+- **yn_want_communication_overlapping** (character, Default='n')
+   | Available for ``theory='tddft*' or '*maxwell_tddft'``
+   | This option requests computation/communication overlap algorithm to improve the performance of stencil in the hamiltonian calculation.
+   | SALMON checks the calculation can be used the overlap algorithm.
+   | If failing it, SALMON will uses the non-overlap algorithm.
 
 - **stencil_openmp_mode** (character, Default='auto')
-xxxx.
-
+   | This option selects a OpenMP parallelization mode of stencil in the hamiltonian calculation.
+   | ``auto``    / SALMON decides the parallelization target automatically.
+   | ``orbital`` / OpenMP parallelization is applied to orbital (and k-point) loop.
+   | ``rgrid``   / OpenMP parallelization is applied to real-space grid loop.
+   
 - **current_openmp_mode** (character, Default='auto')
-xxxx.
+   | This option selects a OpenMP parallelization mode of the current calculation.
+   | ``auto``    / SALMON decides the parallelization target automatically.
+   | ``orbital`` / OpenMP parallelization is applied to orbital (and k-point) loop.
+   | ``rgrid``   / OpenMP parallelization is applied to real-space grid loop.
 
 - **force_openmp_mode** (character, Default='auto')
-xxxx.
+   | This option selects a OpenMP parallelization mode of the force calculation.
+   | ``auto``    / SALMON decides the parallelization target automatically.
+   | ``orbital`` / OpenMP parallelization is applied to orbital (and k-point) loop.
+   | ``rgrid``   / OpenMP parallelization is applied to real-space grid loop.
 
 
 **Following variables are moved from the isolated part. Some of them may be added to common input, be combined to it, and be removed.**
