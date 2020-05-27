@@ -145,38 +145,52 @@ xxxx.
 ---------
 
 - **nproc_k/nproc_ob/nproc_rgrid(3)** (integer, Default=0)
-   | Available for ``theory='xxx', 'maxwell'``.
-   | Old infomation: 0d  xxxxx
+   | Old infomation: 0d
    | Options
    |   ``nproc_k``/ Number of MPI parallelization for orbitals that related to the wavefunction calculation.
    |   ``nproc_ob``/ Number of MPI parallelization for orbitals that related to the wavefunction calculation.
    |   ``nproc_rgrid(3)'``/ Number of MPI parallelization for each direction in real-space that related to the wavefunction and the electron density calculations. 
    |
-   | Defaults are ``0`` for ``nproc_k``/``nproc_ob`` and ``(0/0/0)`` for ``nproc_rgrid``. If users use the defaults, automatic proccess assignment is done. Users can also specify ``nproc_k``, ``nproc_ob``, and ``nproc_rgrid`` manually. In that case, ``nproc_k`` must be set to ``1`` for isolated system calculations. ``nproc_k`` and ``nproc_k`` must be set to ``1`` for ``theory='maxwell'``. In addition, followings must be satisfied.
+   | Defaults are ``0`` for ``nproc_k``/``nproc_ob`` and ``(0,0,0)`` for ``nproc_rgrid``. If users use the defaults, automatic proccess assignment is done. Users can also specify ``nproc_k``, ``nproc_ob``, and ``nproc_rgrid`` manually. In that case, ``nproc_k`` must be set to ``1`` for isolated system calculations. ``nproc_k`` and ``nproc_k`` must be set to ``1`` for ``theory='maxwell'``. In addition, followings must be satisfied.
    |
-   |   ``nproc_k`` \* ``nproc_ob`` \* ``nproc_rgrid(1)`` \* ``nproc_rgrid(2)`` \* ``nproc_rgrid(3)`` \= total number of processors
-   xxxxx. 
+   |   ``nproc_k`` \* ``nproc_ob`` \* ``nproc_rgrid(1)`` \* ``nproc_rgrid(2)`` \* ``nproc_rgrid(3)`` \= total number of processes.
 
 - **yn_ffte** (character, Default='n')
-   | Available for ``theory='xxx'``.
-   | Old infomation: 0d  xxxx
+   | Available for ``&system/yn_periodic='y'``
+   | Old infomation: 0d
    | Method of Fourier transformation.  
    | Enable(``'y'``)/disable(``'n'``).
-   This variable is effective only when ``&system/yn_periodic='y'``. (xxxx?)
+   | SALMON uses FFT (via FFTE library) to solve poisson equation.
+   | When enabling it, followings must be satisfied.
+   |
+   | ``mod(num_rgrid(1), nproc_rgrid(2)) == 0``
+   | ``mod(num_rgrid(2), nproc_rgrid(2)) == 0``
+   | ``mod(num_rgrid(2), nproc_rgrid(3)) == 0``
+   | ``mod(num_rgrid(3), nproc_rgrid(3)) == 0``
 
 - **yn_scalapack** (character, Default='n')
-   xxxxx. 
-
-- **yn_scalapack_red_mem** (character, Default='n')
-   xxxxx. 
+   | Available for ``&calculation/theory='dft' or 'dft_md'``
+   | SALMON uses ScaLAPACK library to solve eigenvalue problem in subspace diagonalization.
+   | When enabling it, you should build SALMON by linking ScaLAPACK library.
 
 - **yn_eigenexa** (character, Default='n')
-   xxxxx. 
+   | Available for ``&calculation/theory='dft' or 'dft_md'``
+   | SALMON uses RIKEN R-CCS EigenExa library to solve eigenvalue problem in subspace diagonalization.
+   | When enabling it, you should build SALMON by linking ScaLAPACK and EigenExa libraries.
+   
+- **yn_scalapack_red_mem** (character, Default='n')
+   | Available for ``&parallel/yn_scalapack='y'`` or ``&parallel/yn_eigenexa='y'``
+   | We use ScaLAPACK/EigenExa libraries by optimized algorithm to reduce memory consumption.
 
 - **process_allocation** (character, Default='grid_sequential')
-   | Available for ``theory='xxx'``.
    | Old infomation: 0d
-   xxx.
+   | You can select the process allocation ordering.
+   | ``'grid_sequential'``    / real-space grid major ordering.
+   | ``'orbital_sequential'`` / orbital-space major ordering.
+   |
+   | Suggestion:
+   |   `&calculation/theory='dft' or 'dft_md'`          / `orbital_sequential`
+   |   `&calculation/theory='tddft*' or '*maxwell_tddft'/ `grid_sequential`
 
 
 &system 
