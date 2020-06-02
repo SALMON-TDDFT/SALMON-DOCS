@@ -73,20 +73,19 @@ List of all input keywords
    xxx.
 
 - **yn_restart** (character, Default='n')
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='dft' or 'tddft``.
    | Restart option.
    Enable(``'y'``)/disable(``'n'``).
 
 - **directory_read_data** (character, Default='restart/')
-   | Available for ``theory='xxx'``.
    | Directory name for the restart data that is written down in the previous run 
 
 - **yn_self_checkpoint** (character, Default='n')
-   | Available for ``theory='xxx'``.
-   xxx.
+   | If set `'y'`: When saving intermediate results of the simulation (this call checkpointing), each process write/read a checkpoint data independently.
+   | This option helps large-scale simulation to recover from system failure, which reduce restart costs.
 
 - **checkpoint_interval** (integer, Default=0)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='dft' or 'tddft'``.
    Interval of time step (or iteration step) of writing down check-point data during the time-propagation or iteration. 
    These are not written down If ``0`` is set.
 
@@ -121,10 +120,16 @@ List of all input keywords
    If negative time is chosen, the automatic shutdown is not performed.
 
 - **method_wf_distributor** (character, Default='single')
-xxxx.
+   | Available for ``theory='dft' or 'tddft'``.
+   | Select a method of save/load the wave function.
+   | 'single': wave function saves/loads a single shared file.
+   | 'slice' : wave function saves/loads to a file per the orbital function. 
+   | 'slice' reduces I/O costs, and they can helps flexible large-scale simulation.
 
 - **nblock_wf_distribute** (integer, Default='16')
-xxxx.
+   | Available for ``method_wf_distributor='slice'``.
+   | 'slice' mode saves ``nblock_wf_distribute``-files to a directory.
+   | In a default, they will saves 16 files to same directory.
 
 - **yn_gbp** (character, Default='n')
    xxx.
