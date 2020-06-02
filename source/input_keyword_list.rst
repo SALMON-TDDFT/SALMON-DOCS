@@ -73,7 +73,7 @@ List of all input keywords
    xxx.
 
 - **yn_restart** (character, Default='n')
-   | Available for ``theory='dft' or 'tddft``.
+   | Available for ``theory='dft*' or '*tddft*'``.
    | Restart option.
    Enable(``'y'``)/disable(``'n'``).
 
@@ -85,7 +85,7 @@ List of all input keywords
    | This option helps large-scale simulation to recover from system failure, which reduce restart costs.
 
 - **checkpoint_interval** (integer, Default=0)
-   | Available for ``theory='dft' or 'tddft'``.
+   | Available for ``theory='dft*' or '*tddft*'``.
    Interval of time step (or iteration step) of writing down check-point data during the time-propagation or iteration. 
    These are not written down If ``0`` is set.
 
@@ -120,7 +120,7 @@ List of all input keywords
    If negative time is chosen, the automatic shutdown is not performed.
 
 - **method_wf_distributor** (character, Default='single')
-   | Available for ``theory='dft' or 'tddft'``.
+   | Available for ``theory='dft*' or '*tddft*'``.
    | Select a method of save/load the wave function.
    | 'single': wave function saves/loads a single shared file.
    | 'slice' : wave function saves/loads to a file per the orbital function. 
