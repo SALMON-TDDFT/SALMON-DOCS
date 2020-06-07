@@ -26,9 +26,7 @@ List of all input keywords
 -  `&opt[Trial]`_
 -  `&md[Trial]`_
 -  `&group_fundamental[Trial]`_
--  `&group_parallel[Trial]`_  
 -  `&group_hartree[Trial]`_ 
--  `&group_file[Trial]`_
 -  `&group_others[Trial]`_
 
 
