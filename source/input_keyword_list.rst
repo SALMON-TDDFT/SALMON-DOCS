@@ -125,12 +125,6 @@ List of all input keywords
    | 'slice' mode saves ``nblock_wf_distribute``-files to a directory.
    | In a default, they will saves 16 files to same directory.
 
-- **yn_gbp** (character, Default='n')
-   | XXX.
-
-- **yn_gbp_fourier0** (character, Default='n')
-   | XXX
-
 &units
 ------
 
@@ -647,6 +641,10 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - **rad_dipole_diele** (real(8), Default=2d0 a.u.)
    | Available for TDDFT based options of ``theory``.
    Radii of dielectric spheres for the radiation sources.
+
+
+&singlescale
+-----------
 
 - **cutoff_G2_emfield** (real(8), Default=-1d0)
    | XXX
