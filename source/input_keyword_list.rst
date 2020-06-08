@@ -572,25 +572,24 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    |   ``'Acos6'`` / Envelope of cos\ :sup:`6`\ for a vector potential.
    |   ``'Acos8'`` / Envelope of cos\ :sup:`8`\ for a vector potential.   
    |   ``'Ecos2'`` / Envelope of cos\ :sup:`2`\ for a electric field.
-   |   ``'Asin2cos'`` [Trial] / Envelope of sin\ :sup:`2`\cos for a vector potential.
-   |   ``'Asin2cw'`` [Trial] /  XXX
-   |   ``'Esin2sin'`` [Trial] / Envelope of sin\ :sup:`2`\sin for a electric field.
-   |   ``'input'`` [Trial] / read-in user-defined field is used given by file name of 'input_Ac.dat'
-   |   ``'none'`` can be also chosen.
-   | XXX should be checked XXX
+   |   ``'Asin2cos'`` [Trial] / Envelope of sin\ :sup:`2`\ with cosine type oscillation for a vector potential.
+   |   ``'Asin2_cw'`` [Trial] / Envelope of sin\ :sup:`2`\ at beginning and continuous wave after that for a vector potential (for 'ae_shape1' only).
+   |   ``'input'`` [Trial] / read-in user-defined field is used given by ``file_input1`` option (for 'ae_shape1' only).
+   |   ``'none'`` / no incident field is applied
 
 - **file_input1** (character, Default='')
-   | XXX
+   | Available for ``theory='tddft_pulse'`` with ``ae_shape1='input'``.
+   The input file name for user-defined incident field (vector potential) when ``ae_shape1='input'`` is used. The format is: time, Ax/c, Ay/c, Az/c (separated by blank) by the specified units. '#' and '!' are available for a comment line.  XXX what is the unit of time ?? XXXX
 
 - **e_impulse** (real(8), Default=1d-2 a.u.)
    | Available for 'maxwell' and TDDFT based options of ``theory``.
    | Momentum of impulsive perturbation. This valiable has the dimention of momentum, energy*time/length.
 
 ..
-(commented out: not implemented yet)
-- **t_impulse**
-   | Available for ``theory='XXX'``.
-   not yet implemented XXX
+  #(commented out: not implemented yet)
+  #- **t_impulse**
+  #   | Available for ``theory='XXX'``.
+  #   not yet implemented XXX
 ..
    
 - **E_amplitude1/E_amplitude2** (real(8), Default=0d0)
