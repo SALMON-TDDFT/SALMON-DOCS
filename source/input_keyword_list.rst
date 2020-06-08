@@ -78,10 +78,10 @@ List of all input keywords
    | If set `'y'`: When saving intermediate results of the simulation (this call checkpointing), each process write/read a checkpoint data independently.
    | This option helps large-scale simulation to recover from system failure, which reduce restart costs.
 
-- **checkpoint_interval** (integer, Default=0)
+- **checkpoint_interval** (integer, Default=-1)
    | Available for ``theory='dft*' or '*tddft*'``.
    Interval of time step (or iteration step) of writing down check-point data during the time-propagation or iteration. 
-   These are not written down If ``0`` is set.
+   These are not written down If negative value is set.
 
 - **yn_reset_step_restart** (character, Default='n')
    | Available for ``yn_restart='y'`` with the DFT/TDDFT based options of ``theory``.
@@ -109,7 +109,7 @@ List of all input keywords
 
 
 - **time_shutdown** (real(8), Default=-1d0)[Trial]
-   | Available for ``theory='XXX'``.
+   | Available for ``theory='dft' or 'tddft*' or 'single_scale_maxwell_tddft'``.
    Timer for automatic shutdown. The unit is second.
    If negative time is chosen, the automatic shutdown is not performed.
 
