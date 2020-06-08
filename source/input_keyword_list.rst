@@ -737,7 +737,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Number of total time steps for real-time propagation in electromagnetic analysis.
 
 - **boundary_em(3,2)** (character, Default='default')
-   | Available for ``theory='maxwell'``.
+   | Available for ``theory='maxwell'`` and ``theory='multi_scale_maxwell_tddft'``.
    Boundary condition in electromagnetic analysis. The first index(1-3 rows) corresponds to x, y, and z axes. The second index(1-2 columns) corresponds to bottom and top of the axes. If ``&system/yn_periodic='n'``, ``'default'``, ``'abc'``, and ``'pec'`` can be chosen, where ``'default'`` automatically chooses ``'abc'``. If ``&system/yn_periodic='y'``, ``'default'``, ``'pml'``, and ``'periodic'`` can be chosen, where ``'default'`` automatically chooses ``'periodic'``. ``'abc'`` is absorbing boundary, ``'pec'`` is perfect electric conductor, and ``'periodic'`` is periodic boundary.
 
 - **shape_file** (character, Default='none')
