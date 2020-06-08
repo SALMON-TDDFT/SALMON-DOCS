@@ -109,7 +109,7 @@ List of all input keywords
 
 
 - **time_shutdown** (real(8), Default=-1d0)[Trial]
-   | Available for ``theory='dft' or 'tddft*' or 'single_scale_maxwell_tddft'``.
+   | Available for ``theory='dft' or '*tddft*'``.
    Timer for automatic shutdown. The unit is second.
    If negative time is chosen, the automatic shutdown is not performed.
 
