@@ -217,17 +217,17 @@ List of all input keywords
    Spatial grid box size or lattice constants for cuboid cell (x, y, z).
 
 - **al_vec1(3)/al_vec2(3)/al_vec3(3)** (real(8), Default=0d0)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 3d
-   xxx.
+   | xxx.
 
 - **isym** (integer, Default=1)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 3d
    Number of symmetries that can be used for reduction of k-points.
 
 - **crystal_structure** (character, Default='none')
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 3d
    Name of symmetry that can be used for the reduction of # of k-points.
 
@@ -250,13 +250,13 @@ List of all input keywords
    This option is incompatible with ``nelec`` (?? does it mean nelec specified is ignored if this option is specified ??)
 
 - **temperature** (real(8), Default=-1d0)
-   | Available for ``theory='xxx'``.
-   | Old infomation: 3d xxxx
+   | Available for ``theory='XXX'``.
+   | Old infomation: 3d XXX
    Temperature of electrons. When you calculate a system of zero band-gap energy like metals, zero or positive number of the temperature should be given (Default is ``-1.0`` : this is for system which has a band gap energy). The value must be given by the unit of energy as specified in ``&units/unit_system``. The unit of [K] can be used by the keyword ``temperature_k`` (see next). 
    
 - **temperature_k** (real(8), Default=-1d0)[Trial]
-   | Available for ``theory='xxx'``.
-   | Old infomation: 0d  xxxx
+   | Available for ``theory='XXX'``.
+   | Old infomation: 0d  XXX
    Temperature of electrons in the unit of [K].
 
 - **nelem** (integer, Default=0)
@@ -268,17 +268,17 @@ List of all input keywords
    Number of atoms in the system.
 
 - **file_atom_red_coor** (character, Default='none')[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 3d
    File name for atomic positions given in reduced coordinates. 
    This option is incompatible with ``&system/file_atom_coor``, ``&atomic_coor``, and ``&atomic_red_coor``.
 
 - **file_atom_coor** (character, Default='none')[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    File name for atomic Cartesian coordinates (The unit is specified by ``&units/unit_system``). 
    This option is incompatible with ``&system/file_atom_coor``, ``&atomic_coor``, and ``&atomic_red_coor``.
-   (xxxx why this keyword is not in &atomic_coor ?? xxxx)
+   (XXX why this keyword is not in &atomic_coor ?? XXX)
 
 &atomic_red_coor
 ----------------
@@ -355,7 +355,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - **xc** (character, Default='none')
    | Available for the DFT/TDDFT based options of ``theory``.
    | Exchange-correlation functionals.
-   | At present version, the functional 'PZ', 'PZM' and 'TBmBJ' is available for both 0d/3d calculations, and the functionals 'TPSS' and 'VS98' are available for 3d calculations. (xxxx need check xxxx)
+   | At present version, the functional 'PZ', 'PZM' and 'TBmBJ' is available for both 0d/3d calculations, and the functionals 'TPSS' and 'VS98' are available for 3d calculations. (XXX need check XXX)
    | Options
    |   ``'PZ'``: Perdew-Zunger LDA :Phys. Rev. B 23, 5048 (1981).
    |   ``'PZM'``: Perdew-Zunger LDA with modification to improve sooth connection between high density form and low density one. :J. P. Perdew and Alex Zunger, Phys. Rev. B 23, 5048 (1981).
@@ -364,8 +364,8 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    |   ``'VS98'``:  van Voorhis and Scuseria exchange with Perdew-Wang correlation: T. Van Voorhis and G. E. Scuseria, J. Chem. Phys. 109, 400 (1998).
 
 - **cname, xname** (character, Default='none')
-   | Available for ``theory='xxx'``.
-   xxx.
+   | Available for ``theory='XXX'``.
+   | XXX
 
 - **alibxc, alibx, alibc** (character, Default='none')
    | Available for the DFT/TDDFT based options of ``theory``.
@@ -391,7 +391,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    (This cannot be used together with ``&rgrid/num_rgrid``.)
    If ``&system/yn_periodic='y'``,
    the grid spacing is automatically adjusted in calculations
-   so that the grid box size ``&system/al(3)`` becomes divisible by the spacing.  (xxxx really?? xxxx)
+   so that the grid box size ``&system/al(3)`` becomes divisible by the spacing.  (XXX really?? XXX)
 
 - **num_rgrid(3)** (integer, Default=0)
    | Available for the DFT/TDDFT based options of ``theory``.
@@ -424,7 +424,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Time step size.
 
 - **gram_schmidt_interval** (integer, Default=0)
-  xxxx.
+   | XXX
 
 &propagation
 ------------
@@ -468,8 +468,8 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **nscf** (integer, Default=0)
    | Available for 'dft' and 'dft_md' options of ``theory``.
-   Number of maximum SCF cycle in DFT calculation
-   xxxx default is 0?? should change?? xxxxx
+   Number of maximum SCF cycle in DFT calculation. 
+   XXX default is 0?? should change?? XXX
 
 - **method_min** (character, Default='cg') 
    | Available for 'dft' and 'dft_md' options of ``theory``.
@@ -508,16 +508,16 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Parameter of the modified-Broyden method.
 
 - **nmemory_p** (integer, Default=4)
-xxxx.
+   | XXX
 
 - **beta_p** (real(8), Default=0.75d0)
-xxxx.
+   | XXX
 
 - **yn_auto_mixing** (character, Default='n')
-xxxx.
+   | XXX
 
 - **update_mixing_ratio** (real(8), Default=3.0d0)
-xxxx.
+   | XXX
 
 - **yn_subspace_diagonalization** (character, Default='y')
    | Available for 'dft' and 'dft_md' options of ``theory``.
@@ -543,7 +543,7 @@ xxxx.
 
 - **iditer_notemperature** (integer, Default=10) 
    | Available for 'dft' and 'dft_md' options of ``theory``.
-   xxx.
+   | XXX
 
 - **step_initial_mix_zero** (Integer, Default=-1)
    | Available for 'dft' option of ``theory``.
@@ -577,14 +577,14 @@ xxxx.
    |   ``'Acos8'`` / Envelope of cos\ :sup:`8`\ for a vector potential.   
    |   ``'Ecos2'`` / Envelope of cos\ :sup:`2`\ for a electric field.
    |   ``'Asin2cos'`` [Trial] / Envelope of sin\ :sup:`2`\cos for a vector potential.
-   |   ``'Asin2cw'`` [Trial] /  xxxx
+   |   ``'Asin2cw'`` [Trial] /  XXX
    |   ``'Esin2sin'`` [Trial] / Envelope of sin\ :sup:`2`\sin for a electric field.
    |   ``'input'`` [Trial] / read-in user-defined field is used given by file name of 'input_Ac.dat'
    |   ``'none'`` can be also chosen.
-xxxxx should be checked xxxxx
+   | XXX should be checked XXX
 
 - **file_input1** (character, Default='')
-xxxx.
+   | XXX
 
 - **e_impulse** (real(8), Default=1d-2 a.u.)
    | Available for 'maxwell' and TDDFT based options of ``theory``.
@@ -654,70 +654,70 @@ xxxx.
    Radii of dielectric spheres for the radiation sources.
 
 - **cutoff_G2_emfield** (real(8), Default=-1d0)
-xxxx.
+   | XXX
 
 
 &multiscale
 -----------
 
 - **fdtddim** (character, Default='1d')[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 3d
    Dimension of FDTD calculation for multi-scale Maxwell-Kohn-Sham method.
 
 - **twod_shape** (character, Default='periodic')[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 3d
    Boundary condision of the second dimension for FDTD calculation with 
    multi-scale Maxwell-Kohn-Sham method.
 
 - **nx_m** (integer, Default=1)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 3d
    Number of macroscopic grid points inside materials for x-direction.
 
 - **ny_m/nz_m** (integer, Default=1)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 3d
    Number of macroscopic grid points inside materials for (y/z)-direction.
 
 - **hx_m** (real(8), Default=0d0)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 3d
    Spacing of macroscopic grid points inside materials for (x)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
 
 - **hy_m/hz_m** (real(8), Default=0d0)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 3d
    Spacing of macroscopic grid points inside materials for (y/z)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
 
 - **nxvacl_m/nxvacr_m** (integer, Default=1/0)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 3d
    Number of macroscopic grid points for vacumm region.
    ``nxvacl_m`` gives the number for negative x-direction in front of material,
    while ``nxvacr_m`` gives the number for positive x-direction behind the material.
 
 - **nx_origin_m/ny_origin_m/nz_origin_m** (integer, Default=1)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 3d
    Origin coordinat of the grid points.
 
 - **file_macropoint** (character, Default='')[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 3d
    If file name is specified in the option, the coordinates of the macropoints are set from the file.
 
 - **set_ini_coor_vel** (character, Default='n')[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 3d
    Set initial atomic coordinates and velocities for each macro-grid point. This must be given with specific directories and files: 
    Prepare ``directory``/multiscale/MXXXXXX/ini_coor_vel.dat, where 'XXXXXX' is the index number of the macro-grid point of the material region usually starting from '000001' up to the number of macro-grid point. The format of the file 'ini_coor_vel.dat' is just Rx, Ry, Rz, Vx, Vy, Vz (with space separation) for each atom (i.e. for each line), where the unit of the coordinates, Rx, Ry, Rz, is angstrom or a.u. speficied by ``unit_system`` but that of velocities is always a.u.. This option should be used together with ``read_gs_wfn_k_ms`` which is the option to read the ground state wave function for each macro-grid point. 
 
 - **nmacro_write_group** (integer, Default=-1)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 3d
    If the number of macroscopic grids are very large, computers can be unstable by writing all information of all macroscopic grid points at the same time. To avoid that, the writings are divided by specifying this option. Writings will be done by each ``nmacro_write_group`` macroscopic grid points. (this number must be aliquot part of the total number of macroscopic grid points)
 
