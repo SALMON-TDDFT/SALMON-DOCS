@@ -213,9 +213,8 @@ List of all input keywords
    Spatial grid box size or lattice constants for cuboid cell (x, y, z).
 
 - **al_vec1(3)/al_vec2(3)/al_vec3(3)** (real(8), Default=0d0)
-   | Available for ``theory='XXX'``.
-   | Old infomation: 3d
-   | xxx.
+   | Available for all options of ``theory`` except for ``theory='maxwell'``.
+   Primitive lattice vectors for nonorthogonal cell.
 
 - **isym** (integer, Default=1)
    | Available for ``theory='XXX'``.
@@ -246,14 +245,12 @@ List of all input keywords
    This option is incompatible with ``nelec`` (?? does it mean nelec specified is ignored if this option is specified ??)
 
 - **temperature** (real(8), Default=-1d0)
-   | Available for ``theory='XXX'``.
-   | Old infomation: 3d XXX
-   Temperature of electrons. When you calculate a system of zero band-gap energy like metals, zero or positive number of the temperature should be given (Default is ``-1.0`` : this is for system which has a band gap energy). The value must be given by the unit of energy as specified in ``&units/unit_system``. The unit of [K] can be used by the keyword ``temperature_k`` (see next). 
+   | Available for DFT-based options of ``theory`` 
+   Temperature of electrons. When you calculate a system of zero band-gap energy like metals, zero or positive number of the temperature should be given (Default is ``-1.0`` : this is for system which has a band gap energy). The value must be given by the unit of energy as specified in ``&units/unit_system``. The kelvin unit can be used by the keyword ``temperature_k`` (see next). 
    
 - **temperature_k** (real(8), Default=-1d0)[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d  XXX
-   Temperature of electrons in the unit of [K].
+   | Available for DFT-based options of ``theory``
+   The same as ``temperature`` but in kelvin.
 
 - **nelem** (integer, Default=0)
    | Available for the DFT/TDDFT based options of ``theory``.
@@ -738,7 +735,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Number of total time steps for real-time propagation in electromagnetic analysis.
 
 - **boundary_em(3,2)** (character, Default='default')
-   | Available for ``theory='maxwell'`` and ``theory='multi_scale_maxwell_tddft'``.
+   | Available for ``theory='maxwell'``.
    Boundary condition in electromagnetic analysis. The first index(1-3 rows) corresponds to x, y, and z axes. The second index(1-2 columns) corresponds to bottom and top of the axes. If ``&system/yn_periodic='n'``, ``'default'``, ``'abc'``, and ``'pec'`` can be chosen, where ``'default'`` automatically chooses ``'abc'``. If ``&system/yn_periodic='y'``, ``'default'``, ``'pml'``, and ``'periodic'`` can be chosen, where ``'default'`` automatically chooses ``'periodic'``. ``'abc'`` is absorbing boundary, ``'pec'`` is perfect electric conductor, and ``'periodic'`` is periodic boundary.
 
 - **shape_file** (character, Default='none')
