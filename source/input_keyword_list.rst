@@ -461,10 +461,9 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for 'dft' and 'dft_md' options of ``theory``.
    The seed of the random numbers are changed by adding the given number for generating the initial wavefunctions.
 
-- **nscf** (integer, Default=0)
+- **nscf** (integer, Default=300)
    | Available for 'dft' and 'dft_md' options of ``theory``.
    Number of maximum SCF cycle in DFT calculation. 
-   XXX default is 0?? should change?? XXX
 
 - **method_min** (character, Default='cg') 
    | Available for 'dft' and 'dft_md' options of ``theory``.
@@ -540,12 +539,16 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for 'dft' and 'dft_md' options of ``theory``.
    | XXX
 
-- **step_initial_mix_zero** (Integer, Default=-1)
+- **nscf_init_diagonal** (integer, Default=10)
+   | Available for 'dft' option of ``theory``.
+   The number of initial iterations for which subspace diagonalization is not done if ``&scf/yn_subspace_diagonalization`` is ``'y'``.
+
+- **nscf_init_mix_zero** (Integer, Default=-1)
    | Available for 'dft' option of ``theory``.
    The densities is not mixed (i.e. fixed) during the given number of the SCF iteration cycle, that is, wavefunctions are optimized without updating the density. 
 
 - **conv_gap_mix_zero** (real(8), Default=99999d0)
-   | Available for positive number of ``step_initial_mix_zero`` with 'dft' option of ``theory``.
+   | Available for positive number of ``nscf_init_mix_zero`` with 'dft' option of ``theory``.
    The condition to quite the fixed density forced by ``step_initial_mix_zero`` option.
    The density is allowed to start mixing after the band-gap energy exceeds the given number for consecutive five SCF iteration steps, 
 
@@ -1109,11 +1112,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 &group_fundamental[Trial]
 -------------------------
-
-- **iditer_nosubspace_diag** (integer, Default=10)[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   Iterations for which subspace diagonalization is not done if ``&scf/subspace_diagonalization`` is ``'y'``.
    
 - **ntmg** (integer, Default=1)[Trial]
    | Available for ``theory='XXX'``.
