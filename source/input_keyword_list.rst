@@ -211,6 +211,7 @@ List of all input keywords
 - **al(3)** (real(8), Default=0d0)
    | Available for all options of ``theory`` except for ``theory='maxwell'``.
    Spatial grid box size or lattice constants for cuboid cell (x, y, z).
+   For nonorthogonal cell, see ``al_vec1,al_vec2,al_vec3``.
 
 - **al_vec1(3)/al_vec2(3)/al_vec3(3)** (real(8), Default=0d0)
    | Available for all options of ``theory`` except for ``theory='maxwell'``.
