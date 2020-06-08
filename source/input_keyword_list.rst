@@ -262,14 +262,12 @@ List of all input keywords
    Number of atoms in the system.
 
 - **file_atom_red_coor** (character, Default='none')[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 3d
+   | Available for the DFT/TDDFT based options of ``theory``.
    File name for atomic positions given in reduced coordinates. 
    This option is incompatible with ``&system/file_atom_coor``, ``&atomic_coor``, and ``&atomic_red_coor``.
 
 - **file_atom_coor** (character, Default='none')[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
+   | Available for the DFT/TDDFT based options of ``theory``.
    File name for atomic Cartesian coordinates (The unit is specified by ``&units/unit_system``). 
    This option is incompatible with ``&system/file_atom_coor``, ``&atomic_coor``, and ``&atomic_red_coor``.
    (XXX why this keyword is not in &atomic_coor ?? XXX)
@@ -277,7 +275,7 @@ List of all input keywords
 &atomic_red_coor
 ----------------
 
-Positions of atoms is given in reduced coordinates as follows:
+Atomic coordinates in reduced coordinates as following format:
 
 |  'Si'	 0.00  0.00  0.00  1
 |  'Si'	 0.25  0.25  0.25  1
