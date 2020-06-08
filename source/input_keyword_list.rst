@@ -208,7 +208,7 @@ List of all input keywords
 - **ispin** (integer, Default=0)
    | Available for all options of ``theory`` except for ``theory='maxwell'``.
    | Variable for classification of closed shell systems and open shell systems. 
-   | Options  (xxxxx strange!!!)
+   | Options  (XXX strange!!!)
    |   ``0`` / closed shell systems
    |   ``1`` / open shell systems
 
@@ -475,7 +475,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for 'dft' and 'dft_md' options of ``theory``.
    | Method for SCF iteration
    | Options
-   |   ``cg`` / Conjugate-Gradient(CG) method
+   |  ``cg`` / Conjugate-Gradient(CG) method
    |  ``diis`` / DIIS method
    |  ``cg-diis`` / CG-DIIS method 
 
@@ -491,7 +491,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for 'dft' and 'dft_md' options of ``theory``.
    | Methods for density/potential mixing for scf cycle. ``simple`` and ``broyden`` can be chosen.
    | Options
-   |   ``simple`` / Simple mixing method
+   |  ``simple`` / Simple mixing method
    |  ``broyden`` / modified-Broyden method
 
 - **mixrate** (real(8), Default=0.5d0)
@@ -976,16 +976,16 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - **layout_multipole** (character, Default=3)
    | Available for ``theory='XXX'``.
    | Old infomation: 0d
-   A variable to determine how to put multipoles in the Hartree potential calculation.
-
-  - ``1``: A single pole is put at the center.
-  - ``2``: Multipoles are put at the center of atoms.
-  - ``3``: Multipoles are put at the center of mass of electrons in prepared cuboids.
+   | A variable to determine how to put multipoles in the Hartree potential calculation.
+   | Options:
+   |  ``1``/ A single pole is put at the center.
+   |  ``2``/ Multipoles are put at the center of atoms.
+   |  ``3``/ Multipoles are put at the center of mass of electrons in prepared cuboids.
 
 - **num_multipole_xyz(3)** (integer, Default=0)
    | Available for ``theory='XXX'``.
    | Old infomation: 0d
-   Number of multipoles when ``meo`` is ``3``. When default is set, number of multipoles is calculated automatically.
+   Number of multipoles when this is ``3``. When default is set, number of multipoles is calculated automatically.
 
 - **threshold_cg** (real(8), Default=1d-15 a.u.)
    | Available for ``theory='XXX'``.
