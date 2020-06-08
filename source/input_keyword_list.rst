@@ -1118,11 +1118,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Old infomation: 0d
    Number of multigrid calculation for gs. At the moment, there is a malfunction in this variable, and recovery is needed.
 
-- **idisnum(2)** (integer, Default=1,2)[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   Label numbers for two atoms which are measured the distance. 
-
 - **iwrite_projection** (integer, Default=0)[Trial]
    | Available for ``theory='XXX'``.
    | Old infomation: 0d
@@ -1156,16 +1151,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &group_others[Trial]
 ---------------------
 
-- **iswitch_orbital_mesh** (integer, Default=0)[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   A variable to apply descending order for orbitals in the ground state calculation.
-
-- **iflag_psicube** (integer, Default=0)[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   A variable to generate cube files for wave functions. This variable will be removed.
-
 - **num_projection** (Interger, Default=1)[Trial]
    | Available for ``theory='XXX'``.
    | Old infomation: 0d
@@ -1179,60 +1164,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - **iwrite_projection_k(200)** (Interger, Default=1)[Trial]
    | Available for ``theory='XXX'``.
    | Old infomation: 0d
-   This variable will be removed.
-
-- **filename_pot** (character, Default='pot')[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   Name of file to be written local potentials. 
-
-- **iwrite_external** (integer, Default=0)[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   A variable to generate file to be written local potentials. 
-
-- **iflag_intelectron** (integer, Default=0)[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   A variable related to the quadrupole caluclation.
-
-- **num_dip2** (integer, Default=1)[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   Number of area where dipole moments are calculated.
-
-- **dip2boundary(100)** (real(8), Default=0d0 a.u.)[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   Boundary position of area where dipole moments are calculated.
-
-- **dip2center(100)** (real(8), Default=0d0 a.u.)[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   Origin in the dipole moment calculation. 
-
-- **itotntime2** (integer, Default=0)[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   Number of time steps in the reentrance for real-time calculation.
-   There may be a malfunction in this variable.
-
-- **iwdenoption** (integer, Default=0)[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   A variable to determine whether 3d output is generated in real-time calculation. 
-   This variable will be removed.
-
-- **iwdenstep** (integer, Default=0)[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   3d output is generated every ``iwdenstep`` time steps.
-   This variable will be removed.
-
-- **iflag_estatic** (integer, Default=0)[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   A variable to determine whether 3d output for the static electric field is generated in real-time calculation. 
    This variable will be removed.
 
 
@@ -1260,9 +1191,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 .. _&opt: #opt
 .. _&md: #md
 .. _&group_fundamental: #group_fundamental
-.. _&group_parallel: #group_parallel
 .. _&group_hartree: #group_hartree
-.. _&group_file: #group_file
 .. _&group_others: #group_others
 
 
