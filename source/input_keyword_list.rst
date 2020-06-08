@@ -201,12 +201,12 @@ List of all input keywords
    |   ``'y'`` / periodic systems (solids)
    |   ``'n'`` / isolated systems
 
-- **ispin** (integer, Default=0)
+- **spin** (character, Default='unpolarized')
    | Available for all options of ``theory`` except for ``theory='maxwell'``.
-   | Variable for classification of closed shell systems and open shell systems. 
-   | Options  (XXX strange!!!)
-   |   ``0`` / closed shell systems
-   |   ``1`` / open shell systems
+   | Variable for classification of spin-unpolarized (closed shell) systems and spin-polarized (open shell) systems. 
+   | Options 
+   |   ``unpolarized`` / spin-unpolarized systems (default)
+   |   ``polarized`` / spin-polarized systems
 
 - **al(3)** (real(8), Default=0d0)
    | Available for all options of ``theory`` except for ``theory='maxwell'``.
