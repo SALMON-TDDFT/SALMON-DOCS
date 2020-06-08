@@ -27,7 +27,7 @@ If you use Windows, `make.bat` is assisted to build the document.
 
 SALMON is available under Apache License version 2.0.
 
-    Copyright 2017 SALMON developers
+    Copyright 2017-2020 SALMON developers
     
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
