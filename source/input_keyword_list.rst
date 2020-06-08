@@ -66,10 +66,6 @@ List of all input keywords
    | Available for all options of ``theory``.
    Name of a default directory, where the basic results will be written down.
 
-- **output_buffer_interval** (integer, Default=-1)
-   | Available for ``theory='XXX'``.
-   | XXX.
-
 - **yn_restart** (character, Default='n')
    | Available for ``theory='dft*' or '*tddft*'``.
    | Restart option.
@@ -960,14 +956,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Number of separated files for three dimensional data.
    Effective only when ``format3d`` is ``'avs'``.
    ``numfiles_out_3d`` must be less than or equal to number of processes.
-
-- **timer_process** (character, Default='n')[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   Basically, elapsed times are written in the output file. 
-   But if ``timer_process`` is ``'y'``, 
-   files of elapsed times for every process are also generated. 
-   This variable is effective only for the real-time caululation.
 
 
 &poisson
