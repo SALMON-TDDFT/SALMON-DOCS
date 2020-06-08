@@ -554,7 +554,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 --------
 
 - **trans_longi** (character, Default='tr')
-   | Available for ``yn_periodic='y'.
+   | Available for ``yn_periodic='y'`` with 'maxwell' and TDDFT based options of ``theory``.
    | Boundary condition for fields on macro-scale in solid-state calculations.
    | Options
    |   ``'tr'`` / Transverse  
