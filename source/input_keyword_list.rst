@@ -130,7 +130,7 @@ List of all input keywords
    | In a default, they will saves 16 files to same directory.
 
 - **yn_gbp** (character, Default='n')
-   XXX.
+   XXXX.  aho
 
 - **yn_gbp_fourier0** (character, Default='n')
    xxx.
