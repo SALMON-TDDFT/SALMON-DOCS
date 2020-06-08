@@ -67,8 +67,8 @@ List of all input keywords
    Name of a default directory, where the basic results will be written down.
 
 - **output_buffer_interval** (integer, Default=-1)
-   | Available for ``theory='xxx'``.
-   xxx.
+   | Available for ``theory='XXX'``.
+   | XXX.
 
 - **yn_restart** (character, Default='n')
    | Available for ``theory='dft*' or '*tddft*'``.
@@ -113,7 +113,7 @@ List of all input keywords
 
 
 - **time_shutdown** (real(8), Default=-1d0)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    Timer for automatic shutdown. The unit is second.
    If negative time is chosen, the automatic shutdown is not performed.
 
@@ -593,8 +593,8 @@ xxxx.
 ..
 (commented out: not implemented yet)
 - **t_impulse**
-   | Available for ``theory='xxx'``.
-   not yet implemented XXXX
+   | Available for ``theory='XXX'``.
+   not yet implemented XXX
 ..
    
 - **E_amplitude1/E_amplitude2** (real(8), Default=0d0)
@@ -834,26 +834,26 @@ xxxx.
 
 - **out_projection_step** (integer, Default=100)
    | Available for ``projection_option`` with TDDFT based options of ``theory``.
-   | Old infomation: 3d xxxx
+   | Old infomation: 3d XXX
    Interval time step of projection analysis 
 
 - **nenergy** (integer, Default=1000)
-   | Available for ``theory='xxx', 'maxwell'``.
+   | Available for ``theory='XXX', 'maxwell'``.
    Number of energy grid points for frequency-domain analysis.
    This parameter is required when `'impulse'` is choosen in `&emfield/ae_shape1|2`.
 
 - **de** (real(8), Default=0.01d0 eV)
-   | Available for ``theory='xxx', 'maxwell'``.
+   | Available for ``theory='XXX', 'maxwell'``.
    Energy grid size for analysis.
    This parameter is required when `'impulse'` is choosen in `&emfield/ae_shape1|2`.
 
 - **yn_out_psi** (character, Default='n')
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Option for output of wavefunctions
    | Options
    |   ``'y'`` / enable.
    |   ``'n'`` / disable.
-   For periodic system (``yn_periodic='y'``), it works only for ground state calculation. The converged wave functions of all orbitals with all k-points are printed in gs_wfn_cube or gs_wfn_vtk directory. The format is speficied by ``format3d``.  xxxx need check xxxx
+   For periodic system (``yn_periodic='y'``), it works only for ground state calculation. The converged wave functions of all orbitals with all k-points are printed in gs_wfn_cube or gs_wfn_vtk directory. The format is speficied by ``format3d``.  XXX need check XXX
 
 - **yn_out_dos** (character, Default='n')
    | Available for ``theory='dft'``.
@@ -863,19 +863,19 @@ xxxx.
    |   ``'n'`` / disable.
 
 - **yn_out_dos_set_fe_origin** (character, Default='n')
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    If ``'y'``, the electron energy is shifted to fix the Fermi energy as zero point.
    For ``&system/yn_periodic`` is ``'n'``, `` out_dos_fshift`` is not used 
    if ``&system/nstate`` is equal to ``&system/nelec``/2.
 
 - **out_dos_start** (real(8), Default=-1d10 eV)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    Lower bound (energy) of the density of state spectra.
    If this value is lower than a specific value near the lowest energy level, 
    this value is overwritten by that value. 
 
 - **out_dos_end** (real(8), Default=1d10 eV)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    Upper bound (energy) of the density of state spectra.
    If this value is higher than a specific value near the highest energy level, 
    this value is overwritten by that value. 
@@ -885,25 +885,25 @@ xxxx.
    Number of  energy points sampled in the density of state spectra.
  
 - **out_dos_width** (real(8), Default=0.1d0 eV)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    Smearing width used in the density of state spectra..
 
 - **out_dos_function** (character, Default='gaussian')
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    Choise of smearing method for the density of state spectra..
    ``gaussian`` and ``lorentzian`` function are available.
 
 - **yn_out_pdos** (character, Default='n')
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    If ``'y'``, projected density of state is output.
 
 - **yn_out_dns** (character, Default='n')
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    If ``'y'``, the spatial electron density distribution at the ground state is output.
 
 - **yn_out_dns_rt/out_dns_rt_step** (Character/Integer, Default='n')
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    If ``'y'``,  the spatiotemporal electron density distribution during real-time time-propagation is output every ``outdns_rt_step`` time steps.
 
 - **yn_out_dns_ac_je/out_dns_ac_je_step** (Character/Integer, Default='n'/50)
@@ -912,24 +912,24 @@ xxxx.
    The data written in binary format are divided to files corresponding to the space-grid parallelization number. 
   
 - **yn_out_dns_trans/out_dns_trans_energy** (Character/Real(8), Default='n'/1.55d0eV)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 3d
    If ``'y'``, transition in different density from the ground state at specified field frequency omega(given by ``out_dns_trans_energy``) is calculated by drho(r,omega)=FT(rho(r,t)-rho_gs(r))/T.
 
 - **yn_out_elf** (character, Default='n')
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    If ``'y'``, electron localization function is output.
 
 - **yn_out_elf_rt/out_elf_rt_step** (Character/Integer,Default='n'/50)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    If ``'y'``, electron localization function 
    during real-time time-propagation is output
    every ``out_elf_rt_step`` time steps.
 
 - **yn_out_estatic_rt/out_estatic_rt_step** (Character/Integer, Default='n'/50)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    If ``'y'``, static electric field
    during real-time time-propagation is output
@@ -950,19 +950,19 @@ xxxx.
    Some information is printed every ``out_ms_step`` time step in the Maxwell + TDDFT multi-scale calculation.
 
 - **format_voxel_data** (character, Default='cube')
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    File format for three-dimensional volumetric data.
    ``'avs'``, ``'cube'``, and ``'vtk'`` can be chosen.
 
 - **nsplit_voxel_data** (integer, Default=1)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    Number of separated files for three dimensional data.
    Effective only when ``format3d`` is ``'avs'``.
    ``numfiles_out_3d`` must be less than or equal to number of processes.
 
 - **timer_process** (character, Default='n')[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    Basically, elapsed times are written in the output file. 
    But if ``timer_process`` is ``'y'``, 
@@ -974,7 +974,7 @@ xxxx.
 --------
 
 - **layout_multipole** (character, Default=3)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    A variable to determine how to put multipoles in the Hartree potential calculation.
 
@@ -983,13 +983,13 @@ xxxx.
   - ``3``: Multipoles are put at the center of mass of electrons in prepared cuboids.
 
 - **num_multipole_xyz(3)** (integer, Default=0)
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    Number of multipoles when ``meo`` is ``3``. When default is set, number of multipoles is calculated automatically.
 
 - **threshold_cg** (real(8), Default=1d-15 a.u.)
-   | Available for ``theory='xxx'``.
-   xxx.
+   | Available for ``theory='XXX'``.
+   | XXX
 
 
 &ewald
@@ -1007,15 +1007,15 @@ xxxx.
 
 - **cutoff_r** (real(8), Default=-1d0)
    | Available for ``yn_periodic='y'`` with DFT/TDDFT based options of ``theory``.
-  xxxx.
+   | XXX
 
 - **cutoff_r_buff** (real(8), Default=2d0 a.u.)
    | Available for ``yn_periodic='y'`` with DFT/TDDFT based options of ``theory``.
-  xxxx.
+   | XXX
 
 - **cutoff_g** (real(8), Default=-1d0)
    | Available for ``yn_periodic='y'`` with DFT/TDDFT based options of ``theory``.
-  xxxx.
+   | XXX
 
 &opt[Trial]
 -------------
@@ -1030,7 +1030,7 @@ xxxx.
 
 - **max_step_len_adjust** (real(8), Default=-1d0)
   | Available for ``yn_opt='y'`` with ``theory='dft'``.
-  xxxxx.
+  | XXX
 
   
 &md[Trial]
@@ -1072,7 +1072,7 @@ xxxx.
    Default is ``41.34[au] or 1.0[fs]``.
 
 ..
-#xxx removed?#
+#XXX removed?#
 - **seed_ini_velocity** (integer, Default=123)[Trial]
    | Available for ``yn_md='y'`` or ``theory='dft_md'``.
    Random seed (integer number) to generate initial velocity if ``set_ini_velocity`` is set to y.
@@ -1124,37 +1124,37 @@ xxxx.
 -------------------------
 
 - **iditer_nosubspace_diag** (integer, Default=10)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    Iterations for which subspace diagonalization is not done if ``&scf/subspace_diagonalization`` is ``'y'``.
    
 - **ntmg** (integer, Default=1)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    Number of multigrid calculation for gs. At the moment, there is a malfunction in this variable, and recovery is needed.
 
 - **idisnum(2)** (integer, Default=1,2)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    Label numbers for two atoms which are measured the distance. 
 
 - **iwrite_projection** (integer, Default=0)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    A variable for projection. 
 
 - **itwproj** (integer, Default=-1)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    The projection is calculated every ``itwproj`` time steps. 
 
 - **iwrite_projnum** (integer, Default=0)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    There is a malfunction in this variable.
 
 - **itcalc_ene** (integer, Default=10)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    Total energy is calculated every ``itcalc_ene`` time steps. There may be a malfunction in this variable.
 
@@ -1163,7 +1163,7 @@ xxxx.
 ----------------------
 
 - **lmax_lmp** (integer, Default=4)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    A maximum angular momentum for multipole expansion in the Hartree-cg calculation. 
 
@@ -1172,80 +1172,80 @@ xxxx.
 ---------------------
 
 - **iswitch_orbital_mesh** (integer, Default=0)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    A variable to apply descending order for orbitals in the ground state calculation.
 
 - **iflag_psicube** (integer, Default=0)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    A variable to generate cube files for wave functions. This variable will be removed.
 
 - **num_projection** (Interger, Default=1)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    Number of orbitals for projections.
 
 - **iwrite_projection_ob(200)** (Interger, Default=1, 2, 3, ..., 200)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    Orbital number to be written as projections.
 
 - **iwrite_projection_k(200)** (Interger, Default=1)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    This variable will be removed.
 
 - **filename_pot** (character, Default='pot')[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    Name of file to be written local potentials. 
 
 - **iwrite_external** (integer, Default=0)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    A variable to generate file to be written local potentials. 
 
 - **iflag_intelectron** (integer, Default=0)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    A variable related to the quadrupole caluclation.
 
 - **num_dip2** (integer, Default=1)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    Number of area where dipole moments are calculated.
 
 - **dip2boundary(100)** (real(8), Default=0d0 a.u.)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    Boundary position of area where dipole moments are calculated.
 
 - **dip2center(100)** (real(8), Default=0d0 a.u.)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    Origin in the dipole moment calculation. 
 
 - **itotntime2** (integer, Default=0)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    Number of time steps in the reentrance for real-time calculation.
    There may be a malfunction in this variable.
 
 - **iwdenoption** (integer, Default=0)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    A variable to determine whether 3d output is generated in real-time calculation. 
    This variable will be removed.
 
 - **iwdenstep** (integer, Default=0)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    3d output is generated every ``iwdenstep`` time steps.
    This variable will be removed.
 
 - **iflag_estatic** (integer, Default=0)[Trial]
-   | Available for ``theory='xxx'``.
+   | Available for ``theory='XXX'``.
    | Old infomation: 0d
    A variable to determine whether 3d output for the static electric field is generated in real-time calculation. 
    This variable will be removed.
