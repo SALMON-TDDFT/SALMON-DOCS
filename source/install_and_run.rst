@@ -6,18 +6,18 @@ Install and Run
 Prerequisites
 ----------------
 
-In this guide, it is assumed that readers have a basic knowledge of Unix and its command line operations.
+In this guide, it is assumed that readers have a basic knowledge of Linux and its command line operations.
 For the installation of SALMON, following packages are required.
 
 - Fortran90/C compiler. SALMON assumes users have one of the following compilers:
 
   - GCC (Gnu Compiler Collection)
-  - Intel Fortran/C Compiler
+  - Intel Compiler
   - Fujitsu Compiler (at FX100 / K-Computer)
 
 - One of the following library packages for linear algebra:
 
-  - BLAS/LAPACK
+  - Netlib BLAS/LAPACK/ScaLAPACK
   - Intel Math Kernel Library (MKL)
   - Fujitsu Scientific Subroutine Library 2 (SSL-II)
 
@@ -61,44 +61,46 @@ Checking CMake availability
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 First, examine whether CMake is usable in your environment or not.
-Type the following in Unix command-line::
+Type the following in Linux command-line::
 
     $ cmake --version
 
 If CMake is not installed in your system, an error message such as ``cmake: command not found`` will appear.
 If CMake is installed on your system, the version number will be shown.
-To build SALMON, CMake of version 3.0.2 or later is required.
-If you confirm that CMake of version 3.0.2 or later is installed in your system, proceed to :any:`build-cmake`.
+To build SALMON, CMake of version 3.14.0 or later is required.
+If you confirm that CMake of version 3.14.0 or later is installed in your system, proceed to :any:`build-cmake`.
 However, we realize that old versions of CMake are installed in many systems.
 If CMake is not installed or CMake of older versions is installed in your system, you need to install the new version by yourself.
 It is a simple procedure and explained below.
 
 
-Installation of CMake
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Installation of CMake (pre-compiled binary of Linux)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `CMake <https://cmake.org/>`_ is a cross-platform build tool.
-The simplest way to make CMake usable in your environment is to get `the binary distribution of CMake from the download page <https://cmake.org/download/>`_. (The file name of the binary distribution will be ``cmake-<VERSION>-<PLATFORM>.tar.gz``). In standard Unix environment, a file for the platform of Linux x86_64 will be appropriate.
+The simplest way to make CMake usable in your environment is to get `the binary distribution of CMake from the download page <https://cmake.org/download/>`_. (The file name of the binary distribution will be ``cmake-<VERSION>-<PLATFORM>.tar.gz``). In standard Linux environment, a file for the platform of Linux x86_64 will be appropriate.
 
 To download the file, proceed as follows: We assume that you are in the directory that you extracted files from the downloaded file of SALMON,
-and that you will use the version 3.8.2. First get the URL of the download link from your browser, and use ``wget`` command in your Unix command-line::
+and that you will use the version 3.16.8. First get the URL of the download link from your browser, and use ``wget`` command in your Linux command-line::
 
-    $ wget https://cmake.org/files/v3.8/cmake-3.8.2-Linux-x86_64.tar.gz
+    $ wget https://cmake.org/files/v3.16/cmake-3.16.8-Linux-x86_64.tar.gz
 
 Next, unpack the archive by::
 
-    $ tar -zxvf cmake-3.8.2-Linux-x86_64.tar.gz
+    $ tar -zxvf cmake-3.16.8-Linux-x86_64.tar.gz
 
-and you will have the binary ``make-3.8.2-Linux-x86_64/bin/cmake`` in your directory.
+and you will have the binary ``make-3.16.8-Linux-x86_64/bin/cmake`` in your directory.
 
 To make the ``cmake`` command usable in your command-line, you need to modify the environment variable ``$PATH`` so that the executable of CMake are settled inside the directory specified in your ``$PATH``.
 If you use the bash shell, you need to modify the file ``~/.bashrc`` that specifies the ``$PATH`` variable. It can be done by typing the following command in your login directory::
 
-    $ export PATH=<SALMON_INSTALLATION_DIRECTORY>/cmake-3.8.2-Linux-x86_64/bin:$PATH
+    $ export PATH=<SALMON_INSTALLATION_DIRECTORY>/cmake-3.16.8-Linux-x86_64/bin:$PATH
 
 and then reload the configuration by typing::
 
     $ source ~/.bashrc
+
+See :any:`installation-cmake` describes Other way of the installation.
 
 
 .. _build-cmake:
@@ -106,7 +108,7 @@ and then reload the configuration by typing::
 Build using CMake
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Confirming that CMake of version 3.0.2 or later can be usable in your environment, proceed the following steps.
+Confirming that CMake of version 3.14.0 or later can be usable in your environment, proceed the following steps.
 We assume that you are in the directory SALMON.
 
 1. Create a new temporary directory ``build`` and move to the directory::
@@ -133,11 +135,9 @@ intel-avx      Intel Processer (Ivy-, Sandy-Bridge)     Intel Compiler    Intel 
 intel-avx2     Intel Processer (Haswell, Broadwell ..)  Intel Compiler    Intel MKL
 intel-avx512   Intel Processer (Skylake-SP)             Intel Compiler    Intel MKL
 fujitsu-fx100  FX100 Supercomputer                      Fujitsu Compiler  SSL-II
-fujitsu-k      Fujitsu FX100 / K-computer               Fujitsu Compiler  SSL-II
 =============  =======================================  ================  =================
 
-If the build is successful, you will get a file ``salmon.cpu`` at the directory ``salmon/bin``.
-If you specify many-core architechtures, ``intel-knl`` or ``intel-knc``, you find a file ``salmon.mic`` or both files ``salmon.cpu`` and ``salmon.mic``.
+If the build is successful, you will get a file ``salmon`` at the top-level build directory.
 
 
 Files necessary to run SALMON
@@ -209,25 +209,22 @@ Namelist variables that are used in our exercises are explained at :any:`Inputs`
 Run SALMON
 -----------------------------------
 
-Before running SALMON, the following preparations are required as described above: The executable file of ``salmon.cpu`` and ``salmon.mic`` (if your system is the many-core machine) should be built from the source file of SALMON. An input file ``inputfile.inp`` and pseudopotential files should also be prepared.
+Before running SALMON, the following preparations are required as described above: The executable file of ``salmon`` should be built from the source file of SALMON. An input file ``inputfile.inp`` and pseudopotential files should also be prepared.
 
 The execution of the calculation can be done as follows: In single process environment, type the following command::
 
-    $ salmon.cpu < inputfile.inp > fileout.out
+    $ salmon < inputfile.inp > fileout.out
 
 In multiprocess environment in which the command to execute parallel calculations using MPI is ``mpiexec``, type the following command::
 
-    $ mpiexec -n NPROC salmon.cpu < inputfile.inp > fileout.out
+    $ mpiexec -n NPROC salmon < inputfile.inp > fileout.out
 
 where NPROC is the number of MPI processes that you will use.
-In many-core processor (e.g. intel-knl)  environment, the execution command is::
-
-    $ mpiexec.hydra -n NPROC salmon.mic < inputfile.inp > fileout.out
 
 The execution command and the job submission procedure depends much on local environment. We summarize general conditions to execute SALMON:
 
 - SALMON runs in both single-process and multi-process environments using MPI.
-- executable files are prepared as ``/salmon/bin/salmon.cpu`` and/or ``/salmon/bin/salmon.mic`` in the standard build procedure.
+- executable files are prepared as ``salmon`` in the standard build procedure.
 - to start calculations, ``inputfile.inp`` should be read through ``stdin``.
 
 
@@ -254,48 +251,50 @@ Commandline switch                       Detail
 -a ARCH, --arch=ARCH                     Target architecture
 --enable-mpi, --disable-mpi              enable/disable MPI parallelization
 --enable-scalapack, --disable-scalapack  enable/disable computations with ScaLAPACK library
---enable-libxc, --with-libxc             see :any:`use-libxc`
+--enable-eigenexa, --disable-eigenexa    enable/disable computations with RIKEN R-CCS EigenExa library
+--enable-libxc, --disable-libxc          enable/disable computations with Libxc library
+--with-lapack                            specified LAPACK/ScaLAPACK installed directory
+--with-libxc                             specified Libxc installed directory
+--debug                                  enable debug build
+--release                                enable release build
 FC, FFLAGS                               User-defined Fortran Compiler, and the compiler options
+CC, CFLAGS                               User-defined C Compiler, and the compiler options
 =======================================  ===================================================
 
+In the build procedure by CMake, they search the following libraries.
+If the libraries don't found in the path that is specified by environment variables, they will build the required libraries automatically.
 
-.. _use-libxc:
+- Netlib LAPACK (includes BLAS), and ScaLAPACK
 
-To use Libxc
-^^^^^^^^^^^^^
+    - We will download and build the Netlib libraries as the typical implementation.
+    - http://www.netlib.org/lapack/
+    - http://www.netlib.org/scalapack/
 
-In SALMON, you may use `Libxc functional library <http://www.tddft.org/programs/libxc/installation/>`_.
-To use the Libxc library, some adittional procedures are necessary.
-First you need to download the source files in your system as follows::
+- Libxc
 
-    $ wget http://www.tddft.org/programs/octopus/down.php?file=libxc/4.2.1/libxc-4.2.1.tar.gz
-    $ tar -zxvf libxc-4.2.1.tar.gz
+    - https://www.tddft.org/programs/libxc/
 
-Then, enter the libxc source directory and make the library as follows::
-
-    $ ./configure --prefix=INSTALL/PATH/OF/LIBXC
-    $ make && make install
-
-Finally, enter the SALMON directory and execute ``configure.py`` script specifying the Libxc directory::
-
-    $ configure.py --arch=ARCHITECTURE --prefix=PREFIX --with-libxc=INSTALL/PATH/OF/LIBXC
-    $ make && make install
+EigenExa will download and build automatically even if the library is installed to your machine.
 
 
 Build for single process calculations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you use a single processor machine, specify ``--disable-mpi`` in executing the python script::
+When using the ``--arch`` option, MPI parallelization is enabled as default in almost case.
+If you use a single processor machine, explicitly specify ``--disable-mpi`` in executing the python script::
 
     $ python ../configure.py --arch=<ARCHITECTURE> --disable-mpi
 
 
-Build in GCC/GFortran environemnt
+Build by user-specified compiler
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you use GCC/GFortran compiler, specify the following flags in executing the python script::
+If you want that specify the compiler, set the ``FC`` and ``CC`` flags in executing the python script::
 
-    $ python ../configure.py FC=gfortran CC=gcc FFLAG=-O3 CFLAG=-O3
+    $ python ../configure.py FC=gfortran CC=gcc
+
+When not using the ``--arch`` option, MPI parallelization is disabled as default.
+
 
 
 .. _build-gnu-make:
@@ -333,54 +332,16 @@ If the make proceeds successful, a binary file is created in the directory ``SAL
 Troubleshooting of the Installation Process
 -------------------------------------------
 
+.. _installation-cmake:
+
 Installation of CMake
 ~~~~~~~~~~~~~~~~~~~~~
 
 The `CMake <https://cmake.org/>`_ is a cross-platform build tool. In order to build the
-SALMON from the source code, the CMake of version 3.0.2 or later is
+SALMON from the source code, the CMake of version 3.14.0 or later is
 required. You may install it following one of the three instructions
 below.
 
-Installation of pre-compiled binary
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-You can get the binary distribution from the `download page <https://cmake.org/download/>`__. First,
-move to the directory that you installed SALMON,
-
-::
-
-   cd <SALMON_INSTALLATION_DIRECTORY>
-
-and download the binary distribution (``cmake-<VERSION>-<PLATFORM>.tar.gz``) appropriate for your platform. You
-can do it by copy the URL of download link from the browser, and use
-``wget`` command:
-
-::
-
-   wget https://cmake.org/files/v3.8/cmake-3.8.2-Linux-x86_64.tar.gz
-
-In this document, we will use version 3.8.2 as an example. You can
-unpack the downloaded archive
-
-::
-
-   tar -zxvf cmake-3.8.2-Linux-x86_64.tar.gz
-
-and you will have the binary ``make-3.8.2-Linux-x86_64/bin/cmake``.
-
-Next, to utilize the ``cmake`` command, it is required that the
-executable are settled inside the directory specified in your ``$PATH``.
-If you use the bash shell, edit ``~/.bashrc`` and append the line:
-
-::
-
-   export PATH=<SALMON_INSTALLATION_DIRECTORY>/cmake-3.8.2-Linux-x86_64/bin:$PATH
-
-and reload the configuration:
-
-::
-
-   source ~/.bashrc
 
 Installation by package manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -411,20 +372,20 @@ Installation from source code
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can get the source code distribution from the `download page <https://cmake.org/download/>`__. In
-this time, we will use the cmake version 3.8.2 as an example. Download
+this time, we will use the cmake version 3.16.8 as an example. Download
 the archive by ``wget`` comamnd and unpack it as below:
 
 ::
 
-   wget https://cmake.org/files/v3.8/cmake-3.8.2.tar.gz
-   tar -zxvf cmake-3.8.2.tar.gz
+   wget https://cmake.org/files/v3.16/cmake-3.16.8.tar.gz
+   tar -zxvf cmake-3.16.8.tar.gz
 
 And, move to the unpacked directory and build.
 
 ::
 
     
-   cd cmake-3.8.2
+   cd cmake-3.16.8
    ./configure --prefix=INSTALLATION_DIRECTORY
    make
    make install
@@ -444,7 +405,4 @@ and reload the configuration:
 ::
 
    source ~/.bashrc
-
-Installation of BLAS/LAPACK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
