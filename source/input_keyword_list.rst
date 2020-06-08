@@ -18,6 +18,7 @@ List of all input keywords
 -  `&propagation`_
 -  `&scf`_
 -  `&emfield`_
+-  `&singlescale`_
 -  `&multiscale`_
 -  `&maxwell`_
 -  `&analysis`_
@@ -646,9 +647,13 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &singlescale
 -----------
 
-- **cutoff_G2_emfield** (real(8), Default=-1d0)
-   | XXX
+- **method_singlescale** (character, Default='3d')
+   | Available for ``theory='single_scale_maxwell_tddft'``.
+   Type of single-scale Maxwell-TDDFT method.
 
+- **cutoff_G2_emfield** (real(8), Default=-1d0)
+   | Available for ``theory='single_scale_maxwell_tddft'``.
+   Cutoff energy of Fourier component of the vector potential when method_singlescale='1d_fourier'.
 
 &multiscale
 -----------
