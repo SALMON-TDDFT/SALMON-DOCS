@@ -235,8 +235,12 @@ List of all input keywords
 
 - **temperature** (real(8), Default=-1d0)
    | Available for DFT-based options of ``theory`` 
-   Temperature of electrons. When you calculate a system of zero band-gap energy like metals, zero or positive number of the temperature should be given (Default is ``-1.0`` : this is for system which has a band gap energy). The value must be given by the unit of energy as specified in ``&units/unit_system``. The kelvin unit can be used by the keyword ``temperature_k`` (see next). 
-   
+   | Temperature of electrons. The value must be given by the unit of energy as specified in ``&units/unit_system``.
+   | The kelvin unit can be used by the keyword ``temperature_k`` (see next).
+   | ``temperature < 0`` / no redistribution of the occupation number (for bandgap system).
+   | ``temperature = 0`` / redistribution of the occupation number by the step function.
+   | ``temperature > 0`` / redistribution of the occupation number by the Fermi-Dirac distribution function.
+
 - **temperature_k** (real(8), Default=-1d0)[Trial]
    | Available for DFT-based options of ``theory``
    The same as ``temperature`` but in kelvin.
