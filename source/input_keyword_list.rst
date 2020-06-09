@@ -1156,6 +1156,9 @@ XXXXXXXX
    | Old infomation: 0d
    This variable will be removed.
 
+..
+   comment test2
+..
 
    
 .. _&calculation: #calculation
