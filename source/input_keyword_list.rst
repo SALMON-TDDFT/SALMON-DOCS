@@ -848,6 +848,9 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    |   ``'no'`` / no projection.
    |   ``'gs'`` / projection to eigenstates of ground-state Hamiltonian.
    |   ``'rt'`` / projection to eigenstates of instantaneous Hamiltonian.
+   | XXX not yet implemented XXX
+   | XXX how about isoalted system?? XXX
+   | XXX how about multiscale option?? XXX
 
 - **out_projection_step** (integer, Default=100)
    | Available for ``projection_option`` with TDDFT based options of ``theory``.
@@ -855,27 +858,25 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Interval time step of projection analysis 
 
 - **nenergy** (integer, Default=1000)
-   | Available for ``theory='XXX', 'maxwell'``.
    Number of energy grid points for frequency-domain analysis.
-   This parameter is required when `'impulse'` is choosen in `&emfield/ae_shape1|2`.
+   This parameter is used, for examples, ``theory='tddft_response'`` and ``theory='maxwell'``.
 
 - **de** (real(8), Default=0.01d0 eV)
-   | Available for ``theory='XXX', 'maxwell'``.
-   Energy grid size for analysis.
-   This parameter is required when `'impulse'` is choosen in `&emfield/ae_shape1|2`.
+   Energy grid size for frequency-domain analysis.
+   This parameter is used, for examples, ``theory='tddft_response'`` and ``theory='maxwell'``.
 
 - **out_rt_energy_step** (integer, Default=10)
    | Available for ``theory='XXX'``.
    Total energy is calculated and printed every ``out_rt_energy_step`` time steps.
 
 - **yn_out_psi** (character, Default='n')
-   | Available for ``theory='XXX'``.
+   | Available for ``theory='dft'``.
    | Option for output of wavefunctions
    | Options
    |   ``'y'`` / enable.
    |   ``'n'`` / disable.
-   For periodic system (``yn_periodic='y'``), it works only for ground state calculation. The converged wave functions of all orbitals with all k-points are printed in gs_wfn_cube or gs_wfn_vtk directory. The format is speficied by ``format3d``.  XXX need check XXX
-
+   The format is specified by &analysis/``format_voxel_data``. 
+   
 - **yn_out_dos** (character, Default='n')
    | Available for ``theory='dft'``.
    | Option for output of density of state
@@ -883,104 +884,111 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    |   ``'y'`` / enable.
    |   ``'n'`` / disable.
 
+- **yn_out_pdos** (character, Default='n')
+   | Available for ``theory='dft'``.
+   | Option for output of projected density of state
+   | Options
+   |   ``'y'`` / enable.
+   |   ``'n'`` / disable.
+
 - **yn_out_dos_set_fe_origin** (character, Default='n')
-   | Available for ``theory='XXX'``.
-   If ``'y'``, the electron energy is shifted to fix the Fermi energy as zero point.
-   For ``&system/yn_periodic`` is ``'n'``, `` out_dos_fshift`` is not used 
-   if ``&system/nstate`` is equal to ``&system/nelec``/2.
+   | Available for ``yn_out_dos='y'`` and ``yn_out_pdos='y'``.
+   | Options to set the Fermi energy to zero 
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable.
+   This option is not used if ``&system/nstate`` is equal to ``&system/nelec``/2.
 
-- **out_dos_start** (real(8), Default=-1d10 eV)
-   | Available for ``theory='XXX'``.
-   Lower bound (energy) of the density of state spectra.
-   If this value is lower than a specific value near the lowest energy level, 
-   this value is overwritten by that value. 
-
-- **out_dos_end** (real(8), Default=1d10 eV)
-   | Available for ``theory='XXX'``.
-   Upper bound (energy) of the density of state spectra.
-   If this value is higher than a specific value near the highest energy level, 
-   this value is overwritten by that value. 
+- **out_dos_start / out_dos_end** (real(8), Default=-1d10 / 1d10 eV)
+   | Available for ``yn_out_dos='y'`` and ``yn_out_pdos='y'``.
+   Lower/Upper bound (energy) of the density of state spectra.
+   If this value is lower/higher than a specific value near the lowest/highest energy level, this parameter is re-set to the value. 
 
 - **out_dos_nenergy** (integer, Default=601)
-   | Available for ``theory='xxx'``.
+   | Available for ``yn_out_dos='y'`` and ``yn_out_pdos='y'``.
    Number of  energy points sampled in the density of state spectra.
- 
-- **out_dos_width** (real(8), Default=0.1d0 eV)
-   | Available for ``theory='XXX'``.
-   Smearing width used in the density of state spectra..
 
 - **out_dos_function** (character, Default='gaussian')
-   | Available for ``theory='XXX'``.
-   Choise of smearing method for the density of state spectra..
-   ``gaussian`` and ``lorentzian`` function are available.
+   | Available for ``yn_out_dos='y'`` and ``yn_out_pdos='y'``.
+   | Choise of smearing method for the density of state spectra.
+   | Options:
+   |   ``gaussian``  / Gaussian function is used.
+   |   ``lorentzian`` / Lorentzian function is used.
 
-- **yn_out_pdos** (character, Default='n')
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   If ``'y'``, projected density of state is output.
+- **out_dos_width** (real(8), Default=0.1d0 eV)
+   | Available for ``yn_out_dos='y'`` and ``yn_out_pdos='y'``.
+   Smearing width used in the density of state spectra.
 
 - **yn_out_dns** (character, Default='n')
-   | Available for ``theory='XXX'``.
-   If ``'y'``, the spatial electron density distribution at the ground state is output.
+   | Available for ``theory='dft'``.
+   | Option to print the spatial electron density distribution in the ground state.
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable.
 
-- **yn_out_dns_rt/out_dns_rt_step** (Character/Integer, Default='n')
-   | Available for ``theory='XXX'``.
-   If ``'y'``,  the spatiotemporal electron density distribution during real-time time-propagation is output every ``outdns_rt_step`` time steps.
+- **yn_out_dns_rt/out_dns_rt_step** (Character/Integer, Default='n'/50)
+   | Available for ``theory='dft_md','tddft_pulse'``.
+   | Options to print the spatial electron density distribution everty ``out_dns_rt_step`` step during time-propagation.
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable.
 
 - **yn_out_dns_ac_je/out_dns_ac_je_step** (Character/Integer, Default='n'/50)
    | Available for ``theory='single_scale_maxwell_tddft'``.
-   If ``'y'``,  the electron density, vector potential, electronic current, and ionic coordinates are printed out every ``outdns_dns_ac_je_step`` time steps.
+   | Options to print the electron density, vector potential, electronic current, and ionic coordinates every ``outdns_dns_ac_je_step`` time steps.
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable.
    The data written in binary format are divided to files corresponding to the space-grid parallelization number. 
   
-- **yn_out_dns_trans/out_dns_trans_energy** (Character/Real(8), Default='n'/1.55d0eV)[Trial]
+- **yn_out_dns_trans/out_dns_trans_energy** (Character/Real(8), Default='n'/1.55d0eV)[currently not available]
    | Available for ``theory='XXX'``.
-   | Old infomation: 3d
-   If ``'y'``, transition in different density from the ground state at specified field frequency omega(given by ``out_dns_trans_energy``) is calculated by drho(r,omega)=FT(rho(r,t)-rho_gs(r))/T.
+   | Option to calculate transition in different density from the ground state at specified frequency omega(given by ``out_dns_trans_energy``) by drho(r,omega)=FT(rho(r,t)-rho_gs(r))/T.
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable.
+   XXX (currently not available ) XXX
 
 - **yn_out_elf** (character, Default='n')
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   If ``'y'``, electron localization function is output.
+   | Available for ``theory='dft'``.
+   | Option to print the electron localization function.
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable.
 
 - **yn_out_elf_rt/out_elf_rt_step** (Character/Integer,Default='n'/50)
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   If ``'y'``, electron localization function 
-   during real-time time-propagation is output
-   every ``out_elf_rt_step`` time steps.
+   | Available for ``theory='dft_md', 'tddft_pulse'``.
+   | Option to print the electron localization function during the time-propagation every ``out_elf_rt_step`` time steps.
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable.
 
 - **yn_out_estatic_rt/out_estatic_rt_step** (Character/Integer, Default='n'/50)
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   If ``'y'``, static electric field
-   during real-time time-propagation is output
-   every ``out_estatic_rt_step`` time steps.
+   | Available for ``theory='tddft_pulse'``.
+   | Option to print the static electric field during the time-propagation every ``out_estatic_rt_step`` time steps.
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable.
 
 - **yn_out_rvf_rt/out_rvf_rt_step** (Character/Integer, Default='n'/10)
    | Available for TDDFT based options and 'dft_md' option of ``theory``.
-   If ``'y'``, coordinates[A], velocities[au], forces[au] on atoms
-   during time-propagation are printed in ``SYSname``\_trj.xyz every ``out_rvf_rt_step`` time steps.
+   | Option to print the coordinates[A], velocities[au], forces[au] on atoms during time-propagation in ``SYSname``\_trj.xyz every ``out_rvf_rt_step`` time steps.
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable.
    If ``yn_md='y'``, the printing option is automatically turned on.
    
 - **yn_out_tm** (character, Default='n')[Trial]
    | Available for ``yn_periodic='y'`` with ``theory='dft'``.
-   If ``'y'``, transition moments between occupied and virtual orbitals are printed into ``SYSname``\_tm.data after the ground state calculation.
+   | Option to calculate and print the transition moments between occupied and virtual orbitals to ``SYSname``\_tm.data after the ground state calculation.
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable.
 
 - **out_ms_step** (integer, Default=100)
    | Available for ``theory='multi_scale_maxwell_tddft'``.
-   Some information is printed every ``out_ms_step`` time step in the Maxwell + TDDFT multi-scale calculation.
+   | Option to print some information every ``out_ms_step`` time step in the Maxwell + TDDFT multi-scale calculation.
 
 - **format_voxel_data** (character, Default='cube')
-   | Available for ``theory='XXX'``.
-   File format for three-dimensional volumetric data.
-   ``'avs'``, ``'cube'``, and ``'vtk'`` can be chosen.
+   | Available for ``yn_out_psi='y'``, ``yn_out_dns(_rt)='y'``,  ``yn_out_dns_ac_je='y'``,  ``yn_out_elf(_rt)='y'``,  ``yn_out_estatic_rt='y'``.
+   | Option of the file format for three-dimensional volumetric data.
+   |   ``'avs'`` /  AVS format
+   |   ``'cube'`` / cube format
+   |   ``'vtk'`` / vtk format
 
 - **nsplit_voxel_data** (integer, Default=1)
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
+   | Available for ``format_voxel_data='avs'``.
    Number of separated files for three dimensional data.
-   Effective only when ``format3d`` is ``'avs'``.
-   ``numfiles_out_3d`` must be less than or equal to number of processes.
 
 
 &poisson
