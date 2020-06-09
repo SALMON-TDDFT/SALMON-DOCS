@@ -2339,7 +2339,7 @@ A complete list of the input keywords can be found in :any:`List of all input ke
    /
    
    &emfield
-     !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
+     !envelope shape of the incident pulse('Acos2': cos^2 type envelope for vector potential)
      ae_shape1 = 'Acos2'
      
      !peak intensity(W/cm^2) of the incident pulse
@@ -2530,7 +2530,7 @@ Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_ce
 ::
    
    &emfield
-     !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
+     !envelope shape of the incident pulse('Acos2': cos^2 type envelope for vector potential)
      ae_shape1 = 'Acos2'
      
      !peak intensity(W/cm^2) of the incident pulse
@@ -2795,7 +2795,7 @@ A complete list of the input keywords can be found in :any:`List of all input ke
     /
     
     &emfield
-      !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
+      !envelope shape of the incident pulse('Acos2': cos^2 type envelope for vector potential)
       ae_shape1 = 'Acos2'
       
       !peak intensity(W/cm^2) of the incident pulse
@@ -3013,7 +3013,7 @@ Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_ce
 ::
    
    &emfield
-     !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
+     !envelope shape of the incident pulse('Acos2': cos^2 type envelope for vector potential)
      ae_shape1 = 'Acos2'
      
      !peak intensity(W/cm^2) of the incident pulse
