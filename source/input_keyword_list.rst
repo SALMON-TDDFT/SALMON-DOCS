@@ -482,6 +482,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Options
    |  ``simple`` / Simple mixing method
    |  ``broyden`` / modified-Broyden method
+   |  ``pulay`` / Pulay method
 
 - **mixrate** (real(8), Default=0.5d0)
    | Available for ``method_mixing='simple'`` in 'dft' and 'dft_md' options of ``theory``.
@@ -497,16 +498,23 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Parameter of the modified-Broyden method.
 
 - **nmemory_p** (integer, Default=4)
-   | XXX
+   | Available for ``method_mixing='pulay'`` in 'dft' and 'dft_md' options of ``theory``.
+   Number of previous densities to be stored in SCF iteration cycle for the Pulay method. 
 
 - **beta_p** (real(8), Default=0.75d0)
-   | XXX
+   | Available for ``method_mixing='pulay'`` in 'dft' and 'dft_md' options of ``theory``.
+   Parameter of the mixing rate for the Pulay method.
 
 - **yn_auto_mixing** (character, Default='n')
-   | XXX
+   | Available for 'dft' and 'dft_md' options of ``theory``.
+   | The option to change the mixing-rate automatically (i.e. automatic adjustments of ``mixrate``/``alpha_mb``/``beta_p``)
+   | Options
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
 
 - **update_mixing_ratio** (real(8), Default=3.0d0)
-   | XXX
+   | Available for ``yn_auto_mixing='y'`` in 'dft' and 'dft_md' options of ``theory``.
+   Threshold for the change of the mixing-rate in ``yn_auto_mixing='y'`` option. The mixing-rate is reduced to half when the ratio of the density differences between the current and previous iteration steps is larger than ``update_mixing_ratio``. 
 
 - **yn_subspace_diagonalization** (character, Default='y')
    | Available for 'dft' and 'dft_md' options of ``theory``.
