@@ -986,7 +986,9 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **layout_multipole** (character, Default=3)
    | Available for ``yn_periodic='n'`` with DFT and TDDFT based options of ``theory``.
+   
    A variable to determine how to put multipoles in the Hartree potential calculation.
+   
    | Options:
    |  ``1``/ A single pole is put at the center.
    |  ``2``/ Multipoles are put at the center of atoms.
