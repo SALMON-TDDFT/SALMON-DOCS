@@ -27,7 +27,6 @@ List of all input keywords
 -  `&opt[Trial]`_
 -  `&md[Trial]`_
 -  `&group_fundamental[Trial]`_
--  `&group_hartree[Trial]`_ 
 -  `&group_others[Trial]`_
 
 
@@ -989,6 +988,10 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Old infomation: 0d
    Number of multipoles when this is ``3``. When default is set, number of multipoles is calculated automatically.
 
+- **lmax_multipole** (integer, Default=4)[Trial]
+   | Available for ``yn_periodic='n'`` with DFT and TDDFT based options of ``theory``.
+   A maximum angular momentum for multipole expansion in the Hartree-cg calculation. 
+   
 - **threshold_cg** (real(8), Default=1d-15 a.u.)
    | Available for ``theory='XXX'``.
    | XXX
@@ -1140,16 +1143,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Old infomation: 0d
    There is a malfunction in this variable.
 
-
-&group_hartree[Trial]
-----------------------
-
-- **lmax_lmp** (integer, Default=4)[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   A maximum angular momentum for multipole expansion in the Hartree-cg calculation. 
-
-
 &group_others[Trial]
 ---------------------
 
@@ -1193,7 +1186,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 .. _&opt: #opt
 .. _&md: #md
 .. _&group_fundamental: #group_fundamental
-.. _&group_hartree: #group_hartree
 .. _&group_others: #group_others
 
 
