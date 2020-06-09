@@ -1155,6 +1155,9 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Old infomation: 0d
    This variable will be removed.
 
+..
+   comment test
+..
 
    
 .. _&calculation: #calculation
