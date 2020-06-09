@@ -237,9 +237,9 @@ List of all input keywords
    | Available for DFT-based options of ``theory`` 
    | Temperature of electrons. The value must be given by the unit of energy as specified in ``&units/unit_system``.
    | The kelvin unit can be used by the keyword ``temperature_k`` (see next).
-   | ``temperature < 0`` / no redistribution of the occupation number (for bandgap system).
-   | ``temperature = 0`` / redistribution of the occupation number by the step function.
-   | ``temperature > 0`` / redistribution of the occupation number by the Fermi-Dirac distribution function.
+   | ``temperature < 0`` / the occupation numbers are fixed by ``nelec`` (for bandgap system).
+   | ``temperature = 0`` / redistribution of the occupation numbers by the step function.
+   | ``temperature > 0`` / redistribution of the occupation numbers by the Fermi-Dirac distribution function.
 
 - **temperature_k** (real(8), Default=-1d0)[Trial]
    | Available for DFT-based options of ``theory``
