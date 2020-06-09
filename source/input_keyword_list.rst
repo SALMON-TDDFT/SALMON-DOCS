@@ -839,21 +839,17 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &analysis
 ---------
 
-- **projection_option** (character, Default='no')
+- **projection_option / out_projection_step** (character/integer, Default='no'/100)
    | Available for TDDFT based options of ``theory``.
    | Methods of projection to analyze the excited states (e.g. the number of excited electrons.)
    | Options
    |   ``'no'`` / no projection.
    |   ``'gs'`` / projection to eigenstates of ground-state Hamiltonian.
    |   ``'rt'`` / projection to eigenstates of instantaneous Hamiltonian.
+   | This is printed everty ``out_projection_step`` step during time-propagation.
    | XXX not yet implemented XXX
    | XXX how about isoalted system?? XXX
    | XXX how about multiscale option?? XXX
-
-- **out_projection_step** (integer, Default=100)
-   | Available for ``projection_option`` with TDDFT based options of ``theory``.
-   | Old infomation: 3d XXX
-   Interval time step of projection analysis 
 
 - **nenergy** (integer, Default=1000)
    Number of energy grid points for frequency-domain analysis.
@@ -864,7 +860,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    This parameter is used, for examples, ``theory='tddft_response'`` and ``theory='maxwell'``.
 
 - **out_rt_energy_step** (integer, Default=10)
-   | Available for ``theory='XXX'``.
+   | Available for the TDDFT based option of ``theory``.
    Total energy is calculated and printed every ``out_rt_energy_step`` time steps.
 
 - **yn_out_psi** (character, Default='n')
@@ -936,7 +932,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    The data written in binary format are divided to files corresponding to the space-grid parallelization number. 
   
 - **yn_out_dns_trans/out_dns_trans_energy** (Character/Real(8), Default='n'/1.55d0eV)[currently not available]
-   | Available for ``theory='XXX'``.
+   | Available for ``theory='tddft_pulse'``.
    | Option to calculate transition in different density from the ground state at specified frequency omega(given by ``out_dns_trans_energy``) by drho(r,omega)=FT(rho(r,t)-rho_gs(r))/T.
    |   ``'y'`` / enable
    |   ``'n'`` / disable.
@@ -1029,15 +1025,15 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **cutoff_r** (real(8), Default=-1d0)
    | Available for ``yn_periodic='y'`` with DFT/TDDFT based options of ``theory``.
-   | XXX
+   | Cut-off length in real-space
 
 - **cutoff_r_buff** (real(8), Default=2d0 a.u.)
-   | Available for ``yn_periodic='y'`` with DFT/TDDFT based options of ``theory``.
-   | XXX
+   | Available for ``yn_periodic='y'`` with ``yn_md='y'`` or ``theory='dft_md'``.
+   | Buffer length in radius for book-keeping for real-space interaction.
 
 - **cutoff_g** (real(8), Default=-1d0)
    | Available for ``yn_periodic='y'`` with DFT/TDDFT based options of ``theory``.
-   | XXX
+   | Cut-off in G-space in the Ewald method.
 
 &opt[Trial]
 -------------
@@ -1052,7 +1048,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **max_step_len_adjust** (real(8), Default=-1d0)
   | Available for ``yn_opt='y'`` with ``theory='dft'``.
-  | XXX
+  | Set maximum optimization step length (if positive number is given)
 
   
 &md[Trial]
