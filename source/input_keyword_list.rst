@@ -49,12 +49,16 @@ List of all input keywords
 - **yn_md** (character, Default='n')[Trial]
    | Available for ``theory='dft'`` (Adiabatic ground-state MD) and ``theory='tddft_pulse'`` (Ehrenfest MD).
    | Molecular dynamics option.
-   Enable(``'y'``)/disable(``'n'``). 
+   | Options
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
 
 - **yn_opt** (character, Default='n')[Trial]
    | Available for ``theory='dft'``.
    | Geometry optimization option.
-   Enable(``'y'``)/disable(``'n'``).
+   | Options
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
 
 &control
 --------
@@ -849,6 +853,10 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Energy grid size for analysis.
    This parameter is required when `'impulse'` is choosen in `&emfield/ae_shape1|2`.
 
+- **out_rt_energy_step** (integer, Default=10)
+   | Available for ``theory='XXX'``.
+   Total energy is calculated and printed every ``out_rt_energy_step`` time steps.
+
 - **yn_out_psi** (character, Default='n')
    | Available for ``theory='XXX'``.
    | Option for output of wavefunctions
@@ -1117,11 +1125,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &group_fundamental[Trial]
 -------------------------
    
-- **ntmg** (integer, Default=1)[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   Number of multigrid calculation for gs. At the moment, there is a malfunction in this variable, and recovery is needed.
-
 - **iwrite_projection** (integer, Default=0)[Trial]
    | Available for ``theory='XXX'``.
    | Old infomation: 0d
@@ -1136,11 +1139,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for ``theory='XXX'``.
    | Old infomation: 0d
    There is a malfunction in this variable.
-
-- **itcalc_ene** (integer, Default=10)[Trial]
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   Total energy is calculated every ``itcalc_ene`` time steps. There may be a malfunction in this variable.
 
 
 &group_hartree[Trial]
