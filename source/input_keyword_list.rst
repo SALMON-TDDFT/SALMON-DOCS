@@ -430,6 +430,11 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - **yn_fix_func** (character(1), Default='n')[Trial]
    | Available for 'dft_md' and TDDFT-based options of ``theory``.
    Option not to update functional (or Hamiltonian) in time-evolution, i.e., keep ground state Hamiltonian. (currently not available)
+   
+- **yn_predictor_corrector** (character(1), Default='n')
+   | Available for 'dft_md' and TDDFT-based options of ``theory``.   
+   | Switch of the predictor-corrector method of TDDFT. 
+   | For ``xc='tbmbj'`` or ``'bj_pw'`` (meta-GGA functionals), the predictor corrector is automatically executed.
 
 &scf
 ----
