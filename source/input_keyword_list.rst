@@ -521,9 +521,9 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Threshold for convergence that is specified by ``convergence`` keyword.
    | Unit conversions are: 1 a.u.= 45.54 A\ :sup:`-6`\ for ``convergence='norm_rho'`` and ``'norm_rho_dng'``,  1 a.u.= 33.72x10\ :sup:`4`\ A\ :sup:`-6`\eV\ :sup:`2`\ for  ``convergence='norm_pot'`` and ``'norm_pot_dng'``
 
-- **iditer_notemperature** (integer, Default=10) 
+- **nscf_init_redistribution** (integer, Default=10) 
    | Available for 'dft' and 'dft_md' options of ``theory``.
-   | XXX
+   The number of initial iterations for redistribution of the occupation number in finite temperature calculation.
 
 - **nscf_init_diagonal** (integer, Default=10)
    | Available for 'dft' option of ``theory``.
