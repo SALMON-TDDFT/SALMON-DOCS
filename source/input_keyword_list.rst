@@ -649,11 +649,15 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **method_singlescale** (character, Default='3d')
    | Available for ``theory='single_scale_maxwell_tddft'``.
-   Type of single-scale Maxwell-TDDFT method.
+   | Type of single-scale Maxwell-TDDFT method.
+   | Options
+   |``3d`` / 3-dimensional FDTD + TDDFT
+   |``1d`` / 1-dimensional FDTD (along the z axis) + TDDFT
+   |``1d_fourier`` / ``1d`` with 3D Fourier component of the vector potential
 
 - **cutoff_G2_emfield** (real(8), Default=-1d0)
    | Available for ``theory='single_scale_maxwell_tddft'``.
-   Cutoff energy of Fourier component of the vector potential when method_singlescale='1d_fourier'.
+   | Cutoff energy of Fourier component of the vector potential when method_singlescale='1d_fourier'.
 
 &multiscale
 -----------
