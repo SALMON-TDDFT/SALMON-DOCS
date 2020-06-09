@@ -564,10 +564,16 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    |   ``'Acos6'`` / Envelope of cos\ :sup:`6`\ for a vector potential.
    |   ``'Acos8'`` / Envelope of cos\ :sup:`8`\ for a vector potential.   
    |   ``'Ecos2'`` / Envelope of cos\ :sup:`2`\ for a electric field.
-   |   ``'Asin2cos'`` [Trial] / Envelope of sin\ :sup:`2`\ with cosine type oscillation for a vector potential.
-   |   ``'Asin2_cw'`` [Trial] / Envelope of sin\ :sup:`2`\ at beginning and continuous wave after that for a vector potential (for 'ae_shape1' only).
+   |   ``'Asin2cos'`` / Envelope of sin\ :sup:`2`\ with cosine type oscillation for a vector potential.
    |   ``'input'`` [Trial] / read-in user-defined field is used given by ``file_input1`` option (for 'ae_shape1' only).
    |   ``'none'`` / no incident field is applied
+
+   For ``yn_periodic='n'``, ``'impulse'``, ``'Acos2'``, and ``'Ecos2'`` can be chosen.
+
+..
+  #(commented out: not implemented yet)
+  #|   ``'Asin2_cw'`` [Trial] / Envelope of sin\ :sup:`2`\ at beginning and continuous wave after that for a vector potential (for 'ae_shape1' only).
+..
 
 - **file_input1** (character, Default='')
    | Available for ``theory='tddft_pulse'`` with ``ae_shape1='input'``.
@@ -1071,8 +1077,8 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Default is ``41.34[au] or 1.0[fs]``.
 
 ..
-#XXX removed?#
-- **seed_ini_velocity** (integer, Default=123)[Trial]
+   #XXX removed?#
+   - **seed_ini_velocity** (integer, Default=123)[Trial]
    | Available for ``yn_md='y'`` or ``theory='dft_md'``.
    Random seed (integer number) to generate initial velocity if ``set_ini_velocity`` is set to y.
    Default is ``123``.
