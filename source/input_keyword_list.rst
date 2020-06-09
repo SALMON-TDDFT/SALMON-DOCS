@@ -215,16 +215,6 @@ List of all input keywords
    | Available for all options of ``theory`` except for ``theory='maxwell'``.
    Primitive lattice vectors for nonorthogonal cell.
 
-- **isym** (integer, Default=1)
-   | Available for ``theory='XXX'``.
-   | Old infomation: 3d
-   Number of symmetries that can be used for reduction of k-points.
-
-- **crystal_structure** (character, Default='none')
-   | Available for ``theory='XXX'``.
-   | Old infomation: 3d
-   Name of symmetry that can be used for the reduction of # of k-points.
-
 - **nstate** (integer, Default=0)
    | Available for the DFT/TDDFT based options of ``theory``.
    Number of orbitals/bands.
