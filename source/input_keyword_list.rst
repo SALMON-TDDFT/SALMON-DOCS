@@ -434,7 +434,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - **yn_predictor_corrector** (character(1), Default='n')
    | Available for 'dft_md' and TDDFT-based options of ``theory``.   
    | Switch of the predictor-corrector method of TDDFT. 
-   | For ``xc='tbmbj'`` or ``'bj_pw'`` (meta-GGA functionals), the predictor corrector is automatically executed even when ``yn_predictor_corrector='n'``.
+   | For meta-GGA functionals (``xc='tbmbj'`` or ``'bj_pw'``), the predictor corrector is automatically executed even when ``yn_predictor_corrector='n'``.
 
 &scf
 ----
