@@ -1118,6 +1118,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 **Following variables are moved from the isolated part. Some of them may be added to common input, be combined to it, and be removed.**
 
+XXXXXXXX
 
 &group_fundamental[Trial]
 -------------------------
@@ -1155,9 +1156,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Old infomation: 0d
    This variable will be removed.
 
-..
-   comment test
-..
 
    
 .. _&calculation: #calculation
