@@ -374,8 +374,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Spacing of real-space grids. 
    (This cannot be used together with ``&rgrid/num_rgrid``.)
    If ``&system/yn_periodic='y'``,
-   the grid spacing is automatically adjusted in calculations
-   so that the grid box size ``&system/al(3)`` becomes divisible by the spacing.  (XXX really?? XXX)
 
 - **num_rgrid(3)** (integer, Default=0)
    | Available for the DFT/TDDFT based options of ``theory``.
@@ -987,27 +985,24 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 --------
 
 - **layout_multipole** (character, Default=3)
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   | A variable to determine how to put multipoles in the Hartree potential calculation.
+   | Available for ``yn_periodic='n'`` with DFT and TDDFT based options of ``theory``.
+   A variable to determine how to put multipoles in the Hartree potential calculation.
    | Options:
    |  ``1``/ A single pole is put at the center.
    |  ``2``/ Multipoles are put at the center of atoms.
    |  ``3``/ Multipoles are put at the center of mass of electrons in prepared cuboids.
 
 - **num_multipole_xyz(3)** (integer, Default=0)
-   | Available for ``theory='XXX'``.
-   | Old infomation: 0d
-   Number of multipoles when this is ``3``. When default is set, number of multipoles is calculated automatically.
+   | Available for ``yn_periodic='n'`` with DFT and TDDFT based options of ``theory``.
+   Number of multipoles. When default is set, number of multipoles is calculated automatically.
 
 - **lmax_multipole** (integer, Default=4)[Trial]
    | Available for ``yn_periodic='n'`` with DFT and TDDFT based options of ``theory``.
    A maximum angular momentum for multipole expansion in the Hartree-cg calculation. 
-   
-- **threshold_cg** (real(8), Default=1d-15 a.u.)
-   | Available for ``theory='XXX'``.
-   | XXX
 
+- **threshold_cg** (real(8), Default=1d-15 a.u.(= 1.10d-13 A^3eV^2))
+   | Available for ``yn_periodic='n'`` with DFT and TDDFT based options of ``theory``.
+   A convergence value for the Hartree-cg calculation. The convergence is checked by ||tVh(i)-tVh(i-1)||^2/(number of grids). 
 
 &ewald
 ------
