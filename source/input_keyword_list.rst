@@ -582,7 +582,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - **e_impulse** (real(8), Default=1d-2 a.u.)
    | Available for 'maxwell' and TDDFT based options of ``theory``.
    | Momentum of impulsive perturbation. This valiable has the dimention of momentum, energy*time/length.
-
 ..
   #(commented out: not implemented yet)
   #- **t_impulse**
@@ -631,21 +630,20 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **num_dipole_source** (integer, Default=0)
    | Available for TDDFT based options of ``theory``.
-   Number of radiation sources for optical near fields.
+   Number of radiation sources for exciting optical near fields as incident sources.
    Maximum number is ``2``.
 
 - **vec_dipole_source(3,num_dipole_source)** (real(8), Default=0d0)
    | Available for TDDFT based options of ``theory``.
-   Dipole vectors of the radiation sources for the optical near fields.
+   Dipole vectors of the radiation sources for exciting optical near fields as incident sources.
 
 - **cood_dipole_source(3,num_dipole_source)** (real(8), Default=0d0)
    | Available for TDDFT based options of ``theory``.
-   Central coordinates of the dipole vectors of the radiation sources.
+   Central coordinates of the dipole vectors for exciting optical near fields as incident sources.
 
 - **rad_dipole_diele** (real(8), Default=2d0 a.u.)
    | Available for TDDFT based options of ``theory``.
-   Radii of dielectric spheres for the radiation sources.
-
+   Radii of dielectric spheres for exciting optical near fields as incident sources.
 
 &singlescale
 -----------
