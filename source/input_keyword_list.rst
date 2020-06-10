@@ -984,6 +984,16 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for ``format_voxel_data='avs'``.
    Number of separated files for three dimensional data.
 
+- **yn_out_perflog** (character(1), Default='y')
+   | Available for all ``theory``
+   Option to print the performance log of routines and modules.
+   
+- **format_perflog** (character(6), Default='stdout')
+   | Available for ``yn_out_perflog = 'y'``
+   The output format of performance log.
+   ``'stdout'`` / standard output unit
+   ``'text'`` / save to text file
+   ``'csv'`` / save to csv format file
 
 &poisson
 --------
