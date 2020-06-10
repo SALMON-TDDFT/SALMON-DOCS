@@ -425,7 +425,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    |   ``etrs`` / time-reversal symmetry propagator.
    [M.A.L. Marques, A. Castro, G.F. Bertsch, and A. Rubio, Comput. Phys. Commun., 151 60 (2003)].
 
-- **yn_fix_func** (character(1), Default='n')[Trial]
+- **yn_fix_func** (character(1), Default='n')[currently not available]
    | Available for 'dft_md' and TDDFT-based options of ``theory``.
    Option not to update functional (or Hamiltonian) in time-evolution, i.e., keep ground state Hamiltonian. (currently not available)
    
@@ -839,7 +839,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &analysis
 ---------
 
-- **projection_option / out_projection_step** (character/integer, Default='no'/100)
+- **projection_option / out_projection_step** (character/integer, Default='no'/100)[currently not available]
    | Available for TDDFT based options of ``theory``.
    | Methods of projection to analyze the excited states (e.g. the number of excited electrons.)
    | Options
@@ -847,9 +847,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    |   ``'gs'`` / projection to eigenstates of ground-state Hamiltonian.
    |   ``'rt'`` / projection to eigenstates of instantaneous Hamiltonian.
    | This is printed everty ``out_projection_step`` step during time-propagation.
-   | XXX not yet implemented XXX
-   | XXX how about isoalted system?? XXX
-   | XXX how about multiscale option?? XXX
 
 - **nenergy** (integer, Default=1000)
    Number of energy grid points for frequency-domain analysis.
@@ -936,7 +933,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Option to calculate transition in different density from the ground state at specified frequency omega(given by ``out_dns_trans_energy``) by drho(r,omega)=FT(rho(r,t)-rho_gs(r))/T.
    |   ``'y'`` / enable
    |   ``'n'`` / disable.
-   XXX (currently not available ) XXX
+   (currently not available)
 
 - **yn_out_elf** (character, Default='n')
    | Available for ``theory='dft'``.
