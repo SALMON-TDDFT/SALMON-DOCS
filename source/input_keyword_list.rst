@@ -990,10 +990,10 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    
 - **format_perflog** (character(6), Default='stdout')
    | Available for ``yn_out_perflog = 'y'``
-   The output format of performance log.
-   ``'stdout'`` / standard output unit
-   ``'text'`` / save to text file
-   ``'csv'`` / save to csv format file
+   | The output format of performance log.
+   |   ``'stdout'`` / standard output unit
+   |   ``'text'`` / save to text file
+   |   ``'csv'`` / save to csv format file
 
 &poisson
 --------
