@@ -1131,44 +1131,47 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | ``rgrid``   / OpenMP parallelization is applied to real-space grid loop.
 
 
+..
+  #### Following keywords are commented out as these are originated from GCEED and supposed to be removed ####
 **Following variables are moved from the isolated part. Some of them may be added to common input, be combined to it, and be removed.**
 
-&group_fundamental[Trial]
--------------------------
+  &group_fundamental[Trial]
+  -------------------------
    
-- **iwrite_projection** (integer, Default=0)[Trial]
+  - **iwrite_projection** (integer, Default=0)[Trial]
    | Available for ``theory='XXX'``.
    | Old infomation: 0d
    A variable for projection. 
 
-- **itwproj** (integer, Default=-1)[Trial]
+  - **itwproj** (integer, Default=-1)[Trial]
    | Available for ``theory='XXX'``.
    | Old infomation: 0d
    The projection is calculated every ``itwproj`` time steps. 
 
-- **iwrite_projnum** (integer, Default=0)[Trial]
+  - **iwrite_projnum** (integer, Default=0)[Trial]
    | Available for ``theory='XXX'``.
    | Old infomation: 0d
    There is a malfunction in this variable.
 
-&group_others[Trial]
----------------------
+  &group_others[Trial]
+  ---------------------
 
-- **num_projection** (Interger, Default=1)[Trial]
+  - **num_projection** (Interger, Default=1)[Trial]
    | Available for ``theory='XXX'``.
    | Old infomation: 0d
    Number of orbitals for projections.
 
-- **iwrite_projection_ob(200)** (Interger, Default=1, 2, 3, ..., 200)[Trial]
+  - **iwrite_projection_ob(200)** (Interger, Default=1, 2, 3, ..., 200)[Trial]
    | Available for ``theory='XXX'``.
    | Old infomation: 0d
    Orbital number to be written as projections.
 
-- **iwrite_projection_k(200)** (Interger, Default=1)[Trial]
+  - **iwrite_projection_k(200)** (Interger, Default=1)[Trial]
    | Available for ``theory='XXX'``.
    | Old infomation: 0d
    This variable will be removed.
 
+..
    
 .. _&calculation: #calculation
 .. _&control: #control
