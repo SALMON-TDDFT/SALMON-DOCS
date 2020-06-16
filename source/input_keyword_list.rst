@@ -26,8 +26,6 @@ List of all input keywords
 -  `&ewald`_
 -  `&opt[Trial]`_
 -  `&md[Trial]`_
--  `&group_fundamental[Trial]`_
--  `&group_others[Trial]`_
 
 
 &calculation
@@ -1133,7 +1131,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 ..
   #### Following keywords are commented out as these are originated from GCEED and supposed to be removed ####
-**Following variables are moved from the isolated part. Some of them may be added to common input, be combined to it, and be removed.**
+  **Following variables are moved from the isolated part. Some of them may be added to common input, be combined to it, and be removed.**
 
   &group_fundamental[Trial]
   -------------------------
@@ -1170,9 +1168,8 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for ``theory='XXX'``.
    | Old infomation: 0d
    This variable will be removed.
-
 ..
-   
+
 .. _&calculation: #calculation
 .. _&control: #control
 .. _&units: #units
@@ -1195,8 +1192,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 .. _&ewald: #ewald
 .. _&opt: #opt
 .. _&md: #md
-.. _&group_fundamental: #group_fundamental
-.. _&group_others: #group_others
 
 
 
