@@ -403,9 +403,9 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for 'dft_md' and TDDFT-based options of ``theory``.
    Time step size.
 
-- **gram_schmidt_interval** (integer, Default=0)
+- **gram_schmidt_interval** (integer, Default=-1)
    | Available for TDDFT-based options of ``theory``.
-   Interval of time step for the Gram-Schmidt orthonormalization of the orbital wavefunctions in the time-evolution calculation.
+   Interval of time step for the Gram-Schmidt orthonormalization of the orbital wavefunctions in the time-evolution calculation. If this is set to zero, it is used at the initial step only.
 
 &propagation
 ------------
