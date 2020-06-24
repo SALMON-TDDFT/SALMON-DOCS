@@ -677,11 +677,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
    Dimension of macroscale system (FDTD calculation) in multi-scale Maxwell-Kohn-Sham method.
 
-- **twod_shape** (character, Default='periodic')[Trial]
-   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
-   Boundary condision of the second dimension for FDTD calculation with 
-   multi-scale Maxwell-Kohn-Sham method.
-
 - **nx_m** (integer, Default=1)
    | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
    Number of macroscopic grid points inside materials for x-direction.
@@ -705,15 +700,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Number of macroscopic grid points for vacumm region.
    ``nxvacl_m`` gives the number for negative x-direction in front of material,
    while ``nxvacr_m`` gives the number for positive x-direction behind the material.
-
-- **nx_origin_m/ny_origin_m/nz_origin_m** (integer, Default=1)[Trial]
-   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
-   Origin coordinat of the grid points.
-
-- **file_macropoint** (character, Default='')[Trial]
-   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
-   If file name is specified in the option, the coordinates of the macropoints are set from the file.
-
+   
 - **set_ini_coor_vel** (character, Default='n')[Trial]
    | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
    Set initial atomic coordinates and velocities for each macro-grid point. This must be given with specific directories and files: 
