@@ -706,15 +706,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    ``nxvacl_m`` gives the number for negative x-direction in front of material,
    while ``nxvacr_m`` gives the number for positive x-direction behind the material.
 
-- **set_ini_coor_vel** (character, Default='n')[Trial]
-   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
-   Set initial atomic coordinates and velocities for each macro-grid point. This must be given with specific directories and files: 
-   Prepare ``directory``/multiscale/MXXXXXX/ini_coor_vel.dat, where 'XXXXXX' is the index number of the macro-grid point of the material region usually starting from '000001' up to the number of macro-grid point. The format of the file 'ini_coor_vel.dat' is just Rx, Ry, Rz, Vx, Vy, Vz (with space separation) for each atom (i.e. for each line), where the unit of the coordinates, Rx, Ry, Rz, is angstrom or a.u. speficied by ``unit_system`` but that of velocities is always a.u.. This option should be used together with ``read_gs_wfn_k_ms`` which is the option to read the ground state wave function for each macro-grid point. 
-
-- **nmacro_write_group** (integer, Default=-1)[Trial]
-   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
-   If the number of macroscopic grids are very large, computers can be unstable by writing all information of all macroscopic grid points at the same time. To avoid that, the writings are divided by specifying this option. Writings will be done by each ``nmacro_write_group`` macroscopic grid points. (this number must be aliquot part of the total number of macroscopic grid points)
-
 
 &maxwell
 --------
