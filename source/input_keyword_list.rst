@@ -590,7 +590,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    The input file name for user-defined incident field (vector potential) when ``ae_shape1='input'`` is used. 
    The file must be numerical table (separated by blank) having  more than four columns;
    the first column is time and second to fourth columns are Ax/c, Ay/c, Az/c, repsectively.
-   All the quantities are written in SI units specified by ``unit_system``, and '#' and '!' are available for a comment line. 
+   All the quantities are written in units specified by ``unit_system``, and '#' and '!' are available for a comment line. 
    Besides, the linear interpolation is performed when the time step is differ from the calculation.
    
 
@@ -694,26 +694,19 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
    Spacing of macroscopic grid points inside materials for (x)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
+   ** Variable ``hx_m`` is deprecated, and will be moved to ``&units/dl_em(1)`` **
 
 - **hy_m/hz_m** (real(8), Default=0d0)[Trial]
    | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
    Spacing of macroscopic grid points inside materials for (y/z)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
+   ** Variable ``hy_m`` and ``hz_m`` are deprecated, and will be moved to ``&units/dl_em(2:3)`` **
 
 - **nxvacl_m/nxvacr_m** (integer, Default=1/0)
    | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
    Number of macroscopic grid points for vacumm region.
    ``nxvacl_m`` gives the number for negative x-direction in front of material,
    while ``nxvacr_m`` gives the number for positive x-direction behind the material.
-
-- **set_ini_coor_vel** (character, Default='n')[Trial]
-   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
-   Set initial atomic coordinates and velocities for each macro-grid point. This must be given with specific directories and files: 
-   Prepare ``directory``/multiscale/MXXXXXX/ini_coor_vel.dat, where 'XXXXXX' is the index number of the macro-grid point of the material region usually starting from '000001' up to the number of macro-grid point. The format of the file 'ini_coor_vel.dat' is just Rx, Ry, Rz, Vx, Vy, Vz (with space separation) for each atom (i.e. for each line), where the unit of the coordinates, Rx, Ry, Rz, is angstrom or a.u. speficied by ``unit_system`` but that of velocities is always a.u.. This option should be used together with ``read_gs_wfn_k_ms`` which is the option to read the ground state wave function for each macro-grid point. 
-
-- **nmacro_write_group** (integer, Default=-1)[Trial]
-   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
-   If the number of macroscopic grids are very large, computers can be unstable by writing all information of all macroscopic grid points at the same time. To avoid that, the writings are divided by specifying this option. Writings will be done by each ``nmacro_write_group`` macroscopic grid points. (this number must be aliquot part of the total number of macroscopic grid points)
 
 
 &maxwell
