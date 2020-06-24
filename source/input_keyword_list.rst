@@ -694,11 +694,13 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
    Spacing of macroscopic grid points inside materials for (x)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
+   ** Variable ``hx_m`` is deprecated, and will be moved to ``&units/dl_em(1)`` **
 
 - **hy_m/hz_m** (real(8), Default=0d0)[Trial]
    | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
    Spacing of macroscopic grid points inside materials for (y/z)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
+   ** Variable ``hy_m`` and ``hz_m`` are deprecated, and will be moved to ``&units/dl_em(2:3)`` **
 
 - **nxvacl_m/nxvacr_m** (integer, Default=1/0)
    | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
