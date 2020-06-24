@@ -590,7 +590,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    The input file name for user-defined incident field (vector potential) when ``ae_shape1='input'`` is used. 
    The file must be numerical table (separated by blank) having  more than four columns;
    the first column is time and second to fourth columns are Ax/c, Ay/c, Az/c, repsectively.
-   All the quantities are written in SI units specified by ``unit_system``, and '#' and '!' are available for a comment line. 
+   All the quantities are written in units specified by ``unit_system``, and '#' and '!' are available for a comment line. 
    Besides, the linear interpolation is performed when the time step is differ from the calculation.
    
 
