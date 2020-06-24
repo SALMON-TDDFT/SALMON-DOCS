@@ -587,7 +587,12 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **file_input1** (character, Default='')
    | Available for ``theory='tddft_pulse'`` with ``ae_shape1='input'``.
-   The input file name for user-defined incident field (vector potential) when ``ae_shape1='input'`` is used. The format is: time, Ax/c, Ay/c, Az/c (separated by blank) by the specified units. '#' and '!' are available for a comment line.  XXX what is the unit of time ?? XXXX
+   The input file name for user-defined incident field (vector potential) when ``ae_shape1='input'`` is used. 
+   The file must be numerical table (separated by blank) having  more than four columns;
+   the first column is time and second to fourth columns are Ax/c, Ay/c, Az/c, repsectively.
+   All the quantities are written in SI units specified by ``unit_system``, and '#' and '!' are available for a comment line. 
+   Besides, the linear interpolation is performed when the time step is differ from the calculation.
+   
 
 - **e_impulse** (real(8), Default=1d-2 a.u.)
    | Available for 'maxwell' and TDDFT based options of ``theory``.
@@ -700,7 +705,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Number of macroscopic grid points for vacumm region.
    ``nxvacl_m`` gives the number for negative x-direction in front of material,
    while ``nxvacr_m`` gives the number for positive x-direction behind the material.
-   
+
 - **set_ini_coor_vel** (character, Default='n')[Trial]
    | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
    Set initial atomic coordinates and velocities for each macro-grid point. This must be given with specific directories and files: 
