@@ -92,7 +92,7 @@ SALMON for any isolated systems such as molecules and nanoparticles.
 Input files
 ^^^^^^^^^^^
 
-To run the code, following files are used:
+To run the code, following files in samples are used:
 
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
@@ -106,10 +106,6 @@ To run the code, following files are used:
 | *H_rps.dat*                       | pseudopotential file for hydrogen |
 |                                   | atom                              |
 +-----------------------------------+-----------------------------------+
-
-| You may download the above 3 files (zipped file) from: 
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_input.zip
-| (zipped input and pseudopotential files)
 
 In the input file *C2H2_gs.inp*, input keywords are specified.
 Most of them are mandatory to execute the ground state calculation.
@@ -447,7 +443,7 @@ directory that you run the code,
 +-------------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file, except for the directory *data_for_restart*) from:
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_output.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/01_C2H2_gs.zip
 | (zipped output files)
 
 Main results of the calculation such as orbital energies are included in
@@ -543,6 +539,7 @@ is required. The directory *restart* that is created in the ground
 state calculation as *data_for_restart* and pseudopotential files 
 are also required. The pseudopotential files should be the same as
 those used in the ground state calculation.
+The input files are in samples. 
 
 +-----------------------------------+-----------------------------------+
 | name                              | description                       |
@@ -559,10 +556,6 @@ those used in the ground state calculation.
 |                                   | directory from                    |
 |                                   | *data_for_restart* to *restart*)  |
 +-----------------------------------+-----------------------------------+
-
-| You may download the *C2H2_rt_response.inp* file (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_rt_response_input.zip
-| (zipped input file)
 
 In the input file *C2H2_rt_response.inp*, input keywords are specified.
 Most of them are mandatory to execute the linear response calculation. 
@@ -904,7 +897,7 @@ directory that you run the code,
 +-----------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_rt_response_output.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/02_C2H2_lr.zip
 | (zipped output files)
 
 Explanations of the output files are below:
@@ -969,7 +962,7 @@ are specified in the input file.
 Input files
 ^^^^^^^^^^^
 
-To run the code, following files are used. The directory *restart* is
+To run the code, following files in samples are used. The directory *restart* is
 created in the ground state calculation as *data_for_restart*. 
 Pseudopotential files are already used in the ground state calculation.
 Therefore, *C2H2_rt_pulse.inp* that specifies input keywords and their values
@@ -991,9 +984,6 @@ users need to prepare.
 |                                   | directory from                    |
 |                                   | *data_for_restart* to *restart*)  |
 +-----------------------------------+-----------------------------------+
-
-| You may download the *C2H2_rt_pulse.inp* file (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_rt_pulse_input.zip
 
 In the input file *C2H2_rt_pulse.inp*, input keywords are specified.
 Most of them are mandatory to execute the calculation of
@@ -1374,7 +1364,7 @@ directory that you run the code,
 +-----------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_rt_pulse_output.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/03_C2H2_rt.zip
 
 Explanations of the files are described below:
 
@@ -1430,7 +1420,7 @@ This exercise will be useful to learn how to set up calculations in SALMON for a
 Input files
 ^^^^^^^^^^^
 
-To run the code, following files are used:
+To run the code, following files in samples are used:
 
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
@@ -1441,10 +1431,6 @@ To run the code, following files are used:
 | *Si_rps.dat*                      | pseodupotential file for silicon  |
 |                                   | atom                              |
 +-----------------------------------+-----------------------------------+
-
-| You may download the above 2 files (zipped file) from: 
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_input.zip
-| (zipped input and pseudopotential files)
 
 In the input file *Si_gs.inp*, input keywords are specified.
 Most of them are mandatory to execute the ground state calculation.
@@ -1755,7 +1741,7 @@ directory that you run the code,
 +-----------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file, except for the directory *data_for_restart*) from:
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_output.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/04_bulkSi_gs.zip
 | (zipped output files)
 
 Main results of the calculation such as orbital energies are included in *Si_info.data*. 
@@ -1796,7 +1782,7 @@ The dielectric function may be obtained from the conductivity using a standard r
 Input files
 ^^^^^^^^^^^
 
-To run the code, following files are used:
+To run the code, following files in samples are used:
 
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
@@ -2173,7 +2159,7 @@ After the calculation, following output files are created in the directory that 
 +-----------------------------------+------------------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_response_output.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/05_bulkSi_lr.zip
 
 Explanations of the output files are described below:
 
@@ -2232,7 +2218,7 @@ polarization, and carrier envelope phase are specified in the input file.
 Input files
 ^^^^^^^^^^^
 
-To run the code, following files are used:
+To run the code, following files in samples are used:
 
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
@@ -2623,7 +2609,7 @@ directory that you run the code,
 +-----------------------------------+------------------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_pulse_output.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/06_bulkSi_rt.zip
 
 Explanations of the output files are described below:
 
@@ -2687,7 +2673,7 @@ frequency are specified in the input file.
 Input files
 ^^^^^^^^^^^
 
-To run the code, following files are used:
+To run the code, following files in samples are used:
 
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
@@ -3166,7 +3152,7 @@ following output files are created in the directory,
 +-----------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_multiscale_output.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/07_bulkSi_ms.zip
 
 Explanations of the output files are described below:
 
@@ -3228,7 +3214,7 @@ SALMON for any isolated systems such as molecules and nanoparticles.
 Input files
 ^^^^^^^^^^^
 
-To run the code, following files are used:
+To run the code, following files in samples are used:
 
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
@@ -3569,7 +3555,7 @@ directory that you run the code,
 +-------------------------------------+------------------------------------+
 
 | You may download the above files (zipped file, except for the directory *data_for_restart*) from:
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_output.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/08_C2H2_opt.zip
 | (zipped output files)
 
 Main results of the calculation such as orbital energies are included in *C2H2_info.data*. 
@@ -3614,7 +3600,7 @@ and carrier envelope phase are specified in the input file.
 Input files
 ^^^^^^^^^^^
 
-To run the code, following files are used.
+To run the code, following files in samples are used.
 The directory *restart* is created in the ground state calculation as *data_for_restart*. 
 Pseudopotential files are already used in the geometry optimization.
 Therefore, *C2H2_md.inp* that specifies input keywords and their values
@@ -3636,9 +3622,6 @@ is the only file that the users need to prepare.
 |                                   | (rename the directory from        |
 |                                   | *data_for_restart* to *restart*)  |
 +-----------------------------------+-----------------------------------+
-
-| You may download the *C2H2_rt_pulse.inp* file (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_rt_pulse_input.zip
 
 In the input file *C2H2_md.inp*, input keywords are specified.
 Most of them are mandatory to execute the calculation of
@@ -4043,7 +4026,7 @@ directory that you run the code,
 +-------------------------------------+------------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_rt_pulse_output.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/09_C2H2_md.zip
 
 Explanations of the files are described below:
 
@@ -4111,14 +4094,18 @@ The shape file can be generated by program ``FDTD_make_shape`` in SALMON utiliti
 
 'shape.inp' is an input file for 'FDTD_make_shape' to generate 'shape.cube'.
 
-+-----------------------------------+-----------------------------------+
-| file name                         | description                       |
-+-----------------------------------+-----------------------------------+
-| *classicEM_rt_pulse.inp*          | input file that contain input     |
-|                                   | keywords and their values.        |
-+-----------------------------------+-----------------------------------+
-| *shape.cube*                      | shape file for fdtd               |
-+-----------------------------------+-----------------------------------+
+The input files are in samples
+
++-----------------------------------+------------------------------------+
+| file name                         | description                        |
++-----------------------------------+------------------------------------+
+| *classicEM_rt_pulse.inp*          | input file that contain input      |
+|                                   | keywords and their values.         |
++-----------------------------------+------------------------------------+
+| *shape.cube*                      | shape file for fdtd                |
++-----------------------------------+------------------------------------+
+| *shape.inp*                       | input file for ``FDTD_make_shape`` |
++-----------------------------------+------------------------------------+
 
 In the input file *classicEM_rt_pulse.inp*, input keywords are specified.
 Most of them are mandatory to execute the linear response calculation.
@@ -4494,7 +4481,7 @@ After the calculation, following output files are created in the directory ``'re
 +-------------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_rt_pulse_output.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/10_classicEM_rt.zip
 
 Explanations of the files are described below:
 
