@@ -461,9 +461,9 @@ the input file are shown in this file.
 
 ::
    
-   # 1 particle energies
-   # Orbital   Energy[eV]
-   #-----------------------
+   #esp: single-particle energies (eigen energies)
+   #occ: occupation numbers, io: orbital index
+   # 1:io, 2:esp[eV], 3:occ
 
 **psi_ob1.cube, psi_ob2.cube, ...**
 
@@ -1732,6 +1732,8 @@ directory that you run the code,
 +-----------------------------------+-----------------------------------+
 | *Si_eigen.data*   　              | energy eigenvalues of orbitals    |
 +-----------------------------------+-----------------------------------+
+| *Si_k.data*       　              | k-point distribution              |
++-----------------------------------+-----------------------------------+
 | *PS_Si_KY_n.dat*                  | information on pseodupotential    |
 |                                   | file for silicon atom             |
 +-----------------------------------+-----------------------------------+
@@ -1758,9 +1760,9 @@ the input file are shown in this file.
 
 ::
    
-   # 1 particle energies
-   # Orbital   Energy[a.u.]
-   #-----------------------
+   #esp: single-particle energies (eigen energies)
+   #occ: occupation numbers, io: orbital index
+   # 1:io, 2:esp[a.u.], 3:occ
 
 .. _exercise-5:
 
@@ -3572,9 +3574,9 @@ the input file are shown in this file.
 
 ::
    
-   # 1 particle energies
-   # Orbital   Energy[eV]
-   #-----------------------
+   #esp: single-particle energies (eigen energies)
+   #occ: occupation numbers, io: orbital index
+   # 1:io, 2:esp[eV], 3:occ
 
 **C2H2_trj.xyz**
 
