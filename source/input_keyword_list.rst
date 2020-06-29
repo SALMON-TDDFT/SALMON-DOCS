@@ -371,11 +371,9 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for the DFT/TDDFT based options of ``theory``.
    Spacing of real-space grids. 
    (This cannot be used together with ``&rgrid/num_rgrid``.)
-   If ``&system/yn_periodic='y'``,
 
 - **num_rgrid(3)** (integer, Default=0)
    | Available for the DFT/TDDFT based options of ``theory``.
-   | Old infomation: 3d
    Dividing number of real-space grids for each direction.
    (This cannot be used together with ``&rgrid/dl``.)
 
@@ -383,14 +381,22 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 ------
 
 - **num_kgrid(3)** (integer, Default=1)
-   | Available for ``yn_periodic='y'``.
+   | Available for ``yn_periodic='y'`` with the DFT/TDDFT based options of ``theory``.
    Number of k-points (grid points of k-vector) for each direction discretizing the Brillouin zone.
 
 - **file_kw** (character, Default='none')
-   | Available for ``yn_periodic='y'``.
-   File name for user specified k-points.
-   This file will be read if ``num_kgrid`` is smaller than 1.
-
+   | Available for ``yn_periodic='y'`` with the DFT/TDDFT based options of ``theory``.
+   | File name for user specified k-points. This file will be read if ``num_kgrid`` is smaller than 1. The k-points are given as following format, for example, :
+   |
+   |  8     #(number of k-points)
+   |  1   -0.50  -0.50  -0.50   0.1250   #(id, kx, ky, kz, weight)
+   |  2   -0.50  -0.50   0.00   0.1250
+   |  3   -0.50   0.00  -0.50   0.1250
+   |  4   -0.50   0.00   0.00   0.1250
+   |  5    0.00  -0.50  -0.50   0.1250
+   |  6    0.00  -0.50   0.00   0.1250
+   |  7    0.00   0.00  -0.50   0.1250
+   |  8    0.00   0.00   0.00   0.1250
 
 &tgrid
 ------
