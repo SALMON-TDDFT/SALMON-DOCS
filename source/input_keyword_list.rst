@@ -690,7 +690,10 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **fdtddim** (character, Default='1d')[Trial]
    | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
-   Dimension of macroscale system (FDTD calculation) in multi-scale Maxwell-Kohn-Sham method.
+   | Dimension of macroscopic scale system (Maxwell(FDTD) calculation) in multi-scale Maxwell-TDDFT method.
+   | Options:
+   | ``'3d'`` / 3-dimensional FDTD for macroscopic scale  (currently not available)
+   | ``'1d'`` / 1-dimensional FDTD (along the x axis) for macroscopic scale
 
 - **nx_m** (integer, Default=1)
    | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
