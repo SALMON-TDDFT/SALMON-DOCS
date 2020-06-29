@@ -707,19 +707,18 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
    Spacing of macroscopic grid points inside materials for (x)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
-   ** Variable ``hx_m`` is deprecated, and will be moved to ``&units/dl_em(1)`` **
+   Variable ``hx_m`` is deprecated, and will be moved to ``&units/dl_em(1)``
 
 - **hy_m/hz_m** (real(8), Default=0d0)[Trial]
    | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
    Spacing of macroscopic grid points inside materials for (y/z)-direction.
    Unit of length can be chosen by ``&units/unit_length``.
-   ** Variable ``hy_m`` and ``hz_m`` are deprecated, and will be moved to ``&units/dl_em(2:3)`` **
+   Variable ``hy_m`` and ``hz_m`` are deprecated, and will be moved to ``&units/dl_em(2:3)``
 
 - **nxvacl_m/nxvacr_m** (integer, Default=1/0)
    | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
    Number of macroscopic grid points for vacumm region.
-   ``nxvacl_m`` gives the number for negative x-direction in front of material,
-   while ``nxvacr_m`` gives the number for positive x-direction behind the material.
+   ``nxvacl_m`` and  ``nxvacr_m`` give the number for positive x-direction in front of material,
 
 
 &maxwell
@@ -730,7 +729,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    Size of simulation box in electromagnetic analysis. Unit of the length can be chosen by ``&units/unit_system``.
 
 - **dl_em(3)** (real(8), Default=0d0)
-   | Available for ``theory='maxwell'``.
+   | Available for ``theory='maxwell'`` and  ``theory='multi_scale_maxwell_tddft'``.
    Spacing of real-space grids in electromagnetic analysis. Unit of length can be chosen by ``&units/unit_system``.
 
 - **dt_em** (real(8), Default=0)
