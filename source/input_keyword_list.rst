@@ -992,24 +992,22 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **num_multipole_xyz(3)** (integer, Default=0)
    | Available for ``yn_periodic='n'`` with DFT and TDDFT based options of ``theory``.
-   Number of multipoles. When default is set, number of multipoles is calculated automatically.
+   | Number of multipoles. When default is set, number of multipoles is calculated automatically.
 
 - **lmax_multipole** (integer, Default=4)[Trial]
    | Available for ``yn_periodic='n'`` with DFT and TDDFT based options of ``theory``.
-   A maximum angular momentum for multipole expansion in the Hartree-cg calculation. 
+   | A maximum angular momentum for multipole expansion in the Hartree-cg calculation. 
 
 - **threshold_cg** (real(8), Default=1d-15 a.u.(= 1.10d-13 A^3eV^2))
    | Available for ``yn_periodic='n'`` with DFT and TDDFT based options of ``theory``.
-   A convergence value for the Hartree-cg calculation. The convergence is checked by ||tVh(i)-tVh(i-1)||^2/(number of grids). 
+   | A convergence value for the Hartree-cg calculation. The convergence is checked by ||tVh(i)-tVh(i-1)||^2/(number of grids). 
 
 &ewald
 ------
 
 - **newald** (integer, Default=4)
    | Available for ``yn_periodic='y'`` with DFT/TDDFT based options of ``theory``.
-   Parameter for Ewald method. 
-   Short-range part of Ewald sum is calculated within ``newald`` th
-   nearlist neighbor cells.
+   | Parameter for Ewald method for ion-ion Coulombic interaction. Short-range part of Ewald sum is calculated within ``newald`` th nearlist neighbor cells.
 
 - **aewald** (real(8), Default=0.5d0)
    | Available for ``yn_periodic='y'`` with DFT/TDDFT based options of ``theory``.
@@ -1017,7 +1015,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **cutoff_r** (real(8), Default=-1d0)
    | Available for ``yn_periodic='y'`` with DFT/TDDFT based options of ``theory``.
-   | Cut-off length in real-space
+   | Cut-off length in real-space. This is automatically chosen in default (negative number)
 
 - **cutoff_r_buff** (real(8), Default=2d0 a.u.)
    | Available for ``yn_periodic='y'`` with ``yn_md='y'`` or ``theory='dft_md'``.
@@ -1025,7 +1023,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **cutoff_g** (real(8), Default=-1d0)
    | Available for ``yn_periodic='y'`` with DFT/TDDFT based options of ``theory``.
-   | Cut-off in G-space in the Ewald method.
+   | Cut-off in G-space in the Ewald method. No cut-off in default. 
 
 &opt[Trial]
 -------------
@@ -1034,64 +1032,71 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for ``yn_opt='y'`` with ``theory='dft'``.
    The maximum step number of geometry optimization.
 
-- **convrg_opt_fmax** (real(8), Default=1d-3)
+- **convrg_opt_fmax** (real(8), Default=1d-3 [a.u.])
    | Available for ``yn_opt='y'`` with ``theory='dft'``.
-   Convergence threshold of geometry optimization in maximum force.
+   | Convergence threshold of geometry optimization in maximum force on atom.
 
 - **max_step_len_adjust** (real(8), Default=-1d0)
-  | Available for ``yn_opt='y'`` with ``theory='dft'``.
-  | Set maximum optimization step length (if positive number is given)
+   | Available for ``yn_opt='y'`` with ``theory='dft'``.
+   | Set maximum optimization step length (if positive number is given)
 
   
 &md[Trial]
 -----------
-- **ensemble** (character, Default='NVE')[Trial]
+- **ensemble** (character, Default='NVE')
    | Available for ``yn_md='y'`` or ``theory='dft_md'``.
-   Ensemble in MD option: "NVE" or "NVT".
+   | Ensemble in MD option:
+   | Options:
+   |  ``NVE``/ NVE ensemble (constant energy and volume system)
+   |  ``NVT``/ NVT ensemble (constant temperature and volume system)
 
-- **thermostat** (character, Default='nose-hoover')[Trial]
+- **thermostat** (character, Default='nose-hoover')
    | Available for ``yn_md='y'`` or ``theory='dft_md'``.
-   Thermostat in "NVT" option: (currently only ``nose-hoover``).
+   | Thermostat in "NVT" option:
+   | Options:
+   |  ``nose-hoover``/ Nose-Hoover thermostat.
 
-- **step_velocity_scaling** (integer, Default=-1)[Trial]
+- **step_velocity_scaling** (integer, Default=-1)
    | Available for ``yn_md='y'`` or ``theory='dft_md'``.
-   Time step interval for velocity-scaling. Velocity-scaling is applied if this is set to positive.
+   | Time step interval for velocity-scaling. Velocity-scaling is applied if this is set to positive.
 
-- **step_update_ps** (Integer, Default=10)[Trial]
+- **step_update_ps** (Integer, Default=10)
    | Available for ``yn_md='y'`` or ``theory='dft_md'``.
-   Time step interval for updating pseudopotential (Larger number makes calculation time reduce greatly, but gets inaccurate) in case of ``yn_md=y``.
+   | Time step interval for updating pseudopotential (Larger number makes calculation time reduce but gets inaccurate).
 
-- **temperature0_ion_k** (real(8), Default=298.15d0)[Trial]
+- **temperature0_ion_k** (real(8), Default=298.15d0 [K])
    | Available for ``yn_md='y'`` or ``theory='dft_md'``.
-   Setting temperature [K] for NVT ensemble, velocity scaling and generating initial velocities.
+   | Setting ionic temperature [K] for NVT ensemble, velocity scaling and generating initial velocities.
 
-- **yn_set_ini_velocity** (character, Default='n')[Trial]
+- **yn_set_ini_velocity** (character, Default='n')
    | Available for ``yn_md='y'`` or ``theory='dft_md'``.
-   Initial velocities are set.
-
-  - ``y``: Generate initial velocity with Maxwell-Bortzman distribution.
-  - ``r``: Read initial velocity from file specified by keyword of ``file_ini_velocity``. This is, for example, used for restarting MD from the previous run. The last atomic coordinates and velocities are printed in ``SYSname``\_trj.xyz. (atomic coordinate also should be copied from the previous output and put in the next input file for restart)
+   | Option to generate initial velocities.
+   | Options:
+   |  ``y``/ Generate initial velocity with Maxwell-Bortzman distribution.
+   |  ``n``/ disable.
     
 - **file_ini_velocity** (character, Default='none')[Trial]
    | Available for ``yn_md='y'`` or ``theory='dft_md'``.
-   File name for initial velocities. This is read when ``set_ini_velocity`` is ``'r'``. The format is simply vx(iatom) vy(iatom) vz(iatom) in each line. The order of atoms must be the same as the given coordinates in the main input file. In case of using nose-hoover thermostat, a thermostat variable should be put at the last line (all atomic unit). 
+   | File name for reading initial velocities. This is read if the file name is given, then, the priority is higher than use of ``set_ini_velocity`` and restart data of velocities. The format is simply vx(iatom) vy(iatom) vz(iatom) in each line. The order of atoms must be the same as the given coordinates in the main input file. In case of using nose-hoover thermostat, a thermostat variable should be put at the last line (all atomic unit). 
 
-- **thermostat_tau** (real(8), Default=41.34d0 a.u. or 1d0 fs)[Trial]
+- **thermostat_tau** (real(8), Default=41.34d0 a.u. or 1d0 fs)
    | Available for ``yn_md='y'`` or ``theory='dft_md'``.
-   Parameter in Nose-Hoover method: controlling time constant for temperature.
-   Default is ``41.34[au] or 1.0[fs]``.
+   | Parameter in Nose-Hoover method: controlling time constant for temperature.
 
 ..
    #XXX removed?#
-   - **seed_ini_velocity** (integer, Default=123)[Trial]
+   - **seed_ini_velocity** (integer, Default=123)
    | Available for ``yn_md='y'`` or ``theory='dft_md'``.
-   Random seed (integer number) to generate initial velocity if ``set_ini_velocity`` is set to y.
+   | Random seed (integer number) to generate initial velocity if ``set_ini_velocity`` is set to y.
    Default is ``123``.
 ..
 
-- **yn_stop_system_momt** (character, Default='n')[Trial]
+- **yn_stop_system_momt** (character, Default='n')
    | Available for ``yn_md='y'`` or ``theory='dft_md'``.
-   Center of mass is fixed every time step.
+   | Center of mass is fixed every time step.
+   | Options:
+   |  ``y``/ enable.
+   |  ``n``/ disable.
 
 
 &code
