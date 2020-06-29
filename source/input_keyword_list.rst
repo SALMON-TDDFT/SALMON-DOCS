@@ -382,21 +382,21 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **num_kgrid(3)** (integer, Default=1)
    | Available for ``yn_periodic='y'`` with the DFT/TDDFT based options of ``theory``.
-   Number of k-points (grid points of k-vector) for each direction discretizing the Brillouin zone.
+   | Number of k-points (grid points of k-vector) for each direction discretizing the Brillouin zone.
 
 - **file_kw** (character, Default='none')
    | Available for ``yn_periodic='y'`` with the DFT/TDDFT based options of ``theory``.
    | File name for user specified k-points. This file will be read if ``num_kgrid`` is smaller than 1. The k-points are given as following format, for example, :
    |
-   |  8     #(number of k-points)
-   |  1   -0.50  -0.50  -0.50   0.1250   #(id, kx, ky, kz, weight)
-   |  2   -0.50  -0.50   0.00   0.1250
-   |  3   -0.50   0.00  -0.50   0.1250
-   |  4   -0.50   0.00   0.00   0.1250
-   |  5    0.00  -0.50  -0.50   0.1250
-   |  6    0.00  -0.50   0.00   0.1250
-   |  7    0.00   0.00  -0.50   0.1250
-   |  8    0.00   0.00   0.00   0.1250
+   |   8     #(number of k-points)
+   |   1   -0.50  -0.50  -0.50   0.1250   #(id, kx, ky, kz, weight)
+   |   2   -0.50  -0.50   0.00   0.1250
+   |   3   -0.50   0.00  -0.50   0.1250
+   |   4   -0.50   0.00   0.00   0.1250
+   |   5    0.00  -0.50  -0.50   0.1250
+   |   6    0.00  -0.50   0.00   0.1250
+   |   7    0.00   0.00  -0.50   0.1250
+   |   8    0.00   0.00   0.00   0.1250
 
 &tgrid
 ------
@@ -416,33 +416,39 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &propagation
 ------------
 
-- **n_hamil** (integer, Default=4)[Trial]
-   | Available for 'dft_md' and TDDFT-based options of ``theory``.
-   | Old infomation: 0d
-   Order of Taylor expansion of a propagation operator.
+- **n_hamil** (integer, Default=4)
+   | Available for TDDFT-based options of ``theory``.
+   | Order of Taylor expansion of a propagation operator.
 
 - **propagator** (character, Default=middlepoint')
-   | Available for 'dft_md' and TDDFT-based options of ``theory``.
+   | Available for TDDFT-based options of ``theory``.
    | Propagator (time-integrator).
    | Options
    |   ``middlepoint`` / propagator with the Hamiltoinan at midpoint of two-times.
-   |   ``etrs`` / time-reversal symmetry propagator.
-   [M.A.L. Marques, A. Castro, G.F. Bertsch, and A. Rubio, Comput. Phys. Commun., 151 60 (2003)].
+   |   ``aetrs`` / time-reversal symmetry propagator.
+   | [M.A.L. Marques, A. Castro, G.F. Bertsch, and A. Rubio, Comput. Phys. Commun., 151 60 (2003)].
+
+- **yn_predictor_corrector** (character(1), Default='n')
+   | Available for TDDFT-based options of ``theory``.   
+   | Switch of the predictor-corrector method of TDDFT. 
+   | For meta-GGA functionals (``xc='tbmbj'`` or ``'bj_pw'``), the predictor corrector is automatically used even with ``yn_predictor_corrector='n'``.
+   | Options
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
 
 - **yn_fix_func** (character(1), Default='n')[currently not available]
    | Available for 'dft_md' and TDDFT-based options of ``theory``.
-   Option not to update functional (or Hamiltonian) in time-evolution, i.e., keep ground state Hamiltonian. (currently not available)
+   | Option not to update functional (or Hamiltonian) in time-evolution, i.e., keep ground state Hamiltonian. (currently not available)
+   | Options
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
    
-- **yn_predictor_corrector** (character(1), Default='n')
-   | Available for 'dft_md' and TDDFT-based options of ``theory``.   
-   | Switch of the predictor-corrector method of TDDFT. 
-   | For meta-GGA functionals (``xc='tbmbj'`` or ``'bj_pw'``), the predictor corrector is automatically executed even when ``yn_predictor_corrector='n'``.
-
 &scf
 ----
 
 - **method_init_wf** (character, Default='gauss')
    | Available for 'dft' and 'dft_md' options of ``theory``.
+   | The generation method of the initial wavefunction (orbital) at the begening of the SCF iteration in DFT calculation.
    | Options
    |   ``gauss`` / put single gauss function using a random number on each initial orbital
    |   ``gauss2`` / put two gauss functions using a random number on each initial orbital
@@ -451,7 +457,6 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    |   ``gauss5`` / put five gauss functions using a random number on each initial orbital
    |   ``gauss10`` / put ten gauss functions using a random number on each initial orbital
    |   ``random`` / give a random number at each real-space grid point on each initial orbital
-   The generation method of the initial wavefunction (orbital) at the begening of the SCF iteration in DFT calculation.
 
 
 - **iseed_number_change** (integer, Default=0)
@@ -480,7 +485,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **method_mixing** (character, Default='broyden') 
    | Available for 'dft' and 'dft_md' options of ``theory``.
-   | Methods for density/potential mixing for scf cycle. ``simple`` and ``broyden`` can be chosen.
+   | Methods for density/potential mixing for scf cycle. 
    | Options
    |  ``simple`` / Simple mixing method
    |  ``broyden`` / modified-Broyden method
@@ -492,20 +497,19 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **nmemory_mb** (integer, Default=8)
    | Available for ``method_mixing='broyden'`` in 'dft' and 'dft_md' options of ``theory``.
-   Number of previous densities to be stored in SCF iteration cycle for the modified-Broyden method. 
-   If ``&system/yn_periodic`` is ``'n'``, ``nmemory_mb`` must be less than 21.
+   | Number of previous densities to be stored in SCF iteration cycle for the modified-Broyden method. This must be less than 21.
 
 - **alpha_mb** (real(8), Default=0.75d0)
    | Available for ``method_mixing='broyden'`` in 'dft' and 'dft_md' options of ``theory``.
-   Parameter of the modified-Broyden method.
+   | Parameter of the modified-Broyden method.
 
 - **nmemory_p** (integer, Default=4)
    | Available for ``method_mixing='pulay'`` in 'dft' and 'dft_md' options of ``theory``.
-   Number of previous densities to be stored in SCF iteration cycle for the Pulay method. 
+   | Number of previous densities to be stored in SCF iteration cycle for the Pulay method. 
 
 - **beta_p** (real(8), Default=0.75d0)
    | Available for ``method_mixing='pulay'`` in 'dft' and 'dft_md' options of ``theory``.
-   Parameter of the mixing rate for the Pulay method.
+   | Parameter of the mixing rate for the Pulay method.
 
 - **yn_auto_mixing** (character, Default='n')
    | Available for 'dft' and 'dft_md' options of ``theory``.
@@ -516,7 +520,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **update_mixing_ratio** (real(8), Default=3.0d0)
    | Available for ``yn_auto_mixing='y'`` in 'dft' and 'dft_md' options of ``theory``.
-   Threshold for the change of the mixing-rate in ``yn_auto_mixing='y'`` option. The mixing-rate is reduced to half when the ratio of the density differences between the current and previous iteration steps is larger than ``update_mixing_ratio``. 
+   | Threshold for the change of the mixing-rate in ``yn_auto_mixing='y'`` option. The mixing-rate is reduced to half when the ratio of the density differences between the current and previous iteration steps is larger than ``update_mixing_ratio``. 
 
 - **yn_subspace_diagonalization** (character, Default='y')
    | Available for 'dft' and 'dft_md' options of ``theory``.
@@ -535,18 +539,18 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    |   ``'norm_pot'``/ Convergence is checked by ||Vlocal_iter(ix)-Vlocal_iter-1(ix)||\ :sup:`2`\, where Vlocal is Vh + Vxc + Vps_local.
    |   ``'pot_dng'``/ Convergence is checked by ||Vlocal_iter(ix)-Vlocal_iter-1(ix)||\ :sup:`2`\/(number of grids).
 
-- **threshold** (real(8), Default=1d-17 [a.u.] (for ``convergence='rho_dne'``) and -1 (for other options of ``convergence``)
+- **threshold** (real(8), Default=1d-17 [a.u.] (for ``convergence='rho_dne'``) and -1 (for other options of ``convergence``))
    | Available for 'dft' and 'dft_md' options of ``theory``.
-   | Threshold for convergence that is specified by ``convergence`` keyword.
+   | Threshold for convergence that is specified by ``convergence`` keyword. 
    | Unit conversions are: 1 a.u.= 45.54 A\ :sup:`-6`\ for ``convergence='norm_rho'`` and ``'norm_rho_dng'``,  1 a.u.= 33.72x10\ :sup:`4`\ A\ :sup:`-6`\eV\ :sup:`2`\ for  ``convergence='norm_pot'`` and ``'norm_pot_dng'``
 
 - **nscf_init_redistribution** (integer, Default=10) 
    | Available for 'dft' and 'dft_md' options of ``theory``.
    The number of initial iterations for redistribution of the occupation number in finite temperature calculation.
 
-- **nscf_init_diagonal** (integer, Default=10)
-   | Available for 'dft' option of ``theory``.
-   The number of initial iterations for which subspace diagonalization is not done if ``&scf/yn_subspace_diagonalization`` is ``'y'``.
+- **nscf_init_no_diagonal** (integer, Default=10)
+   | Available for ``&scf/yn_subspace_diagonalization='y'`` with 'dft' option of ``theory``.
+   The number of initial iterations for which subspace diagonalization is not done.
 
 - **nscf_init_mix_zero** (Integer, Default=-1)
    | Available for 'dft' option of ``theory``.
@@ -554,8 +558,8 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **conv_gap_mix_zero** (real(8), Default=99999d0)
    | Available for positive number of ``nscf_init_mix_zero`` with 'dft' option of ``theory``.
-   The condition to quite the fixed density forced by ``step_initial_mix_zero`` option.
-   The density is allowed to start mixing after the band-gap energy exceeds the given number for consecutive five SCF iteration steps, 
+   The condition to quite the fixed density iteration forced by ``step_initial_mix_zero`` option.
+   The density is allowed to start mixing after the band-gap energy exceeds this given gap threshold for consecutive five SCF iteration steps, 
 
 
 &emfield
