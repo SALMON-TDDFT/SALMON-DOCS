@@ -303,20 +303,15 @@ Build using GNU Makefile
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If CMake build fails in your environment, we recommend you to try to use Gnu Make for the build process.
-First, enter the directory ``makefiles``::
+First, enter the directory ``gnumakefiles``::
 
-    $ cd SALMON/makefiles
+    $ cd SALMON/gnumakefiles
 
 In the directory, ``Makefile`` files are prepared for several architectures:
 
-- fujitsu
-- gnu
+- gnu-mpi
+- intel-mpi
 - gnu-without-mpi
-- intel
-- intel-avx
-- intel-avx2
-- intel-knc
-- intel-knl
 - intel-without-mpi
 
 ``Makefile`` files with ``*-without-mpi`` indicate that they are for single processor environment.
