@@ -685,6 +685,22 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for ``theory='single_scale_maxwell_tddft'``.
    | Cutoff energy of Fourier component of the vector potential when method_singlescale='1d_fourier'.
 
+- **yn_put_wall_z_boundary** (character, Default='n')[Trial]
+   | Available for DFT/TDDFT based options of ``theory``.
+   | Option to put potential wall on the boundary plane at z=0 and z=``&system/al(3)``. This is to prevent the electrons from crossing the z-boundary plane. In the single-scale + Maxwell method, the electron density on the z-boundary plane can make the norm conservation (of electrons) less accurate due to the discontinuity of the vectorpotential. The wall is given by the square of cosine function.  
+   | Options
+   |   ``'y'`` / put the potential wall
+   |   ``'n'`` / no potential wall
+
+- **wall_height** (real(8), Default=100.0 eV)
+   | Available for ``yn_put_wall_z_boundary='y'``.
+   | The height of the potential wall.
+
+- **wall_width** (real(8), Default=5.0 angstrom)
+   | Available for ``yn_put_wall_z_boundary='y'``.
+   | The width of the potential wall defined by the length from the potential peak (z=0 and z=``&system/al(3)``) to the edge.
+
+
 &multiscale
 -----------
 
