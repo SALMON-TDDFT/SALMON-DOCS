@@ -832,6 +832,10 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for ``theory='maxwell'``.
    Enable(``'y'``)/disable(``'n'``). Output of the electrmagnetic fields on the planes (xy, yz, and xz planes) for each observation point. This option must be ``'y'`` for generating animation files by using SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
+- **yn_obs_plane_integral_em(:)** (character, Default='n')
+   | Available for ``theory='maxwell'``.
+   Enable(``'y'``)/disable(``'n'``). Output of the spatial integration of electrmagnetic fields on the planes (xy, yz, and xz planes) for each observation point.
+
 - **yn_wf_em** (character, Default='y')
    | Available for ``theory='maxwell'``.
    Enable(``'y'``)/disable(``'n'``). Applying a window function for linear response calculation when ``&calculation/theory=maxwell``.
