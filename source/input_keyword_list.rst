@@ -685,6 +685,11 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for ``theory='single_scale_maxwell_tddft'``.
    | Cutoff energy of Fourier component of the vector potential when method_singlescale='1d_fourier'.
 
+- **yn_symmetrized_stencil** (character, Default='n')[Trial]
+   | Available for ``theory='single_scale_maxwell_tddft'``.
+   | Flag for the symmetrized finite differences of the product of the vector potential and the orbital wavefunction (\nabla A(r) \psi(r)).
+   | This option improves hermiticity of the Hamiltonian but makes worse the computational cost.
+
 - **yn_put_wall_z_boundary** (character, Default='n')[Trial]
    | Available for DFT/TDDFT based options of ``theory``.
    | Option to put potential wall on the boundary plane at z=0 and z=``&system/al(3)``. This is to prevent the electrons from crossing the z-boundary plane. In the single-scale + Maxwell method, the electron density on the z-boundary plane can make the norm conservation (of electrons) less accurate due to the discontinuity of the vectorpotential. The wall is given by the square of cosine function.  
