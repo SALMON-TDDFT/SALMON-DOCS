@@ -193,11 +193,9 @@ Descriptions of the variables may appear at any position if they are between ``&
 SALMON describes electron dynamics in systems with both isolated and periodic boundary conditions.
 The boundary condition is specified by the variable ``iperiodic`` in the namelist ``&system``.
 
-Calculations are usually achieved in two steps; first, the ground state calculation is carried out and then electron dynamics calculations in real time is carried out. A choice of the calculation mode is specified by the variable ``calc_mode`` in the namelist ``&calculation``.
-For isolated systems, the ground state and the electron dynamics calculations should be carried out as two separate executions.
-First the ground state calculation is carried out specifying ``calc_mode = 'GS'``.
-Then the real-time electron dynamics calculation is carried out specifying ``calc_mode = 'RT'``.
-For periodic systems, two calculations should be carried out as a single execution specifying ``calc_mode = 'GS_RT'``.
+Calculations are usually achieved in two steps; first, the ground state calculation is carried out and then electron dynamics calculations in real time is carried out. A choice of the calculation mode or theory in the calculation is specified by the variable ``theory`` in the namelist ``&calculation``.
+In the typical way, the ground state calculation based on DFT is first carried out specifying ``theory = 'dft'``.
+Then the real-time electron dynamics calculation based on TDDFT is carried out specifying ``theory = 'tddft_pulse'``.
 
 In :any:`Exercises`, we prepare six exercises that cover typical calculations feasible by SALMON.
 We prepare explanations of the input files of the exercises that will help to prepare input files of your own interests.
