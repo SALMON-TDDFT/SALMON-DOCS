@@ -46,9 +46,9 @@ You should rebuild the SALMON with ScaLAPACK/EigenExa enabling, could you please
 When executing SALMON, ``yn_scalapack = 'y'`` or ``yn_eigenexa = 'y'`` should be written to your inputfile::
 
   &parallel
-    yn_scalapack = 'y'         ! use ScaLAPACK to solve eigenvalues
-    !yn_eigenexa  = 'y'        ! use EigenExa
-    yn_scalapack_red_mem = 'y' ! to optimize the reducing memory consumption
+    yn_scalapack = 'y'               ! use ScaLAPACK to solve eigenvalues
+    !yn_eigenexa  = 'y'              ! use EigenExa
+    yn_diagonalization_red_mem = 'y' ! to optimize the reducing memory consumption
   /
 
 ScaLAPACK/EigenExa solves eigenvalues problem with ``nproc_ob`` process distribution.

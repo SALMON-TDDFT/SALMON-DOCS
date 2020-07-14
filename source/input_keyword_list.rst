@@ -173,7 +173,7 @@ List of all input keywords
    | SALMON uses RIKEN R-CCS EigenExa library to solve eigenvalue problem in subspace diagonalization.
    | When enabling it, you should build SALMON by linking ScaLAPACK and EigenExa libraries.
    
-- **yn_scalapack_red_mem** (character, Default='n')
+- **yn_diagonalization_red_mem** (character, Default='n')
    | Available for ``&parallel/yn_scalapack='y'`` or ``&parallel/yn_eigenexa='y'``
    | We use ScaLAPACK/EigenExa libraries by optimized algorithm to reduce memory consumption.
 
