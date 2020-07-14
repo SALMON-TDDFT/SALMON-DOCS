@@ -126,16 +126,17 @@ We assume that you are in the directory SALMON.
 
 In executing the python script, you need to specify ``ARCHITECTURE`` that indicates the architecture of the CPU in your computer system such as ``intel-avx``. The options of the ``ARCHITECUTRE`` are as follows:
 
-=============  =======================================  ================  =================
-arch           Detail                                   Compiler          Numerical Library
-=============  =======================================  ================  =================
-intel-knl      Intel Knights Landing                    Intel Compiler    Intel MKL
-intel-knc      Intel Knights Corner                     Intel Compiler    Intel MKL
-intel-avx      Intel Processer (Ivy-, Sandy-Bridge)     Intel Compiler    Intel MKL
-intel-avx2     Intel Processer (Haswell, Broadwell ..)  Intel Compiler    Intel MKL
-intel-avx512   Intel Processer (Skylake-SP)             Intel Compiler    Intel MKL
-fujitsu-fx100  FX100 Supercomputer                      Fujitsu Compiler  SSL-II
-=============  =======================================  ================  =================
+================  =======================================  ================  =================
+arch              Detail                                   Compiler          Numerical Library
+================  =======================================  ================  =================
+intel-knl         Intel Knights Landing                    Intel Compiler    Intel MKL
+intel-knc         Intel Knights Corner                     Intel Compiler    Intel MKL
+intel-avx         Intel Processer (Ivy-, Sandy-Bridge)     Intel Compiler    Intel MKL
+intel-avx2        Intel Processer (Haswell, Broadwell ..)  Intel Compiler    Intel MKL
+intel-avx512      Intel Processer (Skylake-SP)             Intel Compiler    Intel MKL
+fujitsu-fx100     FX100 Supercomputer                      Fujitsu Compiler  SSL-II
+fujitsu-a64fx-ea  A64FX processor (Fugaku, FX1000, FX700)  Fujitsu Compiler  SSL-II
+================  =======================================  ================  =================
 
 If the build is successful, you will get a file ``salmon`` at the top-level build directory.
 
