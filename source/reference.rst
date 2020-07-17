@@ -12,7 +12,11 @@
 
   Suggested Citations
   --------------------
-  If you publish a paper in which SALMON makes an important contribution, we suggest you to cite the following articles.
+  If you publish a paper in which SALMON makes an important contribution, please cite the SALMON code paper, 
+  Ref. :cite:`Noda2019`
+  published in Computer Physics Communications. 
+
+  We also suggest you to the following papers depending on your usage of SALMON.
 
   * If you use SALMON for electron dynamics calculations of a large-size system,
     Ref. :cite:`Noda2014`
@@ -24,7 +28,6 @@
 
   * Ref. :cite:`Yabana1996`
     is one of the first implementations of the real-time time-dependent density functional calculation, in particular, instantaneous kick for the linear response calculations.
-
 
   * If you use multiscale calculation coupling Maxwell equations for the electromagnetic fields of light and electron dynamics,
     Ref. :cite:`Yabana2012`
