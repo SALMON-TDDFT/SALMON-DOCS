@@ -4449,7 +4449,7 @@ If you do not specifies ``dt_em``, this input keyword is automatically specified
 
 ``media_type(1) = 'lorentz-drude'`` specifies the type of media as the Lorentz-Drude model.
 
-``omega_p_ld(1)  = 9.030d0``, ``f_ld(1,1:6)     = 0.760d0, 0.024d0, 0.010d0, 0.071d0, 0.601d0, 4.384d0``, ``gamma_ld(1,1:6) = 0.053d0, 0.241d0, 0.345d0, 0.870d0, 2.494d0, 2.214d0``, and ``omega_ld(1,1:6) = 0.000d0, 0.415d0, 0.830d0, 2.969d0, 4.304d0, 13.32d0`` specify the plasma frequency, oscillator strength, collision frequency, and oscillator frequency of media, respectively.
+``omega_p_ld(1)  = 9.030d0``, ``f_ld(1,1:6) = 0.760d0, 0.024d0, 0.010d0, 0.071d0, 0.601d0, 4.384d0``, ``gamma_ld(1,1:6) = 0.053d0, 0.241d0, 0.345d0, 0.870d0, 2.494d0, 2.214d0``, and ``omega_ld(1,1:6) = 0.000d0, 0.415d0, 0.830d0, 2.969d0, 4.304d0, 13.32d0`` specify the plasma frequency, oscillator strength, collision frequency, and oscillator frequency of media, respectively.
 
 ``wave_input = 'source'`` specifies an electric current source that is used for generating the pulse.
 
