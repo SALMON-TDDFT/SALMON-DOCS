@@ -12,7 +12,6 @@ SALMON is an open-source software based on first-principles time-dependent densi
    install_and_run
    inputs
    exercises
-   for_large_scale_simulation
    reference
 
 ..   troubleshooting_install   
