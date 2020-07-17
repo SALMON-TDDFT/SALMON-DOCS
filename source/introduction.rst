@@ -2,6 +2,9 @@
 Introduction
 ###########################
 
+Overview
+-----------
+
 SALMON is an open-source computer program for ab-initio
 quantum-mechanical calculations of electron dynamics at the nanoscale
 that takes place in various situations of light-matter interactions. It
