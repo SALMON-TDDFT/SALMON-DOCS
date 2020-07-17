@@ -14,7 +14,7 @@ If you publish a paper in which SALMON makes an important contribution, please c
 Ref. :cite:`Noda2019`
 published in Computer Physics Communications.
 
-We also suggest you to the following papers depending on your usage of SALMON.
+We also suggest you to cite the following papers depending on your usage of SALMON.
 
 * If you use SALMON for electron dynamics calculations of a large-size system,
   Ref. :cite:`Noda2014`
