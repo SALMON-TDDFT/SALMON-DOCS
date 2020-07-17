@@ -13,7 +13,7 @@ For the installation of SALMON, following packages are required.
 
   - GCC (Gnu Compiler Collection)
   - Intel Compiler
-  - Fujitsu Compiler (at FX100 / K-Computer)
+  - Fujitsu Compiler (at FX100 and A64FX)
 
 - One of the following library packages for linear algebra:
 
@@ -226,6 +226,167 @@ The execution command and the job submission procedure depends much on local env
 - executable files are prepared as ``salmon`` in the standard build procedure.
 - to start calculations, ``inputfile.inp`` should be read through ``stdin``.
 
+.. _for_large_scale_simulation:
+
+Tips for large-scale calculation
+-----------------------------------
+
+We explain below some tips that will be useful to improve performance when you carry out 
+large scale simulations using world top-level supercomputers.
+Therefore, the following contents will only be useful only for limited users.
+
+MPI process distribution
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+SALMON provides three variables to determine the process distribution/allocation.
+
+- ``nproc_k``
+- ``nproc_ob``
+- ``nproc_rgrid(3)``
+
+In SALMON, the process distribution is determined automatically as default.
+However, in many situations, an explicit assignment of the process distribution
+will provide a better performance than the default setting.
+
+We recommend to distribute the processes as follows,
+
+If you use k-points ( the number of k-points is greater than 1) and the number of 
+the real-space grid (``num_rgrid``) is not very large (about 16^3):
+
+  - First, assign many processes to ``nproc_k``.
+  - Then, assign the remaining processes to ``nproc_ob``.
+  - Not dividing the spatial grid,  ``nproc_rgrid = 1, 1, 1``.
+ 
+Else:
+
+  - First, assign the processes to ``nproc_ob``.
+  - Then, assign the remaining processes to ``nproc_rgrid``.
+
+    - If real-space grid size (``num_rgrid(1:3) = al(1:3) / dl(1:3)``) is equal to or larger than about 64^3, 
+    you should find a balanced distribution between ``nproc_rgrid`` and ``nproc_ob``.
+
+Improve the performance of the eigenvalues solver
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In DFT calculations of large systems, subspace diagonalization becomes the performance bottleneck
+in the entire calculation. Therefore, it is important to use a parallel eigenvalues solver.
+In SALMON, a LAPACK routine without parallelization is used for the diagonalization as default.
+As parallelized solvers, ScaLAPACK and EigenExa are usable.
+To use them, it is necessary to rebuild SALMON enabling ScaLAPACK/EigenExa.
+You can find the instruction in :any:`install-and-run`.
+
+To execute SALMON using ScaLAPACK/EigenExa, either ``yn_scalapack = 'y'`` or ``yn_eigenexa = 'y'`` should be 
+included in the inputfile::
+
+  &parallel
+    yn_scalapack = 'y'         ! use ScaLAPACK for diagonalization
+    !yn_eigenexa  = 'y'        ! use EigenExa
+    yn_scalapack_red_mem = 'y' ! to reduce the memory consumption
+  /
+
+ScaLAPACK/EigenExa solves the eigenvalue problem with ``nproc_ob`` process distribution.
+If ``nproc_ob = 1``, ScaLAPACK/EigenExa will perform in the same way as the LAPACK library.
+
+Improve the performance of Hartree solver
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For periodic systems, a Fourier transformation is used to solve the Poisson equation (to calculate the Hartree potential).
+In SALMON, a simple Fourier transformation without Fast Fourier Transformation (FFT) is used as default.
+In SALMON, a parallelized FFT foutine, FFTE, is usable and works efficiently for large systems.
+In using FFTE, the following conditions should be satisfied::
+
+  num_rgrid(1) mod nproc_rgrid(2) = 0
+  num_rgrid(2) mod nproc_rgrid(2) = 0
+  num_rgrid(2) mod nproc_rgrid(3) = 0
+  num_rgrid(3) mod nproc_rgrid(3) = 0
+
+  In addition, the prime factors for the number of real-space grid of each direction (num_rgrid(1:3)) must be a combination of 2, 3 or 5.
+
+
+To use FFTE, ``yn_ffte = 'y'`` should be included in the input file::
+
+  &parallel
+    yn_ffte = 'y'
+  /
+
+Improve IO performance (write/read wavefunction)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Almost all supercomputer systems provide distributed filesystems such as Lustre.
+Distributed filesystems are equipped with a meta-data server (MDS) and an object-storage server (OST).
+The OST stores real user data files, and the MDS stores the address of the user date files in the OST.
+When accessing to the data files in the OST, the process send a query about the OST address to MDS.
+Then, a network contention may occur in the query process.
+
+In most implementations of the filesystem, the MDS that replies to the query is determined by the directory structure.
+For a calculation in which k-point is not used, 
+``method_wf_distributor`` and ``nblock_wf_distribute`` are prepared to reduce the network contention::
+
+  &control
+    method_wf_distributor = 'slice' ! every orbital function is stored as a single file.
+    nblock_wf_distribute  = 32      ! files of 32 orbital functions are stored in one directory.
+  /
+
+Improve the communication performance for mesh-torus network system
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Large-scale supercomputers often adopt a mesh-torus network system such as Cray dragon-fly and Fujitsu Tofu to achieve
+high scalability with relatively low cost. 
+In SALMON, a special MPI process distribution (communicator creation rule) is prepared to improve the performance 
+in large-scale mesh-torus network systems.
+
+Currently, we provide the communicator creation rule for "Supercomputer Fugaku", 
+which is developed by RIKEN R-CCS and Fujitsu limited.
+Fugaku is equipped with a 6-D mesh-torus network which is called "Tofu-D". 
+Users may control it as a 3-D logical network.
+SALMON utilizes 5-D array (wavefunction(x, y, z, orbital, k-point)) as a domain for parallelization.
+We create a map that connects the 3-D network to the 5-D array distribution.
+
+We introduce the following variables and conditons to assign the 3-D mesh-torus network to the 5-D array distribution::
+
+  PW           = nproc_ob * nproc_k
+  (PX, PY, PZ) = nproc_rgrid
+  PPN          = '# of process per node' (we recommend the value 4 in Fugaku)
+  
+  Requested process shape: (PX, PY, PZ, PW)
+  Tofu-D network    shape: (TX, TY, TZ)
+  Actual process    shape: (TX * PPN, TY, TZ)
+
+  if (process_allocation == 'grid_sequential'):
+    PW  = PW1 * PW2 * PW3
+    PW1 = (TX * PPN) / PX
+    PW2 = TY         / PY
+    PW3 = TZ         / PZ
+    TX  = (PX * PW1) / PPN
+    TY  = PY * PW2
+    TZ  = PZ * PW3
+
+  else if (process_allocation == 'orbital_sequential'):
+    PX  = PX1 * PX2 * PX3
+    PX1 = (TX * PPN) / PW
+    PX2 = TY         / PY
+    PX3 = TZ         / PZ
+    TX  = (PW * PX1) / PPN
+    TY  = PY * PX2
+    TZ  = PZ * PX3
+
+From these conditions, you can determine the suitable process distribution and the Tofu-D network shape (compute node shape).
+``process_allocation`` input variable controls the order of the process distribution.
+It indicates which communications should be executed in closer processes.
+
+- ``process_allocation = 'grid_sequential'``
+
+  - ``(PX, PY, PZ, PW)``, ``nproc_rgrid`` major ordering
+  - improves ``nproc_rgrid`` related communication performance
+  - communicator: ``s_parallel_info::icomm_r, icomm_x, icomm_y, icomm_z, icomm_xy``
+  - suitable ``theory``: ``'dft'`` and ``'dft_md'``
+
+- ``process_allocation = 'orbital_sequential'``
+
+  - ``(PW, PY, PZ, PX)``, ``nproc_ob`` major ordering
+  - improves ``nproc_ob`` related communication performance
+  - communicator: ``s_parallel_info::icomm_o and icomm_ko``
+  - suitable ``theory``: ``'tddft_response', 'tddft_pulse', 'single_scale_maxwell_tddft'`` and ``'multi_scale_maxwell_tddft'``
 
 Appendix
 ------------
@@ -399,4 +560,5 @@ and reload the configuration:
 ::
 
    source ~/.bashrc
+
 
