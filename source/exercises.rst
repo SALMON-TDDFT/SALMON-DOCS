@@ -1491,9 +1491,9 @@ used in the input file can be found in
      
      !angular momentum of pseudopotential that will be treated as local
      lloc_ps(1) = 2
-     !--- Caution ---------------------------------------!
-     ! Index must correspond to those in &atomic_coor.   !
-     !---------------------------------------------------!
+     !--- Caution -------------------------------------------!
+     ! Index must correspond to those in &atomic_red_coor.   !
+     !-------------------------------------------------------!
    /
    
    &functional
@@ -1625,9 +1625,9 @@ Mandatory: file_pseudo, izatom
      
      !angular momentum of pseudopotential that will be treated as local
      lloc_ps(1) = 2
-     !--- Caution ---------------------------------------!
-     ! Index must correspond to those in &atomic_coor.   !
-     !---------------------------------------------------!
+     !--- Caution -------------------------------------------!
+     ! Index must correspond to those in &atomic_red_coor.   !
+     !-------------------------------------------------------!
    /
 
 ``file_pseudo(1) = './Si_rps.dat'`` indicates the pseudopotential filename of element. 
@@ -1864,9 +1864,9 @@ A complete list of the input keywords can be found in :any:`List of all input ke
      
      !angular momentum of pseudopotential that will be treated as local
      lloc_ps(1) = 2
-     !--- Caution ---------------------------------------!
-     ! Index must correspond to those in &atomic_coor.   !
-     !---------------------------------------------------!
+     !--- Caution -------------------------------------------!
+     ! Index must correspond to those in &atomic_red_coor.   !
+     !-------------------------------------------------------!
    /
    
    &functional
@@ -2007,9 +2007,9 @@ Mandatory: file_pseudo, izatom
      
      !angular momentum of pseudopotential that will be treated as local
      lloc_ps(1) = 2
-     !--- Caution ---------------------------------------!
-     ! Index must correspond to those in &atomic_coor.   !
-     !---------------------------------------------------!
+     !--- Caution -------------------------------------------!
+     ! Index must correspond to those in &atomic_red_coor.   !
+     !-------------------------------------------------------!
    /
 
 These input keywords and their values should be the same as those used in the
@@ -2300,9 +2300,9 @@ A complete list of the input keywords can be found in :any:`List of all input ke
      
      !angular momentum of pseudopotential that will be treated as local
      lloc_ps(1) = 2
-     !--- Caution ---------------------------------------!
-     ! Index must correspond to those in &atomic_coor.   !
-     !---------------------------------------------------!
+     !--- Caution -------------------------------------------!
+     ! Index must correspond to those in &atomic_red_coor.   !
+     !-------------------------------------------------------!
    /
    
    &functional
@@ -2446,9 +2446,9 @@ Mandatory: file_pseudo, izatom
      
      !angular momentum of pseudopotential that will be treated as local
      lloc_ps(1) = 2
-     !--- Caution ---------------------------------------!
-     ! Index must correspond to those in &atomic_coor.   !
-     !---------------------------------------------------!
+     !--- Caution -------------------------------------------!
+     ! Index must correspond to those in &atomic_red_coor.   !
+     !-------------------------------------------------------!
    /
 
 These input keywords and their values should be the same as those used in the
@@ -2756,9 +2756,9 @@ A complete list of the input keywords can be found in :any:`List of all input ke
       
       !angular momentum of pseudopotential that will be treated as local
       lloc_ps(1) = 2
-      !--- Caution ---------------------------------------!
-      ! Index must correspond to those in &atomic_coor.   !
-      !---------------------------------------------------!
+      !--- Caution -------------------------------------------!
+      ! Index must correspond to those in &atomic_red_coor.   !
+      !-------------------------------------------------------!
     /
     
     &functional
@@ -2929,9 +2929,9 @@ Mandatory: file_pseudo, izatom
      
      !angular momentum of pseudopotential that will be treated as local
      lloc_ps(1) = 2
-     !--- Caution ---------------------------------------!
-     ! Index must correspond to those in &atomic_coor.   !
-     !---------------------------------------------------!
+     !--- Caution -------------------------------------------!
+     ! Index must correspond to those in &atomic_red_coor.   !
+     !-------------------------------------------------------!
    /
 
 These input keywords and their values should be the same as those used in the
