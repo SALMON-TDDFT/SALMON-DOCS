@@ -186,7 +186,7 @@ used in the input file can be found in
    
    &scf
      !maximum number of scf iteration and threshold of convergence
-     nscf      = 200
+     nscf      = 300
      threshold = 1.0d-9
    /
    
@@ -359,7 +359,7 @@ Mandatory: nscf, threshold
 
    &scf
      !maximum number of scf iteration and threshold of convergence
-     nscf      = 200
+     nscf      = 300
      threshold = 1.0d-9
    /
 
@@ -1513,7 +1513,7 @@ used in the input file can be found in
    
    &scf
      !maximum number of scf iteration and threshold of convergence
-     nscf      = 200
+     nscf      = 300
      threshold = 1.0d-9
    /
    
@@ -1682,7 +1682,7 @@ Mandatory: nscf, threshold
 
    &scf
      !maximum number of scf iteration and threshold of convergence
-     nscf      = 200
+     nscf      = 300
      threshold = 1.0d-9
    /
 
@@ -3317,7 +3317,7 @@ used in the input file can be found in
    
    &scf
      !maximum number of scf iteration and threshold of convergence for ground state calculation
-     nscf      = 200
+     nscf      = 300
      threshold = 1.0d-9
    /
    
@@ -3482,7 +3482,7 @@ Mandatory: nscf, threshold
    
    &scf
      !maximum number of scf iteration and threshold of convergence
-     nscf      = 200
+     nscf      = 300
      threshold = 1.0d-9
    /
 
