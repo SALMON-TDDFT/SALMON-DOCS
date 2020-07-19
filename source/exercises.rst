@@ -418,6 +418,16 @@ directory that you run the code,
 | *C2H2_info.data*                    | information on ground state       |
 |                                     | solution                          |
 +-------------------------------------+-----------------------------------+
+| *C2H2_eigen.data*                   | 1 particle energies               |
++-------------------------------------+-----------------------------------+
+| *C2H2_k.data*   　                  | k-point distribution              |
+|                                     | (for isolated systems, only       |
+|                                     | gamma point is described)         |
++-------------------------------------+-----------------------------------+
+| *data_for_restart*                  | directory where files used in     |
+|                                     | the real-time calculation are     |
+|                                     | contained                         |
++-------------------------------------+-----------------------------------+
 | *psi_ob1.cube*, *psi_ob2.cube*, ... | electron orbitals                 |
 +-------------------------------------+-----------------------------------+
 | *dns.cube*                          | a cube file for electron density  |
@@ -429,17 +439,11 @@ directory that you run the code,
 | *elf.cube*                          | electron localization function    |
 |                                     | (ELF)                             |
 +-------------------------------------+-----------------------------------+
-| *C2H2_eigen.data*                   | 1 particle energies               |
-+-------------------------------------+-----------------------------------+
 | *PS_C_KY_n.dat*                     | information on pseodupotential    |
 |                                     | file for carbon atom              |
 +-------------------------------------+-----------------------------------+
 | *PS_H_KY_n.dat*                     | information on pseodupotential    |
 |                                     | file for hydrogen atom            |
-+-------------------------------------+-----------------------------------+
-| *data_for_restart*                  | directory where files used in     |
-|                                     | the real-time calculation are     |
-|                                     | contained                         |
 +-------------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file, except for the directory *data_for_restart*) from:
@@ -464,6 +468,18 @@ the input file are shown in this file.
    #esp: single-particle energies (eigen energies)
    #occ: occupation numbers, io: orbital index
    # 1:io, 2:esp[eV], 3:occ
+
+**C2H2_k.data**
+
+k-point distribution(for isolated systems, only gamma point is described).
+
+::
+   
+   # ik: k-point index
+   # kx,ky,kz: Reduced coordinate of k-points
+   # wk: Weight of k-point
+   # 1:ik[none] 2:kx[none] 3:ky[none] 4:kz[none] 5:wk[none]
+   # coefficients (2*pi/a [a.u.]) in kx, ky, kz
 
 **psi_ob1.cube, psi_ob2.cube, ...**
 
@@ -912,7 +928,7 @@ the polarizability of the system. Then the strength function is calculated.
    # Fourier-transform spectra: 
    # alpha: Polarizability
    # df/dE: Strength function
-   # 1:Energy[eV] 2:Re(alpha_x)[Augstrom^2/V] 3:Im(alpha_x)[Augstrom^2/V] 4:Re(alpha_y)[Augstrom^2/V] 5:Im(alpha_y)[Augstrom^2/V] 6:Re(alpha_z)[Augstrom^2/V] 7:Im(alpha_z)[Augstrom^2/V] 8:df_x/dE[none] 9:df_y/dE[none] 10:df_z/dE[none]
+   # 1:Energy[eV] 2:Re(alpha_x)[Augstrom^2/V] 3:Re(alpha_y)[Augstrom^2/V] 4:Re(alpha_z)[Augstrom^2/V] 5:Im(alpha_x)[Augstrom^2/V] 6:Im(alpha_y)[Augstrom^2/V] 7:Im(alpha_z)[Augstrom^2/V] 8:df_x/dE[none] 9:df_y/dE[none] 10:df_z/dE[none]
 
 **C2H2_rt.data**
 
@@ -1377,7 +1393,7 @@ Time-frequency Fourier transformation of the dipole moment.
    # Fourier-transform spectra: 
    # energy: Frequency
    # dm: Dopile moment
-   # 1:energy[eV] 2:Re(dm_x)[fs*Angstrom] 3:Im(dm_x)[fs*Angstrom] 4:|dm_x|^2[fs*Angstrom] 5:Re(dm_y)[fs*Angstrom] 6:Im(dm_y)[fs*Angstrom] 7:|dm_y|^2[fs*Angstrom] 8:Re(dm_z)[fs^2*Angstrom^2] 9:Im(dm_z)[fs^2*Angstrom^2] 10:|dm_z|^2[fs^2*Angstrom^2]
+   # 1:energy[eV] 2:Re(dm_x)[fs*Angstrom] 3:Re(dm_y)[fs*Angstrom] 4:Re(dm_z)[fs*Angstrom] 5:Im(dm_x)[fs*Angstrom] 6:Im(dm_y)[fs*Angstrom] 7:Im(dm_z)[fs*Angstrom] 8:|dm_x|^2[fs^2*Angstrom^2] 9:|dm_y|^2[fs^2*Angstrom^2] 10:|dm_z|^2[fs^2*Angstrom^2]
 
 **C2H2_rt.data**
 
@@ -1763,6 +1779,18 @@ the input file are shown in this file.
    #esp: single-particle energies (eigen energies)
    #occ: occupation numbers, io: orbital index
    # 1:io, 2:esp[a.u.], 3:occ
+
+**Si_k.data**
+
+k-point distribution.
+
+::
+   
+   # ik: k-point index
+   # kx,ky,kz: Reduced coordinate of k-points
+   # wk: Weight of k-point
+   # 1:ik[none] 2:kx[none] 3:ky[none] 4:kz[none] 5:wk[none]
+   # coefficients (2*pi/a [a.u.]) in kx, ky, kz
 
 .. _exercise-5:
 
@@ -2175,7 +2203,7 @@ the conductivity of the system. Then the dielectric function is calculated.
    # Fourier-transform spectra: 
    # sigma: Conductivity
    # eps: Dielectric constant
-   # 1:Energy[a.u.] 2:Re(sigma_x)[a.u.] 3:Im(sigma_x)[a.u.] 4:Re(sigma_y)[a.u.] 5:Im(sigma_y)[a.u.] 6:Re(sigma_z)[a.u.] 7:Im(sigma_z)[a.u.] 8:Re(eps_x)[none] 9:Im(eps_x)[none] 10:Re(eps_y)[none] 11:Im(eps_y)[none] 12:Re(eps_z)[none] 13:Im(eps_z)[none]
+   # 1:Energy[a.u.] 2:Re(sigma_x)[a.u.] 3:Re(sigma_y)[a.u.] 4:Re(sigma_z)[a.u.] 5:Im(sigma_x)[a.u.] 6:Im(sigma_y)[a.u.] 7:Im(sigma_z)[a.u.] 8:Re(eps_x)[none] 9:Re(eps_y)[none] 10:Re(eps_z)[none] 11:Im(eps_x)[none] 12:Im(eps_y)[none] 13:Im(eps_z)[none]
 
 **Si_rt.data**
 
@@ -2626,7 +2654,7 @@ Time-frequency Fourier transformation of the matter current and electric field.
    # Jm: Matter current
    # E_ext: External electric field
    # E_tot: Total electric field
-   # 1:energy[a.u.] 2:Re(Jm_x)[a.u.] 3:Im(Jm_x)[a.u.] 4:|Jm_x|^2[a.u.] 5:Re(Jm_y)[a.u.] 6:Im(Jm_y)[a.u.] 7:|Jm_y|^2[a.u.] 8:Re(Jm_z)[a.u.] 9:Im(Jm_z)[a.u.] 10:|Jm_z|^2[a.u.] 11:Re(E_ext_x)[a.u.] 12:Im(E_ext_x)[a.u.] 13:|E_ext_x|^2[a.u.] 14:Re(E_ext_y)[a.u.] 15:Im(E_ext_y)[a.u.] 16:|E_ext_y|^2[a.u.] 17:Re(E_ext_z)[a.u.] 18:Im(E_ext_z)[a.u.] 19:|E_ext_z|^2[a.u.] 20:Re(E_ext_x)[a.u.] 21:Im(E_ext_x)[a.u.] 22:|E_ext_x|^2[a.u.] 23:Re(E_ext_y)[a.u.] 24:Im(E_ext_y)[a.u.] 25:|E_ext_y|^2[a.u.] 26:Re(E_ext_z)[a.u.] 27:Im(E_ext_z)[a.u.] 28:|E_ext_z|^2[a.u.]
+   # 1:energy[a.u.] 2:Re(Jm_x)[a.u.] 3:Re(Jm_y)[a.u.] 4:Re(Jm_z)[a.u.] 5:Im(Jm_x)[a.u.] 6:Im(Jm_y)[a.u.] 7:Im(Jm_z)[a.u.] 8:|Jm_x|^2[a.u.] 9:|Jm_y|^2[a.u.] 10:|Jm_z|^2[a.u.] 11:Re(E_ext_x)[a.u.] 12:Re(E_ext_y)[a.u.] 13:Re(E_ext_z)[a.u.] 14:Im(E_ext_x)[a.u.] 15:Im(E_ext_y)[a.u.] 16:Im(E_ext_z)[a.u.] 17:|E_ext_x|^2[a.u.] 18:|E_ext_y|^2[a.u.] 19:|E_ext_z|^2[a.u.] 20:Re(E_ext_x)[a.u.] 21:Re(E_ext_y)[a.u.] 22:Re(E_ext_z)[a.u.] 23:Im(E_ext_x)[a.u.] 24:Im(E_ext_y)[a.u.] 25:Im(E_ext_z)[a.u.] 26:|E_ext_x|^2[a.u.] 27:|E_ext_y|^2[a.u.] 28:|E_ext_z|^2[a.u.]
 
 **Si_rt.data**
 
@@ -3128,30 +3156,33 @@ Output files
 After the calculation, new directory *multiscale/* is created, then,
 following output files are created in the directory,
 
-+-----------------------------------+-----------------------------------+
-| file name                         | description                       |
-+-----------------------------------+-----------------------------------+
-| *Si_m/mxxxxxx/Si_rt.data*         | vector potential, electric field, |
-|                                   | and matter current                |
-|                                   | at macroscopic position *xxxxxx*  |
-|                                   | as functions of time              |
-+-----------------------------------+-----------------------------------+
-| *Si_m/mxxxxxx/Si_rt_energy.data*  | components of total energy and    |
-|                                   | difference of total energy        |
-|                                   | at macroscopic position *xxxxxx*  |
-|                                   | as functions of time              |
-+-----------------------------------+-----------------------------------+
-| *Si_m/mxxxxxx/PS_Si_KY_n.dat*     | information on pseodupotential    |
-|                                   | file for silicon atom             |
-|                                   | at macroscopic position *xxxxxx*  |
-+-----------------------------------+-----------------------------------+
-| *Si_RT_Ac/Si_Ac_yyyyyy.data*      | vector potential,                 |
-|                                   | electric field,                   |
-|                                   | magnetic field,                   |
-|                                   | electromagnetic current density   |
-|                                   | at time step *yyyyyy*             |
-|                                   | as function of space              |
-+-----------------------------------+-----------------------------------+
++-----------------------------------+------------------------------------+
+| file name                         | description                        |
++-----------------------------------+------------------------------------+
+| *Si_m/mxxxxxx/Si_rt.data*         | vector potential, electric field,  |
+|                                   | and matter current                 |
+|                                   | at macroscopic position *xxxxxx*   |
+|                                   | as functions of time               |
++-----------------------------------+------------------------------------+
+| *Si_m/mxxxxxx/Si_rt_energy.data*  | components of total energy and     |
+|                                   | difference of total energy         |
+|                                   | at macroscopic position *xxxxxx*   |
+|                                   | as functions of time               |
++-----------------------------------+------------------------------------+
+| *Si_m/mxxxxxx/PS_Si_KY_n.dat*     | information on pseodupotential     |
+|                                   | file for silicon atom              |
+|                                   | at macroscopic position *xxxxxx*   |
++-----------------------------------+------------------------------------+
+| *Si_RT_Ac/Si_Ac_yyyyyy.data*      | vector potential,                  |
+|                                   | electric field,                    |
+|                                   | magnetic field,                    |
+|                                   | electromagnetic current density    |
+|                                   | at time step *yyyyyy*              |
+|                                   | as function of space               |
++-----------------------------------+------------------------------------+
+| *Si_wave.data*                    | amplitudes of incident, reflected, |
+|                                   | and transmitted wave               |
++-----------------------------------+------------------------------------+
 
 | You may download the above files (zipped file) from:
 | https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/07_bulkSi_ms.zip
@@ -3182,8 +3213,8 @@ The number in the file name specifies the macroscopic position.
    
    # Real time calculation: 
    # Eall: Total energy
-   # Eall0: Initial energy
-   # 1:Time[a.u.] 2:Eall[a.u.] 3:Eall-Eall0[a.u.] 
+      # Eall0: Initial energy
+# 1:Time[a.u.] 2:Eall[a.u.] 3:Eall-Eall0[a.u.] 
 
 **Si_RT_Ac/Si_Ac_yyyyyy.data**
 
@@ -3198,7 +3229,19 @@ Various quantities at a time are shown as function of macroscopic position.
    # Ac: Vector potential field
    # E: Electric field
    # J_em: Electromagnetic current density
-   # 1:IX[none] 2:IY[none] 3:IZ[none] 4:Ac_x[a.u.] 5:Ac_y[a.u.] 6:Ac_z[a.u.] 7:E_x[a.u.] 8:E_y[a.u.] 9:E_z[a.u.] 10:B_x[a.u.] 11:B_y[a.u.] 12:B_z[a.u.] 13:Jm_x[a.u.] 14:Jm_y[a.u.] 15:Jm_z[a.u.]
+   # 1:IX[none] 2:IY[none] 3:IZ[none] 4:Ac_x[a.u.] 5:Ac_y[a.u.] 6:Ac_z[a.u.] 7:E_x[a.u.] 8:E_y[a.u.] 9:E_z[a.u.] 10:B_x[a.u.] 11:B_y[a.u.] 12:B_z[a.u.] 13:Jem_x[a.u.] 14:Jem_y[a.u.] 15:Jem_z[a.u.] 16:E_em[a.u./vol] 17:E_abs[a.u./vol]
+
+**Si_wave.data**
+
+Amplitudes of incident, reflected, and transmitted wave.
+
+::
+   
+   # 1D multiscale calculation:
+   # E_inc: E-field amplitude of incident wave
+   # E_ref: E-field amplitude of reflected wave
+   # E_tra: E-field amplitude of transmitted wave
+   # 1:Time[a.u.] 2:E_inc_x[a.u.] 3:E_inc_y[a.u.] 4:E_inc_z[a.u.] 5:E_ref_x[a.u.] 6:E_ref_y[a.u.] 7:E_ref_z[a.u.] 8:E_tra_x[a.u.] 9:E_tra_y[a.u.] 10:E_tra_z[a.u.]
 
 Geometry optimization and Ehrenfest molecular dynamics
 -------------------------------------
@@ -3545,6 +3588,10 @@ directory that you run the code,
 | *C2H2_trj.xyz*                      | atomic coordinates during the      |
 |                                     | geometry optimization              |
 +-------------------------------------+------------------------------------+
+| *C2H2_k.data*   　                  | k-point distribution               |
+|                                     | (for isolated systems, only        |
+|                                     | gamma point is described)          |
++-------------------------------------+------------------------------------+
 | *data_for_restart*                  | directory where files used in      |
 |                                     | the real-time calculation are      |
 |                                     | contained                          |
@@ -3581,6 +3628,18 @@ the input file are shown in this file.
 **C2H2_trj.xyz**
 
 The atomic coordinates during the geometry optimization in xyz format.
+
+**C2H2_k.data**
+
+k-point distribution(for isolated systems, only gamma point is described).
+
+::
+   
+   # ik: k-point index
+   # kx,ky,kz: Reduced coordinate of k-points
+   # wk: Weight of k-point
+   # 1:ik[none] 2:kx[none] 3:ky[none] 4:kz[none] 5:wk[none]
+   # coefficients (2*pi/a [a.u.]) in kx, ky, kz
 
 .. _exercise-9:
 
@@ -4041,7 +4100,7 @@ Time-frequency Fourier transformation of the dipole moment.
    # Fourier-transform spectra: 
    # energy: Frequency
    # dm: Dopile moment
-   # 1:energy[eV] 2:Re(dm_x)[fs*Angstrom] 3:Im(dm_x)[fs*Angstrom] 4:|dm_x|^2[fs*Angstrom] 5:Re(dm_y)[fs*Angstrom] 6:Im(dm_y)[fs*Angstrom] 7:|dm_y|^2[fs*Angstrom] 8:Re(dm_z)[fs^2*Angstrom^2] 9:Im(dm_z)[fs^2*Angstrom^2] 10:|dm_z|^2[fs^2*Angstrom^2]
+   # 1:energy[eV] 2:Re(dm_x)[fs*Angstrom] 3:Re(dm_y)[fs*Angstrom] 4:Re(dm_z)[fs*Angstrom] 5:Im(dm_x)[fs*Angstrom] 6:Im(dm_y)[fs*Angstrom] 7:Im(dm_z)[fs*Angstrom] 8:|dm_x|^2[fs^2*Angstrom^2] 9:|dm_y|^2[fs^2*Angstrom^2] 10:|dm_z|^2[fs^2*Angstrom^2]
 
 **C2H2_rt.data**
 
@@ -4067,7 +4126,10 @@ Results of time evolution calculation for vector potential, electric field, and 
    # Real time calculation: 
    # Eall: Total energy
    # Eall0: Initial energy
-   # 1:Time[fs] 2:Eall[eV] 3:Eall-Eall0[eV] 
+   # Tion: Kinetic energy of ions
+   # Temperature_ion: Temperature of ions
+   # E_work: Work energy of ions(sum f*dr)
+   # 1:Time[fs] 2:Eall[eV] 3:Eall-Eall0[eV] # 4:Tion[eV] 5:Temperature_ion[K] 6:E_work[eV] 
 
 **C2H2_trj.xyz**
 
