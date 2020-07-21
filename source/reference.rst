@@ -5,8 +5,8 @@
 
 .. _reference:
 
-Reference
-=================
+How to cite SALMON
+==================
 
 Suggested Citations
 --------------------
