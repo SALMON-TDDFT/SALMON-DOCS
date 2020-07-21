@@ -1,7 +1,7 @@
 .. _Inputs:
 
-Inputs
-====================
+Input Keywords for Exercises
+============================
 
 We here summarize input keywords that appear in :any:`Exercise <Exercises>`. 
 A thorough list of the input keywords can be found in the downloaded file in
