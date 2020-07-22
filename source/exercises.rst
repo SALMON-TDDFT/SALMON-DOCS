@@ -448,7 +448,6 @@ directory that you run the code,
 
 | You may download the above files (zipped file, except for the directory *data_for_restart*) from:
 | https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/01_C2H2_gs.zip
-| (zipped output files)
 
 Main results of the calculation such as orbital energies are included in
 *C2H2_info.data*. Explanations of the *C2H2_info.data* and other output
@@ -914,7 +913,6 @@ directory that you run the code,
 
 | You may download the above files (zipped file) from:
 | https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/02_C2H2_lr.zip
-| (zipped output files)
 
 Explanations of the output files are below:
 
@@ -1760,7 +1758,6 @@ directory that you run the code,
 
 | You may download the above files (zipped file, except for the directory *data_for_restart*) from:
 | https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/04_bulkSi_gs.zip
-| (zipped output files)
 
 Main results of the calculation such as orbital energies are included in *Si_info.data*. 
 Explanations of the *Si_info.data* and other output files are below:
@@ -3592,7 +3589,6 @@ directory that you run the code,
 
 | You may download the above files (zipped file, except for the directory *data_for_restart*) from:
 | https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/08_C2H2_opt.zip
-| (zipped output files)
 
 Main results of the calculation such as orbital energies are included in *C2H2_info.data*. 
 Explanations of the *C2H2_info.data* and other output files are below:
