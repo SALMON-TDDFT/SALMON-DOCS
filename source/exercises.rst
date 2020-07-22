@@ -1828,9 +1828,6 @@ To run the code, following files in samples are used:
 |                                   | *data_for_restart* to *restart*)  |
 +-----------------------------------+-----------------------------------+
 
-| You may download the above files (zipped file, except for *restart*) from:
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_response_input.zip
-
 In the input file *Si_rt_response.inp*, input keywords are specified.
 Most of them are mandatory to execute the calculation.
 This will help you to prepare the input file for other systems that you want to calculate.
@@ -2263,9 +2260,6 @@ To run the code, following files in samples are used:
 |                                   | directory from                    |
 |                                   | *data_for_restart* to *restart*)  |
 +-----------------------------------+-----------------------------------+
-
-| You may download the above 2 files (zipped file, except for *restart*) from:
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_pulse_input.zip
 
 In the input file *Si_rt_pulse.inp*, input keywords are specified.
 Most of them are mandatory to execute the calculation.
@@ -2718,9 +2712,6 @@ To run the code, following files in samples are used:
 |                                   | directory from                    |
 |                                   | *data_for_restart* to *restart*)  |
 +-----------------------------------+-----------------------------------+
-
-| You may download the above two files (zipped file, except for *restart*) from:
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/Si_gs_rt_multiscale_input.zip
 
 In the input file *Si_rt_multiscale.inp*, input keywords are specified.
 Most of them are mandatory to execute the calculation.
@@ -3273,10 +3264,6 @@ To run the code, following files in samples are used:
 | *H_rps.dat*                       | pseudopotential file for hydrogen |
 |                                   | atom                              |
 +-----------------------------------+-----------------------------------+
-
-| You may download the above 3 files (zipped file) from: 
-| https://salmon-tddft.jp/webmanual/v_1_2_0/exercise_zip_files/C2H2_gs_input.zip
-| (zipped input and pseudopotential files)
 
 In the input file *C2H2_opt.inp*, input keywords are specified.
 Most of them are mandatory to execute the geometry optimization.
