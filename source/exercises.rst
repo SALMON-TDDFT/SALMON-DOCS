@@ -4265,7 +4265,7 @@ can be found in :any:`List of all input keywords <List of all input keywords>`.
      !location of source(x,y,z)
      source_loc1(1:3) = -37.8d0, 0.0d0, 0.0d0
      
-     !propagation direction of the incidenty pulse(x,y,z)
+     !propagation direction of the incident pulse(x,y,z)
      ek_dir1(1:3) = 1.0d0, 0.0d0, 0.0d0
      !*** SOURCE INFORMATION(END) ***************************************!
      
@@ -4288,7 +4288,7 @@ can be found in :any:`List of all input keywords <List of all input keywords>`.
      ! on the cross-section including the observation point              !
      ! whose location is determined by obs_loc_em.                       !
      !-------------------------------------------------------------------!
-     !*** OBSERVATION END(START) ****************************************!
+     !*** OBSERVATION INFORMATION(END) **********************************!
    /
 
 We present explanations of the input keywords that appear in the input file below:
@@ -4453,7 +4453,7 @@ Mandatory: al_em, dl_em, nt_em
      !location of source(x,y,z)
      source_loc1(1:3) = -37.8d0, 0.0d0, 0.0d0
      
-     !propagation direction of the incidenty pulse(x,y,z)
+     !propagation direction of the incident pulse(x,y,z)
      ek_dir1(1:3) = 1.0d0, 0.0d0, 0.0d0
      !*** SOURCE INFORMATION(END) ***************************************!
      
@@ -4476,7 +4476,7 @@ Mandatory: al_em, dl_em, nt_em
      ! on the cross-section including the observation point              !
      ! whose location is determined by obs_loc_em.                       !
      !-------------------------------------------------------------------!
-     !*** OBSERVATION END(START) ****************************************!
+     !*** OBSERVATION INFORMATION(END) **********************************!
    /
 
 ``al_em(1:3) = 120d0, 120d0, 120d0`` specifies the lengths of three sides of the rectangular parallelepiped where the grid points are prepared.
