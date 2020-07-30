@@ -849,7 +849,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - **film_thickness** (real(8), Default=0d0)
    | Available for TDDFT based options of ``theory`` with ``trans_longi='2d'``.
    Thickness of the film for the 2D maxwell-TDDFT method. 
-   The relative permittivity of the media on both side of the film can be specified by ``epsilon_em(1)`` and ``epsilon_em(2)``, respectively.
+   The relative permittivity of the transparent media on both sides of the film can be specified by ``epsilon_em(1)`` and ``epsilon_em(2)``, respectively.
 
 &analysis
 ---------
