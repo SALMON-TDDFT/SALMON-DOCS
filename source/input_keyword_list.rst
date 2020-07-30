@@ -571,6 +571,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Options
    |   ``'tr'`` / Transverse  
    |   ``'lo'`` / longitudinal
+   |   ``'2d'`` / 2D maxwell-TDDFT method (for more details, see ``film_thickness`` of &maxwell)
 
 - **ae_shape1/ae_shape2** (character, Default='none')
    | Available for 'maxwell' and TDDFT based options of ``theory``.
@@ -844,6 +845,11 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 - **yn_wf_em** (character, Default='y')
    | Available for ``theory='maxwell'``.
    Enable(``'y'``)/disable(``'n'``). Applying a window function for linear response calculation when ``&calculation/theory=maxwell``.
+   
+- **film_thickness** (real(8), Default=0d0)
+   | Available for TDDFT based options of ``theory`` with ``trans_longi='2d'``.
+   Thickness of the film for the 2D maxwell-TDDFT method. 
+   The relative permittivity of the media on both side of the film can be specified by ``epsilon_em(1)`` and ``epsilon_em(2)``, respectively.
 
 &analysis
 ---------
