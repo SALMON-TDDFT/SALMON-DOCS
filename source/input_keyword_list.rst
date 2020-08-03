@@ -764,7 +764,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
 - **boundary_em(3,2)** (character, Default='default')
    | Available for ``theory='maxwell'`` and ``theory='multi_scale_maxwell_tddft'``.
-   Boundary condition in electromagnetic analysis. The first index(1-3 rows) corresponds to x, y, and z axes. The second index(1-2 columns) corresponds to bottom and top of the axes. If ``&system/yn_periodic='n'``, ``'default'``, ``'abc'``, and ``'pec'`` can be chosen, where ``'default'`` automatically chooses ``'abc'``. If ``&system/yn_periodic='y'``, ``'default'``, ``'pml'``, and ``'periodic'`` can be chosen, where ``'default'`` automatically chooses ``'periodic'``. ``'abc'`` is absorbing boundary, ``'pec'`` is perfect electric conductor, and ``'periodic'`` is periodic boundary.
+   Boundary condition in electromagnetic analysis. The first index(1-3 rows) corresponds to x, y, and z axes. The second index(1-2 columns) corresponds to bottom and top of the axes. If ``&system/yn_periodic='n'``, ``'default'``, ``'abc'``, and ``'pec'`` can be chosen, where ``'default'`` automatically chooses ``'abc'``. If ``&system/yn_periodic='y'``, ``'default'``, ``'abc'``, and ``'periodic'`` can be chosen, where ``'default'`` automatically chooses ``'periodic'``. ``'abc'`` is absorbing boundary, ``'pec'`` is perfect electric conductor, and ``'periodic'`` is periodic boundary. When ``theory='maxwell'``, perfectly matched layer(PML) is used as ``'abc'``.
 
 - **shape_file** (character, Default='none')
    | Available for ``theory='maxwell'``.
@@ -850,6 +850,14 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for TDDFT based options of ``theory`` with ``trans_longi='2d'``.
    Thickness of the film for the 2D maxwell-TDDFT method. 
    The relative permittivity of the transparent media on both sides of the film can be specified by ``epsilon_em(1)`` and ``epsilon_em(2)``, respectively.
+
+- **media_id_pml(3,2)** (integer, Default='default')
+   | Available for ``theory='maxwell'``.
+   Media ID used in PML. The first index(1-3 rows) corresponds to x, y, and z axes. The second index(1-2 columns) corresponds to bottom and top of the axes.
+
+- **media_id_source1/media_id_source2** (integer, Default='default')
+   | Available for ``theory='maxwell'``.
+   Media ID used in incident current source1/source2 to generate the first/second pulse.
 
 &analysis
 ---------
