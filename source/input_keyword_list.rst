@@ -1145,17 +1145,18 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Options:
    |  ``y``/ enable.
    |  ``n``/ disable.
+   When ``yn_jm='y'``, ``&functional/xc`` must be ``'pz'``.
 
 - **yn_charge_neutral_jm** (character, Default='y')
    | Available for ``yn_jm='y'`` with the DFT/TDDFT based options of ``theory``.
-   | Charge neutrality option:
+   | Option to satisfy charge neutrality :
    | Options:
    |  ``y``/ enable. ``rs_bohr_jm`` is automatically modified so as to satisfy charge neutrality.
    |  ``n``/ disable. ``rs_bohr_jm`` is not automatically modified but the calculation involves small charge neutrality error.
 
 - **yn_output_dns_jm** (character, Default='y')
    | Available for ``yn_jm='y'`` with the DFT/TDDFT based options of ``theory``.
-   | Output positive background charge density option:
+   | Option to output positive background charge density:
    | Options:
    |  ``y``/ enable.
    |  ``n``/ disable.
