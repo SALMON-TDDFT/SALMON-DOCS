@@ -440,7 +440,7 @@ EigenExa will download and build automatically even if the library is installed 
 Build for single process calculations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When using the ``--arch`` option, MPI parallelization is enabled as default in almost case.
+When using the ``--arch`` option, MPI parallelization is enabled as default.
 If you use a single processor machine, explicitly specify ``--disable-mpi`` in executing the python script::
 
     $ python ../configure.py --arch=<ARCHITECTURE> --disable-mpi
