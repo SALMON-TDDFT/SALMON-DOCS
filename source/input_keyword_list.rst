@@ -354,7 +354,7 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    | Available for the DFT/TDDFT based options of ``theory``.
    By specifying ``alibxc``, the functionals prepared in libxc package are available. 
    They can be set indivisually by specifying ``alibx`` and ``alibc``.
-   To use libxc libraries, ``--with-libxc`` option must be added in excecuting configure. 
+   To use libxc libraries, ``--enable-libxc`` option must be added in excecuting configure. 
    The available option of the exchange-correlation functionals are listed in the LibXC website. 
    [See http://www.tddft.org/programs/libxc/functionals/]
    
