@@ -225,7 +225,7 @@ List of all input keywords
 - **nelec_spin(2)** (integer, Default=0)
    | Available for the DFT/TDDFT based options of ``theory``.
    Number of up/down-spin electrons can be specified for each by ``nelec_spin(1)/nelec_spin(2)``.
-   This option is incompatible with ``nelec`` (?? does it mean nelec specified is ignored if this option is specified ??)
+   This option is incompatible with ``nelec`` (if ``nelec_spin`` is specified, ``nelec`` is ignored.)
 
 - **temperature** (real(8), Default=-1d0)
    | Available for DFT-based options of ``theory`` 
