@@ -218,11 +218,6 @@ List of all input keywords
    | Available for the DFT/TDDFT based options of ``theory``.
    Number of orbitals/bands.
 
-- **nstate_spin(2)** (integer, Default=0)
-   | Available for the DFT/TDDFT based options of ``theory``.
-   Number of orbitals/bands for up/down-spin electrons can be specified for each by ``nstate_spin(1)/nstate_spin(2)``.
-   This option is incompatible with ``nstate``  (?? does it mean nstate specified is ignored if this option is specified ??)
-
 - **nelec** (integer, Default=0)
    | Available for the DFT/TDDFT based options of ``theory``.
    Number of valence electrons.
