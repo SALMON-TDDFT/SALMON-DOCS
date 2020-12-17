@@ -95,7 +95,8 @@ List of all input keywords
    | Available for ``yn_restart='y'`` with ``theory='dft'``.
    | Options
    |   ``all``  / all of restart data are read
-   |   ``rho_inout``  / only electron densities including memories at previous iteration steps are read
+   |   ``rho_inout``  / only electron densities including memories at previous iteration steps are read (rho_inout.bin file)
+   |   ``rho_inout:single``  / same as ``rho_inout`` option but single file format is read even though the check-point data format is specified by ``yn_self_checkpoint='y'``
    |   ``rho``  / only the latest electron density is read (user-made data)
    |   ``wfn``  / only wavefunctions is read
    Specified data which is included in the restart (or checkpoint) directory generated in the previous calculation is used for restarting SCF iteration in DFT.
@@ -107,6 +108,7 @@ List of all input keywords
    |   ``all``  / all of restart data are written out
    |   ``rho_inout``  / only electron densities including memories at previous iteration steps are written out
    |   ``wfn``  / only wavefunctions is written out
+   |   ``checkpoint_only`` / the restart data is printed only in the check-point data format (separated data for each process) at the last step (``yn_self_checkpoint='y'`` is required)
    Specified data is written out in the restart (or checkpoint) directory. 
    The default option ``'all'`` gives the complete set of restart data. 
 
