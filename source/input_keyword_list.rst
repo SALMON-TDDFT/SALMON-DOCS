@@ -89,12 +89,13 @@ List of all input keywords
 - **yn_reset_step_restart** (character, Default='n')
    | Available for ``yn_restart='y'`` with the DFT/TDDFT based options of ``theory``.
    In the case of restarting, the initial step of SCF iteration (for DFT) or time step (for TDDFT) are reset to 0 at begining.
-   Then, the memory of the density in the previous SCF iteration steps (in GS) is abondoned.
+   Then, the memory of the density in the previous SCF iteration steps (in GS) is abondoned. 
 
 - **read_gs_restart_data** (character, Default='all')
    | Available for ``yn_restart='y'`` with ``theory='dft'``.
    | Options
    |   ``all``  / all of restart data are read
+   |   ``all:single``  / same as ``all`` option but single file format is read even though the check-point data format is specified by ``yn_self_checkpoint='y'``
    |   ``rho_inout``  / only electron densities including memories at previous iteration steps are read (rho_inout.bin file)
    |   ``rho_inout:single``  / same as ``rho_inout`` option but single file format is read even though the check-point data format is specified by ``yn_self_checkpoint='y'``
    |   ``rho``  / only the latest electron density is read (user-made data)
