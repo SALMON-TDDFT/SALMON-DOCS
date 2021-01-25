@@ -37,6 +37,10 @@ Download
 -----------------
 
 The newest version of SALMON can be downloaded from `download page <http://salmon-tddft.jp/download.html>`__.
+You can also get the file by
+
+    $ wget http://salmon-tddft.jp/download/SALMON-v.2.0.0.tar.gz
+
 To extract files from the downloaded file ``SALMON-<VERSION>.tar.gz``, type the following command in the command-line::
 
   $ tar -zxvf ./salmon-<VERSION>.tar.gz
@@ -226,14 +230,6 @@ The execution command and the job submission procedure depends much on local env
 - executable files are prepared as ``salmon`` in the standard build procedure.
 - to start calculations, ``inputfile.inp`` should be read through ``stdin``.
 
-.. _for_large_scale_simulation:
-
-Tips for large-scale calculation
------------------------------------
-
-We explain below some tips that will be useful to improve performance when you carry out 
-large scale simulations using world top-level supercomputers.
-Therefore, the following contents will only be useful only for limited users.
 
 MPI process distribution
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -264,6 +260,16 @@ Else:
 
     - If real-space grid size (``num_rgrid(1:3) = al(1:3) / dl(1:3)``) is equal to or larger than about 64^3, 
     you should find a balanced distribution between ``nproc_rgrid`` and ``nproc_ob``.
+
+
+.. _for_large_scale_simulation:
+
+Tips for large-scale calculation
+-----------------------------------
+
+We explain below some tips that will be useful to improve performance when you carry out 
+large scale simulations using world top-level supercomputers.
+Therefore, the following contents will only be useful only for limited users.
 
 Improve the performance of the eigenvalues solver
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
