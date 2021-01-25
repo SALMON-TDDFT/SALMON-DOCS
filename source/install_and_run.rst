@@ -490,7 +490,11 @@ In executing ``configure.py``, you may manually specify compiler and environment
 
     $ python ../configure.py FC=mpiifort CC=mpiicc FFLAGS="-xAVX" CFLAGS="-restrict -xAVX"
 
-The major options of ``configure.py`` are as follows:
+The list of options of ``configure.py`` can be found by 
+
+    $ python ../configure.py --help
+
+The major options are as follows:
 
 =======================================  ===================================================
 Commandline switch                       Detail
@@ -540,7 +544,7 @@ If you want that specify the compiler, set the ``FC`` and ``CC`` flags in execut
 
     $ python ../configure.py FC=gfortran CC=gcc
 
-When not using the ``--arch`` option, MPI parallelization is disabled as default.
+When ``--arch`` option is not used, MPI parallelization is disabled as default.
 
 
 
