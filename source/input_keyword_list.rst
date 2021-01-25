@@ -29,10 +29,13 @@ List of all input keywords
 -  `&jellium`_
 
 
+'[Trial]' : These options are not tested well
+
+
 &calculation
 ------------
 
-- **theory** (character, default='none')
+- **theory** (character, default='')
    | Choice of Calculation theories.
    | Options
    |   ``dft``  / ground state calculation based on DFT
@@ -72,7 +75,9 @@ List of all input keywords
 - **yn_restart** (character, Default='n')
    | Available for ``theory='dft*' or '*tddft*'``.
    | Restart option.
-   Enable(``'y'``)/disable(``'n'``).
+   | Options
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
 
 - **directory_read_data** (character, Default='restart/')
    | Directory name for the restart data that is written down in the previous run 
@@ -122,14 +127,13 @@ List of all input keywords
 - **method_wf_distributor** (character, Default='single')
    | Available for ``theory='dft*' or '*tddft*'``.
    | Select a method of save/load the wave function.
-   | 'single': wave function saves/loads a single shared file.
-   | 'slice' : wave function saves/loads to a file per the orbital function. 
+   | 'single': all wave functions are saved(loaded) to(from) a single file.
+   | 'slice' : each orbital function is saved(loaded) to(from) a file. 
    | 'slice' reduces I/O costs, and they can helps flexible large-scale simulation.
 
 - **nblock_wf_distribute** (integer, Default='16')
    | Available for ``method_wf_distributor='slice'``.
-   | 'slice' mode saves ``nblock_wf_distribute``-files to a directory.
-   | In a default, they will saves 16 files to same directory.
+   | 'slice' mode saves ``nblock_wf_distribute`` files to one directory.
 
 &units
 ------
@@ -144,7 +148,6 @@ List of all input keywords
 ---------
 
 - **nproc_k/nproc_ob/nproc_rgrid(3)** (integer, Default=0)
-   | Old infomation: 0d
    | Options
    |   ``nproc_k``/ Number of MPI parallelization for orbitals that related to the wavefunction calculation.
    |   ``nproc_ob``/ Number of MPI parallelization for orbitals that related to the wavefunction calculation.
@@ -156,7 +159,6 @@ List of all input keywords
 
 - **yn_ffte** (character, Default='n')
    | Available for ``&system/yn_periodic='y'``
-   | Old infomation: 0d
    | Method of Fourier transformation.  
    | Enable(``'y'``)/disable(``'n'``).
    | SALMON uses FFT (via FFTE library) to solve poisson equation.
@@ -171,21 +173,30 @@ List of all input keywords
    | Available for ``&calculation/theory='dft' or 'dft_md'``
    | SALMON uses ScaLAPACK library to solve eigenvalue problem in subspace diagonalization.
    | When enabling it, you should build SALMON by linking ScaLAPACK library.
+   | Options
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
 
 - **yn_eigenexa** (character, Default='n')
    | Available for ``&calculation/theory='dft' or 'dft_md'``
    | SALMON uses RIKEN R-CCS EigenExa library to solve eigenvalue problem in subspace diagonalization.
    | When enabling it, you should build SALMON by linking ScaLAPACK and EigenExa libraries.
+   | Options
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
    
 - **yn_diagonalization_red_mem** (character, Default='n')
    | Available for ``&parallel/yn_scalapack='y'`` or ``&parallel/yn_eigenexa='y'``
    | We use ScaLAPACK/EigenExa libraries by optimized algorithm to reduce memory consumption.
+   | Options
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
 
 - **process_allocation** (character, Default='grid_sequential')
-   | Old infomation: 0d
    | You can select the process allocation ordering.
-   | ``'grid_sequential'``    / real-space grid major ordering.
-   | ``'orbital_sequential'`` / orbital-space major ordering.
+   | Options
+   |   ``'grid_sequential'``    / real-space grid major ordering.
+   |   ``'orbital_sequential'`` / orbital-space major ordering.
    |
    | Suggestion:
    |   ``&calculation/theory='dft' or 'dft_md'``            / `orbital_sequential`
@@ -1221,17 +1232,14 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    
   - **iwrite_projection** (integer, Default=0)[Trial]
    | Available for ``theory='XXX'``.
-   | Old infomation: 0d
    A variable for projection. 
 
   - **itwproj** (integer, Default=-1)[Trial]
    | Available for ``theory='XXX'``.
-   | Old infomation: 0d
    The projection is calculated every ``itwproj`` time steps. 
 
   - **iwrite_projnum** (integer, Default=0)[Trial]
    | Available for ``theory='XXX'``.
-   | Old infomation: 0d
    There is a malfunction in this variable.
 
   &group_others[Trial]
@@ -1239,17 +1247,14 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 
   - **num_projection** (Interger, Default=1)[Trial]
    | Available for ``theory='XXX'``.
-   | Old infomation: 0d
    Number of orbitals for projections.
 
   - **iwrite_projection_ob(200)** (Interger, Default=1, 2, 3, ..., 200)[Trial]
    | Available for ``theory='XXX'``.
-   | Old infomation: 0d
    Orbital number to be written as projections.
 
   - **iwrite_projection_k(200)** (Interger, Default=1)[Trial]
    | Available for ``theory='XXX'``.
-   | Old infomation: 0d
    This variable will be removed.
 ..
 
