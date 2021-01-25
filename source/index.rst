@@ -12,14 +12,8 @@ SALMON (Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience) is
    install_and_run
    exercises
    inputs
+   input_keyword_list
    reference
 
 ..   troubleshooting_install   
 ..   sandbox
-
-Appendix:
-
-.. toctree::
-   :maxdepth: 1
-
-   input_keyword_list
