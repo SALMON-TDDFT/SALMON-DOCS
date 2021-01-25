@@ -13,7 +13,7 @@ SALMON (Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience) is
    exercises
    inputs
    input_keyword_list
-   reference
+   acknowledgements
 
 ..   troubleshooting_install   
 ..   sandbox
