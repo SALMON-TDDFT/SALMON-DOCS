@@ -1,7 +1,7 @@
 .. _acknowledgements:
 
-Acknowledgements for SALMON developments
---------------------------------------------
+Acknowledgements
+------------------
 
 SALMON has been developed by the SALMON developers under supports by
 Center for Computational Sciences, University of Tsukuba, and 
