@@ -283,7 +283,7 @@ Mandatory: yn_periodic, al, nelem, natom, nelec, nstate
 
 ``yn_periodic = 'n'`` indicates that the isolated boundary condition will be
 used in the calculation. ``al(1:3) = 16.0d0, 16.0d0, 16.0d0`` specifies the lengths
-of three sides of the rectangular parallelepiped where the grid points
+of three sides of the rectangular parallelepiped (unit of Angstrom) where the grid points
 are prepared. ``nelem = 2`` and ``natom = 4`` indicate the number of elements and the
 number of atoms in the system, respectively. ``nelec = 10`` indicate the number of valence electrons in
 the system. ``nstate = 6`` indicates the number of Kohn-Sham orbitals
@@ -404,7 +404,7 @@ separate file)
 
 Cartesian coordinates of atoms. The first column indicates the element.
 Next three columns specify Cartesian coordinates of the atoms. The
-number in the last column labels the element.
+number in the last column labels the element (index of ``izatom``).
 
 Output files
 ^^^^^^^^^^^^	
