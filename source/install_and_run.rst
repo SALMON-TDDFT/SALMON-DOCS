@@ -39,7 +39,7 @@ Download
 The newest version of SALMON can be downloaded from `download page <http://salmon-tddft.jp/download.html>`__.
 You can also get the file by
 
-    $ wget http://salmon-tddft.jp/download/SALMON-v.2.0.0.tar.gz
+  $ wget http://salmon-tddft.jp/download/SALMON-v.2.0.0.tar.gz
 
 To extract files from the downloaded file ``SALMON-<VERSION>.tar.gz``, type the following command in the command-line::
 
@@ -227,8 +227,8 @@ where NPROC is the number of MPI processes that you will use.
 The execution command and the job submission procedure depends much on local environment. We summarize general conditions to execute SALMON:
 
 - SALMON runs in both single-process and multi-process environments using MPI.
-- executable files are prepared as ``salmon`` in the standard build procedure.
-- to start calculations, ``inputfile.inp`` should be read through ``stdin``.
+- Executable file is prepared as ``salmon`` in the standard build procedure.
+- To start calculations, ``inputfile.inp`` should be read through ``stdin``.
 
 
 MPI process distribution
@@ -298,7 +298,7 @@ Improve the performance of Hartree solver
 
 For periodic systems, a Fourier transformation is used to solve the Poisson equation (to calculate the Hartree potential).
 In SALMON, a simple Fourier transformation without Fast Fourier Transformation (FFT) is used as default.
-In SALMON, a parallelized FFT foutine, FFTE, is usable and works efficiently for large systems.
+In SALMON, a parallelized FFT routine, FFTE, is usable and works efficiently for large systems.
 In using FFTE, the following conditions should be satisfied::
 
   num_rgrid(1) mod nproc_rgrid(2) = 0
@@ -394,6 +394,87 @@ It indicates which communications should be executed in closer processes.
   - communicator: ``s_parallel_info::icomm_o and icomm_ko``
   - suitable ``theory``: ``'tddft_response', 'tddft_pulse', 'single_scale_maxwell_tddft'`` and ``'multi_scale_maxwell_tddft'``
 
+
+.. _troubleshooting-install:
+
+Troubleshooting of the Installation Process
+-------------------------------------------
+
+.. _installation-cmake:
+
+Installation of CMake
+~~~~~~~~~~~~~~~~~~~~~
+
+The `CMake <https://cmake.org/>`_ is a cross-platform build tool. In order to build the
+SALMON from the source code, the CMake of version 3.14.0 or later is
+required. You may install it following one of the three instructions
+below.
+
+
+Installation by package manager
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If your system has a built-in package manager, you may conveniently
+install the CMake tools as below:
+
+**Debian/Ubuntu Linux**
+
+::
+
+   sudo apt-get install cmake
+
+**Fedora Linux/CentOS**
+
+::
+
+   sudo yum install cmake
+
+**openSUSE Linux**
+
+::
+
+   sudo zypper install cmake
+
+
+Installation from source code
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can get the source code distribution from the `download page <https://cmake.org/download/>`__. In
+this time, we will use the cmake version 3.16.8 as an example. Download
+the archive by ``wget`` comamnd and unpack it as below:
+
+::
+
+   wget https://cmake.org/files/v3.16/cmake-3.16.8.tar.gz
+   tar -zxvf cmake-3.16.8.tar.gz
+
+And, move to the unpacked directory and build.
+
+::
+
+    
+   cd cmake-3.16.8
+   ./configure --prefix=INSTALLATION_DIRECTORY
+   make
+   make install
+
+(replace ``INSTALLATION_DIRECTORY`` to your installation directory.)
+
+Next, to utilize the ``cmake`` command, it is required that the
+executable are settled inside the directory specified in your ``$PATH``.
+If you use the bash shell, edit ``~/.bashrc`` and append the line:
+
+::
+
+   export PATH=INSTALLATION_DIRECTORY/bin:$PATH
+
+and reload the configuration:
+
+::
+
+   source ~/.bashrc
+
+
 Appendix
 ------------
 
@@ -486,85 +567,5 @@ Choose ``Makefile`` appropriate for your environment, and execute the make comma
     $ make -f Makefile.PLATFORM
 
 If the make proceeds successful, a binary file is created in the directory ``SALMON/bin/``.
-
-
-.. _troubleshooting-install:
-
-Troubleshooting of the Installation Process
--------------------------------------------
-
-.. _installation-cmake:
-
-Installation of CMake
-~~~~~~~~~~~~~~~~~~~~~
-
-The `CMake <https://cmake.org/>`_ is a cross-platform build tool. In order to build the
-SALMON from the source code, the CMake of version 3.14.0 or later is
-required. You may install it following one of the three instructions
-below.
-
-
-Installation by package manager
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-If your system has a built-in package manager, you may conveniently
-install the CMake tools as below:
-
-**Debian/Ubuntu Linux**
-
-::
-
-   sudo apt-get install cmake
-
-**Fedora Linux/CentOS**
-
-::
-
-   sudo yum install cmake
-
-**openSUSE Linux**
-
-::
-
-   sudo zypper install cmake
-
-
-Installation from source code
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-You can get the source code distribution from the `download page <https://cmake.org/download/>`__. In
-this time, we will use the cmake version 3.16.8 as an example. Download
-the archive by ``wget`` comamnd and unpack it as below:
-
-::
-
-   wget https://cmake.org/files/v3.16/cmake-3.16.8.tar.gz
-   tar -zxvf cmake-3.16.8.tar.gz
-
-And, move to the unpacked directory and build.
-
-::
-
-    
-   cd cmake-3.16.8
-   ./configure --prefix=INSTALLATION_DIRECTORY
-   make
-   make install
-
-(replace ``INSTALLATION_DIRECTORY`` to your installation directory.)
-
-Next, to utilize the ``cmake`` command, it is required that the
-executable are settled inside the directory specified in your ``$PATH``.
-If you use the bash shell, edit ``~/.bashrc`` and append the line:
-
-::
-
-   export PATH=INSTALLATION_DIRECTORY/bin:$PATH
-
-and reload the configuration:
-
-::
-
-   source ~/.bashrc
 
 
