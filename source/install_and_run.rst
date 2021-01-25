@@ -490,7 +490,7 @@ In executing ``configure.py``, you may manually specify compiler and environment
 
     $ python ../configure.py FC=mpiifort CC=mpiicc FFLAGS="-xAVX" CFLAGS="-restrict -xAVX"
 
-The list of options of ``configure.py`` can be found by 
+The list of options of ``configure.py`` can be found by::
 
     $ python ../configure.py --help
 
