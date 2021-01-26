@@ -872,13 +872,13 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
 &analysis
 ---------
 
-- **projection_option / out_projection_step** (character/integer, Default='no'/100)[currently not available]
+- **projection_option / out_projection_step** (character/integer, Default='no'/100)
    | Available for TDDFT based options of ``theory``.
    | Methods of projection to analyze the excited states (e.g. the number of excited electrons.)
    | Options
    |   ``'no'`` / no projection.
    |   ``'gs'`` / projection to eigenstates of ground-state Hamiltonian.
-   |   ``'rt'`` / projection to eigenstates of instantaneous Hamiltonian.
+   |   ``'rt'`` / projection to eigenstates of instantaneous Hamiltonian. [currently not available]
    | This is printed everty ``out_projection_step`` step during time-propagation.
 
 - **nenergy** (integer, Default=1000)
