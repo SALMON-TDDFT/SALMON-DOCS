@@ -116,11 +116,11 @@ List of developers
 
 (Alphabetic order)
 
-* Isabella Floss (TU Wien)
+* Isabella Floss (TU Wien, Austria)
 * Yuta Hirokawa (University of Tsukuba, Japan)
 * Kenji Iida (Hokkaido University, Japan)
-* Jun-Ichi Iwata (Advance Soft Co.)
-* Masashi Noda (Academeia)
+* Jun-Ichi Iwata (Advance Soft Co., Japan)
+* Masashi Noda (Academeia, Japan)
 * Tomohito Otobe (National Institutes for Quantum and Radiological Science and Technology, Japan)
 * Shunsuke Sato (University of Tsukuba, Japan)
 * Yasushi Shinohara (University of Tokyo, Japan)
