@@ -117,7 +117,7 @@ List of developers
 (Alphabetic order)
 
 * Isabella Floss (TU Wien, Austria)
-* Yuta Hirokawa (University of Tsukuba, Japan)
+* Yuta Hirokawa (Prometech Software, Inc., Japan)
 * Kenji Iida (Hokkaido University, Japan)
 * Jun-Ichi Iwata (Advance Soft Co., Japan)
 * Masashi Noda (Academeia, Japan)
