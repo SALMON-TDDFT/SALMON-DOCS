@@ -452,7 +452,7 @@ directory that you run the code,
 +-------------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file, except for the directory *data_for_restart*) from:
-| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/01_C2H2_gs.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/01_C2H2_gs.zip
 
 Main results of the calculation such as orbital energies are included in
 *C2H2_info.data*. Explanations of the *C2H2_info.data* and other output
@@ -922,7 +922,7 @@ directory that you run the code,
 +-----------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/02_C2H2_lr.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/02_C2H2_lr.zip
 
 Explanations of the output files are below:
 
@@ -1393,7 +1393,7 @@ directory that you run the code,
 +-----------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/03_C2H2_rt.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/03_C2H2_rt.zip
 
 Explanations of the files are described below:
 
@@ -1777,7 +1777,7 @@ directory that you run the code,
 +-----------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file, except for the directory *data_for_restart*) from:
-| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/04_bulkSi_gs.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/04_bulkSi_gs.zip
 
 Main results of the calculation such as orbital energies are included in *Si_info.data*. 
 Explanations of the *Si_info.data* and other output files are below:
@@ -2208,7 +2208,7 @@ After the calculation, following output files are created in the directory that 
 +-----------------------------------+------------------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/05_bulkSi_lr.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/05_bulkSi_lr.zip
 
 Explanations of the output files are described below:
 
@@ -2660,7 +2660,7 @@ directory that you run the code,
 +-----------------------------------+------------------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/06_bulkSi_rt.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/06_bulkSi_rt.zip
 
 Explanations of the output files are described below:
 
@@ -3208,7 +3208,7 @@ following output files are created in the directory,
 +-----------------------------------+------------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/07_bulkSi_ms.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/07_bulkSi_ms.zip
 
 Explanations of the output files are described below:
 
@@ -3628,7 +3628,7 @@ directory that you run the code,
 +-------------------------------------+------------------------------------+
 
 | You may download the above files (zipped file, except for the directory *data_for_restart*) from:
-| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/08_C2H2_opt.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/08_C2H2_opt.zip
 
 Main results of the calculation such as orbital energies are included in *C2H2_info.data*. 
 Explanations of the *C2H2_info.data* and other output files are below:
@@ -4115,7 +4115,7 @@ directory that you run the code,
 +-------------------------------------+------------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/09_C2H2_md.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/09_C2H2_md.zip
 
 Explanations of the files are described below:
 
@@ -4578,7 +4578,7 @@ After the calculation, following output files are created in the directory ``'re
 +-------------------------------------+-----------------------------------+
 
 | You may download the above files (zipped file) from:
-| https://salmon-tddft.jp/webmanual/v_2_0_0/exercise_zip_files/10_classicEM_rt.zip
+| https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/10_classicEM_rt.zip
 
 Explanations of the files are described below:
 
