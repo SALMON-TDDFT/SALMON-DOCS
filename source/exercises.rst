@@ -233,7 +233,7 @@ Mandatory: theory
    /
 
 This indicates that the ground state calculation by DFT is carried out in
-the present job. See :any:`&calculation in Inputs <&calculation>` for detail.
+the present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&control**
 
@@ -262,7 +262,7 @@ Mandatory: none
 
 This input keyword specifies the unit system to be used in the input and output files.
 If you do not specify it, atomic unit will be used.
-See :any:`&units in Inputs <&units>` for detail.
+See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 .. _exercise-1-&system:
 
@@ -294,7 +294,7 @@ number of atoms in the system, respectively. ``nelec = 10`` indicate the number 
 the system. ``nstate = 6`` indicates the number of Kohn-Sham orbitals
 to be solved. Since the present code assumes that the system is spin
 saturated, ``nstate`` should be equal to or larger than ``nelec/2``.
-See :any:`&system in Inputs <&system>` for more information.
+See :any:`List of all input keywords <List of all input keywords>` for more information.
 
 .. _exercise-1-&pseudo:
 
@@ -354,7 +354,7 @@ Mandatory: dl or num_rgrid
 
 ``dl(1:3) = 0.25d0, 0.25d0, 0.25d0`` specifies the grid spacings
 in three Cartesian directions.
-See :any:`&rgrid in Inputs <&rgrid>` for more information.
+See :any:`List of all input keywords <List of all input keywords>` for more information.
 
 **&scf**
 
@@ -715,7 +715,7 @@ Mandatory: theory
    /
 
 This indicates that the real time (RT) calculation to obtain response function
-is carried out in the present job. See :any:`&calculation in Inputs <&calculation>` for detail.
+is carried out in the present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&control**
 
@@ -744,7 +744,7 @@ Mandatory: none
 
 This input keyword specifies the unit system to be used in the input file. If
 you do not specify it, atomic unit will be used.
-See :any:`&units in Inputs <&units>` for detail.
+See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&system**
 
@@ -822,7 +822,7 @@ Mandatory: dl or num_rgrid
 ``dl(1:3) = 0.25d0, 0.25d0, 0.25d0`` specifies the grid spacings
 in three Cartesian directions. This must be the same as
 that in the ground state calculation.
-See :any:`&rgrid in Inputs <&rgrid>` for more information.
+See :any:`List of all input keywords <List of all input keywords>` for more information.
 
 **&tgrid**
 
@@ -861,7 +861,7 @@ Mandatory: ae_shape1
 ``ae_shape1 = 'impulse'`` indicates that a weak impulse is applied to
 all electrons at *t=0*. ``epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0`` specify a unit vector that
 indicates the direction of the impulse.
-See :any:`&emfield in Inputs <&emfield>` for details.
+See :any:`List of all input keywords <List of all input keywords>` for details.
 
 **&atomic_coor**
 
@@ -1154,7 +1154,7 @@ Mandatory: theory
    /
 
 This indicates that the real time (RT) calculation for a pulse response is carried out in the
-present job. See :any:`&calculation in Inputs <&calculation>` for detail.
+present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&control**
 
@@ -1183,7 +1183,7 @@ Mandatory: none
 
 This input keyword specifies the unit system to be used in the input file. If
 you do not specify it, atomic unit will be used.
-See :any:`&units in Inputs <&units>` for detail.
+See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&system**
 
@@ -1262,7 +1262,7 @@ Mandatory: dl or num_rgrid
 ``dl(1:3) = 0.25d0, 0.25d0, 0.25d0`` specifies the grid spacings
 in three Cartesian directions. This must be the same as
 that in the ground state calculation.
-See :any:`&rgrid in Inputs <&rgrid>` for more information.
+See :any:`List of all input keywords <List of all input keywords>` for more information.
 
 **&tgrid**
 
@@ -1334,7 +1334,7 @@ As noted above, 'phi_cep1' must be 0.75 (or 0.25) if one employs 'Ecos2'
 pulse shape, since otherwise the time integral of the electric field
 does not vanish.
 
-See :any:`&emfield in Inputs <&emfield>` for details.
+See :any:`List of all input keywords <List of all input keywords>` for details.
 
 **&atomic_coor**
 
@@ -1582,7 +1582,7 @@ Mandatory: theory
    /
 
 This indicates that the ground state calculation by DFT is carried out in
-the present job. See :any:`&calculation in Inputs <&calculation>` for detail.
+the present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&control**
 
@@ -1611,7 +1611,7 @@ Mandatory: none
 
 This input keyword specifies the unit system to be used in the input and output files.
 If you do not specify it, atomic unit will be used.
-See :any:`&units in Inputs <&units>` for detail.
+See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 .. _exercise-4-&system:
 
@@ -1640,7 +1640,7 @@ Mandatory: yn_periodic, al, nelem, natom, nelec, nstate
 ``nelem = 1`` and ``natom = 8`` indicate the number of elements and the number of atoms in the system, respectively.
 ``nelec = 32`` indicate the number of valence electrons in the system.
 ``nstate = 32`` indicates the number of Kohn-Sham orbitals to be solved.
-See :any:`&system in Inputs <&system>` for more information.
+See :any:`List of all input keywords <List of all input keywords>` for more information.
 
 .. _exercise-4-&pseudo:
 
@@ -1693,7 +1693,7 @@ Mandatory: dl or num_rgrid
    /
 
 ``num_rgrid(1:3) = 12, 12, 12`` specifies the number of the grids for each Cartesian direction.
-See :any:`&rgrid in Inputs <&rgrid>` for more information.
+See :any:`List of all input keywords <List of all input keywords>` for more information.
 
 **&rgrid**
 
@@ -1986,7 +1986,7 @@ Mandatory: theory
    /
 
 This indicates that the real time (RT) calculation to obtain response function
-is carried out in the present job. See :any:`&calculation in Inputs <&calculation>` for detail.
+is carried out in the present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&control**
 
@@ -2014,7 +2014,7 @@ Mandatory: none
 
 This input keyword specifies the unit system to be used in the input and output files.
 If you do not specify it, atomic unit will be used.
-See :any:`&units in Inputs <&units>` for detail.
+See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&system**
 
@@ -2088,7 +2088,7 @@ Mandatory: dl or num_rgrid
 
 ``num_rgrid(1:3) = 12, 12, 12`` specifies the number of the grids for each Cartesian direction.
 This must be the same as that in the ground state calculation.
-See :any:`&rgrid in Inputs <&rgrid>` for more information.
+See :any:`List of all input keywords <List of all input keywords>` for more information.
 
 **&kgrid**
 
@@ -2139,7 +2139,7 @@ Mandatory:ae_shape1
 
 ``as_shape1 = 'impulse'`` indicates that a weak impulsive field is applied to all electrons at *t=0*
 ``epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0`` specify a unit vector that indicates the direction of the impulse.
-See :any:`&emfield in Inputs <&emfield>` for detail.
+See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&analysis**
 
@@ -2427,7 +2427,7 @@ Mandatory: theory
    /
 
 This indicates that the real time (RT) calculation to obtain response function
-is carried out in the present job. See :any:`&calculation in Inputs <&calculation>` for detail.
+is carried out in the present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&control**
 
@@ -2455,7 +2455,7 @@ Mandatory: none
 
 This input keyword specifies the unit system to be used in the input and output files.
 If you do not specify it, atomic unit will be used.
-See :any:`&units in Inputs <&units>` for detail.
+See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&system**
 
@@ -2529,7 +2529,7 @@ Mandatory: dl or num_rgrid
 
 ``num_rgrid(1:3) = 12, 12, 12`` specifies the number of the grids for each Cartesian direction.
 This must be the same as that in the ground state calculation.
-See :any:`&rgrid in Inputs <&rgrid>` for more information.
+See :any:`List of all input keywords <List of all input keywords>` for more information.
 
 **&kgrid**
 
@@ -2605,7 +2605,7 @@ is not the FWHM but a full duration of the cos^2 envelope.
 vector of the pulsed electric field. Specifying only the real part, it
 describes a linearly polarized pulse.
 
-See :any:`&emfield in Inputs <&emfield>` for detail.
+See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&atomic_red_coor**
 
@@ -2912,7 +2912,7 @@ Mandatory: theory
    /
 
 This indicates that the multi-scale Maxwell-TDDFT calculation
-is carried out in the present job. See :any:`&calculation in Inputs <&calculation>` for detail.
+is carried out in the present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&control**
 
@@ -2940,7 +2940,7 @@ Mandatory: none
 
 This input keyword specifies the unit system to be used in the input and output files.
 If you do not specify it, atomic unit will be used.
-See :any:`&units in Inputs <&units>` for detail.
+See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&system**
 
@@ -3014,7 +3014,7 @@ Mandatory: dl or num_rgrid
 
 ``num_rgrid(1:3) = 12, 12, 12`` specifies the number of the grids for each Cartesian direction.
 This must be the same as that in the ground state calculation.
-See :any:`&rgrid in Inputs <&rgrid>` for more information.
+See :any:`List of all input keywords <List of all input keywords>` for more information.
 
 **&kgrid**
 
@@ -3090,7 +3090,7 @@ is not the FWHM but a full duration of the cos^2 envelope.
 vector of the pulsed electric field. Specifying only the real part, it
 describes a linearly polarized pulse.
 
-See :any:`&emfield in Inputs <&emfield>` for detail.
+See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&multiscale**
 
@@ -3421,7 +3421,7 @@ Mandatory: theory
    /
 
 ``theory = 'dft'`` indicates that the ground state calculation by DFT is carried out in
-the present job. See :any:`&calculation in Inputs <&calculation>` for detail.
+the present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
 ``yn_opt = 'y'`` indicates that the geometry optimization calculation is performed.
 
 **&control**
@@ -3451,7 +3451,7 @@ Mandatory: none
 
 This input keyword specifies the unit system to be used in the input and output files.
 If you do not specify it, atomic unit will be used.
-See :any:`&units in Inputs <&units>` for detail.
+See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&system**
 
@@ -3481,7 +3481,7 @@ number of atoms in the system, respectively. ``nelec = 10`` indicate the number 
 the system. ``nstate = 6`` indicates the number of Kohn-Sham orbitals
 to be solved. Since the present code assumes that the system is spin
 saturated, ``nstate`` should be equal to or larger than ``nelec/2``.
-See :any:`&system in Inputs <&system>` for more information.
+See :any:`List of all input keywords <List of all input keywords>` for more information.
 
 **&pseudo**
 
@@ -3539,7 +3539,7 @@ Mandatory: dl or num_rgrid
 
 ``dl(1:3) = 0.20d0, 0.20d0, 0.20d0`` specifies the grid spacings
 in three Cartesian directions.
-See :any:`&rgrid in Inputs <&rgrid>` for more information.
+See :any:`List of all input keywords <List of all input keywords>` for more information.
 
 **&scf**
 
@@ -3863,7 +3863,7 @@ Mandatory: theory
    /
 
 This indicates that the real time (RT) calculation for a pulse response is carried out in the
-present job. See :any:`&calculation in Inputs <&calculation>` for detail.
+present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
 ``yn_md = 'y'`` indicates that molecular dynamics calculation is coupled with the ``theory``, 
 where the Ehrenfest dynamics coupled with the TDDFT is performed in this case.
 
@@ -3894,7 +3894,7 @@ Mandatory: none
 
 This input keyword specifies the unit system to be used in the input file. If
 you do not specify it, atomic unit will be used.
-See :any:`&units in Inputs <&units>` for detail.
+See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&system**
 
@@ -3974,7 +3974,7 @@ Mandatory: dl or num_rgrid
 ``dl(1:3) = 0.20d0, 0.20d0, 0.20d0`` specifies the grid spacings
 in three Cartesian directions. This must be the same as
 that in the ground state calculation.
-See :any:`&rgrid in Inputs <&rgrid>` for more information.
+See :any:`List of all input keywords <List of all input keywords>` for more information.
 
 **&tgrid**
 
@@ -4046,7 +4046,7 @@ As noted above, 'phi_cep1' must be 0.75 (or 0.25) if one employs 'Ecos2'
 pulse shape, since otherwise the time integral of the electric field
 does not vanish.
 
-See :any:`&emfield in Inputs <&emfield>` for details.
+See :any:`List of all input keywords <List of all input keywords>` for details.
 
 **&md**
 
@@ -4357,7 +4357,7 @@ Mandatory: Theory
    /
 
 This indicates that the real time classical electromagnetism calculation is carried out in the present job.
-See :any:`&calculation in Inputs <&calculation>` for detail.
+See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&control**
 
@@ -4386,7 +4386,7 @@ Mandatory: none
 
 This input keyword specifies the unit system to be used in the input and output files.
 If you do not specify it, atomic unit will be used.
-See :any:`&units in Inputs <&units>` for detail.
+See :any:`List of all input keywords <List of all input keywords>` for detail.
 
 **&system**
 
@@ -4455,7 +4455,7 @@ As noted above, 'phi_cep1' must be 0.75 (or 0.25) if one employs 'Ecos2'
 pulse shape, since otherwise the time integral of the electric field
 does not vanish.
 
-See :any:`&emfield in Inputs <&emfield>` for details.
+See :any:`List of all input keywords <List of all input keywords>` for details.
 
 **&maxwell**
 
