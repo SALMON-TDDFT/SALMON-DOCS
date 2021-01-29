@@ -126,6 +126,11 @@ used in the input file can be found in
    !       input keyword = xxx                                                              !
    !     /                                                                                  !
    !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !----------------------------------------------------------------------------------------!
+   ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
+   !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
+   !   Energy: 1 [a.u.] = 27.21138505      [eV]                                             !
+   !   Time  : 1 [a.u.] = 0.02418884326505 [fs]                                             !
    !########################################################################################!
    
    &calculation
@@ -593,6 +598,11 @@ used in the input file can be found in
    !     /                                                                                  !
    !   (see chapter: 'List of all input keywords' in the manual)                            !
    !----------------------------------------------------------------------------------------!
+   ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
+   !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
+   !   Energy: 1 [a.u.] = 27.21138505      [eV]                                             !
+   !   Time  : 1 [a.u.] = 0.02418884326505 [fs]                                             !
+   !----------------------------------------------------------------------------------------!
    ! * Copy the ground state data directory('data_for_restart') (or make symbolic link)     !
    !   calculated in 'samples/exercise_01_C2H2_gs/' and rename the directory to 'restart/'  !
    !   in the current directory.                                                            !
@@ -1019,6 +1029,11 @@ the input keywords that can be used in the input file can be found in
    !       input keyword = xxx                                                              !
    !     /                                                                                  !
    !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !----------------------------------------------------------------------------------------!
+   ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
+   !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
+   !   Energy: 1 [a.u.] = 27.21138505      [eV]                                             !
+   !   Time  : 1 [a.u.] = 0.02418884326505 [fs]                                             !
    !----------------------------------------------------------------------------------------!
    ! * Copy the ground state data directory('data_for_restart') (or make symbolic link)     !
    !   calculated in 'samples/exercise_01_C2H2_gs/' and rename the directory to 'restart/'  !
@@ -1465,6 +1480,11 @@ used in the input file can be found in
    !       input keyword = xxx                                                              !
    !     /                                                                                  !
    !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !----------------------------------------------------------------------------------------!
+   ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
+   !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
+   !   Energy: 1 [a.u.] = 27.21138505      [eV]                                             !
+   !   Time  : 1 [a.u.] = 0.02418884326505 [fs]                                             !
    !########################################################################################!
    
    &calculation
@@ -1843,6 +1863,11 @@ A complete list of the input keywords can be found in :any:`List of all input ke
    !     /                                                                                  !
    !   (see chapter: 'List of all input keywords' in the manual)                            !
    !----------------------------------------------------------------------------------------!
+   ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
+   !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
+   !   Energy: 1 [a.u.] = 27.21138505      [eV]                                             !
+   !   Time  : 1 [a.u.] = 0.02418884326505 [fs]                                             !
+   !----------------------------------------------------------------------------------------!
    ! * Copy the ground state data directory('data_for_restart') (or make symbolic link)     !
    !   calculated in 'samples/exercise_04_bulkSi_gs/' and rename the directory to 'restart/'!
    !   in the current directory.                                                            !
@@ -1926,7 +1951,7 @@ A complete list of the input keywords can be found in :any:`List of all input ke
    
    &analysis
      !energy grid size and number of energy grids for output files
-     de      = 1.0d-2
+     de      = 4.0d-4
      nenergy = 5000
    /
    
@@ -2124,11 +2149,11 @@ Mandatory: none
    
    &analysis
      !energy grid size and number of energy grids for output files
-     de      = 1.0d-2
+     de      = 4.0d-4
      nenergy = 5000
    /
 
-``de = 1.0d-2`` specifies the energy spacing in the time-frequency Fourier transformation.
+``de = 4.0d-4`` specifies the energy spacing in the time-frequency Fourier transformation.
 ``nenergy = 5000`` specifies the number of energy steps, and 
 
 **&atomic_red_coor**
@@ -2275,6 +2300,11 @@ A complete list of the input keywords can be found in :any:`List of all input ke
    !       input keyword = xxx                                                              !
    !     /                                                                                  !
    !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !----------------------------------------------------------------------------------------!
+   ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
+   !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
+   !   Energy: 1 [a.u.] = 27.21138505      [eV]                                             !
+   !   Time  : 1 [a.u.] = 0.02418884326505 [fs]                                             !
    !----------------------------------------------------------------------------------------!
    ! * Copy the ground state data directory('data_for_restart') (or make symbolic link)     !
    !   calculated in 'samples/exercise_04_bulkSi_gs/' and rename the directory to 'restart/'!
@@ -2728,6 +2758,11 @@ A complete list of the input keywords can be found in :any:`List of all input ke
     !       input keyword = xxx                                                              !
     !     /                                                                                  !
     !   (see chapter: 'List of all input keywords' in the manual)                            !
+    !----------------------------------------------------------------------------------------!
+    ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
+    !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
+    !   Energy: 1 [a.u.] = 27.21138505      [eV]                                             !
+    !   Time  : 1 [a.u.] = 0.02418884326505 [fs]                                             !
     !----------------------------------------------------------------------------------------!
     ! * Copy the ground state data directory('data_for_restart') (or make symbolic link)     !
     !   calculated in 'samples/exercise_04_bulkSi_gs/' and rename the directory to 'restart/'!
@@ -3281,6 +3316,11 @@ used in the input file can be found in
    !       input keyword = xxx                                                              !
    !     /                                                                                  !
    !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !----------------------------------------------------------------------------------------!
+   ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
+   !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
+   !   Energy: 1 [a.u.] = 27.21138505      [eV]                                             !
+   !   Time  : 1 [a.u.] = 0.02418884326505 [fs]                                             !
    !########################################################################################!
    
    &calculation
@@ -3687,6 +3727,11 @@ A complete list of the input keywords that can be used in the input file can be 
    !       input keyword = xxx                                                              !
    !     /                                                                                  !
    !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !----------------------------------------------------------------------------------------!
+   ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
+   !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
+   !   Energy: 1 [a.u.] = 27.21138505      [eV]                                             !
+   !   Time  : 1 [a.u.] = 0.02418884326505 [fs]                                             !
    !----------------------------------------------------------------------------------------!
    ! * Ehrenfest-MD option is still trial.                                                  !
    ! * Copy the ground state data directory ('data_for_restart') (or make symbolic link)    !
@@ -4173,6 +4218,11 @@ can be found in :any:`List of all input keywords <List of all input keywords>`.
    !       input keyword = xxx                                                              !
    !     /                                                                                  !
    !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !----------------------------------------------------------------------------------------!
+   ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
+   !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
+   !   Energy: 1 [a.u.] = 27.21138505      [eV]                                             !
+   !   Time  : 1 [a.u.] = 0.02418884326505 [fs]                                             !
    !----------------------------------------------------------------------------------------!
    ! * The read-in file 'shape_file' in &maxwell category can be generated by program       !
    !   'FDTD_make_shape' in SALMON utilities(https://salmon-tddft.jp/utilities.html).       !
