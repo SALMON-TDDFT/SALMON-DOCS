@@ -43,7 +43,7 @@ You can also get the file by
 
 To extract files from the downloaded file ``SALMON-<VERSION>.tar.gz``, type the following command in the command-line::
 
-  $ tar -zxvf ./salmon-<VERSION>.tar.gz
+  $ tar -zxvf ./SALMON-<VERSION>.tar.gz
 
 After the extraction, the following directories will be created::
 
