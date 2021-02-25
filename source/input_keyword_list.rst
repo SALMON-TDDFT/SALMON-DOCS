@@ -272,6 +272,29 @@ List of all input keywords
    This option is incompatible with ``&system/file_atom_coor``, ``&atomic_coor``, and ``&atomic_red_coor``.
    (XXX why this keyword is not in &atomic_coor ?? XXX)
 
+- **yn_spinorbit** (character, Default='n')
+
+
+- **yn_symmetry** (character, Default='n')
+
+
+- **absorbing_boundary** (character, Default='none') [Trial]
+   | Available for the TDDFT based option of ``theory`` with orthogonal unit cell 
+   | Absorbing boundary condition for electrons. (T. Nakatsukasa et al., J. Chem. Phys., 114, 2550 (2001))  
+   | Options 
+   |   ``'none'`` / disable (default)
+   |   ``'z'`` / absorbing boundary region is set in z direction 
+
+- **imagnary_potential_w0** (real(8), Default='0d0')
+   | Available for ``absorbing_boundary`` options is not ``none``.
+   | Parameter W0 (height) of imaginary potential
+
+- **imagnary_potential_dr** (real(8), Default='0d0')
+   | Available for ``absorbing_boundary`` options is not ``none``.
+   | Parameter dr (length of absorbing boundary) of imaginary potential. For ``absorbing_boundary``=``z``, the absorbing region is 0 < z < ``imagnary_potential_dr`` and ``al(3)``-``imagnary_potential_dr`` < z < ``al(3)``
+
+
+
 &atomic_red_coor
 ----------------
 
