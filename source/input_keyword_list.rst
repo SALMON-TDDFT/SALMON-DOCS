@@ -286,12 +286,12 @@ List of all input keywords
    |   ``'z'`` / absorbing boundary region is set in z direction 
 
 - **imagnary_potential_w0** (real(8), Default='0d0')
-   | Available for ``absorbing_boundary`` options is not ``none``.
+   | Available for ``absorbing_boundary`` options is not ``'none'``.
    | Parameter W0 (height) of imaginary potential
 
 - **imagnary_potential_dr** (real(8), Default='0d0')
-   | Available for ``absorbing_boundary`` options is not ``none``.
-   | Parameter dr (length of absorbing boundary) of imaginary potential. For ``absorbing_boundary``=``z``, the absorbing region is 0 < z < ``imagnary_potential_dr`` and ``al(3)``-``imagnary_potential_dr`` < z < ``al(3)``
+   | Available for ``absorbing_boundary`` options is not ``'none'``.
+   | Parameter dr (length of absorbing boundary) of imaginary potential. For ``absorbing_boundary='z'``, the absorbing region is 0 < z < ``imagnary_potential_dr`` and ``al(3)``-``imagnary_potential_dr`` < z < ``al(3)``
 
 
 
