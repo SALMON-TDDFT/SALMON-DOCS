@@ -468,6 +468,13 @@ Input for psudopotentials. Size of array (:) is equal to ``&system/nelem``.
    |   ``gauss10`` / put ten gauss functions using a random number on each initial orbital
    |   ``random`` / give a random number at each real-space grid point on each initial orbital
 
+- **method_init_density** (character, Default='wf')
+   | Available for 'dft' and 'dft_md' options of ``theory``.
+   | Specifying how to generate the initial density to start the SCF iteration in the DFT calculation.
+   | Only for 'KY' and 'UPF' pseudopotentials are supported.
+   | Options
+   |  ``wf`` / generate from the initial wavefunctions (cf. ``method_init_wf``).
+   |  ``pp`` / generate from a superposition of the pseudo-atom densities.
 
 - **iseed_number_change** (integer, Default=0)
    | Available for 'dft' and 'dft_md' options of ``theory``.
