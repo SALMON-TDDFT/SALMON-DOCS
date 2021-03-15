@@ -3,6 +3,7 @@
 Exercises
 ====================
 
+
 Getting started
 ---------------
 
@@ -68,12 +69,12 @@ for an isolated molecule, acetylene C2H2.
 :any:`Exercise-8 <exercise-8>`
 illustrates the geometry optimization in the ground state.
 :any:`Exercise-9 <exercise-9>`
-illustrates the Ehrenfest molecular dynamics under the pulsed electric field.
+illustrates the Ehrenfest molecular dynamics induced by a pulsed electric field.
 
-Exercise-10 are for an metallic nanosphere described by dielectric function.
-The calculation method is the Finite-Difference Time-Domain (FDTD).
-:any:`Exercise-10 <exercise-10>`
-illustrates the electromagnetic analysis of the metallic nanosphere under a pulsed electric field.
+:any:`Exercise-10 <exercise-10>` is for a macroscopic light propagation through a metallic nanosphere.
+The optical response of the nanosphere is described by a dielectric function.
+Finite-Difference Time-Domain (FDTD) method is used to calculated the three-dimensional
+light propagation.
 
 
 C2H2 (isolated molecules)
@@ -112,7 +113,7 @@ Most of them are mandatory to execute the ground state calculation.
 This will help you to prepare an input file for other systems that you
 want to calculate. A complete list of the input keywords that can be
 used in the input file can be found in
-:any:`List of all input keywords <List of all input keywords>`.
+:any:`List of input keywords <List of input keywords>`.
 
 ::
 
@@ -137,16 +138,28 @@ used in the input file can be found in
      !type of theory
      theory = 'dft'
    /
-   
+
+| :any:`theory <theory>` specifies which theoretical method is used in the calculation.
+
+::
+
    &control
      !common name of output files
      sysname = 'C2H2'
    /
-   
+
+| :any:`sysname <sysname>` is a prefix for filenames of output files.
+
+::
+
    &units
      !units used in input and output files
      unit_system = 'A_eV_fs'
    /
+
+| :any:`unit_system <unit_system>` specifies which unit system is used in the input and output files.
+
+::
    
    &system
      !periodic boundary condition
@@ -162,6 +175,15 @@ used in the input file can be found in
      nstate = 6
    /
    
+| :any:`yn_periodic <yn_periodic>` specifies whether or not periodic boundary condition is applied.
+| :any:`al(i) <al(3)>` specifies the spatial box size of the cubiod cell.
+| :any:`nelem <nelem>` is the number of elements in the system.
+| :any:`natom <natom>` is the number of atoms in the system.
+| :any:`nelec <nelec>` is the number of electrons in the system.
+| :any:`nstate <nstate>` is the number of orbitals that are used in the calculation.
+
+::
+
    &pseudo
      !name of input pseudo potential file
      file_pseudo(1) = './C_rps.dat'
@@ -178,23 +200,42 @@ used in the input file can be found in
      ! Indices must correspond to those in &atomic_coor. !
      !---------------------------------------------------!
    /
-   
+
+| :any:`file_pseudo(n) <file_pseudo(:)>` specifies the filename of the pseudopotential file of the n-th element.
+| :any:`izatom(n) <izatom(:)>` is the atomic number of the n-th element.
+| :any:`lloc_ps(n) <lloc_ps(:)>` specifies which angular momentum component is chosen as the local potential for the n-th element.
+
+::
+
    &functional
      !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
      xc = 'PZ'
    /
-   
+
+| :any:`xc <xc>` specifies the exchange-correlation potential to be used in the calculation.
+
+::
+
    &rgrid
      !spatial grid spacing(x,y,z)
      dl(1:3) = 0.25d0, 0.25d0, 0.25d0
    /
-   
+
+| :any:`dl(i) <dl(3)>` specifies the spatial grid spacing in i-th direction.
+
+::
+
    &scf
      !maximum number of scf iteration and threshold of convergence
      nscf      = 300
      threshold = 1.0d-9
    /
-   
+
+| :any:`nscf <nscf>` specifies the maximum number of SCF iterations.
+| :any:`threshold <threshold>` specifies the threshold to judge the convergence.
+
+::
+
    &analysis
      !output of all orbitals, density,
      !density of states, projected density of states,
@@ -205,194 +246,8 @@ used in the input file can be found in
      yn_out_pdos = 'y'
      yn_out_elf  = 'y'
    /
-   
-   &atomic_coor
-     !cartesian atomic coodinates
-     'C'    0.000000    0.000000    0.599672  1
-     'H'    0.000000    0.000000    1.662257  2
-     'C'    0.000000    0.000000   -0.599672  1
-     'H'    0.000000    0.000000   -1.662257  2
-     !--- Format ---------------------------------------------------!
-     ! 'symbol' x y z index(correspond to that of pseudo potential) !
-     !--------------------------------------------------------------!
-   /
 
-We present their explanations below:
-
-**Required and recommened variables**
-
-**&calculation**
-
-Mandatory: theory
-
-::
-
-   &calculation
-     !type of theory
-     theory = 'dft'
-   /
-
-This indicates that the ground state calculation by DFT is carried out in
-the present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&control**
-
-Mandatory: none
-
-::
-
-   &control
-     !common name of output files
-     sysname = 'C2H2'
-   /
-
-'C2H2' defined by ``sysname = 'C2H2'`` will be used in the filenames of
-output files.
-
-**&units**
-
-Mandatory: none
-
-::
-
-   &units
-     !units used in input and output files
-     unit_system = 'A_eV_fs'
-   /
-
-This input keyword specifies the unit system to be used in the input and output files.
-If you do not specify it, atomic unit will be used.
-See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-.. _exercise-1-&system:
-
-**&system**
-
-Mandatory: yn_periodic, al, nelem, natom, nelec, nstate
-
-::
-
-   &system
-     !periodic boundary condition
-     yn_periodic = 'n'
-     
-     !grid box size(x,y,z)
-     al(1:3) = 16.0d0, 16.0d0, 16.0d0
-     
-     !number of elements, atoms, electrons and states(orbitals)
-     nelem  = 2
-     natom  = 4
-     nelec  = 10
-     nstate = 6
-   /
-
-``yn_periodic = 'n'`` indicates that the isolated boundary condition will be
-used in the calculation. ``al(1:3) = 16.0d0, 16.0d0, 16.0d0`` specifies the lengths
-of three sides of the rectangular parallelepiped (unit of Angstrom) where the grid points
-are prepared. ``nelem = 2`` and ``natom = 4`` indicate the number of elements and the
-number of atoms in the system, respectively. ``nelec = 10`` indicate the number of valence electrons in
-the system. ``nstate = 6`` indicates the number of Kohn-Sham orbitals
-to be solved. Since the present code assumes that the system is spin
-saturated, ``nstate`` should be equal to or larger than ``nelec/2``.
-See :any:`List of all input keywords <List of all input keywords>` for more information.
-
-.. _exercise-1-&pseudo:
-
-**&pseudo**
-
-Mandatory: file_pseudo, izatom
-
-::
-
-   &pseudo
-     !name of input pseudo potential file
-     file_pseudo(1) = './C_rps.dat'
-     file_pseudo(2) = './H_rps.dat'
-     
-     !atomic number of element
-     izatom(1) = 6
-     izatom(2) = 1
-     
-     !angular momentum of pseudopotential that will be treated as local
-     lloc_ps(1) = 1
-     lloc_ps(2) = 0
-     !--- Caution ---------------------------------------!
-     ! Indices must correspond to those in &atomic_coor. !
-     !---------------------------------------------------!
-   /
-
-Parameters related to atomic species and pseudopotentials.
-``file_pseudo(1) = './C_rps.dat'`` indicates the filename of the
-pseudopotential of element.
-``izatom(1) = 6`` specifies the atomic number of the element.
-``lloc_ps(1) = 1`` specifies the angular momentum of the pseudopotential
-that will be treated as local.
-
-**&functional**
-
-Mandatory: xc
-
-::
-
-   &functional
-     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
-     xc = 'PZ'
-   /
-
-This indicates that the local density approximation with the Perdew-Zunger functional is used.
-
-**&rgrid**
-
-Mandatory: dl or num_rgrid
-
-::
-
-   &rgrid
-     !spatial grid spacing(x,y,z)
-     dl(1:3) = 0.25d0, 0.25d0, 0.25d0
-   /
-
-``dl(1:3) = 0.25d0, 0.25d0, 0.25d0`` specifies the grid spacings
-in three Cartesian directions.
-See :any:`List of all input keywords <List of all input keywords>` for more information.
-
-**&scf**
-
-Mandatory: nscf, threshold
-
-::
-
-   &scf
-     !maximum number of scf iteration and threshold of convergence
-     nscf      = 300
-     threshold = 1.0d-9
-   /
-
-``nscf`` is the number of scf iterations. 
-The scf loop in the ground state calculation ends before the number of
-the scf iterations reaches ``nscf``, if a convergence criterion is satisfied.
-``threshold = 1.0d-9`` indicates threshold of the convergence for scf iterations.
-
-**&analysis**
-
-Mandatory: none
-
-If the following input keywords are added, the output files are created after the calculation.
-
-::
-
-   &analysis
-     yn_out_psi  = 'y'
-     yn_out_dns  = 'y'
-     yn_out_dos  = 'y'
-     yn_out_pdos = 'y'
-     yn_out_elf  = 'y'
-   /
-
-**&atomic_coor**
-
-Mandatory: atomic_coor or atomic_red_coor (it may be provided as a
-separate file)
+| :any:`yn_out_psi <yn_out_psi>`, :any:`yn_out_dns <yn_out_dns>`, :any:`yn_out_dos <yn_out_dos>`, :any:`yn_out_pdos <yn_out_pdos>`, :any:`yn_out_elf <yn_out_elf>` specify output files that are generated after the calculation.
 
 ::
 
@@ -407,9 +262,8 @@ separate file)
      !--------------------------------------------------------------!
    /
 
-Cartesian coordinates of atoms. The first column indicates the element.
-Next three columns specify Cartesian coordinates of the atoms. The
-number in the last column labels the element (index of ``izatom``).
+| :any:`&atomic_coor <&atomic_coor>` specifies spatial coordinates of atoms.
+
 
 Output files
 ^^^^^^^^^^^^	
@@ -582,7 +436,7 @@ Most of them are mandatory to execute the linear response calculation.
 This will help you to prepare the input file for other systems that you
 want to calculate. A complete list of the input keywords that can be
 used in the input file can be found in
-:any:`List of all input keywords <List of all input keywords>`.
+:any:`List of input keywords <List of input keywords>`.
 
 
 ::
@@ -612,17 +466,29 @@ used in the input file can be found in
      !type of theory
      theory = 'tddft_response'
    /
-   
+
+| :any:`theory <theory>` specifies which theoretical method is used in the calculation.
+
+::
+
    &control
      !common name of output files
      sysname = 'C2H2'
    /
-   
+
+| :any:`sysname <sysname>` is a prefix for filenames of output files.
+
+::
+
    &units
      !units used in input and output files
      unit_system = 'A_eV_fs'
    /
-   
+
+| :any:`unit_system <unit_system>` specifies which unit system is used in the input and output files.
+
+::
+
    &system
      !periodic boundary condition
      yn_periodic = 'n'
@@ -636,7 +502,16 @@ used in the input file can be found in
      nelec  = 10
      nstate = 6
    /
-   
+  
+| :any:`yn_periodic <yn_periodic>` specifies whether or not periodic boundary condition is applied.
+| :any:`al(i) <al(3)>` specifies the spatial box size of the cubiod cell.
+| :any:`nelem <nelem>` is the number of elements in the system.
+| :any:`natom <natom>` is the number of atoms in the system.
+| :any:`nelec <nelec>` is the number of electrons in the system.
+| :any:`nstate <nstate>` is the number of orbitals that are used in the calculation.
+
+::
+
    &pseudo
      !name of input pseudo potential file
      file_pseudo(1) = './C_rps.dat'
@@ -653,23 +528,42 @@ used in the input file can be found in
      ! Indices must correspond to those in &atomic_coor. !
      !---------------------------------------------------!
    /
-   
+
+| :any:`file_pseudo(n) <file_pseudo(:)>` specifies the filename of the pseudopotential file of the n-th element.
+| :any:`izatom(n) <izatom(:)>` is the atomic number of the n-th element.
+| :any:`lloc_ps(n) <lloc_ps(:)>` specifies which angular momentum component is chosen as the local potential for the n-th element.
+
+::
+
    &functional
      !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
      xc = 'PZ'
    /
-   
+
+| :any:`xc <xc>` specifies the exchange-correlation potential to be used in the calculation.
+
+::
+
    &rgrid
      !spatial grid spacing(x,y,z)
      dl(1:3) = 0.25d0, 0.25d0, 0.25d0
    /
-   
+
+| :any:`dl(i) <dl(3)>` specifies the spatial grid spacing in i-th direction.
+
+::
+
    &tgrid
      !time step size and number of time grids(steps)
      dt = 1.25d-3
      nt = 5000
    /
-   
+
+| :any:`dt` specifies the time step.
+| :any:`nt` is the number of time steps for the time propagation.
+
+::
+
    &emfield
      !envelope shape of the incident pulse('impulse': impulsive field)
      ae_shape1 = 'impulse'
@@ -681,13 +575,23 @@ used in the input file can be found in
      ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
      !---------------------------------------------------------------------!
    /
-   
+
+| :any:`ae_shape1 <ae_shape1>` specifies the envelope of the field. For a linear response calculation, ``as_shape1='impulse'`` is used. It indicates that a weak impulsive perturbation is applied at :math:`t=0`.
+| :any:`epdir_re1(i) <epdir_re1(3)>` specifies the i-th component of the real part of the polarization unit vector.
+
+::
+
    &analysis
      !energy grid size and number of energy grids for output files
      de      = 1.0d-2
      nenergy = 3000
    /
-   
+
+| :any:`de` specifies the energy grid size for frequency-domain analysis.
+| :any:`nenergy` specifies the number of energy grid points for frequency-domain analysis.
+
+::
+
    &atomic_coor
      !cartesian atomic coodinates
      'C'    0.000000    0.000000    0.599672  1
@@ -699,193 +603,7 @@ used in the input file can be found in
      !--------------------------------------------------------------!
    /
 
-We present their explanations below:
-
-**Required and recommended variables**
-
-**&calculation**
-
-Mandatory: theory
-
-::
-   
-   &calculation
-     !type of theory
-     theory = 'tddft_response'
-   /
-
-This indicates that the real time (RT) calculation to obtain response function
-is carried out in the present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&control**
-
-Mandatory: none
-
-::
-   
-   &control
-     !common name of output files
-     sysname = 'C2H2'
-   /
-
-'C2H2' defined by ``sysname = 'C2H2'`` will be used in the filenames of
-output files.
-
-**&units**
-
-Mandatory: none
-
-::
-
-   &units
-     !units used in input and output files
-     unit_system = 'A_eV_fs'
-   /
-
-This input keyword specifies the unit system to be used in the input file. If
-you do not specify it, atomic unit will be used.
-See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&system**
-
-Mandatory: iperiodic, al, nelem, natom, nelec, nstate
-
-::
-   
-   &system
-     !periodic boundary condition
-     yn_periodic = 'n'
-     
-     !grid box size(x,y,z)
-     al(1:3) = 16.0d0, 16.0d0, 16.0d0
-     
-     !number of elements, atoms, electrons and states(orbitals)
-     nelem  = 2
-     natom  = 4
-     nelec  = 10
-     nstate = 6
-   /
-
-These input keywords and their values should be the same as those used in the
-ground state calculation. See :any:`&system in Exercise-1 <exercise-1-&system>`.
-
-**&pseudo**
-
-Mandatory: file_pseudo, izatom
-
-::
-   
-   &pseudo
-     !name of input pseudo potential file
-     file_pseudo(1) = './C_rps.dat'
-     file_pseudo(2) = './H_rps.dat'
-     
-     !atomic number of element
-     izatom(1) = 6
-     izatom(2) = 1
-     
-     !angular momentum of pseudopotential that will be treated as local
-     lloc_ps(1) = 1
-     lloc_ps(2) = 0
-     !--- Caution ---------------------------------------!
-     ! Indices must correspond to those in &atomic_coor. !
-     !---------------------------------------------------!
-   /
-
-These input keywords and their values should be the same as those used in the
-ground state calculation. See :any:`&pseudo in Exercise-1 <exercise-1-&pseudo>`.
-
-**&functional**
-
-Mandatory: xc
-
-::
-
-   &functional
-     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
-     xc = 'PZ'
-   /
-
-This indicates that the local density approximation with the Perdew-Zunger functional is used.
-
-**&rgrid**
-
-Mandatory: dl or num_rgrid
-
-::
-
-   &rgrid
-     !spatial grid spacing(x,y,z)
-     dl(1:3) = 0.25d0, 0.25d0, 0.25d0
-   /
-
-``dl(1:3) = 0.25d0, 0.25d0, 0.25d0`` specifies the grid spacings
-in three Cartesian directions. This must be the same as
-that in the ground state calculation.
-See :any:`List of all input keywords <List of all input keywords>` for more information.
-
-**&tgrid**
-
-Mandatory: dt, nt
-
-::
-   
-   &tgrid
-     !time step size and number of time grids(steps)
-     dt = 1.25d-3
-     nt = 5000
-   /
-
-``dt=1.25d-3`` specifies the time step of the time evolution
-calculation. ``nt=5000`` specifies the number of time steps in the
-calculation.
-
-**&emfield**
-
-Mandatory: ae_shape1
-
-::
-   
-   &emfield
-     !envelope shape of the incident pulse('impulse': impulsive field)
-     ae_shape1 = 'impulse'
-     
-     !polarization unit vector(real part) for the incident pulse(x,y,z)
-     epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0
-     !--- Caution ---------------------------------------------------------!
-     ! Defenition of the incident pulse is wrriten in:                     !
-     ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
-     !---------------------------------------------------------------------!
-   /
-
-``ae_shape1 = 'impulse'`` indicates that a weak impulse is applied to
-all electrons at *t=0*. ``epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0`` specify a unit vector that
-indicates the direction of the impulse.
-See :any:`List of all input keywords <List of all input keywords>` for details.
-
-**&atomic_coor**
-
-Mandatory: atomic_coor or atomic_red_coor (it may be provided as a
-separate file)
-
-::
-   
-   &atomic_coor
-     !cartesian atomic coodinates
-     'C'    0.000000    0.000000    0.599672  1
-     'H'    0.000000    0.000000    1.662257  2
-     'C'    0.000000    0.000000   -0.599672  1
-     'H'    0.000000    0.000000   -1.662257  2
-     !--- Format ---------------------------------------------------!
-     ! 'symbol' x y z index(correspond to that of pseudo potential) !
-     !--------------------------------------------------------------!
-   /
-
-Cartesian coordinates of atoms. The first column indicates the element.
-Next three columns specify Cartesian coordinates of the atoms. The
-number in the last column labels the element. They must be the same as
-those in the ground state calculation.
-
+| :any:`&atomic_coor <&atomic_coor>` specifies spatial coordinates of atoms.
    
 .. _output-files-1:
 
@@ -1015,7 +733,7 @@ electron dynamics induced by a pulsed electric field.
 This will help you to prepare the input file for other systems and other
 pulsed electric fields that you want to calculate. A complete list of
 the input keywords that can be used in the input file can be found in
-:any:`List of all input keywords <List of all input keywords>`.
+:any:`List of input keywords <List of input keywords>`.
 
 ::
 
@@ -1044,153 +762,29 @@ the input keywords that can be used in the input file can be found in
      !type of theory
      theory = 'tddft_pulse'
    /
-   
-   &control
-     !common name of output files
-     sysname = 'C2H2'
-   /
-   
-   &units
-     !units used in input and output files
-     unit_system = 'A_eV_fs'
-   /
-   
-   &system
-     !periodic boundary condition
-     yn_periodic = 'n'
-     
-     !grid box size(x,y,z)
-     al(1:3) = 16.0d0, 16.0d0, 16.0d0
-     
-     !number of elements, atoms, electrons and states(orbitals)
-     nelem  = 2
-     natom  = 4
-     nelec  = 10
-     nstate = 6
-   /
-   
-   &pseudo
-     !name of input pseudo potential file
-     file_pseudo(1) = './C_rps.dat'
-     file_pseudo(2) = './H_rps.dat'
-     
-     !atomic number of element
-     izatom(1) = 6
-     izatom(2) = 1
-     
-     !angular momentum of pseudopotential that will be treated as local
-     lloc_ps(1) = 1
-     lloc_ps(2) = 0
-     !--- Caution ---------------------------------------!
-     ! Indices must correspond to those in &atomic_coor. !
-     !---------------------------------------------------!
-   /
-   
-   &functional
-     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
-     xc = 'PZ'
-   /
-   
-   &rgrid
-     !spatial grid spacing(x,y,z)
-     dl(1:3) = 0.25d0, 0.25d0, 0.25d0
-   /
-   
-   &tgrid
-     !time step size and number of time grids(steps)
-     dt = 1.25d-3
-     nt = 5000
-   /
-   
-   &emfield
-     !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
-     ae_shape1 = 'Ecos2'
-     
-     !peak intensity(W/cm^2) of the incident pulse
-     I_wcm2_1 = 1.00d8
-     
-     !duration of the incident pulse
-     tw1 = 6.00d0
-     
-     !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
-     omega1 = 9.28d0
-     
-     !polarization unit vector(real part) for the incident pulse(x,y,z)
-     epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
-     
-     !carrier emvelope phase of the incident pulse
-     !(phi_cep1 must be 0.25 + 0.5 * n(integer) when ae_shape1 = 'Ecos2')
-     phi_cep1 = 0.75d0
-     !--- Caution ---------------------------------------------------------!
-     ! Defenition of the incident pulse is wrriten in:                     !
-     ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
-     !---------------------------------------------------------------------!
-   /
-   
-   &atomic_coor
-     !cartesian atomic coodinates
-     'C'    0.000000    0.000000    0.599672  1
-     'H'    0.000000    0.000000    1.662257  2
-     'C'    0.000000    0.000000   -0.599672  1
-     'H'    0.000000    0.000000   -1.662257  2
-     !--- Format ---------------------------------------------------!
-     ! 'symbol' x y z index(correspond to that of pseudo potential) !
-     !--------------------------------------------------------------!
-   /
-   
-We present explanations of the input keywords that appear in the input file below:
 
-**Required and recommened variables**
-
-**&calculation**
-
-Mandatory: theory
+| :any:`theory <theory>` specifies which theoretical method is used in the calculation.
 
 ::
-   
-   &calculation
-     !type of theory
-     theory = 'tddft_pulse'
-   /
 
-This indicates that the real time (RT) calculation for a pulse response is carried out in the
-present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&control**
-
-Mandatory: none
-
-::
-   
    &control
      !common name of output files
      sysname = 'C2H2'
    /
 
-'C2H2' defined by ``sysname = 'C2H2'`` will be used 
-in the filenames of output files.
-
-**&units**
-
-Mandatory: none
+| :any:`sysname <sysname>` is a prefix for filenames of output files.
 
 ::
-   
+
    &units
      !units used in input and output files
      unit_system = 'A_eV_fs'
    /
 
-This input keyword specifies the unit system to be used in the input file. If
-you do not specify it, atomic unit will be used.
-See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&system**
-
-Mandatory: yn_periodic, al, nelem, natom, nelectron, nstate
+| :any:`unit_system <unit_system>` specifies which unit system is used in the input and output files.
 
 ::
-   
+
    &system
      !periodic boundary condition
      yn_periodic = 'n'
@@ -1205,15 +799,15 @@ Mandatory: yn_periodic, al, nelem, natom, nelectron, nstate
      nstate = 6
    /
 
-These input keywords and their values should be the same as those used in the
-ground state calculation. See :any:`&system in Exercise-1 <exercise-1-&system>`.
-
-**&pseudo**
-
-Mandatory: file_pseudo, izatom
+| :any:`yn_periodic <yn_periodic>` specifies whether or not periodic boundary condition is applied.
+| :any:`al(i) <al(3)>` specifies the spatial box size of the cubiod cell.
+| :any:`nelem <nelem>` is the number of elements in the system.
+| :any:`natom <natom>` is the number of atoms in the system.
+| :any:`nelec <nelec>` is the number of electrons in the system.
+| :any:`nstate <nstate>` is the number of orbitals that are used in the calculation.
 
 ::
-   
+
    &pseudo
      !name of input pseudo potential file
      file_pseudo(1) = './C_rps.dat'
@@ -1231,13 +825,9 @@ Mandatory: file_pseudo, izatom
      !---------------------------------------------------!
    /
 
-These input keywords and their values should be the same as those used in the
-ground state calculation.
-See :any:`&pseudo in Exercise-1 <exercise-1-&pseudo>`.
-
-**&functional**
-
-Mandatory: xc
+| :any:`file_pseudo(n) <file_pseudo(:)>` specifies the filename of the pseudopotential file of the n-th element.
+| :any:`izatom(n) <izatom(:)>` is the atomic number of the n-th element.
+| :any:`lloc_ps(n) <lloc_ps(:)>` specifies which angular momentum component is chosen as the local potential for the n-th element.
 
 ::
 
@@ -1246,11 +836,7 @@ Mandatory: xc
      xc = 'PZ'
    /
 
-This indicates that the local density approximation with the Perdew-Zunger functional is used.
-
-**&rgrid**
-
-Mandatory: dl or num_rgrid
+| :any:`xc <xc>` specifies the exchange-correlation potential to be used in the calculation.
 
 ::
 
@@ -1259,33 +845,21 @@ Mandatory: dl or num_rgrid
      dl(1:3) = 0.25d0, 0.25d0, 0.25d0
    /
 
-``dl(1:3) = 0.25d0, 0.25d0, 0.25d0`` specifies the grid spacings
-in three Cartesian directions. This must be the same as
-that in the ground state calculation.
-See :any:`List of all input keywords <List of all input keywords>` for more information.
-
-**&tgrid**
-
-Mandatory: dt, nt
+| :any:`dl(i) <dl(3)>` specifies the spatial grid spacing in i-th direction.
 
 ::
-   
+
    &tgrid
      !time step size and number of time grids(steps)
      dt = 1.25d-3
      nt = 5000
    /
 
-``dt = 1.25d-3`` specifies the time step of the time evolution
-calculation. ``nt = 5000`` specifies the number of time steps in the
-calculation.
-
-**&emfield**
-
-Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_cep1
+| :any:`dt` specifies the time step.
+| :any:`nt` is the number of time steps for the time propagation.
 
 ::
-   
+
    &emfield
      !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
      ae_shape1 = 'Ecos2'
@@ -1311,38 +885,15 @@ Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_ce
      !---------------------------------------------------------------------!
    /
 
-These input keywords specify the pulsed electric field applied to the system.
-
-``ae_shape1 = 'Ecos2'`` indicates that the envelope of the pulsed
-electric field has a *cos^2* shape.
-
-``I_wcm2_1 = 1.00d8`` specifies the maximum intensity of the
-applied electric field in unit of W/cm^2.
-
-``tw1 = 6.00d0`` specifies the pulse duration. Note that it is not the
-FWHM but a full duration of the cos^2 envelope.
-
-``omega1 = 9.28d0`` specifies the average photon energy (frequency
-multiplied with hbar).
-
-``epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0`` specifies the real part of the unit
-polarization vector of the pulsed electric field. Using the real
-polarization vector, it describes a linearly polarized pulse.
-
-``phi_cep1 = 0.75d0`` specifies the carrier envelope phase of the pulse.
-As noted above, 'phi_cep1' must be 0.75 (or 0.25) if one employs 'Ecos2'
-pulse shape, since otherwise the time integral of the electric field
-does not vanish.
-
-See :any:`List of all input keywords <List of all input keywords>` for details.
-
-**&atomic_coor**
-
-Mandatory: atomic_coor or atomic_red_coor (it may be provided as a
-separate file)
+| :any:`ae_shape1 <ae_shape1>` specifies the envelope of the field.
+| :any:`I_wcm2_1 <I_wcm2_1>` specify the intensity of the pulse in unit of W/cm\ :sup:`2`\.
+| :any:`tw1 <tw1>` specifies the duration of the pulse.
+| :any:`omega1 <omega1>` specifies the mean photon energy of the pulse.
+| :any:`epdir_re1(i) <epdir_re1(3)>` specifies the i-th component of the real part of the polarization unit vector.
+| :any:`phi_cep1 <phi_cep1>` specifies the carrier-envelope phase of the pulse.
 
 ::
-   
+
    &atomic_coor
      !cartesian atomic coodinates
      'C'    0.000000    0.000000    0.599672  1
@@ -1354,10 +905,7 @@ separate file)
      !--------------------------------------------------------------!
    /
 
-Cartesian coordinates of atoms. The first column indicates the element.
-Next three columns specify Cartesian coordinates of the atoms. The
-number in the last column labels the element. They must be the same as
-those in the ground state calculation.
+| :any:`&atomic_coor <&atomic_coor>` specifies spatial coordinates of atoms.
 
 .. _output-files-2:
 
@@ -1466,7 +1014,7 @@ Most of them are mandatory to execute the ground state calculation.
 This will help you to prepare an input file for other systems that you
 want to calculate. A complete list of the input keywords that can be
 used in the input file can be found in
-:any:`List of all input keywords <List of all input keywords>`.
+:any:`List of input keywords <List of input keywords>`.
 
 ::
 
@@ -1491,102 +1039,8 @@ used in the input file can be found in
      !type of theory
      theory = 'dft'
    /
-   
-   &control
-     !common name of output files
-     sysname = 'Si'
-   /
-   
-   &units
-     !units used in input and output files
-     unit_system = 'a.u.'
-   /
-   
-   &system
-     !periodic boundary condition
-     yn_periodic = 'y'
-     
-     !grid box size(x,y,z)
-     al(1:3) = 10.26d0, 10.26d0, 10.26d0
-     
-     !number of elements, atoms, electrons and states(bands)
-     nelem  = 1
-     natom  = 8
-     nelec  = 32
-     nstate = 32
-   /
-   
-   &pseudo
-     !name of input pseudo potential file
-     file_pseudo(1) = './Si_rps.dat'
-     
-     !atomic number of element
-     izatom(1) = 14
-     
-     !angular momentum of pseudopotential that will be treated as local
-     lloc_ps(1) = 2
-     !--- Caution -------------------------------------------!
-     ! Index must correspond to those in &atomic_red_coor.   !
-     !-------------------------------------------------------!
-   /
-   
-   &functional
-     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
-     xc = 'PZ'
-   /
-   
-   &rgrid
-     !number of spatial grids(x,y,z)
-     num_rgrid(1:3) = 12, 12, 12
-   /
-   
-   &kgrid
-     !number of k-points(x,y,z)
-     num_kgrid(1:3) = 4, 4, 4
-   /
-   
-   &scf
-     !maximum number of scf iteration and threshold of convergence
-     nscf      = 300
-     threshold = 1.0d-9
-   /
-   
-   &atomic_red_coor
-     !cartesian atomic reduced coodinates
-     'Si'	.0	.0	.0	1
-     'Si'	.25	.25	.25	1
-     'Si'	.5	.0	.5	1
-     'Si'	.0	.5	.5	1
-     'Si'	.5	.5	.0	1
-     'Si'	.75	.25	.75	1
-     'Si'	.25	.75	.75	1
-     'Si'	.75	.75	.25	1
-     !--- Format ---------------------------------------------------!
-     ! 'symbol' x y z index(correspond to that of pseudo potential) !
-     !--------------------------------------------------------------!
-   /
 
-We present their explanations below:
-
-**Required and recommened variables**
-
-**&calculation**
-
-Mandatory: theory
-
-::
-
-   &calculation
-     !type of theory
-     theory = 'dft'
-   /
-
-This indicates that the ground state calculation by DFT is carried out in
-the present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&control**
-
-Mandatory: none
+| :any:`theory <theory>` specifies which theoretical method is used in the calculation.
 
 ::
 
@@ -1595,12 +1049,7 @@ Mandatory: none
      sysname = 'Si'
    /
 
-'Si' defined by ``sysname = 'Si'`` will be used in the filenames of
-output files.
-
-**&units**
-
-Mandatory: none
+| :any:`sysname <sysname>` is a prefix for filenames of output files.
 
 ::
 
@@ -1609,15 +1058,7 @@ Mandatory: none
      unit_system = 'a.u.'
    /
 
-This input keyword specifies the unit system to be used in the input and output files.
-If you do not specify it, atomic unit will be used.
-See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-.. _exercise-4-&system:
-
-**&system**
-
-Mandatory: yn_periodic, al, nelem, natom, nelec, nstate
+| :any:`unit_system <unit_system>` specifies which unit system is used in the input and output files.
 
 ::
 
@@ -1635,18 +1076,12 @@ Mandatory: yn_periodic, al, nelem, natom, nelec, nstate
      nstate = 32
    /
 
-``yn_periodic = 'y'`` indicates that three dimensional periodic boundary condition (bulk crystal) is assumed.
-``al(1:3) = 10.26d0, 10.26d0, 10.26d0`` specifies the lattice constans of the unit cell.
-``nelem = 1`` and ``natom = 8`` indicate the number of elements and the number of atoms in the system, respectively.
-``nelec = 32`` indicate the number of valence electrons in the system.
-``nstate = 32`` indicates the number of Kohn-Sham orbitals to be solved.
-See :any:`List of all input keywords <List of all input keywords>` for more information.
-
-.. _exercise-4-&pseudo:
-
-**&pseudo**
-
-Mandatory: file_pseudo, izatom
+| :any:`yn_periodic <yn_periodic>` specifies whether or not periodic boundary condition is applied.
+| :any:`al(i) <al(3)>` specifies the side length of the unit cell.
+| :any:`nelem <nelem>` is the number of elements in the system.
+| :any:`natom <natom>` is the number of atoms in the system.
+| :any:`nelec <nelec>` is the number of electrons in the system.
+| :any:`nstate <nstate>` is the number of orbitals that are used in the calculation.
 
 ::
 
@@ -1664,13 +1099,9 @@ Mandatory: file_pseudo, izatom
      !-------------------------------------------------------!
    /
 
-``file_pseudo(1) = './Si_rps.dat'`` indicates the pseudopotential filename of element. 
-``izatom(1) = 14`` indicates the atomic number of the element.
-``lloc_ps(1) = 2`` indicate the angular momentum of the pseudopotential that will be treated as local.
-
-**&functional**
-
-Mandatory: xc
+| :any:`file_pseudo(n) <file_pseudo(:)>` specifies the filename of the pseudopotential file of the n-th element.
+| :any:`izatom(n) <izatom(:)>` is the atomic number of the n-th element.
+| :any:`lloc_ps(n) <lloc_ps(:)>` specifies which angular momentum component is chosen as the local potential for the n-th element.
 
 ::
 
@@ -1679,11 +1110,7 @@ Mandatory: xc
      xc = 'PZ'
    /
 
-This indicates that the local density approximation with the Perdew-Zunger functional is used.
-
-**&rgrid**
-
-Mandatory: dl or num_rgrid
+| :any:`xc <xc>` specifies the exchange-correlation potential to be used in the calculation.
 
 ::
 
@@ -1692,12 +1119,7 @@ Mandatory: dl or num_rgrid
      num_rgrid(1:3) = 12, 12, 12
    /
 
-``num_rgrid(1:3) = 12, 12, 12`` specifies the number of the grids for each Cartesian direction.
-See :any:`List of all input keywords <List of all input keywords>` for more information.
-
-**&rgrid**
-
-Mandatory: none
+| :any:`num_rgrid(i) <num_rgrid(3)>` specifies the number of real-space grid point in i-th direction.
 
 ::
 
@@ -1706,11 +1128,7 @@ Mandatory: none
      num_kgrid(1:3) = 4, 4, 4
    /
 
-This input keyword provides grid spacing of k-space for periodic systems.
-
-**&scf**
-
-Mandatory: nscf, threshold
+| :any:`num_kgrid(i) <num_kgrid(3)>` specifies the number of k-points for i-th direction discretizing the Brillouin zone.
 
 ::
 
@@ -1720,15 +1138,8 @@ Mandatory: nscf, threshold
      threshold = 1.0d-9
    /
 
-``nscf`` is the number of scf iterations. 
-The scf loop in the ground state calculation ends before the number of
-the scf iterations reaches ``nscf``, if a convergence criterion is satisfied.
-``threshold = 1.0d-9`` indicates threshold of the convergence for scf iterations.
-
-**&atomic_coor**
-
-Mandatory: atomic_coor or atomic_red_coor (it may be provided as a
-separate file)
+| :any:`nscf <nscf>` specifies the maximum number of SCF iterations.
+| :any:`threshold <threshold>` specifies the threshold to judge the convergence.
 
 ::
 
@@ -1747,10 +1158,7 @@ separate file)
      !--------------------------------------------------------------!
    /
 
-Cartesian coordinates of atoms are specified in a reduced coordinate system.
-First column indicates the element, 
-next three columns specify reduced Cartesian coordinates of the atoms,
-and the last column labels the element.
+| :any:`&atomic_red_coor <&atomic_red_coor>` specifies spatial coordinates of atoms in reduced coordinate system.
 
 Output files
 ^^^^^^^^^^^^	
@@ -1834,7 +1242,7 @@ To run the code, following files in samples are used:
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
 +-----------------------------------+-----------------------------------+
-| *Si_rt_response.inp*                  | input file that contain input     |
+| *Si_rt_response.inp*              | input file that contain input     |
 |                                   | keywords and their values.        |
 +-----------------------------------+-----------------------------------+
 | *Si_rps.dat*                      | pseodupotential file of silicon   |
@@ -1848,7 +1256,7 @@ To run the code, following files in samples are used:
 In the input file *Si_rt_response.inp*, input keywords are specified.
 Most of them are mandatory to execute the calculation.
 This will help you to prepare the input file for other systems that you want to calculate.
-A complete list of the input keywords can be found in :any:`List of all input keywords <List of all input keywords>`.
+A complete list of the input keywords can be found in :any:`List of input keywords <List of input keywords>`.
 
 ::
 
@@ -1877,17 +1285,29 @@ A complete list of the input keywords can be found in :any:`List of all input ke
      !type of theory
      theory = 'tddft_response'
    /
-   
+
+| :any:`theory <theory>` specifies which theoretical method is used in the calculation.
+
+::
+
    &control
      !common name of output files
      sysname = 'Si'
    /
-   
+
+| :any:`sysname <sysname>` is a prefix for filenames of output files.
+
+::
+
    &units
      !units used in input and output files
      unit_system = 'a.u.'
    /
-   
+
+| :any:`unit_system <unit_system>` specifies which unit system is used in the input and output files.
+
+::
+
    &system
      !periodic boundary condition
      yn_periodic = 'y'
@@ -1901,7 +1321,16 @@ A complete list of the input keywords can be found in :any:`List of all input ke
      nelec  = 32
      nstate = 32
    /
-   
+
+| :any:`yn_periodic <yn_periodic>` specifies whether or not periodic boundary condition is applied.
+| :any:`al(i) <al(3)>` specifies the side length of the unit cell.
+| :any:`nelem <nelem>` is the number of elements in the system.
+| :any:`natom <natom>` is the number of atoms in the system.
+| :any:`nelec <nelec>` is the number of electrons in the system.
+| :any:`nstate <nstate>` is the number of orbitals that are used in the calculation.
+
+::
+
    &pseudo
      !name of input pseudo potential file
      file_pseudo(1) = './Si_rps.dat'
@@ -1915,28 +1344,51 @@ A complete list of the input keywords can be found in :any:`List of all input ke
      ! Index must correspond to those in &atomic_red_coor.   !
      !-------------------------------------------------------!
    /
-   
+
+| :any:`file_pseudo(n) <file_pseudo(:)>` specifies the filename of the pseudopotential file of the n-th element.
+| :any:`izatom(n) <izatom(:)>` is the atomic number of the n-th element.
+| :any:`lloc_ps(n) <lloc_ps(:)>` specifies which angular momentum component is chosen as the local potential for the n-th element.
+
+::
+
    &functional
      !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
      xc = 'PZ'
    /
-   
+
+| :any:`xc <xc>` specifies the exchange-correlation potential to be used in the calculation.
+
+::
+
    &rgrid
      !number of spatial grids(x,y,z)
      num_rgrid(1:3) = 12, 12, 12
    /
-   
+
+| :any:`num_rgrid(i) <num_rgrid(3)>` specifies the number of real-space grid point in i-th direction.
+
+::
+
    &kgrid
      !number of k-points(x,y,z)
      num_kgrid(1:3) = 4, 4, 4
    /
-   
+
+| :any:`num_kgrid(i) <num_kgrid(3)>` specifies the number of k-points for i-th direction discretizing the Brillouin zone.
+
+::
+
    &tgrid
      !time step size and number of time grids(steps)
      dt = 0.08d0
      nt = 6000
    /
-   
+
+| :any:`dt` specifies the time step.
+| :any:`nt` is the number of time steps for the time propagation.
+
+::
+
    &emfield
      !envelope shape of the incident pulse('impulse': impulsive field)
      ae_shape1 = 'impulse'
@@ -1948,13 +1400,23 @@ A complete list of the input keywords can be found in :any:`List of all input ke
      ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
      !---------------------------------------------------------------------!
    /
-   
+
+| :any:`ae_shape1 <ae_shape1>` specifies the envelope of the field. For a linear response calculation, ``as_shape1='impulse'`` is used. It indicates that a weak impulsive perturbation is applied at :math:`t=0`.
+| :any:`epdir_re1(i) <epdir_re1(3)>` specifies the i-th component of the real part of the polarization unit vector.
+
+::
+
    &analysis
      !energy grid size and number of energy grids for output files
      de      = 4.0d-4
      nenergy = 5000
    /
-   
+
+| :any:`de` specifies the energy grid size for frequency-domain analysis.
+| :any:`nenergy` specifies the number of energy grid points for frequency-domain analysis.
+
+::
+
    &atomic_red_coor
      !cartesian atomic reduced coodinates
      'Si'	.0	.0	.0	1
@@ -1970,218 +1432,7 @@ A complete list of the input keywords can be found in :any:`List of all input ke
      !--------------------------------------------------------------!
    /
 
-We present explanations of the input keywords that appear in the input file below:
-
-**Required and recommened variables**
-
-**&calculation**
-
-Mandatory: theory
-
-::
-   
-   &calculation
-     !type of theory
-     theory = 'tddft_response'
-   /
-
-This indicates that the real time (RT) calculation to obtain response function
-is carried out in the present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&control**
-
-Mandatory: none
-
-::
-   
-   &control
-     !common name of output files
-     sysname = 'Si'
-   /
-
-'Si' defined by ``sysname = 'Si'`` will be used in the filenames of output files.
-
-**&units**
-
-Mandatory: none
-
-::
-
-   &units
-     !units used in input and output files
-     unit_system = 'a.u.'
-   /
-
-This input keyword specifies the unit system to be used in the input and output files.
-If you do not specify it, atomic unit will be used.
-See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&system**
-
-Mandatory: yn_periodic, al, state, nelem, nelem, natom, nelec, nstate
-
-::
-   
-   &system
-     !periodic boundary condition
-     yn_periodic = 'y'
-     
-     !grid box size(x,y,z)
-     al(1:3) = 10.26d0, 10.26d0, 10.26d0
-     
-     !number of elements, atoms, electrons and states(bands)
-     nelem  = 1
-     natom  = 8
-     nelec  = 32
-     nstate = 32
-   /
-
-These input keywords and their values should be the same as those used in the
-ground state calculation. See :any:`&system in Exercise-4 <exercise-4-&system>`.
-
-**&pseudo**
-
-Mandatory: file_pseudo, izatom
-
-::
-   
-   &pseudo
-     !name of input pseudo potential file
-     file_pseudo(1) = './Si_rps.dat'
-     
-     !atomic number of element
-     izatom(1) = 14
-     
-     !angular momentum of pseudopotential that will be treated as local
-     lloc_ps(1) = 2
-     !--- Caution -------------------------------------------!
-     ! Index must correspond to those in &atomic_red_coor.   !
-     !-------------------------------------------------------!
-   /
-
-These input keywords and their values should be the same as those used in the
-ground state calculation. See :any:`&pseudo in Exercise-4 <exercise-4-&pseudo>`.
-
-**&functional**
-
-Mandatory: xc
-
-::
-   
-   &functional
-     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
-     xc = 'PZ'
-   /
-
-This indicates that the local density approximation with the Perdew-Zunger functional is used.
-
-**&rgrid**
-
-Mandatory: dl or num_rgrid
-
-::
-   
-   &rgrid
-     !number of spatial grids(x,y,z)
-     num_rgrid(1:3) = 12, 12, 12
-   /
-
-``num_rgrid(1:3) = 12, 12, 12`` specifies the number of the grids for each Cartesian direction.
-This must be the same as that in the ground state calculation.
-See :any:`List of all input keywords <List of all input keywords>` for more information.
-
-**&kgrid**
-
-Mandatory: none
-
-::
-   
-   &kgrid
-     !number of k-points(x,y,z)
-     num_kgrid(1:3) = 4, 4, 4
-   /
-
-This input keyword provides grid spacing of k-space for periodic systems.
-This must be the same as that in the ground state calculation.
-
-**&tgrid**
-
-Mandatory: dt, nt
-
-::
-   
-   &tgrid
-     !time step size and number of time grids(steps)
-     dt = 0.08d0
-     nt = 6000
-   /
-
-``dt = 0.08d0`` specifies the time step of the time evolution calculation.
-``nt = 6000`` specifies the number of time steps in the calculation.
-
-**&emfield**
-
-Mandatory:ae_shape1
-
-::
-   
-   &emfield
-     !envelope shape of the incident pulse('impulse': impulsive field)
-     ae_shape1 = 'impulse'
-     
-     !polarization unit vector(real part) for the incident pulse(x,y,z)
-     epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
-     !--- Caution ---------------------------------------------------------!
-     ! Defenition of the incident pulse is wrriten in:                     !
-     ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
-     !---------------------------------------------------------------------!
-   /
-
-``as_shape1 = 'impulse'`` indicates that a weak impulsive field is applied to all electrons at *t=0*
-``epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0`` specify a unit vector that indicates the direction of the impulse.
-See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&analysis**
-
-Mandatory: none
-
-::
-   
-   &analysis
-     !energy grid size and number of energy grids for output files
-     de      = 4.0d-4
-     nenergy = 5000
-   /
-
-``de = 4.0d-4`` specifies the energy spacing in the time-frequency Fourier transformation.
-``nenergy = 5000`` specifies the number of energy steps, and 
-
-**&atomic_red_coor**
-
-Mandatory: atomic_coor or atomic_red_coor (they may be provided as a
-separate file)
-
-::
-   
-   &atomic_red_coor
-     !cartesian atomic reduced coodinates
-     'Si'	.0	.0	.0	1
-     'Si'	.25	.25	.25	1
-     'Si'	.5	.0	.5	1
-     'Si'	.0	.5	.5	1
-     'Si'	.5	.5	.0	1
-     'Si'	.75	.25	.75	1
-     'Si'	.25	.75	.75	1
-     'Si'	.75	.75	.25	1
-     !--- Format ---------------------------------------------------!
-     ! 'symbol' x y z index(correspond to that of pseudo potential) !
-     !--------------------------------------------------------------!
-   /
-
-Cartesian coordinates of atoms are specified in a reduced coordinate system.
-First column indicates the element, 
-next three columns specify reduced Cartesian coordinates of the atoms,
-and the last column labels the element.
+| :any:`&atomic_red_coor <&atomic_red_coor>` specifies spatial coordinates of atoms in reduced coordinate system.
 
 .. _output-files-3:
 
@@ -2286,7 +1537,7 @@ To run the code, following files in samples are used:
 In the input file *Si_rt_pulse.inp*, input keywords are specified.
 Most of them are mandatory to execute the calculation.
 This will help you to prepare the input file for other systems that you want to calculate. 
-A complete list of the input keywords can be found in :any:`List of all input keywords <List of all input keywords>`.
+A complete list of the input keywords can be found in :any:`List of input keywords <List of input keywords>`.
 
 ::
    
@@ -2315,136 +1566,17 @@ A complete list of the input keywords can be found in :any:`List of all input ke
      !type of theory
      theory = 'tddft_pulse'
    /
-   
-   &control
-     !common name of output files
-     sysname = 'Si'
-   /
-   
-   &units
-     !units used in input and output files
-     unit_system = 'a.u.'
-   /
-   
-   &system
-     !periodic boundary condition
-     yn_periodic = 'y'
-     
-     !grid box size(x,y,z)
-     al(1:3) = 10.26d0, 10.26d0, 10.26d0
-     
-     !number of elements, atoms, electrons and states(bands)
-     nelem  = 1
-     natom  = 8
-     nelec  = 32
-     nstate = 32
-   /
-   
-   &pseudo
-     !name of input pseudo potential file
-     file_pseudo(1) = './Si_rps.dat'
-     
-     !atomic number of element
-     izatom(1) = 14
-     
-     !angular momentum of pseudopotential that will be treated as local
-     lloc_ps(1) = 2
-     !--- Caution -------------------------------------------!
-     ! Index must correspond to those in &atomic_red_coor.   !
-     !-------------------------------------------------------!
-   /
-   
-   &functional
-     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
-     xc = 'PZ'
-   /
-   
-   &rgrid
-     !number of spatial grids(x,y,z)
-     num_rgrid(1:3) = 12, 12, 12
-   /
-   
-   &kgrid
-     !number of k-points(x,y,z)
-     num_kgrid(1:3) = 4, 4, 4
-   /
-   
-   &tgrid
-     !time step size and number of time grids(steps)
-     dt = 0.08d0
-     nt = 6000
-   /
-   
-   &emfield
-     !envelope shape of the incident pulse('Acos2': cos^2 type envelope for vector potential)
-     ae_shape1 = 'Acos2'
-     
-     !peak intensity(W/cm^2) of the incident pulse
-     I_wcm2_1 = 5.0d11
-     
-     !duration of the incident pulse
-     tw1 = 441.195136248d0
-     
-     !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
-     omega1 = 0.05696145187d0
-     
-     !polarization unit vector(real part) for the incident pulse(x,y,z)
-     epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0
-     !--- Caution ---------------------------------------------------------!
-     ! Defenition of the incident pulse is wrriten in:                     !
-     ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
-     !---------------------------------------------------------------------!
-   /
-   
-   &atomic_red_coor
-     !cartesian atomic reduced coodinates
-     'Si'	.0	.0	.0	1
-     'Si'	.25	.25	.25	1
-     'Si'	.5	.0	.5	1
-     'Si'	.0	.5	.5	1
-     'Si'	.5	.5	.0	1
-     'Si'	.75	.25	.75	1
-     'Si'	.25	.75	.75	1
-     'Si'	.75	.75	.25	1
-     !--- Format ---------------------------------------------------!
-     ! 'symbol' x y z index(correspond to that of pseudo potential) !
-     !--------------------------------------------------------------!
-   /
 
-We present explanations of the input keywords that appear in the input file below:
-
-**Required and recommened variables**
-
-**&calculation**
-
-Mandatory: theory
+| :any:`theory <theory>` specifies which theoretical method is used in the calculation.
 
 ::
-   
-   &calculation
-     !type of theory
-     theory = 'tddft_response'
-   /
 
-This indicates that the real time (RT) calculation to obtain response function
-is carried out in the present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&control**
-
-Mandatory: none
-
-::
-   
    &control
      !common name of output files
      sysname = 'Si'
    /
 
-'Si' defined by ``sysname = 'Si'`` will be used in the filenames of output files.
-
-**&units**
-
-Mandatory: none
+| :any:`sysname <sysname>` is a prefix for filenames of output files.
 
 ::
 
@@ -2453,16 +1585,10 @@ Mandatory: none
      unit_system = 'a.u.'
    /
 
-This input keyword specifies the unit system to be used in the input and output files.
-If you do not specify it, atomic unit will be used.
-See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&system**
-
-Mandatory: yn_periodic, al, state, nelem, nelem, natom, nelec, nstate
+| :any:`unit_system <unit_system>` specifies which unit system is used in the input and output files.
 
 ::
-   
+
    &system
      !periodic boundary condition
      yn_periodic = 'y'
@@ -2477,15 +1603,15 @@ Mandatory: yn_periodic, al, state, nelem, nelem, natom, nelec, nstate
      nstate = 32
    /
 
-These input keywords and their values should be the same as those used in the
-ground state calculation. See :any:`&system in Exercise-4 <exercise-4-&system>`.
-
-**&pseudo**
-
-Mandatory: file_pseudo, izatom
+| :any:`yn_periodic <yn_periodic>` specifies whether or not periodic boundary condition is applied.
+| :any:`al(i) <al(3)>` specifies the side length of the unit cell.
+| :any:`nelem <nelem>` is the number of elements in the system.
+| :any:`natom <natom>` is the number of atoms in the system.
+| :any:`nelec <nelec>` is the number of electrons in the system.
+| :any:`nstate <nstate>` is the number of orbitals that are used in the calculation.
 
 ::
-   
+
    &pseudo
      !name of input pseudo potential file
      file_pseudo(1) = './Si_rps.dat'
@@ -2499,73 +1625,51 @@ Mandatory: file_pseudo, izatom
      ! Index must correspond to those in &atomic_red_coor.   !
      !-------------------------------------------------------!
    /
-
-These input keywords and their values should be the same as those used in the
-ground state calculation. See :any:`&pseudo in Exercise-4 <exercise-4-&pseudo>`.
-
-**&functional**
-
-Mandatory: xc
+   
+| :any:`file_pseudo(n) <file_pseudo(:)>` specifies the filename of the pseudopotential file of the n-th element.
+| :any:`izatom(n) <izatom(:)>` is the atomic number of the n-th element.
+| :any:`lloc_ps(n) <lloc_ps(:)>` specifies which angular momentum component is chosen as the local potential for the n-th element.
 
 ::
-   
+
    &functional
      !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
      xc = 'PZ'
    /
 
-This indicates that the local density approximation with the Perdew-Zunger functional is used.
-
-**&rgrid**
-
-Mandatory: dl or num_rgrid
+| :any:`xc <xc>` specifies the exchange-correlation potential to be used in the calculation.
 
 ::
-   
+
    &rgrid
      !number of spatial grids(x,y,z)
      num_rgrid(1:3) = 12, 12, 12
    /
 
-``num_rgrid(1:3) = 12, 12, 12`` specifies the number of the grids for each Cartesian direction.
-This must be the same as that in the ground state calculation.
-See :any:`List of all input keywords <List of all input keywords>` for more information.
-
-**&kgrid**
-
-Mandatory: none
+| :any:`num_rgrid(i) <num_rgrid(3)>` specifies the number of real-space grid point in i-th direction.
 
 ::
-   
+
    &kgrid
      !number of k-points(x,y,z)
      num_kgrid(1:3) = 4, 4, 4
    /
 
-This input keyword provides grid spacing of k-space for periodic systems.
-This must be the same as that in the ground state calculation.
-
-**&tgrid**
-
-Mandatory: dt, nt
+| :any:`num_kgrid(i) <num_kgrid(3)>` specifies the number of k-points for i-th direction discretizing the Brillouin zone.
 
 ::
-   
+
    &tgrid
      !time step size and number of time grids(steps)
      dt = 0.08d0
      nt = 6000
    /
 
-``dt = 0.08d0`` specifies the time step of the time evolution calculation.
-``nt = 6000`` specifies the number of time steps in the calculation.
-
-**&emfield**
-
-Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_cep1
+| :any:`dt` specifies the time step.
+| :any:`nt` is the number of time steps for the time propagation.
 
 ::
-   
+
    &emfield
      !envelope shape of the incident pulse('Acos2': cos^2 type envelope for vector potential)
      ae_shape1 = 'Acos2'
@@ -2587,33 +1691,14 @@ Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_ce
      !---------------------------------------------------------------------!
    /
 
-These input keywords specify the pulsed electric field applied to the system.
-
-``ae_shape1 = 'Acos2'`` specifies the envelope of the pulsed electric
-field, cos^2 envelope for the vector potential.
-
-``I_wcm2_1 = 5.0d11`` specifies the maximum intensity of the
-applied electric field in unit of W/cm^2.
-
-``tw1 = 441.195136248d0`` specifies the pulse duration. Note that it
-is not the FWHM but a full duration of the cos^2 envelope.
-
-``omega1 = 0.05696145187d0`` specifies the average photon energy
-(frequency multiplied with hbar).
-
-``epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0`` specify the real part of the unit polarization
-vector of the pulsed electric field. Specifying only the real part, it
-describes a linearly polarized pulse.
-
-See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&atomic_red_coor**
-
-Mandatory: atomic_coor or atomic_red_coor (they may be provided as a
-separate file)
+| :any:`ae_shape1 <ae_shape1>` specifies the envelope of the field.
+| :any:`I_wcm2_1 <I_wcm2_1>` specify the intensity of the pulse in unit of W/cm\ :sup:`2`\.
+| :any:`tw1 <tw1>` specifies the duration of the pulse.
+| :any:`omega1 <omega1>` specifies the mean photon energy of the pulse.
+| :any:`epdir_re1(i) <epdir_re1(3)>` specifies the i-th component of the real part of the polarization unit vector.
 
 ::
-   
+
    &atomic_red_coor
      !cartesian atomic reduced coodinates
      'Si'	.0	.0	.0	1
@@ -2629,10 +1714,7 @@ separate file)
      !--------------------------------------------------------------!
    /
 
-Cartesian coordinates of atoms are specified in a reduced coordinate system.
-First column indicates the element, 
-next three columns specify reduced Cartesian coordinates of the atoms,
-and the last column labels the element.
+| :any:`&atomic_red_coor <&atomic_red_coor>` specifies spatial coordinates of atoms in reduced coordinate system.
 
 .. _output-files-4:
 
@@ -2743,7 +1825,7 @@ To run the code, following files in samples are used:
 In the input file *Si_rt_multiscale.inp*, input keywords are specified.
 Most of them are mandatory to execute the calculation.
 This will help you to prepare the input file for other systems that you want to calculate.
-A complete list of the input keywords can be found in :any:`List of all input keywords <List of all input keywords>`.
+A complete list of the input keywords can be found in :any:`List of input keywords <List of input keywords>`.
 
 ::
     
@@ -2773,17 +1855,29 @@ A complete list of the input keywords can be found in :any:`List of all input ke
       !type of theory
       theory = 'multi_scale_maxwell_tddft'
     /
-    
+
+| :any:`theory <theory>` specifies which theoretical method is used in the calculation.
+
+::
+
     &control
       !common name of output files
       sysname = 'Si'
     /
-    
+
+| :any:`sysname <sysname>` is a prefix for filenames of output files.
+
+::
+
     &units
       !units used in input and output files
       unit_system = 'a.u.'
     /
-    
+
+| :any:`unit_system <unit_system>` specifies which unit system is used in the input and output files.
+
+::
+
     &system
       !periodic boundary condition
       yn_periodic = 'y'
@@ -2797,7 +1891,16 @@ A complete list of the input keywords can be found in :any:`List of all input ke
       nelec  = 32
       nstate = 32
     /
-    
+
+| :any:`yn_periodic <yn_periodic>` specifies whether or not periodic boundary condition is applied.
+| :any:`al(i) <al(3)>` specifies the side length of the unit cell.
+| :any:`nelem <nelem>` is the number of elements in the system.
+| :any:`natom <natom>` is the number of atoms in the system.
+| :any:`nelec <nelec>` is the number of electrons in the system.
+| :any:`nstate <nstate>` is the number of orbitals that are used in the calculation.
+
+::
+
     &pseudo
       !name of input pseudo potential file
       file_pseudo(1) = './Si_rps.dat'
@@ -2811,28 +1914,51 @@ A complete list of the input keywords can be found in :any:`List of all input ke
       ! Index must correspond to those in &atomic_red_coor.   !
       !-------------------------------------------------------!
     /
-    
+
+| :any:`file_pseudo(n) <file_pseudo(:)>` specifies the filename of the pseudopotential file of the n-th element.
+| :any:`izatom(n) <izatom(:)>` is the atomic number of the n-th element.
+| :any:`lloc_ps(n) <lloc_ps(:)>` specifies which angular momentum component is chosen as the local potential for the n-th element.
+
+::
+
     &functional
       !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
       xc = 'PZ'
     /
-    
+
+| :any:`xc <xc>` specifies the exchange-correlation potential to be used in the calculation.
+
+::
+
     &rgrid
       !number of spatial grids(x,y,z)
       num_rgrid(1:3) = 12, 12, 12
     /
-    
+
+| :any:`num_rgrid(i) <num_rgrid(3)>` specifies the number of real-space grid point in i-th direction.
+
+::
+
     &kgrid
       !number of k-points(x,y,z)
       num_kgrid(1:3) = 4, 4, 4
     /
-    
+
+| :any:`num_kgrid(i) <num_kgrid(3)>` specifies the number of k-points for i-th direction discretizing the Brillouin zone.
+
+::
+
     &tgrid
       !time step size and number of time grids(steps)
       dt = 0.08d0
       nt = 6000
     /
-    
+
+| :any:`dt` specifies the time step.
+| :any:`nt` is the number of time steps for the time propagation.
+
+::
+
     &emfield
       !envelope shape of the incident pulse('Acos2': cos^2 type envelope for vector potential)
       ae_shape1 = 'Acos2'
@@ -2853,7 +1979,15 @@ A complete list of the input keywords can be found in :any:`List of all input ke
       ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
       !---------------------------------------------------------------------!
     /
-    
+
+| :any:`ae_shape1 <ae_shape1>` specifies the envelope of the field.
+| :any:`I_wcm2_1 <I_wcm2_1>` specify the intensity of the pulse in unit of W/cm\ :sup:`2`\.
+| :any:`tw1 <tw1>` specifies the duration of the pulse.
+| :any:`omega1 <omega1>` specifies the mean photon energy of the pulse.
+| :any:`epdir_re1(i) <epdir_re1(3)>` specifies the i-th component of the real part of the polarization unit vector.
+
+::
+
     &multiscale
       !number of macro grids in electromagnetic analysis for x, y, and z directions
       nx_m = 8
@@ -2871,7 +2005,13 @@ A complete list of the input keywords can be found in :any:`List of all input ke
       nxvacl_m = 1000
       nxvacr_m = 1000
     /
-    
+
+| :any:`nx_m <nx_m>`, :any:`ny_m <ny_m>`, :any:`nz_m <nz_m>` specify the number of macroscopic grid points inside the material.
+| :any:`hx_m <hx_m>`, :any:`hy_m <hy_m>`, :any:`hz_m <hz_m>` specify the grid spacing of macroscopic coordinates.
+| :any:`nxvacl_m <nxvacl_m>` / :any:`nxvacr_m <nxvacr_m>` specifies the number of grid points in the vacuum region in the left / right side of the material.
+
+::
+
     &maxwell
       !boundary condition of electromagnetic analysis
       !first index(1-3 rows) corresponds to x, y, and z directions
@@ -2880,7 +2020,11 @@ A complete list of the input keywords can be found in :any:`List of all input ke
       boundary_em(1,1) = 'abc'
       boundary_em(1,2) = 'abc'
     /
-    
+
+| :any:`boundary_em(i,n) <boundary_em(3,2)>` specifies the boundary condition for the electromagnetic analysis. The first index i corresponds to the x,y, and z direction. The second index n specifies left or right side of the material.
+
+::
+
     &atomic_red_coor
       !cartesian atomic reduced coodinates
       'Si'	.0	.0	.0	1
@@ -2896,280 +2040,8 @@ A complete list of the input keywords can be found in :any:`List of all input ke
       !--------------------------------------------------------------!
     /
 
-We present explanations of the input keywords that appear in the input file below:
+| :any:`&atomic_red_coor <&atomic_red_coor>` specifies spatial coordinates of atoms in reduced coordinate system.
 
-**Required and recommened variables**
-
-**&calculation**
-
-Mandatory: theory
-
-::
-   
-   &calculation
-     !type of theory
-     theory = 'multi_scale_maxwell_tddft'
-   /
-
-This indicates that the multi-scale Maxwell-TDDFT calculation
-is carried out in the present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&control**
-
-Mandatory: none
-
-::
-   
-   &control
-     !common name of output files
-     sysname = 'Si'
-   /
-
-'Si' defined by ``sysname = 'Si'`` will be used in the filenames of output files.
-
-**&units**
-
-Mandatory: none
-
-::
-
-   &units
-     !units used in input and output files
-     unit_system = 'a.u.'
-   /
-
-This input keyword specifies the unit system to be used in the input and output files.
-If you do not specify it, atomic unit will be used.
-See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&system**
-
-Mandatory: yn_periodic, al, state, nelem, nelem, natom, nelec, nstate
-
-::
-   
-   &system
-     !periodic boundary condition
-     yn_periodic = 'y'
-     
-     !grid box size(x,y,z)
-     al(1:3) = 10.26d0, 10.26d0, 10.26d0
-     
-     !number of elements, atoms, electrons and states(bands)
-     nelem  = 1
-     natom  = 8
-     nelec  = 32
-     nstate = 32
-   /
-
-These input keywords and their values should be the same as those used in the
-ground state calculation. See :any:`&system in Exercise-4 <exercise-4-&system>`.
-
-**&pseudo**
-
-Mandatory: file_pseudo, izatom
-
-::
-   
-   &pseudo
-     !name of input pseudo potential file
-     file_pseudo(1) = './Si_rps.dat'
-     
-     !atomic number of element
-     izatom(1) = 14
-     
-     !angular momentum of pseudopotential that will be treated as local
-     lloc_ps(1) = 2
-     !--- Caution -------------------------------------------!
-     ! Index must correspond to those in &atomic_red_coor.   !
-     !-------------------------------------------------------!
-   /
-
-These input keywords and their values should be the same as those used in the
-ground state calculation. See :any:`&pseudo in Exercise-4 <exercise-4-&pseudo>`.
-
-**&functional**
-
-Mandatory: xc
-
-::
-   
-   &functional
-     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
-     xc = 'PZ'
-   /
-
-This indicates that the local density approximation with the Perdew-Zunger functional is used.
-
-**&rgrid**
-
-Mandatory: dl or num_rgrid
-
-::
-   
-   &rgrid
-     !number of spatial grids(x,y,z)
-     num_rgrid(1:3) = 12, 12, 12
-   /
-
-``num_rgrid(1:3) = 12, 12, 12`` specifies the number of the grids for each Cartesian direction.
-This must be the same as that in the ground state calculation.
-See :any:`List of all input keywords <List of all input keywords>` for more information.
-
-**&kgrid**
-
-Mandatory: none
-
-::
-   
-   &kgrid
-     !number of k-points(x,y,z)
-     num_kgrid(1:3) = 4, 4, 4
-   /
-
-This input keyword provides grid spacing of k-space for periodic systems.
-This must be the same as that in the ground state calculation.
-
-**&tgrid**
-
-Mandatory: dt, nt
-
-::
-   
-   &tgrid
-     !time step size and number of time grids(steps)
-     dt = 0.08d0
-     nt = 6000
-   /
-
-``dt = 0.08d0`` specifies the time step of the time evolution calculation.
-``nt = 6000`` specifies the number of time steps in the calculation.
-
-**&emfield**
-
-Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_cep1
-
-::
-   
-   &emfield
-     !envelope shape of the incident pulse('Acos2': cos^2 type envelope for vector potential)
-     ae_shape1 = 'Acos2'
-     
-     !peak intensity(W/cm^2) of the incident pulse
-     I_wcm2_1 = 1.0d12
-     
-     !duration of the incident pulse
-     tw1 = 441.195136248d0
-     
-     !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
-     omega1 = 0.05696145187d0
-     
-     !polarization unit vector(real part) for the incident pulse(x,y,z)
-     epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0
-     !--- Caution ---------------------------------------------------------!
-     ! Defenition of the incident pulse is wrriten in:                     !
-     ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
-     !---------------------------------------------------------------------!
-   /
-
-These input keywords specify the pulsed electric field applied to the system.
-
-``ae_shape1 = 'Acos2'`` specifies the envelope of the pulsed electric
-field, cos^2 envelope for the vector potential.
-
-``I_wcm2_1 = 1.0d12`` specifies the maximum intensity of the
-applied electric field in unit of W/cm^2.
-
-``tw1 = 441.195136248d0`` specifies the pulse duration. Note that it
-is not the FWHM but a full duration of the cos^2 envelope.
-
-``omega1 = 0.05696145187d0`` specifies the average photon energy
-(frequency multiplied with hbar).
-
-``epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0`` specify the real part of the unit polarization
-vector of the pulsed electric field. Specifying only the real part, it
-describes a linearly polarized pulse.
-
-See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&multiscale**
-
-::
-   
-   &multiscale
-     !number of macro grids in electromagnetic analysis for x, y, and z directions
-     nx_m = 8
-     ny_m = 1
-     nz_m = 1
-     
-     !macro grid spacing for x, y, and z directions
-     hx_m = 100.0d0
-     hy_m = 100.0d0
-     hz_m = 100.0d0
-     
-     !number of macroscopic grids for vacumm region
-     !(nxvacl_m is for negative x-direction in front of material)
-     !(nxvacr_m is for positive x-direction behind material)
-     nxvacl_m = 1000
-     nxvacr_m = 1000
-   /
-
-This input keyword specifies information necessary for Maxwell-TDDFT multiscale calculations.
-
-``nx_m = 8`` specifies the number of the macroscopic grid points
-for x-direction in the spatial region where the material exists.
-``ny_m = 1`` and ``nz_m = 1`` are those for y- and z-directions.
-
-``hx_m = 100.0d0`` specifies the grid spacing of the macroscopic grid for x-direction.
-``hy_m = 100.0d0`` and ``hz_m = 100.0d0`` are those for y- and z-directions.
-
-``nxvacl_m = 1000`` and ``nxvacr_m = 1000`` indicate the number of grid points in the vacuum region,
-``nxvacl_m`` for the left and ``nxvacr_m`` for the right from the surface of the material.
-
-**&maxwell**
-
-::
-   
-   &maxwell
-     !boundary condition of electromagnetic analysis
-     !first index(1-3 rows) corresponds to x, y, and z directions
-     !second index(1-2 columns) corresponds to bottom and top of the directions
-     !('abc' is absorbing boundary condition)
-     boundary_em(1,1) = 'abc'
-     boundary_em(1,2) = 'abc'
-   /
-
-``boundary_em(1,1) = 'abc'`` and boundary_em(1,2) = 'abc' set the abosorbing bondary conditions
-in electromagnetic analysis.
-The first index(1-3 rows) corresponds to x, y, and z axes.
-The second index(1-2 columns) corresponds to bottom and top of the axes.
-
-**&atomic_red_coor**
-
-Mandatory: atomic_coor or atomic_red_coor (they may be provided as a
-separate file)
-
-::
-   
-   &atomic_red_coor
-     !cartesian atomic reduced coodinates
-     'Si'	.0	.0	.0	1
-     'Si'	.25	.25	.25	1
-     'Si'	.5	.0	.5	1
-     'Si'	.0	.5	.5	1
-     'Si'	.5	.5	.0	1
-     'Si'	.75	.25	.75	1
-     'Si'	.25	.75	.75	1
-     'Si'	.75	.75	.25	1
-     !--- Format ---------------------------------------------------!
-     ! 'symbol' x y z index(correspond to that of pseudo potential) !
-     !--------------------------------------------------------------!
-   /
-
-Cartesian coordinates of atoms are specified in a reduced coordinate system.
-First column indicates the element, 
-next three columns specify reduced Cartesian coordinates of the atoms,
-and the last column labels the element.
 
 .. _output-files-5:
 
@@ -3236,8 +2108,8 @@ The number in the file name specifies the macroscopic position.
    
    # Real time calculation: 
    # Eall: Total energy
-      # Eall0: Initial energy
-# 1:Time[a.u.] 2:Eall[a.u.] 3:Eall-Eall0[a.u.] 
+   # Eall0: Initial energy
+   # 1:Time[a.u.] 2:Eall[a.u.] 3:Eall-Eall0[a.u.]
 
 **Si_RT_Ac/Si_Ac_yyyyyy.data**
 
@@ -3267,12 +2139,12 @@ Amplitudes of incident, reflected, and transmitted wave.
    # 1:Time[a.u.] 2:E_inc_x[a.u.] 3:E_inc_y[a.u.] 4:E_inc_z[a.u.] 5:E_ref_x[a.u.] 6:E_ref_y[a.u.] 7:E_ref_z[a.u.] 8:E_tra_x[a.u.] 9:E_tra_y[a.u.] 10:E_tra_z[a.u.]
 
 Geometry optimization and Ehrenfest molecular dynamics
--------------------------------------
+------------------------------------------------------
 
 .. _exercise-8:
 
 Exercise-8: Geometry optimization of C2H2 molecule
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this exercise, we learn the calculation of geometry optimization of acetylene (C2H2) molecule,
 solving the static Kohn-Sham equation.
@@ -3302,7 +2174,7 @@ Most of them are mandatory to execute the geometry optimization.
 This will help you to prepare an input file for other systems that you
 want to calculate. A complete list of the input keywords that can be
 used in the input file can be found in
-:any:`List of all input keywords <List of all input keywords>`.
+:any:`List of input keywords <List of input keywords>`.
 
 ::
    
@@ -3330,17 +2202,30 @@ used in the input file can be found in
      !geometry optimization option
      yn_opt = 'y'
    /
-   
+
+| :any:`theory <theory>` specifies which theoretical method is used in the calculation.
+| :any:`yn_opt <yn_opt>` is a switch to carry out the structure optimization.
+
+::
+
    &control
      !common name of output files
      sysname = 'C2H2'
    /
-   
+
+| :any:`sysname <sysname>` is a prefix for filenames of output files.
+
+::
+
    &units
      !units used in input and output files
      unit_system = 'A_eV_fs'
    /
-   
+
+| :any:`unit_system <unit_system>` specifies which unit system is used in the input and output files.
+
+::
+
    &system
      !periodic boundary condition
      yn_periodic = 'n'
@@ -3354,7 +2239,16 @@ used in the input file can be found in
      nelec  = 10
      nstate = 6
    /
-   
+
+| :any:`yn_periodic <yn_periodic>` specifies whether or not periodic boundary condition is applied.
+| :any:`al(i) <al(3)>` specifies the spatial box size of the cubiod cell.
+| :any:`nelem <nelem>` is the number of elements in the system.
+| :any:`natom <natom>` is the number of atoms in the system.
+| :any:`nelec <nelec>` is the number of electrons in the system.
+| :any:`nstate <nstate>` is the number of orbitals that are used in the calculation.
+
+::
+
    &pseudo
      !name of input pseudo potential file
      file_pseudo(1) = './C_rps.dat'
@@ -3371,23 +2265,42 @@ used in the input file can be found in
      ! Indices must correspond to those in &atomic_coor. !
      !---------------------------------------------------!
    /
-   
+
+| :any:`file_pseudo(n) <file_pseudo(:)>` specifies the filename of the pseudopotential file of the n-th element.
+| :any:`izatom(n) <izatom(:)>` is the atomic number of the n-th element.
+| :any:`lloc_ps(n) <lloc_ps(:)>` specifies which angular momentum component is chosen as the local potential for the n-th element.
+
+::
+
    &functional
      !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
      xc = 'PZ'
    /
-   
+
+| :any:`xc <xc>` specifies the exchange-correlation potential to be used in the calculation.
+
+::
+
    &rgrid
      !spatial grid spacing(x,y,z)
      dl(1:3) = 0.20d0, 0.20d, 0.20d0
    /
-   
+
+| :any:`dl(i) <dl(3)>` specifies the spatial grid spacing in i-th direction.
+
+::
+
    &scf
      !maximum number of scf iteration and threshold of convergence for ground state calculation
      nscf      = 300
      threshold = 1.0d-9
    /
-   
+
+| :any:`nscf <nscf>` specifies the maximum number of SCF iterations.
+| :any:`threshold <threshold>` specifies the threshold to judge the convergence.
+
+::
+
    &opt
      !threshold(maximum force on atom) of convergence for geometry optimization
      convrg_opt_fmax = 1.0d-3
@@ -3406,194 +2319,7 @@ used in the input file can be found in
      !------------------------------------------------------------------!
    /
 
-**&calculation**
-
-Mandatory: theory
-
-::
-
-   &calculation
-     !type of theory
-     theory = 'dft'
-     
-     !geometry optimization option
-     yn_opt = 'y'
-   /
-
-``theory = 'dft'`` indicates that the ground state calculation by DFT is carried out in
-the present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
-``yn_opt = 'y'`` indicates that the geometry optimization calculation is performed.
-
-**&control**
-
-Mandatory: none
-
-::
-
-   &control
-     !common name of output files
-     sysname = 'C2H2'
-   /
-
-'C2H2' defined by ``sysname = 'C2H2'`` will be used in the filenames of
-output files.
-
-**&units**
-
-Mandatory: none
-
-::
-
-   &units
-     !units used in input and output files
-     unit_system = 'A_eV_fs'
-   /
-
-This input keyword specifies the unit system to be used in the input and output files.
-If you do not specify it, atomic unit will be used.
-See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&system**
-
-Mandatory: yn_periodic, al, nelem, natom, nelec, nstate
-
-::
-
-   &system
-     !periodic boundary condition
-     yn_periodic = 'n'
-     
-     !grid box size(x,y,z)
-     al(1:3) = 12.0d0, 12.0d0, 16.0d0
-     
-     !number of elements, atoms, electrons and states(orbitals)
-     nelem  = 2
-     natom  = 4
-     nelec  = 10
-     nstate = 6
-   /
-
-``yn_periodic = 'n'`` indicates that the isolated boundary condition will be
-used in the calculation. ``al(1:3) = 12.0d0, 12.0d0, 16.0d0`` specifies the lengths
-of three sides of the rectangular parallelepiped where the grid points
-are prepared. ``nelem = 2`` and ``natom = 4`` indicate the number of elements and the
-number of atoms in the system, respectively. ``nelec = 10`` indicate the number of valence electrons in
-the system. ``nstate = 6`` indicates the number of Kohn-Sham orbitals
-to be solved. Since the present code assumes that the system is spin
-saturated, ``nstate`` should be equal to or larger than ``nelec/2``.
-See :any:`List of all input keywords <List of all input keywords>` for more information.
-
-**&pseudo**
-
-Mandatory: file_pseudo, izatom
-
-::
-   
-   &pseudo
-     !name of input pseudo potential file
-     file_pseudo(1) = './C_rps.dat'
-     file_pseudo(2) = './H_rps.dat'
-     
-     !atomic number of element
-     izatom(1) = 6
-     izatom(2) = 1
-     
-     !angular momentum of pseudopotential that will be treated as local
-     lloc_ps(1) = 1
-     lloc_ps(2) = 0
-     !--- Caution ---------------------------------------!
-     ! Indices must correspond to those in &atomic_coor. !
-     !---------------------------------------------------!
-   /
-
-Parameters related to atomic species and pseudopotentials.
-``file_pseudo(1) = './C_rps.dat'`` indicates the filename of the
-pseudopotential of element.
-``izatom(1) = 6`` specifies the atomic number of the element.
-``lloc_ps(1) = 1`` specifies the angular momentum of the pseudopotential
-that will be treated as local.
-
-**&functional**
-
-Mandatory: xc
-
-::
-   
-   &functional
-     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
-     xc = 'PZ'
-   /
-
-This indicates that the local density approximation with the Perdew-Zunger functional is used.
-
-**&rgrid**
-
-Mandatory: dl or num_rgrid
-
-::
-   
-   &rgrid
-     !spatial grid spacing(x,y,z)
-     dl(1:3) = 0.20d0, 0.20d0, 0.20d0
-   /
-
-``dl(1:3) = 0.20d0, 0.20d0, 0.20d0`` specifies the grid spacings
-in three Cartesian directions.
-See :any:`List of all input keywords <List of all input keywords>` for more information.
-
-**&scf**
-
-Mandatory: nscf, threshold
-
-::
-   
-   &scf
-     !maximum number of scf iteration and threshold of convergence
-     nscf      = 300
-     threshold = 1.0d-9
-   /
-
-``nscf`` is the number of scf iterations. 
-The scf loop in the ground state calculation ends before the number of
-the scf iterations reaches ``nscf``, if a convergence criterion is satisfied.
-``threshold = 1.0d-9`` indicates threshold of the convergence for scf iterations.
-
-**&opt**
-
-Mandatory: 
-
-::
-   
-   &opt
-     !threshold(maximum force on atom) of convergence for geometry optimization
-     convrg_opt_fmax = 1.0d-3
-   /
-
-**&atomic_coor**
-
-Mandatory: atomic_coor or atomic_red_coor (it may be provided as a
-separate file)
-
-::
-   
-   &atomic_coor
-     !cartesian atomic coodinates
-     'C'    0.0    0.0    0.6  1  y
-     'H'    0.0    0.0    1.7  2  y
-     'C'    0.0    0.0   -0.6  1  y
-     'H'    0.0    0.0   -1.7  2  y
-     !--- Format -------------------------------------------------------!
-     ! 'symbol' x y z index(correspond to that of pseudo potential) y/n !
-     !--- Caution ------------------------------------------------------!
-     ! final index(y/n) determines free/fix for the atom coordinate.    !
-     !------------------------------------------------------------------!
-   /
-
-Cartesian coordinates of atoms. The first column indicates the element.
-Next three columns specify Cartesian coordinates of the atoms. The
-number in the next column labels the element.
-The 'y' at the last column indicates to allow to change atomic coordinate during the optimization.
-('n' can be used to fix the atomic cooordinate.)
+| :any:`&atomic_coor <&atomic_coor>` specifies spatial coordinates of atoms.
 
 Output files
 ^^^^^^^^^^^^	
@@ -3667,7 +2393,7 @@ k-point distribution(for isolated systems, only gamma point is described).
 .. _exercise-9:
 
 Exercise-9: Ehrenfest molecular dynamics of C2H2 molecule
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this exercise, we learn the calculation of the molecular dynamics in
 the acetylene (C2H2) molecule under a pulsed electric field, solving the
@@ -3713,7 +2439,7 @@ electron dynamics induced by a pulsed electric field.
 This will help you to prepare the input file for other systems and other
 pulsed electric fields with molecular dynamics calculation that you want to calculate. 
 A complete list of the input keywords that can be used in the input file can be found in
-:any:`List of all input keywords <List of all input keywords>`.
+:any:`List of input keywords <List of input keywords>`.
 
 ::
    
@@ -3746,162 +2472,30 @@ A complete list of the input keywords that can be used in the input file can be 
      !molecular dynamics option
      yn_md  = 'y'
    /
-   
-   &control
-     !common name of output files
-     sysname = 'C2H2'
-   /
-   
-   &units
-     !units used in input and output files
-     unit_system = 'A_eV_fs'
-   /
-   
-   &system
-     !periodic boundary condition
-     yn_periodic = 'n'
-     
-     !grid box size(x,y,z)
-     al(1:3) = 12.0d0, 12.0d0, 16.0d0
-     
-     !number of elements, atoms, electrons and states(orbitals)
-     nelem  = 2
-     natom  = 4
-     nelec  = 10
-     nstate = 6
-   /
-   
-   &pseudo
-     !name of input pseudo potential file
-     file_pseudo(1) = './C_rps.dat'
-     file_pseudo(2) = './H_rps.dat'
-     
-     !atomic number of element
-     izatom(1) = 6
-     izatom(2) = 1
-     
-     !angular momentum of pseudopotential that will be treated as local
-     lloc_ps(1) = 1
-     lloc_ps(2) = 0
-     !--- Caution ---------------------------------------!
-     ! Indices must correspond to those in &atomic_coor. !
-     !---------------------------------------------------!
-   /
-   
-   &functional
-     !functional('PZ' is Perdew-Zunger LDA: Phys. Rev. B 23, 5048 (1981).)
-     xc = 'PZ'
-   /
-   
-   &rgrid
-     !spatial grid spacing(x,y,z)
-     dl(1:3) = 0.20d0, 0.20d0, 0.20d0
-   /
-   
-   &tgrid
-     !time step size and number of time grids(steps)
-     dt = 1.00d-3
-     nt = 5000
-   /
-   
-   &emfield
-     !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
-     ae_shape1 = 'Ecos2'
-     
-     !peak intensity(W/cm^2) of the incident pulse
-     I_wcm2_1 = 1.00d8
-     
-     !duration of the incident pulse
-     tw1 = 6.00d0
-     
-     !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
-     omega1 = 9.28d0
-     
-     !polarization unit vector(real part) for the incident pulse(x,y,z)
-     epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
-     
-     !carrier emvelope phase of the incident pulse
-     !(phi_cep1 must be 0.25 + 0.5 * n(integer) when ae_shape1 = 'Ecos2')
-     phi_cep1 = 0.75d0
-     !--- Caution ---------------------------------------------------------!
-     ! Defenition of the incident pulse is wrriten in:                     !
-     ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
-     !---------------------------------------------------------------------!
-   /
-   
-   &md
-     !ensemble
-     ensemble = 'NVE'
-     
-     !set of initial velocities
-     yn_set_ini_velocity = 'y'
-     
-     !setting temperature [K] for NVT ensemble, velocity scaling,
-     !and generating initial velocities
-     temperature0_ion_k = 300.0d0
-     
-     !time step interval for updating pseudopotential
-     step_update_ps = 20
-   /
 
-We present explanations of the input keywords that appear in the input file below:
-
-**required and recommended variables**
-
-**&calculation**
-
-Mandatory: theory
+| :any:`theory <theory>` specifies which theoretical method is used in the calculation.
+| :any:`yn_md <yn_md>` is a switch for Ehrenfest molecular dynamics.
 
 ::
-   
-   &calculation
-     !type of theory
-     theory = 'tddft_pulse'
-     
-     !molecular dynamics option
-     yn_md  = 'y'
-   /
 
-This indicates that the real time (RT) calculation for a pulse response is carried out in the
-present job. See :any:`List of all input keywords <List of all input keywords>` for detail.
-``yn_md = 'y'`` indicates that molecular dynamics calculation is coupled with the ``theory``, 
-where the Ehrenfest dynamics coupled with the TDDFT is performed in this case.
-
-**&control**
-
-Mandatory: none
-
-::
-   
    &control
      !common name of output files
      sysname = 'C2H2'
    /
 
-'C2H2' defined by ``sysname = 'C2H2'`` will be used 
-in the filenames of output files.
-
-**&units**
-
-Mandatory: none
+| :any:`sysname <sysname>` is a prefix for filenames of output files.
 
 ::
-   
+
    &units
      !units used in input and output files
      unit_system = 'A_eV_fs'
    /
 
-This input keyword specifies the unit system to be used in the input file. If
-you do not specify it, atomic unit will be used.
-See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&system**
-
-Mandatory: yn_periodic, al, nelem, natom, nelectron, nstate
+| :any:`unit_system <unit_system>` specifies which unit system is used in the input and output files.
 
 ::
-   
+
    &system
      !periodic boundary condition
      yn_periodic = 'n'
@@ -3916,16 +2510,15 @@ Mandatory: yn_periodic, al, nelem, natom, nelectron, nstate
      nstate = 6
    /
 
-These input keywords and their values should be the same as those used in the
-geometry optimization.
-See :any:`Exercise-8 <exercise-8>`.
-
-**&pseudo**
-
-Mandatory: file_pseudo, izatom
+| :any:`yn_periodic <yn_periodic>` specifies whether or not periodic boundary condition is applied.
+| :any:`al(i) <al(3)>` specifies the spatial box size of the cubiod cell.
+| :any:`nelem <nelem>` is the number of elements in the system.
+| :any:`natom <natom>` is the number of atoms in the system.
+| :any:`nelec <nelec>` is the number of electrons in the system.
+| :any:`nstate <nstate>` is the number of orbitals that are used in the calculation.
 
 ::
-   
+
    &pseudo
      !name of input pseudo potential file
      file_pseudo(1) = './C_rps.dat'
@@ -3943,13 +2536,9 @@ Mandatory: file_pseudo, izatom
      !---------------------------------------------------!
    /
 
-These input keywords and their values should be the same as those used in the
-geometry optimization.
-See :any:`Exercise-8 <exercise-8>`.
-
-**&functional**
-
-Mandatory: xc
+| :any:`file_pseudo(n) <file_pseudo(:)>` specifies the filename of the pseudopotential file of the n-th element.
+| :any:`izatom(n) <izatom(:)>` is the atomic number of the n-th element.
+| :any:`lloc_ps(n) <lloc_ps(:)>` specifies which angular momentum component is chosen as the local potential for the n-th element.
 
 ::
 
@@ -3958,11 +2547,7 @@ Mandatory: xc
      xc = 'PZ'
    /
 
-This indicates that the local density approximation with the Perdew-Zunger functional is used.
-
-**&rgrid**
-
-Mandatory: dl or num_rgrid
+| :any:`xc <xc>` specifies the exchange-correlation potential to be used in the calculation.
 
 ::
 
@@ -3971,33 +2556,21 @@ Mandatory: dl or num_rgrid
      dl(1:3) = 0.20d0, 0.20d0, 0.20d0
    /
 
-``dl(1:3) = 0.20d0, 0.20d0, 0.20d0`` specifies the grid spacings
-in three Cartesian directions. This must be the same as
-that in the ground state calculation.
-See :any:`List of all input keywords <List of all input keywords>` for more information.
-
-**&tgrid**
-
-Mandatory: dt, nt
+| :any:`dl(i) <dl(3)>` specifies the spatial grid spacing in i-th direction.
 
 ::
-   
+
    &tgrid
      !time step size and number of time grids(steps)
      dt = 1.00d-3
      nt = 5000
    /
 
-``dt = 1.00d-3`` specifies the time step of the time evolution
-calculation. ``nt = 5000`` specifies the number of time steps in the
-calculation.
-
-**&emfield**
-
-Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_cep1
+| :any:`dt` specifies the time step.
+| :any:`nt` is the number of time steps for the time propagation.
 
 ::
-   
+
    &emfield
      !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
      ae_shape1 = 'Ecos2'
@@ -4023,37 +2596,15 @@ Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_ce
      !---------------------------------------------------------------------!
    /
 
-These input keywords specify the pulsed electric field applied to the system.
-
-``ae_shape1 = 'Ecos2'`` indicates that the envelope of the pulsed
-electric field has a *cos^2* shape.
-
-``I_wcm2_1 = 1.00d8`` specifies the maximum intensity of the
-applied electric field in unit of W/cm^2.
-
-``tw1 = 6.00d0`` specifies the pulse duration. Note that it is not the
-FWHM but a full duration of the cos^2 envelope.
-
-``omega1 = 9.28d0`` specifies the average photon energy (frequency
-multiplied with hbar).
-
-``epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0`` specifies the real part of the unit
-polarization vector of the pulsed electric field. Using the real
-polarization vector, it describes a linearly polarized pulse.
-
-``phi_cep1 = 0.75d0`` specifies the carrier envelope phase of the pulse.
-As noted above, 'phi_cep1' must be 0.75 (or 0.25) if one employs 'Ecos2'
-pulse shape, since otherwise the time integral of the electric field
-does not vanish.
-
-See :any:`List of all input keywords <List of all input keywords>` for details.
-
-**&md**
-
-Mandatory: none
+| :any:`ae_shape1 <ae_shape1>` specifies the envelope of the field.
+| :any:`I_wcm2_1 <I_wcm2_1>` specify the intensity of the pulse in unit of W/cm\ :sup:`2`\.
+| :any:`tw1 <tw1>` specifies the duration of the pulse.
+| :any:`omega1 <omega1>` specifies the mean photon energy of the pulse.
+| :any:`epdir_re1(i) <epdir_re1(3)>` specifies the i-th component of the real part of the polarization unit vector.
+| :any:`phi_cep1 <phi_cep1>` specifies the carrier-envelope phase of the pulse.
 
 ::
-   
+
    &md
      !ensemble
      ensemble = 'NVE'
@@ -4069,15 +2620,10 @@ Mandatory: none
      step_update_ps = 20
    /
 
-These input keywords specify conditions of the molecular dynamics.
-
-``ensemble = 'NVE'`` specifies that the microcanonical ensemble is used (thermostat is not used).
-
-``yn_set_ini_velocity = 'y'`` indicates that initial velocity is given using random number with the specified temperature by 'temperature0_ion_k'.
-
-``temperature0_ion_k = 300.0d0`` specifies the setting temperature for generating the initial velicity (and also for thermostat in NVT ensemble).
-
-``step_update_ps = 20`` specifies the time step interval to update pseudopotential.
+| :any:`ensemble <ensemble>` specifies the choice of the ensemble.
+| :any:`yn_set_ini_velocity <yn_set_ini_velocity>` is a switch to prepare initial velocity for atoms.
+| :any:`temperature0_ion_k <temperature0_ion_k>` specifies the temperature that is used to generate initial velocity of ions.
+| :any:`step_update_ps <step_update_ps>` specifies the time step interval to update projector for the nonlocal pseudopotential.
 
 Output files
 ^^^^^^^^^^^^
@@ -4164,12 +2710,12 @@ Results of time evolution calculation for vector potential, electric field, and 
 Atomic coordinates [Angstrom], velocities [a.u.] and forces [a.u.] are printed along the time evolution in xyz format. 
 
 FDTD simulation(electromagnetic analysis)
----------------
+-----------------------------------------
 
 .. _exercise-10:
 
 Exercise-10: Pulsed electric field response of a metallic nanosphere in classical electromagnetism(FDTD simulation)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In this exercise, we learn the pulsed electric field response in the metallic nanosphere, solving the time-dependent Maxwell equations.
 As outputs of the calculation, the time response of the electromagnetic field is calculated.
@@ -4203,7 +2749,7 @@ In the input file *classicEM_rt_pulse.inp*, input keywords are specified.
 Most of them are mandatory to execute the linear response calculation.
 This will help you to prepare the input file for other systems that you want to calculate.
 A complete list of the input keywords that can be used in the input file
-can be found in :any:`List of all input keywords <List of all input keywords>`.
+can be found in :any:`List of input keywords <List of input keywords>`.
 
 ::
    
@@ -4234,134 +2780,8 @@ can be found in :any:`List of all input keywords <List of all input keywords>`.
      !type of theory
      theory = 'maxwell'
    /
-   
-   &control
-     !name of directory where output files are contained
-     base_directory = 'result'
-   /
-   
-   &units
-     !units used in input and output files
-     unit_system = 'A_eV_fs'
-   /
-   
-   &system
-     !periodic boundary condition
-     yn_periodic = 'n'
-   /
-   
-   &emfield
-     !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
-     ae_shape1 = 'Ecos2'
-     
-     !peak intensity(W/cm^2) of the incident pulse
-     I_wcm2_1 = 1.00d8
-     
-     !duration of the incident pulse
-     tw1 = 4.60d0
-     
-     !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
-     omega1 = 5.49d0
-     
-     !polarization unit vector(real part) for the incident pulse(x,y,z)
-     epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
-     
-     !carrier emvelope phase of the incident pulse
-     !(phi_cep1 must be 0.25 + 0.5 * n(integer) when ae_shape1 = 'Ecos2')
-     phi_cep1 = 0.75d0
-     !--- Caution ---------------------------------------------------------!
-     ! Defenition of the incident pulse is wrriten in:                     !
-     ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
-     !---------------------------------------------------------------------!
-   /
-   
-   &maxwell
-     !box size and spacing of spatial grid(x,y,z)
-     al_em(1:3) = 120d0, 120d0, 120d0
-     dl_em(1:3) = 1.2d0, 1.2d0, 1.2d0
-     
-     !time step size and number of time grids(steps)
-     dt_em = 2.30d-4
-     nt_em = 20000
-     
-     !name of input shape file and number of media in the file
-     shape_file = './shape.cube'
-     media_num  = 1
-     
-     !*** MEDIA INFORMATION(START) **************************************!
-     !type of media(media ID)
-     media_type(1) = 'lorentz-drude'
-     !--- Au described by Lorentz-Drude model ---------------------------!
-     ! The parameters are determined from:                               !
-     ! (https://www.osapublishing.org/ao/abstract.cfm?uri=ao-37-22-5271) !
-     !-------------------------------------------------------------------!
-     
-     !number of poles and plasma frequency of media(media ID)
-     pole_num_ld(1) = 6
-     omega_p_ld(1)  = 9.030d0
-     
-     !oscillator strength, collision frequency,
-     !and oscillator frequency of media(media ID,pole ID)
-     f_ld(1,1:6)     = 0.760d0, 0.024d0, 0.010d0, 0.071d0, 0.601d0, 4.384d0
-     gamma_ld(1,1:6) = 0.053d0, 0.241d0, 0.345d0, 0.870d0, 2.494d0, 2.214d0
-     omega_ld(1,1:6) = 0.000d0, 0.415d0, 0.830d0, 2.969d0, 4.304d0, 13.32d0
-     !*** MEDIA INFORMATION(END) ****************************************!
-     
-     !*** SOURCE INFORMATION(START) *************************************!
-     !type of method to generate the incident pulse
-     !('source': incident current source)
-     wave_input = 'source'
-     
-     !location of source(x,y,z)
-     source_loc1(1:3) = -37.8d0, 0.0d0, 0.0d0
-     
-     !propagation direction of the incident pulse(x,y,z)
-     ek_dir1(1:3) = 1.0d0, 0.0d0, 0.0d0
-     !*** SOURCE INFORMATION(END) ***************************************!
-     
-     !*** OBSERVATION INFORMATION(START) ********************************!
-     !number of observation points
-     obs_num_em = 1
-     
-     !time step interval for sampling
-     obs_samp_em = 20
-     
-     !location of observation point(observation ID,x,y,z)
-     obs_loc_em(1,1:3) = 0.0d0, 0.0d0, 0.0d0
-     
-     !output flag for electrmagnetic field distribution(observation ID)
-     yn_obs_plane_em(1) = 'n'
-     !--- Make of animation file ----------------------------------------!
-     ! When yn_obs_plane_em(1) = 'y', animation file can be made         !
-     ! by program 'FDTD_make_figani' in SALMON utilities.                !
-     ! The animation file visualizes electromagnetic field distributions !
-     ! on the cross-section including the observation point              !
-     ! whose location is determined by obs_loc_em.                       !
-     !-------------------------------------------------------------------!
-     !*** OBSERVATION INFORMATION(END) **********************************!
-   /
 
-We present explanations of the input keywords that appear in the input file below:
-
-**required and recommended variables**
-
-**&calculation**
-
-Mandatory: Theory
-
-::
-
-   &calculation
-     !type of theory
-     theory = 'maxwell'
-   /
-
-This indicates that the real time classical electromagnetism calculation is carried out in the present job.
-See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&control**
-
-Mandatory: none
+| :any:`theory <theory>` specifies which theoretical method is used in the calculation.
 
 ::
 
@@ -4370,12 +2790,7 @@ Mandatory: none
      base_directory = 'result'
    /
 
-``result`` defined by ``base_directory = 'result'`` will be used in the directory name that contains output files.
-Default is ``directory = './'``
-
-**&units**
-
-Mandatory: none
+| :any:`base_directory <base_directory>` specifies the directory name where output files are generated.
 
 ::
 
@@ -4384,13 +2799,7 @@ Mandatory: none
      unit_system = 'A_eV_fs'
    /
 
-This input keyword specifies the unit system to be used in the input and output files.
-If you do not specify it, atomic unit will be used.
-See :any:`List of all input keywords <List of all input keywords>` for detail.
-
-**&system**
-
-Mandatory: yn_periodic
+| :any:`unit_system <unit_system>` specifies which unit system is used in the input and output files.
 
 ::
 
@@ -4399,11 +2808,7 @@ Mandatory: yn_periodic
      yn_periodic = 'n'
    /
 
-``yn_periodic = 'n'`` indicates that the isolated boundary condition will be used in the calculation.
-
-**&emfield**
-
-Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_cep1
+| :any:`yn_periodic <yn_periodic>` specifies whether or not periodic boundary condition is applied.
 
 ::
 
@@ -4432,34 +2837,12 @@ Mandatory: ae_shape1, {I_wcm2_1 or E_amplitude1}, tw1, omega1, epdir_re1, phi_ce
      !---------------------------------------------------------------------!
    /
 
-These input keywords specify the pulsed electric field applied to the system.
-
-``ae_shape1 = 'Ecos2'`` indicates that the envelope of the pulsed
-electric field has a *cos^2* shape.
-
-``I_wcm2_1 = 1.00d8`` specifies the maximum intensity of the
-applied electric field in unit of W/cm^2.
-
-``tw1 = 4.60d0`` specifies the pulse duration. Note that it is not the
-FWHM but a full duration of the cos^2 envelope.
-
-``omega1 = 5.49d0`` specifies the average photon energy (frequency
-multiplied with hbar).
-
-``epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0`` specifies the real part of the unit
-polarization vector of the pulsed electric field. Using the real
-polarization vector, it describes a linearly polarized pulse.
-
-``phi_cep1 = 0.75d0`` specifies the carrier envelope phase of the pulse.
-As noted above, 'phi_cep1' must be 0.75 (or 0.25) if one employs 'Ecos2'
-pulse shape, since otherwise the time integral of the electric field
-does not vanish.
-
-See :any:`List of all input keywords <List of all input keywords>` for details.
-
-**&maxwell**
-
-Mandatory: al_em, dl_em, nt_em
+| :any:`ae_shape1 <ae_shape1>` specifies the envelope of the field.
+| :any:`I_wcm2_1 <I_wcm2_1>` specify the intensity of the pulse in unit of W/cm\ :sup:`2`\.
+| :any:`tw1 <tw1>` specifies the duration of the pulse.
+| :any:`omega1 <omega1>` specifies the mean photon energy of the pulse.
+| :any:`epdir_re1(i) <epdir_re1(3)>` specifies the i-th component of the real part of the polarization unit vector.
+| :any:`phi_cep1 <phi_cep1>` specifies the carrier-envelope phase of the pulse.
 
 ::
 
@@ -4529,38 +2912,23 @@ Mandatory: al_em, dl_em, nt_em
      !*** OBSERVATION INFORMATION(END) **********************************!
    /
 
-``al_em(1:3) = 120d0, 120d0, 120d0`` specifies the lengths of three sides of the rectangular parallelepiped where the grid points are prepared.
+| :any:`al_em(i) <al_em(3)>` specifies the lengths of three sides of the cuboid where the grid points are prepared.
+| :any:`dl_em(i) <dl_em(3)>` specifies the grid spacings in three Cartesian directions.
+| :any:`dt_em <dt_em>` specifies the time step of the time evolution calculation.
+| :any:`nt_em <nt_em>` specifies the number of time steps in the calculation.
+| :any:`shape_file <shape_file>` specifies the filename of the shape file.
+| :any:`media_num <media_num>` specifies the number of the types of media that is provided in the shape file.
+| :any:`media_type(n) <media_type(:)>` specifies the type of the n-th media.
+| :any:`pole_num_ld(n) <pole_num_ld(:)>` and :any:`omega_p_ld(n) <omega_p_ld(:)>` specify the number of poles and the plasmal frequency of the n-th media, respectively.
+| :any:`f_ld(n,m) <f_ld(:,:)>`, :any:`omega_ld(n,m) <omega_ld(:,:)>`, :any:`gamma_ld(n,m) <gamma_ld(:,:)>` specify the oscillator strength, oscillator frequency, and collision frequency of the m-th pole of the n-th media, respectively.
+| :any:`wave_input <wave_input>` specifies an electric current source that is used for the generation of the pulse.
+| :any:`source_loc1(i) <source_loc1(3)>` specifies the coordinate of the current source.
+| :any:`ek_dir1(i) <ek_dir1(3)>` specifies the propagation direction of the pulse.
+| :any:`obs_num_em <obs_num_em>` specifies the number of the observing point.
+| :any:`obs_samp_em <obs_samp_em>` specifies the sampling interval.
+| :any:`obs_loc_em(n,i) <obs_loc_em(:,3)>` specifies the coordinate of n-th observing point.
+| :any:`yn_obs_plane_em(n) <yn_obs_plane_em(:)>` is a switch to output the electromagnetic fields on the xy, yz, and xz planes that include the n-th observation point.
 
-``dl_em(1:3) = 1.2d0, 1.2d0, 1.2d0`` specifies the grid spacings in three Cartesian directions.
-
-``dt_em = 2.30d-4`` specifies the time step of the time evolution calculation.
-If you do not specifies ``dt_em``, this input keyword is automatically specified by the Courant-Friedrichs-Lewy Condition.
-
-``nt_em = 20000`` specifies the number of time steps in the calculation.
-
-``shape_file = 'shape.cube'`` indicates the filename of the shape file.
-
-``media_num = 1`` specifies the number of the types of media described by the shape file('shape.cube').
-
-``media_type(1) = 'lorentz-drude'`` specifies the type of media as the Lorentz-Drude model.
-
-``omega_p_ld(1)  = 9.030d0``, ``f_ld(1,1:6) = 0.760d0, 0.024d0, 0.010d0, 0.071d0, 0.601d0, 4.384d0``, ``gamma_ld(1,1:6) = 0.053d0, 0.241d0, 0.345d0, 0.870d0, 2.494d0, 2.214d0``, and ``omega_ld(1,1:6) = 0.000d0, 0.415d0, 0.830d0, 2.969d0, 4.304d0, 13.32d0`` specify the plasma frequency, oscillator strength, collision frequency, and oscillator frequency of media, respectively.
-
-``wave_input = 'source'`` specifies an electric current source that is used for generating the pulse.
-
-``source_loc1(1:3) = -37.8d0, 0.0d0, 0.0d0`` specifies the coordinate of the current source.
-
-``ek_dir1(1:3) = 1.0d0, 0.0d0, 0.0d0`` specifies the propagation direction of the pulse (x,y,z).
-
-``obs_num_em = 1`` specifies the number of the observation point.
-
-``obs_samp_em = 20`` specifies the sampling number for time steps. In this case, output files are generated every 20 steps.
-
-``obs_loc_em(1,1:3) = 0.0d0, 0.0d0, 0.0d0`` specifies the coordinate of the current source.
-
-``yn_obs_plane_em(1) = 'n'`` determines to output the electrmagnetic fields on the planes (xy, yz, and xz planes) for the observation point. This option must be ``'y'`` for generating animation files by using SALMON utilities: https://salmon-tddft.jp/utilities.html
-
-See &maxwell in :any:`List of all input keywords <List of all input keywords>` for more information.
 
 Output files
 ^^^^^^^^^^^^
