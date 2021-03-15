@@ -2588,7 +2588,7 @@ sphere_nion_jm(:)
 
 integer, default=0
 
-   | Available for ``yn_jm='y'`` and ``shape_file_jm='none'`` in the DFT/TDDFT based options of ``theory``. ``sphere_nion_jm(n)`` spesifies electron number for n-th sphere. At present, only neutral systems can be treated.
+   | Available for ``yn_jm='y'`` and ``shape_file_jm='none'`` in the DFT/TDDFT based options of ``theory``. ``sphere_nion_jm(n)`` spesifies ion number for n-th sphere. At present, only neutral systems can be treated.
 
 .. _sphere_loc_jm(:,3):
 
