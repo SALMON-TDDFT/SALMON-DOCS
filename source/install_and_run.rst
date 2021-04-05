@@ -159,19 +159,21 @@ For example, coordinates of atomic positions of the target material may be eithe
 Pseudopotentials
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-SALMON utilizes norm-conserving pseudpotentials.
+SALMON utilizes norm-conserving pseudpotentials. 
+Filenames of pseudopotentials should be written in the input file.
+
 You may find pseudopotentials of some elements in the samples prepared in :any:`Exercises`.
-In SALMON, several formats of pseudopotentials may be usable.
-Pseudopotentials with an extension ``.fhi`` can be obtained from the website listed below.
+In SALMON, several formats of pseudopotentials may be usable (listed below).
+For example, pseudopotentials with an extension ``.fhi`` can be obtained from the ABINIT website.
 (This is a part of previous atomic data files for the ABINIT code.)
 
-====================================  =====================================================================================
-Pseudopotential                       Website
-====================================  =====================================================================================
-Pseudopotentials for the ABINIT code  https://www.abinit.org/sites/default/files/PrevAtomicData/psp-links/psp-links/lda_fhi
-====================================  =====================================================================================
-
-Filenames of the pseudopotentials should be written in the input file.
+====================================  =============  =====================================================================================
+Pseudopotential                       extension      Website
+====================================  =============  =====================================================================================
+Pseudopotentials for the ABINIT code  ``.fhi``       https://www.abinit.org/sites/default/files/PrevAtomicData/psp-links/pseudopotentials.html
+====================================  =============  =====================================================================================
+Pseudopotentials for the OpenMX code  ``.vps``       https://t-ozaki.issp.u-tokyo.ac.jp/vps_pao2019/
+====================================  =============  =====================================================================================
 
 
 input file
