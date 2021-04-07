@@ -164,16 +164,15 @@ Filenames of pseudopotentials should be written in the input file.
 
 You may find pseudopotentials of some elements in the samples prepared in :any:`Exercises`.
 In SALMON, several formats of pseudopotentials may be usable (listed below).
-For example, pseudopotentials with an extension ``.fhi`` can be obtained from the ABINIT website.
-(This is a part of previous atomic data files for the ABINIT code.)
+For example, pseudopotentials with an extension ``.fhi`` can be obtained from the ABINIT website (this is a part of previous atomic data files for the ABINIT code).
 
-====================================  =============  =====================================================================================
-Pseudopotential                       extension      Website
-====================================  =============  =====================================================================================
-Fritz-Haber-Institute (FHI) pseudopotentials for LDA  ``.fhi``  https://www.abinit.org/sites/default/files/PrevAtomicData/psp-links/lda_fhi.html
-Fritz-Haber-Institute (FHI) pseudopotentials for GGA(PBE)  ``.fhi``  https://www.abinit.org/sites/default/files/PrevAtomicData/psp-links/gga_fhi.html  
-Pseudopotentials for the OpenMX code  ``.vps``       https://t-ozaki.issp.u-tokyo.ac.jp/vps_pao2019/
-====================================  =============  =====================================================================================
+=========================================================  =============  =====================================================================================
+Pseudopotential                                            extension      Website
+=========================================================  =============  =====================================================================================
+Fritz-Haber-Institute (FHI) pseudopotentials for LDA       ``.fhi``       https://www.abinit.org/sites/default/files/PrevAtomicData/psp-links/lda_fhi.html
+Fritz-Haber-Institute (FHI) pseudopotentials for GGA(PBE)  ``.fhi``       https://www.abinit.org/sites/default/files/PrevAtomicData/psp-links/gga_fhi.html  
+Pseudopotentials for the OpenMX code                       ``.vps``       https://t-ozaki.issp.u-tokyo.ac.jp/vps_pao2019/
+=========================================================  =============  =====================================================================================
 
 
 input file
