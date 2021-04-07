@@ -170,7 +170,8 @@ For example, pseudopotentials with an extension ``.fhi`` can be obtained from th
 ====================================  =============  =====================================================================================
 Pseudopotential                       extension      Website
 ====================================  =============  =====================================================================================
-Pseudopotentials for the ABINIT code  ``.fhi``       https://www.abinit.org/sites/default/files/PrevAtomicData/psp-links/pseudopotentials.html
+Fritz-Haber-Institute (FHI) pseudopotentials for LDA  ``.fhi``  https://www.abinit.org/sites/default/files/PrevAtomicData/psp-links/lda_fhi.html
+Fritz-Haber-Institute (FHI) pseudopotentials for GGA(PBE)  ``.fhi``  https://www.abinit.org/sites/default/files/PrevAtomicData/psp-links/gga_fhi.html  
 Pseudopotentials for the OpenMX code  ``.vps``       https://t-ozaki.issp.u-tokyo.ac.jp/vps_pao2019/
 ====================================  =============  =====================================================================================
 
