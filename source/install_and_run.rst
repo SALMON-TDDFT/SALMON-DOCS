@@ -159,7 +159,7 @@ For example, coordinates of atomic positions of the target material may be eithe
 Pseudopotentials
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-SALMON utilizes norm-conserving pseudpotentials. 
+SALMON utilizes norm-conserving (NC) pseudpotentials. 
 Filenames of pseudopotentials should be written in the input file.
 
 You may find pseudopotentials of some elements in the samples prepared in :any:`Exercises`.
@@ -172,6 +172,10 @@ Pseudopotential                                            extension      Websit
 Fritz-Haber-Institute (FHI) pseudopotentials for LDA       ``.fhi``       https://www.abinit.org/sites/default/files/PrevAtomicData/psp-links/lda_fhi.html
 Fritz-Haber-Institute (FHI) pseudopotentials for GGA(PBE)  ``.fhi``       https://www.abinit.org/sites/default/files/PrevAtomicData/psp-links/gga_fhi.html  
 Pseudopotentials for the OpenMX code                       ``.vps``       https://t-ozaki.issp.u-tokyo.ac.jp/vps_pao2019/
+Format 8 for ABINIT norm-conserving pseudopotentials       ``.psp8``      https://www.abinit.org/psps_abinit , 
+                                                                          http://www.pseudo-dojo.org/
+Unified-pseudopotential-format (NC type only in SALMON)    ``.upf``       http://www.quantum-espresso.org/pseudopotentials/unified-pseudopotential-format , 
+                                                                          http://www.pseudo-dojo.org/
 =========================================================  =============  =====================================================================================
 
 
