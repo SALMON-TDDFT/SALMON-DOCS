@@ -31,10 +31,12 @@ We present 10 exercises.
 First 3 exercises (Exercise-1 ~ 3) are for an isolated molecule,
 acetylene C2H2. If you are interested in learning electron dynamics
 calculations in isolated systems, please look into these exercises. In
-SALMON, we usually calculate the ground state solution first. This is
+SALMON, we usually calculate the ground state solution first using a
+static density functional theory (DFT). This is
 illustrated in :any:`Exercise-1 <exercise-1>`.
 After finishing the ground state calculation, two exercises of electron
-dynamics calculations are prepared.
+dynamics calculations based on time-dependent density functional theory (TDDFT)
+are prepared.
 :any:`Exercise-2 <exercise-2>`
 illustrates the calculation of linear optical responses in real time,
 obtaining polarizability and photoabsorption of the molecule.
@@ -46,36 +48,40 @@ Next 3 exercises (Exercise-4 ~ 6) are for a crystalline solid, silicon.
 If you are interested in learning electron dynamics calculations in
 extended periodic systems, please look into these exercises.
 :any:`Exercise-4 <exercise-4>`
-illustrates the ground state solution of the crystalline silicon.
+illustrates the ground state calculation of the crystalline silicon based on DFT.
 :any:`Exercise-5 <exercise-5>`
 illustrates the calculation of linear response properties of the crystalline
-silicon to obtain the dielectric function.
+silicon based on TDDFT to obtain the dielectric function.
 :any:`Exercise-6 <exercise-6>`
 illustrates the calculation of electron dynamics in the crystalline
 silicon induced by a pulsed electric field.
 
-Exercise-7 is for an irradiation and a propagation
-of a pulsed light in a bulk silicon, coupling Maxwell equations for the
+Exercise-7 is for a simultaneous calculation of the propagation
+of a pulsed light and electronic motion in a bulk silicon, 
+coupling Maxwell equations for the
 electromagnetic fields of the pulsed light and the electron dynamics in
-the unit cells. This calculation is quite time-consuming and is
+the unit cells based on TDDFT. This calculation is quite time-consuming and is
 recommended to execute using massively parallel supercomputers.
 :any:`Exercise-7 <exercise-7>`
-illustrates the calculation of a pulsed, linearly polarized light
+illustrates the calculation of a linearly polarized pulsed light
 irradiating normally on a surface of a bulk silicon.
 
-Next 2 exercises (Exercise-8 ~ 9) are for geometry optimization and
-Ehrenfest molecular dynamics based on the TDDFT method
+Next 2 exercises (Exercise-8 ~ 9) are for geometry optimization based on DFT and
+Ehrenfest molecular dynamics based on TDDFT
 for an isolated molecule, acetylene C2H2. 
 :any:`Exercise-8 <exercise-8>`
 illustrates the geometry optimization in the ground state.
 :any:`Exercise-9 <exercise-9>`
 illustrates the Ehrenfest molecular dynamics induced by a pulsed electric field.
 
-:any:`Exercise-10 <exercise-10>` is for a macroscopic light propagation through a metallic nanosphere.
+:any:`Exercise-10 <exercise-10>` is for a macroscopic light propagation through 
+a metallic nanosphere solving Maxwell equations.
 The optical response of the nanosphere is described by a dielectric function.
 Finite-Difference Time-Domain (FDTD) method is used to calculated the three-dimensional
 light propagation.
 
+Input files of exercises are included in SALMON, in the directory 
+``SALMON/samples/exercise_##_<description>/``.
 
 C2H2 (isolated molecules)
 -------------------------
@@ -90,10 +96,22 @@ of acetylene (C2H2) molecule, solving the static Kohn-Sham equation.
 This exercise will be useful to learn how to set up calculations in
 SALMON for any isolated systems such as molecules and nanoparticles.
 
+Acetylene molecule is a linear chain molecule composed of two Carbon atoms 
+and two Hydrogen atoms.
+
+  .. image:: images/acetylene.pdf
+     :scale: 20%
+
+In SALMON, we use a three-dimensional (3D) uniform grid system
+to express physical quantities such as electron orbitals.
+
+  .. image:: images/acetylene_grid.pdf
+     :scale: 20%
+
 Input files
 ^^^^^^^^^^^
 
-To run the code, following files in samples are used:
+To run the code, following files in the directory ``SALMON/samples/exercise_01_C2H2_gs/`` are used:
 
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
@@ -107,6 +125,13 @@ To run the code, following files in samples are used:
 | *H_rps.dat*                       | pseudopotential file for hydrogen |
 |                                   | atom                              |
 +-----------------------------------+-----------------------------------+
+
+Pseudopotential files are needed for two elements, Carbon (C) and Hydrogen (H).
+The pseudopoential depends on the angular momentum, and looks as follows (for Carbon).
+
+  .. image:: images/C_rps_pot.pdf
+     :scale: 20%
+
 
 In the input file *C2H2_gs.inp*, input keywords are specified.
 Most of them are mandatory to execute the ground state calculation.
@@ -264,12 +289,20 @@ used in the input file can be found in
 
 | :any:`&atomic_coor <&atomic_coor>` specifies spatial coordinates of atoms.
 
+Execusion
+^^^^^^^^^
+
+In a multiprocess environment, calculation will be executed as
+
+    $ mpiexec -n NPROC salmon < C2H2_gs.inp > C2H2_gs.out
+
+where NPROC is the number of MPI processes. A standard output will be stored in the file ``C2H2_gs.out``.
 
 Output files
 ^^^^^^^^^^^^	
 
 After the calculation, following output files and a directory are created in the
-directory that you run the code,
+directory that you run the code in addition to the standard output file,
 
 +-------------------------------------+-----------------------------------+
 | name                                | description                       |
@@ -277,7 +310,7 @@ directory that you run the code,
 | *C2H2_info.data*                    | information on ground state       |
 |                                     | solution                          |
 +-------------------------------------+-----------------------------------+
-| *C2H2_eigen.data*                   | 1 particle energies               |
+| *C2H2_eigen.data*                   | orbital energies               |
 +-------------------------------------+-----------------------------------+
 | *C2H2_k.data*   　                  | k-point distribution              |
 |                                     | (for isolated systems, only       |
@@ -308,18 +341,113 @@ directory that you run the code,
 | You may download the above files (zipped file, except for the directory *data_for_restart*) from:
 | https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/01_C2H2_gs.zip
 
-Main results of the calculation such as orbital energies are included in
-*C2H2_info.data*. Explanations of the *C2H2_info.data* and other output
-files are below:
+
+We first explain the standard output file. In the beginning of the file, input variables used in the calculation are shown.
+
+::
+
+   ##############################################################################
+   # SALMON: Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience
+   #
+   #                             Version 2.0.1
+   ##############################################################################
+     Libxc: [disabled]
+      theory= dft
+   ---------------------------------------- init_sym_sub(start)
+    symmetry-operation file ( sym.dat  ) can not be found.
+   ------------------------------------------ init_sym_sub(end)
+      use of real value orbitals =  T
+    ======
+    MPI distribution:
+      nproc_k     :           1
+      nproc_ob    :           1
+      nproc_rgrid :           4           4           4
+    OpenMP parallelization:
+      number of threads :           1
+   .........
+
+After that, the SCF loop starts. At each iteration step, the total energy as well as 
+orbital energies and some other quantities are displayed.
+
+::
+
+    -----------------------------------------------
+    iter=     1     Total Energy=       -23.25680398     Gap=   -20.23579640     Vh iter= 211
+        1       -23.8823      2        -3.9239      3        13.6149      4       -15.2285
+        5        -1.7855      6        -6.6209
+   iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =      1 0.20779375E+00
+    Ne=   10.0000000000000     
+    -----------------------------------------------
+    iter=     2     Total Energy=      -163.16222784     Gap=   -22.02054947     Vh iter= 235
+        1       -44.5138      2        -3.8925      3         6.1788      4       -28.1284
+        5        -3.4269      6       -15.8417
+   iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =      2 0.43197789E+00
+    Ne=  10.00000000000000     
+    -----------------------------------------------
+    iter=     3     Total Energy=      -188.25766814     Gap=   -20.90219256     Vh iter= 217
+        1       -41.7361      2        -5.0101      3         5.4169      4       -27.5078
+        5        -3.3350      6       -15.4853
+   iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =      3 0.14362457E+00
+    Ne=   10.0000000000000     
+
+When the convergence criterion is satisfied, the SCF calculation ends.
+
+::
+
+    -----------------------------------------------
+    iter=   126     Total Energy=      -339.69524618     Gap=     6.78879114     Vh iter=   1
+        1       -18.4106      2       -13.9966      3       -12.4163      4        -7.3385
+        5        -7.3385      6        -0.5498
+   iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =    126 0.46706835E-08
+    Ne=   10.0000000000000     
+    -----------------------------------------------
+    iter=   127     Total Energy=      -339.69524615     Gap=     6.78879057     Vh iter=   1
+        1       -18.4106      2       -13.9966      3       -12.4163      4        -7.3385
+        5        -7.3385      6        -0.5498
+   iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =    127 0.29853988E-09
+    Ne=   10.0000000000000     
+     #GS converged at   128  : 0.29853988E-09
+
+Next, the force acting on ions and some other information related to orbital energies are shown.
+
+::
+
+       ===== force =====
+           1 -0.11747820E-04  0.22186082E-04 -0.59497394E+00
+           2 -0.20094975E-05  0.41046764E-05  0.57651242E+00
+           3 -0.11356190E-04  0.23640028E-04  0.59492966E+00
+           4 -0.16079702E-05  0.45416509E-05 -0.57651956E+00
+   band information-----------------------------------------
+   Bottom of VB -0.676576557928278     
+   Top of VB -0.269686692329130     
+   Bottom of CB -2.020322940577464E-002
+   Top of CB -2.020322940577464E-002
+   Fundamental gap  0.249483462923356     
+   BG between same k-point  0.249483462923356     
+   Physicaly upper bound of CB for DOS -2.020322940577464E-002
+   Physicaly upper bound of CB for eps(omega)  0.656373328522503     
+   ---------------------------------------------------------
+   Bottom of VB[eV]  -18.4105852335900     
+   Top of VB[eV]  -7.33854842782885     
+   Bottom of CB[eV] -0.549757854614016     
+   Top of CB[eV] -0.549757854614016     
+   Fundamental gap[eV]   6.78879057321483     
+   BG between same k-point[eV]   6.78879057321483     
+ ---------------------------------------------------------
+
+In the directory ``data_for_restart``, files that will be used in the next-step 
+time evolution calculations are stored.
+
+Other output files include following information.
 
 **C2H2_info.data**
 
 Calculated orbital and total energies as well as parameters specified in
-the input file are shown in this file.
+the input file are shown.
 
 **C2H2_eigen.data**
 
-1 particle energies.
+Orbital energies.
 
 ::
    
@@ -342,7 +470,7 @@ k-point distribution(for isolated systems, only gamma point is described).
 **psi_ob1.cube, psi_ob2.cube, ...**
 
 Cube files for electron orbitals. The number in the filename indicates
-the index of the orbital atomic unit is adopted in all cube files.
+the index of the orbital. Atomic unit is adopted in all cube files.
 
 **dns.cube**
 
