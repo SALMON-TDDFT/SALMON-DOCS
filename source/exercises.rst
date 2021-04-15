@@ -99,13 +99,13 @@ SALMON for any isolated systems such as molecules and nanoparticles.
 Acetylene molecule is a linear chain molecule composed of two Carbon atoms 
 and two Hydrogen atoms.
 
-  .. image:: images/acetylene.pdf
+  .. image:: images/acetylene.png
      :scale: 20%
 
 In SALMON, we use a three-dimensional (3D) uniform grid system
 to express physical quantities such as electron orbitals.
 
-  .. image:: images/acetylene_grid.pdf
+  .. image:: images/acetylene_grid.png
      :scale: 20%
 
 Input files
@@ -129,7 +129,7 @@ To run the code, following files in the directory ``SALMON/samples/exercise_01_C
 Pseudopotential files are needed for two elements, Carbon (C) and Hydrogen (H).
 The pseudopoential depends on the angular momentum, and looks as follows (for Carbon).
 
-  .. image:: images/C_rps_pot.pdf
+  .. image:: images/C_rps_pot.png
      :scale: 20%
 
 
