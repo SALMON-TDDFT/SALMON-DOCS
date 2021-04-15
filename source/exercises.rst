@@ -130,7 +130,7 @@ Pseudopotential files are needed for two elements, Carbon (C) and Hydrogen (H).
 The pseudopoential depends on the angular momentum, and looks as follows (for Carbon).
 
   .. image:: images/C_rps_pot.png
-     :scale: 20%
+     :scale: 0%
 
 
 In the input file *C2H2_gs.inp*, input keywords are specified.
