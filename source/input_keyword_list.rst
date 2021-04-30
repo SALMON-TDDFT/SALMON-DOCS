@@ -2227,6 +2227,19 @@ integer, default=1
    | Available for ``format_voxel_data='avs'``.
    | Number of separated files for three dimensional data.
 
+.. _yn_lr_w0_correction:
+
+yn_lr_w0_correction
+^^^^^^^^^^^^^^^^^^^
+
+[Trial] character, default='n'
+
+   | Available for ``yn_periodic='y'`` with ``theory='tddft_response'``.
+   | Apply correction around zero frequency of dielectric function to suppress numerical error. 
+   | Options:
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
+
 .. _yn_out_perflog:
 
 yn_out_perflog
