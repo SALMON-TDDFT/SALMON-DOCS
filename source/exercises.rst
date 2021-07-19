@@ -349,21 +349,19 @@ We first explain the standard output file. In the beginning of the file, input v
    # SALMON: Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience
    #
    #                             Version 2.0.1
+   #
    ##############################################################################
      Libxc: [disabled]
       theory= dft
-   ---------------------------------------- init_sym_sub(start)
-    symmetry-operation file ( sym.dat  ) can not be found.
-   ------------------------------------------ init_sym_sub(end)
       use of real value orbitals =  T
     ======
     MPI distribution:
       nproc_k     :           1
       nproc_ob    :           1
-      nproc_rgrid :           4           4           4
+      nproc_rgrid :           1           1           2
     OpenMP parallelization:
-      number of threads :           1
-   .........
+      number of threads :         256
+    .........
 
 After that, the SCF loop starts. At each iteration step, the total energy as well as 
 orbital energies and some other quantities are displayed.
@@ -371,68 +369,68 @@ orbital energies and some other quantities are displayed.
 ::
 
     -----------------------------------------------
-    iter=     1     Total Energy=       -23.25680398     Gap=   -20.23579640     Vh iter= 211
-        1       -23.8823      2        -3.9239      3        13.6149      4       -15.2285
-        5        -1.7855      6        -6.6209
-   iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =      1 0.20779375E+00
-    Ne=   10.0000000000000     
+    iter=     1     Total Energy=      -197.59254070     Gap=   -20.17834599     Vh iter= 234
+        1       -29.9707      2       -28.3380      3       -13.0123      4         5.8457
+        5        -9.9213      6       -14.3326
+    iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =      1 0.31853198E+00
+    Ne=   10.0000000000000
     -----------------------------------------------
-    iter=     2     Total Energy=      -163.16222784     Gap=   -22.02054947     Vh iter= 235
-        1       -44.5138      2        -3.8925      3         6.1788      4       -28.1284
-        5        -3.4269      6       -15.8417
-   iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =      2 0.43197789E+00
-    Ne=  10.00000000000000     
+    iter=     2     Total Energy=      -280.97950515     Gap=    -9.59770609     Vh iter= 247
+        1       -17.4334      2       -24.4941      3       -20.1872      4         0.8020
+        5        -3.4058      6        -8.7957
+    iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =      2 0.54493263E+00
+    Ne=   10.0000000000000
     -----------------------------------------------
-    iter=     3     Total Energy=      -188.25766814     Gap=   -20.90219256     Vh iter= 217
-        1       -41.7361      2        -5.0101      3         5.4169      4       -27.5078
-        5        -3.3350      6       -15.4853
-   iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =      3 0.14362457E+00
-    Ne=   10.0000000000000     
-
-When the convergence criterion is satisfied, the SCF calculation ends.
+    iter=     3     Total Energy=      -295.67034640     Gap=    -6.90359156     Vh iter= 229
+        1       -16.0251      2       -19.7759      3       -17.6765      4        -0.9015
+        5        -2.9323      6        -7.8050
+    iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =      3 0.13010987E+00
+    Ne=   10.0000000000000
+ 
+ When the convergence criterion is satisfied, the SCF calculation ends.
 
 ::
 
     -----------------------------------------------
-    iter=   126     Total Energy=      -339.69524618     Gap=     6.78879114     Vh iter=   1
-        1       -18.4106      2       -13.9966      3       -12.4163      4        -7.3385
-        5        -7.3385      6        -0.5498
-   iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =    126 0.46706835E-08
-    Ne=   10.0000000000000     
+    iter=   162     Total Energy=      -339.69525272     Gap=     6.78870999     Vh iter=   1
+        1       -18.4106      2       -13.9966      3       -12.4163      4        -7.3386
+        5        -7.3386      6        -0.5498
+    iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =    162 0.50237787E-08
+    Ne=   9.99999999999999
     -----------------------------------------------
-    iter=   127     Total Energy=      -339.69524615     Gap=     6.78879057     Vh iter=   1
-        1       -18.4106      2       -13.9966      3       -12.4163      4        -7.3385
-        5        -7.3385      6        -0.5498
-   iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =    127 0.29853988E-09
-    Ne=   10.0000000000000     
-     #GS converged at   128  : 0.29853988E-09
+    iter=   163     Total Energy=      -339.69525269     Gap=     6.78870999     Vh iter=   1
+        1       -18.4106      2       -13.9966      3       -12.4163      4        -7.3386
+        5        -7.3386      6        -0.5498
+    iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =    163 0.69880308E-09
+    Ne=   9.99999999999999
+     #GS converged at   164  : 0.69880308E-09
 
 Next, the force acting on ions and some other information related to orbital energies are shown.
 
 ::
 
-       ===== force =====
-           1 -0.11747820E-04  0.22186082E-04 -0.59497394E+00
-           2 -0.20094975E-05  0.41046764E-05  0.57651242E+00
-           3 -0.11356190E-04  0.23640028E-04  0.59492966E+00
-           4 -0.16079702E-05  0.45416509E-05 -0.57651956E+00
-   band information-----------------------------------------
-   Bottom of VB -0.676576557928278     
-   Top of VB -0.269686692329130     
-   Bottom of CB -2.020322940577464E-002
-   Top of CB -2.020322940577464E-002
-   Fundamental gap  0.249483462923356     
-   BG between same k-point  0.249483462923356     
-   Physicaly upper bound of CB for DOS -2.020322940577464E-002
-   Physicaly upper bound of CB for eps(omega)  0.656373328522503     
-   ---------------------------------------------------------
-   Bottom of VB[eV]  -18.4105852335900     
-   Top of VB[eV]  -7.33854842782885     
-   Bottom of CB[eV] -0.549757854614016     
-   Top of CB[eV] -0.549757854614016     
-   Fundamental gap[eV]   6.78879057321483     
-   BG between same k-point[eV]   6.78879057321483     
- ---------------------------------------------------------
+    ===== force =====
+        1 -0.33652081E-05  0.16854696E-04 -0.59496450E+00
+        2 -0.59222259E-06  0.24915590E-05  0.57651725E+00
+        3 -0.37839836E-05  0.20304090E-04  0.59493028E+00
+        4 -0.86779607E-06  0.39560274E-05 -0.57651738E+00
+    orbital energy information-------------------------------
+    Lowest occupied orbital -0.676576619015730
+    Highest occupied orbital (HOMO) -0.269686750876529
+    Lowest unoccupied orbital (LUMO) -2.020624936948345E-002
+    Highest unoccupied orbital -2.020624936948345E-002
+    HOMO-LUMO gap  0.249480501507045
+    Physicaly upper bound of eps(omega)  0.656370369646246
+    ---------------------------------------------------------
+    Lowest occupied orbital[eV]  -18.4105868958642
+    Highest occupied orbital (HOMO)[eV]  -7.33855002098465
+    Lowest unoccupied orbital (LUMO)[eV] -0.549840032009334
+    Highest unoccupied orbital[eV] -0.549840032009334
+    HOMO-LUMO gap[eV]   6.78870998897532
+    Physicaly upper bound of eps(omega)[eV]   17.8607468638548
+    ---------------------------------------------------------
+     writing restart data...
+     writing completed.
 
 In the directory ``data_for_restart``, files that will be used in the next-step 
 time evolution calculations are stored.
