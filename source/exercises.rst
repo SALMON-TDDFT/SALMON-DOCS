@@ -189,10 +189,7 @@ used in the input file can be found in
    &system
      !periodic boundary condition
      yn_periodic = 'n'
-     
-     !grid box size(x,y,z)
-     al(1:3) = 16.0d0, 16.0d0, 16.0d0
-     
+         
      !number of elements, atoms, electrons and states(orbitals)
      nelem  = 2
      natom  = 4
@@ -201,7 +198,6 @@ used in the input file can be found in
    /
    
 | :any:`yn_periodic <yn_periodic>` specifies whether or not periodic boundary condition is applied.
-| :any:`al(i) <al(3)>` specifies the spatial box size of the cubiod cell.
 | :any:`nelem <nelem>` is the number of elements in the system.
 | :any:`natom <natom>` is the number of atoms in the system.
 | :any:`nelec <nelec>` is the number of electrons in the system.
@@ -242,6 +238,9 @@ used in the input file can be found in
 ::
 
    &rgrid
+     !spatial grid spacing(x,y,z)
+     dl(1:3) = 0.25d0, 0.25d0, 0.25d0
+
      !number of spatial grids(x,y,z)
      num_rgrid(1:3) = 64, 64, 64     
    /
