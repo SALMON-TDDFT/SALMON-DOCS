@@ -242,8 +242,8 @@ used in the input file can be found in
 ::
 
    &rgrid
-     !spatial grid spacing(x,y,z)
-     dl(1:3) = 0.25d0, 0.25d0, 0.25d0
+     !number of spatial grids(x,y,z)
+     num_rgrid(1:3) = 64, 64, 64     
    /
 
 | :any:`dl(i) <dl(3)>` specifies the spatial grid spacing in i-th direction.
