@@ -387,7 +387,7 @@ orbital energies and some other quantities are displayed.
     iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =      3 0.13010987E+00
     Ne=   10.0000000000000
  
- When the convergence criterion is satisfied, the SCF calculation ends.
+When the convergence criterion is satisfied, the SCF calculation ends.
 
 ::
 
