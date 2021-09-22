@@ -529,10 +529,7 @@ strength distribution and the photoabsorption cross section.
 
 TEST(only now)
 
-..  math::
-
-H_{\rm KS} \phi_i(\mathbf{r}) = \epsilon_i \phi_i(\mathbf{r}),
-
+:math:`H_{\rm KS} \phi_i(\mathbf{r}) = \epsilon_i \phi_i(\mathbf{r}),`
 
 .. _input-files-1:
 
