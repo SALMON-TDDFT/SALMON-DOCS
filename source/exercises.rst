@@ -246,6 +246,7 @@ used in the input file can be found in
    /
 
 | :any:`dl(i) <dl(3)>` specifies the spatial grid spacing in i-th direction.
+| :any:`num_rgrid(i) <num_rgrid(3)>` specifies the number of grid points in i-th direction.
 
 ::
 
@@ -309,7 +310,7 @@ directory that you run the code in addition to the standard output file,
 | *C2H2_info.data*                    | information on ground state       |
 |                                     | solution                          |
 +-------------------------------------+-----------------------------------+
-| *C2H2_eigen.data*                   | orbital energies               |
+| *C2H2_eigen.data*                   | orbital energies                  |
 +-------------------------------------+-----------------------------------+
 | *C2H2_k.data*   　                  | k-point distribution              |
 |                                     | (for isolated systems, only       |
@@ -516,33 +517,71 @@ acetylene (C2H2) molecule, solving the time-dependent Kohn-Sham
 equation. The linear response calculation provides the polarizability
 and the oscillator strength distribution of the molecule. This exercise
 should be carried out after finishing the ground state calculation that
-was explained in :any:`Exercise-1 <exercise-1>`.
-In the calculation, an impulsive perturbation is applied to all electrons
-in the C2H2 molecule along the molecular axis which we take *z* axis.
-Then a time evolution calculation is carried out without any external fields.
-During the calculation, the electric dipole moment is monitored. After
-the time evolution calculation, a time-frequency Fourier transformation
-is carried out for the electric dipole moment to obtain the
-frequency-dependent polarizability. The imaginary part of the
-frequency-dependent polarizability is proportional to the oscillator
-strength distribution and the photoabsorption cross section.
+was explained in :any:`Exercise-1 <exercise-1>`. 
 
-TEST(only now)
+Polarizability :math:`\alpha_{\mu \nu}(t)` is the basic quantity 
+that characterizes optical responses of molecules and nano-particles,
+where :math:`\mu, \nu` indicate Cartesian components, :math:`\mu, \nu = x,y,z`.
+The polarizability :math:`\alpha_{\mu \nu}(t)` relates the :math:`\mu` 
+component of the electric dipole moment at time :math:`t`, :math:`p_{\mu}(t)`, 
+with the :math:`\nu` component of the electric field at time :math:`t'`,
+
+:math:`p_{\mu}(t) = \sum_{\nu=x,y,z} \alpha_{\mu \nu}(t-t') E_{\nu}(t').`
+
+We introduce a frequency-dependent polarizability by the time-frequency 
+Fourier transformation of the polarizability,
+
+:math:`\tilde \alpha_{\mu \nu}(\omega) = \int dt e^{i\omega t} \alpha_{\mu \nu}(t).`
+
+The imaginary part of the frequency-dependent polarizability is 
+related to the photoabsorption cross section :math:`\sigma(\omega)` by
+
+:math:`\sigma(\omega) = \frac{4\pi \omega}{c} \frac{1}{3} \sum_{\mu=x,y,z} {\rm Im} \tilde \alpha_{\mu \mu}(\omega).`
+
+The photoabsorption cross section is also related to the oscillator strength
+distribution by
+
+:math:`\sigma(\omega) = \frac{2\pi^2 e^2}{mc} \frac{df(\omega)}{d\omega}.`
+
+In SALMON, the polarizability is calculated in time domain.
+First the ground state orbital :math:`\phi_i(\mathbf{r})` that
+satisfies the Kohn-Sham equation,
 
 :math:`H_{\rm KS} \phi_i(\mathbf{r}) = \epsilon_i \phi_i(\mathbf{r}),`
+
+is prepared. Then an impulsive force given by the potential
+
+:math:`V_{\rm ext}(\mathbf{r},t) = I \delta(t) z,`
+
+is applied to all electrons in the C2H2 molecule along the molecular axis 
+which we take :math:`z` axis. :math:`I` is the magnitude of the impulse,
+and :math:`\delta(t)` is the Dirac's delta function.
+The orbital is distorted by the impulsive force at :math:`t=0`. 
+Immediately after the impulse is applied, the orbital becomes
+
+:math:`\psi_i(\mathbf{r},t=0_+) = e^{iIz/\hbar} \phi_i(\mathbf{r}).`
+
+After the impulsive force is applied at :math:`t=0`,
+a time evolution calculation is carried out without any external fields,
+
+:math:`i\hbar \frac{\partial}{\partial t} \psi_i(\mathbf{r},t) = H_{\rm KS}(t) \psi_i(\mathbf{r},t).`
+
+During the time evolution, the electric dipole moment given by
+
+:math:`p_z(t) = \int d\mathbf{r} (-ez) \sum_i \vert \psi_i(\mathbf{r},t) \vert^2,`
+
+is monitored. After the time evolution calculation, 
+a time-frequency Fourier transformation is carried out for the 
+electric dipole moment to obtain the frequency-dependent polarizability by
+
+:math:`\tilde \alpha_{zz}(\omega) = - \frac{e}{I} \int dt e^{i\omega t} p_z(t).`
 
 .. _input-files-1:
 
 Input files
 ^^^^^^^^^^^
 
-To run the code, the input file *C2H2_rt_response.inp* that contains
-input keywords and their values for the linear response calculation
-is required. The directory *restart* that is created in the ground
-state calculation as *data_for_restart* and pseudopotential files 
-are also required. The pseudopotential files should be the same as
-those used in the ground state calculation.
-The input files are in samples. 
+To run the code, following files are necessary:
 
 +-----------------------------------+-----------------------------------+
 | name                              | description                       |
@@ -559,6 +598,15 @@ The input files are in samples.
 |                                   | directory from                    |
 |                                   | *data_for_restart* to *restart*)  |
 +-----------------------------------+-----------------------------------+
+
+First three files are prepared in the directory ``SALMON/samples/exercise_02_C2H2_lr/``.
+The file *C2H2_rt_response.inp* that contains input keywords and their values. 
+The pseudopotential files should be the same as those used in the ground state calculation.
+In the directory *restart*, those files created in the ground state calculation and stored
+in the directory *data_for_restart* are included. 
+Therefore, copy the directory as ``cp -R data_for_restart restart``
+if you calculate at the same directory as you did the ground state calculation.
+
 
 In the input file *C2H2_rt_response.inp*, input keywords are specified.
 Most of them are mandatory to execute the linear response calculation. 
@@ -622,18 +670,14 @@ used in the input file can be found in
      !periodic boundary condition
      yn_periodic = 'n'
      
-     !grid box size(x,y,z)
-     al(1:3) = 16.0d0, 16.0d0, 16.0d0
-     
      !number of elements, atoms, electrons and states(orbitals)
      nelem  = 2
      natom  = 4
      nelec  = 10
      nstate = 6
    /
-  
+
 | :any:`yn_periodic <yn_periodic>` specifies whether or not periodic boundary condition is applied.
-| :any:`al(i) <al(3)>` specifies the spatial box size of the cubiod cell.
 | :any:`nelem <nelem>` is the number of elements in the system.
 | :any:`natom <natom>` is the number of atoms in the system.
 | :any:`nelec <nelec>` is the number of electrons in the system.
@@ -676,9 +720,13 @@ used in the input file can be found in
    &rgrid
      !spatial grid spacing(x,y,z)
      dl(1:3) = 0.25d0, 0.25d0, 0.25d0
+     
+     !number of spatial grids(x,y,z)
+     num_rgrid(1:3) = 64, 64, 64
    /
 
 | :any:`dl(i) <dl(3)>` specifies the spatial grid spacing in i-th direction.
+| :any:`num_rgrid(i) <num_rgrid(3)>` specifies the number of grid points in i-th direction.
 
 ::
 
@@ -736,6 +784,17 @@ used in the input file can be found in
    
 .. _output-files-1:
 
+Execusion
+^^^^^^^^^
+
+Before execusion, remember to copy the directory *restart* that is created in the ground
+state calculation as *data_for_restart* in the present directory. 
+In a multiprocess environment, calculation will be executed as
+
+    $ mpiexec -n NPROC salmon < C2H2_rt_response.inp > C2H2_rt_response.out
+
+where NPROC is the number of MPI processes. A standard output will be stored in the file ``C2H2_rt_response.out``.
+
 Output files
 ^^^^^^^^^^^^
 
@@ -771,23 +830,53 @@ directory that you run the code,
 | You may download the above files (zipped file) from:
 | https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/02_C2H2_lr.zip
 
-Explanations of the output files are below:
-
-**C2H2_response.data**
-
-Time-frequency Fourier transformation of the dipole moment gives
-the polarizability of the system. Then the strength function is calculated.
+We first explain the standard output file. In the beginning of the file, 
+input variables used in the calculation are shown.
 
 ::
 
-   # Fourier-transform spectra: 
-   # alpha: Polarizability
-   # df/dE: Strength function
-   # 1:Energy[eV] 2:Re(alpha_x)[Augstrom^2/V] 3:Re(alpha_y)[Augstrom^2/V] 4:Re(alpha_z)[Augstrom^2/V] 5:Im(alpha_x)[Augstrom^2/V] 6:Im(alpha_y)[Augstrom^2/V] 7:Im(alpha_z)[Augstrom^2/V] 8:df_x/dE[none] 9:df_y/dE[none] 10:df_z/dE[none]
+   ##############################################################################
+   # SALMON: Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience
+   #
+   #                             Version 2.0.1
+   ##############################################################################
+     Libxc: [disabled]
+      theory= tddft_response
+    
+    Total time step      =        5000
+    Time step[fs]        =  1.250000000000000E-003
+    Energy range         =        3000
+    Energy resolution[eV]=  1.000000000000000E-002
+    Field strength[a.u.] =  1.000000000000000E-002
+      use of real value orbitals =  F
+    ======
+    .........
+
+After that, the time evolution loop starts. At every 10 iteration steps, 
+the time, dipole moments in three Cartesian directions, the total number
+of electrons, the total energy, and the number of iterations solving
+the Poisson equation are displayed.
+
+::
+
+    time-step    time[fs]                           Dipole moment(xyz)[A]      electrons  Total energy[eV]    iterVh
+   #----------------------------------------------------------------------
+         10    0.01250000 -0.56521137E-07 -0.28812833E-07 -0.25558983E-01    10.00000000     -339.68150366   34
+         20    0.02500000 -0.19835467E-06 -0.10147641E-06 -0.45169126E-01     9.99999999     -339.68147442   49
+         30    0.03750000 -0.37937911E-06 -0.19537418E-06 -0.57843871E-01     9.99999999     -339.68146891   45
+         40    0.05000000 -0.56465010E-06 -0.29324906E-06 -0.64072126E-01     9.99999999     -339.68146804   38
+         50    0.06250000 -0.73343753E-06 -0.38431758E-06 -0.65208422E-01     9.99999999     -339.68146679   25
+         60    0.07500000 -0.87559727E-06 -0.46276791E-06 -0.62464066E-01     9.99999999     -339.68146321   35
+         70    0.08750000 -0.98769124E-06 -0.52594670E-06 -0.56740338E-01     9.99999998     -339.68145535   20
+         80    0.10000000 -0.10701350E-05 -0.57309375E-06 -0.48483747E-01     9.99999998     -339.68144840   40
+         90    0.11250000 -0.11253992E-05 -0.60455485E-06 -0.38296037E-01     9.99999998     -339.68144186   21
+ 
+Explanations of other output files are given below:
 
 **C2H2_rt.data**
 
 Results of time evolution calculation for vector potential, electric field, and dipole moment.
+In the first several lines, explanations of data involved are given.
 
 ::
 
@@ -800,9 +889,38 @@ Results of time evolution calculation for vector potential, electric field, and 
    # dm: Total dipole moment (electrons/minus + ions/plus)
    # 1:Time[fs] 2:Ac_ext_x[fs*V/Angstrom] 3:Ac_ext_y[fs*V/Angstrom] 4:Ac_ext_z[fs*V/Angstrom] 5:E_ext_x[V/Angstrom] 6:E_ext_y[V/Angstrom] 7:E_ext_z[V/Angstrom] 8:Ac_tot_x[fs*V/Angstrom] 9:Ac_tot_y[fs*V/Angstrom] 10:Ac_tot_z[fs*V/Angstrom] 11:E_tot_x[V/Angstrom] 12:E_tot_y[V/Angstrom] 13:E_tot_z[V/Angstrom] 14:ddm_e_x[Angstrom] 15:ddm_e_y[Angstrom] 16:ddm_e_z[Angstrom] 17:dm_x[Angstrom] 18:dm_y[Angstrom] 19:dm_z[Angstrom] 
 
+Using first column (time in femtosecond) and 19th column (dipole moment in :math:`z` direction),
+the following graph can be drawn.
+
+  .. image:: images/C2H2_rt.png
+     :scale: 40%
+
+The dipole moment shows oscillations in femtosecond time scale that reflec electronic excitations.
+
+**C2H2_response.data**
+
+Time-frequency Fourier transformation of the dipole moment gives
+the polarizability and the strength function.
+
+::
+
+   # Fourier-transform spectra: 
+   # alpha: Polarizability
+   # df/dE: Strength function
+   # 1:Energy[eV] 2:Re(alpha_x)[Augstrom^2/V] 3:Re(alpha_y)[Augstrom^2/V] 4:Re(alpha_z)[Augstrom^2/V] 5:Im(alpha_x)[Augstrom^2/V] 6:Im(alpha_y)[Augstrom^2/V] 7:Im(alpha_z)[Augstrom^2/V] 8:df_x/dE[none] 9:df_y/dE[none] 10:df_z/dE[none]
+
+Using first column (energy in electron-volt) and 10th column (oscillator strength distribution in :math:`z` direction),
+the following graph can be drawn.
+
+  .. image:: images/C2H2_response.png
+     :scale: 40%
+
+There appears many peaks above the HOMO-LUMO gap energy.
+The strong excitation appears at around 9.3 eV.
+
 **C2H2_rt_energy.data**
 
-*Eall* and *Eall-Eall0* are total energy and electronic excitation energy, respectively.
+Energies are stored as functions of time.
 
 ::
 
@@ -810,6 +928,8 @@ Results of time evolution calculation for vector potential, electric field, and 
    # Eall: Total energy
    # Eall0: Initial energy
    # 1:Time[fs] 2:Eall[eV] 3:Eall-Eall0[eV] 
+
+*Eall* and *Eall-Eall0* are total energy and electronic excitation energy, respectively.
 
 .. _exercise-3:
 
