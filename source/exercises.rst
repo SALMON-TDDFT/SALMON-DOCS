@@ -527,6 +527,13 @@ frequency-dependent polarizability. The imaginary part of the
 frequency-dependent polarizability is proportional to the oscillator
 strength distribution and the photoabsorption cross section.
 
+TEST(only now)
+
+..  math::
+
+H_{\rm KS} \phi_i(\mathbf{r}) = \epsilon_i \phi_i(\mathbf{r}),
+
+
 .. _input-files-1:
 
 Input files
