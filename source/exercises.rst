@@ -99,13 +99,13 @@ SALMON for any isolated systems such as molecules and nanoparticles.
 Acetylene molecule is a linear chain molecule composed of two Carbon atoms 
 and two Hydrogen atoms.
 
-  .. image:: images/acetylene.png
+  .. image:: images/exc1/acetylene.png
      :scale: 20%
 
 In SALMON, we use a three-dimensional (3D) uniform grid system
 to express physical quantities such as electron orbitals.
 
-  .. image:: images/acetylene_grid.png
+  .. image:: images/exc1/acetylene_grid.png
      :scale: 20%
 
 Input files
@@ -129,7 +129,7 @@ To run the code, following files in the directory ``SALMON/samples/exercise_01_C
 Pseudopotential files are needed for two elements, Carbon (C) and Hydrogen (H).
 The pseudopoential depends on the angular momentum, and looks as follows (for Carbon).
 
-  .. image:: images/C_rps_pot.png
+  .. image:: images/exc1/C_rps_pot.png
      :scale: 40%
 
 
@@ -151,7 +151,7 @@ used in the input file can be found in
    !     &group                                                                             !
    !       input keyword = xxx                                                              !
    !     /                                                                                  !
-   !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !   (see chapter: 'List of input keywords' in the manual)                                !
    !----------------------------------------------------------------------------------------!
    ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
    !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
@@ -297,6 +297,8 @@ In a multiprocess environment, calculation will be executed as
     $ mpiexec -n NPROC salmon < C2H2_gs.inp > C2H2_gs.out
 
 where NPROC is the number of MPI processes. A standard output will be stored in the file ``C2H2_gs.out``.
+
+.. _output-files-1:
 
 Output files
 ^^^^^^^^^^^^	
@@ -489,21 +491,21 @@ We show several image that are created from the output files.
 
   The output files *psi_ob1.cube*, *psi_ob2.cube*, ... are used to create the image.
 
-  .. image:: images/exercise1/HOMO.png
+  .. image:: images/exc1/HOMO.png
      :scale: 20%
 
 * **Electron density**
 
   The output files *dns.cube*, ... are used to create the image.
 
-  .. image:: images/exercise1/Dns.png
+  .. image:: images/exc1/Dns.png
      :scale: 20%
 
 * **Electron localization function**
 
   The output files *elf.cube*, ... are used to create the image.
 
-  .. image:: images/exercise1/Elf.png
+  .. image:: images/exc1/Elf.png
      :scale: 20%
 
 
@@ -627,7 +629,7 @@ used in the input file can be found in
    !     &group                                                                             !
    !       input keyword = xxx                                                              !
    !     /                                                                                  !
-   !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !   (see chapter: 'List of input keywords' in the manual)                                !
    !----------------------------------------------------------------------------------------!
    ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
    !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
@@ -782,8 +784,6 @@ used in the input file can be found in
 
 | :any:`&atomic_coor <&atomic_coor>` specifies spatial coordinates of atoms.
    
-.. _output-files-1:
-
 Execusion
 ^^^^^^^^^
 
@@ -794,6 +794,8 @@ In a multiprocess environment, calculation will be executed as
     $ mpiexec -n NPROC salmon < C2H2_rt_response.inp > C2H2_rt_response.out
 
 where NPROC is the number of MPI processes. A standard output will be stored in the file ``C2H2_rt_response.out``.
+
+.. _output-files-2:
 
 Output files
 ^^^^^^^^^^^^
@@ -876,7 +878,7 @@ Explanations of other output files are given below:
 **C2H2_rt.data**
 
 Results of time evolution calculation for vector potential, electric field, and dipole moment.
-In the first several lines, explanations of data involved are given.
+In the first several lines, explanations of included data are given.
 
 ::
 
@@ -892,7 +894,7 @@ In the first several lines, explanations of data involved are given.
 Using first column (time in femtosecond) and 19th column (dipole moment in :math:`z` direction),
 the following graph can be drawn.
 
-  .. image:: images/C2H2_rt.png
+  .. image:: images/exc2/exc2-dipole.png
      :scale: 40%
 
 The dipole moment shows oscillations in femtosecond time scale that reflec electronic excitations.
@@ -912,7 +914,7 @@ the polarizability and the strength function.
 Using first column (energy in electron-volt) and 10th column (oscillator strength distribution in :math:`z` direction),
 the following graph can be drawn.
 
-  .. image:: images/C2H2_response.png
+  .. image:: images/exc2/exc2-response.png
      :scale: 40%
 
 There appears many peaks above the HOMO-LUMO gap energy.
@@ -943,22 +945,26 @@ quantities as the total energy and the electric dipole moment of the
 system as functions of time are calculated. This tutorial should be
 carried out after finishing the ground state calculation that was
 explained in :any:`Exercise-1 <exercise-1>`.
-In the calculation, a pulsed electric field that has cos^2 envelope shape
-is applied. The parameters that characterize the pulsed field such as
-magnitude, frequency, polarization direction, and carrier envelope phase
+
+In the calculation, a pulsed electric field specified by the following
+vector potential will be used,
+
+:math:`A(t) = - \frac{E_0}{\omega} \hat z \cos^2 \frac{\pi}{T} \left( t - \frac{T}{2} \right) \sin \omega \left( t - \frac{T}{2} \right), \hspace{5mm} (0 < t < T).` 
+
+
+The electric field is given by :math:`E(t) = -(1/c)(dA(t)/dt)`.
+The parameters that characterize the pulsed field such as the amplitude :math:`E_0`, 
+frequency :math:`\omega`, pulse duration :math:`T`, polarization direction :math:`\hat z`,
 are specified in the input file.
+In the time dependent Kohn-Sham equation, the external field is included as
+the scalar potential, :math:`V_{\rm ext}(\mathbf{r},t) = eE(t)z`.
 
 .. _input-files-2:
 
 Input files
 ^^^^^^^^^^^
 
-To run the code, following files in samples are used. The directory *restart* is
-created in the ground state calculation as *data_for_restart*. 
-Pseudopotential files are already used in the ground state calculation.
-Therefore, *C2H2_rt_pulse.inp* that specifies input keywords and their values
-for the pulsed electric field calculation is the only file that the
-users need to prepare.
+To run the code, following files are necessary:
 
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
@@ -975,6 +981,14 @@ users need to prepare.
 |                                   | directory from                    |
 |                                   | *data_for_restart* to *restart*)  |
 +-----------------------------------+-----------------------------------+
+
+First three files are prepared in the directory ``SALMON/samples/exercise_03_C2H2_rt/``.
+The file *C2H2_rt_pulse.inp* that contains input keywords and their values. 
+The pseudopotential files should be the same as those used in the ground state calculation.
+In the directory *restart*, those files created in the ground state calculation and stored
+in the directory *data_for_restart* are included. 
+Therefore, copy the directory as ``cp -R data_for_restart restart``
+if you calculate at the same directory as you did the ground state calculation.
 
 In the input file *C2H2_rt_pulse.inp*, input keywords are specified.
 Most of them are mandatory to execute the calculation of
@@ -995,7 +1009,7 @@ the input keywords that can be used in the input file can be found in
    !     &group                                                                             !
    !       input keyword = xxx                                                              !
    !     /                                                                                  !
-   !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !   (see chapter: 'List of input keywords' in the manual)                                !
    !----------------------------------------------------------------------------------------!
    ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
    !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
@@ -1037,10 +1051,7 @@ the input keywords that can be used in the input file can be found in
    &system
      !periodic boundary condition
      yn_periodic = 'n'
-     
-     !grid box size(x,y,z)
-     al(1:3) = 16.0d0, 16.0d0, 16.0d0
-     
+      
      !number of elements, atoms, electrons and states(orbitals)
      nelem  = 2
      natom  = 4
@@ -1049,7 +1060,6 @@ the input keywords that can be used in the input file can be found in
    /
 
 | :any:`yn_periodic <yn_periodic>` specifies whether or not periodic boundary condition is applied.
-| :any:`al(i) <al(3)>` specifies the spatial box size of the cubiod cell.
 | :any:`nelem <nelem>` is the number of elements in the system.
 | :any:`natom <natom>` is the number of atoms in the system.
 | :any:`nelec <nelec>` is the number of electrons in the system.
@@ -1092,9 +1102,13 @@ the input keywords that can be used in the input file can be found in
    &rgrid
      !spatial grid spacing(x,y,z)
      dl(1:3) = 0.25d0, 0.25d0, 0.25d0
+     
+     !number of spatial grids(x,y,z)
+     num_rgrid(1:3) = 64, 64, 64
    /
 
 | :any:`dl(i) <dl(3)>` specifies the spatial grid spacing in i-th direction.
+| :any:`num_rgrid(i) <num_rgrid(3)>` specifies the number of grid points in i-th direction.
 
 ::
 
@@ -1111,23 +1125,19 @@ the input keywords that can be used in the input file can be found in
 
    &emfield
      !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
-     ae_shape1 = 'Ecos2'
+     ae_shape1 = 'Acos2'
      
      !peak intensity(W/cm^2) of the incident pulse
-     I_wcm2_1 = 1.00d8
+     I_wcm2_1 = 5.00d13
      
      !duration of the incident pulse
      tw1 = 6.00d0
      
      !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
-     omega1 = 9.28d0
+     omega1 = 3.10d0
      
      !polarization unit vector(real part) for the incident pulse(x,y,z)
      epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
-     
-     !carrier emvelope phase of the incident pulse
-     !(phi_cep1 must be 0.25 + 0.5 * n(integer) when ae_shape1 = 'Ecos2')
-     phi_cep1 = 0.75d0
      !--- Caution ---------------------------------------------------------!
      ! Defenition of the incident pulse is wrriten in:                     !
      ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
@@ -1139,7 +1149,17 @@ the input keywords that can be used in the input file can be found in
 | :any:`tw1 <tw1>` specifies the duration of the pulse.
 | :any:`omega1 <omega1>` specifies the mean photon energy of the pulse.
 | :any:`epdir_re1(i) <epdir_re1(3)>` specifies the i-th component of the real part of the polarization unit vector.
-| :any:`phi_cep1 <phi_cep1>` specifies the carrier-envelope phase of the pulse.
+
+::
+
+   &analysis
+     !energy grid size and number of energy grids for output files
+     de      = 1.0d-2
+     nenergy = 10000
+   /
+
+| :any:`de` specifies the energy grid size for frequency-domain analysis.
+| :any:`nenergy` specifies the number of energy grid points for frequency-domain analysis.
 
 ::
 
@@ -1156,7 +1176,19 @@ the input keywords that can be used in the input file can be found in
 
 | :any:`&atomic_coor <&atomic_coor>` specifies spatial coordinates of atoms.
 
-.. _output-files-2:
+Execusion
+^^^^^^^^^
+
+Before execusion, remember to copy the directory *restart* that is created in the ground
+state calculation as *data_for_restart* in the present directory. 
+In a multiprocess environment, calculation will be executed as
+
+    $ mpiexec -n NPROC salmon < C2H2_rt_pulse.inp > C2H2_rt_pulse.out
+
+where NPROC is the number of MPI processes. A standard output will be stored in the file ``C2H2_rt_pulse.out``.
+
+
+.. _output-files-3:
 
 Output files
 ^^^^^^^^^^^^
@@ -1192,22 +1224,55 @@ directory that you run the code,
 | You may download the above files (zipped file) from:
 | https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/03_C2H2_rt.zip
 
-Explanations of the files are described below:
-
-**C2H2_pulse.data**
-
-Time-frequency Fourier transformation of the dipole moment.
+We first explain the standard output file. In the beginning of the file, input variables
+used in the calculation are shown.
 
 ::
 
-   # Fourier-transform spectra: 
-   # energy: Frequency
-   # dm: Dopile moment
-   # 1:energy[eV] 2:Re(dm_x)[fs*Angstrom] 3:Re(dm_y)[fs*Angstrom] 4:Re(dm_z)[fs*Angstrom] 5:Im(dm_x)[fs*Angstrom] 6:Im(dm_y)[fs*Angstrom] 7:Im(dm_z)[fs*Angstrom] 8:|dm_x|^2[fs^2*Angstrom^2] 9:|dm_y|^2[fs^2*Angstrom^2] 10:|dm_z|^2[fs^2*Angstrom^2]
+   ##############################################################################
+   # SALMON: Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience
+   #
+   #                             Version 2.0.1
+   ##############################################################################
+     Libxc: [disabled]
+      theory= tddft_pulse
+    
+    Total time step      =        5000
+    Time step[fs]        =  1.250000000000000E-003
+    Energy range         =       10000
+    Energy resolution[eV]=  1.000000000000000E-002
+   Laser frequency     = 3.10[eV]
+   Pulse width of laser=      6.00000000[fs]
+   Laser intensity     =  0.50000000E+14[W/cm^2]
+      use of real value orbitals =  F
+    ======
+    ........
+
+After that, the time evolution loop starts. At every 10 iteration steps,
+the time, dipole moments in three Cartesian directions, the total number of electrons,
+the total energy, and the number of iterations solving the Poisson equation
+are displayed.
+
+::
+
+    time-step    time[fs]                           Dipole moment(xyz)[A]      electrons  Total energy[eV]    iterVh
+   #----------------------------------------------------------------------
+         10    0.01250000 -0.57275542E-07 -0.29197105E-07 -0.74600728E-06    10.00000000     -339.69524047    1
+         20    0.02500000 -0.20616352E-06 -0.10537273E-06 -0.10256205E-04    10.00000000     -339.69524348    1
+         30    0.03750000 -0.40063325E-06 -0.20597522E-06 -0.47397133E-04    10.00000000     -339.69524090    3
+         40    0.05000000 -0.59093535E-06 -0.30630513E-06 -0.13774845E-03    10.00000000     -339.69524287    1
+         50    0.06250000 -0.75588343E-06 -0.39552925E-06 -0.31097825E-03    10.00000000     -339.69523949    5
+         60    0.07500000 -0.89221538E-06 -0.47142217E-06 -0.59735355E-03    10.00000000     -339.69523784   11
+         70    0.08750000 -0.99769538E-06 -0.53192187E-06 -0.10253308E-02    10.00000000     -339.69523285    5
+         80    0.10000000 -0.10738281E-05 -0.57676878E-06 -0.16195168E-02     9.99999999     -339.69522482   19
+         90    0.11250000 -0.11250289E-05 -0.60722757E-06 -0.23985719E-02     9.99999999     -339.69521092    2
+    
+Explanations of the files are given below:
 
 **C2H2_rt.data**
 
 Results of time evolution calculation for vector potential, electric field, and dipole moment.
+In the first several lines, explanations of data included data are given.
 
 ::
 
@@ -1220,9 +1285,42 @@ Results of time evolution calculation for vector potential, electric field, and 
    # dm: Total dipole moment (electrons/minus + ions/plus)
    # 1:Time[fs] 2:Ac_ext_x[fs*V/Angstrom] 3:Ac_ext_y[fs*V/Angstrom] 4:Ac_ext_z[fs*V/Angstrom] 5:E_ext_x[V/Angstrom] 6:E_ext_y[V/Angstrom] 7:E_ext_z[V/Angstrom] 8:Ac_tot_x[fs*V/Angstrom] 9:Ac_tot_y[fs*V/Angstrom] 10:Ac_tot_z[fs*V/Angstrom] 11:E_tot_x[V/Angstrom] 12:E_tot_y[V/Angstrom] 13:E_tot_z[V/Angstrom] 14:ddm_e_x[Angstrom] 15:ddm_e_y[Angstrom] 16:ddm_e_z[Angstrom] 17:dm_x[Angstrom] 18:dm_y[Angstrom] 19:dm_z[Angstrom] 
 
+The applied electric field is drawn using the first column (time in femtosecond) and the 7th column 
+(electric field in :math:`z` direction in Volt per Angstrom).
+
+  .. image:: images/exc3/exc3-Efield.png
+     :scale: 40%
+
+The induced dipole moment is drawn using the first column (time in femtosecond) and 19th column 
+(dipole moment in :math:`z` direction).
+It shows an oscillation similar to the applied electric field. However, the response is not linear
+since the applied electric field is rather strong.
+
+  .. image:: images/exc3/exc3-dipole.png
+     :scale: 40%
+
+**C2H2_pulse.data**
+
+Time-frequency Fourier transformation of the dipole moment.
+In the first several lines, explanations of data included data are given.
+
+::
+
+   # Fourier-transform spectra: 
+   # energy: Frequency
+   # dm: Dopile moment
+   # 1:energy[eV] 2:Re(dm_x)[fs*Angstrom] 3:Re(dm_y)[fs*Angstrom] 4:Re(dm_z)[fs*Angstrom] 5:Im(dm_x)[fs*Angstrom] 6:Im(dm_y)[fs*Angstrom] 7:Im(dm_z)[fs*Angstrom] 8:|dm_x|^2[fs^2*Angstrom^2] 9:|dm_y|^2[fs^2*Angstrom^2] 10:|dm_z|^2[fs^2*Angstrom^2]
+
+The spectrum of the induced dipole moment, :math:`|d(\omega)|^2` is shown in logarithmic scale as a function
+of the energy, :math:`\hbar \omega`. High harmonic generations are visible in the spectrum.
+
+  .. image:: images/exc3/exc3-spectrum.png
+     :scale: 40%
+
 **C2H2_rt_energy.data**
 
-*Eall* and *Eall-Eall0* are total energy and electronic excitation energy, respectively.
+Energies are stored as functions of time.
+In the first several lines, explanations of data included data are given.
 
 ::
 
@@ -1230,6 +1328,68 @@ Results of time evolution calculation for vector potential, electric field, and 
    # Eall: Total energy
    # Eall0: Initial energy
    # 1:Time[fs] 2:Eall[eV] 3:Eall-Eall0[eV] 
+
+*Eall* and *Eall-Eall0* are total energy and electronic excitation energy, respectively.
+The figure below shows the electronic excitation energy as a function of time,
+using the first column (time in femtosecond) and the 3rd column (*Eall-Eall0*).
+Although the frequency is below the HOMO-LUMO gap energy, electronic excitations take
+place because of nonlinear absorption process.
+
+  .. image:: images/exc3/exc3-Eex.png
+     :scale: 40%
+
+
+Additional exercise
+^^^^^^^^^^^^^^^^^^^
+
+If we change parameters of the applied electric field, we find a drastic change
+in the electronic excitations. In the example below, we increase the intensity
+from ``I_wcm2_1 = 5.00d13`` to ``I_wcm2_1 = 1.00d12`` and changes the frequency
+from ``omega1 = 3.10d0`` to ``omega1 = 9.28d0``. The new frequency corresponds
+to the resonant excitation energy seen in the linear response analysis shown in
+in :any:`Exercise-2 <exercise-2>`.
+
+The change in the input file is shown below.
+
+::
+
+   &emfield
+     !envelope shape of the incident pulse('Ecos2': cos^2 type envelope for scalar potential)
+     ae_shape1 = 'Acos2'
+     
+     !peak intensity(W/cm^2) of the incident pulse
+     I_wcm2_1 = 1.00d12
+     
+     !duration of the incident pulse
+     tw1 = 6.00d0
+     
+     !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
+     omega1 = 9.28d0
+     
+     !polarization unit vector(real part) for the incident pulse(x,y,z)
+     epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
+
+
+The applied electric field shows a rapid oscillation.
+
+  .. image:: images/exc3a/exc3a-Efield.png
+     :scale: 40%
+
+The induced dipole moment also shows a rapid oscillation and does not
+decrease even though the electric field decreases. This is because the frequency of the
+applied electric field coincides with the excitation energy of the molecule.
+
+  .. image:: images/exc3a/exc3a-dipole.png
+     :scale: 40%
+
+The electronic excitation energy also shows a monotonic increase.
+Although the strength of the applied electric field is much smaller than
+the previous case, the amount of the excitation energy is larger, again
+due to the resonant excitation.
+
+  .. image:: images/exc3a/exc3a-Eex.png
+     :scale: 40%
+
 
 Crystalline silicon (periodic solids)
 -------------------------------------
@@ -1276,7 +1436,7 @@ used in the input file can be found in
    !     &group                                                                             !
    !       input keyword = xxx                                                              !
    !     /                                                                                  !
-   !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !   (see chapter: 'List of input keywords' in the manual)                                !
    !----------------------------------------------------------------------------------------!
    ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
    !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
@@ -1409,6 +1569,8 @@ used in the input file can be found in
 
 | :any:`&atomic_red_coor <&atomic_red_coor>` specifies spatial coordinates of atoms in reduced coordinate system.
 
+.. _output-files-4:
+
 Output files
 ^^^^^^^^^^^^	
 
@@ -1518,7 +1680,7 @@ A complete list of the input keywords can be found in :any:`List of input keywor
    !     &group                                                                             !
    !       input keyword = xxx                                                              !
    !     /                                                                                  !
-   !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !   (see chapter: 'List of input keywords' in the manual)                                !
    !----------------------------------------------------------------------------------------!
    ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
    !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
@@ -1683,7 +1845,7 @@ A complete list of the input keywords can be found in :any:`List of input keywor
 
 | :any:`&atomic_red_coor <&atomic_red_coor>` specifies spatial coordinates of atoms in reduced coordinate system.
 
-.. _output-files-3:
+.. _output-files-5:
 
 Output files
 ^^^^^^^^^^^^
@@ -1799,7 +1961,7 @@ A complete list of the input keywords can be found in :any:`List of input keywor
    !     &group                                                                             !
    !       input keyword = xxx                                                              !
    !     /                                                                                  !
-   !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !   (see chapter: 'List of input keywords' in the manual)                                !
    !----------------------------------------------------------------------------------------!
    ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
    !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
@@ -1965,7 +2127,7 @@ A complete list of the input keywords can be found in :any:`List of input keywor
 
 | :any:`&atomic_red_coor <&atomic_red_coor>` specifies spatial coordinates of atoms in reduced coordinate system.
 
-.. _output-files-4:
+.. _output-files-6:
 
 Output files
 ^^^^^^^^^^^^
@@ -2088,7 +2250,7 @@ A complete list of the input keywords can be found in :any:`List of input keywor
     !     &group                                                                             !
     !       input keyword = xxx                                                              !
     !     /                                                                                  !
-    !   (see chapter: 'List of all input keywords' in the manual)                            !
+    !   (see chapter: 'List of input keywords' in the manual)                                !
     !----------------------------------------------------------------------------------------!
     ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
     !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
@@ -2292,7 +2454,7 @@ A complete list of the input keywords can be found in :any:`List of input keywor
 | :any:`&atomic_red_coor <&atomic_red_coor>` specifies spatial coordinates of atoms in reduced coordinate system.
 
 
-.. _output-files-5:
+.. _output-files-7:
 
 Output files
 ^^^^^^^^^^^^
@@ -2436,7 +2598,7 @@ used in the input file can be found in
    !     &group                                                                             !
    !       input keyword = xxx                                                              !
    !     /                                                                                  !
-   !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !   (see chapter: 'List of input keywords' in the manual)                                !
    !----------------------------------------------------------------------------------------!
    ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
    !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
@@ -2570,6 +2732,8 @@ used in the input file can be found in
 
 | :any:`&atomic_coor <&atomic_coor>` specifies spatial coordinates of atoms.
 
+.. _output-files-8:
+
 Output files
 ^^^^^^^^^^^^	
 
@@ -2701,7 +2865,7 @@ A complete list of the input keywords that can be used in the input file can be 
    !     &group                                                                             !
    !       input keyword = xxx                                                              !
    !     /                                                                                  !
-   !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !   (see chapter: 'List of input keywords' in the manual)                                !
    !----------------------------------------------------------------------------------------!
    ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
    !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
@@ -2874,6 +3038,8 @@ A complete list of the input keywords that can be used in the input file can be 
 | :any:`temperature0_ion_k <temperature0_ion_k>` specifies the temperature that is used to generate initial velocity of ions.
 | :any:`step_update_ps <step_update_ps>` specifies the time step interval to update projector for the nonlocal pseudopotential.
 
+.. _output-files-9:
+
 Output files
 ^^^^^^^^^^^^
 
@@ -3012,7 +3178,7 @@ can be found in :any:`List of input keywords <List of input keywords>`.
    !     &group                                                                             !
    !       input keyword = xxx                                                              !
    !     /                                                                                  !
-   !   (see chapter: 'List of all input keywords' in the manual)                            !
+   !   (see chapter: 'List of input keywords' in the manual)                                !
    !----------------------------------------------------------------------------------------!
    ! * Conversion from unit_system = 'a.u.' to 'A_eV_fs':                                   !
    !   Length: 1 [a.u.] = 0.52917721067    [Angstrom]                                       !
@@ -3178,6 +3344,7 @@ can be found in :any:`List of input keywords <List of input keywords>`.
 | :any:`obs_loc_em(n,i) <obs_loc_em(:,3)>` specifies the coordinate of n-th observing point.
 | :any:`yn_obs_plane_em(n) <yn_obs_plane_em(:)>` is a switch to output the electromagnetic fields on the xy, yz, and xz planes that include the n-th observation point.
 
+.. _output-files-10:
 
 Output files
 ^^^^^^^^^^^^
