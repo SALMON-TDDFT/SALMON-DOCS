@@ -976,9 +976,8 @@ To run the code, following files are necessary:
 +-----------------------------------+---------------------------------------------------------------+
 | *H_rps.dat*                       | pseudopotential file for hydrogen                             |
 +-----------------------------------+---------------------------------------------------------------+
-| *restart*                         | directory created in the ground state calculation             |
-|                                   |                                                               |
-|                                   | (rename the directory from *data_for_restart* to *restart*)   |
+| *restart*                         | | directory created in the ground state calculation           |
+|                                   | | (rename the directory from *data_for_restart* to *restart*) |
 +-----------------------------------+---------------------------------------------------------------+
 
 First three files are prepared in the directory ``SALMON/samples/exercise_03_C2H2_rt/``.
