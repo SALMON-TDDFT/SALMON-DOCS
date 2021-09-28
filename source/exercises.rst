@@ -585,21 +585,20 @@ Input files
 
 To run the code, following files are necessary:
 
-+-----------------------------------+-----------------------------------+
-| name                              | description                       |
-+-----------------------------------+-----------------------------------+
-| *C2H2_rt_response.inp*            | input file that contains input    |
-|                                   | keywords and their values         |
-+-----------------------------------+-----------------------------------+
-| *C_rps.dat*                       | pseodupotential file for carbon   |
-+-----------------------------------+-----------------------------------+
-| *H_rps.dat*                       | pseudopotential file for hydrogen |
-+-----------------------------------+-----------------------------------+
-| *restart*                         | directory created in the ground   |
-|                                   | state calculation (rename the     |
-|                                   | directory from                    |
-|                                   | *data_for_restart* to *restart*)  |
-+-----------------------------------+-----------------------------------+
++-----------------------------------+---------------------------------------------------------------+
+| file name                         | description                                                   |
++-----------------------------------+---------------------------------------------------------------+
+| *C2H2_rt_response.inp*            | input file that contain input                                 |
+|                                   | keywords and their values.                                    |
++-----------------------------------+---------------------------------------------------------------+
+| *C_rps.dat*                       | pseodupotential file for carbon                               |
++-----------------------------------+---------------------------------------------------------------+
+| *H_rps.dat*                       | pseudopotential file for hydrogen                             |
++-----------------------------------+---------------------------------------------------------------+
+| *restart*                         | directory created in the ground state calculation             |
+|                                   |                                                               |
+|                                   | (rename the directory from *data_for_restart* to *restart*)   |
++-----------------------------------+---------------------------------------------------------------+
 
 First three files are prepared in the directory ``SALMON/samples/exercise_02_C2H2_lr/``.
 The file *C2H2_rt_response.inp* that contains input keywords and their values. 
@@ -813,6 +812,7 @@ directory that you run the code,
 | *C2H2_rt.data*                    | components of                     |
 |                                   | change of dipole moment           |
 |                                   | (electrons/plus definition)       |
+|                                   |                                   |
 |                                   | and total dipole moment           |
 |                                   | (electrons/minus + ions/plus)     |
 |                                   | as functions of time              |
@@ -966,21 +966,20 @@ Input files
 
 To run the code, following files are necessary:
 
-+-----------------------------------+-----------------------------------+
-| file name                         | description                       |
-+-----------------------------------+-----------------------------------+
-| *C2H2_rt_pulse.inp*               | input file that contain input     |
-|                                   | keywords and their values.        |
-+-----------------------------------+-----------------------------------+
-| *C_rps.dat*                       | pseodupotential file for carbon   |
-+-----------------------------------+-----------------------------------+
-| *H_rps.dat*                       | pseudopotential file for hydrogen |
-+-----------------------------------+-----------------------------------+
-| *restart*                         | directory created in the ground   |
-|                                   | state calculation (rename the     |
-|                                   | directory from                    |
-|                                   | *data_for_restart* to *restart*)  |
-+-----------------------------------+-----------------------------------+
++-----------------------------------+---------------------------------------------------------------+
+| file name                         | description                                                   |
++-----------------------------------+---------------------------------------------------------------+
+| *C2H2_rt_pulse.inp*               | input file that contain input                                 |
+|                                   | keywords and their values.                                    |
++-----------------------------------+---------------------------------------------------------------+
+| *C_rps.dat*                       | pseodupotential file for carbon                               |
++-----------------------------------+---------------------------------------------------------------+
+| *H_rps.dat*                       | pseudopotential file for hydrogen                             |
++-----------------------------------+---------------------------------------------------------------+
+| *restart*                         | directory created in the ground state calculation             |
+|                                   |                                                               |
+|                                   | (rename the directory from *data_for_restart* to *restart*)   |
++-----------------------------------+---------------------------------------------------------------+
 
 First three files are prepared in the directory ``SALMON/samples/exercise_03_C2H2_rt/``.
 The file *C2H2_rt_pulse.inp* that contains input keywords and their values. 
@@ -1205,6 +1204,7 @@ directory that you run the code,
 | *C2H2_rt.data*                    | components of                     |
 |                                   | change of dipole moment           |
 |                                   | (electrons/plus definition)       |
+|                                   |                                   |
 |                                   | and total dipole moment           |
 |                                   | (electrons/minus + ions/plus)     |
 |                                   | as functions of time              |
@@ -1654,12 +1654,14 @@ To run the code, following files in samples are used:
 | file name                         | description                       |
 +-----------------------------------+-----------------------------------+
 | *Si_rt_response.inp*              | input file that contain input     |
-|                                   | keywords and their values.        |
+|                                   | keywords and their values         |
 +-----------------------------------+-----------------------------------+
 | *Si_rps.dat*                      | pseodupotential file of silicon   |
 +-----------------------------------+-----------------------------------+
 | *restart*                         | directory created in the ground   |
-|                                   | state calculation (rename the     |
+|                                   | state calculation                 |
+|                                   |                                   |
+|                                   | (rename the                       |
 |                                   | directory from                    |
 |                                   | *data_for_restart* to *restart*)  |
 +-----------------------------------+-----------------------------------+
@@ -1940,8 +1942,9 @@ To run the code, following files in samples are used:
 | *Si_rps.dat*                      | pseodupotential file for Carbon   |
 +-----------------------------------+-----------------------------------+
 | *restart*                         | directory created in the ground   |
-|                                   | state calculation (rename the     |
-|                                   | directory from                    |
+|                                   | state calculation                 |
+|                                   |                                   |
+|                                   | (rename the directory from        |
 |                                   | *data_for_restart* to *restart*)  |
 +-----------------------------------+-----------------------------------+
 
@@ -2228,8 +2231,9 @@ To run the code, following files in samples are used:
 | *Si_rps.dat*                      | pseodupotential file for silicon  |
 +-----------------------------------+-----------------------------------+
 | *restart*                         | directory created in the ground   |
-|                                   | state calculation (rename the     |
-|                                   | directory from                    |
+|                                   | state calculation                 |
+|                                   |                                   |
+|                                   | (rename the directory from        |
 |                                   | *data_for_restart* to *restart*)  |
 +-----------------------------------+-----------------------------------+
 
@@ -2467,23 +2471,28 @@ following output files are created in the directory,
 +-----------------------------------+------------------------------------+
 | *Si_m/mxxxxxx/Si_rt.data*         | vector potential, electric field,  |
 |                                   | and matter current                 |
+|                                   |                                    |
 |                                   | at macroscopic position *xxxxxx*   |
 |                                   | as functions of time               |
 +-----------------------------------+------------------------------------+
 | *Si_m/mxxxxxx/Si_rt_energy.data*  | components of total energy and     |
 |                                   | difference of total energy         |
+|                                   |                                    |
 |                                   | at macroscopic position *xxxxxx*   |
 |                                   | as functions of time               |
 +-----------------------------------+------------------------------------+
 | *Si_m/mxxxxxx/PS_Si_KY_n.dat*     | information on pseodupotential     |
 |                                   | file for silicon atom              |
+|                                   |                                    |
 |                                   | at macroscopic position *xxxxxx*   |
 +-----------------------------------+------------------------------------+
 | *Si_RT_Ac/Si_Ac_yyyyyy.data*      | vector potential,                  |
 |                                   | electric field,                    |
 |                                   | magnetic field,                    |
+|                                   |                                    |
 |                                   | electromagnetic current density    |
 |                                   | at time step *yyyyyy*              |
+|                                   |                                    |
 |                                   | as function of space               |
 +-----------------------------------+------------------------------------+
 | *Si_wave.data*                    | amplitudes of incident, reflected, |
@@ -2842,6 +2851,7 @@ is the only file that the users need to prepare.
 +-----------------------------------+-----------------------------------+
 | *restart*                         | directory created in the geometry |
 |                                   | optimization                      |
+|                                   |                                   |
 |                                   | (rename the directory from        |
 |                                   | *data_for_restart* to *restart*)  |
 +-----------------------------------+-----------------------------------+
@@ -3055,6 +3065,7 @@ directory that you run the code,
 | *C2H2_rt.data*                      | components of                      |
 |                                     | change of dipole moment            |
 |                                     | (electrons/plus definition)        |
+|                                     |                                    |
 |                                     | and total dipole moment            |
 |                                     | (electrons/minus + ions/plus)      |
 |                                     | as functions of time               |
