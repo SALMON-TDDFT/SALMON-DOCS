@@ -495,7 +495,7 @@ file_atom_coor
 yn_spinorbit
 ^^^^^^^^^^^^
 
-character, default='n'
+[Trial] character, default='n'
 
    | Options
    |   ``'y'`` / enable
@@ -506,10 +506,13 @@ character, default='n'
 yn_symmetry
 ^^^^^^^^^^^
 
-character, default='n'
+[Trial] character, default='n'
+
+   | Available for orthogonal cell system with the DFT/TDDFT based options of ``theory``.
+   | Symmetry option. Pre-generated input file, "sym.dat", is necessary. (details are not explained in the current manual)
 
    | Options
-   |   ``'y'`` / enable
+   |   (e.g.) ``'yyn'`` / symmetry option is applied for the x and y direction (under applied electric field in the z-direction) 
    |   ``'n'`` / disable
 
 .. _absorbing_boundary:
