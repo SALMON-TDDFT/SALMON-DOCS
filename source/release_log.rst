@@ -2,11 +2,26 @@
 Release History
 ###########################
 
+Release Notes
+-------------
+
+
+* Release note of SALMON ver. 2:
+
+  https://github.com/SALMON-TDDFT/SALMON2/releases
+
+* Release note of SALMON ver. 0 and 1:
+
+  https://github.com/SALMON-TDDFT/SALMON/releases
+
+
+Details of Minor Changes
+------------------------
 
 Followings are history of fixed bugs and changes of models/inputs/outputs after releasing v.2.0.0. (not complete list currently)
 
 Fixed bugs
-----------
+==========
 
 (Fixed in v.2.0.2)
 
@@ -26,7 +41,7 @@ Fixed bugs
 
 
 Changes of models/inputs/outputs
---------------------------------
+================================
 
 (v.2.0.2)
 
