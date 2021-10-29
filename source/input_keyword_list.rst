@@ -2237,7 +2237,7 @@ yn_lr_w0_correction
 
 [Trial] character, default='n'
 
-   | Available for ``yn_periodic='y'`` with ``theory='tddft_response'``.
+   | Available for ``yn_periodic='y'`` and ``trans_longi='tr'`` with ``theory='tddft_response'``.
    | Apply correction around zero frequency of dielectric function to suppress numerical error. 
    | Options:
    |   ``'y'`` / enable
