@@ -528,6 +528,23 @@ The polarizability :math:`\alpha_{\mu \nu}(t)` relates the :math:`\mu`
 component of the electric dipole moment at time :math:`t`, :math:`p_{\mu}(t)`, 
 with the :math:`\nu` component of the electric field at time :math:`t'`,
 
+hoge test
+
+..  math::
+  H_{\rm KS} \phi_i(\mathbf{r}) = \epsilon_i \phi_i(\mathbf{r}),
+
+.. math:: H_{\rm KS} \phi_i(\mathbf{r}) = \epsilon_i \phi_i(\mathbf{r}),
+
+.. math::
+  H_{\rm KS} \phi_i(\mathbf{r}) = \epsilon_i \phi_i(\mathbf{r}),
+	  
+.. math::  a=b
+
+.. math::
+  a=b
+
+
+
 :math:`p_{\mu}(t) = \sum_{\nu=x,y,z} \alpha_{\mu \nu}(t-t') E_{\nu}(t').`
 
 We introduce a frequency-dependent polarizability by the time-frequency 
