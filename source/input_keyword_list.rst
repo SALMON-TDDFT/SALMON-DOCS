@@ -1816,7 +1816,7 @@ yn_wf_em
 character, default='y'
 
    | Available for ``theory='maxwell'``.
-   | Switch of a window function for linear response calculation. Available for ``&calculation/theory=maxwell``.
+   | Switch of a window function for linear response calculation.
    | Options:
    |   ``'y'``
    |   ``'n'``
@@ -1855,6 +1855,113 @@ media_id_source2
 integer, default=0
    | Available for ``theory='maxwell'``.
    | Media ID used in incident current source1/source2 to generate the first/second pulse.
+
+.. _yn_make_shape:
+
+yn_make_shape
+^^^^^^^^^^^^^
+
+character, default='n'
+
+   | Available for ``theory='maxwell'``.
+   | Switch for making shape. This is same functionality for ``FDTD_make_shape`` in SALMON utilities (https://salmon-tddft.jp/utilities.html).
+   | Options:
+   |   ``'y'``
+   |   ``'n'``
+
+.. _yn_output_shape:
+
+yn_output_shape
+^^^^^^^^^^^^^^^^^
+
+character, default='n'
+
+   | Available for ``theory='maxwell'``.
+   | Switch for outputing shape file in cube format when ``yn_make_shape='y'``.
+   | Options:
+   |   ``'y'``
+   |   ``'n'``
+
+.. _yn_copy_x:
+
+yn_copy_x
+^^^^^^^^^
+.. _yn_copy_y:
+
+yn_copy_y
+^^^^^^^^^
+.. _yn_copy_z:
+
+yn_copy_z
+^^^^^^^^^
+character, default='n'
+
+   | Available for ``theory='maxwell'``.
+   | See ``FDTD_make_shape`` in SALMON utilities (https://salmon-tddft.jp/utilities.html).
+   | Options:
+   |   ``'y'``
+   |   ``'n'``
+
+.. _rot_type:
+
+rot_type
+^^^^^^^^
+character, default='radian'
+
+   | Available for ``theory='maxwell'``.
+   | See ``FDTD_make_shape`` in SALMON utilities (https://salmon-tddft.jp/utilities.html).
+   | Options:
+   |   ``'radian'``
+   |   ``'degree'``
+
+.. _n_s:
+
+n_s
+^^^
+integer, default=0
+
+   | Available for ``theory='maxwell'``.
+   | See ``FDTD_make_shape`` in SALMON utilities (https://salmon-tddft.jp/utilities.html).
+
+.. _typ_s(:):
+
+typ_s(:)
+^^^^^^^^
+character, default='none'
+
+   | Available for ``theory='maxwell'``.
+   | See ``FDTD_make_shape`` in SALMON utilities (https://salmon-tddft.jp/utilities.html).
+
+.. _id_s(:):
+
+id_s(:)
+^^^^^^^
+integer, default=0
+
+   | Available for ``theory='maxwell'``.
+   | See ``FDTD_make_shape`` in SALMON utilities (https://salmon-tddft.jp/utilities.html).
+
+.. _inf_s(:,10):
+
+inf_s(:,10)
+^^^^^^^^^^^
+real(8), default=0
+
+   | Available for ``theory='maxwell'``.
+   | See ``FDTD_make_shape`` in SALMON utilities (https://salmon-tddft.jp/utilities.html).
+
+.. _ori_s(:,3):
+
+ori_s(:,3)
+^^^^^^^^^^
+.. _rot_s(:,3):
+
+rot_s(:,3)
+^^^^^^^^^^
+real(8), default=0d0
+
+   | Available for ``theory='maxwell'``.
+   | See ``FDTD_make_shape`` in SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
 .. _&analysis:
 
