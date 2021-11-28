@@ -1548,6 +1548,7 @@ real(8), default=0d0
 
    | Available for ``theory='maxwell'``.
    | Size of simulation box in electromagnetic analysis.
+   | Only two of ``al_em``, ``dl_em``, and ``num_rgrid_em`` must be set.
 
 .. _dl_em(3):
 
@@ -1558,7 +1559,19 @@ real(8), default=0d0
 
    | Available for ``theory='maxwell'`` and  ``theory='multi_scale_maxwell_tddft'``.
    | Spacing of real-space grids in electromagnetic analysis.
+   | Only two of ``al_em``, ``dl_em``, and ``num_rgrid_em`` must be set.
 
+.. _num_rgrid_em(3):
+
+num_rgrid_em(3)
+^^^^^^^^^^^^^^^
+
+integer, default=0
+
+   | Available for ``theory='maxwell'``.
+   | Number of real-space grids in electromagnetic analysis.
+   | Only two of ``al_em``, ``dl_em``, and ``num_rgrid_em`` must be set.
+   
 .. _dt_em:
 
 dt_em
