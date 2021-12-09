@@ -1795,10 +1795,10 @@ real(8), default=0d0
    | Available for ``theory='maxwell'``.
    | ``obs_loc_em(n,1:3)=x,y,z`` spesifies location of the n-th observation point in electromagnetic analysis. Note that the coordinate system ranges from ``-al_em/2`` to ``al_em/2`` for ``&system/yn_periodic='n'`` while ranges from ``0`` to ``al_em`` for ``&system/yn_periodic='y'``.
 
-.. _obs_loc_em(:,3):
+.. _obs_plane_ene_em(:,:):
 
 obs_plane_ene_em(:,:)
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 real(8), default=-1d0
 
