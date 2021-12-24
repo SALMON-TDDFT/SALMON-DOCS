@@ -276,6 +276,21 @@ character, default='n'
    |   ``mod(num_rgrid(2), nproc_rgrid(3)) == 0``
    |   ``mod(num_rgrid(3), nproc_rgrid(3)) == 0``
 
+.. _yn_fftw:
+
+yn_fftw
+^^^^^^^
+
+character, default='n'
+
+   | Available both for ``&system/yn_periodic='y'`` and ``&system/yn_periodic='n'``
+   | For isolated systems, this option is effective when ``&poisson/method_poisson='ft'``
+   | This switch selects if FFTW library is used or not. If FFTW is not used, the Fourier transformation in a simple algorithm is carried out.
+   | Caution: This variable is effective only when the preprocessor "USE_FFTW" is specified at the configure.
+   | Options
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
+
 .. _yn_scalapack:
 
 yn_scalapack
