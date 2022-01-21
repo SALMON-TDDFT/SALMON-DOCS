@@ -69,7 +69,7 @@ sysname
 
 character, default='default'
 
-   | Available for all options of ``theory``. 
+   | Available for all options of ``theory``.
    | A prefix of output files.
 
 .. _base_directory:
@@ -113,7 +113,7 @@ yn_self_checkpoint
 character, default='n'
 
    | Available for the DFT/TDDFT based options of ``theory``.
-   | With this option, each process writes/reads the restart (and checkpoint) data independently (self data format) so that the restart cost is reduced for large systems. Note that the number of processes and their assignments must be unchanged in restarting. The data is written out into 'checkpoint_gs_XXXXXX/' (DFT) or 'checkpoint_rt_XXXXXX/' (TDDFT). 
+   | With this option, each process writes/reads the restart (and checkpoint) data independently (self data format) so that the restart cost is reduced for large systems. Note that the number of processes and their assignments must be unchanged in restarting. The data is written out into 'checkpoint_gs_XXXXXX/' (DFT) or 'checkpoint_rt_XXXXXX/' (TDDFT).
    | Options:
    |   ``'y'`` / enable
    |   ``'n'`` / disable
@@ -136,7 +136,7 @@ yn_reset_step_restart
 character, default='n'
 
    | Available for ``yn_restart='y'`` in the DFT/TDDFT based options of ``theory``.
-   | With this option, the counter of the SCF iteration step (for DFT) or the counter of the time propagation step (for TDDFT) is reset to 0 at the restart. In the SCF iteration, the density data in the previous SCF iteration step are abondoned. 
+   | With this option, the counter of the SCF iteration step (for DFT) or the counter of the time propagation step (for TDDFT) is reset to 0 at the restart. In the SCF iteration, the density data in the previous SCF iteration step are abondoned.
 
 .. _read_gs_restart_data:
 
@@ -168,8 +168,8 @@ character, default='all'
    |   ``rho_inout``  / only electron densities including those of previous iteration steps are written out
    |   ``wfn``  / only orbital wavefunctions are written out
    |   ``checkpoint_only`` / the restart data are outputted only in the self data format (separated data for each process) at the last step into 'checkpoint_gs_XXXXXX/' directory (``yn_self_checkpoint='y'`` is required) without generating the restart data into 'data_for_restart/' directory in the single file format.
-   | Output data files are written out in the restart (or checkpoint) directory. 
-   | The default option ``'all'`` gives the complete set of restart data. 
+   | Output data files are written out in the restart (or checkpoint) directory.
+   | The default option ``'all'`` gives the complete set of restart data.
 
 .. _time_shutdown:
 
@@ -217,7 +217,7 @@ unit_system
 
 character, default='au'
 
-   | Unit system to be used in input variables and some of output files. 
+   | Unit system to be used in input variables and some of output files.
    | If ``unit_system = 'A_eV_fs'`` is chosen, Angstrom for length, eV for energy, and fs for time are adopted.
    | For isolated systems specified by ``yn_periodic = 'n'`` in ``&system``, a unit of 1/eV is used for the output files of DOS and PDOS if ``unit_system = 'A_eV_fs'`` is specified, while atomic unit is used if not. For other output files, the Angstrom/eV/fs units are used irrespective of the input keyword. For periodic systems specified by ``yn_periodic = 'n'`` in ``&system``, the unit system specified by this input keyword is used for most output files. To confirm the unit, see the first few lines of output files.
    | Options:
@@ -252,8 +252,8 @@ integer, default=0
    |   ``nproc_rgrid(3)'``/ Number of MPI parallelization for each direction of real-space grid that are used for electron orbitals and density.
    |
    | Defaults are ``0`` for ``nproc_k``/``nproc_ob`` and ``(0,0,0)`` for ``nproc_rgrid``. In the default choice, MPI assignment is achieved atomatically. Users can specify ``nproc_k``, ``nproc_ob``, and ``nproc_rgrid`` manually. In that case, there are several constraints that should be fulfilled:
-   |   ``nproc_k`` must be set to ``1`` for ``&system/yn_periodic='n'``. 
-   |   ``nproc_k`` and ``nproc_ob`` must be set to ``1`` for ``theory='maxwell'``. 
+   |   ``nproc_k`` must be set to ``1`` for ``&system/yn_periodic='n'``.
+   |   ``nproc_k`` and ``nproc_ob`` must be set to ``1`` for ``theory='maxwell'``.
    |   ``nproc_k`` \* ``nproc_ob`` \* ``nproc_rgrid(1)`` \* ``nproc_rgrid(2)`` \* ``nproc_rgrid(3)`` \= total number of processes.
 
 .. _yn_ffte:
@@ -269,7 +269,7 @@ character, default='n'
    | Options
    |   ``'y'`` / enable
    |   ``'n'`` / disable
-   | 
+   |
    | To enable it, following relations must be satisfied.
    |   ``mod(num_rgrid(1), nproc_rgrid(2)) == 0``
    |   ``mod(num_rgrid(2), nproc_rgrid(2)) == 0``
@@ -301,6 +301,19 @@ character, default='n'
    | Available for ``&calculation/theory='dft' or 'dft_md'``
    | To calculate large systems, an eigenvalue problem in the subspace diagonalization becomes a bottle-neck in the ground state calculation. In SALMON, ScaLAPACK library can be used to solve the eigenvalue problem.
    | To enable it, it is necessary to link ScaLAPACK library when you build SALMON.
+   | Options:
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
+
+.. _yn_gramschmidt_blas:
+
+yn_gramschmidt_blas
+^^^^^^^^^^^^^^^^^^^
+
+character, default='y'
+
+   | Available for ``&calculation/theory='dft' or 'dft_md'``
+   | This switch selects if BLAS library is used or not in Gram Schmidt routines.
    | Options:
    |   ``'y'`` / enable
    |   ``'n'`` / disable
@@ -338,7 +351,7 @@ process_allocation
 
 character, default='grid_sequential'
 
-   | This controlls the order of process allocation. 
+   | This controlls the order of process allocation.
    | Options:
    |   ``'grid_sequential'``    / real-space grid major ordering.
    |   ``'orbital_sequential'`` / orbital-space major ordering.
@@ -349,7 +362,7 @@ character, default='grid_sequential'
 
 .. _&system:
 
-&system 
+&system
 -------
 
 .. _yn_periodic:
@@ -373,8 +386,8 @@ spin
 character, default='unpolarized'
 
    | Available for the DFT/TDDFT based options of ``theory``.
-   | It specifies the spin state of the system, spin-unpolarized (closed shell) and spin-polarized (open shell). 
-   | Options 
+   | It specifies the spin state of the system, spin-unpolarized (closed shell) and spin-polarized (open shell).
+   | Options
    |   ``'unpolarized'`` / spin-unpolarized systems (default)
    |   ``'polarized'`` / spin-polarized systems
 
@@ -527,7 +540,7 @@ yn_symmetry
    | Symmetry option. Pre-generated input file, "sym.dat", is necessary. (details are not explained in the current manual)
 
    | Options
-   |   (e.g.) ``'yyn'`` / symmetry option is applied for the x and y direction (under applied electric field in the z-direction) 
+   |   (e.g.) ``'yyn'`` / symmetry option is applied for the x and y direction (under applied electric field in the z-direction)
    |   ``'n'`` / disable
 
 .. _absorbing_boundary:
@@ -538,7 +551,7 @@ absorbing_boundary
 [Trial] character, default='none'
 
    | Available for the TDDFT based option of ``theory`` with orthogonal unit cell.
-   | Absorbing boundary condition for electrons. (T. Nakatsukasa et al., J. Chem. Phys., 114, 2550 (2001))  
+   | Absorbing boundary condition for electrons. (T. Nakatsukasa et al., J. Chem. Phys., 114, 2550 (2001))
    | Options:
    |   ``'none'`` / disable (default)
    |   ``'z'`` / absorbing boundary region is set in z direction for ``'yn_periodic = 'y'``
@@ -618,7 +631,7 @@ lmax_ps(:)
 integer, default=-1
 
    | Available for the DFT/TDDFT based options of ``theory``.
-   | Maximum angular momentum of pseudopotential projectors. 
+   | Maximum angular momentum of pseudopotential projectors.
    | If not given, values specified in the pseudopotential file will be used. The size of array is equal to ``&system/nelem``.
 
 .. _lloc_ps(:):
@@ -744,7 +757,7 @@ character, default='none'
    | Note that, the hybrid functionals (hybrid gga/mgga) are not supported.
    |
    | To use libxc libraries, ``--enable-libxc`` option must be added in excecuting configure. The available option of the exchange-correlation functionals are listed in the LibXC website. [See http://www.tddft.org/programs/libxc/functionals/]
-   
+
 .. _&rgrid:
 
 &rgrid
@@ -758,7 +771,7 @@ dl(3)
 real(8), default=0d0
 
    | Available for the DFT/TDDFT based options of ``theory``.
-   | Spacing of real-space grids. 
+   | Spacing of real-space grids.
    | This cannot be used together with ``&rgrid/num_rgrid``.
 
 .. _num_rgrid(3):
@@ -866,7 +879,7 @@ character, default=middlepoint
    | Available for TDDFT-based options of ``theory``.
    | Choice of the propagator in the time evolution calculation.
    | Options:
-   |   ``middlepoint`` / Hamiltoinan at midpoint of two-times is used in the propagation if ``yn_predictor_corrector = 'y'``. Hamiltoian at the time :math:`t` is used if ``yn_predictor_corrector = 'n'``. 
+   |   ``middlepoint`` / Hamiltoinan at midpoint of two-times is used in the propagation if ``yn_predictor_corrector = 'y'``. Hamiltoian at the time :math:`t` is used if ``yn_predictor_corrector = 'n'``.
    |   ``aetrs`` / time-reversal symmetry propagator. [M.A.L. Marques, A. Castro, G.F. Bertsch, and A. Rubio, Comput. Phys. Commun., 151 60 (2003)].
 
 .. _yn_predictor_corrector:
@@ -875,8 +888,8 @@ yn_predictor_corrector
 ^^^^^^^^^^^^^^^^^^^^^^
 
 character, default='n'
-   | Available for TDDFT-based options of ``theory``.   
-   | Switch of the predictor-corrector method of TDDFT. 
+   | Available for TDDFT-based options of ``theory``.
+   | Switch of the predictor-corrector method of TDDFT.
    | For meta-GGA functionals (``xc='tbmbj'``), the predictor corrector is automatically used even with ``yn_predictor_corrector='n'``.
    | Options:
    |   ``'y'`` / enable
@@ -949,7 +962,7 @@ nscf
 integer, Default=300
 
    | Available for 'dft' and 'dft_md' options of ``theory``.
-   | Number of maximum SCF iterations in the DFT calculation. 
+   | Number of maximum SCF iterations in the DFT calculation.
 
 .. _method_min:
 
@@ -962,7 +975,7 @@ character, Default='cg'
    | Method for updating orbitals in the SCF iteration. At present only confjugate gradient method is implemented.
    | Options:
    |  ``cg`` / Conjugate-Gradient(CG) method
- 
+
 .. _ncg:
 
 ncg
@@ -991,7 +1004,7 @@ method_mixing
 character, default='broyden'
 
    | Available for 'dft' and 'dft_md' options of ``theory``.
-   | Method to update density/potential in the scf iteration. 
+   | Method to update density/potential in the scf iteration.
    | Options:
    |  ``simple`` / Simple mixing method
    |  ``broyden`` / modified Broyden method
@@ -1035,7 +1048,7 @@ nmemory_p
 integer, default=4
 
    | Available for ``method_mixing='pulay'`` in 'dft' and 'dft_md' options of ``theory``.
-   | Number of previous densities to be stored in the SCF iteration using the Pulay method. 
+   | Number of previous densities to be stored in the SCF iteration using the Pulay method.
 
 .. _beta_p:
 
@@ -1068,7 +1081,7 @@ update_mixing_ratio
 real(8), default=3.0d0
 
    | Available for ``yn_auto_mixing='y'`` in 'dft' and 'dft_md' options of ``theory``.
-   | Threshold for the change of the mixing rate in ``yn_auto_mixing='y'`` option. The mixing-rate is reduced to half when the ratio of the density differences between the current and previous iteration steps is larger than ``update_mixing_ratio``. 
+   | Threshold for the change of the mixing rate in ``yn_auto_mixing='y'`` option. The mixing-rate is reduced to half when the ratio of the density differences between the current and previous iteration steps is larger than ``update_mixing_ratio``.
 
 .. _yn_subspace_diagonalization:
 
@@ -1091,10 +1104,10 @@ convergence
 character, default='rho_dne'
 
    | Available for 'dft' and 'dft_md' options of ``theory``.
-   | Specify a quantity that is used for convergence check of the SCF iteration. 
+   | Specify a quantity that is used for convergence check of the SCF iteration.
    | Options:
    |   ``'rho_dne'``/ Convergence is checked by sum_ix|rho(ix,iter)-rho(ix,iter-1)|dx/N. N is ``&system/nelec``.
-   |   ``'norm_rho'``/ Convergence is checked by the square of the norm of the density difference, ||rho_iter(ix)-rho_iter-1(ix)||\ :sup:`2`\=sum_ix|rho(ix,iter)-rho(ix,iter-1)|\ :sup:`2`\. 
+   |   ``'norm_rho'``/ Convergence is checked by the square of the norm of the density difference, ||rho_iter(ix)-rho_iter-1(ix)||\ :sup:`2`\=sum_ix|rho(ix,iter)-rho(ix,iter-1)|\ :sup:`2`\.
    |   ``'norm_rho_dng'``/ Convergence is checked by ||rho_iter(ix)-rho_iter-1(ix)||\ :sup:`2`\/(number of grids). "dng" means "devided by number of grids".
    |   ``'norm_pot'``/ Convergence is checked by ||Vlocal_iter(ix)-Vlocal_iter-1(ix)||\ :sup:`2`\, where Vlocal is Vh + Vxc + Vps_local.
    |   ``'pot_dng'``/ Convergence is checked by ||Vlocal_iter(ix)-Vlocal_iter-1(ix)||\ :sup:`2`\/(number of grids).
@@ -1137,7 +1150,7 @@ nscf_init_mix_zero
 integer, default=-1
 
    | Available for 'dft' option of ``theory``.
-   | The density will not be mixed (i.e. fixed) during the given number of the SCF iteration, that is, orbitals are optimized without updating the density. 
+   | The density will not be mixed (i.e. fixed) during the given number of the SCF iteration, that is, orbitals are optimized without updating the density.
 
 .. _conv_gap_mix_zero:
 
@@ -1164,7 +1177,7 @@ character, default='tr'
    | Available for ``yn_periodic='y'`` in 'maxwell' and TDDFT based options of ``theory``.
    | Specify the treatment of the polarization in the time evolution calculation.
    | Options:
-   |   ``'tr'`` / Transverse  
+   |   ``'tr'`` / Transverse
    |   ``'lo'`` / longitudinal
    |   ``'2d'`` / 2D maxwell-TDDFT method (for more details, see ``film_thickness`` of &maxwell)
 
@@ -1188,7 +1201,7 @@ character, Default='none'
    |   ``'Acos3'`` / Envelope of cos\ :sup:`3`\ for a vector potential.
    |   ``'Acos4'`` / Envelope of cos\ :sup:`4`\ for a vector potential.
    |   ``'Acos6'`` / Envelope of cos\ :sup:`6`\ for a vector potential.
-   |   ``'Acos8'`` / Envelope of cos\ :sup:`8`\ for a vector potential.   
+   |   ``'Acos8'`` / Envelope of cos\ :sup:`8`\ for a vector potential.
    |   ``'Ecos2'`` / Envelope of cos\ :sup:`2`\ for an electric field.
    |   ``'Asin2cos'`` [Trial] / Envelope of sin\ :sup:`2`\ with cosine type oscillation for a vector potential.
    |   ``'Asin2_cw'`` [Trial] / Envelope of sin\ :sup:`2`\ at the beginning and continuous wave after that for a vector potential (for 'ae_shape1' only).
@@ -1207,7 +1220,7 @@ file_input1
 character, default=''
 
    | Available if ``ae_shape1='input'`` is specified and ``theory='tddft_pulse'``.
-   | Name of an input file that contains user-defined vector potential. The file must be a numerical table separated by blank, having four columns; the first column is time and second to fourth columns are Ax/c, Ay/c, Az/c, repsectively. All the quantities are written using the units specified by ``unit_system``. '#' and '!' may be used for a comment line. 
+   | Name of an input file that contains user-defined vector potential. The file must be a numerical table separated by blank, having four columns; the first column is time and second to fourth columns are Ax/c, Ay/c, Az/c, repsectively. All the quantities are written using the units specified by ``unit_system``. '#' and '!' may be used for a comment line.
    | Note that a linear interpolation will be applied when the time step differs from that used in the calculation.
 
 .. _e_impulse:
@@ -1286,7 +1299,7 @@ omega2
 real(8), default=0d0
 
    | Available for 'maxwell' and TDDFT based options of ``theory``.
-   | Mean photon energy (average frequency multiplied by the Planck constant) of the first/second pulse. 
+   | Mean photon energy (average frequency multiplied by the Planck constant) of the first/second pulse.
 
 .. _epdir_re1(3):
 
@@ -1439,7 +1452,7 @@ yn_put_wall_z_boundary
 [Trial] character, default='n'
 
    | Available for DFT/TDDFT based options of ``theory``.
-   | Option to put potential wall near the boundary planes at *z*\ =0 and *z*\ =``&system/al(3)``. This potential prevents electrons from crossing the *z*\ -boundary plane. In the single-scale Maxwell-TDDFT method, the electron density on the *z*\ -boundary plane harms the norm conservation of electrons due to the discontinuity of the vectorpotential. The wall is described using the square of cosine function.  
+   | Option to put potential wall near the boundary planes at *z*\ =0 and *z*\ =``&system/al(3)``. This potential prevents electrons from crossing the *z*\ -boundary plane. In the single-scale Maxwell-TDDFT method, the electron density on the *z*\ -boundary plane harms the norm conservation of electrons due to the discontinuity of the vectorpotential. The wall is described using the square of cosine function.
    | Options:
    |   ``'y'`` / put the potential wall
    |   ``'n'`` / no potential wall
@@ -1586,7 +1599,7 @@ integer, default=0
    | Available for ``theory='maxwell'``.
    | Number of real-space grids in electromagnetic analysis.
    | Only two of ``al_em``, ``dl_em``, and ``num_rgrid_em`` must be set.
-   
+
 .. _dt_em:
 
 dt_em
@@ -1714,7 +1727,7 @@ real(8), default=0d0
 
 f_ld(:,:)
 ^^^^^^^^^
-   
+
 real(8), default=0d0
 
    | Available for ``theory='maxwell'``.
@@ -1863,11 +1876,11 @@ character, default='y'
 
 film_thickness
 ^^^^^^^^^^^^^^
-   
+
 real(8), default=0d0
 
    | Available for TDDFT based options of ``theory`` with ``trans_longi='2d'``.
-   | Thickness of the film for the 2D maxwell-TDDFT method. 
+   | Thickness of the film for the 2D maxwell-TDDFT method.
    | The relative permittivity of the transparent media on both sides of the film can be specified by ``epsilon_em(1)`` and ``epsilon_em(2)``, respectively.
 
 .. _media_id_pml(3:2):
@@ -2071,7 +2084,7 @@ character, default='n'
    | Options:
    |   ``'y'`` / enable
    |   ``'n'`` / disable
-   | The format of the output is specified by &analysis/``format_voxel_data``. 
+   | The format of the output is specified by &analysis/``format_voxel_data``.
 
 .. _yn_out_dos:
 
@@ -2129,7 +2142,7 @@ real(8), default=1d10 (eV)
 
    | Available when ``yn_out_dos='y'`` or ``yn_out_pdos='y'``.
    | Lower/Upper bound of the energy range for the density of states spectra.
-   | If this value is lower/higher than a specific value near the lowest/highest energy level, this parameter is re-set to the value. 
+   | If this value is lower/higher than a specific value near the lowest/highest energy level, this parameter is re-set to the value.
 
 .. _out_dos_nenergy:
 
@@ -2212,7 +2225,7 @@ character, default='n'
    | Options:
    |   ``'y'`` / enable
    |   ``'n'`` / disable
-   | The data written in binary format are divided into files corresponding to the space-grid parallelization number. 
+   | The data written in binary format are divided into files corresponding to the space-grid parallelization number.
 
 .. _out_dns_ac_je_step:
 
@@ -2223,7 +2236,7 @@ integer, default=50
 
    | Available for ``theory='single_scale_maxwell_tddft'``.
    | Electron density, vector potential, electronic current, and ionic coordinates are outputted every ``outdns_dns_ac_je_step`` time steps.
- 
+
  .. _yn_out_dns_trans:
 
 yn_out_dns_trans
@@ -2383,7 +2396,7 @@ yn_lr_w0_correction
 [Trial] character, default='n'
 
    | Available for ``yn_periodic='y'`` and ``trans_longi='tr'`` with ``theory='tddft_response'``.
-   | Apply correction around zero frequency of dielectric function to suppress numerical error. 
+   | Apply correction around zero frequency of dielectric function to suppress numerical error.
    | Options:
    |   ``'y'`` / enable
    |   ``'n'`` / disable
@@ -2427,7 +2440,7 @@ layout_multipole
 
 character, Default=3
 
-   | Available for ``yn_periodic='n'`` in DFT and TDDFT based options of ``theory``.   
+   | Available for ``yn_periodic='n'`` in DFT and TDDFT based options of ``theory``.
    | This papameter specify how to achieve multipole expansioin in the Hartree potential calculation.
    | Options:
    |  ``1``/ A single pole at the center.
@@ -2452,7 +2465,7 @@ lmax_multipole
 [Trial] integer, default=4
 
    | Available for ``yn_periodic='n'`` in DFT and TDDFT based options of ``theory``.
-   | A maximum order of the multipole expansion to prepare boundary condition of Poisson equation. 
+   | A maximum order of the multipole expansion to prepare boundary condition of Poisson equation.
 
 .. _threshold_cg:
 
@@ -2462,7 +2475,7 @@ threshold_cg
 real(8), default=1d-15 [a.u.]
 
    | Available for ``yn_periodic='n'`` in DFT and TDDFT based options of ``theory``.
-   | A threshold for the convergence of the Hartree-cg calculation. A quantity examined is given by ||tVh(i)-tVh(i-1)||^2/(number of grids). 
+   | A threshold for the convergence of the Hartree-cg calculation. A quantity examined is given by ||tVh(i)-tVh(i-1)||^2/(number of grids).
 
 .. _&ewald:
 
@@ -2487,7 +2500,7 @@ aewald
 real(8), default=0.5d0 [a.u.]
 
    | Available for ``yn_periodic='y'`` in DFT/TDDFT based options of ``theory``.
-   | Square of range separation parameter for Ewald method (This parameter is given only in atomic unit). 
+   | Square of range separation parameter for Ewald method (This parameter is given only in atomic unit).
 
 .. _cutoff_r:
 
@@ -2517,7 +2530,7 @@ cutoff_g
 real(8), Default=-1d0
 
    | Available for ``yn_periodic='y'`` in DFT/TDDFT based options of ``thddeory``.
-   | Cut-off in G-space in the Ewald method. No cut-off in default. 
+   | Cut-off in G-space in the Ewald method. No cut-off in default.
 
 .. _&opt[Trial]:
 
@@ -2635,7 +2648,7 @@ file_ini_velocity
 [Trial] character, default='none'
 
    | Available for ``yn_md='y'`` or ``theory='dft_md'``.
-   | File name for reading initial velocities. This is read if the file name is given, then, the priority is higher than use of ``set_ini_velocity`` and restart data of velocities. The format is simply vx(iatom) vy(iatom) vz(iatom) in each line. The order of atoms must be the same as the given coordinates in the main input file. In case of using nose-hoover thermostat, a thermostat variable should be put at the last line (all atomic unit). 
+   | File name for reading initial velocities. This is read if the file name is given, then, the priority is higher than use of ``set_ini_velocity`` and restart data of velocities. The format is simply vx(iatom) vy(iatom) vz(iatom) in each line. The order of atoms must be the same as the given coordinates in the main input file. In case of using nose-hoover thermostat, a thermostat variable should be put at the last line (all atomic unit).
 
 .. _thermostat_tau:
 
@@ -2720,7 +2733,7 @@ shape_file_jm
 character, default='none'
 
    | Available for ``yn_jm='y'`` in the DFT/TDDFT based options of ``theory``.
-   | Name of input shape file that contains positive background charge density to be used in the jellium model calculations. The shape file can be generated by using ``FDTD_make_shape`` in SALMON utilities (https://salmon-tddft.jp/utilities.html). When ``shape_file_jm='none'``, the shape of the positive background charge density is specified by ``sphere_nion_jm`` and ``sphere_loc_jm`` which generate spherical shapes. 
+   | Name of input shape file that contains positive background charge density to be used in the jellium model calculations. The shape file can be generated by using ``FDTD_make_shape`` in SALMON utilities (https://salmon-tddft.jp/utilities.html). When ``shape_file_jm='none'``, the shape of the positive background charge density is specified by ``sphere_nion_jm`` and ``sphere_loc_jm`` which generate spherical shapes.
 
 .. _num_jm:
 
@@ -2831,14 +2844,14 @@ character, default='auto'
 
   &group_fundamental[Trial]
   -------------------------
-   
+
   - **iwrite_projection** (integer, Default=0)[Trial]
    | Available for ``theory='XXX'``.
-   A variable for projection. 
+   A variable for projection.
 
   - **itwproj** (integer, Default=-1)[Trial]
    | Available for ``theory='XXX'``.
-   The projection is calculated every ``itwproj`` time steps. 
+   The projection is calculated every ``itwproj`` time steps.
 
   - **iwrite_projnum** (integer, Default=0)[Trial]
    | Available for ``theory='XXX'``.
@@ -2858,5 +2871,3 @@ character, default='auto'
   - **iwrite_projection_k(200)** (Interger, Default=1)[Trial]
    | Available for ``theory='XXX'``.
    This variable will be removed.
-
-
