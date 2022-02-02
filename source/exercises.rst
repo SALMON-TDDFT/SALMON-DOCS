@@ -133,7 +133,7 @@ The pseudopoential depends on the angular momentum, and looks as follows (for Ca
      :scale: 40%
 
 
-In the input file *C2H2_gs.inp*, input keywords are specified.
+In the input file ``C2H2_gs.inp``, input keywords are specified.
 Most of them are mandatory to execute the ground state calculation.
 This will help you to prepare an input file for other systems that you
 want to calculate. A complete list of the input keywords that can be
@@ -145,7 +145,7 @@ used in the input file can be found in
    !########################################################################################!
    ! Excercise 01: Ground state of C2H2 molecule                                            !
    !----------------------------------------------------------------------------------------!
-   ! * The detail of this excercise is expained in our manual(see chapter: 'Exercises').    !
+   ! * The detail of this excercise is explained in our manual(see chapter: 'Exercises').   !
    !   The manual can be obtained from: https://salmon-tddft.jp/documents.html              !
    ! * Input format consists of group of keywords like:                                     !
    !     &group                                                                             !
@@ -292,7 +292,7 @@ used in the input file can be found in
 Execusion
 ^^^^^^^^^
 
-In a multiprocess environment, calculation will be executed as
+In a multiprocess environment, calculation will be executed as::
 
     $ mpiexec -n NPROC salmon < C2H2_gs.inp > C2H2_gs.out
 
@@ -314,7 +314,7 @@ directory that you run the code in addition to the standard output file,
 +-------------------------------------+-----------------------------------+
 | *C2H2_eigen.data*                   | orbital energies                  |
 +-------------------------------------+-----------------------------------+
-| *C2H2_k.data*   　                  | k-point distribution              |
+| *C2H2_k.data*                       | k-point distribution              |
 |                                     | (for isolated systems, only       |
 |                                     | gamma point is described)         |
 +-------------------------------------+-----------------------------------+
@@ -489,21 +489,21 @@ We show several image that are created from the output files.
 
 * **Highest occupied molecular orbital (HOMO)**
 
-  The output files *psi_ob1.cube*, *psi_ob2.cube*, ... are used to create the image.
+  The output files ``psi_ob1.cube``, ``psi_ob2.cube``, ... are used to create the image.
 
   .. image:: images/exc1/HOMO.png
      :scale: 20%
 
 * **Electron density**
 
-  The output files *dns.cube*, ... are used to create the image.
+  The output files ``dns.cube``, ... are used to create the image.
 
   .. image:: images/exc1/Dns.png
      :scale: 20%
 
 * **Electron localization function**
 
-  The output files *elf.cube*, ... are used to create the image.
+  The output files ``elf.cube``, ... are used to create the image.
 
   .. image:: images/exc1/Elf.png
      :scale: 20%
@@ -585,30 +585,34 @@ Input files
 
 To run the code, following files are necessary:
 
-+-----------------------------------+---------------------------------------------------------------+
-| file name                         | description                                                   |
-+-----------------------------------+---------------------------------------------------------------+
-| *C2H2_rt_response.inp*            | input file that contain input                                 |
-|                                   | keywords and their values.                                    |
-+-----------------------------------+---------------------------------------------------------------+
-| *C_rps.dat*                       | pseodupotential file for carbon                               |
-+-----------------------------------+---------------------------------------------------------------+
-| *H_rps.dat*                       | pseudopotential file for hydrogen                             |
-+-----------------------------------+---------------------------------------------------------------+
-| *restart*                         | | directory created in the ground state calculation           |
-|                                   | | (rename the directory from *data_for_restart* to *restart*) |
-+-----------------------------------+---------------------------------------------------------------+
++-----------------------------------+-----------------------------------+
+| file name                         | description                       |
++-----------------------------------+-----------------------------------+
+| *C2H2_response.inp*               | input file that contains input    |
+|                                   | keywords and their values         |
++-----------------------------------+-----------------------------------+
+| *C_rps.dat*                       | pseodupotential file for carbon   |
+|                                   | atom                              |
++-----------------------------------+-----------------------------------+
+| *H_rps.dat*                       | pseudopotential file for hydrogen |
+|                                   | atom                              |
++-----------------------------------+-----------------------------------+
+| *restart*                         | | directory created in the ground |
+|                                   |   state calculation               |
+|                                   | | (rename the directory from      |
+|                                   |   *data_for_restart* to *restart*)|
++-----------------------------------+-----------------------------------+
 
 First three files are prepared in the directory ``SALMON/samples/exercise_02_C2H2_lr/``.
-The file *C2H2_rt_response.inp* that contains input keywords and their values. 
+The file ``C2H2_rt_response.inp`` that contains input keywords and their values. 
 The pseudopotential files should be the same as those used in the ground state calculation.
-In the directory *restart*, those files created in the ground state calculation and stored
-in the directory *data_for_restart* are included. 
+In the directory ``restart``, those files created in the ground state calculation and stored
+in the directory ``data_for_restart`` are included. 
 Therefore, copy the directory as ``cp -R data_for_restart restart``
 if you calculate at the same directory as you did the ground state calculation.
 
 
-In the input file *C2H2_rt_response.inp*, input keywords are specified.
+In the input file ``C2H2_rt_response.inp``, input keywords are specified.
 Most of them are mandatory to execute the linear response calculation. 
 This will help you to prepare the input file for other systems that you
 want to calculate. A complete list of the input keywords that can be
@@ -621,7 +625,7 @@ used in the input file can be found in
    !########################################################################################!
    ! Excercise 02: Polarizability and photoabsorption of C2H2 molecule                      !
    !----------------------------------------------------------------------------------------!
-   ! * The detail of this excercise is expained in our manual(see chapter: 'Exercises').    !
+   ! * The detail of this excercise is explained in our manual(see chapter: 'Exercises').   !
    !   The manual can be obtained from: https://salmon-tddft.jp/documents.html              !
    ! * Input format consists of group of keywords like:                                     !
    !     &group                                                                             !
@@ -748,7 +752,7 @@ used in the input file can be found in
      !polarization unit vector(real part) for the incident pulse(x,y,z)
      epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0
      !--- Caution ---------------------------------------------------------!
-     ! Defenition of the incident pulse is wrriten in:                     !
+     ! Definition of the incident pulse is written in:                     !
      ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
      !---------------------------------------------------------------------!
    /
@@ -785,13 +789,14 @@ used in the input file can be found in
 Execusion
 ^^^^^^^^^
 
-Before execusion, remember to copy the directory *restart* that is created in the ground
-state calculation as *data_for_restart* in the present directory. 
-In a multiprocess environment, calculation will be executed as
+Before execusion, remember to copy the directory ``restart`` that is created in the ground
+state calculation as ``data_for_restart`` in the present directory. 
+In a multiprocess environment, calculation will be executed as::
 
     $ mpiexec -n NPROC salmon < C2H2_rt_response.inp > C2H2_rt_response.out
 
-where NPROC is the number of MPI processes. A standard output will be stored in the file ``C2H2_rt_response.out``.
+where NPROC is the number of MPI processes. 
+A standard output will be stored in the file ``C2H2_rt_response.out``.
 
 .. _output-files-2:
 
@@ -799,7 +804,7 @@ Output files
 ^^^^^^^^^^^^
 
 After the calculation, following output files are created in the
-directory that you run the code,
+directory that you run the code in addition to the standard output file,
 
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
@@ -815,9 +820,8 @@ directory that you run the code,
 |                                   |   (electrons/minus + ions/plus)   |
 |                                   |   as functions of time            |
 +-----------------------------------+-----------------------------------+
-| *C2H2_rt_energy.data*             | components of                     |
-|                                   | total energy                      |
-|                                   | and difference of total energy    |
+| *C2H2_rt_energy.data*             | total energy and electronic       |
+|                                   | excitation energy                 |
 |                                   | as functions of time              |
 +-----------------------------------+-----------------------------------+
 | *PS_C_KY_n.dat*                   | information on pseodupotential    |
@@ -887,7 +891,12 @@ In the first several lines, explanations of included data are given.
    # E_tot: Total electric field
    # ddm_e: Change of dipole moment (electrons/plus definition)
    # dm: Total dipole moment (electrons/minus + ions/plus)
-   # 1:Time[fs] 2:Ac_ext_x[fs*V/Angstrom] 3:Ac_ext_y[fs*V/Angstrom] 4:Ac_ext_z[fs*V/Angstrom] 5:E_ext_x[V/Angstrom] 6:E_ext_y[V/Angstrom] 7:E_ext_z[V/Angstrom] 8:Ac_tot_x[fs*V/Angstrom] 9:Ac_tot_y[fs*V/Angstrom] 10:Ac_tot_z[fs*V/Angstrom] 11:E_tot_x[V/Angstrom] 12:E_tot_y[V/Angstrom] 13:E_tot_z[V/Angstrom] 14:ddm_e_x[Angstrom] 15:ddm_e_y[Angstrom] 16:ddm_e_z[Angstrom] 17:dm_x[Angstrom] 18:dm_y[Angstrom] 19:dm_z[Angstrom] 
+   # 1:Time[fs] 2:Ac_ext_x[fs*V/Angstrom] 3:Ac_ext_y[fs*V/Angstrom] 4:Ac_ext_z[fs*V/Angstrom] 
+   # 5:E_ext_x[V/Angstrom] 6:E_ext_y[V/Angstrom] 7:E_ext_z[V/Angstrom] 
+   # 8:Ac_tot_x[fs*V/Angstrom] 9:Ac_tot_y[fs*V/Angstrom] 10:Ac_tot_z[fs*V/Angstrom] 
+   # 11:E_tot_x[V/Angstrom] 12:E_tot_y[V/Angstrom] 13:E_tot_z[V/Angstrom] 
+   # 14:ddm_e_x[Angstrom] 15:ddm_e_y[Angstrom] 16:ddm_e_z[Angstrom] 17:dm_x[Angstrom] 
+   # 18:dm_y[Angstrom] 19:dm_z[Angstrom] 
 
 Using first column (time in femtosecond) and 19th column (dipole moment in :math:`z` direction),
 the following graph can be drawn.
@@ -907,7 +916,9 @@ the polarizability and the strength function.
    # Fourier-transform spectra: 
    # alpha: Polarizability
    # df/dE: Strength function
-   # 1:Energy[eV] 2:Re(alpha_x)[Augstrom^2/V] 3:Re(alpha_y)[Augstrom^2/V] 4:Re(alpha_z)[Augstrom^2/V] 5:Im(alpha_x)[Augstrom^2/V] 6:Im(alpha_y)[Augstrom^2/V] 7:Im(alpha_z)[Augstrom^2/V] 8:df_x/dE[none] 9:df_y/dE[none] 10:df_z/dE[none]
+   # 1:Energy[eV] 2:Re(alpha_x)[Augstrom^2/V] 3:Re(alpha_y)[Augstrom^2/V] 
+   # 4:Re(alpha_z)[Augstrom^2/V] 5:Im(alpha_x)[Augstrom^2/V] 6:Im(alpha_y)[Augstrom^2/V] 
+   # 7:Im(alpha_z)[Augstrom^2/V] 8:df_x/dE[none] 9:df_y/dE[none] 10:df_z/dE[none]
 
 Using first column (energy in electron-volt) and 10th column (oscillator strength distribution in :math:`z` direction),
 the following graph can be drawn.
@@ -979,14 +990,14 @@ To run the code, following files are necessary:
 +-----------------------------------+---------------------------------------------------------------+
 
 First three files are prepared in the directory ``SALMON/samples/exercise_03_C2H2_rt/``.
-The file *C2H2_rt_pulse.inp* that contains input keywords and their values. 
+The file ``C2H2_rt_pulse.inp`` that contains input keywords and their values. 
 The pseudopotential files should be the same as those used in the ground state calculation.
-In the directory *restart*, those files created in the ground state calculation and stored
-in the directory *data_for_restart* are included. 
+In the directory ``restart``, those files created in the ground state calculation and stored
+in the directory ``data_for_restart`` are included. 
 Therefore, copy the directory as ``cp -R data_for_restart restart``
 if you calculate at the same directory as you did the ground state calculation.
 
-In the input file *C2H2_rt_pulse.inp*, input keywords are specified.
+In the input file ``C2H2_rt_pulse.inp``, input keywords are specified.
 Most of them are mandatory to execute the calculation of
 electron dynamics induced by a pulsed electric field.
 This will help you to prepare the input file for other systems and other
@@ -999,7 +1010,7 @@ the input keywords that can be used in the input file can be found in
    !########################################################################################!
    ! Excercise 03:  Electron dynamics in C2H2 molecule under a pulsed electric field        !
    !----------------------------------------------------------------------------------------!
-   ! * The detail of this excercise is expained in our manual(see chapter: 'Exercises').    !
+   ! * The detail of this excercise is explained in our manual(see chapter: 'Exercises').   !
    !   The manual can be obtained from: https://salmon-tddft.jp/documents.html              !
    ! * Input format consists of group of keywords like:                                     !
    !     &group                                                                             !
@@ -1135,7 +1146,7 @@ the input keywords that can be used in the input file can be found in
      !polarization unit vector(real part) for the incident pulse(x,y,z)
      epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
      !--- Caution ---------------------------------------------------------!
-     ! Defenition of the incident pulse is wrriten in:                     !
+     ! Definition of the incident pulse is written in:                     !
      ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
      !---------------------------------------------------------------------!
    /
@@ -1175,13 +1186,14 @@ the input keywords that can be used in the input file can be found in
 Execusion
 ^^^^^^^^^
 
-Before execusion, remember to copy the directory *restart* that is created in the ground
-state calculation as *data_for_restart* in the present directory. 
-In a multiprocess environment, calculation will be executed as
+Before execusion, remember to copy the directory ``restart`` that is created in the ground
+state calculation as ``data_for_restart`` in the present directory. 
+In a multiprocess environment, calculation will be executed as::
 
     $ mpiexec -n NPROC salmon < C2H2_rt_pulse.inp > C2H2_rt_pulse.out
 
-where NPROC is the number of MPI processes. A standard output will be stored in the file ``C2H2_rt_pulse.out``.
+where NPROC is the number of MPI processes. 
+A standard output will be stored in the file ``C2H2_rt_pulse.out``.
 
 
 .. _output-files-3:
@@ -1190,13 +1202,13 @@ Output files
 ^^^^^^^^^^^^
 
 After the calculation, following output files are created in the
-directory that you run the code,
+directory that you run the code in addition to the standard output file,
 
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
 +-----------------------------------+-----------------------------------+
-| *C2H2_pulse.data*                 | dipole moment as                  |
-|                                   | functions of energy               |
+| *C2H2_pulse.data*                 | time-frequency Fourier transform  |
+|                                   | of dipole moment                  |
 +-----------------------------------+-----------------------------------+
 | *C2H2_rt.data*                    | | components of                   |
 |                                   |   change of dipole moment         |
@@ -1205,9 +1217,8 @@ directory that you run the code,
 |                                   |   (electrons/minus + ions/plus)   |
 |                                   |   as functions of time            |
 +-----------------------------------+-----------------------------------+
-| *C2H2_rt_energy.data*             | components of                     |
-|                                   | total energy                      |
-|                                   | and difference of total energy    |
+| *C2H2_rt_energy.data*             | total energy and electronic       |
+|                                   | excitation energy                 |
 |                                   | as functions of time              |
 +-----------------------------------+-----------------------------------+
 | *PS_C_KY_n.dat*                   | information on pseodupotential    |
@@ -1263,7 +1274,7 @@ are displayed.
          80    0.10000000 -0.10738281E-05 -0.57676878E-06 -0.16195168E-02     9.99999999     -339.69522482   19
          90    0.11250000 -0.11250289E-05 -0.60722757E-06 -0.23985719E-02     9.99999999     -339.69521092    2
     
-Explanations of the files are given below:
+Explanations of other output files are given below:
 
 **C2H2_rt.data**
 
@@ -1279,7 +1290,12 @@ In the first several lines, explanations of data included data are given.
    # E_tot: Total electric field
    # ddm_e: Change of dipole moment (electrons/plus definition)
    # dm: Total dipole moment (electrons/minus + ions/plus)
-   # 1:Time[fs] 2:Ac_ext_x[fs*V/Angstrom] 3:Ac_ext_y[fs*V/Angstrom] 4:Ac_ext_z[fs*V/Angstrom] 5:E_ext_x[V/Angstrom] 6:E_ext_y[V/Angstrom] 7:E_ext_z[V/Angstrom] 8:Ac_tot_x[fs*V/Angstrom] 9:Ac_tot_y[fs*V/Angstrom] 10:Ac_tot_z[fs*V/Angstrom] 11:E_tot_x[V/Angstrom] 12:E_tot_y[V/Angstrom] 13:E_tot_z[V/Angstrom] 14:ddm_e_x[Angstrom] 15:ddm_e_y[Angstrom] 16:ddm_e_z[Angstrom] 17:dm_x[Angstrom] 18:dm_y[Angstrom] 19:dm_z[Angstrom] 
+   # 1:Time[fs] 2:Ac_ext_x[fs*V/Angstrom] 3:Ac_ext_y[fs*V/Angstrom] 4:Ac_ext_z[fs*V/Angstrom]    
+   # 5:E_ext_x[V/Angstrom] 6:E_ext_y[V/Angstrom] 7:E_ext_z[V/Angstrom] 
+   # 8:Ac_tot_x[fs*V/Angstrom] 9:Ac_tot_y[fs*V/Angstrom] 10:Ac_tot_z[fs*V/Angstrom] 
+   # 11:E_tot_x[V/Angstrom] 12:E_tot_y[V/Angstrom] 13:E_tot_z[V/Angstrom] 
+   # 14:ddm_e_x[Angstrom] 15:ddm_e_y[Angstrom] 16:ddm_e_z[Angstrom] 17:dm_x[Angstrom] 
+   # 18:dm_y[Angstrom] 19:dm_z[Angstrom] 
 
 The applied electric field is drawn using the first column (time in femtosecond) and the 7th column 
 (electric field in :math:`z` direction in Volt per Angstrom).
@@ -1305,7 +1321,9 @@ In the first several lines, explanations of data included data are given.
    # Fourier-transform spectra: 
    # energy: Frequency
    # dm: Dopile moment
-   # 1:energy[eV] 2:Re(dm_x)[fs*Angstrom] 3:Re(dm_y)[fs*Angstrom] 4:Re(dm_z)[fs*Angstrom] 5:Im(dm_x)[fs*Angstrom] 6:Im(dm_y)[fs*Angstrom] 7:Im(dm_z)[fs*Angstrom] 8:|dm_x|^2[fs^2*Angstrom^2] 9:|dm_y|^2[fs^2*Angstrom^2] 10:|dm_z|^2[fs^2*Angstrom^2]
+   # 1:energy[eV] 2:Re(dm_x)[fs*Angstrom] 3:Re(dm_y)[fs*Angstrom] 4:Re(dm_z)[fs*Angstrom] 
+   # 5:Im(dm_x)[fs*Angstrom] 6:Im(dm_y)[fs*Angstrom] 7:Im(dm_z)[fs*Angstrom] 
+   # 8:|dm_x|^2[fs^2*Angstrom^2] 9:|dm_y|^2[fs^2*Angstrom^2] 10:|dm_z|^2[fs^2*Angstrom^2]
 
 The spectrum of the induced dipole moment, :math:`|d(\omega)|^2` is shown in logarithmic scale as a function
 of the energy, :math:`\hbar \omega`. High harmonic generations are visible in the spectrum.
@@ -1395,14 +1413,18 @@ Crystalline silicon (periodic solids)
 Exercise-4: Ground state of crystalline silicon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this exercise, we learn the the ground state calculation of the crystalline silicon of a diamond structure. 
-Calculation is done in a cubic unit cell that contains eight silicon atoms. 
+In this exercise, we learn the the ground state calculation of the crystalline silicon that has a diamond structure. 
+A cubic unit cell that contains eight silicon atoms is adopted in the calculation. 
+
+  .. image:: images/exc4/exc4-diamond.png
+     :scale: 80%
+
 This exercise will be useful to learn how to set up calculations in SALMON for any periodic systems such as crystalline solid.
 
 Input files
 ^^^^^^^^^^^
 
-To run the code, following files in samples are used:
+To run the code, following files in the directory ``SALMON/samples/exercise_04_bulkSi_gs/`` are used:
 
 +-----------------------------------+-----------------------------------+
 | file name                         | description                       |
@@ -1414,7 +1436,7 @@ To run the code, following files in samples are used:
 |                                   | atom                              |
 +-----------------------------------+-----------------------------------+
 
-In the input file *Si_gs.inp*, input keywords are specified.
+In the input file ``Si_gs.inp``, input keywords are specified.
 Most of them are mandatory to execute the ground state calculation.
 This will help you to prepare an input file for other systems that you
 want to calculate. A complete list of the input keywords that can be
@@ -1426,7 +1448,7 @@ used in the input file can be found in
    !########################################################################################!
    ! Excercise 04: Ground state of crystalline silicon(periodic solids)                     !
    !----------------------------------------------------------------------------------------!
-   ! * The detail of this excercise is expained in our manual(see chapter: 'Exercises').    !
+   ! * The detail of this excercise is explained in our manual(see chapter: 'Exercises').   !
    !   The manual can be obtained from: https://salmon-tddft.jp/documents.html              !
    ! * Input format consists of group of keywords like:                                     !
    !     &group                                                                             !
@@ -1460,7 +1482,7 @@ used in the input file can be found in
 
    &units
      !units used in input and output files
-     unit_system = 'a.u.'
+     unit_system = 'A_eV_fs'
    /
 
 | :any:`unit_system <unit_system>` specifies which unit system is used in the input and output files.
@@ -1472,7 +1494,7 @@ used in the input file can be found in
      yn_periodic = 'y'
      
      !grid box size(x,y,z)
-     al(1:3) = 10.26d0, 10.26d0, 10.26d0
+     al(1:3) = 5.43d0, 5.43d0, 5.43d0
      
      !number of elements, atoms, electrons and states(bands)
      nelem  = 1
@@ -1565,23 +1587,32 @@ used in the input file can be found in
 
 | :any:`&atomic_red_coor <&atomic_red_coor>` specifies spatial coordinates of atoms in reduced coordinate system.
 
+Execusion
+^^^^^^^^^
+
+In a multiprocess environment, calculation will be executed as::
+
+    $ mpiexec -n NPROC salmon < Si_gs.inp > Si_gs.out
+
+where NPROC is the number of MPI processes. A standard output will be stored in the file ``Si_gs.out``.
+
 .. _output-files-4:
 
 Output files
 ^^^^^^^^^^^^	
 
 After the calculation, following output files and a directory are created in the
-directory that you run the code,
+directory that you run the code in addition to the standard output file,
 
 +-----------------------------------+-----------------------------------+
 | name                              | description                       |
 +-----------------------------------+-----------------------------------+
-| *Si_info.data*      　            | information on ground state       |
+| *Si_info.data*                    | information on ground state       |
 |                                   | solution                          |
 +-----------------------------------+-----------------------------------+
-| *Si_eigen.data*   　              | energy eigenvalues of orbitals    |
+| *Si_eigen.data*                   | energy eigenvalues of orbitals    |
 +-----------------------------------+-----------------------------------+
-| *Si_k.data*       　              | k-point distribution              |
+| *Si_k.data*                       | k-point distribution              |
 +-----------------------------------+-----------------------------------+
 | *PS_Si_KY_n.dat*                  | information on pseodupotential    |
 |                                   | file for silicon atom             |
@@ -1591,87 +1622,271 @@ directory that you run the code,
 |                                   | contained                         |
 +-----------------------------------+-----------------------------------+
 
-| You may download the above files (zipped file, except for the directory *data_for_restart*) from:
+| You may download the above files (zipped file, except for the directory ``data_for_restart``) from:
 | https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/04_bulkSi_gs.zip
 
-Main results of the calculation such as orbital energies are included in *Si_info.data*. 
-Explanations of the *Si_info.data* and other output files are below:
+We first explain the standard output file. In the beginning of the file,
+input variables used in the calculation are shown.
+
+::
+
+   ##############################################################################
+   # SALMON: Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience
+   #
+   #                             Version 2.0.1
+   ##############################################################################
+     Libxc: [disabled]
+      theory= dft
+      use of real value orbitals =  F
+    r-space parallelization: off
+    ======
+    MPI distribution:
+      nproc_k     :          16
+      nproc_ob    :           1
+      nproc_rgrid :           1           1           1
+    OpenMP parallelization:
+      number of threads :          64
+    .........
+
+After that, the SCF loop starts. At each iteration step, the total energy as well as orbital
+energies and some other quantities are displayed.
+
+::
+
+   -----------------------------------------------
+    iter=     1     Total Energy=       314.78493406     Gap=   -95.88543131
+    k=           1
+        1        37.5762      2        63.8589      3        58.1850      4        43.0042
+        5        61.5347      6        29.5604      7        41.5986      8        39.3545
+        9        48.5641     10        68.0003     11        75.5196     12        85.4113
+    .......... 
+       21        94.1224     22        53.0821     23        72.0170     24        46.7797
+       25        88.6077     26        98.2698     27        42.8071     28        65.0812
+       29        60.3648     30        39.6787     31        83.5629     32        62.7365
+   
+    iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =      1 0.49478519E+00
+    Ne=   32.0000000000000     
+    -----------------------------------------------
+    iter=     2     Total Energy=        62.72724688     Gap=   -77.31200657
+    k=           1
+        1        14.4913      2        32.6869      3        30.3561      4        20.6816
+        5        30.3907      6        16.9184      7        22.2967      8        18.5338
+        9        29.0117     10        41.9687     11        42.3490     12        54.6262
+   ..........
+
+When the convergence criterion is satisfied, the SCF calculation ends.
+
+::
+
+    iter=    60     Total Energy=      -850.76385275     Gap=     1.06020364
+    k=           1
+        1        -3.7745      2        -3.0158      3        -3.0158      4        -3.0158
+        5        -0.4300      6        -0.4300      7        -0.4300      8         0.3765
+        9         3.9530     10         3.9530     11         3.9530     12         4.6110
+   ..........
+       21         9.6233     22         9.6233     23         9.6956     24         9.9111
+       25        11.0259     26        11.0259     27        11.4165     28        11.5976
+       29        11.9826     30        11.9887     31        12.0967     32        12.3585
+    
+    iter and int_x|rho_i(x)-rho_i-1(x)|dx/nelec        =     60 0.77889300E-09
+    Ne=   32.0000000000000     
+     #GS converged at    61  : 0.77889300E-09
+    ===== force =====
+        1  0.60775985E-08  0.15425240E-07 -0.22474791E-07
+        2 -0.10689345E-06  0.88233132E-07  0.35122981E-09
+        3  0.39762202E-07 -0.23921918E-07  0.11855231E-07
+        4 -0.79441825E-07 -0.28978042E-07 -0.34109698E-07
+        5  0.37990526E-07  0.67211638E-08  0.20384753E-07
+        6  0.96418986E-07 -0.70404285E-07  0.10198912E-06
+        7  0.16145540E-07  0.30561301E-07 -0.63738382E-07
+        8  0.26042178E-07  0.30977639E-07 -0.40587816E-07
+    band information-----------------------------------------
+    Bottom of VB -0.194818046940532     
+    Top of VB  0.216611832367042     
+    Bottom of CB  0.255573599266334     
+    Top of CB  0.533770712688357     
+    Fundamental gap  3.896176689929157E-002
+    BG between same k-point  3.896176691206812E-002
+    Physicaly upper bound of CB for DOS  0.453918744010958     
+    Physicaly upper bound of eps(omega)  0.609598295602846     
+    ---------------------------------------------------------
+    Bottom of VB[eV]  -5.30126888998779     
+    Top of VB[eV]   5.89430797692564     
+    Bottom of CB[eV]   6.95451161825061     
+    Top of CB[eV]   14.5246403913758     
+    Fundamental gap[eV]   1.06020364132497     
+    BG between same k-point[eV]   1.06020364167264     
+    Physicaly upper bound of CB for DOS[eV]   12.3517577246945     
+    Physicaly upper bound of eps(omega)[eV]   16.5880139474728     
+    ---------------------------------------------------------
+     writing restart data...
+     writing completed.
+
+In the directory ``data_for_restart``, files that will be used in the next-step 
+time evolution calculations are stored.
+
+Other output files include following information.
 
 **Si_info.data**
 
-Calculated orbital and total energies as well as parameters specified in
-the input file are shown in this file.
+Orbital and total energies as well as parameters specified in the input file.
+
+::
+
+    Total number of iteration =           60
+    
+    Number of states =           32
+    Number of electrons =           32
+    
+    Total energy (eV) =   -850.763852754463     
+    1-particle energies (eV)
+        1        -3.7745      2        -3.0158      3        -3.0158      4        -3.0158
+        5        -0.4300      6        -0.4300      7        -0.4300      8         0.3765
+        9         3.9530     10         3.9530     11         3.9530     12         4.6110
 
 **Si_eigen.data**
 
-1 particle energies.
+Orbital energies.
 
 ::
-   
+
    #esp: single-particle energies (eigen energies)
    #occ: occupation numbers, io: orbital index
-   # 1:io, 2:esp[a.u.], 3:occ
+   # 1:io, 2:esp[eV], 3:occ
+   k=     1,  spin=     1
+        1  -0.3774501171245852E+001   0.2000000000000000E+001
+        2  -0.3015778973884847E+001   0.2000000000000000E+001
+        3  -0.3015778969794385E+001   0.2000000000000000E+001
 
 **Si_k.data**
 
-k-point distribution.
+Data of k-points.
 
 ::
    
+   # k-point distribution
    # ik: k-point index
    # kx,ky,kz: Reduced coordinate of k-points
    # wk: Weight of k-point
    # 1:ik[none] 2:kx[none] 3:ky[none] 4:kz[none] 5:wk[none]
-   # coefficients (2*pi/a [a.u.]) in kx, ky, kz
+        1 -0.375000000000000E+000 -0.375000000000000E+000 -0.375000000000000E+000  0.156250000000000E-001
+        2 -0.125000000000000E+000 -0.375000000000000E+000 -0.375000000000000E+000  0.156250000000000E-001
+        3  0.125000000000000E+000 -0.375000000000000E+000 -0.375000000000000E+000  0.156250000000000E-001
 
 .. _exercise-5:
 
 Exercise-5: Dielectric function of crystalline silicon
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this exercise, we learn the linear response calculation of the crystalline silicon of a diamond structure.
-Calculation is done in a cubic unit cell that contains eight silicon atoms. 
-This exercise should be carried out after finishing the ground state calculation that was explained in :any:`Exercise-4 <exercise-4>`.
-An impulsive perturbation is applied to all electrons in the unit cell along *z* direction.
-Since the dielectric function is isotropic in the diamond structure,
-calculated dielectric function should not depend on the direction of the perturbation. 
-During the time evolution, electric current averaged over the unit cell volume is calculated. 
-A time-frequency Fourier transformation of the electric current gives us a frequency-dependent conductivity.
-The dielectric function may be obtained from the conductivity using a standard relation.
+In this exercise, we learn the linear response calculation of the crystalline silicon.
+A cubic unit cell that contains eight silicon atoms is used in the calculation. 
+This exercise should be carried out after finishing the ground state calculation 
+that was explained in :any:`Exercise-4 <exercise-4>`.
+
+In this exercise, we calculate a dielectric function of silicon as a final object.
+We first summarize definitions of relevant quantities.
+We introduce a conductivity in time domain, :math:`\sigma_{\mu \nu}(t)`,
+where :math:`\mu, \nu` indicate Cartesian components, :math:`\mu, \nu = x,y,z`.
+It relates the applied electric field :math:`E_{\nu}(t)` with the induced 
+current density averaged over the unit cell volume, :math:`J_{\mu}(t)`,
+
+:math:`J_{\mu}(t) = \sum_{\nu=x,y,z} \int dt' \sigma_{\mu \nu}(t-t') E_{\nu}(t').`
+
+Integrating the current density over time, we obtain the polarization density as a functioon of time,
+
+:math:`P_{\mu}(t) = \int^t dt' J_{\mu}(t').`
+
+Then, the dielectric function is introduced by
+
+:math:`D_{\mu}(t) = E_{\mu}(t)+4\pi P_{\mu}(t) = \sum_{\nu} \int^t dt' \epsilon_{\mu \nu}(t-t') E_{\nu}(t').`
+
+Frequency-dependent dielectric function :math:`\epsilon_{\mu \nu}(\omega)`
+is obtained from :math:`\epsilon_{\mu \nu}(t)` by taking time-frequency
+Fourier transformation.
+
+In SALMON, the dielectric function is calculated in the following way.
+First the ground state Bloch orbitals :math:`u_{n{\bm k}}({\bf r})` that satisfies the
+Kohn-Sham equation,
+
+:math:`H_{\bm k} u_{n{\bf k}}({\bf r}) = \epsilon_{n{\bf k}}({\bf r}),`
+
+is calculated. 
+Then an impulsive force characterized by the magnitude of the 
+impulse :math:`I` is applied to all electrons in :math:`z` direction. 
+This is equivalent to shift the wave vector by
+:math:`{\bf k} \rightarrow {\bf k} + I/\hbar \hat z`, 
+where :math:`\hat z` is a unit vector in :math:`z` direction.
+We make a time evolution calculation with the shifted wave vector as
+
+:math:`i\hbar \frac{\partial}{\partial t} u_{n{\bf k}}({\bf r},t)
+=
+H_{{\bf k} + I/\hbar \hat z}(t) u_{n{\bf k}}({\bf r},t).`
+
+During the time evolution, the electric current density given by
+
+:math:`{\bf J}(t) = \frac{-e}{m \Omega} \int d{\bf r}
+u_{n{\bf k}}^* \left( -i\hbar\nabla + \hbar {\bf k} + I \hat z \right) u_{n{\bf k}}
++ \delta {\bf J}(t).`
+
+is monitored, where :math:`\Omega` is the volume of the unit cell
+and :math:`\delta {\bf J}(t)` is a current component coming from 
+nonlocal pseudopootential.
+
+After the time evolution calculation, a time-frequency Fourier
+transformation is carried out for the electric current density to obtain the
+frequency-dependent conductivity by
+
+:math:`\tilde \sigma_{zz}(\omega) = -\frac{e}{I} \int dt e^{i\omega t} J_z(t).`
+
+The dielectric function and the conductivity is related in frequency representation by
+
+:math:`\epsilon_{\mu \nu}(\omega) = \delta_{\mu \nu} + \frac{4\pi i \sigma_{\mu \nu}(\omega)}{\omega}.`
+
+We note that the dielectric function of a crystalline silicon is isotropic,
+:math:`\epsilon_{\mu \nu} = \delta_{\mu \nu} \epsilon(\omega)`.
 
 .. _input-files-3:
 
 Input files
 ^^^^^^^^^^^
 
-To run the code, following files in samples are used:
+To run the code, following files are necessary:
 
-+-----------------------------------+-------------------------------------+
-| file name                         | description                         |
-+-----------------------------------+-------------------------------------+
-| *Si_rt_response.inp*              | input file that contain input       |
-|                                   | keywords and their values           |
-+-----------------------------------+-------------------------------------+
-| *Si_rps.dat*                      | pseodupotential file of silicon     |
-+-----------------------------------+-------------------------------------+
-| *restart*                         | | directory created in the ground   |
-|                                   |   state calculation                 |
-|                                   | | (rename the                       |
-|                                   |   directory from                    |
-|                                   |   *data_for_restart* to *restart*)  |
-+-----------------------------------+-------------------------------------+
++-----------------------------------+-----------------------------------+
+| file name                         | description                       |
++-----------------------------------+-----------------------------------+
+| *C2H2_response.inp*               | input file that contains input    |
+|                                   | keywords and their values         |
++-----------------------------------+-----------------------------------+
+| *Si_rps.dat*                      | pseodupotential file for silicon  |
+|                                   | atom                              |
++-----------------------------------+-----------------------------------+
+| *restart*                         | | directory created in the ground |
+|                                   |   state calculation               |
+|                                   | | (rename the directory from      |
+|                                   |   *data_for_restart* to *restart*)|
++-----------------------------------+-----------------------------------+
 
-In the input file *Si_rt_response.inp*, input keywords are specified.
-Most of them are mandatory to execute the calculation.
+First two files are prepared in the directory ``SALMON/samples/exercise_05_bulkSi_lr/``.
+The file ``Si_rt_response.inp`` contains input keywords and their values.
+The pseudoopotential file should be the same as that used in the ground state calculation.
+In the directory ``restart``, those files created in the ground state calculation
+and stored in the directory ``data_for_restart`` are included.
+Therefore, coopy the directory as ``cp -R data_for_restart restart``
+if you calculate at the same directory as you did the ground state calculation.
+
+In the input file ``Si_rt_response.inp``, input keywords are specified.
+Most of them are mandatory to execute the linear response calculation.
 This will help you to prepare the input file for other systems that you want to calculate.
-A complete list of the input keywords can be found in :any:`List of input keywords <List of input keywords>`.
+A complete list of the input keywords that can be used in the input file
+can be found in :any:`List of input keywords <List of input keywords>`.
 
 ::
 
    !########################################################################################!
    ! Excercise 05: Dielectric function of crystalline silicon                               !
    !----------------------------------------------------------------------------------------!
-   ! * The detail of this excercise is expained in our manual(see chapter: 'Exercises').    !
+   ! * The detail of this excercise is explained in our manual(see chapter: 'Exercises').   !
    !   The manual can be obtained from: https://salmon-tddft.jp/documents.html              !
    ! * Input format consists of group of keywords like:                                     !
    !     &group                                                                             !
@@ -1709,7 +1924,7 @@ A complete list of the input keywords can be found in :any:`List of input keywor
 
    &units
      !units used in input and output files
-     unit_system = 'a.u.'
+     unit_system = 'A_eV_fs'
    /
 
 | :any:`unit_system <unit_system>` specifies which unit system is used in the input and output files.
@@ -1721,7 +1936,7 @@ A complete list of the input keywords can be found in :any:`List of input keywor
      yn_periodic = 'y'
      
      !grid box size(x,y,z)
-     al(1:3) = 10.26d0, 10.26d0, 10.26d0
+     al(1:3) = 5.43d0, 5.43d0, 5.43d0
      
      !number of elements, atoms, electrons and states(bands)
      nelem  = 1
@@ -1788,7 +2003,7 @@ A complete list of the input keywords can be found in :any:`List of input keywor
 
    &tgrid
      !time step size and number of time grids(steps)
-     dt = 0.08d0
+     dt = 0.002d0
      nt = 6000
    /
 
@@ -1804,7 +2019,7 @@ A complete list of the input keywords can be found in :any:`List of input keywor
      !polarization unit vector(real part) for the incident pulse(x,y,z)
      epdir_re1(1:3) = 0.00d0, 0.00d0, 1.00d0
      !--- Caution ---------------------------------------------------------!
-     ! Defenition of the incident pulse is wrriten in:                     !
+     ! Definition of the incident pulse is written in:                     !
      ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
      !---------------------------------------------------------------------!
    /
@@ -1816,8 +2031,8 @@ A complete list of the input keywords can be found in :any:`List of input keywor
 
    &analysis
      !energy grid size and number of energy grids for output files
-     de      = 4.0d-4
-     nenergy = 5000
+     de      = 0.01d0
+     nenergy = 2000
    /
 
 | :any:`de` specifies the energy grid size for frequency-domain analysis.
@@ -1842,25 +2057,34 @@ A complete list of the input keywords can be found in :any:`List of input keywor
 
 | :any:`&atomic_red_coor <&atomic_red_coor>` specifies spatial coordinates of atoms in reduced coordinate system.
 
+Execusion
+^^^^^^^^^
+
+In a multiprocess environment, calculation will be executed as::
+
+    $ mpiexec -n NPROC salmon < Si_rt_response.inp > Si_rt_response.out
+
+where NPROC is the number of MPI processes. A standard output will be stored in the file ``Si_rt_response.out``.
+
 .. _output-files-5:
 
 Output files
 ^^^^^^^^^^^^
 
-After the calculation, following output files are created in the directory that you run the code,
+After the calculation, following output files are created in the directory that 
+you run the code in addition to the standard output file,
 
 +-----------------------------------+------------------------------------------+
 | file name                         | description                              |
 +-----------------------------------+------------------------------------------+
-| *Si_response.data*                | Fourier spectra of the conductivity      |
-|                                   | and dielectric functions                 |
+| *Si_response.data*                | conductivity and dielectric function     |
+|                                   | as functions of energy                   |
 +-----------------------------------+------------------------------------------+
 | *Si_rt.data*                      | vector potential, electric field,        |
 |                                   | and matter current as functions of time  |
 +-----------------------------------+------------------------------------------+
-| *Si_rt_energy*                    | components of total energy and           |
-|                                   | difference of total energy               |
-|                                   | as functions of time                     |
+| *Si_rt_energy*                    | total energy and electronic excitation   |
+|                                   | energy as functions of time              |
 +-----------------------------------+------------------------------------------+
 | *PS_Si_KY_n.dat*                  | information on pseodupotential           |
 |                                   | file for silicon atom                    |
@@ -1869,33 +2093,102 @@ After the calculation, following output files are created in the directory that 
 | You may download the above files (zipped file) from:
 | https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/05_bulkSi_lr.zip
 
-Explanations of the output files are described below:
-
-**Si_response.data**
-
-Time-frequency Fourier transformation of the macroscopic current gives
-the conductivity of the system. Then the dielectric function is calculated.
+We first explain the standard output file. In the beginning of the file,
+input variables used in the calculation are shown.
 
 ::
-   
-   # Fourier-transform spectra: 
-   # sigma: Conductivity
-   # eps: Dielectric constant
-   # 1:Energy[a.u.] 2:Re(sigma_x)[a.u.] 3:Re(sigma_y)[a.u.] 4:Re(sigma_z)[a.u.] 5:Im(sigma_x)[a.u.] 6:Im(sigma_y)[a.u.] 7:Im(sigma_z)[a.u.] 8:Re(eps_x)[none] 9:Re(eps_y)[none] 10:Re(eps_z)[none] 11:Im(eps_x)[none] 12:Im(eps_y)[none] 13:Im(eps_z)[none]
+
+   ##############################################################################
+   # SALMON: Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience
+   #
+   #                             Version 2.0.1
+   ##############################################################################
+     Libxc: [disabled]
+      theory= tddft_response
+    
+    Total time step      =        6000
+    Time step[fs]        =  2.000000000000000E-003
+    Energy range         =        2000
+    Energy resolution[eV]=  1.000000000000000E-002
+    Field strength[a.u.] =  1.000000000000000E-002
+      use of real value orbitals =  F
+    r-space parallelization: off
+    ======
+    ........
+
+After that, the time evolution loop starts. At every 10 iteration steps,
+electric current density in three Cartesian direction, the total number
+of electrons, and total energy are displayed.
+
+::
+
+     time-step  time[fs]                               Current(xyz)[a.u.]      electrons Total energy[eV] 
+   #----------------------------------------------------------------------
+         10    0.02000000  0.11911770E-11 -0.40018285E-13  0.24902126E-03    32.00000000     -850.72273308
+         20    0.04000000  0.17745321E-11  0.13712105E-12  0.21977876E-03    31.99999999     -850.72273319
+         30    0.06000000  0.31016197E-11  0.24481043E-12  0.20049151E-03    31.99999999     -850.72272966
+         40    0.08000000  0.36611565E-11  0.49184860E-12  0.17937042E-03    31.99999999     -850.72272925
+         50    0.10000000  0.36920991E-11  0.63805259E-12  0.15246564E-03    31.99999998     -850.72272922
+         60    0.12000000  0.32347636E-11  0.11280947E-11  0.12248647E-03    31.99999998     -850.72272655
+         70    0.14000000  0.25978450E-11  0.15550074E-11  0.91933957E-04    31.99999998     -850.72272293
+         80    0.16000000  0.20087959E-11  0.17983589E-11  0.62968342E-04    31.99999997     -850.72272036
+         90    0.18000000  0.90623268E-12  0.18067974E-11  0.38824129E-04    31.99999997     -850.72271918
+
+Explanations of other output files are given below:
 
 **Si_rt.data**
 
-Results of time evolution calculation for vector potential, electric field, and matter current density.
+Results of time evolution calculation for vector potential, electric field, and matter current density are shown. In the first several lines, explanations of included data are given.
 
 ::
-   
+
    # Real time calculation: 
    # Ac_ext: External vector potential field
    # E_ext: External electric field
    # Ac_tot: Total vector potential field
    # E_tot: Total electric field
    # Jm: Matter current density (electrons)
-   # 1:Time[a.u.] 2:Ac_ext_x[a.u.] 3:Ac_ext_y[a.u.] 4:Ac_ext_z[a.u.] 5:E_ext_x[a.u.] 6:E_ext_y[a.u.] 7:E_ext_z[a.u.] 8:Ac_tot_x[a.u.] 9:Ac_tot_y[a.u.] 10:Ac_tot_z[a.u.] 11:E_tot_x[a.u.] 12:E_tot_y[a.u.] 13:E_tot_z[a.u.]  14:Jm_x[a.u.] 15:Jm_y[a.u.] 16:Jm_z[a.u.] 
+   # 1:Time[fs] 2:Ac_ext_x[fs*V/Angstrom] 3:Ac_ext_y[fs*V/Angstrom] 4:Ac_ext_z[fs*V/Angstrom] 
+   # 5:E_ext_x[V/Angstrom] 6:E_ext_y[V/Angstrom] 7:E_ext_z[V/Angstrom] 8:Ac_tot_x[fs*V/Angstrom] 
+   # 9:Ac_tot_y[fs*V/Angstrom] 10:Ac_tot_z[fs*V/Angstrom] 11:E_tot_x[V/Angstrom] 
+   # 12:E_tot_y[V/Angstrom] 13:E_tot_z[V/Angstrom]  14:Jm_x[1/fs*Angstrom^2] 
+   # 15:Jm_y[1/fs*Angstrom^2] 16:Jm_z[1/fs*Angstrom^2] 
+
+Using first column (time in femtosecond) and 16th column (matter current density in
+*z* direction), the following graph can be drawn.
+
+  .. image:: images/exc5/exc5-current.png
+     :scale: 60%
+
+**Si_response.data**
+
+Time-frequency Fourier transformation of the macroscopic current density gives
+the conductivity of the system. The dielectric function is then calculated
+from the conductivity. They are stored in this file.
+
+::
+   
+   # Fourier-transform spectra: 
+   # sigma: Conductivity
+   # eps: Dielectric constant
+   # 1:Energy[eV] 2:Re(sigma_x)[1/fs*V*Angstrom] 3:Re(sigma_y)[1/fs*V*Angstrom] 
+   # 4:Re(sigma_z)[1/fs*V*Angstrom] 5:Im(sigma_x)[1/fs*V*Angstrom] 
+   # 6:Im(sigma_y)[1/fs*V*Angstrom] 7:Im(sigma_z)[1/fs*V*Angstrom] 8:Re(eps_x)[none] 
+   # 9:Re(eps_y)[none] 10:Re(eps_z)[none] 11:Im(eps_x)[none] 12:Im(eps_y)[none] 
+   # 13:Im(eps_z)[none]
+
+Using first column (energy in eV) and 10th (real part of the dielectric function) 
+and 13th (imaginary part), we obtain the following graph.
+
+  .. image:: images/exc5/exc5-eps-re.png
+     :scale: 50%
+
+  .. image:: images/exc5/exc5-eps-im.png
+     :scale: 50%
+
+The imaginary part appears above the direct bandgap energy that is about
+2.4 eV in the present calculation using local density approximation.
+Dielectric function below 1 eV are not accurate and and are not shown.
 
 **Si_rt_energy**
 
@@ -1906,33 +2199,46 @@ Results of time evolution calculation for vector potential, electric field, and 
    # Real time calculation: 
    # Eall: Total energy
    # Eall0: Initial energy
-   # 1:Time[a.u.] 2:Eall[a.u.] 3:Eall-Eall0[a.u.] 
+   # 1:Time[fs] 2:Eall[eV] 3:Eall-Eall0[eV] 
 
 .. _exercise-6:
 
 Exercise-6: Electron dynamics in crystalline silicon under a pulsed electric field
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this exercise, we learn the calculation of electron dynamics in a
-unit cell of crystalline silicon of a diamond structure. Calculation is
-done in a cubic unit cell that contains eight silicon atoms. 
-This exercise should be carried out after finishing the ground state calculation that was explained in :any:`Exercise-4 <exercise-4>`.
-A pulsed electric field that has cos^2 envelope shape is applied. 
-The parameters that characterize the pulsed field such as magnitude, frequency,
-polarization, and carrier envelope phase are specified in the input file.
+In this exercise, we learn the calculation of electron dynamics in crystalline silicon.
+A cubic unit cell that contains eight silicon atoms is used in the calculation. 
+This exercise should be carried out after finishing the ground state calculation 
+that was explained in :any:`Exercise-4 <exercise-4>`.
+
+In the calculation, a pulsed electric field specified by the following vector
+potential will be used,
+
+:math:`A(t) = - \frac{E_0}{\omega} \hat z \cos^2 \frac{\pi}{T} \left( t - \frac{T}{2} \right) \sin \omega \left( t - \frac{T}{2} \right), \hspace{5mm} (0 < t < T).` 
+
+The electric field is given by :math:`E(t) = -(1/c)(dA(t)/dt)`.
+The parameters that characterize the pulsed field such as the amplitude :math:`E_0`, 
+frequency :math:`\omega`, pulse duration :math:`T`, polarization direction :math:`\hat z`,
+are specified in the input file.
+Time-dependent Kohn-Sham equation for Bloch orbitals are calculated in real time,
+
+:math:`i\hbar \frac{\partial}{\partial t} u_{n{\bf k}}({\bf r},t)
+=
+H_{{\bf k} + (e/\hbar c){\bf A}(t)} u_{n{\bf k}}({\bf r},t).`
+
 
 .. _input-files-4:
 
 Input files
 ^^^^^^^^^^^
 
-To run the code, following files in samples are used:
+To run the code, following files in samples are necessary:
 
 +-----------------------------------+-------------------------------------+
 | file name                         | description                         |
 +-----------------------------------+-------------------------------------+
 | *Si_rt_pulse.inp*                 | input file that contain input       |
-|                                   | keywords and their values.          |
+|                                   | keywords and their values           |
 +-----------------------------------+-------------------------------------+
 | *Si_rps.dat*                      | pseodupotential file for Carbon     |
 +-----------------------------------+-------------------------------------+
@@ -1942,17 +2248,26 @@ To run the code, following files in samples are used:
 |                                   |   *data_for_restart* to *restart*)  |
 +-----------------------------------+-------------------------------------+
 
-In the input file *Si_rt_pulse.inp*, input keywords are specified.
-Most of them are mandatory to execute the calculation.
-This will help you to prepare the input file for other systems that you want to calculate. 
-A complete list of the input keywords can be found in :any:`List of input keywords <List of input keywords>`.
+First two files are prepared in the directory ``SALMON/samples/exercise_06_bulkSi_rt/``.
+The file ``Si_rt_pulse.inp`` contains input keywords and their values.
+The pseudoopotential file should be the same as that used in the ground state calculation.
+In the directory ``restart``, those files created in the ground state calculation
+and stored in the directory ``data_for_restart`` are included.
+Therefore, coopy the directory as ``cp -R data_for_restart restart``
+if you calculate at the same directory as you did the ground state calculation.
+
+In the input file ``Si_rt_pulse.inp``, input keywords are specified.
+Most of them are mandatory to execute the electron dynamics calculation.
+This will help you to prepare the input file for other systems that you want to calculate.
+A complete list of the input keywords that can be used in the input file
+can be found in :any:`List of input keywords <List of input keywords>`.
 
 ::
    
    !########################################################################################!
    ! Excercise 06: Electron dynamics in crystalline silicon under a pulsed electric field   !
    !----------------------------------------------------------------------------------------!
-   ! * The detail of this excercise is expained in our manual(see chapter: 'Exercises').    !
+   ! * The detail of this excercise is explained in our manual(see chapter: 'Exercises').   !
    !   The manual can be obtained from: https://salmon-tddft.jp/documents.html              !
    ! * Input format consists of group of keywords like:                                     !
    !     &group                                                                             !
@@ -1990,7 +2305,7 @@ A complete list of the input keywords can be found in :any:`List of input keywor
 
    &units
      !units used in input and output files
-     unit_system = 'a.u.'
+     unit_system = 'A_eV_fs'
    /
 
 | :any:`unit_system <unit_system>` specifies which unit system is used in the input and output files.
@@ -2002,7 +2317,7 @@ A complete list of the input keywords can be found in :any:`List of input keywor
      yn_periodic = 'y'
      
      !grid box size(x,y,z)
-     al(1:3) = 10.26d0, 10.26d0, 10.26d0
+     al(1:3) = 5.43d0, 5.43d0, 5.43d0
      
      !number of elements, atoms, electrons and states(bands)
      nelem  = 1
@@ -2069,7 +2384,7 @@ A complete list of the input keywords can be found in :any:`List of input keywor
 
    &tgrid
      !time step size and number of time grids(steps)
-     dt = 0.08d0
+     dt = 0.002d0
      nt = 6000
    /
 
@@ -2083,18 +2398,18 @@ A complete list of the input keywords can be found in :any:`List of input keywor
      ae_shape1 = 'Acos2'
      
      !peak intensity(W/cm^2) of the incident pulse
-     I_wcm2_1 = 5.0d11
+     I_wcm2_1 = 1.0d12
      
      !duration of the incident pulse
-     tw1 = 441.195136248d0
+     tw1 = 10.672d0
      
      !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
-     omega1 = 0.05696145187d0
+     omega1 = 1.55d0
      
      !polarization unit vector(real part) for the incident pulse(x,y,z)
      epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0
      !--- Caution ---------------------------------------------------------!
-     ! Defenition of the incident pulse is wrriten in:                     !
+     ! Definition of the incident pulse is written in:                     !
      ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
      !---------------------------------------------------------------------!
    /
@@ -2104,6 +2419,17 @@ A complete list of the input keywords can be found in :any:`List of input keywor
 | :any:`tw1 <tw1>` specifies the duration of the pulse.
 | :any:`omega1 <omega1>` specifies the mean photon energy of the pulse.
 | :any:`epdir_re1(i) <epdir_re1(3)>` specifies the i-th component of the real part of the polarization unit vector.
+
+::
+
+   &analysis
+     !energy grid size and number of energy grids for output files
+     de      = 0.01d0
+     nenergy = 3000
+   /
+
+| :any:`de` specifies the energy grid size for frequency-domain analysis.
+| :any:`nenergy` specifies the number of energy grid points for frequency-domain analysis.
 
 ::
 
@@ -2124,26 +2450,34 @@ A complete list of the input keywords can be found in :any:`List of input keywor
 
 | :any:`&atomic_red_coor <&atomic_red_coor>` specifies spatial coordinates of atoms in reduced coordinate system.
 
+Execusion
+^^^^^^^^^
+
+In a multiprocess environment, calculation will be executed as::
+
+    $ mpiexec -n NPROC salmon < Si_rt_pulse.inp > Si_rt_pulse.out
+
+where NPROC is the number of MPI processes. A standard output will be stored in the file ``Si_rt_pulse.out``.
+
 .. _output-files-6:
 
 Output files
 ^^^^^^^^^^^^
 
 After the calculation, following output files are created in the
-directory that you run the code,
+directory that you run the code in addition to the standard output file,
 
 +-----------------------------------+------------------------------------------+
 | file name                         | description                              |
 +-----------------------------------+------------------------------------------+
-| *Si_pulse.data*                   | matter current and electric field        |
-|                                   | as functions of energy                   |
+| *Si_pulse.data*                   | time-frequency Fourier transform of      |
+|                                   | matter current and electric field        |
 +-----------------------------------+------------------------------------------+
 | *Si_rt.data*                      | vector potential, electric field,        |
 |                                   | and matter current as functions of time  |
 +-----------------------------------+------------------------------------------+
-| *Si_rt_energy*                    | components of total energy and           |
-|                                   | difference of total energy               |
-|                                   | as functions of time                     |
+| *Si_rt_energy*                    | total energy and electronic excitation   |
+|                                   | energy as functions of time              |
 +-----------------------------------+------------------------------------------+
 | *PS_Si_KY_n.dat*                  | information on pseodupotential           |
 |                                   | file for silicon atom                    |
@@ -2152,38 +2486,117 @@ directory that you run the code,
 | You may download the above files (zipped file) from:
 | https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/06_bulkSi_rt.zip
 
-Explanations of the output files are described below:
-
-**Si_pulse.data**
-
-Time-frequency Fourier transformation of the matter current and electric field.
+We first explain the standard output file. In the beginning of the file,
+input variables used in the calculation are shown.
 
 ::
-   
-   # Fourier-transform spectra: 
-   # energy: Frequency
-   # Jm: Matter current
-   # E_ext: External electric field
-   # E_tot: Total electric field
-   # 1:energy[a.u.] 2:Re(Jm_x)[a.u.] 3:Re(Jm_y)[a.u.] 4:Re(Jm_z)[a.u.] 5:Im(Jm_x)[a.u.] 6:Im(Jm_y)[a.u.] 7:Im(Jm_z)[a.u.] 8:|Jm_x|^2[a.u.] 9:|Jm_y|^2[a.u.] 10:|Jm_z|^2[a.u.] 11:Re(E_ext_x)[a.u.] 12:Re(E_ext_y)[a.u.] 13:Re(E_ext_z)[a.u.] 14:Im(E_ext_x)[a.u.] 15:Im(E_ext_y)[a.u.] 16:Im(E_ext_z)[a.u.] 17:|E_ext_x|^2[a.u.] 18:|E_ext_y|^2[a.u.] 19:|E_ext_z|^2[a.u.] 20:Re(E_ext_x)[a.u.] 21:Re(E_ext_y)[a.u.] 22:Re(E_ext_z)[a.u.] 23:Im(E_ext_x)[a.u.] 24:Im(E_ext_y)[a.u.] 25:Im(E_ext_z)[a.u.] 26:|E_ext_x|^2[a.u.] 27:|E_ext_y|^2[a.u.] 28:|E_ext_z|^2[a.u.]
+
+   ##############################################################################
+   # SALMON: Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience
+   #
+   #                             Version 2.0.1
+   ##############################################################################
+     Libxc: [disabled]
+      theory= tddft_pulse
+    
+    Total time step      =        6000
+    Time step[fs]        =  2.000000000000000E-003
+    Energy range         =        3000
+    Energy resolution[eV]=  1.000000000000000E-002
+   Laser frequency     = 1.55[eV]
+   Pulse width of laser=     10.67200000[fs]
+   Laser intensity     =  0.10000000E+13[W/cm^2]
+      use of real value orbitals =  F
+    r-space parallelization: off
+    ======
+    ........
+
+After that, the time evolution loop starts. At every 10 iterations, the time,
+current in three Cartesian directions, the number of electrons, and the
+total energy are displayed.
+
+::
+
+     time-step  time[fs]                               Current(xyz)[a.u.]      electrons Total energy[eV] 
+   #----------------------------------------------------------------------
+         10    0.02000000  0.11847131E-11 -0.47534543E-13 -0.43120486E-08    32.00000000     -850.76385276
+         20    0.04000000  0.17733186E-11  0.12820952E-12 -0.33012195E-07    32.00000000     -850.76385276
+         30    0.06000000  0.30965601E-11  0.23626542E-12 -0.10736819E-06    32.00000000     -850.76385275
+         40    0.08000000  0.36612711E-11  0.47687574E-12 -0.24607217E-06    32.00000000     -850.76385272
+         50    0.10000000  0.36958981E-11  0.62315158E-12 -0.46548014E-06    32.00000000     -850.76385263
+         60    0.12000000  0.32186097E-11  0.11429104E-11 -0.77911390E-06    32.00000000     -850.76385239
+         70    0.14000000  0.25712602E-11  0.15689467E-11 -0.11971541E-05    32.00000000     -850.76385186
+         80    0.16000000  0.19447699E-11  0.18250920E-11 -0.17261976E-05    32.00000000     -850.76385082
+         90    0.18000000  0.80514520E-12  0.18683828E-11 -0.23692381E-05    32.00000000     -850.76384896
+
+
+
+Explanations of other output files are given below:
 
 **Si_rt.data**
 
 Results of time evolution calculation for vector potential, electric field, and matter current density.
 
 ::
-   
+
    # Real time calculation: 
    # Ac_ext: External vector potential field
    # E_ext: External electric field
    # Ac_tot: Total vector potential field
    # E_tot: Total electric field
    # Jm: Matter current density (electrons)
-   # 1:Time[a.u.] 2:Ac_ext_x[a.u.] 3:Ac_ext_y[a.u.] 4:Ac_ext_z[a.u.] 5:E_ext_x[a.u.] 6:E_ext_y[a.u.] 7:E_ext_z[a.u.] 8:Ac_tot_x[a.u.] 9:Ac_tot_y[a.u.] 10:Ac_tot_z[a.u.] 11:E_tot_x[a.u.] 12:E_tot_y[a.u.] 13:E_tot_z[a.u.]  14:Jm_x[a.u.] 15:Jm_y[a.u.] 16:Jm_z[a.u.] 
+   # 1:Time[fs] 2:Ac_ext_x[fs*V/Angstrom] 3:Ac_ext_y[fs*V/Angstrom] 4:Ac_ext_z[fs*V/Angstrom] 
+   # 5:E_ext_x[V/Angstrom] 6:E_ext_y[V/Angstrom] 7:E_ext_z[V/Angstrom] 
+   # 8:Ac_tot_x[fs*V/Angstrom] 9:Ac_tot_y[fs*V/Angstrom] 10:Ac_tot_z[fs*V/Angstrom] 
+   # 11:E_tot_x[V/Angstrom] 12:E_tot_y[V/Angstrom] 13:E_tot_z[V/Angstrom]  
+   # 14:Jm_x[1/fs*Angstrom^2] 15:Jm_y[1/fs*Angstrom^2] 16:Jm_z[1/fs*Angstrom^2] 
+
+The applied electric field is drawn using the first column (time in femtosecond)
+and the 7th column (electric field in *z* direction).
+
+  .. image:: images/exc6/exc6-efield.png
+     :scale: 60%
+
+The matter current density is drawn using the first column (time in femtosecond) 
+and 16th column (matter current density in *z* direction).
+
+  .. image:: images/exc6/exc6-current.png
+     :scale: 60%
+
+**Si_pulse.data**
+
+Time-frequency Fourier transformation of the matter current and electric field.
+
+::
+
+   # Fourier-transform spectra: 
+   # energy: Frequency
+   # Jm: Matter current
+   # E_ext: External electric field
+   # E_tot: Total electric field
+   # 1:energy[eV] 2:Re(Jm_x)[1/Angstrom^2] 3:Re(Jm_y)[1/Angstrom^2] 4:Re(Jm_z)[1/Angstrom^2]
+   # 5:Im(Jm_x)[1/Angstrom^2] 6:Im(Jm_y)[1/Angstrom^2] 7:Im(Jm_z)[1/Angstrom^2] 
+   # 8:|Jm_x|^2[1/Angstrom^4] 9:|Jm_y|^2[1/Angstrom^4] 10:|Jm_z|^2[1/Angstrom^4] 
+   # 11:Re(E_ext_x)[fs*V/Angstrom] 12:Re(E_ext_y)[fs*V/Angstrom] 
+   # 13:Re(E_ext_z)[fs*V/Angstrom] 14:Im(E_ext_x)[fs*V/Angstrom] 
+   # 15:Im(E_ext_y)[fs*V/Angstrom] 16:Im(E_ext_z)[fs*V/Angstrom] 
+   # 17:|E_ext_x|^2[fs^2*V^2/Angstrom^2] 18:|E_ext_y|^2[fs^2*V^2/Angstrom^2] 
+   # 19:|E_ext_z|^2[fs^2*V^2/Angstrom^2] 20:Re(E_tot_x)[fs*V/Angstrom] 
+   # 21:Re(E_tot_y)[fs*V/Angstrom] 22:Re(E_tot_z)[fs*V/Angstrom] 
+   # 23:Im(E_tot_x)[fs*V/Angstrom] 24:Im(E_tot_y)[fs*V/Angstrom] 
+   # 25:Im(E_tot_z)[fs*V/Angstrom] 26:|E_tot_x|^2[fs^2*V^2/Angstrom^2] 
+   # 27:|E_tot_y|^2[fs^2*V^2/Angstrom^2] 28:|E_tot_z|^2[fs^2*V^2/Angstrom^2]
+
+The power spectrum of the matter current density, :math:`|J(\omega)|^2`
+is shown in logarithmic scale as a function of the energy, :math:`\hbar\omega`.
+High harmonic generations are visible in the spectrum.
+
+  .. image:: images/exc6/exc6-pulse.png
+     :scale: 60%
 
 **Si_rt_energy**
 
-*Eall* and *Eall-Eall0* are total energy and electronic excitation energy, respectively.
+Energies are stored as functions of time.
 
 ::
    
@@ -2191,6 +2604,16 @@ Results of time evolution calculation for vector potential, electric field, and 
    # Eall: Total energy
    # Eall0: Initial energy
    # 1:Time[a.u.] 2:Eall[a.u.] 3:Eall-Eall0[a.u.] 
+
+*Eall* and *Eall-Eall0* are total energy and electronic excitation energy, respectively.
+The figure below shows the electronic excitation energy per unit cell volume as a 
+function of time, using the first column (time in femtosecond) and the 3rd column 
+(*Eall-Eall0*). Although the frequency is below the direct bandgap of silicon
+(2.4 eV in the LDA calculation), electronic excitations take place because of
+nonlinear absorption process.
+
+  .. image:: images/exc6/exc6-energy.png
+     :scale: 60%
 
 Maxwell + TDDFT multiscale simulation
 -------------------------------------
@@ -2200,14 +2623,45 @@ Maxwell + TDDFT multiscale simulation
 Exercise-7: Pulsed-light propagation through a silicon thin film
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In this exercise, we learn the calculation of the propagation of a
+In this exercise, we learn the calculation of a propagation of
 pulsed light through a thin film of crystalline silicon. 
-We consider a silicon thin film of 42 nm thickness, and an irradiation of a few-cycle,
-linearly polarized pulsed light normally on the thin film. 
-This exercise should be carried out after finishing the ground state calculation that was explained in :any:`Exercise-4 <exercise-4>`.
-The pulsed light locates in the vacuum region in front of the thin film.
-The parameters that characterize the pulsed light such as magnitude and
-frequency are specified in the input file. 
+We consider an irradiation of a few-cycle, linearly polarized pulsed light 
+normally on a thin film of 40 nm thickness. 
+This exercise should be carried out after finishing the ground state calculation 
+that was explained in :any:`Exercise-4 <exercise-4>`.
+
+In the calculation, macroscopic Maxwell equation that describes the light
+propagation and microscopic time-dependent Kohn-Sham equation that describes
+the electron dynamics are solved simultaneously.
+The light propagation is described by a one-dimensional
+light-propagation equation for the vector potential,
+
+:math:`\frac{1}{c^2} \frac{\partial^2}{\partial X^2} A(X,t)
+- \frac{\partial^2}{\partial X^2} A(X,t) = \frac{4\pi}{c} I(X,t).`
+
+The direction of the propagation is set to *x* direction and the
+polarization of the pulse is set to *z* direction.
+The time profile of an incident pulse is given by
+
+:math:`A(t) = - \frac{E_0}{\omega} \hat z \cos^2 \frac{\pi}{T} \left( t - \frac{T}{2} \right) \sin \omega \left( t - \frac{T}{2} \right), \hspace{5mm} (0 < t < T),` 
+
+and is set in the vacuum region in front of the thin film.
+The parameters that characterize the pulsed field such as the amplitude :math:`E_0`, 
+frequency :math:`\omega`, pulse duration :math:`T` are specified in the input file.
+
+To discribe the light propagation, macroscopic coordinate :math:`X` is discretized as
+:math:`X_i`. At each grid point inside the silicon thin film, for which we take 
+eight points :math:`i=1 \cdots 8` in this exercise, time-dependent Kohn-Sham 
+equation for Bloch orbitals are calculated in real time,
+
+:math:`i\hbar \frac{\partial}{\partial t} u_{i n{\bf k}}({\bf r},t)
+=
+H_{{\bf k} + (e/\hbar c){\bf A}_i(t)} u_{i n{\bf k}}({\bf r},t).`
+
+From the Bloch orbital :math:`u_{in{\bf k}}({\bf r},t)`, we calculate the electric
+current :math:`I(X_i,t)`. We thus obtain a closed set of equations.
+Solving these equations simultaneously, we can describe macroscopic light propagation
+and microscopic electron dynamics at the same time.
 
 .. _input-files-5:
 
@@ -2230,10 +2684,20 @@ To run the code, following files in samples are used:
 |                                   |   *data_for_restart* to *restart*)  |
 +-----------------------------------+-------------------------------------+
 
-In the input file *Si_rt_multiscale.inp*, input keywords are specified.
-Most of them are mandatory to execute the calculation.
+First two files are prepared in the directory 
+``SALMON/samples/exercise_07_bulkSi_multiscale/``.
+The file ``Si_rt_multiscale.inp`` contains input keywords and their values.
+The pseudoopotential file should be the same as that used in the ground state calculation.
+In the directory ``restart``, those files created in the ground state calculation
+and stored in the directory *data_for_restart* are included.
+Therefore, coopy the directory as ``cp -R data_for_restart restart``
+if you calculate at the same directory as you did the ground state calculation.
+
+In the input file ``Si_rt_multiscale.inp``, input keywords are specified.
+Most of them are mandatory to execute the electron dynamics calculation.
 This will help you to prepare the input file for other systems that you want to calculate.
-A complete list of the input keywords can be found in :any:`List of input keywords <List of input keywords>`.
+A complete list of the input keywords that can be used in the input file
+can be found in :any:`List of input keywords <List of input keywords>`.
 
 ::
     
@@ -2241,7 +2705,7 @@ A complete list of the input keywords can be found in :any:`List of input keywor
     ! Excercise 07: Maxwell+TDDFT multiscale simulation                                      !
     !               (Pulsed-light propagation through a silicon thin film)                   !
     !----------------------------------------------------------------------------------------!
-    ! * The detail of this excercise is expained in our manual(see chapter: 'Exercises').    !
+    ! * The detail of this excercise is explained in our manual(see chapter: 'Exercises').   !
     !   The manual can be obtained from: https://salmon-tddft.jp/documents.html              !
     ! * Input format consists of group of keywords like:                                     !
     !     &group                                                                             !
@@ -2279,7 +2743,7 @@ A complete list of the input keywords can be found in :any:`List of input keywor
 
     &units
       !units used in input and output files
-      unit_system = 'a.u.'
+      unit_system = 'A_eV_fs'
     /
 
 | :any:`unit_system <unit_system>` specifies which unit system is used in the input and output files.
@@ -2291,7 +2755,7 @@ A complete list of the input keywords can be found in :any:`List of input keywor
       yn_periodic = 'y'
       
       !grid box size(x,y,z)
-      al(1:3) = 10.26d0, 10.26d0, 10.26d0
+      al(1:3) = 5.43d0, 5.43d0, 5.43d0
       
       !number of elements, atoms, electrons and states(bands)
       nelem  = 1
@@ -2358,8 +2822,8 @@ A complete list of the input keywords can be found in :any:`List of input keywor
 
     &tgrid
       !time step size and number of time grids(steps)
-      dt = 0.08d0
-      nt = 6000
+      dt = 0.002d0
+      nt = 8000
     /
 
 | :any:`dt` specifies the time step.
@@ -2375,15 +2839,15 @@ A complete list of the input keywords can be found in :any:`List of input keywor
       I_wcm2_1 = 1.0d12
       
       !duration of the incident pulse
-      tw1 = 441.195136248d0
+      tw1 = 10.672d0
       
       !mean photon energy(average frequency multiplied by the Planck constant) of the incident pulse
-      omega1 = 0.05696145187d0
+      omega1 = 1.55d0
       
       !polarization unit vector(real part) for the incident pulse(x,y,z)
       epdir_re1(1:3) = 0.0d0, 0.0d0, 1.0d0
       !--- Caution ---------------------------------------------------------!
-      ! Defenition of the incident pulse is wrriten in:                     !
+      ! Defenition of the incident pulse is written in:                     !
       ! https://www.sciencedirect.com/science/article/pii/S0010465518303412 !
       !---------------------------------------------------------------------!
     /
@@ -2403,9 +2867,9 @@ A complete list of the input keywords can be found in :any:`List of input keywor
       nz_m = 1
       
       !macro grid spacing for x, y, and z directions
-      hx_m = 100.0d0
-      hy_m = 100.0d0
-      hz_m = 100.0d0
+      hx_m = 50.0d0
+      hy_m = 50.0d0
+      hz_m = 50.0d0
       
       !number of macroscopic grids for vacumm region
       !(nxvacl_m is for negative x-direction in front of material)
@@ -2450,14 +2914,22 @@ A complete list of the input keywords can be found in :any:`List of input keywor
 
 | :any:`&atomic_red_coor <&atomic_red_coor>` specifies spatial coordinates of atoms in reduced coordinate system.
 
+Execusion
+^^^^^^^^^
+
+In a multiprocess environment, calculation will be executed as::
+
+    $ mpiexec -n NPROC salmon < Si_rt_multiscale.inp > Si_rt_multiscale.out
+
+where NPROC is the number of MPI processes. A standard output will be stored in the file ``Si_rt_multiscale.out``.
 
 .. _output-files-7:
 
 Output files
 ^^^^^^^^^^^^
 
-After the calculation, new directory *multiscale/* is created, then,
-following output files are created in the directory,
+After the calculation, following output files and directories are created in the
+directory that you run the code in addition to the standard output file.
 
 +-----------------------------------+------------------------------------+
 | file name                         | description                        |
@@ -2467,8 +2939,8 @@ following output files are created in the directory,
 |                                   | | at macroscopic position *xxxxxx* |
 |                                   |   as functions of time             |
 +-----------------------------------+------------------------------------+
-| *Si_m/mxxxxxx/Si_rt_energy.data*  | | components of total energy and   |
-|                                   |   difference of total energy       |
+| *Si_m/mxxxxxx/Si_rt_energy.data*  | | total energy and electronic      |
+|                                   |   excitation energy                |
 |                                   | | at macroscopic position *xxxxxx* |
 |                                   |   as functions of time             |
 +-----------------------------------+------------------------------------+
@@ -2481,21 +2953,96 @@ following output files are created in the directory,
 |                                   |   magnetic field,                  |
 |                                   | | electromagnetic current density  |
 |                                   |   at time step *yyyyyy*            |
-|                                   | | as function of space             |
+|                                   | | as function of spatial position  |
 +-----------------------------------+------------------------------------+
-| *Si_wave.data*                    | amplitudes of incident, reflected, |
-|                                   | and transmitted wave               |
+| *Si_wave.data*                    | waveform of incident, reflected,   |
+|                                   | and transmitted waves              |
 +-----------------------------------+------------------------------------+
 
 | You may download the above files (zipped file) from:
 | https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/07_bulkSi_ms.zip
 
-Explanations of the output files are described below:
+We first explain the standard output file. In the beginning of the file,
+input variables used in the calculation are shown.
+
+::
+
+   ##############################################################################
+   # SALMON: Scalable Ab-initio Light-Matter simulator for Optics and Nanoscience
+   #
+   #                             Version 2.0.1
+   ##############################################################################
+     Libxc: [disabled]
+      theory= multi_scale_maxwell_tddft
+   Initializing macropoint:     1-     8
+    
+    Total time step      =        8000
+    Time step[fs]        =  2.000000000000000E-003
+    Energy range         =        1000
+    Energy resolution[eV]=  1.000000000000000E-002
+   Laser frequency     = 1.55[eV]
+   Pulse width of laser=     10.67200000[fs]
+   Laser intensity     =  0.10000000E+13[W/cm^2]
+      use of real value orbitals =  F
+    r-space parallelization: off
+    ======
+    .........
+
+After that, the time evolution loop starts. At every 100 iterations, the step,
+grid point index, time, current in three Cartesian directions, the number of electrons, 
+and the total energy are displayed.
+
+::
+
+      Step  Macro     Time                          Current      Electrons  Eabs/cell
+                        fs                  1/fs*Angstrom^2                        eV
+   #------------------------------------------------------------------------------------------
+       100      1    0.200  5.45E-010 -4.60E-011  2.70E-004    32.00000000  2.36E-006
+       100      2    0.200  5.45E-010 -1.56E-011  1.83E-004    32.00000000  1.06E-006
+       100      3    0.200  5.45E-010  7.19E-012  1.23E-004    32.00000000  4.62E-007
+       100      4    0.200  5.45E-010  2.11E-011  8.14E-005    32.00000000  1.97E-007
+       100      5    0.200  5.45E-010  2.11E-011  5.28E-005    32.00000000  8.04E-008
+       100      6    0.200  5.45E-010  7.20E-012  3.34E-005    32.00000000  3.11E-008
+       100      7    0.200  5.45E-010 -1.56E-011  2.03E-005    32.00000000  1.10E-008
+       100      8    0.200  5.45E-010 -4.60E-011  1.13E-005    32.00000000  3.27E-009
+       200      1    0.400  1.77E-011 -2.93E-013  9.70E-004    32.00000000  5.80E-005
+       200      2    0.400  1.78E-011 -3.64E-011  7.50E-004    32.00000000  3.25E-005
+       200      3    0.400  1.78E-011 -5.58E-011  5.75E-004    32.00000000  1.80E-005
+       200      4    0.400  1.78E-011 -6.66E-011  4.38E-004    32.00000000  9.89E-006
+
+
+Explanations of other output files are given below:
+
+**Si_wave.data**
+
+Waveforms of incident, reflected, and transmitted waves.
+
+::
+   
+   # 1D multiscale calculation:
+   # E_inc: E-field amplitude of incident wave
+   # E_ref: E-field amplitude of reflected wave
+   # E_tra: E-field amplitude of transmitted wave
+   # 1:Time[fs] 2:E_inc_x[V/Angstrom] 3:E_inc_y[V/Angstrom] 4:E_inc_z[V/Angstrom] 
+   # 5:E_ref_x[V/Angstrom] 6:E_ref_y[V/Angstrom] 7:E_ref_z[V/Angstrom] 8:E_tra_x[V/Angstrom] 
+   # 9:E_tra_y[V/Angstrom] 10:E_tra_z[V/Angstrom]
+
+The figure below shows the incident, reflected, and transmitted electric fields 
+that are drawn using the first column (time in femtosecond) and the 4th column (incident), 
+7th column (reflected), and 10th column (transmitted).
+
+  .. image:: images/exc7/exc7-efield.png
+     :scale: 60%
+
+We find that the amplitude of the reflected pulse is comparable to the amplitude
+of the incudent pulse, while the phase is different by :math:`\pi`.
+The amplitude of the transmitted pulse is smaller than the incident pulse.
 
 **Si_m/mxxxxxx/Si_rt.data**
 
-The number in the file name specifies the macroscopic position.
-Results of time evolution calculation for vector potential, electric field, and matter current density.
+The number *xxxxxx* in the directory name *mxxxxxx* specifies the position of 
+macroscopic grid point. Vector potential, electric field, and matter current density 
+as functions of time are included in the file.
 
 ::
    
@@ -2505,11 +3052,30 @@ Results of time evolution calculation for vector potential, electric field, and 
    # Ac_tot: Total vector potential field
    # E_tot: Total electric field
    # Jm: Matter current density (electrons)
-   # 1:Time[a.u.] 2:Ac_ext_x[a.u.] 3:Ac_ext_y[a.u.] 4:Ac_ext_z[a.u.] 5:E_ext_x[a.u.] 6:E_ext_y[a.u.] 7:E_ext_z[a.u.] 8:Ac_tot_x[a.u.] 9:Ac_tot_y[a.u.] 10:Ac_tot_z[a.u.] 11:E_tot_x[a.u.] 12:E_tot_y[a.u.] 13:E_tot_z[a.u.]  14:Jm_x[a.u.] 15:Jm_y[a.u.] 16:Jm_z[a.u.] 
+   # 1:Time[fs] 2:Ac_ext_x[fs*V/Angstrom] 3:Ac_ext_y[fs*V/Angstrom] 4:Ac_ext_z[fs*V/Angstrom] 
+   # 5:E_ext_x[V/Angstrom] 6:E_ext_y[V/Angstrom] 7:E_ext_z[V/Angstrom] 8:Ac_tot_x[fs*V/Angstrom] 
+   # 9:Ac_tot_y[fs*V/Angstrom] 10:Ac_tot_z[fs*V/Angstrom] 11:E_tot_x[V/Angstrom] 
+   # 12:E_tot_y[V/Angstrom] 13:E_tot_z[V/Angstrom]  14:Jm_x[1/fs*Angstrom^2] 
+   # 15:Jm_y[1/fs*Angstrom^2] 16:Jm_z[1/fs*Angstrom^2] 
+
+The figure below shows the electric field at front and back surfaces.
+Using 1st column (time in femtosecond) and 13th column (total electric field in *z* direction),
+electric field at a macroscopic poisition inside the thin film can be plotted.
+Using the file ``/m000001/Si_rt.data``, electric field at the front surface is drawn 
+by red curve. Using the file ``/m000008/Si_rt.data``, electric field at the back surface
+is drawn by blue curve. 
+
+  .. image:: images/exc7/exc7-efield2.png
+     :scale: 60%
+
+We find that the amplitude of the electric field at the front surface is small.
+It is consistent with the previous figure that showed incident and reflected pulses 
+with a similar amplitude and opposite phase.
 
 **Si_m/mxxxxxx/Si_rt_energy.data**
 
-The number in the file name specifies the macroscopic position.
+The number *xxxxxx* in the directory name *mxxxxxx* specifies the position of 
+macroscopic grid point. 
 *Eall* and *Eall-Eall0* are total energy and electronic excitation energy, respectively.
 
 ::
@@ -2517,12 +3083,28 @@ The number in the file name specifies the macroscopic position.
    # Real time calculation: 
    # Eall: Total energy
    # Eall0: Initial energy
-   # 1:Time[a.u.] 2:Eall[a.u.] 3:Eall-Eall0[a.u.]
+   # 1:Time[fs] 2:Eall[eV] 3:Eall-Eall0[eV] 
+
+The figure below shows the electronic excitation energy per unit cell volume
+at front and back surfaces using 1st columnn (time in femtosecond) and 3rd column
+(*Eall-Eall0*).
+Using the file ``/m000001/Si_rt_energy.data``, the excitation energy at the
+front surface is drawn by red curve. Using the file ``/m000008/Si_rt_energy.data``,
+the excitation energy at the back surface is drawn by blue curve.
+
+  .. image:: images/exc7/exc7-energy2.png
+     :scale: 60%
+
+The excitation energy is much larger at the back surface compared with the energy
+at the front surface. This is because the amplitude of the electric field 
+at the back surface is larger than that of the front surface, as seen in the
+previous figure, and the excitation is a nonlinear process.
 
 **Si_RT_Ac/Si_Ac_yyyyyy.data**
 
-The number in the file name specifies the iteration number.
-Various quantities at a time are shown as function of macroscopic position.
+The number *yyyyyy* in the file name ``Si_Ac_yyyyyy.data`` specifies the time step.
+Various quantities at the time step are included in the file as functions of macroscopic 
+position index.
 
 ::
    
@@ -2532,19 +3114,21 @@ Various quantities at a time are shown as function of macroscopic position.
    # Ac: Vector potential field
    # E: Electric field
    # J_em: Electromagnetic current density
-   # 1:IX[none] 2:IY[none] 3:IZ[none] 4:Ac_x[a.u.] 5:Ac_y[a.u.] 6:Ac_z[a.u.] 7:E_x[a.u.] 8:E_y[a.u.] 9:E_z[a.u.] 10:B_x[a.u.] 11:B_y[a.u.] 12:B_z[a.u.] 13:Jem_x[a.u.] 14:Jem_y[a.u.] 15:Jem_z[a.u.] 16:E_em[a.u./vol] 17:E_abs[a.u./vol]
+   # 1:IX[none] 2:IY[none] 3:IZ[none] 4:Ac_x[fs*V/Angstrom] 5:Ac_y[fs*V/Angstrom] 
+   # 6:Ac_z[fs*V/Angstrom] 7:E_x[V/Angstrom] 8:E_y[V/Angstrom] 9:E_z[V/Angstrom] 10:B_x[a.u.] 
+   # 11:B_y[a.u.] 12:B_z[a.u.] 13:Jem_x[1/fs*Angstrom^2] 14:Jem_y[1/fs*Angstrom^2] 
+   # 15:Jem_z[1/fs*Angstrom^2] 16:E_em[eV/vol] 17:E_abs[eV/vol]
 
-**Si_wave.data**
+The figure below shows spatial dependence of the electric field at three times,
+:math:`t=0` fs (initial), :math:`t=8` fs (pulse goes through the film), and
+:math:`t=16` fs (final). It is drawn using the first column multiplied by the
+step size of :math:`X` and 9th column (electric field).
 
-Amplitudes of incident, reflected, and transmitted wave.
+  .. image:: images/exc7/exc7-efield-x.png
+     :scale: 60%
 
-::
-   
-   # 1D multiscale calculation:
-   # E_inc: E-field amplitude of incident wave
-   # E_ref: E-field amplitude of reflected wave
-   # E_tra: E-field amplitude of transmitted wave
-   # 1:Time[a.u.] 2:E_inc_x[a.u.] 3:E_inc_y[a.u.] 4:E_inc_z[a.u.] 5:E_ref_x[a.u.] 6:E_ref_y[a.u.] 7:E_ref_z[a.u.] 8:E_tra_x[a.u.] 9:E_tra_y[a.u.] 10:E_tra_z[a.u.]
+ 
+
 
 Geometry optimization and Ehrenfest molecular dynamics
 ------------------------------------------------------
@@ -2577,7 +3161,7 @@ To run the code, following files in samples are used:
 |                                   | atom                              |
 +-----------------------------------+-----------------------------------+
 
-In the input file *C2H2_opt.inp*, input keywords are specified.
+In the input file ``C2H2_opt.inp``, input keywords are specified.
 Most of them are mandatory to execute the geometry optimization.
 This will help you to prepare an input file for other systems that you
 want to calculate. A complete list of the input keywords that can be
@@ -2748,7 +3332,7 @@ directory that you run the code,
 | *C2H2_trj.xyz*                      | atomic coordinates during the      |
 |                                     | geometry optimization              |
 +-------------------------------------+------------------------------------+
-| *C2H2_k.data*   　                  | k-point distribution               |
+| *C2H2_k.data*                       | k-point distribution               |
 |                                     | (for isolated systems, only        |
 |                                     | gamma point is described)          |
 +-------------------------------------+------------------------------------+
@@ -2763,10 +3347,10 @@ directory that you run the code,
 |                                     | file for hydrogen atom             |
 +-------------------------------------+------------------------------------+
 
-| You may download the above files (zipped file, except for the directory *data_for_restart*) from:
+| You may download the above files (zipped file, except for the directory ``data_for_restart``) from:
 | https://salmon-tddft.jp/webmanual/v_2_0_1/exercise_zip_files/08_C2H2_opt.zip
 
-Main results of the calculation such as orbital energies are included in *C2H2_info.data*. 
+Main results of the calculation such as orbital energies are included in ``C2H2_info.data``. 
 Explanations of the *C2H2_info.data* and other output files are below:
 
 **C2H2_info.data**
@@ -2813,7 +3397,7 @@ and associated quantities such as the electron and ion kinetic energies, the ele
 system and temperature as functions of time are calculated..
 This tutorial should be carried out after finishing the geometry optimization that was
 explained in :any:`Exercise-8 <exercise-8>`.
-In the calculation, a pulsed electric field that has cos^2 envelope shape is applied.
+In the calculation, a pulsed electric field that has :math:`\cos^2` envelope shape is applied.
 The parameters that characterize the pulsed field such as magnitude, frequency, polarization direction,
 and carrier envelope phase are specified in the input file.
 
@@ -2821,9 +3405,9 @@ Input files
 ^^^^^^^^^^^
 
 To run the code, following files in samples are used.
-The directory *restart* is created in the ground state calculation as *data_for_restart*. 
+The directory ``restart`` is created in the ground state calculation as ``data_for_restart``. 
 Pseudopotential files are already used in the geometry optimization.
-Therefore, *C2H2_md.inp* that specifies input keywords and their values
+Therefore, ``C2H2_md.inp`` that specifies input keywords and their values
 for the pulsed electric field and molecular dynamics calculations
 is the only file that the users need to prepare.
 
@@ -2843,7 +3427,7 @@ is the only file that the users need to prepare.
 |                                   |   *data_for_restart* to *restart*)  |
 +-----------------------------------+-------------------------------------+
 
-In the input file *C2H2_md.inp*, input keywords are specified.
+In the input file ``C2H2_md.inp``, input keywords are specified.
 Most of them are mandatory to execute the calculation of
 electron dynamics induced by a pulsed electric field.
 This will help you to prepare the input file for other systems and other
@@ -3131,18 +3715,18 @@ Exercise-10: Pulsed electric field response of a metallic nanosphere in classica
 
 In this exercise, we learn the pulsed electric field response in the metallic nanosphere, solving the time-dependent Maxwell equations.
 As outputs of the calculation, the time response of the electromagnetic field is calculated.
-A pulsed electric field that has cos^2 envelope shape is applied.
+A pulsed electric field that has :math:`\cos^2` envelope shape is applied.
 The parameters that characterize the pulsed field such as magnitude, frequency, polarization direction, and carrier envelope phase are specified in the input file.
 
 Input files
 ^^^^^^^^^^^
-To run the code, the input file *classicEM_rt_pulse.inp* 
+To run the code, the input file ``classicEM_rt_pulse.inp`` 
 that contains input keywords and their values for the pulsed electric field calculation is required.
-The shape file of the metallic nanosphere *shape.cube* is also required.
+The shape file of the metallic nanosphere ``shape.cube`` is also required.
 
 The shape file can be generated by program ``FDTD_make_shape`` in SALMON utilities: https://salmon-tddft.jp/utilities.html
 
-'shape.inp' is an input file for 'FDTD_make_shape' to generate 'shape.cube'.
+``shape.inp`` is an input file for ``FDTD_make_shape`` to generate ``shape.cube``.
 
 The input files are in samples
 
@@ -3154,10 +3738,10 @@ The input files are in samples
 +-----------------------------------+------------------------------------+
 | *shape.cube*                      | shape file for fdtd                |
 +-----------------------------------+------------------------------------+
-| *shape.inp*                       | input file for ``FDTD_make_shape`` |
+| *shape.inp*                       | input file for *FDTD_make_shape*   |
 +-----------------------------------+------------------------------------+
 
-In the input file *classicEM_rt_pulse.inp*, input keywords are specified.
+In the input file ``classicEM_rt_pulse.inp``, input keywords are specified.
 Most of them are mandatory to execute the linear response calculation.
 This will help you to prepare the input file for other systems that you want to calculate.
 A complete list of the input keywords that can be used in the input file
@@ -3346,7 +3930,7 @@ can be found in :any:`List of input keywords <List of input keywords>`.
 Output files
 ^^^^^^^^^^^^
 
-After the calculation, following output files are created in the directory ``'result'``,
+After the calculation, following output files are created in the directory ``result``,
 
 +-------------------------------------+-----------------------------------+
 | file name                           | description                       |
