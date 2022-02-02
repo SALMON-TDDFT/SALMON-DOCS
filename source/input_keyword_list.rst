@@ -2359,8 +2359,6 @@ yn_out_tm
 
 .. _yn_out_gs_sgm_eps:
 
-test7
-
 yn_out_gs_sgm_eps
 ^^^^^^^^^^^^^^^^^
 
