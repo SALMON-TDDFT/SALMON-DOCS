@@ -44,10 +44,12 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
-    'sphinx.ext.imgmath',
+    'sphinxcontrib.katex',
     'sphinx.ext.ifconfig',
     'sphinxcontrib.bibtex',
 ]
+
+#    'sphinx.ext.imgmath',   #previous extension for rendering
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
