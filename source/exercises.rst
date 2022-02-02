@@ -1805,10 +1805,10 @@ is obtained from :math:`\epsilon_{\mu \nu}(t)` by taking time-frequency
 Fourier transformation.
 
 In SALMON, the dielectric function is calculated in the following way.
-First the ground state Bloch orbitals :math:`u_{n{\bm k}}({\bf r})` that satisfies the
+First the ground state Bloch orbitals :math:`u_{n{\bf k}}({\bf r})` that satisfies the
 Kohn-Sham equation,
 
-:math:`H_{\bm k} u_{n{\bf k}}({\bf r}) = \epsilon_{n{\bf k}}({\bf r}),`
+:math:`H_{\bf k} u_{n{\bf k}}({\bf r}) = \epsilon_{n{\bf k}}({\bf r}),`
 
 is calculated. 
 Then an impulsive force characterized by the magnitude of the 
