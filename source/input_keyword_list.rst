@@ -2355,12 +2355,39 @@ yn_out_tm
    |   ``'y'`` / enable
    |   ``'n'`` / disable
 
-.. _out_ms_step:
-
 .. _yn_out_gs_sgm_eps:
 
 yn_out_gs_sgm_eps
 ^^^^^^^^^^^^^^^^^
+
+[Trial] character, default='n'
+
+   | Available for ``theory='dft'``.
+   | Switch to calculate and print conductivity (sigma) and dielectric function (epsilon) based on transition moment after convergence of the ground state calculation. These are printed in the output files, ``SYSname``\_sigma.data and ``SYSname``\_epsilon.data
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
+
+.. _out_gs_sgm_eps_mu_nu
+
+out_gs_sgm_eps_mu_nu
+^^^^^^^^^^^^^^^^^^^^
+
+integer, default=3,3
+
+   | Available for ``yn_out_gs_sgm_eps='y'`` with ``theory='dft'``.
+   | Index of conductibity and dielectric tensol element calculated in this option. Default of (3,3) means zz element.
+
+.. _out_gs_sgm_eps_width
+
+out_gs_sgm_eps_width
+^^^^^^^^^^^^^^^^^^^^
+
+real(8), default=0.015d0 [eV]
+
+   | Available for ``yn_out_gs_sgm_eps='y'`` with ``theory='dft'``.
+   | Smearing width used in conductivity and dielectric function
+
+.. _out_ms_step:
 
 out_ms_step
 ^^^^^^^^^^^
