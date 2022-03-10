@@ -1907,6 +1907,26 @@ integer, default=0
    | Available for ``theory='maxwell'``.
    | Media ID used in incident current source1/source2 to generate the first/second pulse.
 
+.. _bloch_k_em:
+
+bloch_k_em(3)
+^^^^^^^^^^^^^
+
+[Trial] real(8), default=0d0
+
+   | Available for ``theory='maxwell'`` with ``yn_periodic='y'``.
+   | Wavenumber used in Bloch boundary conditions. When sum(|bloch_k_em(:)|)>0, Bloch boundary conditions are automatically applied.
+
+.. _bloch_k_em:
+
+bloch_real_imag_em(3)
+^^^^^^^^^^^^^^^^^^^^^
+
+[Trial] character, default='real'
+
+   | Available for ``theory='maxwell'`` with ``yn_periodic='y'`` and sum(|bloch_k_em(:)|)>0.
+   | Specify real or imaginary parts for exp(ikr) used in Bloch boundary conditions.
+
 .. _yn_make_shape:
 
 yn_make_shape
