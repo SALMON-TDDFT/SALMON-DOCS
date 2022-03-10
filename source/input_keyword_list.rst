@@ -1926,6 +1926,9 @@ bloch_real_imag_em(3)
 
    | Available for ``theory='maxwell'`` with ``yn_periodic='y'`` and sum(|bloch_k_em(:)|)>0.
    | Specify real or imaginary parts for exp(ikr) used in Bloch boundary conditions.
+   | Options:
+   |   ``'real'``
+   |   ``'imag'``
 
 .. _yn_make_shape:
 
