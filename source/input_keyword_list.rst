@@ -386,10 +386,11 @@ spin
 character, default='unpolarized'
 
    | Available for the DFT/TDDFT based options of ``theory``.
-   | It specifies the spin state of the system, spin-unpolarized (closed shell) and spin-polarized (open shell).
+   | It specifies the spin state of the system, spin-unpolarized (closed shell) or spin-polarized (open shell).
    | Options
    |   ``'unpolarized'`` / spin-unpolarized systems (default)
    |   ``'polarized'`` / spin-polarized systems
+   |   ``'noncollinear'`` / noncollinear spin systems
 
 .. _al(3):
 
@@ -523,11 +524,14 @@ file_atom_coor
 yn_spinorbit
 ^^^^^^^^^^^^
 
-[Trial] character, default='n'
+character, default='n'
 
+   | Available for the DFT/TDDFT based options of ``theory``.
+   | Option for the spin-orbit coupling
+   
    | Options
    |   ``'y'`` / enable
-   |   ``'n'`` / disable
+   |   ``'n'`` / disable (default)
 
 .. _yn_symmetry:
 
