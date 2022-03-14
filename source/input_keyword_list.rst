@@ -530,7 +530,7 @@ character, default='n'
    | Option for the spin-orbit coupling
    
    | Options
-   |   ``'y'`` / enable
+   |   ``'y'`` / enable (``spin='noncollinear'`` is required)
    |   ``'n'`` / disable (default)
 
 .. _yn_symmetry:
@@ -2459,6 +2459,17 @@ yn_lr_w0_correction
    | Options:
    |   ``'y'`` / enable
    |   ``'n'`` / disable
+   
+.. _out_magnetization_step:
+
+out_magnetization_step
+^^^^^^^^^^^^^^^^^^^^^^
+
+integer, default=100
+
+   | Available for TDDFT based methods with ``spin='noncollinear'``.
+   | The magnetization vectors for the respective orbitals are outputted every ``out_magnetization_step`` time steps.
+
 
 .. _yn_out_perflog:
 
