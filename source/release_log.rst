@@ -28,6 +28,9 @@ Fixed bugs
 * Non-local term of the transition moment printed by the option of "yn_out_tm=y" has been fixed (just printing issue).
 * Parallelization for orbitals for calculation of transition moment by "yn_out_tm=y" has been suported
 * Bug of the segmentation fault occurred by "yn_ffte=y" with parallelization for orbitals using isolated system has been fixed.
+* Reading of CIF file format for symmetry option has been improved. 
+* Combination of non-uniform user-defined k-points and symmetry option has been supported.
+
 
 (Fixed in v.2.0.2)
 
@@ -51,6 +54,7 @@ Changes of models/inputs/outputs
 
 (v.2.1.0)
 
+* "yn_spinorbit" for spin-orbit coupling is added.
 * New option "yn_out_gs_sgm_eps" for calculation of dielectric function and conductivity based on transition moments at the end of the GS calculation is added. The related input variables, "out_gs_sgm_eps_mu_nu" and "out_gs_sgm_eps_width" are added, too.
 
 
