@@ -23,6 +23,12 @@ Followings are history of fixed bugs and changes of models/inputs/outputs after 
 Fixed bugs
 ==========
 
+(Fixed in v.2.1.0)
+
+* Non-local term of the transition moment printed by the option of "yn_out_tm=y" has been fixed (just printing issue).
+* Parallelization for orbitals for calculation of transition moment by "yn_out_tm=y" has been suported
+* Bug of the segmentation fault occurred by "yn_ffte=y" with parallelization for orbitals using isolated system has been fixed.
+
 (Fixed in v.2.0.2)
 
 * Small noise on the total energy in TDDFT calculation (that is seen with weak pulse around e.g. I=1d9 W/cm2) has been removed.
@@ -42,6 +48,11 @@ Fixed bugs
 
 Changes of models/inputs/outputs
 ================================
+
+(v.2.1.0)
+
+* New option "yn_out_gs_sgm_eps" for calculation of dielectric function and conductivity based on transition moments at the end of the GS calculation is added. The related input variables, "out_gs_sgm_eps_mu_nu" and "out_gs_sgm_eps_width" are added, too.
+
 
 (v.2.0.2)
 
