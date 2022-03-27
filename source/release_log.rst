@@ -54,8 +54,17 @@ Changes of models/inputs/outputs
 
 (v.2.1.0)
 
-* "yn_spinorbit" for spin-orbit coupling is added.
-* New option "yn_out_gs_sgm_eps" for calculation of dielectric function and conductivity based on transition moments at the end of the GS calculation is added. The related input variables, "out_gs_sgm_eps_mu_nu" and "out_gs_sgm_eps_width" are added, too.
+* Input variables for Spin-orbit coupling are added
+
+  * "yn_spinorbit"
+  * "spin = noncollinear"
+  * "out_magnetization_step"
+
+* New options for calculation of dielectric function and conductivity based on transition moments at the end of the GS calculation is added. The related input variables are
+
+  * "yn_out_gs_sgm_eps"
+  * "out_gs_sgm_eps_mu_nu"
+  * "out_gs_sgm_eps_width"
 
 
 (v.2.0.2)
