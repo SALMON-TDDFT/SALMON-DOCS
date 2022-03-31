@@ -120,6 +120,7 @@ List of developers
 * Yuta Hirokawa (Prometech Software, Inc., Japan)
 * Kenji Iida (Hokkaido University, Japan)
 * Jun-Ichi Iwata (Advance Soft Co., Japan)
+* Yuki Ito (Fixstars Corporation, Japan)
 * Masashi Noda (Academeia, Japan)
 * Tomohito Otobe (National Institutes for Quantum and Radiological Science and Technology, Japan)
 * Shunsuke Sato (University of Tsukuba, Japan)
