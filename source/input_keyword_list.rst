@@ -390,7 +390,7 @@ character, default='unpolarized'
    | Options
    |   ``'unpolarized'`` / spin-unpolarized systems (default)
    |   ``'polarized'`` / spin-polarized systems
-   |   ``'noncollinear'`` / noncollinear spin systems
+   |   ``'noncollinear'`` / noncollinear spin systems (see ``yn_spinorbit``)
 
 .. _al(3):
 
@@ -527,10 +527,10 @@ yn_spinorbit
 character, default='n'
 
    | Available for the DFT/TDDFT based options of ``theory``.
-   | Option for the spin-orbit coupling
+   | Option for the spin-orbit coupling using the j-dependent pseudopotential formalism [Theurich & Hill, PRB 64, 073106 (2001)]. For pseudopotential(s), the UPF or VPS file format is required.
    
    | Options
-   |   ``'y'`` / enable (``spin='noncollinear'`` is required)
+   |   ``'y'`` / enable (``spin='noncollinear'`` is required. For ``theory='dft’`` mode, ``method_mixing='simple’`` is recommended.)
    |   ``'n'`` / disable (default)
 
 .. _yn_symmetry:
