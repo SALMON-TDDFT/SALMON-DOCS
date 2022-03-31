@@ -557,7 +557,13 @@ If you want that specify the compiler, set the ``FC`` and ``CC`` flags in execut
 
 When ``--arch`` option is not used, MPI parallelization is disabled as default.
 
+.. _GPU:
 
+Compilation for GPU acceleration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+GPU acceleration (OpenACC or OpenACC+CUDA) for the basic part (such as DFT & TDDFT for spin-unpolarized systems) is available.
+Specify ``--arch=nvhpc-openacc`` (OpenACC) or ``--arch=nvhpc-openacc-cuda`` (OpenACC+CUDA) option when executing ``configure.py``.
 
 .. _build-gnu-make:
 
