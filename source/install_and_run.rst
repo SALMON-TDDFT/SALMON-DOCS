@@ -563,6 +563,7 @@ Compilation for GPU acceleration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 GPU acceleration (OpenACC or OpenACC+CUDA) for the basic part (such as DFT & TDDFT for spin-unpolarized systems) is available.
+This option is currently under development and tested only for NVIDIA HPC SDK compiler ver 21.2 and 21.5.
 Specify ``--arch=nvhpc-openacc`` (OpenACC) or ``--arch=nvhpc-openacc-cuda`` (OpenACC+CUDA) option when executing ``configure.py``.
 
 .. _build-gnu-make:
