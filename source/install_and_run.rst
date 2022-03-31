@@ -14,6 +14,7 @@ For the installation of SALMON, following packages are required.
   - GCC (Gnu Compiler Collection)
   - Intel Compiler
   - Fujitsu Compiler (at FX100 and A64FX)
+  - Nvidia HPC SDK Compiler
 
 - One of the following library packages for linear algebra:
 
