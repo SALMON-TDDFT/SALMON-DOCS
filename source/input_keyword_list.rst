@@ -1819,7 +1819,7 @@ gbeam_sigma_line2(3)
 [Trial] real(8), default=-1d0
 
    | Available for ``theory='maxwell'`` with ``wave_input='source'``.
-   | These input keywords specify the width of Gauss function, exp(-0.5\ *(|r-r_0|/sigma)^2), applied for the incident current source to generate the first/second pulse. The center of the Gauss function, r_0, is specified by ``source_loc1/2``. ``gbeam_sigma_plane1/2`` specifies the width of 2D Gauss function (\ *xy*\ , *yz*\ , and *xz* planes). ``gbeam_sigma_line1/2`` specifies the width of 1D Gauss function (\ *x*\ , *y*\ , and *z* axes).
+   | These input keywords specify the width of Gauss function, exp(-0.5(|r-r_0|/sigma)^2), applied for the incident current source to generate the first/second pulse. The center of the Gauss function, r_0, is specified by ``source_loc1/2``. ``gbeam_sigma_plane1/2`` specifies the width of 2D Gauss function (\ *xy*\ , *yz*\ , and *xz* planes). ``gbeam_sigma_line1/2`` specifies the width of 1D Gauss function (\ *x*\ , *y*\ , and *z* axes).
 
 .. _obs_num_em:
 
