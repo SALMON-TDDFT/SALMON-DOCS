@@ -2296,7 +2296,7 @@ yn_out_micro_je
 character, default='n'
 
    | Available for TDDFT based methods.
-   | Switch to print the microscopic electron current density (``je_micrio_***`` files) at every ``outdns_micro_je_step`` time steps.
+   | Switch to print the microscopic electron current density (``je_micro_***`` files) at every ``out_micro_je_step`` time steps.
    | Options:
    |   ``'y'`` / enable
    |   ``'n'`` / disable
@@ -2312,7 +2312,7 @@ integer, default=50
    | See ``yn_out_micro_je``.
 
 
-.. _yn_out_dns_trans:
+ .. _yn_out_dns_trans:
 
 yn_out_dns_trans
 
