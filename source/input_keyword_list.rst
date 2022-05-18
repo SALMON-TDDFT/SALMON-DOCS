@@ -2272,7 +2272,7 @@ yn_out_dns_ac_je
 character, default='n'
 
    | Available for ``theory='single_scale_maxwell_tddft'``.
-   | Switch to print the electron density, vector potential, electronic current, and ionic coordinates every ``outdns_dns_ac_je_step`` time steps.
+   | Switch to print the electron density, vector potential, electronic current, and ionic coordinates every ``out_dns_ac_je_step`` time steps.
    | Options:
    |   ``'y'`` / enable
    |   ``'n'`` / disable
@@ -2312,7 +2312,7 @@ integer, default=50
    | See ``yn_out_micro_je``.
 
 
- .. _yn_out_dns_trans:
+.. _yn_out_dns_trans:
 
 yn_out_dns_trans
 
