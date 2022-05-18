@@ -2291,7 +2291,7 @@ integer, default=50
 .. _yn_out_micro_je:
 
 yn_out_micro_je
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
 
 character, default='n'
 
@@ -2304,7 +2304,7 @@ character, default='n'
 .. _out_micro_je_step:
 
 out_micro_je_step
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
 
 integer, default=50
 
@@ -2312,7 +2312,7 @@ integer, default=50
    | See ``yn_out_micro_je``.
 
 
- .. _yn_out_dns_trans:
+.. _yn_out_dns_trans:
 
 yn_out_dns_trans
 
