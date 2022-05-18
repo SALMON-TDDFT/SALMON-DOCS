@@ -2288,6 +2288,30 @@ integer, default=50
    | Available for ``theory='single_scale_maxwell_tddft'``.
    | Electron density, vector potential, electronic current, and ionic coordinates are outputted every ``outdns_dns_ac_je_step`` time steps.
 
+.. _yn_out_micro_je:
+
+yn_out_micro_je
+^^^^^^^^^^^^^^^^
+
+character, default='n'
+
+   | Available for TDDFT based methods.
+   | Switch to print the microscopic electron current density (``je_micrio_***`` files) at every ``outdns_micro_je_step`` time steps.
+   | Options:
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
+
+.. _out_micro_je_step:
+
+out_micro_je_step
+^^^^^^^^^^^^^^^^^^
+
+integer, default=50
+
+   | Available for TDDFT based methods with ``yn_out_micro_je='y'``.
+   | See ``yn_out_micro_je``.
+
+
  .. _yn_out_dns_trans:
 
 yn_out_dns_trans
