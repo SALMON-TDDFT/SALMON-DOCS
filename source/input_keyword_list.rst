@@ -1604,15 +1604,29 @@ integer, default=0
    | Number of real-space grids in electromagnetic analysis.
    | Only two of ``al_em``, ``dl_em``, and ``num_rgrid_em`` must be set.
 
+.. _at_em:
+
+at_em
+^^^^^
+
+real(8), default=0d0
+
+   | Available for ``theory='maxwell'``.
+   | Total time for electromagnetic analysis.
+   | Two of ``at_em``, ``dt_em``, and ``nt_em`` must be set.
+   | Otherwise, both ``at_em`` and ``nt_em`` or either of those must be set.
+   | (For the latter, ``dt_em`` is automatically determined from CFL condition)
+
 .. _dt_em:
 
 dt_em
 ^^^^^
 
-real(8), default=0
+real(8), default=0d0
 
    | Available for ``theory='maxwell'``.
-   | Time step for electromagnetic analysis.
+   | Time step size for electromagnetic analysis.
+   | If default is selected, this is automatically determined from CFL condition.
 
 .. _nt_em:
 
@@ -1836,10 +1850,11 @@ integer, default=0
 obs_samp_em
 ^^^^^^^^^^^
 
-integer, default=1
+integer, default=0
 
    | Available for ``theory='maxwell'``.
    | Sampling time-step of the observation in electromagnetic analysis.
+   | If default is selected, this is automatically determined.
 
 .. _obs_loc_em(:,3):
 
@@ -1957,6 +1972,120 @@ bloch_real_imag_em(3)
    | Options:
    |   ``'real'``
    |   ``'imag'``
+
+.. _ase_num_em:
+
+ase_num_em
+^^^^^^^^^^
+
+integer, default=0
+
+   | Available for ``theory='maxwell'`` with ``yn_periodic='n'``.
+   | Number of energy or wavelength grid points specified by ``ase_ene_min_em/ase_ene_max_em`` or ``ase_wav_min_em/ase_wav_max_em``.
+   | If this is specified as larger than 0, Absorption-, Scattering-, and Extinction-cross-sections will be outputed at the end of calculation.
+   | Those are normalized by the spectral distribution of the incident pulse.
+
+.. _ase_ene_min_em:
+
+ase_ene_min_em
+^^^^^^^^^^^^^^
+.. _ase_ene_max_em:
+
+ase_ene_max_em
+^^^^^^^^^^^^^^
+
+real(8), default=-1d0
+
+   | Available for ``theory='maxwell'`` with ``ase_num_em>0`` and ``yn_periodic='n'``.
+   | Energy range for Absorption-, Scattering-, and Extinction-cross-sections.
+
+.. _ase_wav_min_em:
+
+ase_wav_min_em
+^^^^^^^^^^^^^^
+.. _ase_wav_max_em:
+
+ase_wav_max_em
+^^^^^^^^^^^^^^
+
+real(8), default=-1d0
+
+   | Available for ``theory='maxwell'`` with ``ase_num_em>0`` and ``yn_periodic='n'``.
+   | Wavelength range for Absorption-, Scattering-, and Extinction-cross-sections.
+
+.. _ase_box_cent_em(3):
+
+ase_box_cent_em(3)
+^^^^^^^^^^^^^^^^^^
+
+real(8), default=0d0
+
+   | Available for ``theory='maxwell'`` with ``ase_num_em>0`` and ``yn_periodic='n'``.
+   | ``ase_box_cent_em(1:3)=x,y,z`` spesifies location of the center of a closed surface (box shape) to calculate Absorption-, Scattering-, and Extinction-cross-sections.
+
+.. _ase_box_size_em(3):
+
+ase_box_size_em(3)
+^^^^^^^^^^^^^^^^^^
+
+real(8), default=-1d0
+
+   | Available for ``theory='maxwell'`` with ``ase_num_em>0`` and ``yn_periodic='n'``.
+   | ``ase_box_size_em(1:3)=X,Y,Z`` spesifies size of a closed surface (box shape) to calculate Absorption-, Scattering-, and Extinction-cross-sections.
+
+.. _art_num_em:
+
+art_num_em
+^^^^^^^^^^
+
+integer, default=0
+
+   | Available for ``theory='maxwell'`` with ``yn_periodic='y'``.
+   | Number of energy or wavelength grid points specified by ``art_ene_min_em/art_ene_max_em`` or ``art_wav_min_em/art_wav_max_em``.
+   | If this is specified as larger than 0, Absorption-, Reflection-, and Transmission-ratas will be outputed at the end of calculation.
+   | Those are normalized by the spectral distribution of the incident pulse.
+
+.. _art_ene_min_em:
+
+art_ene_min_em
+^^^^^^^^^^^^^^
+.. _art_ene_max_em:
+
+art_ene_max_em
+^^^^^^^^^^^^^^
+
+real(8), default=-1d0
+
+   | Available for ``theory='maxwell'`` with ``art_num_em>0`` and ``yn_periodic='y'``.
+   | Energy range for Absorption-, Reflection-, and Transmission-ratas.
+
+.. _art_wav_min_em:
+
+art_wav_min_em
+^^^^^^^^^^^^^^
+.. _art_wav_max_em:
+
+art_wav_max_em
+^^^^^^^^^^^^^^
+
+real(8), default=-1d0
+
+   | Available for ``theory='maxwell'`` with ``art_num_em>0`` and ``yn_periodic='y'``.
+   | Wavelength range for Absorption-, Reflection-, and Transmission-ratas.
+
+.. _art_plane_bot_em(3):
+
+art_plane_bot_em(3)
+^^^^^^^^^^^^^^^^^^
+.. _art_plane_top_em(3):
+
+art_plane_top_em(3)
+^^^^^^^^^^^^^^^^^^
+
+real(8), default=0d0
+
+   | Available for ``theory='maxwell'`` with ``art_num_em>0`` and ``yn_periodic='y'``.
+   | ``art_plane_bot_em(1:3)=x1,y1,z1`` and ``art_plane_top_em(1:3)=x2,y2,z2`` spesify location of bottom and top planes on the propagation axis to calculate Absorption-, Reflection-, and Transmission-ratas.
 
 .. _yn_make_shape:
 
