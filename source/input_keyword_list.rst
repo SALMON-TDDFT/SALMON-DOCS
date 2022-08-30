@@ -89,7 +89,7 @@ yn_restart
 
 character, default='n'
 
-   | Available for the DFT/TDDFT based options of ``theory``.
+   | Available for the DFT/TDDFT based options of ``theory`` and ``theory='maxwell'``.
    | Whether to continue previous calculation (restart) or start a new calculation.
    | Options:
    |   ``'y'`` / enable (restart)
@@ -125,7 +125,7 @@ checkpoint_interval
 
 integer, default=-1
 
-   | Available for the DFT/TDDFT based options of ``theory``.
+   | Available for the DFT/TDDFT based options of ``theory`` and ``theory='maxwell'``.
    | Interval of time steps (iteration steps) to write down the checkpoint data during the time-propagation (SCF iteration). Checkpoint data will not be written if a negative value is set.
 
 .. _yn_reset_step_restart:
