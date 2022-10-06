@@ -1183,7 +1183,7 @@ character, default='tr'
    | Options:
    |   ``'tr'`` / Transverse
    |   ``'lo'`` / longitudinal
-   |   ``'2d'`` / 2D maxwell-TDDFT (= 2D approximation) method (for more details, see ``film_thickness`` of &maxwell)
+   |   ``'2d'`` / 2D maxwell-TDDFT (2D approximation) method (for more details, see ``film_thickness`` of &maxwell)
 
 .. _ae_shape1:
 
@@ -1923,7 +1923,7 @@ film_thickness
 real(8), default=0d0
 
    | Available for TDDFT based options of ``theory`` with ``trans_longi='2d'``.
-   | Thickness of the film for the 2D maxwell-TDDFT (= 2D approximation) method [S. Yamada and K. Yabana, PRB 103, 155426 (2021)].
+   | Thickness of the film for the 2D maxwell-TDDFT (2D approximation) method [S. Yamada and K. Yabana, PRB 103, 155426 (2021)].
    | For a slab system, ``film_thickness`` should be set to the side length of the calculation cell, i.e., the thickness of the slab plus the length of the vacuum region [S. Yamada et al., PRB 98, 245147 (2018)].
    | The relative permittivity of the transparent media on both sides of the film can be specified by ``epsilon_em(1)`` and ``epsilon_em(2)``, respectively (default=vacuum).
 
