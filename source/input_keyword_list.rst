@@ -2221,7 +2221,7 @@ out_projection_step
 
 integer, default=100
 
-   | Available for TDDFT based options of ``theory``.
+   | Available when ``projection_option`` is specified.
    | Resuts of the projection analysis will be outputted everty ``out_projection_step`` step during the time-propagation.
 
 .. _yn_out_intraband_current:
@@ -2668,8 +2668,8 @@ yn_out_current_decomposed
 
 character, default='n'
 
-   | Available for TDDFT based methods.
-   | Switch to output electron docomposed elements of the current density.
+   | Available for TDDFT based options of ``theory``.
+   | Switch to output docomposed elements of the electron current density.
    | Options:
    |   ``'y'`` / enable
    |   ``'n'`` / disable
