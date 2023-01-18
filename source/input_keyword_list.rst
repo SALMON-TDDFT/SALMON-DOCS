@@ -2224,6 +2224,19 @@ integer, default=100
    | Available for TDDFT based options of ``theory``.
    | Resuts of the projection analysis will be outputted everty ``out_projection_step`` step during the time-propagation.
 
+.. _yn_out_intraband_current:
+
+yn_out_intraband_current
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+character, default='n'
+
+   | Available when ``projection_option`` is specified.
+   | Switch for output of the intra-band current density [T. Otobe, Phys. Rev. B 94, 235152 (2016).].
+   | Options:
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
+
 .. _nenergy:
 
 nenergy
@@ -2648,6 +2661,28 @@ integer, default=100
    | Available for TDDFT based methods with ``spin='noncollinear'``.
    | The magnetization vectors for the respective orbitals are outputted every ``out_magnetization_step`` time steps.
 
+.. _yn_out_current_decomposed:
+
+yn_out_current_decomposed
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+character, default='n'
+
+   | Available for TDDFT based methods.
+   | Switch to output electron docomposed elements of the current density.
+   | Options:
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
+
+.. _out_current_decomposed_step:
+
+out_current_decomposed_step
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+integer, default=100
+
+   | Available when ``yn_out_current_decomposed='y'``.
+   | The decomposed current data is outputted every ``out_current_decomposed_step`` step.
 
 .. _yn_out_perflog:
 
