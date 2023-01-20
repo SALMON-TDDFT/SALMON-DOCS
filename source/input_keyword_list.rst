@@ -2222,7 +2222,17 @@ out_projection_step
 integer, default=100
 
    | Available when ``projection_option`` is specified.
-   | Resuts of the projection analysis will be outputted everty ``out_projection_step`` step during the time-propagation.
+   | Resuts of the projection analysis will be outputted every ``out_projection_step`` steps during the time-propagation.
+   
+.. _threshold_projection:
+
+threshold_projection
+^^^^^^^^^^^^^^^^^^^^
+
+real(8), default=1e-6 
+
+   | Available when ``projection_option`` is specified.
+   | Convergence threshold for the iteration of the Houston functions calculation.
 
 .. _yn_out_intraband_current:
 
