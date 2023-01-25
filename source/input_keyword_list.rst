@@ -528,7 +528,7 @@ character, default='n'
 
    | Available for the DFT/TDDFT based options of ``theory``.
    | Option for the spin-orbit coupling using the j-dependent pseudopotential formalism [Theurich & Hill, PRB 64, 073106 (2001)]. For pseudopotential(s), the UPF or VPS file format is required.
-   
+
    | Options
    |   ``'y'`` / enable (``spin='noncollinear'`` is required. For ``theory='dft’`` mode, ``method_mixing='simple’`` is recommended.)
    |   ``'n'`` / disable (default)
@@ -2223,13 +2223,13 @@ integer, default=100
 
    | Available when ``projection_option`` is specified.
    | Resuts of the projection analysis will be outputted every ``out_projection_step`` steps during the time-propagation.
-   
+
 .. _threshold_projection:
 
 threshold_projection
 ^^^^^^^^^^^^^^^^^^^^
 
-real(8), default=1e-6 
+real(8), default=1e-6
 
    | Available when ``projection_option`` is specified.
    | Convergence threshold for the iteration of the Houston functions calculation.
@@ -2660,7 +2660,7 @@ yn_lr_w0_correction
    | Options:
    |   ``'y'`` / enable
    |   ``'n'`` / disable
-   
+
 .. _out_magnetization_step:
 
 out_magnetization_step
@@ -2725,6 +2725,20 @@ character, default='stdout'
 
 &poisson
 --------
+
+.. _method_poisson:
+
+method_poisson
+^^^^^^^^^^^^^^^^
+
+character, Default='cg'
+
+   | Available for ``yn_periodic='n'`` in DFT and TDDFT based options of ``theory``.
+   | This papameter specify how to solve the Poisson equation.
+   | Options:
+   |  ``cg``/ Conjugate-Gradient(CG) method
+   |  ``ft``/ Fourier transformation method
+   |  ``dirichlet``/ Dirichlet boundary condition method
 
 .. _layout_multipole:
 
