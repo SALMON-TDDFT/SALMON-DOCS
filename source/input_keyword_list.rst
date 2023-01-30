@@ -2209,10 +2209,11 @@ character, default='no'
 
    | Available for TDDFT based options of ``theory``.
    | Methods of projection to analyze the excited states (e.g. the number of excited electrons).
+   | Output files: SYSname_nex.data, SYSname_ovlp.data
    | Options:
    |   ``'no'`` / no projection.
-   |   ``'gs'`` / projection to eigenstates of ground-state Hamiltonian.
-   |   ``'rt'`` / projection to eigenstates of instantaneous Hamiltonian. [currently not available]
+   |   ``'gs'`` / projection to eigenstates of the ground-state Hamiltonian whose k-point is shifted as k+A(t)/c (i.e. Houston functions).
+   |   ``'td'`` / projection to instantaneous eigenstates of the time-dependent Hamiltonian. 
 
 .. _out_projection_step:
 
@@ -2243,6 +2244,7 @@ character, default='n'
 
    | Available when ``projection_option`` is specified.
    | Switch for output of the intra-band current density [T. Otobe, Phys. Rev. B 94, 235152 (2016).].
+   | Output file: SYSname_intra_current.data
    | Options:
    |   ``'y'`` / enable
    |   ``'n'`` / disable
@@ -2680,6 +2682,7 @@ character, default='n'
 
    | Available for TDDFT based options of ``theory``.
    | Switch to output docomposed elements of the electron current density.
+   | Output file: SYSname_current_decomposed.data
    | Options:
    |   ``'y'`` / enable
    |   ``'n'`` / disable
