@@ -2233,7 +2233,7 @@ threshold_projection
 real(8), default=1e-6
 
    | Available when ``projection_option`` is specified.
-   | Convergence threshold for the iteration of the Houston functions calculation.
+   | Convergence threshold for the iteration of the eigenstates calculation.
 
 .. _yn_out_intraband_current:
 
