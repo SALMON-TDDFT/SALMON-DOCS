@@ -2682,6 +2682,7 @@ character, default='n'
 
    | Available for TDDFT based options of ``theory``.
    | Switch to output docomposed elements of the electron current density.
+   | The sum of the docomposed elements is equal to the current density in SYSname_rt.data.
    | Output file: SYSname_current_decomposed.data
    | Options:
    |   ``'y'`` / enable
