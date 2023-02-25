@@ -2743,8 +2743,6 @@ character, Default='cg'
    |  ``cg``/ Conjugate-Gradient(CG) method
    |  ``ft``/ Fourier transformation method
    |  ``dirichlet``/ Dirichlet boundary condition method
-   | Caution: When both ``method_poisson='dirichlet'`` and ``&parallel/yn_fftw='y'`` are specified in the input file, parallelization is restricted for the orbitals and the z-direction of grids. If one cannot gain efficiency by the parallelization of the z-direction of grids, combination with the orbital parallelization is needed.
-
 
 .. _layout_multipole:
 
