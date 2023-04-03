@@ -29,6 +29,8 @@ character, default=''
    |   ``multi_scale_maxwell_tddft``  / multiscale simulation coupling Maxwell and TDDFT
    |   ``maxwell``  / electromagnetic analysis using finite difference time domain (FDTD) method
    |   ``dft_k_expand`` / convert checkpoint data of dft with k-points calculation to that of larger supercell system with gamma-point
+   |   ``sbe`` / simulations under pulsed electric field based in semiconductor Bloch equation
+   |   ``sbe_maxwell`` / multiscale simulation coupling Maxwell and semiconductor Bloch equation
 
 .. _yn_md:
 
