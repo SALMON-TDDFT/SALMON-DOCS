@@ -2014,6 +2014,16 @@ real(8), default=-1d0
    | Available for ``theory='maxwell'`` with ``ase_num_em>0`` and ``yn_periodic='n'``.
    | Wavelength range for Absorption-, Scattering-, and Extinction-cross-sections.
 
+.. _ase_smedia_id_em:
+
+ase_smedia_id_em
+^^^^^^^^^^^^^^^^
+
+integer, default=0
+
+   | Available for ``theory='maxwell'`` with ``ase_num_em>0`` and ``yn_periodic='n'``.
+   | Media ID used as surrounding media.
+
 .. _ase_box_cent_em(3):
 
 ase_box_cent_em(3)
@@ -2074,6 +2084,16 @@ real(8), default=-1d0
    | Available for ``theory='maxwell'`` with ``art_num_em>0`` and ``yn_periodic='y'``.
    | Wavelength range for Absorption-, Reflection-, and Transmission-ratas.
 
+.. _art_smedia_id_em:
+
+art_smedia_id_em
+^^^^^^^^^^^^^^^^
+
+integer, default=0
+
+   | Available for ``theory='maxwell'`` with ``art_num_em>0`` and ``yn_periodic='y'``.
+   | Media ID used as surrounding media.
+   
 .. _art_plane_bot_em(3):
 
 art_plane_bot_em(3)
