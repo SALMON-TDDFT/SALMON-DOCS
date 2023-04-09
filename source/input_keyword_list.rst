@@ -904,7 +904,7 @@ character, default='n'
 yn_fix_func
 ^^^^^^^^^^^
 
-[Currently not available] character, default='n'
+character, default='n'
    | Available for 'dft_md' and TDDFT-based options of ``theory``.
    | Switch not to update the Hamiltonian during the time evolution, i.e., ground state Hamiltonian is used during the propagation.
    | Options:
