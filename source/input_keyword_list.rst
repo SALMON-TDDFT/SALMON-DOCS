@@ -474,7 +474,7 @@ real(8), default=-1d0
 temperature_k
 ^^^^^^^^^^^^^
 
-[Trial] real(8), default=-1d0
+real(8), default=-1d0
 
    | Available for DFT-based options of ``theory``.
    | The same as ``temperature`` but kelvin is used as the unit.
@@ -2490,6 +2490,7 @@ integer, default=50
 .. _yn_out_dns_trans:
 
 yn_out_dns_trans
+^^^^^^^^^^^^^^^^
 
 [currently not available] character default='n'
 
@@ -2499,7 +2500,7 @@ yn_out_dns_trans
    |   ``'y'`` / enable
    |   ``'n'`` / disable
 
-.. out_dns_trans_energy:
+.. _out_dns_trans_energy:
 
 out_dns_trans_energy
 ^^^^^^^^^^^^^^^^^^^^
