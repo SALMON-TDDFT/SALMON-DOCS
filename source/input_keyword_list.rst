@@ -2347,7 +2347,7 @@ character, default='n'
 
    | Available when ``yn_out_dos='y'`` or ``yn_out_pdos='y'``.
    | Switch to set the Fermi energy to zero in the energy axis of DoS.
-   | If the temperature is not specified, this option set the valence band maximum to zero.
+   | If the temperature is not specified, this option sets the valence band maximum to zero.
    | Options:
    |   ``'y'`` / enable
    |   ``'n'`` / disable
