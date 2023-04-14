@@ -2346,11 +2346,11 @@ yn_out_dos_set_fe_origin
 character, default='n'
 
    | Available when ``yn_out_dos='y'`` or ``yn_out_pdos='y'``.
-   | Switch to set the Fermi energy to zero.
+   | Switch to set the Fermi energy to zero in the energy axis of DoS.
+   | If the temperature is not specified, this option set the valence band maximum to zero.
    | Options:
    |   ``'y'`` / enable
    |   ``'n'`` / disable
-   | This option is not available if the temperature is not set in the calculation.
 
 .. _out_dos_start:
 
