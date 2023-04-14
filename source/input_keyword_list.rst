@@ -263,7 +263,7 @@ yn_ffte
 
 character, default='n'
 
-   | Available for ``&system/yn_periodic='y'``
+   | Available for the DFT/TDDFT based options of ``theory`` with ``&system/yn_periodic='y'``
    | For periodic systems, SALMON uses Fourier transformation to solve a poisson equation.
    | This switch selects if FFTE library is used or not. If FFTE is not used, the Fourier transformation in a simple algorithm is carried out.
    | Options
@@ -283,10 +283,10 @@ yn_fftw
 
 character, default='n'
 
-   | Available both for ``&system/yn_periodic='y'`` and ``&system/yn_periodic='n'``
+   | Available for the DFT/TDDFT based options of ``theory`` with both ``&system/yn_periodic='y'`` and ``&system/yn_periodic='n'``.
    | For isolated systems, this option is effective when ``&poisson/method_poisson='ft'``
-   | This switch selects if FFTW library is used or not. If FFTW is not used, the Fourier transformation in a simple algorithm is carried out.
-   | Caution: This variable is effective only when the preprocessor "USE_FFTW" is specified at the configure.
+   | This switch selects if FFTW library is used or not. If FFTW is not used, the discrete Fourier transformation in a simple algorithm is carried out.
+   | Caution: This variable is effective only when ``--enable-fftw`` is specified at the configure.
    | Options
    |   ``'y'`` / enable
    |   ``'n'`` / disable
