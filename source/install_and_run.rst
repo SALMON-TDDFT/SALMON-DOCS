@@ -571,9 +571,12 @@ This option is currently under development and tested only for NVIDIA HPC SDK co
 Compilation with FFTW library
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For solving the poisson equation for the Hartree potential, SALMON uses the discrete Fourier transform. 
+For solving the Poisson equation for the Hartree potential, SALMON uses the discrete Fourier transform. 
 FFTW library (https://www.fftw.org) is available for fast calculation.
-Specify ``--enable-fftw LDFLAGS="-lfftw3_mpi -lfftw3"`` option when executing ``configure.py``.
+When executing ``configure.py``, specify ``--enable-fftw`` option and linker flags for FFTW such as ``LDFLAGS="-lfftw3_mpi -lfftw3"``.
+
+Exapmle:
+ $ python ../configure.py --prefix=DIR_SALMON --arch=ARCHITECTURE --enable-fftw LDFLAGS="-lfftw3_mpi -lfftw3"
 
 .. _build-gnu-make:
 
