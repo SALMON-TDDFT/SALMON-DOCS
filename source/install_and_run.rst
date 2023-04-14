@@ -575,9 +575,9 @@ For solving the Poisson equation for the Hartree potential, SALMON uses the disc
 FFTW library (https://www.fftw.org) is available for fast calculation. 
 When executing ``configure.py``, specify ``--enable-fftw`` option and linker flags for FFTW such as ``LDFLAGS="-lfftw3_mpi -lfftw3"``.
 
-Exapmle:
+Exapmle::
 
-    $ python ../configure.py --prefix=DIR_SALMON --arch=ARCHITECTURE --enable-fftw LDFLAGS="-lfftw3_mpi -lfftw3"
+    $ python ../configure.py --arch=ARCHITECTURE --enable-fftw LDFLAGS="-lfftw3_mpi -lfftw3"
 
 .. _build-gnu-make:
 
