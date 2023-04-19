@@ -265,7 +265,7 @@ yn_ffte
 
 character, default='n'
 
-   | Available for ``&system/yn_periodic='y'``
+   | Available for the DFT/TDDFT based options of ``theory`` with ``&system/yn_periodic='y'``
    | For periodic systems, SALMON uses Fourier transformation to solve a poisson equation.
    | This switch selects if FFTE library is used or not. If FFTE is not used, the Fourier transformation in a simple algorithm is carried out.
    | Options
@@ -285,10 +285,10 @@ yn_fftw
 
 character, default='n'
 
-   | Available both for ``&system/yn_periodic='y'`` and ``&system/yn_periodic='n'``
+   | Available for the DFT/TDDFT based options of ``theory`` with both ``&system/yn_periodic='y'`` and ``&system/yn_periodic='n'``.
    | For isolated systems, this option is effective when ``&poisson/method_poisson='ft'``
-   | This switch selects if FFTW library is used or not. If FFTW is not used, the Fourier transformation in a simple algorithm is carried out.
-   | Caution: This variable is effective only when the preprocessor "USE_FFTW" is specified at the configure.
+   | This switch selects if FFTW library is used or not. If FFTW is not used, the discrete Fourier transformation in a simple algorithm is carried out.
+   | Caution: This variable is effective only when ``--enable-fftw`` is specified at the configure.
    | Options
    |   ``'y'`` / enable
    |   ``'n'`` / disable
@@ -476,7 +476,7 @@ real(8), default=-1d0
 temperature_k
 ^^^^^^^^^^^^^
 
-[Trial] real(8), default=-1d0
+real(8), default=-1d0
 
    | Available for DFT-based options of ``theory``.
    | The same as ``temperature`` but kelvin is used as the unit.
@@ -906,7 +906,7 @@ character, default='n'
 yn_fix_func
 ^^^^^^^^^^^
 
-[Currently not available] character, default='n'
+character, default='n'
    | Available for 'dft_md' and TDDFT-based options of ``theory``.
    | Switch not to update the Hamiltonian during the time evolution, i.e., ground state Hamiltonian is used during the propagation.
    | Options:
@@ -2049,6 +2049,16 @@ real(8), default=-1d0
    | Available for ``theory='maxwell'`` with ``ase_num_em>0`` and ``yn_periodic='n'``.
    | Wavelength range for Absorption-, Scattering-, and Extinction-cross-sections.
 
+.. _ase_smedia_id_em:
+
+ase_smedia_id_em
+^^^^^^^^^^^^^^^^
+
+integer, default=0
+
+   | Available for ``theory='maxwell'`` with ``ase_num_em>0`` and ``yn_periodic='n'``.
+   | Media ID used as surrounding media.
+
 .. _ase_box_cent_em(3):
 
 ase_box_cent_em(3)
@@ -2109,6 +2119,16 @@ real(8), default=-1d0
    | Available for ``theory='maxwell'`` with ``art_num_em>0`` and ``yn_periodic='y'``.
    | Wavelength range for Absorption-, Reflection-, and Transmission-ratas.
 
+.. _art_smedia_id_em:
+
+art_smedia_id_em
+^^^^^^^^^^^^^^^^
+
+integer, default=0
+
+   | Available for ``theory='maxwell'`` with ``art_num_em>0`` and ``yn_periodic='y'``.
+   | Media ID used as surrounding media.
+   
 .. _art_plane_bot_em(3):
 
 art_plane_bot_em(3)
@@ -2361,11 +2381,11 @@ yn_out_dos_set_fe_origin
 character, default='n'
 
    | Available when ``yn_out_dos='y'`` or ``yn_out_pdos='y'``.
-   | Switch to set the Fermi energy to zero.
+   | Switch to set the Fermi energy to zero in the energy axis of DoS.
+   | If the temperature is not specified, this option sets the valence band maximum to zero.
    | Options:
    |   ``'y'`` / enable
    |   ``'n'`` / disable
-   | This option is not available if the temperature is not set in the calculation.
 
 .. _out_dos_start:
 
@@ -2505,6 +2525,7 @@ integer, default=50
 .. _yn_out_dns_trans:
 
 yn_out_dns_trans
+^^^^^^^^^^^^^^^^
 
 [currently not available] character default='n'
 
@@ -2514,7 +2535,7 @@ yn_out_dns_trans
    |   ``'y'`` / enable
    |   ``'n'`` / disable
 
-.. out_dns_trans_energy:
+.. _out_dns_trans_energy:
 
 out_dns_trans_energy
 ^^^^^^^^^^^^^^^^^^^^

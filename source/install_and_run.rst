@@ -566,6 +566,19 @@ GPU acceleration (OpenACC or OpenACC+CUDA) for the basic part (such as DFT & TDD
 Specify ``--arch=nvhpc-openacc`` (OpenACC) or ``--arch=nvhpc-openacc-cuda`` (OpenACC+CUDA) option when executing ``configure.py``.
 This option is currently under development and tested only for NVIDIA HPC SDK compiler ver 21.2 and 21.5 with NVIDIA Tesla V100 and A100 GPUs.
 
+.. _FFTW:
+
+Compilation with FFTW library
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For solving the Poisson equation for the Hartree potential, SALMON uses the discrete Fourier transform. 
+FFTW library (https://www.fftw.org) is available for fast calculation. 
+When executing ``configure.py``, specify ``--enable-fftw`` option and linker flags for FFTW such as ``LDFLAGS="-lfftw3_mpi -lfftw3"``.
+
+Exapmle::
+
+    $ python ../configure.py --arch=ARCHITECTURE --enable-fftw LDFLAGS="-lfftw3_mpi -lfftw3"
+
 .. _build-gnu-make:
 
 Build using GNU Makefile
