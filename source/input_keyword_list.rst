@@ -29,8 +29,8 @@ character, default=''
    |   ``multi_scale_maxwell_tddft``  / multiscale simulation coupling Maxwell and TDDFT
    |   ``maxwell``  / electromagnetic analysis using finite difference time domain (FDTD) method
    |   ``dft_k_expand`` / convert checkpoint data of dft with k-points calculation to that of larger supercell system with gamma-point
-   |   ``sbe`` / simulations under pulsed electric field based in semiconductor Bloch equation
-   |   ``sbe_maxwell`` / multiscale simulation coupling Maxwell and semiconductor Bloch equation
+   |   ``sbe`` / [Trial] simulations under pulsed electric field based in semiconductor Bloch equation 
+   |   ``maxwell_sbe`` / [Trial] multiscale simulation coupling Maxwell and semiconductor Bloch equation
 
 .. _yn_md:
 
@@ -1495,7 +1495,7 @@ fdtddim
 
 [Trial] character, default='1d'
 
-   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
+   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'`` and ``theory='maxwell_sbe'``
    | Dimension of macroscopic scale system (Maxwell(FDTD) calculation) in multiscale Maxwell-TDDFT method.
    | Options:
    | ``'3d'`` / 3-dimensional FDTD for macroscopic electromagnetism [currently not available]
@@ -1508,13 +1508,18 @@ nx_m
 
 integer, default=1
 
-   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
+   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'`` and ``theory='maxwell_sbe'``
    | Number of macroscopic grid points inside materials for *x*\ -direction.
 
 .. _ny_m:
 
 ny_m
 ^^^^
+
+integer, default=1
+
+   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'`` and ``theory='maxwell_sbe'``
+   | Number of macroscopic grid points inside materials for *y*\ -direction.
 
 .. _nz_m:
 
@@ -1523,7 +1528,7 @@ nz_m
 
 [Trial] integer, default=1)
 
-   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
+   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'`` or ``theory='maxwell_sbe'``
    | Number of macroscopic grid points inside materials for (\ *y*\ /\ *z*\ )-direction.
 
 .. _hx_m:
@@ -1532,14 +1537,13 @@ hx_m
 ^^^^
 
 real(8), default=0d0
-   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
+   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'`` or ``theory='maxwell_sbe'``
    | Grid spacing of macroscopic coordinate for *x*\ -direction.
    | Variable ``hx_m`` is deprecated, and will be moved to ``&units/dl_em(1)``
 
 .. _hy_m:
 
 hy_m
-^^^^
 
 .. _hz_m:
 
@@ -1548,7 +1552,7 @@ hz_m
 
 [Trial] real(8), default=0d0
 
-   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
+   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'`` or ``theory='maxwell_sbe'``
    | Grid spacing of macroscopic coordinate for (\ *y*\ /\ *z*\ )-direction.
    | Variable ``hy_m`` and ``hz_m`` are deprecated, and will be moved to ``&units/dl_em(2:3)``
 
@@ -1556,6 +1560,10 @@ hz_m
 
 nxvacl_m
 ^^^^^^^^
+integer, default=1/0
+
+   | Available for ``theory='multi_scale_maxwell_tddft'`` or ``'maxwell_sbe'``
+   | The parameter ``nxvacl_m`` will be replaced by ``nxvac_m`` and eventually removed in the future.
 
 .. _nxvacr_m:
 
@@ -1564,11 +1572,35 @@ nxvacr_m
 
 integer, default=1/0
 
-   | Available for ``theory='multi_scale_maxwell_tddft'`` with ``yn_periodic='y'``
-   | Number of macroscopic grid points for vacumm region.
-   | ``nxvacl_m`` /  ``nxvacr_m`` specifies the number for negative / positive *x*\ -direction in front of the material.
+   | Available for ``theory='multi_scale_maxwell_tddft'`` or ``'maxwell_sbe'``
+   | The parameter ``nxvacr_m`` will be replaced by ``nxvac_m`` and eventually removed in the future.
+
+.. _nxvac_m(2):
+
+nxvac_m(2)
+^^^^^^^^
+integer, default=0
+
+   | Available for ``theory='multi_scale_maxwell_tddft'`` or ``'maxwell_sbe'``
+   | Represents the number of vacuum cells between the edge of the material region and the computational boundary. The first element of the array represents the number of cells from the leftmost cell (ix=1) on the x-axis to the left boundary. The second element represents the number of cells from the rightmost cell on the x-axis to the right boundary.
+
+nyvac_m(2)
+^^^^^^^^
+integer, default=0
+
+   | Available for ``theory='multi_scale_maxwell_tddft'`` or ``'maxwell_sbe'``
+   | Provides same functionality of ``nxvac_m(2)`` for y-direction.
+
+nzvac_m(2)
+^^^^^^^^
+integer, default=0
+
+   | Available for ``theory='multi_scale_maxwell_tddft'`` or ``'maxwell_sbe'``
+   | Provides same functionality of ``nxvac_m(2)`` for z-direction.
+
 
 .. _&maxwell:
+
 
 &maxwell
 --------
@@ -1647,7 +1679,7 @@ boundary_em(3,2)
 
 character, default='default'
 
-   | Available for ``theory='maxwell'`` and ``theory='multi_scale_maxwell_tddft'``.
+   | Available for ``theory='maxwell'`` and ``theory='multi_scale_maxwell_tddft'`` and ``theory='maxwell_sbe'``
    | Boundary condition in electromagnetic analysis. The first index(1-3 rows) corresponds to *x*\ , *y*\ , and *z* axes. The second index(1-2 columns) corresponds to bottom and top of the axes.
    | Options:
    | ``'abc'`` / absorbing boundary
@@ -1673,7 +1705,7 @@ media_num
 
 integer, default=0
 
-   | Available for ``theory='maxwell'``.
+   | Available for ``theory='maxwell'``  and ``theory='maxwell_sbe'``.
    | Number of media in electromagnetic analysis.
 
 .. _media_type(:):
@@ -1683,7 +1715,7 @@ media_type(:)
 
 character, default='vacuum'
 
-   | Available for ``theory='maxwell'``.
+   | Available for ``theory='maxwell'`` and ``theory='maxwell_sbe'``
    | ``media_type(n)`` spesifies type of n-th media in electromagnetic analysis.
    | Options:
    |   ``'vacuum'``
@@ -1691,6 +1723,7 @@ character, default='vacuum'
    |   ``'pec'``
    |   ``'lorentz-drude'``
    | If ``'lorentz-drude'`` is chosen, linear response calculation is feasible by setting ``&emfield/ae_shape1 or ae_shape2='impulse'``.
+   |  Besides, in the case of  ``theory='maxwell_sbe'``, ``'multiscale'`` is also available.
 
 .. _epsilon_em(:):
 
@@ -1699,7 +1732,7 @@ epsilon_em(:)
 
 real(8), Default=1d0
 
-   | Available for ``theory='maxwell'`` and for TDDFT based options of ``theory`` with ``trans_longi='2d'``.
+   | Available for ``theory='maxwell'``, ``theory='maxwell_sbe'`` and for TDDFT based options of ``theory`` with ``trans_longi='2d'``.
    | For ``theory='maxwell'``, ``epsilon_em(n)`` spesifies relative permittivity of n-th media in electromagnetic analysis.
    | For TDDFT based options of ``theory`` with ``trans_longi='2d'``, the relative permittivity of the transparent media on both sides of the film is specified by ``epsilon_em(1)`` and ``epsilon_em(2)``, respectively.
 
@@ -2154,7 +2187,7 @@ n_s
 ^^^
 integer, default=0
 
-   | Available for ``theory='maxwell'``.
+   | Available for ``theory='maxwell'``  and ``theory='maxwell_sbe'``.
    | See ``FDTD_make_shape`` in SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
 .. _typ_s(:):
@@ -2163,7 +2196,7 @@ typ_s(:)
 ^^^^^^^^
 character, default='none'
 
-   | Available for ``theory='maxwell'``.
+   | Available for ``theory='maxwell'``  and ``theory='maxwell_sbe'``.
    | See ``FDTD_make_shape`` in SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
 .. _id_s(:):
@@ -2172,7 +2205,7 @@ id_s(:)
 ^^^^^^^
 integer, default=0
 
-   | Available for ``theory='maxwell'``.
+   | Available for ``theory='maxwell'`` and ``theory='maxwell_sbe'``.
    | See ``FDTD_make_shape`` in SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
 .. _inf_s(:,10):
@@ -2181,7 +2214,7 @@ inf_s(:,10)
 ^^^^^^^^^^^
 real(8), default=0
 
-   | Available for ``theory='maxwell'``.
+   | Available for ``theory='maxwell'`` and ``theory='maxwell_sbe'``.
    | See ``FDTD_make_shape`` in SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
 .. _ori_s(:,3):
@@ -2194,7 +2227,7 @@ rot_s(:,3)
 ^^^^^^^^^^
 real(8), default=0d0
 
-   | Available for ``theory='maxwell'``.
+   | Available for ``theory='maxwell'``
    | See ``FDTD_make_shape`` in SALMON utilities (https://salmon-tddft.jp/utilities.html).
 
 .. _&analysis:
@@ -2235,7 +2268,7 @@ threshold_projection
 real(8), default=1e-6
 
    | Available when ``projection_option`` is specified.
-   | Convergence threshold for the iteration of the eigenstates calculation.
+   | Convergence threshold for the iteration of the eigenstates calculation.z
 
 .. _yn_out_intraband_current:
 
