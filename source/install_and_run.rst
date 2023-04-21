@@ -38,9 +38,9 @@ Download
 -----------------
 
 The newest version of SALMON can be downloaded from `download page <http://salmon-tddft.jp/download.html>`__.
-You can also get the file by
+You can also get the file by::
 
-  $ wget http://salmon-tddft.jp/download/SALMON-v.2.2.0.tar.gz
+  $ wget http://salmon-tddft.jp/download/SALMON-<VERSION>.tar.gz
 
 To extract files from the downloaded file ``SALMON-<VERSION>.tar.gz``, type the following command in the command-line::
 
