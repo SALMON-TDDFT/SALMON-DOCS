@@ -25,12 +25,12 @@ Fixed bugs
 
 (Fixed in v.2.2.0)
 
-* For the incident pulse for isolated systems (``yn_periodic``=’n’), the circular polarization was not defined and the CEP for Acos2 was wrong.
-* For spin-unpolarized systems (``spin``=‘unpolarized’), the initial value of the occupation rate was wrong when the electron number (nelec) is odd.
-* When ``unit_system``=‘A_eV_fs’ is specified, ``temperature`` was mistakenly defined in the atomic unit.
-* For isolated systems (``yn_periodic``=’n’), the multipole expansion for the boundary conditions of the Hartree potential (Poisson equation) was wrong. 
-* For periodic systems (``yn_periodic``=’y’), ``al_vec[123]`` for orthogonal cells yielded unintended error. 
-* For spin-noncollinear systems (``spin``=‘noncollinear’), the band-decomposition of the spin magnetization in ***_mag.data files was wrong.
+* For the incident pulse for isolated systems (``yn_periodic=’n’``), the circular polarization was not defined and the CEP for Acos2 was wrong.
+* For spin-unpolarized systems (``spin=‘unpolarized’``), the initial value of the occupation rate was wrong when the electron number (nelec) is odd.
+* When ``unit_system=‘A_eV_fs’`` is specified, ``temperature`` was mistakenly defined in the atomic unit.
+* For isolated systems (``yn_periodic=’n’``), the multipole expansion for the boundary conditions of the Hartree potential (Poisson equation) was wrong. 
+* For periodic systems (``yn_periodic=’y’``), ``al_vec[123]`` for orthogonal cells yielded unintended error. 
+* For spin-noncollinear systems (``spin=‘noncollinear’``), the band-decomposition of the spin magnetization in ***_mag.data files was wrong.
 
 (Fixed in v.2.1.0)
 
