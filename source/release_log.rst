@@ -23,6 +23,15 @@ Followings are history of fixed bugs and changes of models/inputs/outputs after 
 Fixed bugs
 ==========
 
+(Fixed in v.2.2.0)
+
+* For the incident pulse for isolated systems (``yn_periodic=’n’``), the circular polarization was not defined and the CEP for Acos2 envelope was wrong.
+* For spin-unpolarized systems (``spin=‘unpolarized’``), the initial value of the occupation rate was wrong when the electron number (``nelec``) is odd.
+* When ``unit_system=‘A_eV_fs’`` is specified, ``temperature`` was mistakenly defined in the atomic unit.
+* For isolated systems (``yn_periodic=’n’``), the multipole expansion for the boundary conditions of the Hartree potential (Poisson equation) was wrong. 
+* For periodic systems (``yn_periodic=’y’``), ``al_vec[123]`` for orthogonal cells yielded unintended error. 
+* For spin-noncollinear systems (``spin=‘noncollinear’``), the band-decomposition of the spin magnetization in ***_mag.data files was wrong.
+
 (Fixed in v.2.1.0)
 
 * Non-local term of the transition moment printed by the option of "yn_out_tm=y" has been fixed (just printing issue).
@@ -51,6 +60,28 @@ Fixed bugs
 
 Changes of models/inputs/outputs
 ================================
+
+(v.2.2.0)
+
+* New theory options for SBE and Maxwell-SBE are added.
+
+  * ``theory = 'sbe'``
+  * ``theory = 'maxwell_sbe'``
+  
+* Input keywords for the Poisson equation solver are added.
+
+  * ``method_poisson``
+  * ``yn_fftw``
+  
+* New TDDFT analysis options are added. 
+
+  * ``yn_fix_func``
+  * ``projection_option=‘td’``
+  * ``threshold_projection``
+  * ``yn_out_intraband_current``
+  * ``yn_out_current_decomposed``, ``out_current_decomposed_step``
+  * ``yn_out_micro_je``, ``out_micro_je_step``
+  
 
 (v.2.1.0)
 
