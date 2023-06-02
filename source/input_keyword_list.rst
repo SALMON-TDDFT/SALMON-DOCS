@@ -2753,6 +2753,30 @@ integer, default=100
 
    | Available when ``yn_out_current_decomposed='y'``.
    | The decomposed current data is outputted every ``out_current_decomposed_step`` step.
+   
+.. _yn_out_spin_current:
+
+yn_out_spin_current
+^^^^^^^^^^^^^^^^^^^
+
+character, default='n'
+
+   | Available for TDDFT based options of ``theory`` with yn_spinorbit='y'.
+   | Switch to output docomposed elements of the spin current density [N. Tancogne-Dejean et al, npj Computational Materials 8, 145 (2022).].
+   | Output file: SYSname_spin_current_band.data
+   | Options:
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
+
+.. _out_spin_current_step:
+
+out_spin_current_step
+^^^^^^^^^^^^^^^^^^^^^
+
+integer, default=100
+
+   | Available when ``yn_out_spin_current='y'``.
+   | The spin current data is outputted every ``out_spin_current_step`` step.
 
 .. _yn_out_perflog:
 
