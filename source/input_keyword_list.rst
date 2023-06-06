@@ -2719,16 +2719,6 @@ yn_lr_w0_correction
    |   ``'y'`` / enable
    |   ``'n'`` / disable
 
-.. _out_magnetization_step:
-
-out_magnetization_step
-^^^^^^^^^^^^^^^^^^^^^^
-
-integer, default=100
-
-   | Available for TDDFT based methods with ``spin='noncollinear'``.
-   | The magnetization vectors for the respective orbitals are outputted every ``out_magnetization_step`` time steps.
-
 .. _yn_out_current_decomposed:
 
 yn_out_current_decomposed
@@ -2754,29 +2744,58 @@ integer, default=100
    | Available when ``yn_out_current_decomposed='y'``.
    | The decomposed current data is outputted every ``out_current_decomposed_step`` step.
    
-.. _yn_out_spin_current:
+.. _out_rt_spin_step:
 
-yn_out_spin_current
-^^^^^^^^^^^^^^^^^^^
-
-character, default='n'
-
-   | Available for TDDFT based options of ``theory`` with yn_spinorbit='y'.
-   | Switch to output docomposed elements of the spin current density [N. Tancogne-Dejean et al, npj Computational Materials 8, 145 (2022).].
-   | Output file: SYSname_spin_current_band.data
-   | Options:
-   |   ``'y'`` / enable
-   |   ``'n'`` / disable
-
-.. _out_spin_current_step:
-
-out_spin_current_step
-^^^^^^^^^^^^^^^^^^^^^
+out_rt_spin_step
+^^^^^^^^^^^^^^^^
 
 integer, default=100
 
-   | Available when ``yn_out_spin_current='y'``.
-   | The spin current data is outputted every ``out_spin_current_step`` step.
+   | Available for TDDFT based methods with ``spin='noncollinear'``.
+   | The spin magnetization and spin current density are outputted every ``out_rt_spin_step`` time steps in the output file SYSname_rt_spin.data.
+   | For the definition of the spin current, see [N. Tancogne-Dejean et al, npj Computational Materials 8, 145 (2022).].
+   
+.. _yn_out_mag_decomposed_rt:
+
+yn_out_mag_decomposed_rt
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+character, default='n'
+
+   | Available for TDDFT based methods with ``spin='noncollinear'``.
+   | Switch to output docomposed elements of the time-dependent spin magnetization at every ``out_rt_spin_step`` time steps.
+   | Output file: SYSname_mag_decomposed_rt.data
+   | Options:
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
+   
+.. _yn_out_spin_current_decomposed:
+
+yn_out_spin_current_decomposed
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+character, default='n'
+
+   | Available for TDDFT based methods with ``spin='noncollinear'``.
+   | Switch to output docomposed elements of the spin current density at every ``out_rt_spin_step`` time steps.
+   | Output file: SYSname_spin_current_decomposed.data
+   | Options:
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
+   
+.. _yn_out_spin_current_micro:
+
+yn_out_spin_current_micro
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+character, default='n'
+
+   | Available for TDDFT based methods with ``spin='noncollinear'``.
+   | Switch to output voxel data files of the microscopic spin-current density at every ``out_rt_spin_step`` time steps.
+   | Output files: spin_curr_micro_[xyz]_[xyz]_000001.<format_voxel_data> etc.
+   | Options:
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
 
 .. _yn_out_perflog:
 
