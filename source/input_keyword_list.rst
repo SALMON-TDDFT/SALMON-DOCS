@@ -2769,6 +2769,20 @@ character, default='n'
    |   ``'y'`` / enable
    |   ``'n'`` / disable
    
+.. _yn_out_mag_micro_rt:
+
+yn_out_mag_micro_rt
+^^^^^^^^^^^^^^^^^^^
+
+character, default='n'
+
+   | Available for TDDFT based methods with ``spin='noncollinear'``.
+   | Switch to output voxel data files of the microscopic magnetization at every ``out_rt_spin_step`` time steps.
+   | Output files: mag_micro_[xyz]_000001.<format_voxel_data> etc.
+   | Options:
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
+   
 .. _yn_out_spin_current_decomposed:
 
 yn_out_spin_current_decomposed
