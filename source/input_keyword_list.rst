@@ -945,10 +945,10 @@ method_init_density
 
    | Available for 'dft' and 'dft_md' options of ``theory``.
    | Specifying how to generate the initial density to start the SCF iteration in the DFT calculation.
-   | Supported for limited formats of pseudopotentials ('KY' and 'UPF').
    | Options:
    |  ``wf`` / generate from the initial wavefunctions (cf. ``method_init_wf``).
-   |  ``pp`` / generate from a superposition of the pseudo-atom densities.
+   |  ``pp`` / generate from a superposition of the pseudo-atom densities. Supported for limited formats of pseudopotentials ('KY' and 'UPF').
+   |  ``read_dns_cube`` / read the initial density from ``dns.cube`` file (Gaussian cube file format). The definition of r-grid & cell coordinate should be consistent.
 
 .. _iseed_number_change:
 
