@@ -3285,6 +3285,84 @@ character, default='auto'
    |   ``orbital`` / OpenMP parallelization is applied to orbital (and k-point) loop.
    |   ``rgrid``   / OpenMP parallelization is applied to real-space grid loop.
 
+.. _&sbe:
+
+&sbe
+-----
+
+.. _num_sbe:
+
+num_sbe
+^^^^^^^^^^^^^^^^^
+
+integer, default=1
+
+   | Number of materials in the Maxwell-SBE calculations.
+
+.. _sysname_sbe:
+
+sysname_sbe(:)
+^^^^^^^^^^^^^^^^^
+
+character, default='default'
+
+   | System name of each material in the Maxwell-SBE calculations. The index is the media ID whose maximum value is given by ``num_sbe``. 
+
+.. _nk_sbe:
+
+nk_sbe(:)
+^^^^^^^^^^^^^^^^^
+
+integer, default=-1
+
+   | Total number of k-points in each material in the Maxwell-SBE calculations. The index is the media ID whose maximum value is given by ``num_sbe``. 
+
+.. _nstate_sbe:
+
+nstate_sbe(:)
+^^^^^^^^^^^^^^^^^
+
+integer, default=-1
+
+   | orbitals/bands to be calculated in each material in the Maxwell-SBE calculations. The index is the media ID whose maximum value is given by ``num_sbe``. 
+
+.. _nelec_sbe:
+
+nelec_sbe(:)
+^^^^^^^^^^^^^^^^^
+
+integer, default=-1
+
+   | Number of valence electrons in each material in the Maxwell-SBE calculations. The index is the media ID whose maximum value is given by ``num_sbe``. 
+
+.. _al_sbe:
+
+al_sbe(:,:)
+^^^^^^^^^^^^^^^^^
+
+real(8), default=0.d0
+
+   | Spatial box size or lattice constants for cuboid cell (x, y, z) in each material in the Maxwell-SBE calculations. The first index(1-3 rows) corresponds to *x*\ , *y*\ , and *z* axes. The second index is the media ID whose maximum value is given by ``num_sbe``. 
+
+.. _al_vec1_sbe:
+
+al_vec_1_sbe(:,:)
+^^^^^^^^^^^^^^^^^
+
+.. _al_vec2_sbe:
+
+al_vec_2_sbe(:,:)
+^^^^^^^^^^^^^^^^^
+
+.. _al_vec3_sbe:
+
+al_vec_3_sbe(:,:)
+^^^^^^^^^^^^^^^^^
+
+integer, default=-1
+
+   | Primitive lattice vectors for nonorthogonal cell in each material in the Maxwell-SBE calculations. The first index(1-3 rows) corresponds to *x*\ , *y*\ , and *z* components of the lattice vectors. The second index is the media ID whose maximum value is given by ``num_sbe``. 
+
 ..
   #### Following keywords are commented out as these are originated from GCEED and supposed to be removed ####
   **Following variables are moved from the isolated part. Some of them may be added to common input, be combined to it, and be removed.**
