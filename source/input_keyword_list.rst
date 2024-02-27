@@ -1168,6 +1168,29 @@ real(8), default=99999d0
    | Available if ``nscf_init_mix_zero`` is positive value in the 'dft' option of ``theory``.
    | Specify a condition to quit the fixed density iteration forced by ``step_initial_mix_zero`` option. Mixing of the density will start after the band-gap energy exceeds this parameter for consecutive five SCF iteration steps.
 
+.. _yn_preconditioning:
+
+yn_preconditioning
+^^^^^^^^^^^^^^^^^^^^^^^
+
+character, Default='n'
+
+   | Available for ``theory='dft'``.
+   | Switch for preconditioning. The low-filter preconditioner is used when ``&scf/yn_preconditioning='y'``.
+   | Options:
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
+
+.. _alpha_pre:
+
+alpha_pre
+^^^^^^^^^^^^^^^^^^^^^^^
+
+real(8), Default=0.6d0
+
+   | Available for ``theory='dft'``.
+   | The certain factor used in preconditioning.
+
 .. _&emfield:
 
 &emfield
