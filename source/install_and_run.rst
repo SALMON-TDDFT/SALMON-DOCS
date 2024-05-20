@@ -298,7 +298,6 @@ included in the inputfile::
   &parallel
     yn_scalapack = 'y'         ! use ScaLAPACK for diagonalization
     !yn_eigenexa  = 'y'        ! use EigenExa
-    yn_scalapack_red_mem = 'y' ! to reduce the memory consumption
   /
 
 ScaLAPACK/EigenExa solves the eigenvalue problem with ``nproc_ob`` process distribution.
