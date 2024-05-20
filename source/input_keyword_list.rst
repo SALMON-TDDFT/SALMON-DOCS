@@ -1207,7 +1207,7 @@ character, default='tr'
    | Specify the treatment of the polarization in the time evolution calculation.
    | Options:
    |   ``'tr'`` / Transverse
-   |   ``'lo'`` / longitudinal
+   |   ``'lo'`` / Longitudinal
    |   ``'2d'`` / 2D maxwell-TDDFT (2D approximation) method (for more details, see ``film_thickness`` of &maxwell)
 
 .. _ae_shape1:
