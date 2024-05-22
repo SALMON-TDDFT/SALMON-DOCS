@@ -175,7 +175,7 @@ character, default='all'
 
 .. _time_shutdown:
 
-time_shutodown
+time_shutdown
 ^^^^^^^^^^^^^^
 
 [Trial] real(8), default=-1d0
