@@ -908,7 +908,7 @@ yn_fix_func
 
 character, default='n'
    | Available for 'dft_md' and TDDFT-based options of ``theory``.
-   | Switch not to update the Hamiltonian during the time evolution, i.e., ground state Hamiltonian is used during the propagation.
+   | Switch to fix the Hamiltonian during the time evolution, i.e., ground state Hamiltonian is used during the time propagation (frozen Hamiltonian calculation). With this option, the output file sysname_rt_energy.data contains only two columns. The excitation energy (the 2nd column) is calculated from the sum of the single-particle energies.
    | Options:
    |   ``'y'`` / enable
    |   ``'n'`` / disable
