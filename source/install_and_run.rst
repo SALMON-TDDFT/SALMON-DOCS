@@ -11,7 +11,7 @@ For the installation of SALMON, following packages are required.
 
 - Fortran90/C compiler. SALMON assumes users have one of the following compilers:
 
-  - GCC (Gnu Compiler Collection)
+  - GCC (GNU Compiler Collection)
   - Intel Compiler
   - Fujitsu Compiler (at FX100 and A64FX)
   - Nvidia HPC SDK Compiler
@@ -547,11 +547,11 @@ If you use a single processor machine, explicitly specify ``--disable-mpi`` in e
     $ python ../configure.py --arch=<ARCHITECTURE> --disable-mpi
 
 
-Build by GNU compiler
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Build by GNU Compiler Collection (GCC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The architecture option ``--arch`` does not support GNU compiler.
-If you want to build SALMON by GNU compiler, specify ``FC`` and ``CC`` flags as follows::
+The architecture option ``--arch`` does not support GNU Compiler Collection (GCC).
+If you want to build SALMON by GCC, specify ``FC`` and ``CC`` flags as follows::
 
     $ python ../configure.py FC=gfortran CC=gcc --enable-mpi
 
