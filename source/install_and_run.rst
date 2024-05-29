@@ -496,9 +496,9 @@ Additional options in configure.py script
 Manual specifications of compiler and environment variables
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In executing ``configure.py``, you may manually specify compiler and environment variables instead of specifying the architecture, for example::
+In executing ``configure.py``, you can manually specify compiler and environment variables instead of specifying the architecture ``--arch``, for example::
 
-    $ python ../configure.py FC=mpiifort CC=mpiicc FFLAGS="-xAVX" CFLAGS="-restrict -xAVX"
+    $ python ../configure.py FC=mpiifort CC=mpiicc FFLAGS="-xAVX" CFLAGS="-restrict -xAVX" --enable-mpi
 
 The list of options of ``configure.py`` can be found by::
 
@@ -547,23 +547,26 @@ If you use a single processor machine, explicitly specify ``--disable-mpi`` in e
     $ python ../configure.py --arch=<ARCHITECTURE> --disable-mpi
 
 
-Build by user-specified compiler
+Build by GNU compiler
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you want that specify the compiler, set the ``FC`` and ``CC`` flags in executing the python script::
+The architecture option ``--arch`` does not support GNU compiler.
+If you want to build SALMON by GNU compiler, specify ``FC`` and ``CC`` flags as follows::
 
-    $ python ../configure.py FC=gfortran CC=gcc
+    $ python ../configure.py FC=gfortran CC=gcc --enable-mpi
 
-When ``--arch`` option is not used, MPI parallelization is disabled as default.
+Here, ``--enable-mpi`` is required for the MPI parallelization.
+Note that the MPI parallelization is disabled as default when ``--arch`` option is not used.
+Compiler options can also be specified by ``FFLAGS`` and ``CFLAGS``.
 
 .. _GPU:
 
 Compilation for GPU acceleration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-GPU acceleration (OpenACC or OpenACC+CUDA) for the basic part (such as DFT & TDDFT for spin-unpolarized systems) is available.
+GPU acceleration (OpenACC or OpenACC+CUDA) for the DFT/TDDFT computation is available.
 Specify ``--arch=nvhpc-openacc`` (OpenACC) or ``--arch=nvhpc-openacc-cuda`` (OpenACC+CUDA) option when executing ``configure.py``.
-This option is currently under development and tested only for NVIDIA HPC SDK compiler ver 21.2 and 21.5 with NVIDIA Tesla V100 and A100 GPUs.
+This option is currently under development and tested only for NVIDIA HPC SDK compiler ver 21.2, 21.5, and 23.11 with NVIDIA Tesla V100 and A100 GPUs.
 
 .. _FFTW:
 
