@@ -18,10 +18,21 @@ Release Notes
 Details of Minor Changes
 ------------------------
 
-Followings are history of fixed bugs and changes of models/inputs/outputs after releasing v.2.0.0. (not complete list currently)
+The following is the history of fixed bugs and changes in models/inputs/outputs after releasing v.2.0.0. (not complete list currently)
 
 Fixed bugs
 ==========
+
+(Fixed in v.2.2.1)
+
+* The OpenACC mode by newer versions of Nvidia HPC SDK was not supported.
+* GNU Compiler Collection (GCC) was not supported.
+* The sign of the polarizability in isolated systems (yn_periodic=n) was wrong.
+* The definition of the excitation energy for the frozen Hamiltonian calculation (yn_fix_func=y) was wrong.
+* File output of the atomic force for the multiscale mode (e.g. theory=multi_scale_maxwell_tddft and yn_out_rvf_rt=y) was wrong.
+* File output of ``sysname_rt.data`` for very large systems was wrong.
+* An array allocation for the projection_option mode was wrong.
+* An array allocation for spin-noncollinear isolated systems (yn_periodic=n and spin=noncollinear) was wrong.
 
 (Fixed in v.2.2.0)
 
@@ -60,6 +71,22 @@ Fixed bugs
 
 Changes of models/inputs/outputs
 ================================
+
+(v.2.2.1)
+
+* New input keyword for the preconditioning of CG method for accelerating the DFT computation 
+
+  * ``yn_preconditioning``
+
+* For the spin-noncollinear mode (spin='noncollinear'), some input keywords and output files are changed and added.
+
+  * ``sysname_rt_spin.data``: the output file for the spin magnetization and spin current density.
+  * Change the input keyword: ``out_magnetization_step`` --> ``out_rt_spin_step``.
+  * New input keywords: ``yn_out_mag_decomposed_rt``, ``yn_out_spin_current_decomposed``, ``yn_out_spin_current_micro``.
+
+* New input keyword to read a ``.cube`` file of the initial electron density for accelerating the DFT computation
+
+  * ``method_init_density='read_dns_cube'``
 
 (v.2.2.0)
 
