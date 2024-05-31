@@ -116,24 +116,24 @@ List of developers
 
 (Alphabetic order)
 
-* Isabella Floss (TU Wien, Austria)
 * Yuta Hirokawa (Prometech Software, Inc., Japan)
 * Kenji Iida (Hokkaido University, Japan)
-* Jun-Ichi Iwata (Advance Soft Co., Japan)
-* Yuki Ito (Fixstars Corporation, Japan)
 * Masashi Noda (Academeia, Japan)
-* Tomohito Otobe (National Institutes for Quantum and Radiological Science and Technology, Japan)
+* Tomohito Otobe (National Institutes for Quantum Science and Technology, Japan)
 * Shunsuke Sato (University of Tsukuba, Japan)
-* Yasushi Shinohara (University of Tokyo, Japan)
+* Yasushi Shinohara (NTT, Japan)
 * Takashi Takeuchi (University of Tsukuba, Japan)
 * Mitsuharu Uemoto (Kobe University, Japan)
 * Kazuhiro Yabana (University of Tsukuba, Japan)
-* Atsushi Yamada (University of Tsukuba, Japan)
-* Shunsuke Yamada (University of Tsukuba, Japan)
+* Atsushi Yamada (National Defense Academy of Japan, Japan)
+* Shunsuke Yamada (National Institutes for Quantum Science and Technology, Japan)
 
 Former developers
 ----------------------
 
+* Isabella Floss 
+* Jun-Ichi Iwata 
+* Yuki Ito 
 * Kazuya Ishimura
 * Kyung-Min Lee
 * Katsuyuki Nobusada
