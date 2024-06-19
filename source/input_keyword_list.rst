@@ -2356,6 +2356,19 @@ integer, default=10
    | Available for the TDDFT based option of ``theory``.
    | Total energy is calculated and printed every ``out_rt_energy_step`` time steps.
 
+.. _yn_out_rt_energy_components:
+
+yn_out_rt_energy_components
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+character, default='n'
+
+   | Available for the TDDFT based option of ``theory``.
+   | Switch for printing out the energy components such as the kinetic energy term. The total energy is the sum of the energy components.
+   | Options:
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
+
 .. _yn_out_psi:
 
 yn_out_psi
