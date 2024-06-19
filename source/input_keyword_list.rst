@@ -958,7 +958,7 @@ magdir_atom
 
 [Trial] real(8), default=0d0, 0d0, 0d0, ...
 
-   | Available when ``method_init_density``=``pp_magdir`` is specified.
+   | Available when ``method_init_density=pp_magdir`` is specified.
    | The array of initial values for the spin polarization at the respective atoms. 
 
 .. _iseed_number_change:
