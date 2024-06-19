@@ -948,7 +948,18 @@ method_init_density
    | Options:
    |  ``wf`` / generate from the initial wavefunctions (cf. ``method_init_wf``).
    |  ``pp`` / generate from a superposition of the pseudo-atom densities. Supported for limited formats of pseudopotentials ('KY' and 'UPF').
+   |  ``pp_magdir`` / ``pp`` mode but with an initial spin polarization specified by ``magdir_atom``. This option is for spin-polarized systems.
    |  ``read_dns_cube`` / read the initial density from ``dns.cube`` file (Gaussian cube file format). The definition of r-grid & cell coordinate should be consistent.
+
+.. _magdir_atom:
+
+magdir_atom
+^^^^^^^^^^^
+
+[Trial] real(8), default=0d0, 0d0, 0d0, ...
+
+   | Available when ``method_init_density``=``pp_magdir`` is specified.
+   | The array of initial values for the spin polarization at the respective atoms. 
 
 .. _iseed_number_change:
 
