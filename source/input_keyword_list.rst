@@ -3387,6 +3387,15 @@ integer, default=-1
 
    | Primitive lattice vectors for nonorthogonal cell in each material in the Maxwell-SBE calculations. The first index(1-3 rows) corresponds to *x*\ , *y*\ , and *z* components of the lattice vectors. The second index is the media ID whose maximum value is given by ``num_sbe``. 
 
+.. _norder_correction:
+
+norder_correction
+^^^^^^^^^^^^^^^^^^^^^
+
+integer, default=0
+
+   | The order of correction to the electron current density in the Maxwell-SBE calculations. 
+
 ..
   #### Following keywords are commented out as these are originated from GCEED and supposed to be removed ####
   **Following variables are moved from the isolated part. Some of them may be added to common input, be combined to it, and be removed.**
