@@ -2641,7 +2641,7 @@ the electron dynamics are solved simultaneously.
 The light propagation is described by a one-dimensional
 light-propagation equation for the vector potential,
 
-:math:`\frac{1}{c^2} \frac{\partial^2}{\partial X^2} A(X,t)
+:math:`\frac{1}{c^2} \frac{\partial^2}{\partial t^2} A(X,t)
 - \frac{\partial^2}{\partial X^2} A(X,t) = \frac{4\pi}{c} I(X,t).`
 
 The direction of the propagation is set to *x* direction and the
