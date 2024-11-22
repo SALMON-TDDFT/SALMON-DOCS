@@ -173,14 +173,14 @@ For example, pseudopotentials with an extension ``.fhi`` can be obtained from th
 =========================================================  =============  =====================================================================================
 Pseudopotential                                            extension      Website
 =========================================================  =============  =====================================================================================
-Fritz-Haber-Institute (FHI) pseudopotentials               ``.fhi``       https://www.abinit.org/sites/default/files/PrevAtomicData/psp-links/lda_fhi.html 
+Fritz-Haber-Institute (FHI) pseudopotentials               ``.fhi``       https://abinit.github.io/abinit_web/ATOMICDATA/LDA_FHI.zip 
                                                                           (for LDA), 
-                                                                          https://www.abinit.org/sites/default/files/PrevAtomicData/psp-links/gga_fhi.html  
+                                                                          https://abinit.github.io/abinit_web/ATOMICDATA/fhi.zip
                                                                           (for GGA) 
-Pseudopotentials for the OpenMX code                       ``.vps``       https://t-ozaki.issp.u-tokyo.ac.jp/vps_pao2019/
-Format 8 for ABINIT norm-conserving pseudopotentials       ``.psp8``      https://www.abinit.org/psps_abinit , 
+Pseudopotentials for the OpenMX code                       ``.vps``       https://www.openmx-square.org/vps_pao2019/
+Format 8 for ABINIT norm-conserving pseudopotentials       ``.psp8``      https://abinit.github.io/abinit_web/pseudopotential.html , 
                                                                           http://www.pseudo-dojo.org/
-Unified-pseudopotential-format (NC type only in SALMON)    ``.upf``       http://www.quantum-espresso.org/pseudopotentials/unified-pseudopotential-format , 
+Unified-pseudopotential-format (NC type only in SALMON)    ``.upf``       http://pseudopotentials.quantum-espresso.org/home/unified-pseudopotential-format , 
                                                                           http://www.pseudo-dojo.org/
 =========================================================  =============  =====================================================================================
 
@@ -520,6 +520,7 @@ Commandline switch                       Detail
 --release                                enable release build
 FC, FFLAGS                               User-defined Fortran Compiler, and the compiler options
 CC, CFLAGS                               User-defined C Compiler, and the compiler options
+LDFLAGS                                  linker flags
 =======================================  ===================================================
 
 In the build procedure by CMake, they search the following libraries.
