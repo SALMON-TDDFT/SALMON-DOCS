@@ -134,6 +134,7 @@ In executing the python script, you need to specify ``ARCHITECTURE`` that indica
 ==================  =======================================  ===================  =================
 arch                Detail                                   Compiler             Numerical Library
 ==================  =======================================  ===================  =================
+intel-oneapi        Intel oneAPI (cross-architecture)        Intel Compiler       Intel MKL
 intel-knl           Intel Knights Landing                    Intel Compiler       Intel MKL
 intel-knc           Intel Knights Corner                     Intel Compiler       Intel MKL
 intel-avx           Intel Processer (Ivy-, Sandy-Bridge)     Intel Compiler       Intel MKL
@@ -141,9 +142,9 @@ intel-avx2          Intel Processer (Haswell, Broadwell ..)  Intel Compiler     
 intel-avx512        Intel Processer (Skylake-SP)             Intel Compiler       Intel MKL
 fujitsu-fx100       FX100 Supercomputer                      Fujitsu Compiler     SSL-II
 fujitsu-a64fx-ea    A64FX processor (Fugaku, FX1000, FX700)  Fujitsu Compiler     SSL-II
-nvhpc-openmp        NVHPC OpenMP (CPU)                       Nvidia HPC Compiler  Nvidia HPC SDK
-nvhpc-openacc       NVHPC OpenACC (GPU)                      Nvidia HPC Compiler  Nvidia HPC SDK
-nvhpc-openacc-cuda  NVHPC OpenACC+CUDA (GPU)                 Nvidia HPC Compiler  Nvidia HPC SDK
+nvhpc-openmp        Nvidia OpenMP (CPU)                      Nvidia HPC Compiler  Nvidia HPC SDK
+nvhpc-openacc       Nvidia OpenACC (GPU)                     Nvidia HPC Compiler  Nvidia HPC SDK
+nvhpc-openacc-cuda  Nvidia OpenACC+CUDA (GPU)                Nvidia HPC Compiler  Nvidia HPC SDK
 ==================  =======================================  ===================  =================
 
 If the build is successful, you will get a file ``salmon`` at the top-level build directory.
