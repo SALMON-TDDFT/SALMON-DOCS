@@ -573,7 +573,7 @@ This option is currently under development and tested only for NVIDIA HPC SDK co
 Tips for GPU acceleration
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For MPI calculations with multiple GPUs, assignment of MPI processes to GPUs via CUDA_VISIBLE_DEVICES and use of nvidia-cuda-mps-control can improve the performance of SALMON. The following example is a wrapper script for that::
+For MPI calculations with multiple GPUs, the assignment of MPI processes to GPUs via CUDA_VISIBLE_DEVICES and the use of nvidia-cuda-mps-control can improve the performance of SALMON. The following example is a wrapper script for that::
 
     $ cat wrapper.sh
     #! /bin/bash
@@ -600,7 +600,7 @@ For MPI execution, use the following command::
     $ mpirun -np ${num_MPI_processes} -npernode ${num_MPI_processes_per_node} \
        wrapper.sh ${program} < ${input} |& tee log.stdout
 
-Here, ${program} is the path of SALMON.
+Here, ${program} is the path of SALMON, ${input} is the input file, etc.
 
 .. _FFTW:
 
