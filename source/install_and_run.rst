@@ -559,7 +559,7 @@ If you want to build SALMON by GCC, specify ``FC`` and ``CC`` flags as follows::
 
 Here, ``--enable-mpi`` is required for the MPI parallelization.
 Note that the MPI parallelization is disabled as default when ``--arch`` option is not used.
-Compiler options can also be specified by ``FFLAGS`` and ``CFLAGS``.
+Compiler options can also be specified by ``FFLAGS`` and ``CFLAGS``. For GCC 10 or later versions, ``FFLAGS="-fallow-argument-mismatch"`` may be required.
 
 .. _GPU:
 
