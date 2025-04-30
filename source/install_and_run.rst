@@ -291,7 +291,7 @@ in the entire calculation. Therefore, it is important to use a parallel eigenval
 In SALMON, a LAPACK routine without parallelization is used for the diagonalization as default.
 As parallelized solvers, ScaLAPACK and EigenExa are usable.
 To use them, it is necessary to rebuild SALMON enabling ScaLAPACK/EigenExa.
-You can find the instruction in :any:`install-and-run`.
+You can find the instruction in :any:`additional-options-in-configure`.
 
 To execute SALMON using ScaLAPACK/EigenExa, either ``yn_scalapack = 'y'`` or ``yn_eigenexa = 'y'`` should be 
 included in the inputfile::
