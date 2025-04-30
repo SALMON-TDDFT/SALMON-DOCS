@@ -620,7 +620,11 @@ Compiler options can also be specified by ``FFLAGS`` and ``CFLAGS``. For GCC 10 
 Compilation examples
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Some compilation examples in several environments are shown below.
+Some compilation (configure) examples in several environments are shown below.
+
+- Wisteria-Odyssey (University of Tokyo) & Fujitsu compiler, compiling with EigenExa::
+
+    $ python3 ../configure.py --arch=fujitsu-a64fx-ea --enable-scalapack --enable-eigenexa FFLAGS="-fPIC"
 
 - AWS Graviton2 machine (Amazon EC2 T4g instance) & Arm compiler::
 
