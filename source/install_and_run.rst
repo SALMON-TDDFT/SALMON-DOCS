@@ -412,7 +412,7 @@ GPU acceleration
 
 GPU acceleration (OpenACC or OpenACC+CUDA) for the DFT/TDDFT computation is available. 
 For compiling SALMON for GPUs, specify ``--arch=nvhpc-openacc`` (OpenACC, recommended) or ``--arch=nvhpc-openacc-cuda`` (OpenACC+CUDA) option when executing ``configure.py``.
-This option is currently under development and tested only for NVIDIA HPC SDK compiler ver 21.2, 21.5, 23.11, and 24.5 with NVIDIA V100, A100, and GH200 GPUs.
+This option is currently under development and tested only for NVIDIA HPC SDK compiler with NVIDIA GPUs.
 
 Multi-GPU run
 ^^^^^^^^^^^^^^^^^^^^^^^^^
