@@ -405,6 +405,46 @@ It indicates which communications should be executed in closer processes.
   - communicator: ``s_parallel_info::icomm_o and icomm_ko``
   - suitable ``theory``: ``'tddft_response', 'tddft_pulse', 'single_scale_maxwell_tddft'`` and ``'multi_scale_maxwell_tddft'``
 
+.. _GPU:
+
+GPU acceleration
+~~~~~~~~~~~~~~~~~~~~~
+
+GPU acceleration (OpenACC or OpenACC+CUDA) for the DFT/TDDFT computation is available. 
+For compiling SALMON for GPUs, specify ``--arch=nvhpc-openacc`` (OpenACC, recommended) or ``--arch=nvhpc-openacc-cuda`` (OpenACC+CUDA) option when executing ``configure.py``.
+This option is currently under development and tested only for NVIDIA HPC SDK compiler ver 21.2, 21.5, 23.11, and 24.5 with NVIDIA V100, A100, and GH200 GPUs.
+
+Multi-GPU run
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For MPI calculations with multiple GPUs, the assignment of MPI processes to GPUs via CUDA_VISIBLE_DEVICES and the use of nvidia-cuda-mps-control can improve the performance of SALMON. The following example is a wrapper script for that::
+
+    $ cat wrapper.sh
+    #! /bin/bash
+    ### wrapper.sh
+    NCUDA_GPUS=${NCUDA_GPUS:-`nvidia-smi -L | wc -l`}
+    if $OMPI_COMM_WORLD_LOCAL_SIZE -gt $NCUDA_GPUS 
+    then
+      if $OMPI_COMM_WORLD_LOCAL_RANK -eq 0  
+      then
+        nvidia-cuda-mps-control -d
+      fi
+      sleep 10
+    fi
+    export CUDA_VISIBLE_DEVICES=$((${OMPI_COMM_WORLD_LOCAL_RANK} % ${NCUDA_GPUS})) 
+    exec $@
+    if $OMPI_COMM_WORLD_LOCAL_SIZE -gt $NCUDA_GPUS 
+    then
+      echo quit | nvidia-cuda-mps-control 
+    fi
+
+Here, we used environment variables of OpenMPI, such as $OMPI_COMM_WORLD_LOCAL_SIZE.
+For MPI execution, use the following command::
+
+    $ mpirun -np ${num_MPI_processes} -npernode ${num_MPI_processes_per_node} \
+       wrapper.sh ${program} < ${input} |& tee log.stdout
+
+Here, ${program} is the path of SALMON, ${input} is the input file, etc.
 
 .. _troubleshooting-install:
 
@@ -560,47 +600,6 @@ If you want to build SALMON by GCC, specify ``FC`` and ``CC`` flags as follows::
 Here, ``--enable-mpi`` is required for the MPI parallelization.
 Note that the MPI parallelization is disabled as default when ``--arch`` option is not used.
 Compiler options can also be specified by ``FFLAGS`` and ``CFLAGS``. For GCC 10 or later versions, ``FFLAGS="-fallow-argument-mismatch"`` may be required.
-
-.. _GPU:
-
-Compilation for GPU acceleration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-GPU acceleration (OpenACC or OpenACC+CUDA) for the DFT/TDDFT computation is available.
-Specify ``--arch=nvhpc-openacc`` (OpenACC, recommended) or ``--arch=nvhpc-openacc-cuda`` (OpenACC+CUDA) option when executing ``configure.py``.
-This option is currently under development and tested only for NVIDIA HPC SDK compiler ver 21.2, 21.5, and 23.11 with NVIDIA Tesla V100 and A100 GPUs.
-
-Tips for GPU acceleration
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-For MPI calculations with multiple GPUs, the assignment of MPI processes to GPUs via CUDA_VISIBLE_DEVICES and the use of nvidia-cuda-mps-control can improve the performance of SALMON. The following example is a wrapper script for that::
-
-    $ cat wrapper.sh
-    #! /bin/bash
-    ### wrapper.sh
-    NCUDA_GPUS=${NCUDA_GPUS:-`nvidia-smi -L | wc -l`}
-    if $OMPI_COMM_WORLD_LOCAL_SIZE -gt $NCUDA_GPUS 
-    then
-      if $OMPI_COMM_WORLD_LOCAL_RANK -eq 0  
-      then
-        nvidia-cuda-mps-control -d
-      fi
-      sleep 10
-    fi
-    export CUDA_VISIBLE_DEVICES=$((${OMPI_COMM_WORLD_LOCAL_RANK} % ${NCUDA_GPUS})) 
-    exec $@
-    if $OMPI_COMM_WORLD_LOCAL_SIZE -gt $NCUDA_GPUS 
-    then
-      echo quit | nvidia-cuda-mps-control 
-    fi
-
-Here, we used environment variables of OpenMPI, such as $OMPI_COMM_WORLD_LOCAL_SIZE.
-For MPI execution, use the following command::
-
-    $ mpirun -np ${num_MPI_processes} -npernode ${num_MPI_processes_per_node} \
-       wrapper.sh ${program} < ${input} |& tee log.stdout
-
-Here, ${program} is the path of SALMON, ${input} is the input file, etc.
 
 .. _FFTW:
 
