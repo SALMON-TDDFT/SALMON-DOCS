@@ -537,7 +537,7 @@ Additional options in configure.py script
 Manual specifications of compiler and environment variables
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In executing ``configure.py``, you can manually specify compiler and environment variables instead of specifying the architecture ``--arch``, for example::
+When executing ``configure.py``, you can manually specify the compiler and environment variables instead of specifying the architecture ``--arch``, for example::
 
     $ python ../configure.py FC=mpiifort CC=mpiicc FFLAGS="-xAVX" CFLAGS="-restrict -xAVX" --enable-mpi
 
@@ -564,21 +564,36 @@ CC, CFLAGS                               User-defined C Compiler, and the compil
 LDFLAGS                                  linker flags
 =======================================  ===================================================
 
-In the build procedure by CMake, they search the following libraries.
-If the libraries don't found in the path that is specified by environment variables, they will build the required libraries automatically.
+Required libraries
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-- Netlib LAPACK (includes BLAS), and ScaLAPACK
+In the build procedure of SALMON, CMake searches the following libraries.
+If the libraries are not found in the path specified by environment variables, the required libraries will be downloaded and compiled automatically.
 
-    - We will download and build the Netlib libraries as the typical implementation.
-    - http://www.netlib.org/lapack/
-    - http://www.netlib.org/scalapack/
+- BLAS/LAPACK 
+
+    - Required by default compilation.
+    - Most math libraries include BLAS/LAPACK by default.
+    - ``--with-lapack``: Path specification.
+    - If the library is not found, it will be automatically downloaded from http://www.netlib.org/lapack/
+
+- ScaLAPACK
+
+    - Required by ``--enable-scalapack``.
+    - ``--with-lapack``: Path specification.
+    - If the library is not found, it will be automatically downloaded from http://www.netlib.org/scalapack/
 
 - Libxc
 
-    - https://www.tddft.org/programs/libxc/
+    - Required by ``--enable-libxc``.
+    - ``--with-libxc``: Path specification.
+    - If the path is unspecified, the library will be automatically downloaded from https://www.tddft.org/programs/libxc/
 
-EigenExa will download and build automatically even if the library is installed to your machine.
+- EigenExa
 
+    - Required by ``--enable-eigenexa``. (``--enable-scalapack`` is also required for EigenExa.)
+    - EigenExa will be downloaded and built automatically even if the library is installed on your machine.
+    - Automatically download from https://www.r-ccs.riken.jp/labs/lpnctrt/assets/img/EigenExa-2.4b.tgz
 
 Build for single process calculations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -600,6 +615,24 @@ If you want to build SALMON by GCC, specify ``FC`` and ``CC`` flags as follows::
 Here, ``--enable-mpi`` is required for the MPI parallelization.
 Note that the MPI parallelization is disabled as default when ``--arch`` option is not used.
 Compiler options can also be specified by ``FFLAGS`` and ``CFLAGS``. For GCC 10 or later versions, ``FFLAGS="-fallow-argument-mismatch"`` may be required.
+
+
+Compilation examples
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Some compilation examples in several environments are shown below.
+
+- AWS Graviton2 machine (Amazon EC2 T4g instance) & Arm compiler::
+
+    $ python3 ../configure.py FC=armflang CC=armclang FFLAGS="-armpl" CFLAGS="-armpl"
+
+- MacOS & GCC version 11::
+
+    $ brew install gcc@11
+    $ export FC=/opt/homebrew/Cellar/gcc@11/11.5.0/bin/gfortran-11
+    $ export CC=/opt/homebrew/Cellar/gcc@11/11.5.0/bin/gcc-11
+    $ export CXX=/opt/homebrew/Cellar/gcc@11/11.5.0/bin/g++-11
+    $ python ../configure.py FFLAGS="-fallow-argument-mismatch"
 
 .. _FFTW:
 
