@@ -626,6 +626,11 @@ Some compilation (configure) examples in several environments are shown below.
 
     $ python3 ../configure.py --arch=fujitsu-a64fx-ea --enable-scalapack --enable-eigenexa FFLAGS="-fPIC"
 
+- Cygnus (GPU supercomputer @ University of Tsukuba) & NVidia HPC SDK compiler version 23.11::
+
+    $ module load cmake/3.18.6 openmpi/nvhpc/23.11
+    $ python3 ../configure.py --arch=nvhpc-openacc LDFLAGS=-L/system/apps/nvhpc/23.11/Linux_x86_64/23.11/math_libs/lib64/
+
 - AWS Graviton2 machine (Amazon EC2 T4g instance) & Arm compiler::
 
     $ python3 ../configure.py FC=armflang CC=armclang FFLAGS="-armpl" CFLAGS="-armpl"
