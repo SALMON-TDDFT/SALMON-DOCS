@@ -756,13 +756,13 @@ alibc
 character, default='none'
 
    | Available for the DFT/TDDFT based options of ``theory``.
-   | Since version 1.1.0, exchange-correlation functionals in Libxc library (http://www.tddft.org/programs/libxc/) have been usable in SALMON. At present, usable functionals are limited to LDA and GGA. For periodic systems, meta-GGA functionals are usable as well. To specify the exchange-correlation potentials of Libxc library, there are two ways. If the exchange and correlation potentials are given separately, you need to specify both ``alibx`` and ``alibc`` separately. If the exchange and correlation potentials are given as a combined set, you need to specify ``alibxc``. We show below an example:
+   | Since version 1.1.0, exchange-correlation functionals in Libxc library (https://libxc.gitlab.io/) have been usable in SALMON. At present, usable functionals are limited to LDA and GGA. For periodic systems, meta-GGA functionals are usable as well. To specify the exchange-correlation potentials of Libxc library, there are two ways. If the exchange and correlation potentials are given separately, you need to specify both ``alibx`` and ``alibc`` separately. If the exchange and correlation potentials are given as a combined set, you need to specify ``alibxc``. We show below an example:
    |    &functional
    |       alibx = 'LDA_X'
    |       alibc = 'LDA_C_PZ'
    | Note that, the hybrid functionals (hybrid gga/mgga) are not supported.
    |
-   | To use libxc libraries, ``--enable-libxc`` option must be added in excecuting configure. The available option of the exchange-correlation functionals are listed in the LibXC website. [See http://www.tddft.org/programs/libxc/functionals/]
+   | To use libxc libraries, ``--enable-libxc`` option must be added in excecuting configure. The available option of the exchange-correlation functionals are listed in the LibXC website. [See https://libxc.gitlab.io/functionals/]
 
 .. _&rgrid:
 
