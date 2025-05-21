@@ -587,7 +587,7 @@ If the libraries are not found in the path specified by environment variables, t
 
     - Required by ``--enable-libxc``.
     - ``--with-libxc``: Path specification.
-    - If the path is unspecified, the library will be automatically downloaded from https://www.tddft.org/programs/libxc/
+    - If the path is unspecified, the library will be automatically downloaded from https://libxc.gitlab.io
 
 - EigenExa
 
