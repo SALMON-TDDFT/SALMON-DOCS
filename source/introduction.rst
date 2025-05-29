@@ -109,20 +109,23 @@ SALMON is available under Apache License version 2.0.
 SALMON at Github
 --------------------
 
-SALMON is developed at `GitHub.com <https://github.com/salmon-tddft>`__
+The development of SALMON is in progress at `GitHub.com <https://github.com/salmon-tddft>`__
+
+* [SALMON2](https://github.com/SALMON-TDDFT/SALMON2): Development version of SALMON.
+* [SALMON-DOCS](https://github.com/SALMON-TDDFT/SALMON-DOCS): Manual for the development version.
+* [SALMON-inputs](https://github.com/SALMON-TDDFT/SALMON-inputs): Database for SALMON input files used in published papers.
 
 List of developers
 ----------------------
 
 (Alphabetic order)
 
-* Yuta Hirokawa (Prometech Software, Inc., Japan)
 * Kenji Iida (Hokkaido University, Japan)
 * Masashi Noda (Academeia, Japan)
 * Tomohito Otobe (National Institutes for Quantum Science and Technology, Japan)
-* Shunsuke Sato (University of Tsukuba, Japan)
+* Shunsuke Sato (Tohoku University, Japan)
 * Yasushi Shinohara (NTT, Japan)
-* Takashi Takeuchi (University of Tsukuba, Japan)
+* Mizuki Tani (National Institutes for Quantum Science and Technology, Japan)
 * Mitsuharu Uemoto (Kobe University, Japan)
 * Kazuhiro Yabana (University of Tsukuba, Japan)
 * Atsushi Yamada (National Defense Academy of Japan, Japan)
@@ -132,11 +135,13 @@ Former developers
 ----------------------
 
 * Isabella Floss 
+* Yuta Hirokawa
 * Jun-Ichi Iwata 
 * Yuki Ito 
 * Kazuya Ishimura
 * Kyung-Min Lee
 * Katsuyuki Nobusada
+* Takashi Takeuchi 
 * Xiao-Min Tong
 * Maiku Yamaguchi
 
