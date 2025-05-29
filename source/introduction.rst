@@ -111,9 +111,9 @@ SALMON at Github
 
 The development of SALMON is in progress at `GitHub.com <https://github.com/salmon-tddft>`__
 
-* [SALMON2](https://github.com/SALMON-TDDFT/SALMON2): Development version of SALMON.
-* [SALMON-DOCS](https://github.com/SALMON-TDDFT/SALMON-DOCS): Manual for the development version.
-* [SALMON-inputs](https://github.com/SALMON-TDDFT/SALMON-inputs): Database for SALMON input files used in published papers.
+* `SALMON2 <https://github.com/SALMON-TDDFT/SALMON2>`: Development version of SALMON.
+* `SALMON-DOCS <https://github.com/SALMON-TDDFT/SALMON-DOCS>`: Manual for the development version.
+* `SALMON-inputs <https://github.com/SALMON-TDDFT/SALMON-inputs>`: Database for SALMON input files used in published papers.
 
 List of developers
 ----------------------
