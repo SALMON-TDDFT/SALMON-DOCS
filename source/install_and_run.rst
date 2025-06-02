@@ -58,7 +58,7 @@ After the extraction, the following directories will be created::
 Build and Install
 ------------------
 
-To compile SALMON to create executable the binary files, we adopt to use CMake tools as the first option.
+To compile SALMON to create the executable binary file, we adopt to use CMake tools as the first option.
 In case you fail to build SALMON using CMake in your environment, we may use Gnu Make. See :any:`build-gnu-make`.
 
 
@@ -124,12 +124,13 @@ We assume that you are in the directory SALMON.
 
 2. Execute the python script ''configure.py'' and then make::
 
-    $ python ../configure.py --arch=ARCHITECTURE --prefix=../
+    $ python ../configure.py --arch=<ARCHITECTURE> --prefix=<INSTALLATION_DIRECTORY>
     $ make
     $ make install
 
+(Replace ``INSTALLATION_DIRECTORY`` with your desired installation directory. If this is not specified, the executable file will be created in the ``build`` directory.)
 
-In executing the python script, you need to specify ``ARCHITECTURE`` that indicates the architecture of the CPU in your computer system such as ``intel-avx``. The options of the ``ARCHITECUTRE`` are as follows:
+In executing the python script, you need to specify ``ARCHITECTURE`` that indicates the architecture of the CPU in your computer system such as ``intel-avx512``. The options of the ``ARCHITECUTRE`` are as follows:
 
 ==================  =======================================  ===================  =================
 arch                Detail                                   Compiler             Numerical Library
@@ -147,14 +148,15 @@ nvhpc-openacc       Nvidia OpenACC (GPU)                     Nvidia HPC Compiler
 nvhpc-openacc-cuda  Nvidia OpenACC+CUDA (GPU)                Nvidia HPC Compiler  Nvidia HPC SDK
 ==================  =======================================  ===================  =================
 
-If the build is successful, you will get a file ``salmon`` at the top-level build directory.
+If there is no suitable option, you can customize a CMake file of ``ARCHITECTURE`` or specify compilers and flags manually (See :any:`additional-options-in-configure`).
+If the build is successful, you will get a file ``salmon`` at the directory ``INSTALLATION_DIRECTORY``.
 
 
 Files necessary to run SALMON
 ------------------------------------
 
 To run SALMON, at least two kinds of files are required for any calculations.
-One is an input file with the filename extension ``*.inp`` that should be read from the standard input ``stdin``.
+One is a text file of input variables (SALMON input file) that should be read from the standard input ``stdin``.
 This file should be prepared in the Fortran90 namelist format.
 Pseudopotential files of relevant elements are also required.
 Depending on your purpose, some other files may also be necessary.
@@ -164,7 +166,7 @@ For example, coordinates of atomic positions of the target material may be eithe
 Pseudopotentials
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-SALMON utilizes norm-conserving (NC) pseudpotentials. 
+SALMON utilizes the norm-conserving (NC) pseudpotential. 
 Filenames of pseudopotentials should be written in the input file.
 
 You may find pseudopotentials of some elements in the samples prepared in :any:`Exercises`.
@@ -214,8 +216,9 @@ Calculations are usually achieved in two steps; first, the ground state calculat
 In the typical way, the ground state calculation based on DFT is first carried out specifying ``theory = 'dft'``.
 Then the real-time electron dynamics calculation based on TDDFT is carried out specifying ``theory = 'tddft_pulse'``.
 
-In :any:`Exercises`, we prepare six exercises that cover typical calculations feasible by SALMON.
-We prepare explanations of the input files of the exercises that will help to prepare input files of your own interests.
+In :any:`Exercises`, we provide six exercises that cover typical calculations feasible with SALMON.
+We also provide explanations of the input files used in these exercises, which can help you prepare input files for your own purposes.
+Additional examples of input files can be found in the `SALMON-inputs <https://github.com/SALMON-TDDFT/SALMON-inputs>`__.
 
 There are more than 20 groups of namelists. A complete list of namelist variables is given in the file ``SALMON/manual/input_variables.md``.
 Namelist variables that are used in our exercises are explained at :any:`Inputs`.
@@ -230,6 +233,7 @@ The execution of the calculation can be done as follows: In single process envir
 
     $ salmon < inputfile.inp > fileout.out
 
+(Here, it is assumed that the environment variable ``$PATH`` is appropriately specified for the SALMON executable.)
 In multiprocess environment in which the command to execute parallel calculations using MPI is ``mpiexec``, type the following command::
 
     $ mpiexec -n NPROC salmon < inputfile.inp > fileout.out
@@ -414,6 +418,8 @@ GPU acceleration (OpenACC or OpenACC+CUDA) for the DFT/TDDFT computation is avai
 For compiling SALMON for GPUs, specify ``--arch=nvhpc-openacc`` (OpenACC, recommended) or ``--arch=nvhpc-openacc-cuda`` (OpenACC+CUDA) option when executing ``configure.py``.
 This option is currently under development and tested only for NVIDIA HPC SDK compiler with NVIDIA GPUs.
 
+Note: Currently, the performance of the TDDFT part is well-tuned but the DFT part is not. We recommend executing DFT (ground-state) calculations on CPUs and TDDFT calculations on GPUs. 
+
 Multi-GPU run
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -534,12 +540,18 @@ Appendix
 Additional options in configure.py script
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+Customize CMake file for ``ARCHITECTURE``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Users can find several CMake configuration files corresponding to the ``ARCHITECTURE`` options in the ``platforms/`` directory. If there is no suitable configuration file, you can copy one of the existing ones and customize it for your environment.
+For example, if there is a configuration file named ``example.cmake``, the script ``configure.py`` can read it using the following command::
+
+    $ python ../configure.py --arch=example
+
 Manual specifications of compiler and environment variables
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When executing ``configure.py``, you can manually specify the compiler and environment variables instead of specifying the architecture ``--arch``, for example::
-
-    $ python ../configure.py FC=mpiifort CC=mpiicc FFLAGS="-xAVX" CFLAGS="-restrict -xAVX" --enable-mpi
+When executing ``configure.py``, users can specify several options and environment variables.
 
 The list of options of ``configure.py`` can be found by::
 
@@ -563,6 +575,10 @@ FC, FFLAGS                               User-defined Fortran Compiler, and the 
 CC, CFLAGS                               User-defined C Compiler, and the compiler options
 LDFLAGS                                  linker flags
 =======================================  ===================================================
+
+Using these options, you can manually specify the compiler and flags instead of specifying the architecture ``--arch``, for example::
+
+    $ python ../configure.py FC=mpiifort CC=mpiicc FFLAGS="-xAVX" CFLAGS="-restrict -xAVX" --enable-mpi
 
 Required libraries
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -608,7 +624,7 @@ Build by GNU Compiler Collection (GCC)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The architecture option ``--arch`` does not support GNU Compiler Collection (GCC).
-If you want to build SALMON by GCC, specify ``FC`` and ``CC`` flags as follows::
+If you want to build SALMON by GCC, specify ``FC`` and ``CC`` as follows::
 
     $ python ../configure.py FC=gfortran CC=gcc --enable-mpi
 
