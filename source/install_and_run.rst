@@ -26,13 +26,12 @@ For the installation of SALMON, following packages are required.
 
   - CMake
 
-If you use other compilers, you may need to change build scripts (CMake). See :any:`additional-options-in-configure`.
-If no numerical library is installed on your computer system, you may need to install BLAS/LAPACK by yourself.
-See :any:`troubleshooting-install`.
+If you use other compilers, you may need to specify them manually or customize the configuration files for CMake (see :any:`additional-options-in-configure`).
+If no numerical libraries are installed on your system, the BLAS/LAPACK package will be automatically downloaded and built during the compilation process.
 
-For the installation of SALMON, we adopt the CMake tools as the first option.
-If there were any problems to use CMake tools in your environment, you may use the GNU make tools.
-See :any:`troubleshooting-install`.
+For installing SALMON, we recommend using CMake as the primary method.
+If you encounter any issues using CMake in your environment, you may use GNU Make as an alternative.
+If you run into problems during the build process, refer to :any:`troubleshooting-install`.
 
 Download
 -----------------
