@@ -532,7 +532,7 @@ character, default='n'
    | Option for the spin-orbit coupling using the j-dependent pseudopotential formalism [Theurich & Hill, PRB 64, 073106 (2001)]. For pseudopotential(s), the UPF or VPS file format is required.
 
    | Options
-   |   ``'y'`` / enable (``spin='noncollinear'`` is required. For ``theory='dft’`` mode, ``method_mixing='simple’`` is recommended.)
+   |   ``'y'`` / enable (``spin='noncollinear'`` is required. For ``theory='dft’`` mode, ``method_mixing='simple’`` or ``method_mixing='simple_dm’`` is recommended.)
    |   ``'n'`` / disable (default)
 
 .. _yn_symmetry:
@@ -806,6 +806,18 @@ integer, default=1
    | Available for ``yn_periodic='y'`` in the DFT/TDDFT based options of ``theory``.
    | Number of k-points (grid points of k-vector) for each direction discretizing the Brillouin zone.
 
+.. _dk_shift(3):
+
+dk_shift(3)
+^^^^^^^^^^^^
+
+real(8), default=0d0
+
+   | Available when ``yn_periodic='y'`` in the DFT/TDDFT based options of ``theory``.
+   | Shift of the k-vector. For the a-axis, the k-vector is sampled as  
+   | k(1) = (dble(i1) - 0.5d0 + dk_shift(1)) / dble(num_kgrid(1)) - 0.5d0,  
+   | where i1 ranges from 1 to num_kgrid(1), and similarly for other directions.
+
 .. _file_kw:
 
 file_kw
@@ -1023,9 +1035,11 @@ character, default='broyden'
    | Available for 'dft' and 'dft_md' options of ``theory``.
    | Method to update density/potential in the scf iteration.
    | Options:
-   |  ``simple`` / Simple mixing method
-   |  ``broyden`` / modified Broyden method
-   |  ``pulay`` / Pulay method
+   |  ``simple`` / Simple mixing method for the density
+   |  ``simple_potential`` / Simple mixing method for the potential
+   |  ``simple_dm`` / Simple mixing method for the spin density matrix (available when ``yn_spinorbit='y'``)
+   |  ``broyden`` / modified Broyden method for the density
+   |  ``pulay`` / Pulay method for the density
 
 .. _mixrate:
 
@@ -1034,7 +1048,7 @@ mixrate
 
 real(8), default=0.5d0
 
-   | Available for ``method_mixing='simple'`` in 'dft' and 'dft_md' options of ``theory``.
+   | Available for ``method_mixing='simple'``, ``method_mixing='simple_potential'``, or ``method_mixing='simple_dm'`` in 'dft' and 'dft_md' options of ``theory``.
    | Mixing ratio for simple mixing.
 
 .. _nmemory_mb:
