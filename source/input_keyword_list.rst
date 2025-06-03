@@ -506,7 +506,7 @@ integer, default=0
 file_atom_red_coor
 ^^^^^^^^^^^^^^^^^^
 
-[Trial] character, default='none'
+character, default='none'
 
    | Available for the DFT/TDDFT based options of ``theory``.
    | Name of the file that contains atomic positions given in reduced coordinates. This option is incompatible with ``&system/file_atom_coor``, ``&atomic_coor``, and ``&atomic_red_coor``.
@@ -516,7 +516,7 @@ file_atom_red_coor
 file_atom_coor
 ^^^^^^^^^^^^^^
 
-[Trial] character, default='none'
+character, default='none'
 
    | Available for the DFT/TDDFT based options of ``theory``.
    | Name of the file that contains atomic Cartesian coordinates (The unit is specified by ``&units/unit_system``). This option is incompatible with ``&system/file_atom_coor``, ``&atomic_coor``, and ``&atomic_red_coor``.
@@ -814,7 +814,7 @@ dk_shift(3)
 real(8), default=0d0
 
    | Available when ``yn_periodic='y'`` in the DFT/TDDFT based options of ``theory``.
-   | Shift of the k-vector. For the a-axis, the k-vector is sampled as  
+   | Shift of the k-vector. For the x-axis (or a*-axis for nonorthogonal cells), the k-vector is sampled as  
    | k(1) = (dble(i1) - 0.5d0 + dk_shift(1)) / dble(num_kgrid(1)) - 0.5d0,  
    | where i1 ranges from 1 to num_kgrid(1), and similarly for other directions.
 
