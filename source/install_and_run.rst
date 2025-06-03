@@ -57,15 +57,14 @@ After the extraction, the following directories will be created::
 Build and Install
 ------------------
 
-To compile SALMON to create the executable binary file, we adopt to use CMake tools as the first option.
-In case you fail to build SALMON using CMake in your environment, we may use Gnu Make. See :any:`build-gnu-make`.
-
+To compile SALMON and create the executable binary, we recommend using CMake as the primary method.
+If you are unable to build SALMON with CMake in your environment, you may use GNU Make as an alternative (:any:`build-gnu-make`).
 
 Checking CMake availability
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-First, examine whether CMake is usable in your environment or not.
-Type the following in Linux command-line::
+First, check whether CMake is available in your environment.
+Type the following command in a Linux terminal::
 
     $ cmake --version
 
@@ -113,7 +112,7 @@ Build using CMake
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Confirming that CMake of version 3.14.0 or later can be usable in your environment, proceed the following steps.
-We assume that you are in the directory SALMON.
+We assume that you are in the directory ``SALMON``.
 
 1. Create a new temporary directory ``build`` and move to the directory::
 
@@ -121,7 +120,7 @@ We assume that you are in the directory SALMON.
     $ cd build
 
 
-2. Execute the python script ''configure.py'' and then make::
+2. Execute the python script ``configure.py`` and then make::
 
     $ python ../configure.py --arch=<ARCHITECTURE> --prefix=<INSTALLATION_DIRECTORY>
     $ make
@@ -147,20 +146,19 @@ nvhpc-openacc       Nvidia OpenACC (GPU)                     Nvidia HPC Compiler
 nvhpc-openacc-cuda  Nvidia OpenACC+CUDA (GPU)                Nvidia HPC Compiler  Nvidia HPC SDK
 ==================  =======================================  ===================  =================
 
-If there is no suitable option, you can customize a CMake file of ``ARCHITECTURE`` or specify compilers and flags manually (See :any:`additional-options-in-configure`).
+If there is no suitable option, you can customize a CMake configuration file or specify compilers and flags manually (See :any:`additional-options-in-configure`).
 If the build is successful, you will get a file ``salmon`` at the directory ``INSTALLATION_DIRECTORY``.
 
 
 Files necessary to run SALMON
 ------------------------------------
 
-To run SALMON, at least two kinds of files are required for any calculations.
-One is a text file of input variables (SALMON input file) that should be read from the standard input ``stdin``.
-This file should be prepared in the Fortran90 namelist format.
-Pseudopotential files of relevant elements are also required.
-Depending on your purpose, some other files may also be necessary.
-For example, coordinates of atomic positions of the target material may be either written in the input file or prepared as a separate file.
-
+To run SALMON, at least two types of files are required for any calculations.
+One is a text file containing input variables of SALMON (the SALMON input file), which should be read from standard input (``stdin``).
+This file must be prepared in Fortran90 namelist format.
+Pseudopotential files for the relevant elements are also required.
+Depending on your purpose, additional files may be needed.
+For example, the atomic coordinates of the target material can either be written in the input file or provided in a separate file.
 
 Pseudopotentials
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -217,7 +215,7 @@ Then the real-time electron dynamics calculation based on TDDFT is carried out s
 
 In :any:`Exercises`, we provide six exercises that cover typical calculations feasible with SALMON.
 We also provide explanations of the input files used in these exercises, which can help you prepare input files for your own purposes.
-Additional examples of input files can be found in the `SALMON-inputs <https://github.com/SALMON-TDDFT/SALMON-inputs>`__.
+Additional examples of input files can be found in the `SALMON-inputs <https://github.com/SALMON-TDDFT/SALMON-inputs>`__ database.
 
 There are more than 20 groups of namelists. A complete list of namelist variables is given in the file ``SALMON/manual/input_variables.md``.
 Namelist variables that are used in our exercises are explained at :any:`Inputs`.
@@ -539,14 +537,6 @@ Appendix
 Additional options in configure.py script
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Customize CMake file for ``ARCHITECTURE``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Users can find several CMake configuration files corresponding to the ``ARCHITECTURE`` options in the ``platforms/`` directory. If there is no suitable configuration file, you can copy one of the existing ones and customize it for your environment.
-For example, if there is a configuration file named ``example.cmake``, the script ``configure.py`` can read it using the following command::
-
-    $ python ../configure.py --arch=example
-
 Manual specifications of compiler and environment variables
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -575,9 +565,17 @@ CC, CFLAGS                               User-defined C Compiler, and the compil
 LDFLAGS                                  linker flags
 =======================================  ===================================================
 
-Using these options, you can manually specify the compiler and flags instead of specifying the architecture ``--arch``, for example::
+Using these options, you can manually specify the compilers and flags instead of using the ``--arch`` option. For example::
 
     $ python ../configure.py FC=mpiifort CC=mpiicc FFLAGS="-xAVX" CFLAGS="-restrict -xAVX" --enable-mpi
+
+Customize CMake file for ``--arch``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Users can find several CMake configuration files corresponding to the ``--arch`` options in the ``platforms/`` directory. If there is no suitable configuration file, you can copy one of the existing ones and customize it for your environment.
+For example, if there is a configuration file named ``example.cmake`` in the ``platforms/`` directory, the ``configure.py`` script can read it using the following command::
+
+    $ python ../configure.py --arch=example
 
 Required libraries
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
