@@ -23,6 +23,14 @@ The following is the history of fixed bugs and changes in models/inputs/outputs 
 Fixed bugs
 ==========
 
+(Fixed in v.2.2.2)
+
+* Standard output of the DFT part with ``convergence/=rho_dne`` was incorrect.
+* Some external links, such as those to pseudopotential databases and LAPACK libraries, were incorrect.
+* ``--arch=intel-avx512`` was incompatible with the latest versions of Intel compilers.
+* Some testsuites (192_bulk_Si_pseudo_pspnc & 724_Si_diamond_bloch_ms) had issues related to compiler dependencies.
+* Some ``.pspnc`` pseudopotentials with certain r-grids caused out-of-bounds errors. Index checking has been updated.
+
 (Fixed in v.2.2.1)
 
 * The OpenACC mode by newer versions of Nvidia HPC SDK was not supported.
@@ -71,6 +79,22 @@ Fixed bugs
 
 Changes of models/inputs/outputs
 ================================
+
+(v.2.2.2)
+
+* Filenames of some output files are changed. 
+
+  * ``dos.data`` --> ``<base_directory>/<sysname>_dos.data``
+  * ``dns.cube`` --> ``<base_directory>/<sysname>_dns.cube``
+  * etc.
+
+* Some input keywords and options are added.
+
+  * ``dk_shift``: Shift of the k-vector.
+  * ``yn_out_rt_energy_components``: Switch for printing out the energy components such as the kinetic energy term (for TDDFT).
+  * ``magdir_atom``: Initial values for the spin polarization (for DFT).
+  * ``method_mixing='simple_potential'``: Simple mixing method for the local potential (for DFT).
+
 
 (v.2.2.1)
 
