@@ -1,4 +1,4 @@
-Manual for SALMON-v.2.2.1
+Manual for SALMON-v.2.2.2
 =========================
 
   |today|
