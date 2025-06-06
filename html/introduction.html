@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; SALMON software manual v.2.2.2 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" type="text/css" />
+      <link rel="stylesheet" href="_static/katex-math.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js"></script>
+        <script type="text/javascript" src="_static/katex_autorenderer.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Install and Run" href="install_and_run.html" />
+    <link rel="prev" title="Manual for SALMON-v.2.2.2" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SALMON software manual
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#salmon-features">SALMON features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#license">License</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#salmon-at-github">SALMON at Github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#list-of-developers">List of developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#former-developers">Former developers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-cite-salmon">How to cite SALMON</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#suggested-citations">Suggested Citations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install_and_run.html">Install and Run</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exercises.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_keyword_list.html">List of input keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_log.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SALMON software manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>SALMON is an open-source computer program for ab-initio
+quantum-mechanical calculations of electron dynamics at the nanoscale
+that takes place in various situations of light-matter interactions. It
+is based on time-dependent density functional theory, solving
+time-dependent Kohn-Sham equation in real time and real space with
+norm-conserving pseudopotentials.</p>
+<p>SALMON was born by unifying two scientific programs: ARTED, developed by
+Univ. Tsukuba group, that describes electron dynamics in crystalline
+solids, and GCEED, developed by Institute for Molecular Science group,
+that describes electron dynamics in molecules and nanostructures. It can
+thus describe electron dynamics in both isolated and periodic systems.
+It can also describe coupled dynamics of electrons and light-wave
+electromagnetic fields.</p>
+<p>To run the program, SALMON requires MPI Fortran/C compiller with LAPACK
+libraries. SALMON has been tested and optimized to run in a number of
+platforms, including Linux PC Cluster with x86-64 CPU, supercomputer
+systems with Fujitsu FX100 and A64FX processors, and supercomputer system
+with Intel Xeon Phi (Knights Landing).</p>
+</div>
+<div class="section" id="salmon-features">
+<h2>SALMON features<a class="headerlink" href="#salmon-features" title="Permalink to this headline">¶</a></h2>
+<p>In the microscopic scale, SALMON describes electron dynamics in both
+isolated (molecules and nanostructures) and periodic (crystalline solids)
+systems, solving time-dependent Kohn-Sham equation in real time and real space
+with norm-conserving pseudopotential.
+SALMON first carries out ground-state calculations in the density functional theory
+to prepare initial configurations. SALMON then calculates electron
+dynamics induced by applied electric field. Employing a weak impulsive
+external field, SALMON can be used to calculate linear response
+properties such as a polarizability of molecules and a dielectric
+function of crystalline solids. Using pulsed electric fields, SALMON
+describes electron dynamics in matters induced by intense and ultrashort
+laser pulses.</p>
+<p>SALMON is also capable of describing a propagation of electromagnetic fields
+of light using finite-difference time-domain method. As a unique feature
+of SALMON, it is possible to carry out calculations of a coupled dynamics
+of light electromagnetic fields and electron dynamics simultaneously.</p>
+<p>Efficient parallelizations are implemented in the code by dividing spatial
+grids, orbital index, and k-points.
+SALMON shows a good scalability when it runs in parallel supercomputers,
+both for the ground state and the time evolution calculations.</p>
+<ul class="simple">
+<li>Ground state calculations<ul>
+<li>Kohn-Sham orbitals and energies</li>
+<li>density of states</li>
+<li>projected density of states</li>
+<li>electron localization function</li>
+</ul>
+</li>
+<li>Optical properties<ul>
+<li>Oscillator strength distribution (absorption spectrum)</li>
+<li>dielectric function</li>
+</ul>
+</li>
+<li>Light-induced electron dynamics<ul>
+<li>time evolution of Kohn-Sham orbitals</li>
+<li>density, current</li>
+<li>excitation energy</li>
+<li>number density of excited carriers</li>
+</ul>
+</li>
+<li>Propagation of light electromagnetic fields<ul>
+<li>Drude-Lorentz model</li>
+<li>optical response of metasurfaces</li>
+</ul>
+</li>
+<li>Simultaneous description of electron dynamics and light pulse
+propagation<ul>
+<li>light pulse propagation as well as time evolution of Kohn-Sham
+orbitals</li>
+<li>energy transfer from pulsed light to electrons</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>SALMON is available under Apache License version 2.0.</p>
+<blockquote>
+<div><p>Copyright 2017 SALMON developers</p>
+<p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+<p><a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+</div></blockquote>
+</div>
+<div class="section" id="salmon-at-github">
+<h2>SALMON at Github<a class="headerlink" href="#salmon-at-github" title="Permalink to this headline">¶</a></h2>
+<p>The development of SALMON is in progress at <a class="reference external" href="https://github.com/salmon-tddft">GitHub.com</a></p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/SALMON-TDDFT/SALMON2">SALMON2</a>: Development version of SALMON.</li>
+<li><a class="reference external" href="https://github.com/SALMON-TDDFT/SALMON-DOCS">SALMON-DOCS</a>: Manual for the development version.</li>
+<li><a class="reference external" href="https://github.com/SALMON-TDDFT/SALMON-inputs">SALMON-inputs</a>: Database for SALMON input files used in published papers.</li>
+</ul>
+</div>
+<div class="section" id="list-of-developers">
+<h2>List of developers<a class="headerlink" href="#list-of-developers" title="Permalink to this headline">¶</a></h2>
+<p>(Alphabetic order)</p>
+<ul class="simple">
+<li>Kenji Iida (Hokkaido University, Japan)</li>
+<li>Masashi Noda (Academeia, Japan)</li>
+<li>Tomohito Otobe (National Institutes for Quantum Science and Technology, Japan)</li>
+<li>Shunsuke Sato (Tohoku University, Japan)</li>
+<li>Yasushi Shinohara (NTT, Japan)</li>
+<li>Mizuki Tani (National Institutes for Quantum Science and Technology, Japan)</li>
+<li>Mitsuharu Uemoto (Kobe University, Japan)</li>
+<li>Kazuhiro Yabana (University of Tsukuba, Japan)</li>
+<li>Atsushi Yamada (National Defense Academy of Japan, Japan)</li>
+<li>Shunsuke Yamada (National Institutes for Quantum Science and Technology, Japan)</li>
+</ul>
+</div>
+<div class="section" id="former-developers">
+<h2>Former developers<a class="headerlink" href="#former-developers" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Isabella Floss</li>
+<li>Yuta Hirokawa</li>
+<li>Jun-Ichi Iwata</li>
+<li>Yuki Ito</li>
+<li>Kazuya Ishimura</li>
+<li>Kyung-Min Lee</li>
+<li>Katsuyuki Nobusada</li>
+<li>Takashi Takeuchi</li>
+<li>Xiao-Min Tong</li>
+<li>Maiku Yamaguchi</li>
+</ul>
+</div>
+<div class="section" id="how-to-cite-salmon">
+<span id="reference"></span><h2>How to cite SALMON<a class="headerlink" href="#how-to-cite-salmon" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="suggested-citations">
+<h3>Suggested Citations<a class="headerlink" href="#suggested-citations" title="Permalink to this headline">¶</a></h3>
+<p>If you publish a paper in which SALMON makes an important contribution, please cite the SALMON code paper,
+Ref. <a class="reference internal" href="#noda2019" id="id1">[Noda2019]</a>
+published in Computer Physics Communications.</p>
+<p>We also suggest you to cite the following papers depending on your usage of SALMON.</p>
+<ul class="simple">
+<li>If you use SALMON for electron dynamics calculations of a large-size system,
+Ref. <a class="reference internal" href="#noda2014" id="id2">[Noda2014]</a>
+that discusses massively parallel implementation utilizing spatial divisions will be appropriate.</li>
+<li>if you use SALMON to calculate electron dynamics in a unit cell of crystalline solid,
+Ref. <a class="reference internal" href="#bertsch2000" id="id3">[Bertsch2000]</a>
+discussing formalism and numerical implementation will be appropriate.</li>
+<li>Ref. <a class="reference internal" href="#yabana1996" id="id4">[Yabana1996]</a>
+is one of the first implementations of the real-time time-dependent density functional calculation, in particular, instantaneous kick for the linear response calculations.</li>
+<li>If you use multiscale calculation coupling Maxwell equations for the electromagnetic fields of light and electron dynamics,
+Ref. <a class="reference internal" href="#yabana2012" id="id5">[Yabana2012]</a>
+discussing the formalism and the numerical implementation will be appropriate.</li>
+<li>Ref. <a class="reference internal" href="#sato2014jasse" id="id6">[Sato2014JASSE]</a>
+describes parallelization method for the coupled Maxwell - TDDFT calculations.</li>
+<li>Ref. <a class="reference internal" href="#hirokawa2016" id="id7">[Hirokawa2016]</a>
+describes computational aspects of electron dynamics calculations for periodic systems in many-core processors:</li>
+</ul>
+<p id="bibtex-bibliography-introduction-0"><table class="bibtex docutils citation" frame="void" id="noda2019" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>M.&nbsp;Noda, S.&nbsp;A. Sato, Y.&nbsp;Hirokawa, M.&nbsp;Uemoto, T.&nbsp;Takeuchi, S.&nbsp;Yamada, A.&nbsp;Yamada, Y.&nbsp;Shinohara, M.&nbsp;Yamaguchi, K.&nbsp;Iida, I.&nbsp;Floss, T.&nbsp;Otobe, K.-M. Lee, K.&nbsp;Ishimura, T.&nbsp;Boku, G.&nbsp;F. Bertsch, K.&nbsp;Nobusada, and K.&nbsp;Yabana. Salmon: scalable ab-initio light-matter simulator for optics and nanoscience. <em>Comp. Phys. Comm.</em>, 235(356-365):, 2019.</td></tr>
+</tbody>
+</table>
+<table class="bibtex docutils citation" frame="void" id="noda2014" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Masashi Noda, Kazuya Ishimura, Katsuyuki Nobusada, Kazuhiro Yabana, and Taisuke Boku. Massively-parallel electron dynamics calculations in real-time and real-space: toward applications to nanostructures of more than ten-nanometers in size. <em>Journal of Computational Physics</em>, 265:145–155, 2014.</td></tr>
+</tbody>
+</table>
+<table class="bibtex docutils citation" frame="void" id="bertsch2000" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>George&nbsp;F Bertsch, J-I Iwata, Angel Rubio, and Kazuhiro Yabana. Real-space, real-time method for the dielectric function. <em>Physical Review B</em>, 62(12):7998, 2000.</td></tr>
+</tbody>
+</table>
+<table class="bibtex docutils citation" frame="void" id="yabana1996" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>K.&nbsp;Yabana and G.&nbsp;F. Bertsch. Time-dependent local-density approximation in real time. <em>Phys. Rev. B</em>, 54:4484–4487, Aug 1996. URL: <a class="reference external" href="https://link.aps.org/doi/10.1103/PhysRevB.54.4484">https://link.aps.org/doi/10.1103/PhysRevB.54.4484</a>, <a class="reference external" href="https://doi.org/10.1103/PhysRevB.54.4484">doi:10.1103/PhysRevB.54.4484</a>.</td></tr>
+</tbody>
+</table>
+<table class="bibtex docutils citation" frame="void" id="yabana2012" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td>Kazuhiro Yabana, T&nbsp;Sugiyama, Y&nbsp;Shinohara, T&nbsp;Otobe, and GF&nbsp;Bertsch. Time-dependent density functional theory for strong electromagnetic fields in crystalline solids. <em>Physical Review B</em>, 85(4):045134, 2012.</td></tr>
+</tbody>
+</table>
+<table class="bibtex docutils citation" frame="void" id="sato2014jasse" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[6]</a></td><td>Shunsuke&nbsp;A. Sato and Kazuhiro Yabana. Maxwell + tddft multi-scale simulation for laser-matter interactions. <em>Journal of Advanced Simulation in Science and Engineering</em>, 1(1):98–110, 2014. <a class="reference external" href="https://doi.org/10.15748/jasse.1.98">doi:10.15748/jasse.1.98</a>.</td></tr>
+</tbody>
+</table>
+<table class="bibtex docutils citation" frame="void" id="hirokawa2016" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[7]</a></td><td>Yuta Hirokawa, Taisuke Boku, Shunsuke&nbsp;A Sato, and Kazuhiro Yabana. Electron dynamics simulation with time-dependent density functional theory on large scale symmetric mode xeon phi cluster. In <em>Parallel and Distributed Processing Symposium Workshops, 2016 IEEE International</em>, 1202–1211. IEEE, 2016.</td></tr>
+</tbody>
+</table>
+</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Manual for SALMON-v.2.2.2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="install_and_run.html" class="btn btn-neutral float-right" title="Install and Run" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2025, SALMON developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
