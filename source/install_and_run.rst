@@ -36,7 +36,7 @@ If you run into problems during the build process, refer to :any:`troubleshootin
 Download
 -----------------
 
-The newest version of SALMON can be downloaded from `download page <http://salmon-tddft.jp/download.html>`__.
+The latest version of SALMON can be downloaded from `download page <http://salmon-tddft.jp/download.html>`__.
 You can also get the file by::
 
   $ wget http://salmon-tddft.jp/download/SALMON-<VERSION>.tar.gz
@@ -49,9 +49,11 @@ After the extraction, the following directories will be created::
 
   SALMON
     |- src          Source codes
-    |- example      Samples
+    |- samples      Sample input files
     |- cmakefiles   CMake related files
+    |- platforms    CMake configuration files
     |- gnumakefiles GNU Makefiles for building
+    | ...
 
 
 Build and Install
@@ -166,9 +168,9 @@ Pseudopotentials
 SALMON utilizes the norm-conserving (NC) pseudpotential. 
 Filenames of pseudopotentials should be written in the input file.
 
-You may find pseudopotentials of some elements in the samples prepared in :any:`Exercises`.
-In SALMON, several formats of pseudopotentials may be usable (listed below).
-For example, pseudopotentials with an extension ``.fhi`` can be obtained from the ABINIT website (this is a part of previous atomic data files for the ABINIT code).
+You can find pseudopotentials for some elements in the sample files provided in :any:`Exercises`.
+SALMON supports several formats of pseudopotentials, as listed below.
+For example, pseudopotentials with the ``.fhi`` extension can be obtained from the ABINIT website; these are part of the older atomic data files used by the ABINIT code.
 
 =========================================================  =============  =====================================================================================
 Pseudopotential                                            extension      Website
@@ -185,10 +187,10 @@ Unified-pseudopotential-format (NC type only in SALMON)    ``.upf``       http:/
 =========================================================  =============  =====================================================================================
 
 
-input file
+SALMON input file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Input files are composed of several blocks of namelists::
+SALMON input file is composed of several blocks of namelists::
 
    &namelist1
      variable1 = int_value
@@ -199,67 +201,62 @@ Input files are composed of several blocks of namelists::
      variable2 = int_value1, int_value2, int_value3
    /
 
-A block of namelists starts with ``&namelist`` line and ends with ``/`` line.
-The blocks may appear in any order.
+A block of namelists starts with a line beginning with ``&namelist`` and ends with a line containing only ``/``. These blocks may appear in any order.
 
-Between two lines of ``&namelist`` and ``/``, descriptions of variables and their values appear.
-Note that many variables have their default values so that it is not necessary to give values for all variables.
-Descriptions of the variables may appear at any position if they are between ``&namelist`` and ``/``.
+Between the ``&namelist`` and ``/`` lines, variables and their corresponding values are described. Many variables have default values, so it is not necessary to specify all of them. Variable definitions can appear in any order within the block.
 
-SALMON describes electron dynamics in systems with both isolated and periodic boundary conditions.
-The boundary condition is specified by the variable ``iperiodic`` in the namelist ``&system``.
+SALMON simulates electron dynamics in systems with either isolated or periodic boundary conditions. The boundary condition is specified by the variable ``yn_periodic`` in the ``&system`` namelist.
 
-Calculations are usually achieved in two steps; first, the ground state calculation is carried out and then electron dynamics calculations in real time is carried out. A choice of the calculation mode or theory in the calculation is specified by the variable ``theory`` in the namelist ``&calculation``.
-In the typical way, the ground state calculation based on DFT is first carried out specifying ``theory = 'dft'``.
-Then the real-time electron dynamics calculation based on TDDFT is carried out specifying ``theory = 'tddft_pulse'``.
+Calculations are generally performed in two steps: first, a ground-state calculation is carried out, followed by a real-time electron dynamics simulation. The calculation mode or theory is specified by the variable ``theory`` in the ``&calculation`` namelist. Typically, a ground-state calculation based on DFT is performed by setting ``theory = 'dft'``. Then, a real-time electron dynamics calculation based on TDDFT is carried out by setting ``theory = 'tddft_pulse'``.
 
 In :any:`Exercises`, we provide six exercises that cover typical calculations feasible with SALMON.
 We also provide explanations of the input files used in these exercises, which can help you prepare input files for your own purposes.
 Additional examples of input files can be found in the `SALMON-inputs <https://github.com/SALMON-TDDFT/SALMON-inputs>`__ database.
 
-There are more than 20 groups of namelists. A complete list of namelist variables is given in the file ``SALMON/manual/input_variables.md``.
-Namelist variables that are used in our exercises are explained at :any:`Inputs`.
+There are more than 20 groups of namelists. A complete list of namelist variables is given in :any:`List of input keywords`.
 
 
 Run SALMON
 -----------------------------------
 
-Before running SALMON, the following preparations are required as described above: The executable file of ``salmon`` should be built from the source file of SALMON. An input file ``inputfile.inp`` and pseudopotential files should also be prepared.
+Before running SALMON, the following preparations are required, as described above: the salmon executable must be built from the source code, and both an input file (for example, ``inputfile.inp``) and pseudopotential files must be prepared.
 
-The execution of the calculation can be done as follows: In single process environment, type the following command::
+A calculation can be executed as follows:
 
-    $ salmon < inputfile.inp > fileout.out
+In a single-process environment, type the following command::
 
-(Here, it is assumed that the environment variable ``$PATH`` is appropriately specified for the SALMON executable.)
-In multiprocess environment in which the command to execute parallel calculations using MPI is ``mpiexec``, type the following command::
+  $ salmon < inputfile.inp > fileout.out
 
-    $ mpiexec -n NPROC salmon < inputfile.inp > fileout.out
+(Here, it is assumed that the environment variable ``$PATH`` is properly set to include the SALMON executable.)
 
-where NPROC is the number of MPI processes that you will use.
+In a multi-process environment, where the command for parallel execution via MPI is mpiexec, use the following::
 
-The execution command and the job submission procedure depends much on local environment. We summarize general conditions to execute SALMON:
+  $ mpiexec -n NPROC salmon < inputfile.inp > fileout.out
 
-- SALMON runs in both single-process and multi-process environments using MPI.
-- Executable file is prepared as ``salmon`` in the standard build procedure.
-- To start calculations, ``inputfile.inp`` should be read through ``stdin``.
+Here, ``NPROC`` is the number of MPI processes to be used.
+
+The execution command and job submission procedure may vary depending on the local environment. Below is a general summary of the conditions for running SALMON:
+
+- SALMON runs in both single-process and multi-process (MPI) environments.
+- The executable file is named ``salmon`` in the standard build process.
+- To begin a calculation, a input file must be provided via ``stdin``.
 
 
 MPI process distribution
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-SALMON provides three variables to determine the process distribution/allocation.
+SALMON provides three variables to control process distribution and allocation.
 
 - ``nproc_k``
 - ``nproc_ob``
 - ``nproc_rgrid(3)``
 
-In SALMON, the process distribution is determined automatically as default.
-However, in many situations, an explicit assignment of the process distribution
-will provide a better performance than the default setting.
+By default, SALMON automatically determines the process distribution.
+However, in many cases, explicitly specifying the process distribution can result in better performance than relying on the default settings.
 
-We recommend to distribute the processes as follows,
+We recommend the following strategy for process distribution:
 
-If you use k-points ( the number of k-points is greater than 1) and the number of 
+If you use k-points (the number of k-points is greater than 1) and the number of 
 the real-space grid (``num_rgrid``) is not very large (about 16^3):
 
   - First, assign many processes to ``nproc_k``.
