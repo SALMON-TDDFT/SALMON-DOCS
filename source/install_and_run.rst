@@ -37,15 +37,15 @@ Download
 -----------------
 
 The latest version of SALMON can be downloaded from `download page <http://salmon-tddft.jp/download.html>`__.
-You can also get the file by::
+You can also download the file using the following command::
 
   $ wget http://salmon-tddft.jp/download/SALMON-<VERSION>.tar.gz
 
-To extract files from the downloaded file ``SALMON-<VERSION>.tar.gz``, type the following command in the command-line::
+To extract the contents of the downloaded file ``SALMON-<VERSION>.tar.gz``, use the following command::
 
   $ tar -zxvf ./SALMON-<VERSION>.tar.gz
 
-After the extraction, the following directories will be created::
+After extraction, the following directories will be created::
 
   SALMON
     |- src          Source codes
@@ -113,16 +113,15 @@ See :any:`installation-cmake` describes Other way of the installation.
 Build using CMake
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Confirming that CMake of version 3.14.0 or later can be usable in your environment, proceed the following steps.
-We assume that you are in the directory ``SALMON``.
+After confirming that CMake version 3.14.0 or later is available in your environment, proceed with the following steps.
+We assume that you are currently in the ``SALMON`` directory.
 
-1. Create a new temporary directory ``build`` and move to the directory::
+1. Create a new temporary directory named ``build`` and move into it::
 
     $ mkdir build
     $ cd build
 
-
-2. Execute the python script ``configure.py`` and then make::
+2. Run the Python script ``configure.py``, then build and install SALMON::
 
     $ python ../configure.py --arch=<ARCHITECTURE> --prefix=<INSTALLATION_DIRECTORY>
     $ make
@@ -130,7 +129,8 @@ We assume that you are in the directory ``SALMON``.
 
 (Replace ``INSTALLATION_DIRECTORY`` with your desired installation directory. If this is not specified, the executable file will be created in the ``build`` directory.)
 
-In executing the python script, you need to specify ``ARCHITECTURE`` that indicates the architecture of the CPU in your computer system such as ``intel-avx512``. The options of the ``ARCHITECUTRE`` are as follows:
+When executing the Python script, you need to specify an ``ARCHITECTURE`` that represents the CPU architecture of your computer system, such as ``intel-avx512``.
+The main options for ``ARCHITECTURE`` are as follows:
 
 ==================  =======================================  ===================  =================
 arch                Detail                                   Compiler             Numerical Library
@@ -149,7 +149,7 @@ nvhpc-openacc-cuda  Nvidia OpenACC+CUDA (GPU)                Nvidia HPC Compiler
 ==================  =======================================  ===================  =================
 
 If there is no suitable option, you can customize a CMake configuration file or specify compilers and flags manually (See :any:`additional-options-in-configure`).
-If the build is successful, you will get a file ``salmon`` at the directory ``INSTALLATION_DIRECTORY``.
+If the build completes successfully, an executable file named ``salmon`` will be created in the ``INSTALLATION_DIRECTORY``.
 
 
 Files necessary to run SALMON
@@ -190,7 +190,7 @@ Unified-pseudopotential-format (NC type only in SALMON)    ``.upf``       http:/
 SALMON input file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-SALMON input file is composed of several blocks of namelists::
+The SALMON input file consists of several blocks of namelists, as shown below::
 
    &namelist1
      variable1 = int_value
@@ -201,9 +201,9 @@ SALMON input file is composed of several blocks of namelists::
      variable2 = int_value1, int_value2, int_value3
    /
 
-A block of namelists starts with a line beginning with ``&namelist`` and ends with a line containing only ``/``. These blocks may appear in any order.
+A block of namelists starts with a line beginning with ``&`` and ends with a line containing only ``/``. These blocks may appear in any order.
 
-Between the ``&namelist`` and ``/`` lines, variables and their corresponding values are described. Many variables have default values, so it is not necessary to specify all of them. Variable definitions can appear in any order within the block.
+Between the ``&`` and ``/`` lines, variables and their corresponding values are described. Many variables have default values, so it is not necessary to specify all of them. Variable definitions can appear in any order within the block.
 
 SALMON simulates electron dynamics in systems with either isolated or periodic boundary conditions. The boundary condition is specified by the variable ``yn_periodic`` in the ``&system`` namelist.
 
@@ -225,13 +225,13 @@ A calculation can be executed as follows:
 
 In a single-process environment, type the following command::
 
-  $ salmon < inputfile.inp > fileout.out
+  $ salmon < inputfile.inp > stdout.log
 
 (Here, it is assumed that the environment variable ``$PATH`` is properly set to include the SALMON executable.)
 
-In a multi-process environment, where the command for parallel execution via MPI is mpiexec, use the following::
+In a multi-process environment, where the command for parallel execution via MPI is ``mpiexec``, use the following::
 
-  $ mpiexec -n NPROC salmon < inputfile.inp > fileout.out
+  $ mpiexec -n NPROC salmon < inputfile.inp > stdout.log
 
 Here, ``NPROC`` is the number of MPI processes to be used.
 
@@ -278,7 +278,7 @@ Tips for large-scale calculation
 -----------------------------------
 
 We explain below some tips that will be useful to improve performance when you carry out 
-large scale simulations using world top-level supercomputers.
+large scale simulations using supercomputers.
 Therefore, the following contents will only be useful only for limited users.
 
 Improve the performance of the eigenvalues solver
@@ -442,7 +442,7 @@ Here, we used environment variables of OpenMPI, such as $OMPI_COMM_WORLD_LOCAL_S
 For MPI execution, use the following command::
 
     $ mpirun -np ${num_MPI_processes} -npernode ${num_MPI_processes_per_node} \
-       wrapper.sh ${program} < ${input} |& tee log.stdout
+       wrapper.sh ${program} < ${input} > stdout.log
 
 Here, ${program} is the path of SALMON, ${input} is the input file, etc.
 
@@ -539,11 +539,11 @@ Manual specifications of compiler and environment variables
 
 When executing ``configure.py``, users can specify several options and environment variables.
 
-The list of options of ``configure.py`` can be found by::
+A list of available options for ``configure.py`` can be displayed with the following command::
 
     $ python ../configure.py --help
 
-The major options are as follows:
+The main options are as follows:
 
 =======================================  ===================================================
 Commandline switch                       Detail
