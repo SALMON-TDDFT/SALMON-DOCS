@@ -205,6 +205,10 @@ A block of namelists starts with a line beginning with ``&`` and ends with a lin
 
 Between the ``&`` and ``/`` lines, variables and their corresponding values are described. Many variables have default values, so it is not necessary to specify all of them. Variable definitions can appear in any order within the block.
 
+Input variables are either integer, real (``real(8)``), or string (``character``) types. Some variables are arrays.
+A variable beginning with ``yn_`` is a string variable whose value is either ``'y'`` or ``'n'`` (i.e., yes or no).
+All string variables are case-insensitive.
+
 SALMON simulates electron dynamics in systems with either isolated or periodic boundary conditions. The boundary condition is specified by the variable ``yn_periodic`` in the ``&system`` namelist.
 
 Calculations are generally performed in two steps: first, a ground-state calculation is carried out, followed by a real-time electron dynamics simulation. The calculation mode or theory is specified by the variable ``theory`` in the ``&calculation`` namelist. Typically, a ground-state calculation based on DFT is performed by setting ``theory = 'dft'``. Then, a real-time electron dynamics calculation based on TDDFT is carried out by setting ``theory = 'tddft_pulse'``.
