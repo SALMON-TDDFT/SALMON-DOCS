@@ -421,15 +421,15 @@ Note: Currently, the performance of the TDDFT part is well-tuned but the DFT par
 Multi-GPU run
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For MPI calculations with multiple GPUs, the assignment of MPI processes to GPUs via CUDA_VISIBLE_DEVICES and the use of nvidia-cuda-mps-control can improve the performance of SALMON. The following example is a wrapper script for that::
+For MPI calculations with multiple GPUs, the assignment of MPI processes to GPUs via ``CUDA_VISIBLE_DEVICES`` and the use of ``nvidia-cuda-mps-control`` can improve the performance of SALMON. The following example is a wrapper script for using those::
 
     $ cat wrapper.sh
     #! /bin/bash
     ### wrapper.sh
     NCUDA_GPUS=${NCUDA_GPUS:-`nvidia-smi -L | wc -l`}
-    if $OMPI_COMM_WORLD_LOCAL_SIZE -gt $NCUDA_GPUS 
+    if [[ $OMPI_COMM_WORLD_LOCAL_SIZE -gt $NCUDA_GPUS ]]
     then
-      if $OMPI_COMM_WORLD_LOCAL_RANK -eq 0  
+      if [[ $OMPI_COMM_WORLD_LOCAL_RANK -eq 0 ]]
       then
         nvidia-cuda-mps-control -d
       fi
@@ -437,12 +437,12 @@ For MPI calculations with multiple GPUs, the assignment of MPI processes to GPUs
     fi
     export CUDA_VISIBLE_DEVICES=$((${OMPI_COMM_WORLD_LOCAL_RANK} % ${NCUDA_GPUS})) 
     exec $@
-    if $OMPI_COMM_WORLD_LOCAL_SIZE -gt $NCUDA_GPUS 
+    if [[ $OMPI_COMM_WORLD_LOCAL_SIZE -gt $NCUDA_GPUS ]]
     then
       echo quit | nvidia-cuda-mps-control 
     fi
 
-Here, we used environment variables of OpenMPI, such as $OMPI_COMM_WORLD_LOCAL_SIZE.
+Here, we used environment variables of OpenMPI, such as ``$OMPI_COMM_WORLD_LOCAL_SIZE``.
 For MPI execution, use the following command::
 
     $ mpirun -np ${num_MPI_processes} -npernode ${num_MPI_processes_per_node} \
