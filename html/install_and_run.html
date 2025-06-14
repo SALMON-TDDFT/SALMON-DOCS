@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Install and Run &mdash; SALMON software manual v.2.2.2 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" type="text/css" />
+      <link rel="stylesheet" href="_static/katex-math.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/contrib/auto-render.min.js"></script>
+        <script type="text/javascript" src="_static/katex_autorenderer.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Exercises" href="exercises.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SALMON software manual
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Install and Run</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#download">Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-and-install">Build and Install</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#checking-cmake-availability">Checking CMake availability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-of-cmake-pre-compiled-binary-of-linux">Installation of CMake (pre-compiled binary of Linux)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-using-cmake">Build using CMake</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#files-necessary-to-run-salmon">Files necessary to run SALMON</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pseudopotentials">Pseudopotentials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#salmon-input-file">SALMON input file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#run-salmon">Run SALMON</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mpi-process-distribution">MPI process distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tips-for-large-scale-calculation">Tips for large-scale calculation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#improve-the-performance-of-the-eigenvalues-solver">Improve the performance of the eigenvalues solver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#improve-the-performance-of-hartree-solver">Improve the performance of Hartree solver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#improve-io-performance-write-read-wavefunction">Improve IO performance (write/read wavefunction)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#improve-the-communication-performance-for-mesh-torus-network-system">Improve the communication performance for mesh-torus network system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gpu-acceleration">GPU acceleration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#multi-gpu-run">Multi-GPU run</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting-of-the-installation-process">Troubleshooting of the Installation Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation-of-cmake">Installation of CMake</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installation-by-package-manager">Installation by package manager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installation-from-source-code">Installation from source code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#appendix">Appendix</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#additional-options-in-configure-py-script">Additional options in configure.py script</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#manual-specifications-of-compiler-and-environment-variables">Manual specifications of compiler and environment variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#customize-cmake-file-for-arch">Customize CMake file for <code class="docutils literal notranslate"><span class="pre">--arch</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#required-libraries">Required libraries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-for-single-process-calculations">Build for single process calculations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-by-gnu-compiler-collection-gcc">Build by GNU Compiler Collection (GCC)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compilation-examples">Compilation examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#compilation-with-fftw-library">Compilation with FFTW library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-using-gnu-makefile">Build using GNU Makefile</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="exercises.html">Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input_keyword_list.html">List of input keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="release_log.html">Release History</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgements.html">Acknowledgements</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SALMON software manual</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Install and Run</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/install_and_run.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="install-and-run">
+<span id="id1"></span><h1>Install and Run<a class="headerlink" href="#install-and-run" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>In this guide, it is assumed that readers have a basic knowledge of Linux and its command line operations.
+For the installation of SALMON, following packages are required.</p>
+<ul class="simple">
+<li>Fortran90/C compiler. SALMON assumes users have one of the following compilers:<ul>
+<li>GCC (GNU Compiler Collection)</li>
+<li>Intel Compiler</li>
+<li>Fujitsu Compiler (at FX100 and A64FX)</li>
+<li>Nvidia HPC SDK Compiler</li>
+</ul>
+</li>
+<li>One of the following library packages for linear algebra:<ul>
+<li>Netlib BLAS/LAPACK/ScaLAPACK</li>
+<li>Intel Math Kernel Library (MKL)</li>
+<li>Fujitsu Scientific Subroutine Library 2 (SSL-II)</li>
+</ul>
+</li>
+<li>Build tools:<ul>
+<li>CMake</li>
+</ul>
+</li>
+</ul>
+<p>If you use other compilers, you may need to specify them manually or customize the configuration files for CMake (see <a class="reference internal" href="#additional-options-in-configure"><span class="std std-ref">Additional options in configure.py script</span></a>).
+If no numerical libraries are installed on your system, the BLAS/LAPACK package will be automatically downloaded and built during the compilation process.</p>
+<p>For installing SALMON, we recommend using CMake as the primary method.
+If you encounter any issues using CMake in your environment, you may use GNU Make as an alternative.
+If you run into problems during the build process, refer to <a class="reference internal" href="#troubleshooting-install"><span class="std std-ref">Troubleshooting of the Installation Process</span></a>.</p>
+</div>
+<div class="section" id="download">
+<h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<p>The latest version of SALMON can be downloaded from <a class="reference external" href="http://salmon-tddft.jp/download.html">download page</a>.
+You can also download the file using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget http://salmon-tddft.jp/download/SALMON-&lt;VERSION&gt;.tar.gz
+</pre></div>
+</div>
+<p>To extract the contents of the downloaded file <code class="docutils literal notranslate"><span class="pre">SALMON-&lt;VERSION&gt;.tar.gz</span></code>, use the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tar -zxvf ./SALMON-&lt;VERSION&gt;.tar.gz
+</pre></div>
+</div>
+<p>After extraction, the following directories will be created:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SALMON</span>
+  <span class="o">|-</span> <span class="n">src</span>          <span class="n">Source</span> <span class="n">codes</span>
+  <span class="o">|-</span> <span class="n">samples</span>      <span class="n">Sample</span> <span class="nb">input</span> <span class="n">files</span>
+  <span class="o">|-</span> <span class="n">cmakefiles</span>   <span class="n">CMake</span> <span class="n">related</span> <span class="n">files</span>
+  <span class="o">|-</span> <span class="n">platforms</span>    <span class="n">CMake</span> <span class="n">configuration</span> <span class="n">files</span>
+  <span class="o">|-</span> <span class="n">gnumakefiles</span> <span class="n">GNU</span> <span class="n">Makefiles</span> <span class="k">for</span> <span class="n">building</span>
+  <span class="o">|</span> <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="build-and-install">
+<h2>Build and Install<a class="headerlink" href="#build-and-install" title="Permalink to this headline">¶</a></h2>
+<p>To compile SALMON and create the executable binary, we recommend using CMake as the primary method.
+If you are unable to build SALMON with CMake in your environment, you may use GNU Make as an alternative (<a class="reference internal" href="#build-gnu-make"><span class="std std-ref">Build using GNU Makefile</span></a>).</p>
+<div class="section" id="checking-cmake-availability">
+<h3>Checking CMake availability<a class="headerlink" href="#checking-cmake-availability" title="Permalink to this headline">¶</a></h3>
+<p>First, check whether CMake is available in your environment.
+Type the following command in a Linux terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cmake --version
+</pre></div>
+</div>
+<p>If CMake is not installed in your system, an error message such as <code class="docutils literal notranslate"><span class="pre">cmake:</span> <span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></code> will appear.
+If CMake is installed on your system, the version number will be shown.
+To build SALMON, CMake of version 3.14.0 or later is required.
+If you confirm that CMake of version 3.14.0 or later is installed in your system, proceed to <a class="reference internal" href="#build-cmake"><span class="std std-ref">Build using CMake</span></a>.
+However, we realize that old versions of CMake are installed in many systems.
+If CMake is not installed or CMake of older versions is installed in your system, you need to install the new version by yourself.
+It is a simple procedure and explained below.</p>
+</div>
+<div class="section" id="installation-of-cmake-pre-compiled-binary-of-linux">
+<h3>Installation of CMake (pre-compiled binary of Linux)<a class="headerlink" href="#installation-of-cmake-pre-compiled-binary-of-linux" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://cmake.org/">CMake</a> is a cross-platform build tool.
+The simplest way to make CMake usable in your environment is to get <a class="reference external" href="https://cmake.org/download/">the binary distribution of CMake from the download page</a>. (The file name of the binary distribution will be <code class="docutils literal notranslate"><span class="pre">cmake-&lt;VERSION&gt;-&lt;PLATFORM&gt;.tar.gz</span></code>). In standard Linux environment, a file for the platform of Linux x86_64 will be appropriate.</p>
+<p>To download the file, proceed as follows: We assume that you are in the directory that you extracted files from the downloaded file of SALMON,
+and that you will use the version 3.16.8. First get the URL of the download link from your browser, and use <code class="docutils literal notranslate"><span class="pre">wget</span></code> command in your Linux command-line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ wget https://cmake.org/files/v3.16/cmake-3.16.8-Linux-x86_64.tar.gz
+</pre></div>
+</div>
+<p>Next, unpack the archive by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tar -zxvf cmake-3.16.8-Linux-x86_64.tar.gz
+</pre></div>
+</div>
+<p>and you will have the binary <code class="docutils literal notranslate"><span class="pre">make-3.16.8-Linux-x86_64/bin/cmake</span></code> in your directory.</p>
+<p>To make the <code class="docutils literal notranslate"><span class="pre">cmake</span></code> command usable in your command-line, you need to modify the environment variable <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> so that the executable of CMake are settled inside the directory specified in your <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>.
+If you use the bash shell, you need to modify the file <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> that specifies the <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> variable. It can be done by typing the following command in your login directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export PATH=&lt;SALMON_INSTALLATION_DIRECTORY&gt;/cmake-3.16.8-Linux-x86_64/bin:$PATH
+</pre></div>
+</div>
+<p>and then reload the configuration by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ source ~/.bashrc
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#installation-cmake"><span class="std std-ref">Installation of CMake</span></a> describes Other way of the installation.</p>
+</div>
+<div class="section" id="build-using-cmake">
+<span id="build-cmake"></span><h3>Build using CMake<a class="headerlink" href="#build-using-cmake" title="Permalink to this headline">¶</a></h3>
+<p>After confirming that CMake version 3.14.0 or later is available in your environment, proceed with the following steps.
+We assume that you are currently in the <code class="docutils literal notranslate"><span class="pre">SALMON</span></code> directory.</p>
+<ol class="arabic">
+<li><p class="first">Create a new temporary directory named <code class="docutils literal notranslate"><span class="pre">build</span></code> and move into it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir build
+$ cd build
+</pre></div>
+</div>
+</li>
+<li><p class="first">Run the Python script <code class="docutils literal notranslate"><span class="pre">configure.py</span></code>, then build and install SALMON:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python ../configure.py --arch=&lt;ARCHITECTURE&gt; --prefix=&lt;INSTALLATION_DIRECTORY&gt;
+$ make
+$ make install
+</pre></div>
+</div>
+</li>
+</ol>
+<p>(Replace <code class="docutils literal notranslate"><span class="pre">INSTALLATION_DIRECTORY</span></code> with your desired installation directory. If this is not specified, the executable file will be created in the <code class="docutils literal notranslate"><span class="pre">build</span></code> directory.)</p>
+<p>When executing the Python script, you need to specify an <code class="docutils literal notranslate"><span class="pre">ARCHITECTURE</span></code> that represents the CPU architecture of your computer system, such as <code class="docutils literal notranslate"><span class="pre">intel-avx512</span></code>.
+The main options for <code class="docutils literal notranslate"><span class="pre">ARCHITECTURE</span></code> are as follows:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="42%" />
+<col width="20%" />
+<col width="18%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">arch</th>
+<th class="head">Detail</th>
+<th class="head">Compiler</th>
+<th class="head">Numerical Library</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>intel-oneapi</td>
+<td>Intel oneAPI (cross-architecture)</td>
+<td>Intel Compiler</td>
+<td>Intel MKL</td>
+</tr>
+<tr class="row-odd"><td>intel-knl</td>
+<td>Intel Knights Landing</td>
+<td>Intel Compiler</td>
+<td>Intel MKL</td>
+</tr>
+<tr class="row-even"><td>intel-knc</td>
+<td>Intel Knights Corner</td>
+<td>Intel Compiler</td>
+<td>Intel MKL</td>
+</tr>
+<tr class="row-odd"><td>intel-avx</td>
+<td>Intel Processer (Ivy-, Sandy-Bridge)</td>
+<td>Intel Compiler</td>
+<td>Intel MKL</td>
+</tr>
+<tr class="row-even"><td>intel-avx2</td>
+<td>Intel Processer (Haswell, Broadwell ..)</td>
+<td>Intel Compiler</td>
+<td>Intel MKL</td>
+</tr>
+<tr class="row-odd"><td>intel-avx512</td>
+<td>Intel Processer (Skylake-SP)</td>
+<td>Intel Compiler</td>
+<td>Intel MKL</td>
+</tr>
+<tr class="row-even"><td>fujitsu-fx100</td>
+<td>FX100 Supercomputer</td>
+<td>Fujitsu Compiler</td>
+<td>SSL-II</td>
+</tr>
+<tr class="row-odd"><td>fujitsu-a64fx-ea</td>
+<td>A64FX processor (Fugaku, FX1000, FX700)</td>
+<td>Fujitsu Compiler</td>
+<td>SSL-II</td>
+</tr>
+<tr class="row-even"><td>nvhpc-openmp</td>
+<td>Nvidia OpenMP (CPU)</td>
+<td>Nvidia HPC Compiler</td>
+<td>Nvidia HPC SDK</td>
+</tr>
+<tr class="row-odd"><td>nvhpc-openacc</td>
+<td>Nvidia OpenACC (GPU)</td>
+<td>Nvidia HPC Compiler</td>
+<td>Nvidia HPC SDK</td>
+</tr>
+<tr class="row-even"><td>nvhpc-openacc-cuda</td>
+<td>Nvidia OpenACC+CUDA (GPU)</td>
+<td>Nvidia HPC Compiler</td>
+<td>Nvidia HPC SDK</td>
+</tr>
+</tbody>
+</table>
+<p>If there is no suitable option, you can customize a CMake configuration file or specify compilers and flags manually (See <a class="reference internal" href="#additional-options-in-configure"><span class="std std-ref">Additional options in configure.py script</span></a>).
+If the build completes successfully, an executable file named <code class="docutils literal notranslate"><span class="pre">salmon</span></code> will be created in the <code class="docutils literal notranslate"><span class="pre">INSTALLATION_DIRECTORY</span></code>.</p>
+</div>
+</div>
+<div class="section" id="files-necessary-to-run-salmon">
+<h2>Files necessary to run SALMON<a class="headerlink" href="#files-necessary-to-run-salmon" title="Permalink to this headline">¶</a></h2>
+<p>To run SALMON, at least two types of files are required for any calculations.
+One is a text file containing input variables of SALMON (the SALMON input file), which should be read from standard input (<code class="docutils literal notranslate"><span class="pre">stdin</span></code>).
+This file must be prepared in Fortran90 namelist format.
+Pseudopotential files for the relevant elements are also required.
+Depending on your purpose, additional files may be needed.
+For example, the atomic coordinates of the target material can either be written in the input file or provided in a separate file.</p>
+<div class="section" id="pseudopotentials">
+<h3>Pseudopotentials<a class="headerlink" href="#pseudopotentials" title="Permalink to this headline">¶</a></h3>
+<p>SALMON utilizes the norm-conserving (NC) pseudpotential.
+Filenames of pseudopotentials should be written in the input file.</p>
+<p>You can find pseudopotentials for some elements in the sample files provided in <a class="reference internal" href="exercises.html#exercises"><span class="std std-ref">Exercises</span></a>.
+SALMON supports several formats of pseudopotentials, as listed below.
+For example, pseudopotentials with the <code class="docutils literal notranslate"><span class="pre">.fhi</span></code> extension can be obtained from the ABINIT website; these are part of the older atomic data files used by the ABINIT code.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="37%" />
+<col width="8%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Pseudopotential</th>
+<th class="head">extension</th>
+<th class="head">Website</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Fritz-Haber-Institute (FHI) pseudopotentials</td>
+<td><code class="docutils literal notranslate"><span class="pre">.fhi</span></code></td>
+<td><a class="reference external" href="https://abinit.github.io/abinit_web/ATOMICDATA/LDA_FHI.zip">https://abinit.github.io/abinit_web/ATOMICDATA/LDA_FHI.zip</a>
+(for LDA),
+<a class="reference external" href="https://abinit.github.io/abinit_web/ATOMICDATA/fhi.zip">https://abinit.github.io/abinit_web/ATOMICDATA/fhi.zip</a>
+(for GGA)</td>
+</tr>
+<tr class="row-odd"><td>Pseudopotentials for the OpenMX code</td>
+<td><code class="docutils literal notranslate"><span class="pre">.vps</span></code></td>
+<td><a class="reference external" href="https://www.openmx-square.org/vps_pao2019/">https://www.openmx-square.org/vps_pao2019/</a></td>
+</tr>
+<tr class="row-even"><td>Format 8 for ABINIT norm-conserving pseudopotentials</td>
+<td><code class="docutils literal notranslate"><span class="pre">.psp8</span></code></td>
+<td><a class="reference external" href="https://abinit.github.io/abinit_web/pseudopotential.html">https://abinit.github.io/abinit_web/pseudopotential.html</a> ,
+<a class="reference external" href="http://www.pseudo-dojo.org/">http://www.pseudo-dojo.org/</a></td>
+</tr>
+<tr class="row-odd"><td>Unified-pseudopotential-format (NC type only in SALMON)</td>
+<td><code class="docutils literal notranslate"><span class="pre">.upf</span></code></td>
+<td><a class="reference external" href="http://pseudopotentials.quantum-espresso.org/home/unified-pseudopotential-format">http://pseudopotentials.quantum-espresso.org/home/unified-pseudopotential-format</a> ,
+<a class="reference external" href="http://www.pseudo-dojo.org/">http://www.pseudo-dojo.org/</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="salmon-input-file">
+<h3>SALMON input file<a class="headerlink" href="#salmon-input-file" title="Permalink to this headline">¶</a></h3>
+<p>The SALMON input file consists of several blocks of namelists, as shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">namelist1</span>
+  <span class="n">variable1</span> <span class="o">=</span> <span class="n">int_value</span>
+  <span class="n">variable2</span> <span class="o">=</span> <span class="s1">&#39;char_value&#39;</span>
+<span class="o">/</span>
+<span class="o">&amp;</span><span class="n">namelist2</span>
+  <span class="n">variable1</span> <span class="o">=</span> <span class="n">real8_value</span>
+  <span class="n">variable2</span> <span class="o">=</span> <span class="n">int_value1</span><span class="p">,</span> <span class="n">int_value2</span><span class="p">,</span> <span class="n">int_value3</span>
+<span class="o">/</span>
+</pre></div>
+</div>
+<p>A block of namelists starts with a line beginning with <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> and ends with a line containing only <code class="docutils literal notranslate"><span class="pre">/</span></code>. These blocks may appear in any order.</p>
+<p>Between the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> and <code class="docutils literal notranslate"><span class="pre">/</span></code> lines, variables and their corresponding values are described. Many variables have default values, so it is not necessary to specify all of them. Variable definitions can appear in any order within the block.</p>
+<p>Input variables are either integer, real (<code class="docutils literal notranslate"><span class="pre">real(8)</span></code>), or string (<code class="docutils literal notranslate"><span class="pre">character</span></code>) types. Some variables are arrays.
+A variable beginning with <code class="docutils literal notranslate"><span class="pre">yn_</span></code> is a string variable whose value is either <code class="docutils literal notranslate"><span class="pre">'y'</span></code> or <code class="docutils literal notranslate"><span class="pre">'n'</span></code> (i.e., yes or no).
+All string variables are case-insensitive.</p>
+<p>SALMON simulates electron dynamics in systems with either isolated or periodic boundary conditions. The boundary condition is specified by the variable <code class="docutils literal notranslate"><span class="pre">yn_periodic</span></code> in the <code class="docutils literal notranslate"><span class="pre">&amp;system</span></code> namelist.</p>
+<p>Calculations are generally performed in two steps: first, a ground-state calculation is carried out, followed by a real-time electron dynamics simulation. The calculation mode or theory is specified by the variable <code class="docutils literal notranslate"><span class="pre">theory</span></code> in the <code class="docutils literal notranslate"><span class="pre">&amp;calculation</span></code> namelist. Typically, a ground-state calculation based on DFT is performed by setting <code class="docutils literal notranslate"><span class="pre">theory</span> <span class="pre">=</span> <span class="pre">'dft'</span></code>. Then, a real-time electron dynamics calculation based on TDDFT is carried out by setting <code class="docutils literal notranslate"><span class="pre">theory</span> <span class="pre">=</span> <span class="pre">'tddft_pulse'</span></code>.</p>
+<p>In <a class="reference internal" href="exercises.html#exercises"><span class="std std-ref">Exercises</span></a>, we provide six exercises that cover typical calculations feasible with SALMON.
+We also provide explanations of the input files used in these exercises, which can help you prepare input files for your own purposes.
+Additional examples of input files can be found in the <a class="reference external" href="https://github.com/SALMON-TDDFT/SALMON-inputs">SALMON-inputs</a> database.</p>
+<p>There are more than 20 groups of namelists. A complete list of namelist variables is given in <a class="reference internal" href="input_keyword_list.html#list-of-input-keywords"><span class="std std-ref">List of input keywords</span></a>.</p>
+</div>
+</div>
+<div class="section" id="run-salmon">
+<h2>Run SALMON<a class="headerlink" href="#run-salmon" title="Permalink to this headline">¶</a></h2>
+<p>Before running SALMON, the following preparations are required, as described above: the salmon executable must be built from the source code, and both an input file (for example, <code class="docutils literal notranslate"><span class="pre">inputfile.inp</span></code>) and pseudopotential files must be prepared.</p>
+<p>A calculation can be executed as follows:</p>
+<p>In a single-process environment, type the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ salmon &lt; inputfile.inp &gt; stdout.log
+</pre></div>
+</div>
+<p>(Here, it is assumed that the environment variable <code class="docutils literal notranslate"><span class="pre">$PATH</span></code> is properly set to include the SALMON executable.)</p>
+<p>In a multi-process environment, where the command for parallel execution via MPI is <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code>, use the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpiexec -n NPROC salmon &lt; inputfile.inp &gt; stdout.log
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">NPROC</span></code> is the number of MPI processes to be used.</p>
+<p>The execution command and job submission procedure may vary depending on the local environment. Below is a general summary of the conditions for running SALMON:</p>
+<ul class="simple">
+<li>SALMON runs in both single-process and multi-process (MPI) environments.</li>
+<li>The executable file is named <code class="docutils literal notranslate"><span class="pre">salmon</span></code> in the standard build process.</li>
+<li>To begin a calculation, a input file must be provided via <code class="docutils literal notranslate"><span class="pre">stdin</span></code>.</li>
+</ul>
+<div class="section" id="mpi-process-distribution">
+<h3>MPI process distribution<a class="headerlink" href="#mpi-process-distribution" title="Permalink to this headline">¶</a></h3>
+<p>SALMON provides three variables to control process distribution and allocation.</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">nproc_k</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">nproc_ob</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">nproc_rgrid(3)</span></code></li>
+</ul>
+<p>By default, SALMON automatically determines the process distribution.
+However, in many cases, explicitly specifying the process distribution can result in better performance than relying on the default settings.</p>
+<p>We recommend the following strategy for process distribution:</p>
+<p>If you use k-points (the number of k-points is greater than 1) and the number of
+the real-space grid (<code class="docutils literal notranslate"><span class="pre">num_rgrid</span></code>) is not very large (about 16^3):</p>
+<blockquote>
+<div><ul class="simple">
+<li>First, assign many processes to <code class="docutils literal notranslate"><span class="pre">nproc_k</span></code>.</li>
+<li>Then, assign the remaining processes to <code class="docutils literal notranslate"><span class="pre">nproc_ob</span></code>.</li>
+<li>Not dividing the spatial grid,  <code class="docutils literal notranslate"><span class="pre">nproc_rgrid</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">1,</span> <span class="pre">1</span></code>.</li>
+</ul>
+</div></blockquote>
+<p>Else:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">First, assign the processes to <code class="docutils literal notranslate"><span class="pre">nproc_ob</span></code>.</p>
+</li>
+<li><p class="first">Then, assign the remaining processes to <code class="docutils literal notranslate"><span class="pre">nproc_rgrid</span></code>.</p>
+<ul class="simple">
+<li>If real-space grid size (<code class="docutils literal notranslate"><span class="pre">num_rgrid(1:3)</span> <span class="pre">=</span> <span class="pre">al(1:3)</span> <span class="pre">/</span> <span class="pre">dl(1:3)</span></code>) is equal to or larger than about 64^3,</li>
+</ul>
+<p>you should find a balanced distribution between <code class="docutils literal notranslate"><span class="pre">nproc_rgrid</span></code> and <code class="docutils literal notranslate"><span class="pre">nproc_ob</span></code>.</p>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="tips-for-large-scale-calculation">
+<span id="for-large-scale-simulation"></span><h2>Tips for large-scale calculation<a class="headerlink" href="#tips-for-large-scale-calculation" title="Permalink to this headline">¶</a></h2>
+<p>We explain below some tips that will be useful to improve performance when you carry out
+large scale simulations using supercomputers.
+Therefore, the following contents will only be useful only for limited users.</p>
+<div class="section" id="improve-the-performance-of-the-eigenvalues-solver">
+<h3>Improve the performance of the eigenvalues solver<a class="headerlink" href="#improve-the-performance-of-the-eigenvalues-solver" title="Permalink to this headline">¶</a></h3>
+<p>In DFT calculations of large systems, subspace diagonalization becomes the performance bottleneck
+in the entire calculation. Therefore, it is important to use a parallel eigenvalues solver.
+In SALMON, a LAPACK routine without parallelization is used for the diagonalization as default.
+As parallelized solvers, ScaLAPACK and EigenExa are usable.
+To use them, it is necessary to rebuild SALMON enabling ScaLAPACK/EigenExa.
+You can find the instruction in <a class="reference internal" href="#additional-options-in-configure"><span class="std std-ref">Additional options in configure.py script</span></a>.</p>
+<p>To execute SALMON using ScaLAPACK/EigenExa, either <code class="docutils literal notranslate"><span class="pre">yn_scalapack</span> <span class="pre">=</span> <span class="pre">'y'</span></code> or <code class="docutils literal notranslate"><span class="pre">yn_eigenexa</span> <span class="pre">=</span> <span class="pre">'y'</span></code> should be
+included in the inputfile:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&amp;parallel
+  yn_scalapack = &#39;y&#39;         ! use ScaLAPACK for diagonalization
+  !yn_eigenexa  = &#39;y&#39;        ! use EigenExa
+/
+</pre></div>
+</div>
+<p>ScaLAPACK/EigenExa solves the eigenvalue problem with <code class="docutils literal notranslate"><span class="pre">nproc_ob</span></code> process distribution.
+If <code class="docutils literal notranslate"><span class="pre">nproc_ob</span> <span class="pre">=</span> <span class="pre">1</span></code>, ScaLAPACK/EigenExa will perform in the same way as the LAPACK library.</p>
+</div>
+<div class="section" id="improve-the-performance-of-hartree-solver">
+<h3>Improve the performance of Hartree solver<a class="headerlink" href="#improve-the-performance-of-hartree-solver" title="Permalink to this headline">¶</a></h3>
+<p>For periodic systems, a Fourier transformation is used to solve the Poisson equation (to calculate the Hartree potential).
+In SALMON, a simple Fourier transformation without Fast Fourier Transformation (FFT) is used as default.
+In SALMON, a parallelized FFT routine, FFTE, is usable and works efficiently for large systems.
+In using FFTE, the following conditions should be satisfied:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">num_rgrid</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">mod</span> <span class="n">nproc_rgrid</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">num_rgrid</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="n">mod</span> <span class="n">nproc_rgrid</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">num_rgrid</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="n">mod</span> <span class="n">nproc_rgrid</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">num_rgrid</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">mod</span> <span class="n">nproc_rgrid</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">In</span> <span class="n">addition</span><span class="p">,</span> <span class="n">the</span> <span class="n">prime</span> <span class="n">factors</span> <span class="k">for</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">real</span><span class="o">-</span><span class="n">space</span> <span class="n">grid</span> <span class="n">of</span> <span class="n">each</span> <span class="n">direction</span> <span class="p">(</span><span class="n">num_rgrid</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">))</span> <span class="n">must</span> <span class="n">be</span> <span class="n">a</span> <span class="n">combination</span> <span class="n">of</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="ow">or</span> <span class="mf">5.</span>
+</pre></div>
+</div>
+<p>To use FFTE, <code class="docutils literal notranslate"><span class="pre">yn_ffte</span> <span class="pre">=</span> <span class="pre">'y'</span></code> should be included in the input file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&amp;</span><span class="n">parallel</span>
+  <span class="n">yn_ffte</span> <span class="o">=</span> <span class="s1">&#39;y&#39;</span>
+<span class="o">/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="improve-io-performance-write-read-wavefunction">
+<h3>Improve IO performance (write/read wavefunction)<a class="headerlink" href="#improve-io-performance-write-read-wavefunction" title="Permalink to this headline">¶</a></h3>
+<p>Almost all supercomputer systems provide distributed filesystems such as Lustre.
+Distributed filesystems are equipped with a meta-data server (MDS) and an object-storage server (OST).
+The OST stores real user data files, and the MDS stores the address of the user date files in the OST.
+When accessing to the data files in the OST, the process send a query about the OST address to MDS.
+Then, a network contention may occur in the query process.</p>
+<p>In most implementations of the filesystem, the MDS that replies to the query is determined by the directory structure.
+For a calculation in which k-point is not used,
+<code class="docutils literal notranslate"><span class="pre">method_wf_distributor</span></code> and <code class="docutils literal notranslate"><span class="pre">nblock_wf_distribute</span></code> are prepared to reduce the network contention:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&amp;control
+  method_wf_distributor = &#39;slice&#39; ! every orbital function is stored as a single file.
+  nblock_wf_distribute  = 32      ! files of 32 orbital functions are stored in one directory.
+/
+</pre></div>
+</div>
+</div>
+<div class="section" id="improve-the-communication-performance-for-mesh-torus-network-system">
+<h3>Improve the communication performance for mesh-torus network system<a class="headerlink" href="#improve-the-communication-performance-for-mesh-torus-network-system" title="Permalink to this headline">¶</a></h3>
+<p>Large-scale supercomputers often adopt a mesh-torus network system such as Cray dragon-fly and Fujitsu Tofu to achieve
+high scalability with relatively low cost.
+In SALMON, a special MPI process distribution (communicator creation rule) is prepared to improve the performance
+in large-scale mesh-torus network systems.</p>
+<p>Currently, we provide the communicator creation rule for &quot;Supercomputer Fugaku&quot;,
+which is developed by RIKEN R-CCS and Fujitsu limited.
+Fugaku is equipped with a 6-D mesh-torus network which is called &quot;Tofu-D&quot;.
+Users may control it as a 3-D logical network.
+SALMON utilizes 5-D array (wavefunction(x, y, z, orbital, k-point)) as a domain for parallelization.
+We create a map that connects the 3-D network to the 5-D array distribution.</p>
+<p>We introduce the following variables and conditons to assign the 3-D mesh-torus network to the 5-D array distribution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PW</span>           <span class="o">=</span> <span class="n">nproc_ob</span> <span class="o">*</span> <span class="n">nproc_k</span>
+<span class="p">(</span><span class="n">PX</span><span class="p">,</span> <span class="n">PY</span><span class="p">,</span> <span class="n">PZ</span><span class="p">)</span> <span class="o">=</span> <span class="n">nproc_rgrid</span>
+<span class="n">PPN</span>          <span class="o">=</span> <span class="s1">&#39;# of process per node&#39;</span> <span class="p">(</span><span class="n">we</span> <span class="n">recommend</span> <span class="n">the</span> <span class="n">value</span> <span class="mi">4</span> <span class="ow">in</span> <span class="n">Fugaku</span><span class="p">)</span>
+
+<span class="n">Requested</span> <span class="n">process</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="n">PX</span><span class="p">,</span> <span class="n">PY</span><span class="p">,</span> <span class="n">PZ</span><span class="p">,</span> <span class="n">PW</span><span class="p">)</span>
+<span class="n">Tofu</span><span class="o">-</span><span class="n">D</span> <span class="n">network</span>    <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="n">TX</span><span class="p">,</span> <span class="n">TY</span><span class="p">,</span> <span class="n">TZ</span><span class="p">)</span>
+<span class="n">Actual</span> <span class="n">process</span>    <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="n">TX</span> <span class="o">*</span> <span class="n">PPN</span><span class="p">,</span> <span class="n">TY</span><span class="p">,</span> <span class="n">TZ</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">process_allocation</span> <span class="o">==</span> <span class="s1">&#39;grid_sequential&#39;</span><span class="p">):</span>
+  <span class="n">PW</span>  <span class="o">=</span> <span class="n">PW1</span> <span class="o">*</span> <span class="n">PW2</span> <span class="o">*</span> <span class="n">PW3</span>
+  <span class="n">PW1</span> <span class="o">=</span> <span class="p">(</span><span class="n">TX</span> <span class="o">*</span> <span class="n">PPN</span><span class="p">)</span> <span class="o">/</span> <span class="n">PX</span>
+  <span class="n">PW2</span> <span class="o">=</span> <span class="n">TY</span>         <span class="o">/</span> <span class="n">PY</span>
+  <span class="n">PW3</span> <span class="o">=</span> <span class="n">TZ</span>         <span class="o">/</span> <span class="n">PZ</span>
+  <span class="n">TX</span>  <span class="o">=</span> <span class="p">(</span><span class="n">PX</span> <span class="o">*</span> <span class="n">PW1</span><span class="p">)</span> <span class="o">/</span> <span class="n">PPN</span>
+  <span class="n">TY</span>  <span class="o">=</span> <span class="n">PY</span> <span class="o">*</span> <span class="n">PW2</span>
+  <span class="n">TZ</span>  <span class="o">=</span> <span class="n">PZ</span> <span class="o">*</span> <span class="n">PW3</span>
+
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">process_allocation</span> <span class="o">==</span> <span class="s1">&#39;orbital_sequential&#39;</span><span class="p">):</span>
+  <span class="n">PX</span>  <span class="o">=</span> <span class="n">PX1</span> <span class="o">*</span> <span class="n">PX2</span> <span class="o">*</span> <span class="n">PX3</span>
+  <span class="n">PX1</span> <span class="o">=</span> <span class="p">(</span><span class="n">TX</span> <span class="o">*</span> <span class="n">PPN</span><span class="p">)</span> <span class="o">/</span> <span class="n">PW</span>
+  <span class="n">PX2</span> <span class="o">=</span> <span class="n">TY</span>         <span class="o">/</span> <span class="n">PY</span>
+  <span class="n">PX3</span> <span class="o">=</span> <span class="n">TZ</span>         <span class="o">/</span> <span class="n">PZ</span>
+  <span class="n">TX</span>  <span class="o">=</span> <span class="p">(</span><span class="n">PW</span> <span class="o">*</span> <span class="n">PX1</span><span class="p">)</span> <span class="o">/</span> <span class="n">PPN</span>
+  <span class="n">TY</span>  <span class="o">=</span> <span class="n">PY</span> <span class="o">*</span> <span class="n">PX2</span>
+  <span class="n">TZ</span>  <span class="o">=</span> <span class="n">PZ</span> <span class="o">*</span> <span class="n">PX3</span>
+</pre></div>
+</div>
+<p>From these conditions, you can determine the suitable process distribution and the Tofu-D network shape (compute node shape).
+<code class="docutils literal notranslate"><span class="pre">process_allocation</span></code> input variable controls the order of the process distribution.
+It indicates which communications should be executed in closer processes.</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">process_allocation</span> <span class="pre">=</span> <span class="pre">'grid_sequential'</span></code><ul>
+<li><code class="docutils literal notranslate"><span class="pre">(PX,</span> <span class="pre">PY,</span> <span class="pre">PZ,</span> <span class="pre">PW)</span></code>, <code class="docutils literal notranslate"><span class="pre">nproc_rgrid</span></code> major ordering</li>
+<li>improves <code class="docutils literal notranslate"><span class="pre">nproc_rgrid</span></code> related communication performance</li>
+<li>communicator: <code class="docutils literal notranslate"><span class="pre">s_parallel_info::icomm_r,</span> <span class="pre">icomm_x,</span> <span class="pre">icomm_y,</span> <span class="pre">icomm_z,</span> <span class="pre">icomm_xy</span></code></li>
+<li>suitable <code class="docutils literal notranslate"><span class="pre">theory</span></code>: <code class="docutils literal notranslate"><span class="pre">'dft'</span></code> and <code class="docutils literal notranslate"><span class="pre">'dft_md'</span></code></li>
+</ul>
+</li>
+<li><code class="docutils literal notranslate"><span class="pre">process_allocation</span> <span class="pre">=</span> <span class="pre">'orbital_sequential'</span></code><ul>
+<li><code class="docutils literal notranslate"><span class="pre">(PW,</span> <span class="pre">PY,</span> <span class="pre">PZ,</span> <span class="pre">PX)</span></code>, <code class="docutils literal notranslate"><span class="pre">nproc_ob</span></code> major ordering</li>
+<li>improves <code class="docutils literal notranslate"><span class="pre">nproc_ob</span></code> related communication performance</li>
+<li>communicator: <code class="docutils literal notranslate"><span class="pre">s_parallel_info::icomm_o</span> <span class="pre">and</span> <span class="pre">icomm_ko</span></code></li>
+<li>suitable <code class="docutils literal notranslate"><span class="pre">theory</span></code>: <code class="docutils literal notranslate"><span class="pre">'tddft_response',</span> <span class="pre">'tddft_pulse',</span> <span class="pre">'single_scale_maxwell_tddft'</span></code> and <code class="docutils literal notranslate"><span class="pre">'multi_scale_maxwell_tddft'</span></code></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="gpu-acceleration">
+<span id="gpu"></span><h3>GPU acceleration<a class="headerlink" href="#gpu-acceleration" title="Permalink to this headline">¶</a></h3>
+<p>GPU acceleration (OpenACC or OpenACC+CUDA) for the DFT/TDDFT computation is available.
+For compiling SALMON for GPUs, specify <code class="docutils literal notranslate"><span class="pre">--arch=nvhpc-openacc</span></code> (OpenACC, recommended) or <code class="docutils literal notranslate"><span class="pre">--arch=nvhpc-openacc-cuda</span></code> (OpenACC+CUDA) option when executing <code class="docutils literal notranslate"><span class="pre">configure.py</span></code>.
+This option is currently under development and tested only for NVIDIA HPC SDK compiler with NVIDIA GPUs.</p>
+<p>Note: Currently, the performance of the TDDFT part is well-tuned but the DFT part is not. We recommend executing DFT (ground-state) calculations on CPUs and TDDFT calculations on GPUs.</p>
+<div class="section" id="multi-gpu-run">
+<h4>Multi-GPU run<a class="headerlink" href="#multi-gpu-run" title="Permalink to this headline">¶</a></h4>
+<p>For MPI calculations with multiple GPUs, the assignment of MPI processes to GPUs via <code class="docutils literal notranslate"><span class="pre">CUDA_VISIBLE_DEVICES</span></code> and the use of <code class="docutils literal notranslate"><span class="pre">nvidia-cuda-mps-control</span></code> can improve the performance of SALMON. The following example is a wrapper script for using those:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat wrapper.sh
+#! /bin/bash
+### wrapper.sh
+NCUDA_GPUS=${NCUDA_GPUS:-`nvidia-smi -L | wc -l`}
+if [[ $OMPI_COMM_WORLD_LOCAL_SIZE -gt $NCUDA_GPUS ]]
+then
+  if [[ $OMPI_COMM_WORLD_LOCAL_RANK -eq 0 ]]
+  then
+    nvidia-cuda-mps-control -d
+  fi
+  sleep 10
+fi
+export CUDA_VISIBLE_DEVICES=$((${OMPI_COMM_WORLD_LOCAL_RANK} % ${NCUDA_GPUS}))
+exec $@
+if [[ $OMPI_COMM_WORLD_LOCAL_SIZE -gt $NCUDA_GPUS ]]
+then
+  echo quit | nvidia-cuda-mps-control
+fi
+</pre></div>
+</div>
+<p>Here, we used environment variables of OpenMPI, such as <code class="docutils literal notranslate"><span class="pre">$OMPI_COMM_WORLD_LOCAL_SIZE</span></code>.
+For MPI execution, use the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mpirun -np ${num_MPI_processes} -npernode ${num_MPI_processes_per_node} \
+   wrapper.sh ${program} &lt; ${input} &gt; stdout.log
+</pre></div>
+</div>
+<p>Here, ${program} is the path of SALMON, ${input} is the input file, etc.</p>
+</div>
+</div>
+</div>
+<div class="section" id="troubleshooting-of-the-installation-process">
+<span id="troubleshooting-install"></span><h2>Troubleshooting of the Installation Process<a class="headerlink" href="#troubleshooting-of-the-installation-process" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="installation-of-cmake">
+<span id="installation-cmake"></span><h3>Installation of CMake<a class="headerlink" href="#installation-of-cmake" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://cmake.org/">CMake</a> is a cross-platform build tool. In order to build the
+SALMON from the source code, the CMake of version 3.14.0 or later is
+required. You may install it following one of the three instructions
+below.</p>
+<div class="section" id="installation-by-package-manager">
+<h4>Installation by package manager<a class="headerlink" href="#installation-by-package-manager" title="Permalink to this headline">¶</a></h4>
+<p>If your system has a built-in package manager, you may conveniently
+install the CMake tools as below:</p>
+<p><strong>Debian/Ubuntu Linux</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">cmake</span>
+</pre></div>
+</div>
+<p><strong>Fedora Linux/CentOS</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">cmake</span>
+</pre></div>
+</div>
+<p><strong>openSUSE Linux</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">zypper</span> <span class="n">install</span> <span class="n">cmake</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="installation-from-source-code">
+<h4>Installation from source code<a class="headerlink" href="#installation-from-source-code" title="Permalink to this headline">¶</a></h4>
+<p>You can get the source code distribution from the <a class="reference external" href="https://cmake.org/download/">download page</a>. In
+this time, we will use the cmake version 3.16.8 as an example. Download
+the archive by <code class="docutils literal notranslate"><span class="pre">wget</span></code> comamnd and unpack it as below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">cmake</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">files</span><span class="o">/</span><span class="n">v3</span><span class="o">.</span><span class="mi">16</span><span class="o">/</span><span class="n">cmake</span><span class="o">-</span><span class="mf">3.16</span><span class="o">.</span><span class="mf">8.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">zxvf</span> <span class="n">cmake</span><span class="o">-</span><span class="mf">3.16</span><span class="o">.</span><span class="mf">8.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+<p>And, move to the unpacked directory and build.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">cmake</span><span class="o">-</span><span class="mf">3.16</span><span class="o">.</span><span class="mi">8</span>
+<span class="o">./</span><span class="n">configure</span> <span class="o">--</span><span class="n">prefix</span><span class="o">=</span><span class="n">INSTALLATION_DIRECTORY</span>
+<span class="n">make</span>
+<span class="n">make</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>(replace <code class="docutils literal notranslate"><span class="pre">INSTALLATION_DIRECTORY</span></code> to your installation directory.)</p>
+<p>Next, to utilize the <code class="docutils literal notranslate"><span class="pre">cmake</span></code> command, it is required that the
+executable are settled inside the directory specified in your <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>.
+If you use the bash shell, edit <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> and append the line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PATH=INSTALLATION_DIRECTORY/bin:$PATH
+</pre></div>
+</div>
+<p>and reload the configuration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="appendix">
+<h2>Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="additional-options-in-configure-py-script">
+<span id="additional-options-in-configure"></span><h3>Additional options in configure.py script<a class="headerlink" href="#additional-options-in-configure-py-script" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="manual-specifications-of-compiler-and-environment-variables">
+<h4>Manual specifications of compiler and environment variables<a class="headerlink" href="#manual-specifications-of-compiler-and-environment-variables" title="Permalink to this headline">¶</a></h4>
+<p>When executing <code class="docutils literal notranslate"><span class="pre">configure.py</span></code>, users can specify several options and environment variables.</p>
+<p>A list of available options for <code class="docutils literal notranslate"><span class="pre">configure.py</span></code> can be displayed with the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python ../configure.py --help
+</pre></div>
+</div>
+<p>The main options are as follows:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Commandline switch</th>
+<th class="head">Detail</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>-a ARCH, --arch=ARCH</td>
+<td>Target architecture</td>
+</tr>
+<tr class="row-odd"><td>--enable-mpi, --disable-mpi</td>
+<td>enable/disable MPI parallelization</td>
+</tr>
+<tr class="row-even"><td>--enable-scalapack, --disable-scalapack</td>
+<td>enable/disable computations with ScaLAPACK library</td>
+</tr>
+<tr class="row-odd"><td>--enable-eigenexa, --disable-eigenexa</td>
+<td>enable/disable computations with RIKEN R-CCS EigenExa library</td>
+</tr>
+<tr class="row-even"><td>--enable-libxc, --disable-libxc</td>
+<td>enable/disable computations with Libxc library</td>
+</tr>
+<tr class="row-odd"><td>--with-lapack</td>
+<td>specified LAPACK/ScaLAPACK installed directory</td>
+</tr>
+<tr class="row-even"><td>--with-libxc</td>
+<td>specified Libxc installed directory</td>
+</tr>
+<tr class="row-odd"><td>--debug</td>
+<td>enable debug build</td>
+</tr>
+<tr class="row-even"><td>--release</td>
+<td>enable release build</td>
+</tr>
+<tr class="row-odd"><td>FC, FFLAGS</td>
+<td>User-defined Fortran Compiler, and the compiler options</td>
+</tr>
+<tr class="row-even"><td>CC, CFLAGS</td>
+<td>User-defined C Compiler, and the compiler options</td>
+</tr>
+<tr class="row-odd"><td>LDFLAGS</td>
+<td>linker flags</td>
+</tr>
+</tbody>
+</table>
+<p>Using these options, you can manually specify the compilers and flags instead of using the <code class="docutils literal notranslate"><span class="pre">--arch</span></code> option. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python ../configure.py FC=mpiifort CC=mpiicc FFLAGS=&quot;-xAVX&quot; CFLAGS=&quot;-restrict -xAVX&quot; --enable-mpi
+</pre></div>
+</div>
+</div>
+<div class="section" id="customize-cmake-file-for-arch">
+<h4>Customize CMake file for <code class="docutils literal notranslate"><span class="pre">--arch</span></code><a class="headerlink" href="#customize-cmake-file-for-arch" title="Permalink to this headline">¶</a></h4>
+<p>Users can find several CMake configuration files corresponding to the <code class="docutils literal notranslate"><span class="pre">--arch</span></code> options in the <code class="docutils literal notranslate"><span class="pre">platforms/</span></code> directory. If there is no suitable configuration file, you can copy one of the existing ones and customize it for your environment.
+For example, if there is a configuration file named <code class="docutils literal notranslate"><span class="pre">example.cmake</span></code> in the <code class="docutils literal notranslate"><span class="pre">platforms/</span></code> directory, the <code class="docutils literal notranslate"><span class="pre">configure.py</span></code> script can read it using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python ../configure.py --arch=example
+</pre></div>
+</div>
+</div>
+<div class="section" id="required-libraries">
+<h4>Required libraries<a class="headerlink" href="#required-libraries" title="Permalink to this headline">¶</a></h4>
+<p>In the build procedure of SALMON, CMake searches the following libraries.
+If the libraries are not found in the path specified by environment variables, the required libraries will be downloaded and compiled automatically.</p>
+<ul>
+<li><p class="first">BLAS/LAPACK</p>
+<blockquote>
+<div><ul class="simple">
+<li>Required by default compilation.</li>
+<li>Most math libraries include BLAS/LAPACK by default.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--with-lapack</span></code>: Path specification.</li>
+<li>If the library is not found, it will be automatically downloaded from <a class="reference external" href="http://www.netlib.org/lapack/">http://www.netlib.org/lapack/</a></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">ScaLAPACK</p>
+<blockquote>
+<div><ul class="simple">
+<li>Required by <code class="docutils literal notranslate"><span class="pre">--enable-scalapack</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--with-lapack</span></code>: Path specification.</li>
+<li>If the library is not found, it will be automatically downloaded from <a class="reference external" href="http://www.netlib.org/scalapack/">http://www.netlib.org/scalapack/</a></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Libxc</p>
+<blockquote>
+<div><ul class="simple">
+<li>Required by <code class="docutils literal notranslate"><span class="pre">--enable-libxc</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">--with-libxc</span></code>: Path specification.</li>
+<li>If the path is unspecified, the library will be automatically downloaded from <a class="reference external" href="https://libxc.gitlab.io">https://libxc.gitlab.io</a></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">EigenExa</p>
+<blockquote>
+<div><ul class="simple">
+<li>Required by <code class="docutils literal notranslate"><span class="pre">--enable-eigenexa</span></code>. (<code class="docutils literal notranslate"><span class="pre">--enable-scalapack</span></code> is also required for EigenExa.)</li>
+<li>EigenExa will be downloaded and built automatically even if the library is installed on your machine.</li>
+<li>Automatically download from <a class="reference external" href="https://www.r-ccs.riken.jp/labs/lpnctrt/assets/img/EigenExa-2.4b.tgz">https://www.r-ccs.riken.jp/labs/lpnctrt/assets/img/EigenExa-2.4b.tgz</a></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="build-for-single-process-calculations">
+<h4>Build for single process calculations<a class="headerlink" href="#build-for-single-process-calculations" title="Permalink to this headline">¶</a></h4>
+<p>When using the <code class="docutils literal notranslate"><span class="pre">--arch</span></code> option, MPI parallelization is enabled as default.
+If you use a single processor machine, explicitly specify <code class="docutils literal notranslate"><span class="pre">--disable-mpi</span></code> in executing the python script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python ../configure.py --arch=&lt;ARCHITECTURE&gt; --disable-mpi
+</pre></div>
+</div>
+</div>
+<div class="section" id="build-by-gnu-compiler-collection-gcc">
+<h4>Build by GNU Compiler Collection (GCC)<a class="headerlink" href="#build-by-gnu-compiler-collection-gcc" title="Permalink to this headline">¶</a></h4>
+<p>The architecture option <code class="docutils literal notranslate"><span class="pre">--arch</span></code> does not support GNU Compiler Collection (GCC).
+If you want to build SALMON by GCC, specify <code class="docutils literal notranslate"><span class="pre">FC</span></code> and <code class="docutils literal notranslate"><span class="pre">CC</span></code> as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python ../configure.py FC=gfortran CC=gcc --enable-mpi
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">--enable-mpi</span></code> is required for the MPI parallelization.
+Note that the MPI parallelization is disabled as default when <code class="docutils literal notranslate"><span class="pre">--arch</span></code> option is not used.
+Compiler options can also be specified by <code class="docutils literal notranslate"><span class="pre">FFLAGS</span></code> and <code class="docutils literal notranslate"><span class="pre">CFLAGS</span></code>. For GCC 10 or later versions, <code class="docutils literal notranslate"><span class="pre">FFLAGS=&quot;-fallow-argument-mismatch&quot;</span></code> may be required.</p>
+</div>
+<div class="section" id="compilation-examples">
+<h4>Compilation examples<a class="headerlink" href="#compilation-examples" title="Permalink to this headline">¶</a></h4>
+<p>Some compilation (configure) examples in several environments are shown below.</p>
+<ul>
+<li><p class="first">Wisteria-Odyssey (University of Tokyo) &amp; Fujitsu compiler, compiling with EigenExa:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 ../configure.py --arch=fujitsu-a64fx-ea --enable-scalapack --enable-eigenexa FFLAGS=&quot;-fPIC&quot;
+</pre></div>
+</div>
+</li>
+<li><p class="first">Cygnus (GPU supercomputer &#64; University of Tsukuba) &amp; NVidia HPC SDK compiler version 23.11:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ module load cmake/3.18.6 openmpi/nvhpc/23.11
+$ python3 ../configure.py --arch=nvhpc-openacc LDFLAGS=-L/system/apps/nvhpc/23.11/Linux_x86_64/23.11/math_libs/lib64/
+</pre></div>
+</div>
+</li>
+<li><p class="first">AWS Graviton2 machine (Amazon EC2 T4g instance) &amp; Arm compiler:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python3 ../configure.py FC=armflang CC=armclang FFLAGS=&quot;-armpl&quot; CFLAGS=&quot;-armpl&quot;
+</pre></div>
+</div>
+</li>
+<li><p class="first">MacOS &amp; GCC version 11:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ brew install gcc@11
+$ export FC=/opt/homebrew/Cellar/gcc@11/11.5.0/bin/gfortran-11
+$ export CC=/opt/homebrew/Cellar/gcc@11/11.5.0/bin/gcc-11
+$ export CXX=/opt/homebrew/Cellar/gcc@11/11.5.0/bin/g++-11
+$ python ../configure.py FFLAGS=&quot;-fallow-argument-mismatch&quot;
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="compilation-with-fftw-library">
+<span id="fftw"></span><h3>Compilation with FFTW library<a class="headerlink" href="#compilation-with-fftw-library" title="Permalink to this headline">¶</a></h3>
+<p>For solving the Poisson equation for the Hartree potential, SALMON uses the discrete Fourier transform.
+FFTW library (<a class="reference external" href="https://www.fftw.org">https://www.fftw.org</a>) is available for fast calculation.
+When executing <code class="docutils literal notranslate"><span class="pre">configure.py</span></code>, specify <code class="docutils literal notranslate"><span class="pre">--enable-fftw</span></code> option and linker flags for FFTW such as <code class="docutils literal notranslate"><span class="pre">LDFLAGS=&quot;-lfftw3_mpi</span> <span class="pre">-lfftw3&quot;</span></code>.</p>
+<p>Exapmle:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python ../configure.py --arch=ARCHITECTURE --enable-fftw LDFLAGS=&quot;-lfftw3_mpi -lfftw3&quot;
+</pre></div>
+</div>
+</div>
+<div class="section" id="build-using-gnu-makefile">
+<span id="build-gnu-make"></span><h3>Build using GNU Makefile<a class="headerlink" href="#build-using-gnu-makefile" title="Permalink to this headline">¶</a></h3>
+<p>If CMake build fails in your environment, we recommend you to try to use Gnu Make for the build process.
+First, enter the directory <code class="docutils literal notranslate"><span class="pre">gnumakefiles</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd SALMON/gnumakefiles
+</pre></div>
+</div>
+<p>In the directory, <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> files are prepared for several architectures:</p>
+<ul class="simple">
+<li>gnu-mpi</li>
+<li>intel-mpi</li>
+<li>gnu-without-mpi</li>
+<li>intel-without-mpi</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">Makefile</span></code> files with <code class="docutils literal notranslate"><span class="pre">*-without-mpi</span></code> indicate that they are for single processor environment.
+Choose <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> appropriate for your environment, and execute the make command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make -f Makefile.PLATFORM
+</pre></div>
+</div>
+<p>If the make proceeds successful, a binary file is created in the directory <code class="docutils literal notranslate"><span class="pre">SALMON/bin/</span></code>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="exercises.html" class="btn btn-neutral float-right" title="Exercises" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2025, SALMON developers.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
