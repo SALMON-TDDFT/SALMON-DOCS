@@ -3473,7 +3473,7 @@ num_rgrid_buffer(3)
 integer, default=0
    | Number of real-space grid points corresponding to the buffer thickness in each direction.
    | In DC-DFT, each core region is extended by a buffer region to form an overlapping fragment. 
-   | The buffer thickness must not exceed the side length of the core region.　In general, it is recommended to set the buffer thickness equal to the side length of the core region.
+   | The buffer thickness must not exceed the side length of the core region. In general, it is recommended to set the buffer thickness equal to the side length of the core region.
 
 
 .. _nproc_rgrid_tot(3):
