@@ -3459,16 +3459,6 @@ integer, default=0
    | ``num_fragment(1) * num_fragment(2) * num_fragment(3)``
    | core regions. Each core region is then extended by the buffer specified by ``num_rgrid_buffer(1:3)`` to construct an overlapping fragment.
 
-.. _nstate_frag:
-
-nstate_frag
-^^^^^^^^^^^
-
-integer, default=0
-
-   | Number of orbitals calculated in each fragment.
-   | This parameter specifies the number of fragment Kohn-Sham orbitals retained in the local fragment calculation. 
-
 .. _num_rgrid_buffer(3):
 
 num_rgrid_buffer(3)
@@ -3480,6 +3470,15 @@ integer, default=0
    | In DC-DFT, each core region is extended by a buffer region to form an overlapping fragment. 
    | The buffer thickness must not exceed the side length of the core region. In general, it is recommended to set the buffer thickness equal to the side length of the core region.
 
+.. _nstate_frag:
+
+nstate_frag
+^^^^^^^^^^^
+
+integer, default=0
+
+   | Number of orbitals calculated in each fragment.
+   | This parameter specifies the number of fragment Kohn-Sham orbitals retained in the local fragment calculation. 
 
 .. _nproc_rgrid_tot(3):
 
@@ -3491,7 +3490,7 @@ integer, default=1
    | Number of MPI process decompositions in each direction for the real-space grid of the whole system.
    | The MPI process distribution in DC-DFT must be chosen consistently with
    | the fragment decomposition and the internal parallelization parameters
-   | ``nproc_ob`` and ``nproc_rgrid(3)`` in the ``&parallel`` namelist.
+   | ``nproc_ob`` and ``nproc_rgrid(1:3)`` in the ``&parallel`` namelist.
 
 .. _yn_dc_lcfo:
 
