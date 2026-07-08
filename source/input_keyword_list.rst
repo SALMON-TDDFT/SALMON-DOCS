@@ -59,6 +59,35 @@ yn_opt
    |   ``'y'`` / enable
    |   ``'n'`` / disable
 
+
+.. _yn_dc:
+
+yn_dc
+^^^^^
+
+character, default='n'
+
+   | Available for ``theory='dft'``.
+   | Switch for the divide-and-conquer DFT (DC-DFT) ground-state calculation.
+   | Options:
+   | ``'y'`` / enable DC-DFT
+   | ``'n'`` / disable DC-DFT
+   | See also the ``&dc`` namelist for fragment decomposition, buffer size, and DC-LCFO settings.
+
+.. _yn_conventional_from_dcdft:
+
+yn_conventional_from_dcdft
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+character, default='n'
+
+   | Available for conventional DFT and TDDFT calculations after a DC-DFT/DC-LCFO calculation.
+   | Switch to read Kohn-Sham orbitals reconstructed by the DC-LCFO method and use them as initial orbitals for a conventional calculation.
+   | If ``yn_conventional_from_dcdft='y'`` is specified, SALMON reads DC-DFT/DC-LCFO data stored in the ``data_dcdft`` directory and starts a    conventional DFT or real-time TDDFT calculation from the reconstructed global Kohn-Sham orbitals.
+   | Options:
+   | ``'y'`` / read DC-DFT/DC-LCFO data and use the reconstructed orbitals
+   | ``'n'`` / do not read DC-DFT/DC-LCFO data
+
 .. _&control:
 
 &control
@@ -3409,6 +3438,127 @@ norder_correction
 integer, default=0
 
    | The order of correction to the electron current density in the Maxwell-SBE calculations. 
+
+
+
+.. _&dc:
+
+&dc
+---
+
+
+.. _num_fragment(3):
+
+num_fragment(3)
+^^^^^^^^^^^^^^^
+
+integer, default=0
+
+   | Number of fragment decompositions in each direction.
+   | The whole simulation cell is divided into
+   | ``num_fragment(1) * num_fragment(2) * num_fragment(3)``
+   | core regions. Each core region is then extended by the buffer specified by ``num_rgrid_buffer(1:3)`` to construct an overlapping fragment.
+
+.. _num_rgrid_buffer(3):
+
+num_rgrid_buffer(3)
+^^^^^^^^^^^^^^^^^^^
+
+integer, default=0
+
+   | Number of real-space grid points corresponding to the buffer thickness in each direction.
+   | In DC-DFT, each core region is extended by a buffer region to form an overlapping fragment. 
+   | The buffer thickness must not exceed the side length of the core region. In general, it is recommended to set the buffer thickness equal to the side length of the core region.
+
+.. _nstate_frag:
+
+nstate_frag
+^^^^^^^^^^^
+
+integer, default=0
+
+   | Number of orbitals calculated in each fragment.
+   | This parameter specifies the number of fragment Kohn-Sham orbitals retained in the local fragment calculation. 
+
+.. _nproc_rgrid_tot(3):
+
+nproc_rgrid_tot(3)
+^^^^^^^^^^^^^^^^^^
+
+integer, default=1
+
+   | Number of MPI process decompositions in each direction for the real-space grid of the whole system.
+   | The MPI process distribution in DC-DFT must be chosen consistently with
+   | the fragment decomposition and the internal parallelization parameters
+   | ``nproc_ob`` and ``nproc_rgrid(1:3)`` in the ``&parallel`` namelist.
+
+.. _yn_dc_lcfo:
+
+yn_dc_lcfo
+^^^^^^^^^^
+
+character, default='y'
+
+   | Switch for the DC-LCFO calculation.
+   | Options:
+   | ``'y'`` / enable DC-LCFO
+   | ``'n'`` / disable DC-LCFO
+
+.. _yn_dc_lcfo_diag:
+
+yn_dc_lcfo_diag
+^^^^^^^^^^^^^^^
+
+character, default='y'
+
+   | Switch for diagonalizing the Hamiltonian matrix in the DC-LCFO calculation.
+   | Options:
+   | ``'y'`` / enable diagonalization of the Hamiltonian matrix
+   | ``'n'`` / disable diagonalization; only the basis functions and Hamiltonian matrix will be stored
+
+.. _lambda_cut:
+
+lambda_cut
+^^^^^^^^^^
+
+real(8), default=1e-3
+
+   | Truncation threshold for eigenvalues of the overlap matrix in the DC-LCFO basis construction.
+
+.. _energy_cut:
+
+energy_cut
+^^^^^^^^^^
+
+real(8), default=0
+
+   | Energy cutoff for selecting fragment orbitals used in the DC-LCFO basis construction. The value must be given using the unit of energy as specified in ``&units/unit_system``.
+
+.. _xi_dc:
+
+xi_dc
+^^^^^
+
+real(8), default=-1.d0
+
+   | Parameter for the density template potential in the DC-DFT calculation.
+   | If ``xi_dc > 0``, the density template potential is enabled and ``xi_dc`` is used as the parameter of the potential.
+   | If ``xi_dc <= 0``, the density template potential is disabled.
+
+.. _file_atom_coor_frag:
+
+file_atom_coor_frag
+^^^^^^^^^^^^^^^^^^^
+
+character, default='none'
+
+   | Name of the file that contains atomic Cartesian coordinates for each fragment. The unit is specified by ``&units/unit_system``.
+   | If a file with this name is placed in each fragment directory, such as
+   | ``data_dcdft/fragments/000001/``, ``data_dcdft/fragments/000002/``,
+   | ..., SALMON reads it as the atomic-coordinate file for the corresponding fragment.
+   | This option enables calculations with modified fragment geometries, for example, by adding an artificial vacuum region to the buffer region.
+   | The atomic coordinates in all fragment files must be constructed so as to be consistent with the atomic coordinates of the total system.
+
 
 ..
   #### Following keywords are commented out as these are originated from GCEED and supposed to be removed ####
