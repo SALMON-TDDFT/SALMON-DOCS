@@ -3457,7 +3457,7 @@ integer, default=0
    | Number of fragment decompositions in each direction.
    | The whole simulation cell is divided into
    | ``num_fragment(1) * num_fragment(2) * num_fragment(3)``
-   | core regions. Each core region is then extended by the buffer specified by ``num_rgrid_buffer(3)`` to construct an overlapping fragment.
+   | core regions. Each core region is then extended by the buffer specified by ``num_rgrid_buffer(1:3)`` to construct an overlapping fragment.
 
 .. _nstate_frag:
 
