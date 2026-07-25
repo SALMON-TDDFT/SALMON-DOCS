@@ -616,6 +616,7 @@ If the libraries are not found in the path specified by environment variables, t
 
     - Required by ``--enable-slepc``.
     - ``--with-slepc`` and ``--with-petsc``: Path specification.
+    - If the paths are unspecified, PETSc and SLEPc will be automatically downloaded from https://petsc.org and https://slepc.upv.es, respectively.
     - SLEPc is used only for Hamiltonian diagonalization in DC-LCFO calculations.
 
 Build for single process calculations
