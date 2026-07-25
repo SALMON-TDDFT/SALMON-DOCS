@@ -556,8 +556,11 @@ Commandline switch                       Detail
 --enable-mpi, --disable-mpi              enable/disable MPI parallelization
 --enable-scalapack, --disable-scalapack  enable/disable computations with ScaLAPACK library
 --enable-eigenexa, --disable-eigenexa    enable/disable computations with RIKEN R-CCS EigenExa library
+--enable-slepc, --disable-slepc          enable/disable computations with SLEPc library
 --enable-libxc, --disable-libxc          enable/disable computations with Libxc library
 --with-lapack                            specified LAPACK/ScaLAPACK installed directory
+--with-petsc                             specified PETSc installed directory
+--with-slepc                             specified SLEPc installed directory
 --with-libxc                             specified Libxc installed directory
 --debug                                  enable debug build
 --release                                enable release build
@@ -565,6 +568,8 @@ FC, FFLAGS                               User-defined Fortran Compiler, and the 
 CC, CFLAGS                               User-defined C Compiler, and the compiler options
 LDFLAGS                                  linker flags
 =======================================  ===================================================
+
+SLEPc is used only for Hamiltonian diagonalization in DC-LCFO calculations.
 
 Using these options, you can manually specify the compilers and flags instead of using the ``--arch`` option. For example::
 
@@ -693,5 +698,4 @@ Choose ``Makefile`` appropriate for your environment, and execute the make comma
     $ make -f Makefile.PLATFORM
 
 If the make proceeds successful, a binary file is created in the directory ``SALMON/bin/``.
-
 

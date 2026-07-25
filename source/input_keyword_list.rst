@@ -3516,6 +3516,19 @@ character, default='y'
    | ``'y'`` / enable diagonalization of the Hamiltonian matrix
    | ``'n'`` / disable diagonalization; only the basis functions and Hamiltonian matrix will be stored
 
+.. _lcfo_eigensolver:
+
+lcfo_eigensolver
+^^^^^^^^^^^^^^^^
+
+character, default='eigenexa' when SALMON is built with EigenExa support; otherwise default='lapack'
+
+   | Eigensolver used to diagonalize the Hamiltonian matrix in the DC-LCFO calculation.
+   | Options:
+   | ``'lapack'`` / use the LAPACK eigensolver
+   | ``'eigenexa'`` / use the EigenExa eigensolver; SALMON must be built with EigenExa support
+   | ``'slepc'`` / use the SLEPc Krylov-Schur eigensolver; SALMON must be built with SLEPc support
+
 .. _lambda_cut:
 
 lambda_cut
