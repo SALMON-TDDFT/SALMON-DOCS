@@ -569,8 +569,6 @@ CC, CFLAGS                               User-defined C Compiler, and the compil
 LDFLAGS                                  linker flags
 =======================================  ===================================================
 
-SLEPc is used only for Hamiltonian diagonalization in DC-LCFO calculations.
-
 Using these options, you can manually specify the compilers and flags instead of using the ``--arch`` option. For example::
 
     $ python ../configure.py FC=mpiifort CC=mpiicc FFLAGS="-xAVX" CFLAGS="-restrict -xAVX" --enable-mpi
@@ -613,6 +611,12 @@ If the libraries are not found in the path specified by environment variables, t
     - Required by ``--enable-eigenexa``. (``--enable-scalapack`` is also required for EigenExa.)
     - EigenExa will be downloaded and built automatically even if the library is installed on your machine.
     - Automatically download from https://www.r-ccs.riken.jp/labs/lpnctrt/assets/img/EigenExa-2.4b.tgz
+
+- SLEPc/PETSc
+
+    - Required by ``--enable-slepc``.
+    - ``--with-slepc`` and ``--with-petsc``: Path specification.
+    - SLEPc is used only for Hamiltonian diagonalization in DC-LCFO calculations.
 
 Build for single process calculations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -698,4 +702,3 @@ Choose ``Makefile`` appropriate for your environment, and execute the make comma
     $ make -f Makefile.PLATFORM
 
 If the make proceeds successful, a binary file is created in the directory ``SALMON/bin/``.
-
