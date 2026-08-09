@@ -175,9 +175,9 @@ For example, pseudopotentials with the ``.fhi`` extension can be obtained from t
 =========================================================  =============  =====================================================================================
 Pseudopotential                                            extension      Website
 =========================================================  =============  =====================================================================================
-Fritz-Haber-Institute (FHI) pseudopotentials               ``.fhi``       https://abinit.github.io/abinit_web/ATOMICDATA/LDA_FHI.zip 
+Fritz-Haber-Institute (FHI) pseudopotentials               ``.fhi``       https://www.abinit.org/atomic_data/psps/miscellaneous/lda-fhi.html
                                                                           (for LDA), 
-                                                                          https://abinit.github.io/abinit_web/ATOMICDATA/fhi.zip
+                                                                          https://www.abinit.org/atomic_data/psps/miscellaneous/ATOMICDATA/fhi.zip
                                                                           (for GGA) 
 Pseudopotentials for the OpenMX code                       ``.vps``       https://www.openmx-square.org/vps_pao2019/
 Format 8 for ABINIT norm-conserving pseudopotentials       ``.psp8``      https://abinit.github.io/abinit_web/pseudopotential.html , 
