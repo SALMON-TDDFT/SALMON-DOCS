@@ -3528,6 +3528,35 @@ character, default='eigenexa' when SALMON is built with EigenExa support; otherw
    | ``'lapack'`` / use the LAPACK eigensolver
    | ``'eigenexa'`` / use the EigenExa eigensolver; SALMON must be built with EigenExa support
    | ``'slepc'`` / use the SLEPc Krylov-Schur eigensolver; SALMON must be built with SLEPc support
+   | ``'chefsi'`` / use Chebyshev-filtered subspace iteration; SALMON must be built with ScaLAPACK support; cf. [S. Banerjee et al., *J. Chem. Phys.* 145, 154101 (2016), https://doi.org/10.1063/1.4964861].
+
+   | CheFSI is an iterative eigensolver intended particularly for large-scale DC-LCFO calculations.
+   | Its convergence and accuracy should be checked using the reported residuals.
+   | For representative smaller systems, comparison with LAPACK or EigenExa is recommended.
+
+.. _lcfo_diag_chefsi_filter_degree:
+
+lcfo_diag_chefsi_filter_degree
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+integer, default=60
+
+   | Polynomial degree of the Chebyshev filter used by the DC-LCFO CheFSI eigensolver.
+   | A larger value applies a stronger filter but increases the cost of each iteration.
+   | This parameter is used only when ``lcfo_eigensolver='chefsi'``.
+
+.. _lcfo_diag_chefsi_filter_chunk_size:
+
+lcfo_diag_chefsi_filter_chunk_size
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+integer, default=0
+
+   | Number of vectors processed in each Chebyshev-filter chunk.
+   | ``0`` selects the chunk size automatically based on the estimated workspace per MPI process.
+   | A positive value specifies the chunk size explicitly.
+   | A smaller value reduces memory consumption but increases the number of halo communications.
+   | This parameter is used only when ``lcfo_eigensolver='chefsi'``.
 
 .. _lambda_cut:
 
