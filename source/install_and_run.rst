@@ -599,6 +599,7 @@ If the libraries are not found in the path specified by environment variables, t
     - Required by ``--enable-scalapack``.
     - ``--with-lapack``: Path specification.
     - If the library is not found, it will be automatically downloaded from http://www.netlib.org/scalapack/
+    - Required for the CheFSI eigensolver in DC-LCFO calculations.
 
 - Libxc
 
