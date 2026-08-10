@@ -3527,7 +3527,6 @@ character, default='eigenexa' when SALMON is built with EigenExa support; otherw
    | Options:
    | ``'lapack'`` / use the LAPACK eigensolver
    | ``'eigenexa'`` / use the EigenExa eigensolver; SALMON must be built with EigenExa support
-   | ``'slepc'`` / use the SLEPc Krylov-Schur eigensolver; SALMON must be built with SLEPc support
    | ``'chefsi'`` / use Chebyshev-filtered subspace iteration; SALMON must be built with ScaLAPACK support; cf. [S. Banerjee et al., *J. Chem. Phys.* 145, 154101 (2016), https://doi.org/10.1063/1.4964861].
 
    | CheFSI is an iterative eigensolver intended particularly for large-scale DC-LCFO calculations.
