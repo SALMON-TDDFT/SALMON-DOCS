@@ -556,11 +556,8 @@ Commandline switch                       Detail
 --enable-mpi, --disable-mpi              enable/disable MPI parallelization
 --enable-scalapack, --disable-scalapack  enable/disable computations with ScaLAPACK library
 --enable-eigenexa, --disable-eigenexa    enable/disable computations with RIKEN R-CCS EigenExa library
---enable-slepc, --disable-slepc          enable/disable computations with SLEPc library
 --enable-libxc, --disable-libxc          enable/disable computations with Libxc library
 --with-lapack                            specified LAPACK/ScaLAPACK installed directory
---with-petsc                             specified PETSc installed directory
---with-slepc                             specified SLEPc installed directory
 --with-libxc                             specified Libxc installed directory
 --debug                                  enable debug build
 --release                                enable release build
@@ -612,13 +609,6 @@ If the libraries are not found in the path specified by environment variables, t
     - Required by ``--enable-eigenexa``. (``--enable-scalapack`` is also required for EigenExa.)
     - EigenExa will be downloaded and built automatically even if the library is installed on your machine.
     - Automatically download from https://www.r-ccs.riken.jp/labs/lpnctrt/assets/img/EigenExa-2.4b.tgz
-
-- SLEPc/PETSc
-
-    - Required by ``--enable-slepc``.
-    - ``--with-slepc`` and ``--with-petsc``: Path specification.
-    - If the paths are unspecified, PETSc and SLEPc will be automatically downloaded from https://petsc.org and https://slepc.upv.es, respectively.
-    - SLEPc is used only for Hamiltonian diagonalization in DC-LCFO calculations.
 
 Build for single process calculations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
