@@ -3557,6 +3557,32 @@ integer, default=0
    | A smaller value reduces memory consumption but increases the number of halo communications.
    | This parameter is used only when ``lcfo_eigensolver='chefsi'``.
 
+.. _lcfo_diag_chefsi_max_cycle:
+
+lcfo_diag_chefsi_max_cycle
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+integer, default=200
+
+   | Maximum number of CheFSI filter cycles. Each cycle applies the Chebyshev filter,
+   | orthonormalizes the active subspace, performs the Rayleigh--Ritz procedure, and evaluates the residuals.
+   | The value must be a positive integer.
+   | This parameter is used only when ``lcfo_eigensolver='chefsi'``.
+
+.. _lcfo_diag_chefsi_residual_tolerance:
+
+lcfo_diag_chefsi_residual_tolerance
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+real(8), default=1e-7
+
+   | Convergence tolerance for the maximum normalized residual among the requested eigenpairs.
+   | For eigenpair ``i``, the normalized residual is
+   | ``||H x_i - lambda_i x_i|| / max(1 Ha, |lambda_i|)`` and is dimensionless.
+   | The value must be greater than ``0`` and less than ``1``.
+   | This tolerance is also used to determine whether converged eigenpairs can be locked.
+   | This parameter is used only when ``lcfo_eigensolver='chefsi'``.
+
 .. _lambda_cut:
 
 lambda_cut
