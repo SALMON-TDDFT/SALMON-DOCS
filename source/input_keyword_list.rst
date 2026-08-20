@@ -125,6 +125,7 @@ character, default='n'
    | Options:
    |   ``'y'`` / enable (restart)
    |   ``'n'`` / disable (new calculation)
+   | When restarting an MD calculation (``theory='dft_md'`` or ``yn_md='y'``), atomic coordinates are read from the restart data. Do not specify ``file_atom_coor``, ``file_atom_red_coor``, ``&atomic_coor``, or ``&atomic_red_coor`` together with ``yn_restart='y'``; such input is rejected as an error.
 
 .. _directory_read_data:
 
