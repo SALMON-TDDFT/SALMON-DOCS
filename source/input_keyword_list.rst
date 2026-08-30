@@ -868,6 +868,22 @@ character, default='none'
    |   7    0.00   0.00  -0.50   0.1250
    |   8    0.00   0.00   0.00   0.1250
 
+.. _yn_gamma_centered:
+
+yn_gamma_centered
+^^^^^^^^^^^^^^^^^^
+
+character, default='n'
+
+   | Available for ``yn_periodic='y'`` in the DFT/TDDFT based options of ``theory``.
+   | Switch to include the Gamma point (k=0) explicitly in the k-point grid, instead of the standard off-Gamma (shifted) grid generated from ``num_kgrid``.
+   | For a direction with odd ``num_kgrid(i)``, this option has no effect: the k-points and weights along that direction are identical to ``yn_gamma_centered='n'``.
+   | For a direction with even ``num_kgrid(i)``, both zone-boundary points along that direction are also included (with their weights halved so that the total weight stays normalized), so the actual number of k-points along that direction becomes ``num_kgrid(i)+1``, not ``num_kgrid(i)``.
+   | Because of this, when ``yn_gamma_centered='y'`` and one or more ``num_kgrid(i)`` are even, the total number of k-points can differ from the naive product ``num_kgrid(1)*num_kgrid(2)*num_kgrid(3)``. Take this into account when choosing ``&parallel/nproc_k``, since an unexpectedly-sized k-point set may not divide evenly across the k-parallel MPI ranks.
+   | Options:
+   |   ``'y'`` / enable (grid includes the Gamma point; k-point count becomes ``num_kgrid(i)+1`` along directions with even ``num_kgrid(i)``)
+   |   ``'n'`` / disable (standard shifted grid, which avoids the Gamma point; k-point count along each direction is exactly ``num_kgrid(i)``)
+
 .. /&tgrid:
 
 &tgrid
@@ -2732,6 +2748,20 @@ yn_out_tm
    |   ``'y'`` / enable
    |   ``'n'`` / disable
 
+.. _yn_out_tm_bin:
+
+yn_out_tm_bin
+^^^^^^^^^^^^^
+
+[Trial] character, default='n'
+
+   | Available for ``yn_periodic='y'`` with ``theory='dft'``. Requires a build with MPI support.
+   | Switch to calculate and print the transition matrix elements between occupied and virtual orbitals to ``data_for_restart/tm.bin`` (unformatted binary, written with MPI-IO) after the ground state calculation, in addition to (or instead of) the text output controlled by ``yn_out_tm``.
+   | This binary file is one of the primitive-cell inputs read by a density-matrix unfolding calculation (``&unfolding/dm_unfold_option='primitive'``).
+   | Options:
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
+
 .. _yn_out_gs_sgm_eps:
 
 yn_out_gs_sgm_eps
@@ -3634,6 +3664,126 @@ character, default='none'
    | ..., SALMON reads it as the atomic-coordinate file for the corresponding fragment.
    | This option enables calculations with modified fragment geometries, for example, by adding an artificial vacuum region to the buffer region.
    | The atomic coordinates in all fragment files must be constructed so as to be consistent with the atomic coordinates of the total system.
+
+
+.. _&unfolding:
+
+&unfolding
+----------
+
+.. _dm_unfold_option:
+
+dm_unfold_option
+^^^^^^^^^^^^^^^^
+
+character, default='no'
+
+   | Available for ``yn_periodic='y'`` in the DFT/TDDFT based options of ``theory``. Requires a build with MPI support.
+   | Selects the role of the calculation in a density-matrix unfolding workflow, which relates a fine-k-point ground-state calculation on a small (primitive) cell to a coarse-k-point calculation on a larger (super) cell built from it.
+   | (Tentative) The current two-stage design (``'primitive'`` / ``'super'``) is planned to be extended to a three-stage primitive → reference → super scheme in the near future; the options and parameters described here may change accordingly.
+   | Options:
+   |   ``'no'``        / ordinary calculation; unfolding is not used.
+   |   ``'primitive'`` / ground-state calculation on the primitive cell that prepares the data (wavefunctions, occupations, and, with ``yn_out_tm_bin='y'``, transition moments) later consumed by a ``'super'`` calculation. In this mode, ``&kgrid/num_kgrid`` specifies the fine k-point grid of the (virtual) supercell, and ``num_lkgrid`` specifies the coarser k-point grid that the corresponding ``'super'`` calculation will use; ``num_kgrid`` must be an integer multiple of ``num_lkgrid``, component-wise.
+   |   ``'super'``     / real-time calculation on the actual supercell that reads the primitive-cell data prepared by a ``'primitive'`` run and unfolds its density matrix onto the primitive-cell Brillouin zone. In this mode, ``&kgrid/num_kgrid`` specifies the (coarse) k-point grid used by this calculation, and ``num_skgrid`` specifies the corresponding fine k-point grid of the primitive-cell run; ``num_skgrid`` must be an integer multiple of ``num_kgrid``, component-wise. This mode reads ``primitive/wfn.bin``, ``primitive/occupation.bin``, and ``primitive/tm.bin`` from a fixed relative path (not configurable via namelist), so the corresponding ``'primitive'`` run's ``data_for_restart`` output must be made available at (or linked to) a ``primitive`` subdirectory of the working directory before running.
+   | The k-point sampling used by ``'primitive'`` and ``'super'`` always includes the Brillouin-zone boundary, with half weight along any direction whose relevant grid size is even, regardless of ``&kgrid/yn_gamma_centered`` (that switch affects only ``dm_unfold_option='no'``). Because of this, the actual number of k-points ``NK`` used internally can differ from the naive product of grid sizes; ``&parallel/nproc_k`` should be chosen to divide ``NK``, not the raw grid-size product.
+   |   For ``'primitive'``: writing ``count(X) = X+1`` for even ``X`` and ``count(X) = X`` for odd ``X``, and ``num_hk(j) = num_kgrid(j)/num_lkgrid(j)``, ``NK = [count(num_lkgrid(1))*count(num_lkgrid(2))*count(num_lkgrid(3))] * [count(num_hk(1))*count(num_hk(2))*count(num_hk(3))]``. (Example: ``num_kgrid=2,2,2`` with ``num_lkgrid=1,1,1`` gives ``num_hk=2,2,2``, so ``NK=1*27=27``, not 8.)
+   |   For ``'super'``: this calculation's own k-point count (the one relevant to its ``nproc_k``) is ``NK = count(num_kgrid(1))*count(num_kgrid(2))*count(num_kgrid(3))``, using this run's own ``&kgrid/num_kgrid``. ``num_skgrid`` only affects internal unfolding bookkeeping and does not change this run's own k-point count.
+
+.. _num_lkgrid(3):
+
+num_lkgrid(3)
+^^^^^^^^^^^^^
+
+integer, default=1,1,1
+
+   | Available for ``dm_unfold_option='primitive'``.
+   | Number of k-points for each direction of the coarser k-point grid that the corresponding ``dm_unfold_option='super'`` calculation will use. ``&kgrid/num_kgrid`` must be an integer multiple of ``num_lkgrid``, component-wise.
+
+.. _num_skgrid(3):
+
+num_skgrid(3)
+^^^^^^^^^^^^^
+
+integer, default=1,1,1
+
+   | Available for ``dm_unfold_option='super'``.
+   | Number of k-points for each direction of the finer k-point grid of the primitive-cell run whose density matrix is unfolded. Should be an integer multiple of ``&kgrid/num_kgrid``, component-wise.
+
+.. _no_pr:
+
+no_pr
+^^^^^
+
+integer, default=0
+
+   | Available for ``dm_unfold_option='super'``.
+   | Number of orbitals (bands) of the primitive cell, read from the ``'primitive'`` run's output, to use in the unfolding. Typically set to the number of occupied orbitals of the primitive-cell calculation.
+
+.. _out_dm_unfold_step:
+
+out_dm_unfold_step
+^^^^^^^^^^^^^^^^^^^
+
+integer, default=100
+
+   | Available for ``dm_unfold_option='super'`` with TDDFT based options of ``theory``.
+   | The unfolded density-matrix quantities are calculated and written to ``SYSname``\_dm_unfold.data at the first and last time steps, and every ``out_dm_unfold_step`` time steps in between.
+
+.. _yn_out_mom_distr_gs:
+
+yn_out_mom_distr_gs
+^^^^^^^^^^^^^^^^^^^^
+
+[Trial] character, default='n'
+
+   | Available for ``dm_unfold_option='super'``.
+   | Switch to calculate and print the ground-state electron momentum distribution (obtained from the primitive-cell data) on a uniform grid of ``(2*nq_mom+1)**3`` points with spacing ``dq_mom``.
+   | Options:
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
+
+.. _yn_out_mom_distr_rt:
+
+yn_out_mom_distr_rt
+^^^^^^^^^^^^^^^^^^^^
+
+[Trial] character, default='n'
+
+   | Available for ``dm_unfold_option='super'`` with TDDFT based options of ``theory``.
+   | Switch to calculate and print the electron momentum distribution during real-time propagation, on the same grid as ``yn_out_mom_distr_gs``, every ``out_mom_distr_rt_step`` time steps.
+   | Options:
+   |   ``'y'`` / enable
+   |   ``'n'`` / disable
+
+.. _out_mom_distr_rt_step:
+
+out_mom_distr_rt_step
+^^^^^^^^^^^^^^^^^^^^^^
+
+integer, default=100
+
+   | Available for ``yn_out_mom_distr_rt='y'``.
+   | Time-step interval for writing the real-time electron momentum distribution.
+
+.. _nq_mom:
+
+nq_mom
+^^^^^^
+
+integer, default=0
+
+   | Available for ``yn_out_mom_distr_gs='y'`` or ``yn_out_mom_distr_rt='y'``.
+   | Half-width, in grid points, of the momentum-distribution output grid (``(2*nq_mom+1)**3`` points total). If set to 0 or a negative value, it is estimated automatically from ``&kgrid/num_kgrid``.
+
+.. _dq_mom:
+
+dq_mom
+^^^^^^
+
+real(8), default=0.0d0
+
+   | Available for ``yn_out_mom_distr_gs='y'`` or ``yn_out_mom_distr_rt='y'``.
+   | Grid spacing of the momentum-distribution output grid. If set to a value smaller than 1d-9, it is estimated automatically from the Brillouin-zone volume and ``&kgrid/num_kgrid``.
 
 
 ..
