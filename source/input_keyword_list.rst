@@ -3717,7 +3717,7 @@ no_pr
 integer, default=0
 
    | Available for ``dm_unfold_option='super'``.
-   | Number of orbitals (bands) of the primitive cell, read from the ``'primitive'`` run's output, to use in the unfolding. Typically set to the number of occupied orbitals of the primitive-cell calculation.
+   | Number of orbitals (bands) of the primitive cell, read from the ``'primitive'`` run's output, used to expand the supercell orbitals in terms of primitive-cell Bloch states. Because the supercell's occupied orbitals can project onto the primitive cell's formally unoccupied bands as well (band mixing from folding multiple primitive k-points into one supercell k-point), this must span the primitive-cell run's full computed band set, i.e. match ``&system/nstate`` of the ``'primitive'`` run, not just its number of occupied orbitals. A ``no_pr`` smaller than that truncates the expansion basis and silently gives an incomplete (too-small) unfolded density matrix; as a sanity check, the trace of the unfolded density matrix should come out close to the primitive cell's own electron count.
 
 .. _out_dm_unfold_step:
 
