@@ -3438,7 +3438,15 @@ norder_correction
 
 integer, default=0
 
-   | The order of correction to the electron current density in the Maxwell-SBE calculations. 
+   | The order of the adiabatic correction to the electron current density in the Maxwell-SBE calculations.
+   | Options:
+   | ``0`` / no correction is applied
+   | ``1`` / the correction terms up to the first order are included
+   | ``>1`` / higher-order corrections are not supported in the present version
+
+   | The adiabatic corrections compensate for the error of the velocity-gauge description of
+   | electron dynamics that arises from the truncation of the number of bands;
+   | cf. [V. S. Yakovlev and M. S. Wismer, *Comput. Phys. Commun.* 217, 82 (2017), https://doi.org/10.1016/j.cpc.2017.04.010].
 
 
 
