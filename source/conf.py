@@ -22,13 +22,13 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 
 project = u'SALMON software manual'
-copyright = u'2017-2025, SALMON developers'
+copyright = u'2017-2026, SALMON developers'
 author = u'SALMON developers'
 
 # The short X.Y version
 version = u''
 # The full version, including alpha/beta/rc tags
-release = u'v.2.2.2'
+release = u'v.2.3.0'
 
 
 # -- General configuration ---------------------------------------------------
