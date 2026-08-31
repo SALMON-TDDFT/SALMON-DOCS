@@ -23,6 +23,33 @@ The following is the history of fixed bugs and changes in models/inputs/outputs 
 Fixed bugs
 ==========
 
+(Fixed in v.2.3.0)
+
+* Reading reduced atomic coordinates through ``file_atom_red_coor`` failed
+  because an incorrect filename variable was used.
+* The time centering of the vector potential in velocity-gauge SBE and
+  Maxwell-SBE propagation was incorrect.
+* Sign and nonlocal-pseudopotential contributions in the first-order
+  adiabatic correction for SBE calculations were incorrect.
+* Several problems for non-orthogonal cells were fixed, including NLCC
+  periodic replicas, the Cartesian transformation of microscopic-current
+  output, and automatic MPI process distribution.
+* Left-handed lattice vectors could produce negative volume elements and
+  NaN values. The absolute determinant is now used for the cell volume.
+* The projection convergence loop could terminate prematurely because its
+  first iteration used an energy reference from the previous time step.
+* RT restart calculations incorrectly rebuilt the difference-density
+  reference from the time-evolved wavefunction. The original ground-state
+  density ``rho0_s`` is now saved in checkpoints and restored on restart.
+  Older checkpoints without this density retain the previous behavior
+  with a warning.
+* Restart-directory generation failed with some strict Fortran compilers.
+* Explicit atomic coordinates could overwrite checkpoint coordinates when
+  restarting an MD calculation. Such input combinations are now rejected.
+* TBmBJ calculations could hang at zero-density grid points. Zero and
+  negligible densities are now handled explicitly, and the root-bracketing
+  loop has an iteration limit.
+
 (Fixed in v.2.2.2)
 
 * Standard output of the DFT part with ``convergence/=rho_dne`` was incorrect.
@@ -79,6 +106,39 @@ Fixed bugs
 
 Changes of models/inputs/outputs
 ================================
+
+(v.2.3.0)
+
+* The divide-and-conquer (DC) method, previously available as an undocumented
+  experimental feature, is now officially supported. A CheFSI eigensolver
+  requiring ScaLAPACK is also added for DC-LCFO calculations.
+
+* Density-matrix unfolding and momentum-distribution analysis are added.
+
+* New namelists ``&dc`` and ``&unfolding`` are added.
+
+* The built-in r2SCAN meta-GGA functional is added.
+
+  * ``xc='r2scan'``: LibXC is not required.
+  * Currently, only spin-unpolarized calculations are supported.
+    OpenACC builds are not supported.
+
+* GPU acceleration for ground-state and multi-GPU real-time calculations
+  is extended.
+
+* Gamma-centered k-point sampling is added.
+
+  * ``yn_gamma_centered``
+
+* Binary transition-matrix output and LSDA support for transition-matrix
+  output are added.
+
+  * ``yn_out_tm_bin``: Binary transition-matrix output; requires MPI support.
+
+* Energy output is added for Maxwell-SBE calculations.
+
+* New testsuites are added for CheFSI, Gamma-centered k-point sampling,
+  and density-matrix unfolding.
 
 (v.2.2.2)
 
