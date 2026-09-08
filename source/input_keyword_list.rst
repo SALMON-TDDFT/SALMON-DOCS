@@ -3666,6 +3666,22 @@ character, default='none'
    | This option enables calculations with modified fragment geometries, for example, by adding an artificial vacuum region to the buffer region.
    | The atomic coordinates in all fragment files must be constructed so as to be consistent with the atomic coordinates of the total system.
 
+.. _yn_out_dc_fragment_coor:
+
+yn_out_dc_fragment_coor
+^^^^^^^^^^^^^^^^^^^^^^^
+
+character, default='n'
+
+   | Switch to output the Cartesian atomic coordinates used in each DC-DFT fragment.
+   | If set to ``'y'``, SALMON writes the coordinates after applying the optional
+   | ``file_atom_coor_frag`` override to
+   | ``data_dcdft/fragments/XXXXXX/data_for_restart/atomic_coor.txt``,
+   | where ``XXXXXX`` is the six-digit fragment index.
+   | The coordinate unit follows ``&units/unit_system``.
+   | The output file can be used to inspect the actual fragment geometry or as a
+   | template for ``file_atom_coor_frag``.
+
 
 .. _&unfolding:
 
