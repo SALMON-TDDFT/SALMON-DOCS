@@ -3498,6 +3498,10 @@ integer, default=0
    | The whole simulation cell is divided into
    | ``num_fragment(1) * num_fragment(2) * num_fragment(3)``
    | core regions. Each core region is then extended by the buffer specified by ``num_rgrid_buffer(1:3)`` to construct an overlapping fragment.
+   | For DC-DFT, ``num_rgrid(i)`` must be divisible by ``num_fragment(i)``
+   | in each direction. If ``num_fragment(i)>1``, that direction must have
+   | ``num_kgrid(i)=1`` and ``dk_shift(i)=0``.
+   | K-point sampling is allowed along directions with ``num_fragment(i)=1``.
 
 .. _num_rgrid_buffer(3):
 
@@ -3508,7 +3512,11 @@ integer, default=0
 
    | Number of real-space grid points corresponding to the buffer thickness in each direction.
    | In DC-DFT, each core region is extended by a buffer region to form an overlapping fragment. 
-   | The buffer thickness must not exceed the side length of the core region. In general, it is recommended to set the buffer thickness equal to the side length of the core region.
+   | If ``num_fragment(i)=1``, ``num_rgrid_buffer(i)`` must be ``0``.
+   | In a split direction, the buffer thickness must not exceed the
+   | core-region thickness, ``num_rgrid(i)/num_fragment(i)`` grid points.
+   | Setting the buffer thickness equal to the core-region thickness is
+   | generally recommended.
 
 .. _nstate_frag:
 
@@ -3568,6 +3576,13 @@ character, default='eigenexa' when SALMON is built with EigenExa support; otherw
    | ``'lapack'`` / use the LAPACK eigensolver
    | ``'eigenexa'`` / use the EigenExa eigensolver; SALMON must be built with EigenExa support
    | ``'chefsi'`` / use Chebyshev-filtered subspace iteration; SALMON must be built with ScaLAPACK support; cf. [S. Banerjee et al., *J. Chem. Phys.* 145, 154101 (2016), https://doi.org/10.1063/1.4964861].
+
+   | For real-orbital DC-LCFO, ``'lapack'``, ``'eigenexa'``, and
+   | ``'chefsi'`` are available subject to the required build options.
+   | For complex-orbital DC-LCFO, diagonalization supports ``'lapack'``
+   | and ``'chefsi'``; ``'eigenexa'`` is not supported.
+   | Complex-orbital CheFSI requires ScaLAPACK support.
+   | The eigensolver is not used when ``yn_dc_lcfo_diag='n'``.
 
    | CheFSI is an iterative eigensolver intended particularly for large-scale DC-LCFO calculations.
    | Its convergence and accuracy should be checked using the reported residuals.
