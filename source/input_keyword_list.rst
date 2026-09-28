@@ -796,6 +796,11 @@ The following controls belong to ``&functional``:
      - ``0d0``
      - Fixed spherical support radius in the input length unit. Positive values
        take priority over adaptive support; insufficient retained norm gives a warning.
+   * - ``hse_lcfo_wf_radius``
+     - ``0d0``
+     - LCFO RT source sphere radius in the input length unit: bohr for
+       ``unit_system='a.u.'`` and angstrom for ``unit_system='A_eV_fs'``.
+       Converted to bohr internally; zero retains full support.
    * - ``exx_mlwf_norm_fraction``
      - ``0d0``
      - Adaptive retained norm target. For example, .999 retains 99.9% of the norm
@@ -836,6 +841,12 @@ The following controls belong to ``&functional``:
    * - ``rvv10_fft``
      - ``'ffte'``
      - Distributed FFT backend: ``'ffte'`` or ``'fftw'``.
+
+The FFT selector strings ``rvv10_fft`` and ``hse_fft_layout`` are case-insensitive.
+Earlier development versions read ``hse_lcfo_wf_radius`` as bohr regardless of
+``unit_system``. For old ``A_eV_fs`` inputs, convert those radii from bohr to
+angstrom before reuse; atomic-unit and zero-radius inputs are unchanged.
+``variables.log`` reports the converted internal radius in bohr.
 
 The legacy ``hse_mlwf_interval/maxiter/tolerance`` names are accepted as aliases;
 conflicting explicit old/new values are rejected. Radius zero with adaptive
