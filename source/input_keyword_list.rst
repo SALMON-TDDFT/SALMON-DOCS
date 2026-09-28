@@ -808,6 +808,24 @@ The following controls belong to ``&functional``:
    * - ``exx_local_fft``
      - ``'auto'``
      - Local support convolution selection: ``'auto'`` or ``'off'``.
+   * - ``exx_local_backend``
+     - ``'cpu'``
+     - Compact-support exchange backend: ``'cpu'`` or experimental ``'cufft'``
+       (case-insensitive). The GPU option requires a build with
+       ``USE_EXX_CUFFT=ON``, NVIDIA HPC Fortran, ``USE_HSE=ON`` and
+       ``USE_OPENACC=OFF``. Supported only for unshifted Gamma native hybrid
+       orbitals (``nproc_k=1``), static SCF or fixed-ion RT, with
+       ``exx_local_fft='auto'``, ``exx_mlwf_radius=0`` and an adaptive norm
+       fraction strictly between zero and one. Each MPI rank uses its
+       OpenACC-selected device; assign GPUs explicitly using the scheduler,
+       ``CUDA_VISIBLE_DEVICES`` and/or ``ACC_DEVICE_NUM``. Other work and MPI
+       communication remain on the CPU. GPU validation is required on the
+       target system; selecting this option does not certify accuracy or speed.
+   * - ``exx_gpu_batch_size``
+     - ``8``
+     - Positive maximum number of selected compact target columns per spatial
+       worker's cuFFT call. Larger batches increase GPU workspace. This does
+       not change the support target or exchange pair selection.
    * - ``yn_exx_dc_mlwf``
      - ``'n'``
      - Whether to localize within DC fragments. The default uses full-support
