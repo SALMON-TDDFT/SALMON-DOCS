@@ -744,6 +744,115 @@ character, default='none'
    |   ``'TBmBJ'``: Tran-Blaha meta-GGA exchange with Perdew-Wang correlation. :Fabien Tran and Peter Blaha, Phys. Rev. Lett. 102, 226401 (2008). John P. Perdew and Yue Wang, Phys. Rev. B 45, 13244 (1992). This potential is known to provide a reasonable description for the bandgap of various insulators. For this choice, the additional mixing parameter 'cval' may be specified. See below.
    |   ``'r2scan'``:  r2SCAN meta-GGA functional [J. W. Furness, A. D. Kaplan, J. Ning, J. P. Perdew, J. Sun, J. Phys. Chem. Lett. 11, 8208 (2020)].
 
+Native hybrid functionals (development branch)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following options refer to the SALMON2 ``pbeh40-rvv10-water-md``
+development branch; they are not a claim of support in older releases.
+They require the native hybrid build (``USE_HSE=ON``) and compatible Libxc.
+Use ``--enable-scalapack`` when building for distributed complex LCFO
+full diagonalization, and select ``lcfo_eigensolver='scalapack'`` in ``&dc``.
+
+* ``xc='hse06'``: 25% short-range Fock exchange, with HSE06 semilocal terms.
+* ``xc='pbe0'``: 25% full-range Fock exchange, 75% PBE exchange and PBE correlation.
+* ``xc='pbeh40'``: 40% full-range Fock exchange, 60% PBE exchange and PBE correlation.
+* ``xc='pbeh40_rvv10'``: PBEh(40) plus rVV10 nonlocal correlation, without scaling
+  the rVV10 contribution by the exchange fraction.
+
+These native paths are distinct from requesting an arbitrary Libxc hybrid
+through the generic Libxc interface. The tested PBE0 response path uses periodic,
+unpolarized, fixed-ion systems and real-space propagation after DC-LCFO
+reconstruction. Each functional requires its own compatible GS data; the
+reader validates the saved functional name, fraction and Coulomb radius.
+
+The following controls belong to ``&functional``:
+
+.. list-table:: Native hybrid controls
+   :header-rows: 1
+   :widths: 28 15 57
+
+   * - Input
+     - Default
+     - Meaning
+   * - ``pbeh_coulomb_radius``
+     - ``0d0``
+     - Coulomb truncation radius for PBE0/PBEh, in the input length unit.
+       Zero selects half the shortest Born-von Karman cell side. A finite radius
+       is a numerical approximation, not part of the global hybrid definition.
+   * - ``hse_omega``
+     - 0.11 bohr^-1
+     - HSE screening parameter; explicit input uses the inverse input length unit.
+       It does not screen the PBE0/PBEh exchange kernel.
+   * - ``exx_mlwf_interval``
+     - ``10``
+     - MLWF update interval.
+   * - ``exx_mlwf_maxiter``
+     - ``200``
+     - Maximum localization iterations.
+   * - ``exx_mlwf_tolerance``
+     - ``1d-6``
+     - Localization convergence tolerance.
+   * - ``exx_mlwf_radius``
+     - ``0d0``
+     - Fixed spherical support radius in the input length unit. Positive values
+       take priority over adaptive support; insufficient retained norm gives a warning.
+   * - ``exx_mlwf_norm_fraction``
+     - ``0d0``
+     - Adaptive retained norm target. For example, .999 retains 99.9% of the norm
+       when no positive fixed radius is supplied. Zero disables adaptive support.
+   * - ``exx_local_fft``
+     - ``'auto'``
+     - Local support convolution selection: ``'auto'`` or ``'off'``.
+   * - ``yn_exx_dc_mlwf``
+     - ``'n'``
+     - Whether to localize within DC fragments. The default uses full-support
+       canonical exchange within each buffered periodic fragment.
+   * - ``exx_pre_scf_threshold``
+     - ``0d0``
+     - Positive values enable PBE warm-up before switching to the selected hybrid.
+   * - ``exx_pre_scf_steps``
+     - ``3``
+     - Required consecutive qualifying warm-up iterations.
+   * - ``exx_ace_support``
+     - ``'occupied'``
+     - ``'source'`` builds ACE using compact MLWF support and requires adaptive
+       support in fixed-ion native RT; it is not a moving-ion setting.
+   * - ``exx_pair_screening``
+     - ``'off'``
+     - HSE short-range pair screening: ``'off'``, ``'diagnose'`` or ``'on'``.
+       Not combined with source-support ACE.
+   * - ``exx_pair_tolerance``
+     - ``0d0``
+     - Nonnegative pair-screening error budget; only applicable with its supported
+       HSE screening mode. It is not a bound on final spectral error.
+   * - ``rvv10_b``, ``rvv10_c``
+     - ``5.3d0``, ``0.0093d0``
+     - rVV10 parameters for ``pbeh40_rvv10``. The b=5.3 choice follows the
+       water-oriented PBEh(40)+rVV10 prescription, rather than the original
+       rVV10 b=6.3 prescription. These are dimensionless.
+   * - ``rvv10_nq``
+     - ``32``
+     - Kernel interpolation channels (8 to 128).
+   * - ``rvv10_fft``
+     - ``'ffte'``
+     - Distributed FFT backend: ``'ffte'`` or ``'fftw'``.
+
+The legacy ``hse_mlwf_interval/maxiter/tolerance`` names are accepted as aliases;
+conflicting explicit old/new values are rejected. Radius zero with adaptive
+support disabled retains full orbital support.
+
+DC-SCF evaluates rVV10 independently in each buffered periodic fragment.
+Native full-system RT evaluates it from the reconstructed full-system density.
+The RT orbitals remain represented on the real-space grid, not in an LCFO
+propagation basis. GS thermal occupations do not imply a temperature-controlled
+laser-excited RT calculation.
+
+For the PBEh(40)+rVV10 water parameter choice, see the Methods of
+`Evolution of Aqueous Electron with Varying Temperature
+<https://chemrxiv.org/engage/api-gateway/chemrxiv/assets/orp/resource/item/62ab9df7f5524a36fb1528e8/original/evolution-of-aqueous-electron-with-varying-temperature.pdf>`_.
+Complete PBE0 DC-GS and impulse/zero-field inputs are provided in
+``samples/pbe0_h2`` of the corresponding SALMON2 branch.
+
 .. _cval:
 
 cval
