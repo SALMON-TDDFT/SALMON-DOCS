@@ -858,6 +858,22 @@ The RT orbitals remain represented on the real-space grid, not in an LCFO
 propagation basis. GS thermal occupations do not imply a temperature-controlled
 laser-excited RT calculation.
 
+Conventional (non-DC) GS can initialize fixed-ion native real-space RT for
+``pbe0``, ``pbeh40``, and ``pbeh40_rvv10``. Export the GS using
+``write_gs_restart_data='wfn'`` and set RT ``directory_read_data`` to that
+output directory, with ``yn_conventional_from_dcdft='n'`` and ``yn_restart='n'``.
+The supplementary ``hybrid_gs.bin`` metadata must match the functional,
+exchange/Coulomb/rVV10 settings, physical cell, grid, k points and occupations.
+Generate fresh GS data; older data without this metadata are rejected.
+MLWF and ACE are rebuilt at RT initialization, using the saved real-space
+wavefunctions. Gamma permits spatial/orbital decomposition; full uniform
+k meshes permit k-only MPI, without symmetry reduction. The new route accepts
+fixed occupied spin pairs and impulse or Acos2 excitation. RT continuation,
+moving nuclei and simultaneous multi-k spatial decomposition are not enabled.
+Full exchange support is the baseline for comparing energies. Gamma RT also
+accepts adaptive MLWF support. Changing support relative to GS changes the
+approximation and can introduce an initial transient; check against full support.
+
 For the PBEh(40)+rVV10 water parameter choice, see the Methods of
 `Evolution of Aqueous Electron with Varying Temperature
 <https://chemrxiv.org/engage/api-gateway/chemrxiv/assets/orp/resource/item/62ab9df7f5524a36fb1528e8/original/evolution-of-aqueous-electron-with-varying-temperature.pdf>`_.
