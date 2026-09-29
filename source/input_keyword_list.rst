@@ -821,6 +821,17 @@ The following controls belong to ``&functional``:
        ``CUDA_VISIBLE_DEVICES`` and/or ``ACC_DEVICE_NUM``. Other work and MPI
        communication remain on the CPU. GPU validation is required on the
        target system; selecting this option does not certify accuracy or speed.
+   * - ``exx_kpoint_backend``
+     - ``'cpu'``
+     - Full k-mesh exchange convolution backend: ``'cpu'`` or experimental
+       ``'cufft'`` (case-insensitive). Requires the same GPU build options as
+       ``exx_local_backend``. Currently native HSE06 only, a full cubic k mesh
+       with at least two points per axis, k-only MPI, fixed ions and no
+       Wannier/DC/LCFO or local support. GPU packing, k-mesh FFT, discrete kernel
+       multiplication and unpacking share resident plans and constants.
+       Density construction, MPI and action BLAS remain on the CPU. Control
+       row-tile size with ``hse_block_rows``; ``exx_gpu_batch_size`` is for the
+       compact Gamma backend only. Real GPU validation is still required.
    * - ``exx_gpu_batch_size``
      - ``8``
      - Positive maximum number of selected compact target columns per spatial
