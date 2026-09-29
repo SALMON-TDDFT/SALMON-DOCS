@@ -825,9 +825,12 @@ The following controls belong to ``&functional``:
      - ``'cpu'``
      - Full k-mesh exchange convolution backend: ``'cpu'`` or experimental
        ``'cufft'`` (case-insensitive). Requires the same GPU build options as
-       ``exx_local_backend``. Currently native HSE06 only, a full cubic k mesh
-       with at least two points per axis, k-only MPI, fixed ions and no
-       Wannier/DC/LCFO or local support. GPU packing, k-mesh FFT, discrete kernel
+       ``exx_local_backend``. Native HSE06, PBE0 and PBEh(40), including the
+       rVV10 variant, share this exchange path. Requires an orthorhombic grid,
+       a full uniform k mesh with more than one point, k-only MPI, fixed ions
+       and fully occupied spin pairs. DC/LCFO, localized support, fractional or
+       extra-state sources and Wannier snapshots are unsupported. rVV10 remains
+       a separate correlation calculation. GPU packing, k-mesh FFT, discrete kernel
        multiplication and unpacking share resident plans and constants.
        Density construction, MPI and action BLAS remain on the CPU. Control
        row-tile size with ``hse_block_rows``; ``exx_gpu_batch_size`` is for the
