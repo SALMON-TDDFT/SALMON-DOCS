@@ -912,6 +912,131 @@ For the PBEh(40)+rVV10 water parameter choice, see the Methods of
 Complete PBE0 DC-GS and impulse/zero-field inputs are provided in
 ``samples/pbe0_h2`` of the corresponding SALMON2 branch.
 
+
+Learned ACE activation (development branch)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following integer inputs belong to ``&functional``:
+
+.. list-table:: Learned ACE defaults
+   :header-rows: 1
+   :widths: 35 15 50
+
+   * - Input
+     - Default
+     - Meaning
+   * - ``exx_factor_history_frames``
+     - ``3``
+     - Retained exact factor frames. Only 3 is currently accepted.
+   * - ``exx_factor_exact_interval``
+     - ``8``
+     - RT step interval between full exchange corrections after warm-up.
+   * - ``exx_factor_warmup_steps``
+     - ``128``
+     - Initial full-exchange RT steps; distinct from retained frame count.
+
+Learned ACE is off unless the case-sensitive environment variable
+``SALMON_FACTOR_HISTORY=learned`` reaches all MPI ranks. Namelist settings
+alone do not activate prediction. ``strict`` enables the corresponding
+full-update comparison, while an unset variable retains ordinary ACE.
+Warm-up must be a multiple of the interval and at least ten intervals long.
+The tested value 80 for interval 8 is valid but is not the default.
+Only accepted step endpoints enter history, not predictor/intermediate trials.
+Intervening steps predict ACE factors after warm-up/history readiness; full
+corrections also update the fit. Interval 8 is a tested starting recommendation,
+not a material-independent accuracy guarantee. Forgetting remains pending.
+
+The published route requires fixed-ion, non-DC HSE06, fixed fully occupied
+spin pairs, ``propagator='hse_taylor4'``, predictor/corrector enabled,
+``nproc_ob=1``, pair screening off and Wannier snapshots off. Gamma requires
+``hse_sr_tolerance=1d-3``, ``exx_mlwf_norm_fraction=1d0``, zero fixed WF radius
+and source ACE. Multi-k requires a full uniform unreduced mesh, k-only MPI,
+``nproc_rgrid=1,1,1``, ``hse_sr_tolerance=0d0``,
+``exx_mlwf_norm_fraction=0d0`` and occupied ACE. Numerical spatial SR
+localization is not implemented for this multi-k route. Extra empty states
+and a second Acos2 pulse are separate test-build extensions.
+
+Gamma spatial-MPI example (ordinary system, grid and pseudo input also needed)::
+
+   &functional
+     xc='hse06'
+     exx_factor_history_frames=3
+     exx_factor_exact_interval=8
+     exx_factor_warmup_steps=128
+     exx_mlwf_norm_fraction=1d0
+     exx_mlwf_radius=0d0
+     exx_ace_support='source'
+     hse_sr_tolerance=1d-3
+     exx_local_fft='auto'
+     exx_local_backend='cpu'
+   /
+   &propagation
+     propagator='hse_taylor4'
+     yn_predictor_corrector='y'
+   /
+
+Launch with the environment variable exported to every rank::
+
+   export SALMON_FACTOR_HISTORY=learned
+   mpiexec -n 8 /path/to/salmon < inputfile > output.log
+
+Inspect ``variables.log`` and ``FACTOR_HISTORY learned/step/predicted`` output.
+Compare current, absorbed work and spectra against ``strict`` with the same
+physical conditions. Predicted-ACE expectation energy is distinct from an
+independent instantaneous full-exchange functional evaluation.
+
+Numerical SR localization (development branch)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+HSE06 includes its screened exchange kernel regardless of numerical SR
+localization. The extra kernel cutoff is off by default:
+``hse_sr_tolerance=0d0``. A value in (0,1) selects R from
+``erfc(hse_omega*R)=hse_sr_tolerance``. This dimensionless envelope is not
+an energy/current/spectrum error bound. Smaller tolerance means larger R
+and generally more work. ``1d-3`` is a tested starting setting.
+
+.. list-table:: SR and support defaults in functional namelist
+   :header-rows: 1
+   :widths: 35 15 50
+
+   * - Input
+     - Default
+     - Usage
+   * - ``hse_sr_tolerance``
+     - ``0d0``
+     - Zero disables numerical cutoff; use 1d-3 for tested Gamma SR.
+   * - ``exx_mlwf_radius``
+     - ``0d0``
+     - No fixed WF cutoff radius.
+   * - ``exx_mlwf_norm_fraction``
+     - ``0d0``
+     - Norm selection disabled. Set 1d0 for full-support Gamma source ACE.
+   * - ``exx_ace_support``
+     - ``'occupied'``
+     - Set source for this SR route.
+   * - ``exx_local_fft``
+     - ``'auto'``
+     - Select compatible local/neighborhood FFT work.
+   * - ``exx_local_backend``
+     - ``'cpu'``
+     - CPU SR implementation.
+
+Use the Gamma example without factor inputs and with SALMON_FACTOR_HISTORY
+unset for ordinary ACE plus SR. Fraction 1 and radius 0 preserve full WF
+support: WF truncation is not required. The learned Gamma adapter specifically
+requires fraction 1, source ACE and SR tolerance 1d-3.
+
+This numerical SR route supports native fixed-ion Gamma HSE06 RT on CPU with
+source-support ACE and compatible Cartesian spatial MPI. Neighbor ranks
+exchange pair densities and overlap-save FFTs retain the rank's output region;
+short periodic axes stay full length. This reduces FFT volume when the cell
+and decomposition permit. MPI1 or a window covering the full cell retains
+the uncut route. It is not a spherical cutoff of orbital integration.
+Inspect ``EXX_SR``, ``EXX_SR WF-local/neighborhood pairs`` and
+``EXX_SUPPORT_ACE accepted``. Report positivity/Hermiticity rejection and any
+uncut fallback separately from SR timings. These RT examples do not certify
+GS SR or GPU SR support.
+
 .. _cval:
 
 cval
