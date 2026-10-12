@@ -931,16 +931,24 @@ The following integer inputs belong to ``&functional``:
    * - ``exx_factor_exact_interval``
      - ``8``
      - RT step interval between full exchange corrections after warm-up.
+   * - ``exx_factor_n_teach``
+     - ``8``
+     - Number of accepted increment examples required before prediction.
    * - ``exx_factor_warmup_steps``
-     - ``128``
-     - Initial full-exchange RT steps; distinct from retained frame count.
+     - Automatic
+     - Derived as ``(exx_factor_history_frames + exx_factor_n_teach - 1) * exx_factor_exact_interval``.
+       Legacy input values are accepted but overwritten by this calculation.
 
 Learned ACE is off unless the case-sensitive environment variable
 ``SALMON_FACTOR_HISTORY=learned`` reaches all MPI ranks. Namelist settings
 alone do not activate prediction. ``strict`` enables the corresponding
 full-update comparison, while an unset variable retains ordinary ACE.
-Warm-up must be a multiple of the interval and at least ten intervals long.
-The tested value 80 for interval 8 is valid but is not the default.
+Warm-up is calculated automatically. For three history frames and the default
+8 teacher examples, it is ten correction intervals (80 RT steps for interval 8).
+The first example needs three retained factors and a new exact endpoint.
+Every subsequent exact endpoint contributes one additional example.
+Set ``exx_factor_n_teach`` to change the required number of examples.
+It must be positive. Warm-up completion does not override alignment and fit checks.
 Only accepted step endpoints enter history, not predictor/intermediate trials.
 Intervening steps predict ACE factors after warm-up/history readiness; full
 corrections also update the fit. Interval 8 is a tested starting recommendation,
@@ -962,7 +970,7 @@ Gamma spatial-MPI example (ordinary system, grid and pseudo input also needed)::
      xc='hse06'
      exx_factor_history_frames=3
      exx_factor_exact_interval=8
-     exx_factor_warmup_steps=128
+     exx_factor_n_teach=8
      exx_mlwf_norm_fraction=1d0
      exx_mlwf_radius=0d0
      exx_ace_support='source'
