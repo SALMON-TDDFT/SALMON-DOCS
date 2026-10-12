@@ -874,6 +874,26 @@ The following controls belong to ``&functional``:
      - ``'ffte'``
      - Distributed FFT backend: ``'ffte'`` or ``'fftw'``.
 
+**hse_q_reduction(3)**
+  Default: ``1, 1, 1``. Integer reduction factors for the momentum-transfer
+  grid used by the HSE06 exchange operator. Each factor must be positive and
+  divide the corresponding ``num_kgrid`` component. All target k points remain
+  present. For each target k, the exchange sum uses k-q source orbitals on the
+  reduced q mesh, with its normalized quadrature weights.
+
+  ``2, 2, 2`` reduces the number of q points by eight. Supported with integer
+  occupations, a full unreduced uniform k mesh, non-DC CPU calculations and
+  k-only MPI. ACE and learned ACE support this setting, including nonorthogonal
+  cells. Nonunit factors cannot be combined with SR/Wannier localization,
+  fractional occupations, symmetry reduction, DC or cuFFT. The default full-q
+  behavior is unchanged. Use matching GS and RT settings and test q convergence.
+
+  The implementation retains full-k wavefunctions, prediction histories and
+  density-tile communication buffers. Its smaller independent k FFTs do not
+  guarantee an eightfold exchange or overall speedup. With downsampling,
+  ``hse_fft_layout='auto'`` uses strided FFTs. Learned ACE restart data record
+  the factors and require them to remain unchanged.
+
 The FFT selector strings ``rvv10_fft`` and ``hse_fft_layout`` are case-insensitive.
 Earlier development versions read ``hse_lcfo_wf_radius`` as bohr regardless of
 ``unit_system``. For old ``A_eV_fs`` inputs, convert those radii from bohr to
