@@ -845,8 +845,10 @@ The following controls belong to ``&functional``:
      - Whether to localize within DC fragments. The default uses full-support
        canonical exchange within each buffered periodic fragment.
    * - ``exx_pre_scf_threshold``
-     - ``0d0``
-     - Positive values enable PBE warm-up before switching to the selected hybrid.
+     - Automatic
+     - Omission selects ``1d-4`` for supported fresh static hybrid GS and zero
+       otherwise. Explicit zero disables PBE initialization. A positive value
+       is a threshold in the selected density residual, not the final accuracy.
    * - ``exx_pre_scf_steps``
      - ``3``
      - Required consecutive qualifying warm-up iterations.
@@ -917,9 +919,10 @@ output directory, with ``yn_conventional_from_dcdft='n'`` and ``yn_restart='n'``
 The supplementary ``hybrid_gs.bin`` metadata must match the functional,
 exchange/Coulomb/rVV10 settings, physical cell, grid, k points and occupations.
 Generate fresh GS data; older data without this metadata are rejected.
-MLWF and ACE are rebuilt at RT initialization, using the saved real-space
-wavefunctions. Gamma permits spatial/orbital decomposition; full uniform
-k meshes permit k-only MPI, without symmetry reduction. The new route accepts
+MLWF and ACE are rebuilt as required at RT initialization, using the saved
+real-space wavefunctions. Gamma permits spatial/orbital decomposition; dense
+k meshes permit k-only MPI. The native symmetry route below permits
+symmetry-reduced representatives with full exchange support. The route accepts
 fixed occupied spin pairs and impulse or Acos2 excitation. RT continuation,
 moving nuclei and simultaneous multi-k spatial decomposition are not enabled.
 Full exchange support is the baseline for comparing energies. Gamma RT also
@@ -931,6 +934,84 @@ For the PBEh(40)+rVV10 water parameter choice, see the Methods of
 <https://chemrxiv.org/engage/api-gateway/chemrxiv/assets/orp/resource/item/62ab9df7f5524a36fb1528e8/original/evolution-of-aqueous-electron-with-varying-temperature.pdf>`_.
 Complete PBE0 DC-GS and impulse/zero-field inputs are provided in
 ``samples/pbe0_h2`` of the corresponding SALMON2 branch.
+
+
+Hybrid runtime feature selection (development branch)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+All runtime feature selectors below belong to ``&functional``. They are
+case-insensitive, broadcast to all MPI ranks, and recorded in ``variables.log``.
+The former ``SALMON_FACTOR_HISTORY``, ``SALMON_EXX_FFT_ORBITS``,
+``SALMON_ACE_SHADOW_DIAGNOSTIC``, ``SALMON_ACE_EXPORT_FACTORS`` and
+``SALMON_HSE_SR_*`` environment selectors are no longer read.
+
+.. list-table:: Hybrid feature defaults
+   :header-rows: 1
+   :widths: 35 15 50
+
+   * - Input
+     - Default
+     - Meaning
+   * - ``exx_factor_mode``
+     - ``'off'``
+     - ``'off'``, ``'strict'`` (exact endpoint history), or ``'learned'``
+       (history-based prediction). Prediction remains HSE06-only.
+   * - ``yn_exx_fft_orbits``
+     - ``'n'``
+     - Space-group reuse of dense-k exchange FFT work for HSE06, PBE0,
+       PBEh40 or PBEh40+rVV10. Reference and reuse paths retain the same symmetry.
+   * - ``yn_ace_shadow_diagnostic``
+     - ``'n'``
+     - Shadow comparisons within ``exx_surrogate_mode='trace'``.
+   * - ``yn_ace_export_factors``
+     - ``'n'``
+     - Raw one-orbital H2 factor export within the surrogate trace.
+   * - ``hse_sr_group_fft``
+     - ``'off'``
+     - ``'off'``, ``'direct'`` (group FFT without halo exchange), or ``'halo'``.
+   * - ``hse_sr_radius``
+     - ``0d0``
+     - Positive group-FFT radius in the input length unit, converted internally
+       to bohr. Requires group FFT and positive ``hse_sr_tolerance``.
+   * - ``yn_hse_sr_wave_first``
+     - ``'n'``
+     - Wave-first SR route. Requires group FFT.
+   * - ``yn_hse_sr_return_sum``
+     - ``'y'``
+     - Aggregate SR return contributions.
+   * - ``yn_hse_sr_pair_symmetry``
+     - ``'n'``
+     - Conjugate-pair reuse for identical source and target sets. Requires
+       wave-first and aggregated return.
+
+Group FFT requires an MPI build. SR wave batches are fixed at 16; the former
+``SALMON_HSE_SR_WAVE_BATCH`` selector is removed. This does not change the
+separate compact GPU ``exx_gpu_batch_size`` input. Numerical SR localization
+remains HSE-only.
+
+Dense-k reuse requires CPU k-only MPI, all q points, an orthogonal cell and
+cubic real-space and k meshes. Global hybrids additionally require fixed ions,
+integer occupations, occupied-support ACE, no WF truncation, and
+``yn_hse_wannier='n'`` on both reference and reuse paths. The retained group
+must preserve the atoms and the RT field. Symmetry BOMD is unsupported.
+PBE0/PBEh use the existing scalar ``pbeh_coulomb_radius`` and finite q=0
+prescription; zero radius input selects the existing automatic radius. No
+additional real-space cutoff approximation is introduced by FFT reuse.
+
+For supported fresh static hybrid GS, omitted ``exx_pre_scf_threshold`` selects
+``1d-4``. Three consecutive selected-density residuals below it trigger the
+requested hybrid, resetting mixing history. The final ``threshold`` still
+controls hybrid convergence, and ``nscf`` counts both stages. Explicit
+``exx_pre_scf_threshold=0`` requests direct hybrid SCF. The automatic value is
+zero for nonhybrids, RT/restart, MD/optimization, unsupported density
+mixing/convergence, checkpoint/shutdown and diagnostic modes, and DC without
+positive temperature. Explicit positive incompatible inputs remain errors.
+
+DC-LCFO cache memory has no fixed budget or capacity input. Required bytes are
+retained internally without routine capacity output. The former
+``SALMON_LCFO_CACHE_MIB`` limit is removed. Allocation and I/O failures are
+still reported. The cache only reconstructs the initial real-space orbitals;
+RT does not evolve in a fixed LCFO subspace.
 
 
 Learned ACE activation (development branch)
@@ -959,10 +1040,10 @@ The following integer inputs belong to ``&functional``:
      - Derived as ``(exx_factor_history_frames + exx_factor_n_teach - 1) * exx_factor_exact_interval``.
        Legacy input values are accepted but overwritten by this calculation.
 
-Learned ACE is off unless the case-sensitive environment variable
-``SALMON_FACTOR_HISTORY=learned`` reaches all MPI ranks. Namelist settings
-alone do not activate prediction. ``strict`` enables the corresponding
-full-update comparison, while an unset variable retains ordinary ACE.
+Learned ACE is disabled by ``exx_factor_mode='off'`` (default). Set
+``exx_factor_mode='learned'`` to predict factors, or ``'strict'`` to collect
+exact endpoint history without prediction. Environment variables do not
+activate prediction.
 Warm-up is calculated automatically. For three history frames and the default
 8 teacher examples, it is ten correction intervals (80 RT steps for interval 8).
 The first example needs three retained factors and a new exact endpoint.
@@ -976,9 +1057,10 @@ not a material-independent accuracy guarantee. Forgetting remains pending.
 
 The published route requires fixed-ion, non-DC HSE06, fixed fully occupied
 spin pairs, ``propagator='hse_taylor4'``, predictor/corrector enabled,
-``nproc_ob=1``, pair screening off and Wannier snapshots off. Gamma requires
-``hse_sr_tolerance=1d-3``, ``exx_mlwf_norm_fraction=1d0``, zero fixed WF radius
-and source ACE. Multi-k requires a full uniform unreduced mesh, k-only MPI,
+pair screening off and Wannier snapshots off. Orbital-distributed history
+requires ScaLAPACK. Gamma requires ``exx_mlwf_norm_fraction=1d0``, zero fixed
+WF radius and source ACE with compatible SR settings. Multi-k permits a full
+uniform mesh or symmetry-reduced representatives with all q points, k-only MPI,
 ``nproc_rgrid=1,1,1``, ``hse_sr_tolerance=0d0``,
 ``exx_mlwf_norm_fraction=0d0`` and occupied ACE. Numerical spatial SR
 localization is not implemented for this multi-k route. Extra empty states
@@ -988,6 +1070,7 @@ Gamma spatial-MPI example (ordinary system, grid and pseudo input also needed)::
 
    &functional
      xc='hse06'
+     exx_factor_mode='learned'
      exx_factor_history_frames=3
      exx_factor_exact_interval=8
      exx_factor_n_teach=8
@@ -1003,9 +1086,8 @@ Gamma spatial-MPI example (ordinary system, grid and pseudo input also needed)::
      yn_predictor_corrector='y'
    /
 
-Launch with the environment variable exported to every rank::
+Launch using the namelist configuration above::
 
-   export SALMON_FACTOR_HISTORY=learned
    mpiexec -n 8 /path/to/salmon < inputfile > output.log
 
 Inspect ``variables.log`` and ``FACTOR_HISTORY learned/step/predicted`` output.
@@ -1049,10 +1131,9 @@ and generally more work. ``1d-3`` is a tested starting setting.
      - ``'cpu'``
      - CPU SR implementation.
 
-Use the Gamma example without factor inputs and with SALMON_FACTOR_HISTORY
-unset for ordinary ACE plus SR. Fraction 1 and radius 0 preserve full WF
-support: WF truncation is not required. The learned Gamma adapter specifically
-requires fraction 1, source ACE and SR tolerance 1d-3.
+Use the Gamma example with ``exx_factor_mode='off'`` for ordinary ACE plus SR. Fraction 1 and radius 0 preserve full WF
+support: WF truncation is not required. The learned Gamma adapter requires
+fraction 1, source ACE and compatible SR settings; the example uses 1d-3.
 
 This numerical SR route supports native fixed-ion Gamma HSE06 RT on CPU with
 source-support ACE and compatible Cartesian spatial MPI. Neighbor ranks
